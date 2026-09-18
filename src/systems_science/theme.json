@@ -1,0 +1,9 @@
+{
+  "ui": {
+    "background": "#ffffff", "tint": "#b5c8e0", "soft": "#8ca3c7",
+    "border": "#6491b5", "muted": "#4078a0", "primary": "#2b5d8b",
+    "primary-hover": "#14476f", "text": "#081950", "error": "#b33a4a", "error-strong": "#7d2b31"
+  },
+  "data": {"1": "#008bfb", "2": "#ff0051", "3": "#009e73", "4": "#d55e00", "5": "#7c52ff", "reference": "#555555"},
+  "series": {"exact": "1", "euler": "2", "reference": "reference"}
+}

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>练习 · 动手学系统科学</title><link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css"><link rel="stylesheet" href="/web/vendor/codemirror/lib/codemirror.css"><link rel="stylesheet" href="/web/vendor/codemirror/theme/monokai.css"><link rel="stylesheet" href="/web/practice/style.css"></head>
+<body>
+<main id="main">
+  <div id="loading-note" class="notice" role="status">正在读取练习…</div>
+  <div id="connection-help" class="notice" hidden><p id="connection-message"></p><button id="reconnect" type="button">恢复连接</button></div>
+  <section class="practice-heading"><div><p class="eyebrow">制作样章 · 练习</p><h1>把理解变成一次验证</h1></div><div class="practice-context"><div class="section-select"><label for="lesson-picker">当前小节</label><select id="lesson-picker"></select></div><span id="progress" class="muted" role="status"></span></div></section>
+  <nav id="questions" class="question-tabs" aria-label="本节练习"></nav>
+  <article id="exercise" hidden>
+    <div class="exercise-workspace" id="exercise-workspace">
+      <div class="question-reading" id="question-reading" tabindex="0" role="region" aria-label="题目与样例">
+        <p id="question-meta" class="eyebrow"></p><h2 id="question-title"></h2>
+        <p id="statement" class="statement"></p>
+        <div class="reading-links"><button id="open-notebook" type="button">在默认 IDE 中复习本节 ↗</button><span id="open-feedback" role="status"></span></div>
+        <section id="code-requirements" hidden>
+          <h3>函数签名</h3><pre id="function-signature" class="function-signature"></pre>
+          <h3>参数说明</h3><div id="parameters" class="contract-table"></div>
+          <h3>返回值</h3><p id="return-note"></p><div id="return-values" class="contract-table"></div>
+          <h3>计算规则</h3><p id="contract"></p>
+          <h3>约束与边界</h3><ul id="constraints"></ul>
+          <div class="worked-example"><p class="muted">先读输入样例中的已知条件，再对照输出样例理解要算什么。</p><details class="example"><summary>输入样例</summary><div id="sample-input"></div></details><details class="example"><summary>输出样例</summary><div id="sample-output"></div></details><p class="muted">“用示例试算”检查这组条件；提交判定还会检查其他条件，仅通过示例不计为完成。</p></div><details class="limits"><summary>允许库、误差与运行限制</summary><p id="limits" class="muted"></p></details>
+        </section>
+        <details class="hint"><summary>需要一点提示</summary><p id="hint"></p></details>
+      </div>
+      <div id="workspace-resizer" class="resize-handle workspace-resizer" role="separator" tabindex="0" aria-label="调整题目与答题区宽度" aria-orientation="vertical" aria-controls="question-reading answer-area" title="拖动调整两栏；左右方向键调整，双击或 Enter 恢复默认"></div>
+      <div class="answer-area" id="answer-area">
+        <div id="completion-notice" class="completion-notice" hidden role="status"></div>
+        <div class="attempt-status"><p id="attempt-message" role="status"></p><p id="running-note" class="muted" hidden>有一道计算正在运行，可以继续编辑、切换题目或取消计算。</p><button id="cancel" type="button" hidden>取消计算</button></div>
+        <section id="result" class="result" hidden tabindex="-1" aria-labelledby="result-title">
+          <div class="result-heading"><h2 id="result-title"></h2><button id="toggle-result" type="button" aria-expanded="true" aria-controls="result-body">收起详情</button></div>
+          <div id="result-body"><p id="result-summary"></p><p id="snapshot-note" class="muted"></p><button id="goto-error" type="button" hidden>定位出错行</button><div id="result-details"></div></div>
+        </section>
+        <span id="result-announcement" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></span>
+        <section id="choice-panel" hidden><h3>你的判断</h3><fieldset><legend id="choice-instruction"></legend><div id="options"></div></fieldset><button id="submit-choice" class="primary" type="button">提交答案 →</button></section>
+        <section id="code-panel" hidden>
+          <div class="editor-heading"><label for="source">你的 Python 解答</label><button id="wrap-code" type="button" aria-pressed="true">自动换行：开</button></div>
+          <p class="editor-help" id="editor-help">Tab / Shift+Tab 缩进 · 行首 Backspace 退一级 · 括号自动配对 · Esc 后 Tab 移出编辑器</p>
+          <p id="editor-status" class="muted" role="status"></p>
+          <div id="editor-surface" class="editor-surface"><textarea id="source" rows="16" wrap="soft" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="editor-help draft-note"></textarea></div><p id="draft-note" class="muted" role="status"></p>
+          <div class="editor-tools"><button id="indent" type="button">缩进</button><button id="download-code" type="button">下载代码</button><button id="download-previous" type="button" hidden>下载旧版草稿</button><button id="restore-code" type="button">恢复模板</button><button id="undo-restore" type="button" hidden>撤销恢复</button></div>
+          <div class="actions"><button id="run-samples" type="button">用示例试算</button><button id="submit-code" class="primary" type="button">提交判定 →</button></div>
+          <p class="muted">草稿自动保存在当前浏览器。提交后，代码在本机计算并检查全部用例。</p>
+        </section>
+      </div>
+    </div>
+    <nav class="question-pager" aria-label="前后练习"><button id="previous-question" type="button">← 上一题</button><button id="next-question" type="button">下一题 →</button></nav>
+  </article>
+</main>
+<script src="/web/vendor/codemirror/lib/codemirror.js"></script><script src="/web/vendor/codemirror/mode/python/python.js"></script><script src="/web/vendor/codemirror/addon/edit/closebrackets.js"></script><script src="/web/vendor/codemirror/addon/edit/matchbrackets.js"></script><script src="/web/shared/boot.js"></script><script type="module" src="/web/practice/app.mjs" data-main></script>
+</body></html>

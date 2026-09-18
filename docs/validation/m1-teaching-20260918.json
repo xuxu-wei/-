@@ -1,0 +1,568 @@
+{
+  "date": "2026-09-18",
+  "scope": "M1 教学内容清理、18 道客观题、真实页面入口与术语首现",
+  "notebook_execution": {
+    "python": "3.13.2",
+    "platform": "Windows",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "jupyterlab": "4.6.3",
+      "nbformat": "5.11.1",
+      "nbclient": "0.11.0",
+      "ipykernel": "7.3.0",
+      "pytest": "9.1.1"
+    },
+    "notebooks": [
+      {
+        "path": "notebooks/m1/01-boundaries-units.ipynb",
+        "seconds": 3.01,
+        "code_cells": 4,
+        "figures": 1,
+        "sha256": "dda06238f92e7e20cd26e02cf99bb2310566179cdd6471a0ea77e8db51514999",
+        "passed": true
+      },
+      {
+        "path": "notebooks/m1/02-accumulation-clearance.ipynb",
+        "seconds": 3.11,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "4f62a12ef9110bfe55afe72b40e7742680a486d389278077e3312b1f6ddbf203",
+        "passed": true
+      },
+      {
+        "path": "notebooks/m1/03-equilibrium-feedback.ipynb",
+        "seconds": 3.26,
+        "code_cells": 5,
+        "figures": 2,
+        "sha256": "d9e10318353476b21cd546936302d87754f5e9bb9389831e3d48ec42e88c708f",
+        "passed": true
+      },
+      {
+        "path": "notebooks/m1/04-rates-ode.ipynb",
+        "seconds": 3.05,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "59f33a481d1ff85ccfa51f0dabff58474d96a703b21f5adebbe8942d89c57204",
+        "passed": true
+      },
+      {
+        "path": "notebooks/m1/05-numerical-checks.ipynb",
+        "seconds": 3.27,
+        "code_cells": 6,
+        "figures": 2,
+        "sha256": "865badc2518d765f21d4976b030d61b9504f675cf7dbab35ac2ad4497df02d59",
+        "passed": true
+      },
+      {
+        "path": "notebooks/m1/06-transfer-experiment.ipynb",
+        "seconds": 3.35,
+        "code_cells": 6,
+        "figures": 1,
+        "sha256": "c82bda25924967c5ae7db0a5bbf1e6f75f4b2d2e23656e66406ac0c775b07215",
+        "passed": true
+      }
+    ]
+  },
+  "automated_checks": {
+    "python_passed": 61,
+    "javascript_passed": 8,
+    "exercise_sync": "passed",
+    "theme_sync": "passed",
+    "frontend_syntax": "passed",
+    "independent_references": "closed-form recurrence, 60-digit Decimal continuous solution, existing Notebook algorithms"
+  },
+  "teaching_content": {
+    "notebooks": 6,
+    "choice_questions": 10,
+    "python_questions": 8,
+    "exercise_deep_links": 18,
+    "terminology": [
+      {
+        "unit": "S01-E1",
+        "terms_checked": [
+          "存量",
+          "流量"
+        ]
+      },
+      {
+        "unit": "S01-E2",
+        "terms_checked": [
+          "初值",
+          "存量",
+          "收支"
+        ]
+      },
+      {
+        "unit": "S01-E3",
+        "terms_checked": [
+          "存量",
+          "收支",
+          "流量",
+          "系统边界"
+        ]
+      },
+      {
+        "unit": "S02-E1",
+        "terms_checked": [
+          "时间步长",
+          "清除系数"
+        ]
+      },
+      {
+        "unit": "S02-E2",
+        "terms_checked": [
+          "初值",
+          "存量",
+          "递推关系"
+        ]
+      },
+      {
+        "unit": "S02-E3",
+        "terms_checked": [
+          "存量",
+          "收支"
+        ]
+      },
+      {
+        "unit": "S03-E1",
+        "terms_checked": [
+          "存量",
+          "平衡"
+        ]
+      },
+      {
+        "unit": "S03-E2",
+        "terms_checked": [
+          "平衡",
+          "清除系数"
+        ]
+      },
+      {
+        "unit": "S03-E3",
+        "terms_checked": [
+          "初值",
+          "单室模型",
+          "存量",
+          "平衡",
+          "负反馈"
+        ]
+      },
+      {
+        "unit": "S04-E1",
+        "terms_checked": [
+          "初值",
+          "定积分",
+          "导数"
+        ]
+      },
+      {
+        "unit": "S04-E2",
+        "terms_checked": [
+          "初值",
+          "常微分方程",
+          "解析解"
+        ]
+      },
+      {
+        "unit": "S04-E3",
+        "terms_checked": [
+          "初值",
+          "解析解"
+        ]
+      },
+      {
+        "unit": "S05-E1",
+        "terms_checked": [
+          "平衡",
+          "数值稳定性",
+          "数值误差",
+          "欧拉法"
+        ]
+      },
+      {
+        "unit": "S05-E2",
+        "terms_checked": [
+          "初值",
+          "存量",
+          "欧拉法",
+          "非负性"
+        ]
+      },
+      {
+        "unit": "S05-E3",
+        "terms_checked": [
+          "初值",
+          "最大绝对误差",
+          "欧拉法",
+          "解析解"
+        ]
+      },
+      {
+        "unit": "S06-E1",
+        "terms_checked": [
+          "分段恒定输入",
+          "存量"
+        ]
+      },
+      {
+        "unit": "S06-E2",
+        "terms_checked": [
+          "分段恒定输入",
+          "存量",
+          "解析解"
+        ]
+      },
+      {
+        "unit": "S06-E3",
+        "terms_checked": [
+          "分段恒定输入",
+          "初值",
+          "时间网格",
+          "欧拉法",
+          "解析解"
+        ]
+      },
+      {
+        "unit": "S01",
+        "terms_checked": [
+          "存量",
+          "守恒检查",
+          "收支",
+          "流量",
+          "浓度",
+          "状态",
+          "示踪物质",
+          "系统边界"
+        ]
+      },
+      {
+        "unit": "S02",
+        "terms_checked": [
+          "初值",
+          "单室模型",
+          "参数",
+          "存量",
+          "收支",
+          "时间步长",
+          "残差",
+          "浓度",
+          "清除系数",
+          "状态",
+          "示踪物质",
+          "舍入误差",
+          "递推关系"
+        ]
+      },
+      {
+        "unit": "S03",
+        "terms_checked": [
+          "初值",
+          "单室模型",
+          "参数",
+          "存量",
+          "平衡",
+          "时间步长",
+          "浓度",
+          "清除系数",
+          "示踪物质",
+          "负反馈",
+          "递推关系"
+        ]
+      },
+      {
+        "unit": "S04",
+        "terms_checked": [
+          "中心差分",
+          "切线",
+          "初值",
+          "初值问题",
+          "割线",
+          "单室模型",
+          "参数",
+          "存量",
+          "定积分",
+          "导数",
+          "差商",
+          "常微分方程",
+          "平衡",
+          "指数函数",
+          "收支",
+          "斜率",
+          "时间尺度",
+          "时间步长",
+          "有限差分",
+          "极限",
+          "流量",
+          "浓度",
+          "清除系数",
+          "示踪物质",
+          "解析解"
+        ]
+      },
+      {
+        "unit": "S05",
+        "terms_checked": [
+          "一阶收敛",
+          "初值",
+          "单室模型",
+          "参数",
+          "存量",
+          "平衡",
+          "数值稳定性",
+          "数值误差",
+          "时间步长",
+          "最大绝对误差",
+          "欧拉法",
+          "浓度",
+          "清除系数",
+          "示踪物质",
+          "观察阶",
+          "解析解",
+          "非负性"
+        ]
+      },
+      {
+        "unit": "S06",
+        "terms_checked": [
+          "分段恒定输入",
+          "初值",
+          "单室模型",
+          "参数",
+          "存量",
+          "数值误差",
+          "时间步长",
+          "时间网格",
+          "欧拉法",
+          "浓度",
+          "清除系数",
+          "示踪物质",
+          "解析解"
+        ]
+      },
+      {
+        "unit": "concept-page",
+        "terms_checked": [
+          "初值",
+          "单室模型",
+          "参数",
+          "存量",
+          "平衡",
+          "数值稳定性",
+          "数值误差",
+          "时间步长",
+          "最大绝对误差",
+          "欧拉法",
+          "流量",
+          "浓度",
+          "清除系数",
+          "解析解",
+          "负反馈",
+          "非负性"
+        ]
+      }
+    ],
+    "issues": []
+  },
+  "glossary_entries": 41,
+  "navigation": {
+    "files": 29,
+    "local_links": 320,
+    "issues": []
+  },
+  "browser_checks": {
+    "method": "Actual Codex in-app browser actions on rendered Notebook previews and pages; not a claimed run of check_browser.mjs",
+    "exercise_links_clicked": [
+      "S01-E1",
+      "S01-E2",
+      "S01-E3",
+      "S02-E1",
+      "S02-E2",
+      "S02-E3",
+      "S03-E1",
+      "S03-E2",
+      "S03-E3",
+      "S04-E1",
+      "S04-E2",
+      "S04-E3",
+      "S05-E1",
+      "S05-E2",
+      "S05-E3",
+      "S06-E1",
+      "S06-E2",
+      "S06-E3"
+    ],
+    "exercise_links_outcome": "All 18 displayed the matching question ID, type and visible form",
+    "visualization_links": [
+      "/web/single-compartment/#stock-flow",
+      "/web/single-compartment/#step-size"
+    ],
+    "visualization_outcome": "Rendered title, SVG and interactive controls; no HTML source or download",
+    "playback": {
+      "playing_time_T": 1.35,
+      "amount_fill_height": 57.26096643270658,
+      "paused_time_T": 1.62,
+      "after_400ms_T": 1.62
+    },
+    "default_ide": {
+      "lesson": "S01",
+      "ui_response": "已请求系统默认 IDE 打开",
+      "window_title": "● 01-boundaries-units.ipynb - Visual Studio Code",
+      "browser_stayed_on_exercise": true
+    },
+    "practice_actions": [
+      "wrong then correct choice with option explanations",
+      "Python sample AC does not increase progress",
+      "Python full AC increases progress",
+      "WA with failed cases",
+      "edited draft distinguished from submitted snapshot",
+      "cancel infinite loop after switching questions",
+      "reload restores code draft and terminal result",
+      "multiple choice A/B/D using mouse and Space key"
+    ],
+    "isolated_test_records": [
+      {
+        "exercise_id": "S01-E3",
+        "type": "choice",
+        "mode": "full",
+        "state": "FINISHED",
+        "verdict": "AC",
+        "saved": true
+      },
+      {
+        "exercise_id": "S01-E2",
+        "type": "python",
+        "mode": "samples",
+        "state": "FINISHED",
+        "verdict": "AC",
+        "saved": true
+      },
+      {
+        "exercise_id": "S01-E1",
+        "type": "choice",
+        "mode": "full",
+        "state": "FINISHED",
+        "verdict": "AC",
+        "saved": true
+      },
+      {
+        "exercise_id": "S01-E2",
+        "type": "python",
+        "mode": "full",
+        "state": "FINISHED",
+        "verdict": "AC",
+        "saved": true
+      },
+      {
+        "exercise_id": "S01-E2",
+        "type": "python",
+        "mode": "full",
+        "state": "FINISHED",
+        "verdict": "CANCELLED",
+        "saved": true
+      },
+      {
+        "exercise_id": "S01-E1",
+        "type": "choice",
+        "mode": "full",
+        "state": "FINISHED",
+        "verdict": "WA",
+        "saved": true
+      },
+      {
+        "exercise_id": "S01-E2",
+        "type": "python",
+        "mode": "full",
+        "state": "FINISHED",
+        "verdict": "WA",
+        "saved": true
+      }
+    ],
+    "pc_viewports": [
+      {
+        "width": 1024,
+        "document_width": 1009
+      },
+      {
+        "width": 1366,
+        "document_width": 1351
+      },
+      {
+        "width": 1440,
+        "document_width": 1425
+      },
+      {
+        "width": 1920,
+        "document_width": 1905
+      }
+    ],
+    "viewport_override_reset": true,
+    "test_record_directory": ".work/m1/browser-learning/",
+    "normal_learning_attempts_written": 0
+  },
+  "limits": [
+    "Windows/Python 3.13.2 verified; other platforms not revalidated",
+    "No learner trial or independent peer review",
+    "Glossary check requires human discovery of new terms",
+    "M1 18 questions only; formal 55 chapters remain later milestones",
+    "Local subprocess is not a security sandbox and has no enforced memory ceiling"
+  ],
+  "file_sha256": {
+    ".gitignore": "2c9ad87bf1c2ed1b5b9979c370a3f98028a9e17a1f53d6b3f4c90933a6f5c0f1",
+    "AGENTS.md": "99a541417be57ca4c4ea6316ad279ecc0e2c18e94395c64b054900dbcddf55f9",
+    "docs/M1练习核验.md": "4f0da1ceb93edbdbfe9e9389ad1297a475a8f364468d4e9313984efee0e6ad92",
+    "docs/M1验收.md": "b9ead288857053ba6e006f4b919acb701b89b5154f09053de40dfb6cba356080",
+    "docs/交互练习与判题系统设计.md": "6a01b6dafb2b7e653943750a51aa4e082d0fd940fb718e473083c464fe1e96f7",
+    "docs/学习指南.md": "1f5a342ce695bc783fda90165fef42877bc17dd7b3cb69f3434545ef9ddab0d8",
+    "docs/教材制作检查表.md": "2a8d498c22c40b7e79a6e9e1a1a747688aa5b5c7ec4d185f2c7f7be3960a94fc",
+    "docs/教材设计.md": "7a0db9783e061c3a611c721ddebc827e870da0ad21cc81b193f5a54c779ece03",
+    "docs/术语对照.json": "d9bafa75514b2a3638d65ce0eb4a2522531a6ba806c6b6ffb8d114e7dcc22c01",
+    "docs/网页设计规范.md": "e31f2029be2c6b4b1f14ba9debab4778df7934992191c3ea12f332bbec4f1613",
+    "exercises/m1/questions.json": "f422635036bd18aafccc99b271ebfbf25159fc75c5606fa43af6f9edeb3c46fc",
+    "exercises/m1/solutions.json": "eeb333893401ed0896f002675033caa09bc655d8d397fc0a898bf5ae037ba3a6",
+    "exercises/m1/verification.json": "32108295a868c5bed5f08d855ed627e6716713710a7bc3dd23d3570763403e9a",
+    "notebooks/m1/.ipynb_checkpoints/04-rates-ode-checkpoint.ipynb": "4101f801da79719e5a94b00d5537e0f6c90d39a64f664f52503dadbf8d2a45b3",
+    "notebooks/m1/01-boundaries-units.ipynb": "dda06238f92e7e20cd26e02cf99bb2310566179cdd6471a0ea77e8db51514999",
+    "notebooks/m1/02-accumulation-clearance.ipynb": "4f62a12ef9110bfe55afe72b40e7742680a486d389278077e3312b1f6ddbf203",
+    "notebooks/m1/03-equilibrium-feedback.ipynb": "d9e10318353476b21cd546936302d87754f5e9bb9389831e3d48ec42e88c708f",
+    "notebooks/m1/04-rates-ode.ipynb": "59f33a481d1ff85ccfa51f0dabff58474d96a703b21f5adebbe8942d89c57204",
+    "notebooks/m1/05-numerical-checks.ipynb": "865badc2518d765f21d4976b030d61b9504f675cf7dbab35ac2ad4497df02d59",
+    "notebooks/m1/06-transfer-experiment.ipynb": "c82bda25924967c5ae7db0a5bbf1e6f75f4b2d2e23656e66406ac0c775b07215",
+    "notebooks/m1/catalog.json": "e6fcf14d9279fab8f81718b8e80147e20d9d841f8145a308c925cb3bcc39b5e0",
+    "notebooks/m1/README.md": "264f5789036ace96ca8df18b3e61a324d43c749a43377b93996a317ae22e29a1",
+    "pyproject.toml": "b12bb5b1f5dc90872eb467ba793863c36edc39eac2cbd0186349817d8b7821e0",
+    "README.md": "c251e9ff88eea124c64aff0912813c6c9138a0d8f08d304362f240cf558f0300",
+    "ROADMAP.md": "c5992056c193c6e186870af1c6fa84febaaf03a26c9a8134c0e69469ec7fe9dc",
+    "src/systems_science/__init__.py": "aae1b7a0bbe0fcfb0e5a21578317832660f1a7d07859eeaf83f9e2463be217fb",
+    "src/systems_science/presentation.py": "e27c1b93dbf4363f761b5c18f7d7fee9103a941041d24f44e8b522fb8fa7e415",
+    "src/systems_science/theme.json": "171f1b83f5f6f2ada0a3d19e2cf7862cee1f34958f0ae38800f6954bdda4a023",
+    "src/systems_science/theme.py": "30766668e8e930e5a97e12beacaf953ec1befdf7f6f968709f8c2e3d1084ad5c",
+    "tools/check_browser.mjs": "1e7c41bb5b9acff1e4f0df0b7ea2cc2a699bfc5dfe9d2c1f893064dbe680e52e",
+    "tools/check_m1.py": "be03ea3ee2aa6eb33c6e00fc4b82e8cbb5ebe8ab9455f7fcc06246d3edbf572b",
+    "tools/check_teaching.py": "7024804c7d8fbb0796fa4f94e1ef424f9092e3238771b7967716735414b9f11b",
+    "tools/compare_m1_models.mjs": "f5a3c3cb9612d2902a77f61cf755e4224b4e4f8fd56cd4587a4c9d5ebda76377",
+    "tools/export_m1_reference.py": "d9fdbcee76e5db31dab5b3043eaab4ce34ca6c2c06f363e7e984bad1ba6c80d0",
+    "tools/practice.py": "8afc41ae51023315698dfe415aa39b285b028685c846b3799820576a7217e87a",
+    "tools/practice_worker.py": "3ea5d3f69bf1a393cb7f9d2ac890a10ef498fd335e0f9fe896461c9491a29f67",
+    "tools/review_notebooks.mjs": "9351020b626155a8a4bc178de143b53d3027c5bafae1d48f4b3175016980f117",
+    "tools/serve.py": "d1d2dcff64ef2e17e41d6e9cf18012acba3cd1d0e79d935699aed06d0daae277",
+    "tools/sync_m1_exercises.py": "46982fdcecddaae2c5555aee41c88ad9130c2787ee73489c028d96df7cbf4e08",
+    "tools/sync_theme.py": "5791fe22e6907fa035c7f53f0c6864949adf4305c23f112fd3113b0b00d4613c",
+    "tools/tests/playback.test.mjs": "e3f0cbe7f3a821ee68934813fa59fc691ab82a1ffaad30348150a492c1721461",
+    "tools/tests/test_local_open.py": "a53d39ab4c4ba5223a49f14f3f419fb2de6c24a12d02afc3449fead2c17d7d90",
+    "tools/tests/test_models.py": "7d92ae5b1254aaa1be0bdb7ed054ef03cc65c21ca89d55feac6d122871b843a9",
+    "tools/tests/test_practice.py": "4b49c6ba6a17f88276acc6142fe20e3eebf90b4058807f70d00fcfc581782b50",
+    "tools/tests/web-model.test.mjs": "8a5657ad76bd78113007e27485d562ec2c98be2788a002ef8b4ec72dce207bf3",
+    "web/practice/app.mjs": "8f861c18070b231e7cc8236afc29ea40aad579b25c9cb903b057f5e2da6c79a2",
+    "web/practice/index.html": "077561070d9c892a072b7b360d7920350339a9cd60ccaea03bf32e7feb7e32c4",
+    "web/practice/style.css": "910151d02ddb49e5951055c5cb441121e73bd1179540c44319d5c2dc61b249f9",
+    "web/shared/boot.js": "03ec241d8a74e692984e9b6d8533e22c680b181a3b57d0d85a7750a759e5a05c",
+    "web/shared/playback.mjs": "476a9b60e833dd4fea3f6611f8d581a220184dd2e9e0303c9488e46d1debe1bb",
+    "web/shared/theme.css": "d36e8af5298e371b1caa9ebc0e17e159c49e13d66a7089d63fa8484a628e3948",
+    "web/shared/theme.mjs": "41ea74565b77cc964e2aa0f3c7033cc80d1376a64dc6dea3cfe2d7c1a677006b",
+    "web/single-compartment/app.mjs": "aa9febc3b4708da8ec4850afc24bd938c923d60cc3c66bbe19fef6b704d7f69a",
+    "web/single-compartment/index.html": "4fb9223dc33a65a04b0c59769a48501da098be3cda41b59e9e8d96a4eb446113",
+    "web/single-compartment/model.mjs": "c2685910dd6b32175ba0a74ff1015df0ffb766041b6934719cf77676536105f6",
+    "web/single-compartment/style.css": "aaa15e88f8a52a008d20fccd8e664a591c738ef8a46a380b8f5192e6732e86b2"
+  }
+}

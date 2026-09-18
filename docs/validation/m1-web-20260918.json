@@ -1,0 +1,180 @@
+{
+  "date": "2026-09-18",
+  "scope": "M1 PC webpage redesign, animation regression, default IDE entry and shared palette",
+  "notebook_execution": {
+    "python": "3.13.2",
+    "platform": "Windows",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "jupyterlab": "4.6.3",
+      "nbformat": "5.11.1",
+      "nbclient": "0.11.0",
+      "ipykernel": "7.3.0",
+      "pytest": "9.1.1"
+    },
+    "notebooks": [
+      {
+        "path": "notebooks/m1/01-boundaries-units.ipynb",
+        "seconds": 4.4,
+        "code_cells": 4,
+        "figures": 1,
+        "sha256": "f22627e8ef19fcf8e96ef04139ed378bafb500851875f6274377e4195850fb23",
+        "passed": true
+      },
+      {
+        "path": "notebooks/m1/02-accumulation-clearance.ipynb",
+        "seconds": 5.0,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "e1df83a333a04a1364c01ab9ee14a57104e01d08c56758c360c0c7e287eba1b3",
+        "passed": true
+      },
+      {
+        "path": "notebooks/m1/03-equilibrium-feedback.ipynb",
+        "seconds": 5.3,
+        "code_cells": 5,
+        "figures": 2,
+        "sha256": "b0a81b39bd3916fdc3471b328da2c6648c7e6ab75b512b2ba74bdcccc66a159e",
+        "passed": true
+      },
+      {
+        "path": "notebooks/m1/04-rates-ode.ipynb",
+        "seconds": 4.61,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "fc0f6603f4e9758e6f10c2a831d52e7685f31a725f704d380059d694a6102ce9",
+        "passed": true
+      },
+      {
+        "path": "notebooks/m1/05-numerical-checks.ipynb",
+        "seconds": 4.02,
+        "code_cells": 6,
+        "figures": 2,
+        "sha256": "b6d07e3f9bc15b274c6c3d490ec4fe5e33322e94d6726c700ac5827196868269",
+        "passed": true
+      },
+      {
+        "path": "notebooks/m1/06-transfer-experiment.ipynb",
+        "seconds": 4.15,
+        "code_cells": 6,
+        "figures": 1,
+        "sha256": "617e28a644e79da054889e487954b8bf1f629fbbb465e2ec19eabe490bef6d20",
+        "passed": true
+      }
+    ]
+  },
+  "python_tests": {
+    "passed": 37,
+    "mathematical": 25,
+    "local_open_http": 12,
+    "note": "OS opener is mocked in protocol tests; actual Windows IDE opening separately checked"
+  },
+  "javascript_tests": {
+    "passed": 8,
+    "model": 4,
+    "playback": 4
+  },
+  "model_parity": {
+    "cases": 64,
+    "maximum_normalized_difference": 4.844609562053534e-16,
+    "tolerance": 1e-10,
+    "passed": true
+  },
+  "browser": {
+    "surface": "Codex in-app browser on Windows",
+    "method": "Actual UI actions through CUA, with read-only DOM observations",
+    "viewports": [
+      [
+        1024,
+        900
+      ],
+      [
+        1366,
+        768
+      ],
+      [
+        1440,
+        1000
+      ],
+      [
+        1920,
+        1080
+      ]
+    ],
+    "checks": [
+      "Actual click advances time, stock height, flow marks and revealed trajectory",
+      "Pause freezes time: 3.33 T remained 3.33 T after 500 ms",
+      "Seek to 20 T and play restarts from zero; reset restores defaults",
+      "Keyboard u change to 1.05; visible 3 px focus; zero-clearance boundary",
+      "Negative Euler h=2 example; h=1 reduces max error 7.2313 to 2.2237 U",
+      "PC widths have no page horizontal overflow; labels fit; content max width 1440 px",
+      "Collapsed directory Escape closes and restores focus; sidebar follows current section",
+      "Six Notebook catalog buttons; no browser Notebook anchors",
+      "Old server detected; restart and reconnect restores IDE actions",
+      "Missing app.mjs fixture shows load error and disables play",
+      "IDE opening failure fixture shows visible error, preserves retry and page URL"
+    ],
+    "default_ide": {
+      "platform": "Windows",
+      "file_association": "VSCode.ipynb",
+      "notebook": "notebooks/m1/01-boundaries-units.ipynb",
+      "http_status": 202,
+      "observed_window_title": "01-boundaries-units.ipynb - Visual Studio Code",
+      "association_modified": false
+    },
+    "cli_browser_harness": {
+      "path": "tools/check_browser.mjs",
+      "syntax_checked": true,
+      "executed_this_revision": false
+    }
+  },
+  "figures": {
+    "rendered": 8,
+    "individually_viewed": 8,
+    "shared_palette_check": true
+  },
+  "limits": [
+    "Original no-response failure not stably reproduced; no unique root cause claimed",
+    "Default app launch verified only on Windows with existing VS Code association",
+    "PC-only scope; no mobile certification",
+    "No M2 chapter pages, grading or learning records delivered",
+    "No independent peer review or learner trial"
+  ],
+  "artifacts_sha256": {
+    "notebooks/m1/catalog.json": "66590d3eb8a821d543bc01e110ac177ce1b919b80315e7d0cfd3fde57fedb40f",
+    "pyproject.toml": "b12bb5b1f5dc90872eb467ba793863c36edc39eac2cbd0186349817d8b7821e0",
+    "src/systems_science/__init__.py": "aae1b7a0bbe0fcfb0e5a21578317832660f1a7d07859eeaf83f9e2463be217fb",
+    "src/systems_science/presentation.py": "e27c1b93dbf4363f761b5c18f7d7fee9103a941041d24f44e8b522fb8fa7e415",
+    "src/systems_science/theme.json": "171f1b83f5f6f2ada0a3d19e2cf7862cee1f34958f0ae38800f6954bdda4a023",
+    "src/systems_science/theme.py": "30766668e8e930e5a97e12beacaf953ec1befdf7f6f968709f8c2e3d1084ad5c",
+    "tools/check_browser.mjs": "1e7c41bb5b9acff1e4f0df0b7ea2cc2a699bfc5dfe9d2c1f893064dbe680e52e",
+    "tools/compare_m1_models.mjs": "f5a3c3cb9612d2902a77f61cf755e4224b4e4f8fd56cd4587a4c9d5ebda76377",
+    "tools/serve.py": "07c1c10bab656e16e57308b57c787f1375f3905e368bc3468b1b59d2350ff81c",
+    "tools/sync_theme.py": "5791fe22e6907fa035c7f53f0c6864949adf4305c23f112fd3113b0b00d4613c",
+    "tools/tests/playback.test.mjs": "e3f0cbe7f3a821ee68934813fa59fc691ab82a1ffaad30348150a492c1721461",
+    "tools/tests/test_local_open.py": "6023f41ae0927c6c1cdcbaebe5532ce4e91d9d233c485578a6fb5bbbb7c75abd",
+    "tools/tests/test_models.py": "7d92ae5b1254aaa1be0bdb7ed054ef03cc65c21ca89d55feac6d122871b843a9",
+    "tools/tests/web-model.test.mjs": "8a5657ad76bd78113007e27485d562ec2c98be2788a002ef8b4ec72dce207bf3",
+    "web/shared/boot.js": "03ec241d8a74e692984e9b6d8533e22c680b181a3b57d0d85a7750a759e5a05c",
+    "web/shared/playback.mjs": "476a9b60e833dd4fea3f6611f8d581a220184dd2e9e0303c9488e46d1debe1bb",
+    "web/shared/theme.css": "d36e8af5298e371b1caa9ebc0e17e159c49e13d66a7089d63fa8484a628e3948",
+    "web/shared/theme.mjs": "41ea74565b77cc964e2aa0f3c7033cc80d1376a64dc6dea3cfe2d7c1a677006b",
+    "web/single-compartment/app.mjs": "9b57131472097f036ea09caa2bf809d9dcd08cd5c3413db5a0fb556eaadcb3df",
+    "web/single-compartment/index.html": "30ffd40f36d236d4e7c3d5c14d4b474d5880f66679731740d303b49eb72fd761",
+    "web/single-compartment/model.mjs": "c2685910dd6b32175ba0a74ff1015df0ffb766041b6934719cf77676536105f6",
+    "web/single-compartment/style.css": "aaa15e88f8a52a008d20fccd8e664a591c738ef8a46a380b8f5192e6732e86b2"
+  },
+  "navigation": {
+    "files": 27,
+    "local_links": 315,
+    "issues": [],
+    "notebook_sections_per_file": 9,
+    "exercises_per_file": 3
+  },
+  "repository_checks": {
+    "diff_check_passed": true,
+    "simulation_data_ignored": true,
+    "temporary_artifacts_ignored": true
+  }
+}

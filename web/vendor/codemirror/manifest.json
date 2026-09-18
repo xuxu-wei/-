@@ -1,0 +1,16 @@
+{
+  "name": "codemirror",
+  "version": "5.65.20",
+  "license": "MIT",
+  "source": "https://registry.npmjs.org/codemirror/-/codemirror-5.65.20.tgz",
+  "integrity": "sha512-i5dLDDxwkFCbhjvL2pNjShsojoL3XHyDwsGv1jqETUoW+lzpBKKqNTUWgQwVAOa0tUm4BwekT455ujafi8payA==",
+  "sha256": {
+    "lib/codemirror.js": "8e8b5e3cc4be7530a9b6b624bce95ff966cd667283005a103739fe37d3bdd97c",
+    "lib/codemirror.css": "eb494ea972d2661ef86f7f6ac656dd6786d721e49c9c1b46e1eb967e4b6f9bf3",
+    "mode/python/python.js": "19a59ca387addb04e95002c9adbe2b8c231427ce49369ac537107e3088a6947c",
+    "addon/edit/closebrackets.js": "143c3014c29254f3531cc30be6d90205084bcfc36cffa6f9b2a46fd42a40be20",
+    "addon/edit/matchbrackets.js": "9d23a177f1e4d07e3acc37c210ffbe4c1c2eb4d55bbe54c16d3e7ad3d04d0401",
+    "theme/monokai.css": "2463dc6fd92019a0c7ca2aaa01d03116b280fa7c6ae01bf21df7c107d9b683e8",
+    "LICENSE": "168a4becc968f5001e2ee2e0291b6e4daabafc1894a11ade1e11d56e96096e07"
+  }
+}

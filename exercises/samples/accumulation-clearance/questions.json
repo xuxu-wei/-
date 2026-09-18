@@ -1,0 +1,1197 @@
+[
+  {
+    "id": "S01-E1",
+    "version": "1",
+    "lesson_id": "S01",
+    "type": "choice",
+    "title": "存量与流量的单位",
+    "statement": "A 表示边界内的存量（stock），q 表示流量（flow）。物质量和时间的单位分别为 U、T。哪组单位能使 A_next = A + Δt(q_in − q_out) 成立？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "A 为 U，q 为 U/T，Δt·q 为 U"
+      },
+      {
+        "id": "B",
+        "text": "A 为 U/T，q 为 U，Δt·q 为 U·T"
+      },
+      {
+        "id": "C",
+        "text": "A、q 和 Δt·q 都为 U"
+      },
+      {
+        "id": "D",
+        "text": "A 为 U，q 为 U/T，Δt·q 为 U/T"
+      }
+    ],
+    "slug": "stock-flow-units"
+  },
+  {
+    "id": "S01-E2",
+    "version": "2",
+    "lesson_id": "S01",
+    "type": "python",
+    "title": "计算逐段收支",
+    "statement": "给定初始存量（stock） A0 和每个区间的流入、流出速率，按收支（mass balance）计算各区间末的存量；区间内速率恒定。",
+    "contract": "区间内流率恒定。每个区间结束时的物质量 = 该区间开始时的物质量 + 持续时间 ×（流入速率 − 流出速率）。依次处理所有区间。",
+    "hint": "每段使用自己的持续时间；先将初值加入列表，再逐段累积，最后以总流入减总流出核验。",
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "starter_code": "def solve(\n    A0: float,\n    durations: list[float],\n    inflows: list[float],\n    outflows: list[float],\n) -> list[float]:\n    # 返回 amounts 列表。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "expected": [
+          2,
+          2.25,
+          2.375,
+          2.375
+        ],
+        "arguments": {
+          "A0": 2,
+          "durations": [
+            0.25,
+            0.25,
+            0.25
+          ],
+          "inflows": [
+            2,
+            2,
+            2
+          ],
+          "outflows": [
+            1,
+            1.5,
+            2
+          ]
+        },
+        "explanation": "起点为 2 U。第一个区间净增加 0.25×(2−1)=0.25 U；第二个净增加 0.25×(2−1.5)=0.125 U；第三个净变化为零，所以依次得到 2、2.25、2.375、2.375 U。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "slug": "segment-balance",
+    "previous_version": "1",
+    "parameters": [
+      {
+        "name": "A0",
+        "type": "float",
+        "description": "计算开始时的物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "durations",
+        "type": "list[float]",
+        "description": "durations[i] 是第 i 个区间的持续时间。",
+        "unit": "T"
+      },
+      {
+        "name": "inflows",
+        "type": "list[float]",
+        "description": "inflows[i] 是第 i 个区间的流入速率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "outflows",
+        "type": "list[float]",
+        "description": "outflows[i] 是第 i 个区间的流出速率。",
+        "unit": "U/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "amounts",
+        "type": "list[float]",
+        "description": "按时间顺序返回物质量；第一项为 A0，后续每项为一个区间末的物质量。",
+        "unit": "U"
+      }
+    ],
+    "constraints": [
+      "1 ≤ len(durations) = len(inflows) = len(outflows) ≤ 1000。",
+      "A0、inflows[i]、outflows[i] 都在 0 到 1000 之间；0 < durations[i] ≤ 100。",
+      "返回列表长度为 len(durations)+1，必须包含初值（initial condition）。即使计算结果为负也照实返回，不截成零；负值提醒我们重新检查流出假设。"
+    ]
+  },
+  {
+    "id": "S01-E3",
+    "version": "1",
+    "lesson_id": "S01",
+    "type": "choice",
+    "title": "把收支模型迁移到储水池",
+    "statement": "将系统边界（system boundary）画在理想储水池内，哪些陈述成立？选择所有正确项。",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "存量（stock）可用 L 表示，流量（flow）可用 L/T 表示"
+      },
+      {
+        "id": "B",
+        "text": "边界内水量的变化等于穿过边界的净流入量"
+      },
+      {
+        "id": "C",
+        "text": "只要都满足收支（mass balance）关系，两种系统的流出机制就一定相同"
+      },
+      {
+        "id": "D",
+        "text": "容量限制、蒸发等过程可在假设中明确纳入或省略"
+      }
+    ],
+    "slug": "reservoir-transfer"
+  },
+  {
+    "id": "S02-E1",
+    "version": "1",
+    "lesson_id": "S02",
+    "type": "choice",
+    "title": "清除系数和每步比例",
+    "statement": "清除系数（elimination rate constant） k 的单位为 1/T。k = 0.5 /T 时，时间步长（time step）h = 0.1 T 与 h = 1 T 对应的 kh 分别是多少？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "0.05 和 0.5"
+      },
+      {
+        "id": "B",
+        "text": "0.5 和 0.5"
+      },
+      {
+        "id": "C",
+        "text": "5 和 0.5"
+      },
+      {
+        "id": "D",
+        "text": "0.05 /T 和 0.5 /T"
+      }
+    ],
+    "slug": "clearance-coefficient"
+  },
+  {
+    "id": "S02-E2",
+    "version": "2",
+    "lesson_id": "S02",
+    "type": "python",
+    "title": "写出逐步更新循环",
+    "statement": "按递推关系（recurrence relation）A_next = A + h(u − kA) 计算恒定输入、按存量（stock）比例清除的轨迹。",
+    "contract": "从 A=A0 开始，每次使用当前 A 计算 A_next = A + h·(u−k·A)，再将 A 替换为 A_next。重复 steps 次，返回整条轨迹。",
+    "hint": "每步清除量由该步起点存量计算；默认前三步为 0.1、0.195、0.28525 U。补充用例还检查零清除与负值情形。",
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "starter_code": "def solve(\n    u: float,\n    k: float,\n    A0: float,\n    h: float,\n    steps: int,\n) -> list[float]:\n    # 返回 amounts 列表。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "expected": [
+          0,
+          0.1,
+          0.195,
+          0.28525
+        ],
+        "arguments": {
+          "u": 1,
+          "k": 0.5,
+          "A0": 0,
+          "h": 0.1,
+          "steps": 3
+        },
+        "explanation": "从 0 U 开始：第一步 0+0.1×(1−0.5×0)=0.1；第二步得到 0.195；第三步得到 0.28525。返回列表的第一项仍是起点 0。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "slug": "update-loop",
+    "previous_version": "1",
+    "parameters": [
+      {
+        "name": "u",
+        "type": "float",
+        "description": "每单位时间流入的物质量，整个计算期间不变。",
+        "unit": "U/T"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除系数（elimination rate constant）；物质量为 A 时，清除流率为 k·A。",
+        "unit": "1/T"
+      },
+      {
+        "name": "A0",
+        "type": "float",
+        "description": "计算开始时的物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "h",
+        "type": "float",
+        "description": "每次更新跨过的时间间隔。",
+        "unit": "T"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "从初始时刻出发，需要执行的更新次数。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "amounts",
+        "type": "list[float]",
+        "description": "包含 A0 和随后 steps 次更新结果，按时间顺序排列。",
+        "unit": "U"
+      }
+    ],
+    "constraints": [
+      "0 ≤ u、A0 ≤ 100，0 ≤ k ≤ 1，0 < h ≤ 5；steps 是 1 到 100 的整数。",
+      "返回列表长度为 steps+1，第一项为初值（initial condition）A0。",
+      "k=0 时仍按同一更新式计算；大步长产生负值时保留负值。"
+    ]
+  },
+  {
+    "id": "S02-E3",
+    "version": "1",
+    "lesson_id": "S02",
+    "type": "choice",
+    "title": "恒定流出假设的适用边界",
+    "statement": "初始存量（stock） A0=0.1 U，无输入，恒定流出 1 U/T，h=0.2 T。一步得到 −0.1 U。哪项判断恰当？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "负值说明恒定流出假设在物质耗尽后需要重审"
+      },
+      {
+        "id": "B",
+        "text": "把负值裁为零后，可继续声称模型完全没变"
+      },
+      {
+        "id": "C",
+        "text": "只要程序没有报错，负物质量就是可信预测"
+      },
+      {
+        "id": "D",
+        "text": "这种现象证明所有收支（mass balance）模型都不可用"
+      }
+    ],
+    "slug": "constant-outflow-limits"
+  },
+  {
+    "id": "S03-E1",
+    "version": "1",
+    "lesson_id": "S03",
+    "type": "choice",
+    "title": "平衡时是否还有物质交换",
+    "statement": "恒定输入 u=1 U/T、k=0.5 /T、存量（stock） A=2 U。系统处于平衡（equilibrium）。哪项正确？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "流入与清除都为 1 U/T，净流入为零"
+      },
+      {
+        "id": "B",
+        "text": "没有流入，也没有清除"
+      },
+      {
+        "id": "C",
+        "text": "平衡只可能出现在 A=0"
+      },
+      {
+        "id": "D",
+        "text": "因为有物质交换，所以存量一定增加"
+      }
+    ],
+    "slug": "exchange-at-equilibrium"
+  },
+  {
+    "id": "S03-E2",
+    "version": "2",
+    "lesson_id": "S03",
+    "type": "python",
+    "title": "在同一平衡位置比较靠近速度",
+    "statement": "保持平衡（equilibrium）位置 target 不变，对每个 k 令 u=k·target。从 A0=0 出发，计算离散更新首次达到 fraction·target 的时刻。",
+    "contract": "对每个 k=ks[i]，先令 u=k·target，再独立从 A=0 开始按 A_next=A+h·(u−k·A) 更新。第一次达到或超过 fraction·target 时，记录更新次数×h。依次返回 (inputs, first_times)。",
+    "hint": "固定 target 要同步改变 u；先更新，再判断是否达到阈值。用更新步数乘 h 得到首次到达时间。",
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "starter_code": "def solve(\n    target: float,\n    ks: list[float],\n    h: float,\n    fraction: float,\n) -> tuple[list[float], list[float]]:\n    # 依次返回 inputs, first_times。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "expected": [
+          [
+            0.5,
+            1.0
+          ],
+          [
+            2.8000000000000003,
+            1.4000000000000001
+          ]
+        ],
+        "arguments": {
+          "target": 2,
+          "ks": [
+            0.25,
+            0.5
+          ],
+          "h": 0.1,
+          "fraction": 0.5
+        },
+        "explanation": "target=2 时，两种清除系数所需流入分别为 0.5 和 1 U/T。目标是首次达到 1 U；离散更新分别需要 28 步和 14 步，时刻为 2.8 T 和 1.4 T。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "slug": "approach-speed",
+    "previous_version": "1",
+    "parameters": [
+      {
+        "name": "target",
+        "type": "float",
+        "description": "各次实验共同的平衡物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "ks",
+        "type": "list[float]",
+        "description": "要逐一比较的清除系数（elimination rate constant）；顺序也是结果的顺序。",
+        "unit": "1/T"
+      },
+      {
+        "name": "h",
+        "type": "float",
+        "description": "每次更新跨过的时间间隔。",
+        "unit": "T"
+      },
+      {
+        "name": "fraction",
+        "type": "float",
+        "description": "需要达到 target 的比例；例如 0.5 表示达到一半。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "inputs",
+        "type": "list[float]",
+        "description": "inputs[i] 是与 ks[i] 对应的恒定流入速率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "first_times",
+        "type": "list[float]",
+        "description": "first_times[i] 是首次满足 A ≥ fraction·target 的离散时刻。",
+        "unit": "T"
+      }
+    ],
+    "constraints": [
+      "0 < target ≤ 100；ks 有 1 到 20 项，每项 0 < k ≤ 1。",
+      "0 < h ≤ 1，0 < fraction < 1，所有 k·h ≤ 1；给定条件保证 10000 步内到达阈值。",
+      "两个返回列表与 ks 等长。每个实验都重新从零开始；返回网格上的首次到达时刻，不以连续时间公式代替。"
+    ]
+  },
+  {
+    "id": "S03-E3",
+    "version": "1",
+    "lesson_id": "S03",
+    "type": "choice",
+    "title": "零清除与改变流出机制",
+    "statement": "理想单室模型（one-compartment model）满足 A′=u−kA。哪些判断成立？选择所有正确项。",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "k=0、u>0 时不存在有限平衡（equilibrium）存量（stock）"
+      },
+      {
+        "id": "B",
+        "text": "k=u=0 时所有初值（initial condition）都保持不变"
+      },
+      {
+        "id": "C",
+        "text": "流出改成存量的平方根后，仍可直接套用 A*=u/k"
+      },
+      {
+        "id": "D",
+        "text": "被动清除可以形成负反馈（negative feedback），不要求已设计主动控制器"
+      }
+    ],
+    "slug": "zero-clearance"
+  },
+  {
+    "id": "S04-E1",
+    "version": "1",
+    "lesson_id": "S04",
+    "type": "choice",
+    "title": "变化率、累积量与初值",
+    "statement": "A 的单位为 U，时间单位为 T。关于导数（derivative）、定积分（definite integral）和初值（initial condition），哪项正确？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "A′ 的单位为 U/T，∫u dt 的单位为 U；初值用于选定具体轨迹"
+      },
+      {
+        "id": "B",
+        "text": "A′ 的单位为 U，∫u dt 的单位为 U/T"
+      },
+      {
+        "id": "C",
+        "text": "相同微分方程只能有一条轨迹，无需给出初值"
+      },
+      {
+        "id": "D",
+        "text": "把积分上限改成两倍，任何流率下的累积量都恰好加倍"
+      }
+    ],
+    "slug": "rate-and-initial-condition"
+  },
+  {
+    "id": "S04-E2",
+    "version": "2",
+    "lesson_id": "S04",
+    "type": "python",
+    "title": "实现含零清除分支的解析解",
+    "statement": "实现常微分方程（ordinary differential equation，ODE）A′=u−kA、A(0)=A0 的解析解（analytical solution），u、k 恒定。",
+    "contract": "k>0 时，A(t)=A0·exp(−k·t)+(u/k)·(1−exp(−k·t))；k=0 时，A(t)=A0+u·t。分别在 times 中的每个时刻求值并返回列表。",
+    "hint": "解析式同时满足初值（initial condition）与方程；k=0 时解为 A0+ut，不能让含 u/k 的分支参与计算。",
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "starter_code": "def solve(\n    u: float,\n    k: float,\n    A0: float,\n    times: list[float],\n) -> list[float]:\n    # 返回 amounts 列表。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "expected": [
+          0.0,
+          0.7869386805747333,
+          1.8358300027522023
+        ],
+        "arguments": {
+          "u": 1,
+          "k": 0.5,
+          "A0": 0,
+          "times": [
+            0,
+            1,
+            5
+          ]
+        },
+        "explanation": "本组 A(t)=2·(1−exp(−0.5t))。t=0 时为 0 U；t=1 和 5 时分别约为 0.7869387 U 与 1.8358300 U，按给定时刻顺序返回。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "slug": "exact-solution",
+    "previous_version": "1",
+    "parameters": [
+      {
+        "name": "u",
+        "type": "float",
+        "description": "每单位时间流入的物质量，整个计算期间不变。",
+        "unit": "U/T"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除系数（elimination rate constant）；物质量为 A 时，清除流率为 k·A。",
+        "unit": "1/T"
+      },
+      {
+        "name": "A0",
+        "type": "float",
+        "description": "计算开始时的物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "需要计算物质量的时刻；结果必须保留这个列表的顺序。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "amounts",
+        "type": "list[float]",
+        "description": "amounts[i] 是 times[i] 对应的解析物质量。",
+        "unit": "U"
+      }
+    ],
+    "constraints": [
+      "0 ≤ u、A0 ≤ 100，0 ≤ k ≤ 1；times 有 1 到 1000 项，各时刻在 0 到 100 T 之间。",
+      "times 可以重复或不按大小排序，输出仍与输入顺序一一对应。",
+      "必须单独处理 k=0。k 很小时，用 −math.expm1(−k·t) 计算 1−exp(−k·t)，避免相近数相减损失精度。"
+    ]
+  },
+  {
+    "id": "S04-E3",
+    "version": "1",
+    "lesson_id": "S04",
+    "type": "choice",
+    "title": "初值加倍的适用条件",
+    "statement": "在相同 k 与相同输入 u 下，将初值（initial condition） A0 加倍。关于解析解（analytical solution），哪项正确？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "u=0 时整条轨迹加倍；u>0 时一般不成立"
+      },
+      {
+        "id": "B",
+        "text": "无论输入如何，轨迹都必定加倍"
+      },
+      {
+        "id": "C",
+        "text": "有恒定输入时，应连同输入贡献项也自动加倍"
+      },
+      {
+        "id": "D",
+        "text": "初值只影响 t=0，不影响之后的任何时刻"
+      }
+    ],
+    "slug": "doubling-initial-amount"
+  },
+  {
+    "id": "S04-E4",
+    "version": "1",
+    "lesson_id": "S04",
+    "type": "choice",
+    "title": "怎样核验一个连续模型的解",
+    "statement": "考虑微分方程（ordinary differential equation，ODE）dA/dt = u − kA，初值（initial condition）为 A(0)=A₀。一个候选表达式只满足变化率关系，却在 t=0 给出另一个值。应怎样判断？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "仍是该初值问题（initial value problem）的解"
+      },
+      {
+        "id": "B",
+        "text": "还必须满足给定的起始值，才能作为该问题的解"
+      },
+      {
+        "id": "C",
+        "text": "只要曲线平滑就可以"
+      },
+      {
+        "id": "D",
+        "text": "只要终点接近平衡（equilibrium）位置就可以"
+      }
+    ],
+    "slug": "verify-continuous-solution"
+  },
+  {
+    "id": "S05-E1",
+    "version": "1",
+    "lesson_id": "S05",
+    "type": "choice",
+    "title": "稳定、非负与准确是不同检查",
+    "statement": "显式欧拉法（forward Euler method）用于 A′=u−kA。下面哪些判断成立？选择所有正确项。",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "平滑且非负的曲线也可能有较大的数值误差（numerical error）"
+      },
+      {
+        "id": "B",
+        "text": "k>0 时，0<kh<2 保证平衡（equilibrium）偏差递推收敛"
+      },
+      {
+        "id": "C",
+        "text": "1<kh<2 可以偏差收敛却产生负物质量"
+      },
+      {
+        "id": "D",
+        "text": "只检查数值稳定性（numerical stability）就足以证明结果准确"
+      }
+    ],
+    "slug": "accuracy-stability-positivity"
+  },
+  {
+    "id": "S05-E2",
+    "version": "2",
+    "lesson_id": "S05",
+    "type": "python",
+    "title": "保留并识别数值负值",
+    "statement": "使用显式欧拉法（forward Euler method）对多个步长分别计算前 steps 步，报告第一次更新和整条离散轨迹的最小存量（stock），以检查非负性（nonnegativity）。",
+    "contract": "对 hs 中的每个 h，独立从 A0 开始按 A_next=A+h·(u−k·A) 计算 steps 步。记录第一步及包含起点的全程最小值，依次返回 (first, minimum)。",
+    "hint": "每组重新设置初值，用该步长的更新式推进。默认三组第一步分别为 −5、2.5、6.25 U；稳定性与非负性要分别判断。",
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "starter_code": "def solve(\n    u: float,\n    k: float,\n    A0: float,\n    hs: list[float],\n    steps: int,\n) -> tuple[list[float], list[float]]:\n    # 依次返回 first, minimum。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "expected": [
+          [
+            -5.0,
+            2.5,
+            6.25
+          ],
+          [
+            -5.0,
+            0.009765625,
+            0.95367431640625
+          ]
+        ],
+        "arguments": {
+          "u": 0,
+          "k": 0.75,
+          "A0": 10,
+          "hs": [
+            2,
+            1,
+            0.5
+          ],
+          "steps": 5
+        },
+        "explanation": "u=0、k=0.75 时，每一步把 A 乘以 1−0.75h。三个步长的第一步为 −5、2.5、6.25 U；前 5 步连同起点的最小值分别为 −5、0.009765625、0.95367431640625 U。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "slug": "detect-negative-values",
+    "previous_version": "1",
+    "parameters": [
+      {
+        "name": "u",
+        "type": "float",
+        "description": "每单位时间流入的物质量，整个计算期间不变。",
+        "unit": "U/T"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除系数（elimination rate constant）；物质量为 A 时，清除流率为 k·A。",
+        "unit": "1/T"
+      },
+      {
+        "name": "A0",
+        "type": "float",
+        "description": "计算开始时的物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "hs",
+        "type": "list[float]",
+        "description": "要独立尝试的步长；每种步长都从相同的 A0 开始。",
+        "unit": "T"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "从初始时刻出发，需要执行的更新次数。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "first",
+        "type": "list[float]",
+        "description": "first[i] 是使用 hs[i] 完成第一次更新后的物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "minimum",
+        "type": "list[float]",
+        "description": "minimum[i] 是该次实验中初始点与全部更新结果的最小值。",
+        "unit": "U"
+      }
+    ],
+    "constraints": [
+      "0 ≤ u、A0 ≤ 100，0 ≤ k ≤ 1；hs 有 1 到 20 项，每项 0 < h ≤ 5。",
+      "steps 是 1 到 100 的整数；两个返回列表与 hs 等长。",
+      "最小值必须包括初值（initial condition）；不得裁剪负值，也不得把上一种步长的终点用作下一种的起点。"
+    ]
+  },
+  {
+    "id": "S05-E3",
+    "version": "2",
+    "lesson_id": "S05",
+    "type": "python",
+    "title": "找到满足误差要求的第一个步长",
+    "statement": "从 start_h 开始不断减半，用解析解（analytical solution）核对显式欧拉法（forward Euler method），返回第一个最大绝对误差（maximum absolute error）严格小于 tol 的步长。",
+    "contract": "依次尝试 start_h、start_h/2、start_h/4……。每次从 A0 重新用 A_next=A+h·(u−k·A) 模拟至 end，并在同一网格计算解析参考。若 max|数值物质量−解析物质量| < tol，立即返回 (h, steps, error)。",
+    "hint": "每次减半都重新从同一初值（initial condition）模拟，并独立计算解析参考。返回首次满足严格误差阈值的项，而不是任意更小步长。",
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "starter_code": "def solve(\n    u: float,\n    k: float,\n    A0: float,\n    end: float,\n    start_h: float,\n    tol: float,\n) -> tuple[float, int, float]:\n    # 依次返回 h, steps, error。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "expected": [
+          0.03125,
+          640,
+          0.005785833855069811
+        ],
+        "arguments": {
+          "u": 1,
+          "k": 0.5,
+          "A0": 0,
+          "end": 20,
+          "start_h": 0.5,
+          "tol": 0.01
+        },
+        "explanation": "从 0.5 T 依次减半到 0.03125 T 时，首次使最大误差小于 0.01 U。此时 20/0.03125=640 步，网格上的最大误差约为 0.005785834 U。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "slug": "choose-step-size",
+    "previous_version": "1",
+    "parameters": [
+      {
+        "name": "u",
+        "type": "float",
+        "description": "每单位时间流入的物质量，整个计算期间不变。",
+        "unit": "U/T"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除系数（elimination rate constant）；物质量为 A 时，清除流率为 k·A。",
+        "unit": "1/T"
+      },
+      {
+        "name": "A0",
+        "type": "float",
+        "description": "计算开始时的物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "end",
+        "type": "float",
+        "description": "从 t=0 开始的观察终点。",
+        "unit": "T"
+      },
+      {
+        "name": "start_h",
+        "type": "float",
+        "description": "第一次尝试的步长，之后每次除以 2。",
+        "unit": "T"
+      },
+      {
+        "name": "tol",
+        "type": "float",
+        "description": "允许的误差阈值；实际最大误差必须严格小于它。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "h",
+        "type": "float",
+        "description": "首次满足误差要求的步长。",
+        "unit": "T"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "该步长在 0 到 end 上的更新次数，即 round(end/h)。",
+        "unit": "步"
+      },
+      {
+        "name": "error",
+        "type": "float",
+        "description": "该次实验所有网格点的最大绝对误差。",
+        "unit": "U"
+      }
+    ],
+    "constraints": [
+      "0 ≤ u、A0 ≤ 100，0 ≤ k ≤ 1；0 < end ≤ 100，0 < start_h ≤ end，tol>0。",
+      "end/start_h 为整数；给定条件保证最多减半 12 次即可满足要求，满足要求时步数不超过 100000。",
+      "误差包含初始点与终点；k=0 的解析参考为 A0+u·t。必须返回首次满足严格不等式的步长。"
+    ]
+  },
+  {
+    "id": "S05-E4",
+    "version": "1",
+    "lesson_id": "S05",
+    "type": "choice",
+    "title": "缩小步长能修复错误机制吗",
+    "statement": "你使用欧拉法（forward Euler method）模拟按现有物质量比例清除的模型，却把清除项 kA 写成了常数 k。不断减小时间步长（time step）h，能够证明这个实现正确吗？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "能够，足够小的步长会修复任何错误"
+      },
+      {
+        "id": "B",
+        "text": "不能，它可能只是更精确地求解了另一个模型"
+      },
+      {
+        "id": "C",
+        "text": "能够，只需观察曲线越来越光滑"
+      },
+      {
+        "id": "D",
+        "text": "能够，只要计算结果始终非负"
+      }
+    ],
+    "slug": "wrong-mechanism"
+  },
+  {
+    "id": "S05-E5",
+    "version": "1",
+    "lesson_id": "S05",
+    "type": "choice",
+    "title": "临界步长的振荡为何不消失",
+    "statement": "纯清除模型用欧拉法（forward Euler method）更新：Aₙ₊₁=(1−kh)Aₙ。令 A₀=1 U，k=0.5 /T，时间步长（time step）h=4 T。对所得序列，哪些说法正确？",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "序列交替为 1、−1、1、−1，振幅不衰减"
+      },
+      {
+        "id": "B",
+        "text": "数值有界就意味着它准确描述清除"
+      },
+      {
+        "id": "C",
+        "text": "出现负值，不能把它当作合理的物质量"
+      },
+      {
+        "id": "D",
+        "text": "连续模型的衰减不保证这个步长下的计算也衰减"
+      }
+    ],
+    "slug": "critical-step-oscillation"
+  },
+  {
+    "id": "S06-E1",
+    "version": "1",
+    "lesson_id": "S06",
+    "type": "choice",
+    "title": "输入突变和存量连续",
+    "statement": "分段恒定输入（piecewise constant input）在 10 T 改变流率，但没有瞬时注入的额外物质量。哪项正确？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "存量（stock）保持连续，变化率可以跳变"
+      },
+      {
+        "id": "B",
+        "text": "流率翻倍时存量必须立即翻倍"
+      },
+      {
+        "id": "C",
+        "text": "任何输入变化都会让存量跳变"
+      },
+      {
+        "id": "D",
+        "text": "可直接把流率差当作存量差相加"
+      }
+    ],
+    "slug": "input-jump"
+  },
+  {
+    "id": "S06-E2",
+    "version": "2",
+    "lesson_id": "S06",
+    "type": "python",
+    "title": "计算分段输入的解析终点",
+    "statement": "对分段恒定输入（piecewise constant input）逐段应用解析解（analytical solution），比较输入时序对终点存量（stock）的影响。",
+    "contract": "从 A0 出发，逐段用该段流入速率及清除系数计算解析终点，并将它作为下一段的起点。累计各段输入量，依次返回 (total_input, final)。k=0 的一段只增加“流入速率×时长”。",
+    "hint": "总输入是各段“流率×时长”的和；终点还取决于各段的清除时间。后置输入默认解析终点约为 3.973048 U。",
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "starter_code": "def solve(\n    bounds: list[float],\n    rates: list[float],\n    k: float,\n    A0: float,\n) -> tuple[float, float]:\n    # 依次返回 total_input, final。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "expected": [
+          20.0,
+          3.973048212003658
+        ],
+        "arguments": {
+          "bounds": [
+            0,
+            10,
+            20
+          ],
+          "rates": [
+            0,
+            2
+          ],
+          "k": 0.5,
+          "A0": 0
+        },
+        "explanation": "前 10 T 没有流入，物质量保持为零；后 10 T 以 2 U/T 流入，总输入为 20 U。清除持续发生，所以终点为 4·(1−exp(−5))≈3.973048212 U。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "slug": "piecewise-input",
+    "previous_version": "1",
+    "parameters": [
+      {
+        "name": "bounds",
+        "type": "list[float]",
+        "description": "各段的起止时刻；第 i 段是 bounds[i] 到 bounds[i+1]。",
+        "unit": "T"
+      },
+      {
+        "name": "rates",
+        "type": "list[float]",
+        "description": "rates[i] 是第 i 段内保持不变的流入速率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除系数（elimination rate constant）；物质量为 A 时，清除流率为 k·A。",
+        "unit": "1/T"
+      },
+      {
+        "name": "A0",
+        "type": "float",
+        "description": "计算开始时的物质量。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "total_input",
+        "type": "float",
+        "description": "各段流入速率×时长的总和，尚未扣除清除。",
+        "unit": "U"
+      },
+      {
+        "name": "final",
+        "type": "float",
+        "description": "最后一个时刻 bounds[-1] 的解析物质量。",
+        "unit": "U"
+      }
+    ],
+    "constraints": [
+      "bounds 从 0 开始、严格递增，有 2 到 101 项，最后时刻不超过 100 T。",
+      "len(rates)=len(bounds)−1；0 ≤ rates[i]、A0 ≤ 100，0 ≤ k ≤ 1。",
+      "每段都使用上一段的解析终点；不使用离散更新近似解析终点。"
+    ]
+  },
+  {
+    "id": "S06-E3",
+    "version": "2",
+    "lesson_id": "S06",
+    "type": "python",
+    "title": "在输入变化点截断步长",
+    "statement": "为分段恒定输入（piecewise constant input）构造时间网格（time grid），用显式欧拉法（forward Euler method）计算并以独立的分段解析解（analytical solution）核验。",
+    "contract": "每段从左端重新以 h 前进；若下一步越过右端，就缩短该步，恰好落在右端。按实际步长更新 A_next=A+Δt·(u−k·A)，变化点只保留一次。解析轨迹独立逐段计算，依次返回 (times, amounts, exact, max_error)。",
+    "hint": "两条轨迹分别维护初值；数值更新用实际相邻时刻差。检查变化点在网格中、无重复点，并报告同一时刻的最大差。",
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "starter_code": "def solve(\n    bounds: list[float],\n    rates: list[float],\n    k: float,\n    A0: float,\n    h: float,\n) -> tuple[list[float], list[float], list[float], float]:\n    # 依次返回 times, amounts, exact, max_error。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "expected": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1.0,
+            0.5
+          ],
+          [
+            0,
+            0.7869386805747333,
+            0.4773024370823823
+          ],
+          0.21306131942526674
+        ],
+        "arguments": {
+          "bounds": [
+            0,
+            1,
+            2
+          ],
+          "rates": [
+            1,
+            0
+          ],
+          "k": 0.5,
+          "A0": 0,
+          "h": 1
+        },
+        "explanation": "在 [0,1] 内流入为 1，第一步得到 1 U；在 [1,2] 内流入变为 0，第二步得到 0.5 U。网格为 [0,1,2]，解析值约为 [0,0.7869387,0.4773024]，最大差出现在 t=1。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "slug": "align-change-points",
+    "previous_version": "1",
+    "parameters": [
+      {
+        "name": "bounds",
+        "type": "list[float]",
+        "description": "各段的起止时刻；第 i 段是 bounds[i] 到 bounds[i+1]。",
+        "unit": "T"
+      },
+      {
+        "name": "rates",
+        "type": "list[float]",
+        "description": "rates[i] 是第 i 段内保持不变的流入速率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除系数（elimination rate constant）；物质量为 A 时，清除流率为 k·A。",
+        "unit": "1/T"
+      },
+      {
+        "name": "A0",
+        "type": "float",
+        "description": "计算开始时的物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "h",
+        "type": "float",
+        "description": "每次更新跨过的时间间隔。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "从 0 到终点的时间网格，包含所有变化点且无重复。",
+        "unit": "T"
+      },
+      {
+        "name": "amounts",
+        "type": "list[float]",
+        "description": "与 times 对应的数值物质量，第一项为 A0。",
+        "unit": "U"
+      },
+      {
+        "name": "exact",
+        "type": "list[float]",
+        "description": "与 times 对应的分段解析物质量，第一项为 A0。",
+        "unit": "U"
+      },
+      {
+        "name": "max_error",
+        "type": "float",
+        "description": "同一时刻的数值结果与解析结果之间的最大绝对差。",
+        "unit": "U"
+      }
+    ],
+    "constraints": [
+      "bounds 从 0 开始、严格递增，有 2 到 101 项，最后时刻不超过 100 T；len(rates)=len(bounds)−1。",
+      "0 ≤ rates[i]、A0 ≤ 100，0 ≤ k ≤ 1，0 < h ≤ 5；给定条件保证总更新次数不超过 10000，所有计算结果有限。",
+      "三个列表等长，包含初值（initial condition）与最终时刻；变化点之后使用新一段的流入速率。",
+      "解析段的起点必须来自上一段解析终点；不使用 Euler 数值终点替代。"
+    ]
+  },
+  {
+    "id": "S06-E4",
+    "version": "1",
+    "lesson_id": "S06",
+    "type": "choice",
+    "title": "相同总输入是否意味着相同终点",
+    "statement": "对 dA/dt = u(t) − kA，取 k>0，初始物质量为零。两种方案在同一观察区间内输入相同总量：方案甲集中在早期，方案乙集中在晚期。哪一项解释合理？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "终点一定相同，因为总输入相同"
+      },
+      {
+        "id": "B",
+        "text": "晚期输入经历清除的时间更短，终点可以更高"
+      },
+      {
+        "id": "C",
+        "text": "早期输入总会使终点更高"
+      },
+      {
+        "id": "D",
+        "text": "输入时间不属于模型的条件"
+      }
+    ],
+    "slug": "input-timing"
+  }
+]

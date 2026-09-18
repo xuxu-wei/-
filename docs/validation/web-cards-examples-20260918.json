@@ -1,0 +1,243 @@
+{
+  "date": "2026-09-18",
+  "scope": "篇章编号与紧凑导览、正负值示例往返、输入输出的教学表格与 Python 代码",
+  "status": {
+    "formal_parts": 12,
+    "formal_chapters": 55,
+    "formal_notebooks_delivered": 0,
+    "sample_independent": true
+  },
+  "automated": {
+    "python_suite": {
+      "passed": 73,
+      "seconds": 16.89
+    },
+    "javascript_suite": {
+      "passed": 15
+    },
+    "final_example_format_rerun": {
+      "passed": 10,
+      "seconds": 0.12,
+      "covers_all_python_examples": 8
+    },
+    "teaching_and_notebook_sync": "passed",
+    "document_check": {
+      "files": 23,
+      "local_links": 302,
+      "issues": []
+    }
+  },
+  "notebooks": {
+    "markdown_synced": 6,
+    "previews_rebuilt": 6,
+    "executable_cells_modified": false,
+    "kernels_rerun_this_revision": false
+  },
+  "browser": {
+    "method": "实际浏览器点击及只读 DOM 观察；此记录不是独立自动化脚本的输出",
+    "parts_checked": 12,
+    "chapter_cards_checked": 55,
+    "part_numbers": "第 1 篇 至 第 12 篇",
+    "chapter_counts": [
+      4,
+      4,
+      4,
+      5,
+      5,
+      5,
+      5,
+      4,
+      4,
+      5,
+      4,
+      6
+    ],
+    "chapter_number_format": "篇.章，逐篇核对，侧栏同步",
+    "negative_positive_cycles": 2,
+    "cycle_observations": [
+      {
+        "h": 2,
+        "kh": 1.5,
+        "next_button": "观察正值示例",
+        "negative_trajectory": true
+      },
+      {
+        "h": 1,
+        "kh": 0.75,
+        "next_button": "观察负值示例",
+        "negative_trajectory": false
+      }
+    ],
+    "manual_controls": [
+      "负值示例后减小步长：识别正值示例",
+      "k 键盘减小：识别自选参数",
+      "重置：恢复 u=1、k=0.5、h=0.1、t=0"
+    ],
+    "copied_examples": [
+      "segment-balance",
+      "update-loop",
+      "approach-speed",
+      "exact-solution",
+      "detect-negative-values",
+      "choose-step-size",
+      "piecewise-input",
+      "align-change-points"
+    ],
+    "copy_success_feedbacks": 16,
+    "drafts_unchanged_after_copy": true,
+    "input_and_output_have_tables_and_python": true,
+    "notebook_link": {
+      "preview": "01-boundaries-units.html",
+      "link": "作答：计算逐段收支",
+      "target": "/samples/accumulation-clearance/practice/?question=segment-balance",
+      "rendered_tables_and_code_checked": true
+    },
+    "playback": {
+      "time_start": 0.5,
+      "time_later": 1.47,
+      "point_x_start": 72.43603999667168,
+      "point_x_later": 106.38675999916791,
+      "paused_times": [
+        1.72,
+        1.72
+      ]
+    },
+    "pc_layout": [
+      {
+        "width": 1024,
+        "client_width": 1009,
+        "scroll_width": 1009,
+        "pages": [
+          "book",
+          "part-12",
+          "practice-open-examples"
+        ],
+        "book_columns": 2
+      },
+      {
+        "width": 1366,
+        "client_width": 1351,
+        "scroll_width": 1351,
+        "pages": [
+          "book",
+          "part-12",
+          "practice-open-examples"
+        ],
+        "book_columns": 3
+      },
+      {
+        "width": 1440,
+        "client_width": 1425,
+        "scroll_width": 1425,
+        "pages": [
+          "book",
+          "part-12",
+          "practice-open-examples"
+        ],
+        "book_columns": 3
+      },
+      {
+        "width": 1920,
+        "client_width": 1905,
+        "scroll_width": 1905,
+        "pages": [
+          "book",
+          "part-12",
+          "practice-open-examples"
+        ],
+        "book_columns": 4
+      }
+    ],
+    "code_font_px": 14,
+    "code_max_height_px": 240,
+    "table_max_height_px": 220,
+    "console_errors_observed": []
+  },
+  "limits": [
+    "没有新建正式教学章节",
+    "本轮未重新检查原生 IDE 窗口",
+    "未进行目标读者试学"
+  ],
+  "data_and_records": "未提交测试作答或覆盖用户草稿；模拟数据、.local 与 .work 不纳入同步",
+  "source_sha256": {
+    "AGENTS.md": "634878912605726aee4d6e807068871484789b5093284899f8d35d4115f36671",
+    "docs/01-看见系统.md": "9147e822bd6646a7daa63431d322336b1a5760775fa47eb017f8bc2af30b96b7",
+    "docs/02-系统随时间演化.md": "f8cb71492d3096273179fa1d50172c4a0c5f07444b30a9a908475619e45090da",
+    "docs/03-多变量相互作用.md": "f0339258eaac60ab6b4f492a2c035f43ff12f0e1d4f2d0dbd1048c7a9d185d8c",
+    "docs/04-非线性动态行为.md": "a644dffee8dd1fd348001dc61fb0d2c7ebac052e89c8364c9d386675674ef0c6",
+    "docs/05-随机性与信息.md": "3d6a89c97437eac67e8d57259ec6e990325214a69356febc727a2e9fc7f802a9",
+    "docs/06-从测量走向模型.md": "9832b2d5caef8f960e87c233a61847b3f935b0ed17604e924d9c0397fca27b84",
+    "docs/07-反馈、估计与控制.md": "e5a643af8c7d8bc4478fff4f42fc08f50b60f233140d76a59f487a96b7b10407",
+    "docs/08-目标、优化与约束.md": "bfb98ff338833487ed1baf56c9fda62412ed565f51ae077dc046f8f9e4e6a340",
+    "docs/09-网络上的系统.md": "aedf1536ff2035384441fe2dc201fe0cd9be99d276b0f4799da8169babde7e43",
+    "docs/10-个体与集体现象.md": "5c7f4a92cd161a7b278386dcfb476288beaf18442d59929a0bdd9ce7ca6e18b2",
+    "docs/11-临界变化与韧性.md": "53d89cc172a70b25cf24c987fdbac55024a996a234aeb5423711778c73527521",
+    "docs/12-融合方法与研究实践.md": "83fc71e65fb23e81ba834b1a71084d2db74b555f7ba442cfa74ee58cb38bdf01",
+    "docs/M1练习核验.md": "e70436084584dedf0c894b9a035c4e6abb18d7e3d2c38ff7147e7ecaa2bf362b",
+    "docs/M1验收.md": "18cd1fc2fb59eafd631085970126042e5e86fe05f07f5f46314969a9993da24e",
+    "docs/交互练习与判题系统设计.md": "0f0f3214ba3576365edb15726318c39e2d416d8716e7839064e8fdf4e7db59b6",
+    "docs/学习指南.md": "4bed39f3ba446bddb2185968e2300a4cccce83ec652a5fe2a327426779ca7a42",
+    "docs/教材制作检查表.md": "e8c8f57472c1ce213b1d13660bee511abbc1b693500dda9b1439c6bfaf1423f9",
+    "docs/教材设计.md": "ac47052b433a151437ad3180c0974d4429488f032d491f5d127d205427845a89",
+    "docs/网页设计规范.md": "8251ec3e6fabdd33fa59e69df4ac1480c20a9d9308df252d9639aa652738e10b",
+    "exercises/samples/accumulation-clearance/questions.json": "f36cf484fb73415f939f348c40e993ad8ff96efcfe443c07cb6a100ed7343e9a",
+    "exercises/samples/accumulation-clearance/solutions.json": "eeb333893401ed0896f002675033caa09bc655d8d397fc0a898bf5ae037ba3a6",
+    "exercises/samples/accumulation-clearance/verification.json": "1b45ff6fcc101ac3776ecdc35e0bac51144e113c795dd7b6f2354b3a2e18d54f",
+    "notebooks/samples/accumulation-clearance/01-boundaries-units.ipynb": "c694831e3f0ef6560bce7f86a02c73c76def3ef7e16f62042fbf74c85964a75a",
+    "notebooks/samples/accumulation-clearance/02-accumulation-clearance.ipynb": "7048be1de55612f3419efc2bb2bbb521c937546fd5ff9ec7453b59ee2c56d24d",
+    "notebooks/samples/accumulation-clearance/03-equilibrium-feedback.ipynb": "5c6384ac44206796636774e80ef73f0e9e705ec2eb53bfa2b37b4f77f7f1ff3c",
+    "notebooks/samples/accumulation-clearance/04-rates-ode.ipynb": "9d64e3103e621cd1cf9ac38db7c84899d946c571c9d147bcd11b8da4bfadc851",
+    "notebooks/samples/accumulation-clearance/05-numerical-checks.ipynb": "9589a608f1065d2ed3035eabfd6b861c97d783fabac30c843225a224921d36ca",
+    "notebooks/samples/accumulation-clearance/06-transfer-experiment.ipynb": "a3e09122e52b5fc1355297760b92ddb0f85a6ad1c591ddb30f26f17290117ddd",
+    "notebooks/samples/accumulation-clearance/catalog.json": "5a72f9cab76385953bf14d193729dd8c533e46d757d26c1e9da2d3dc6359100a",
+    "notebooks/samples/accumulation-clearance/README.md": "aaae3650f1c9c5c9f69682cf307289b9468e12237adf2191731a68a3d36bad07",
+    "pyproject.toml": "b12bb5b1f5dc90872eb467ba793863c36edc39eac2cbd0186349817d8b7821e0",
+    "README.md": "a9f531b53c56deeb996d90fdbd1331e3ea39c8e58b3fac053125f8783d16bd42",
+    "ROADMAP.md": "5029286249ebba2ac02816b3b25c9a5bfb0c8b97b0e788ca81eadb8cfd1cf453",
+    "src/systems_science/__init__.py": "aae1b7a0bbe0fcfb0e5a21578317832660f1a7d07859eeaf83f9e2463be217fb",
+    "src/systems_science/presentation.py": "e27c1b93dbf4363f761b5c18f7d7fee9103a941041d24f44e8b522fb8fa7e415",
+    "src/systems_science/theme.json": "171f1b83f5f6f2ada0a3d19e2cf7862cee1f34958f0ae38800f6954bdda4a023",
+    "src/systems_science/theme.py": "30766668e8e930e5a97e12beacaf953ec1befdf7f6f968709f8c2e3d1084ad5c",
+    "tools/build_course.py": "baa04d46aa7356d54ea7a87ccb1fdafbec50496f72feba26384f6764a9b6b26e",
+    "tools/check_browser.mjs": "2e3cd6608e2b37c0039856c5e6a8c71e3ab87247343c720a0f9faf88016b8a47",
+    "tools/check_m1.py": "ad61acdb210ed4ef8bab59e73ab7f35e719e51eca3776de6d70d67a9814dbdaa",
+    "tools/check_teaching.py": "4172c3f06365375fde0eb403b6efbac1ae5339b0a6ab6939c9bc747fff1357ae",
+    "tools/compare_m1_models.mjs": "f5a3c3cb9612d2902a77f61cf755e4224b4e4f8fd56cd4587a4c9d5ebda76377",
+    "tools/export_m1_reference.py": "c7c409c6f8d0dd42d9d1f0441e107a9f6cd76982503b238bccdaab76bf5827f1",
+    "tools/practice.py": "e71344ec286ee352422f7174b10eee4d1a566c333865d84d5889ad4315d71091",
+    "tools/practice_worker.py": "3ea5d3f69bf1a393cb7f9d2ac890a10ef498fd335e0f9fe896461c9491a29f67",
+    "tools/review_notebooks.mjs": "9351020b626155a8a4bc178de143b53d3027c5bafae1d48f4b3175016980f117",
+    "tools/serve.py": "c710163f8653874e99ed6655a0b9408339848b170cdb23f70a6a8601b4b430f4",
+    "tools/sync_m1_exercises.py": "e189c0028f4e4902d094fdbe83db0bf92dc551e171621695680b236253ff8c7d",
+    "tools/sync_theme.py": "5791fe22e6907fa035c7f53f0c6864949adf4305c23f112fd3113b0b00d4613c",
+    "tools/teaching_examples.py": "b3316df2b3d4462336e16999d9d73718af6d42873a9581d8222a8de5ac257356",
+    "tools/tests/editor-progress.test.mjs": "5c2e6ede2dbdb0ca4f3db0c8eccda0257d1eab275e6a8a256018c852b29039ac",
+    "tools/tests/example-toggle.test.mjs": "8d35f3866185fb15d659e34df741119840b229dd7f54a661f000f307e496d410",
+    "tools/tests/playback.test.mjs": "e3f0cbe7f3a821ee68934813fa59fc691ab82a1ffaad30348150a492c1721461",
+    "tools/tests/test_local_open.py": "ae5e53122bff1255f21a3c3d3d38ff977585ee8e301a84228c71e221a9afe38c",
+    "tools/tests/test_models.py": "fc2b7569895b0b944e09e8370fbd4d30332c76bd7a9fc23e859f610d58e4865c",
+    "tools/tests/test_practice.py": "d5287548c5a2f8607c9a0a3bcc444b42e7e1b46cbcf03c6df6613080dbc21446",
+    "tools/tests/test_teaching_examples.py": "f990751c2e46b91e539019a912d0ae8f9149ae24b2c516c1631ac61f5ca2f0b7",
+    "tools/tests/web-model.test.mjs": "8a5657ad76bd78113007e27485d562ec2c98be2788a002ef8b4ec72dce207bf3",
+    "web/course/app.mjs": "d20c09860ae84f5e7aee83e2f4c76dc8998106b56e659e3367b1f069fcdb1953",
+    "web/course/catalog.json": "61726c4c72f3510ac2c9a11d2b75f9cd3221dd4c10b883853d7085208b5c0e44",
+    "web/course/index.html": "b561f9584d0ac8bdef5fd067323301cafc7e832c1b5f12d886daf11bc22643d2",
+    "web/course/style.css": "e0d1784126e095a5220deb18f33f9aa0d5e5227970ca21515e162823718f67bc",
+    "web/practice/app.mjs": "776d871cf8ad90ee4f065fe979afd242b9df94817a63dbf50d80955cdbf0f25e",
+    "web/practice/editor.mjs": "54d0680ab628fd034dd77f62aa3bedaad14dd0bed628482da8f016f5b70c75f2",
+    "web/practice/index.html": "378447bd4536a09ae01f9390c021517dfff04cb6a52e495369ac6ef38e6c7bb3",
+    "web/practice/style.css": "0d6cb3da6bc006b25e083a27dd2478edf33a58157b883ee9cb7d9b74270fac67",
+    "web/shared/boot.js": "03ec241d8a74e692984e9b6d8533e22c680b181a3b57d0d85a7750a759e5a05c",
+    "web/shared/course-shell.css": "3e2255ce13a51dd25924f85e66a3bf91bc29adbd6f74658c0125cbcba1ad69b2",
+    "web/shared/course-shell.mjs": "0629f4f353ee409982b88ea29f86b174687189934cf9f76bd9fb65fa5b69ac5d",
+    "web/shared/playback.mjs": "cc2259915bd3eed84b1e703b80c645b2ba1f1bf26e4179b3784cbc2a19a3fc12",
+    "web/shared/progress.mjs": "4ef60e49f7a1485ccf0c2d8eebcd952b7fbe0f9abe647035e427bc662fa735ae",
+    "web/shared/theme.css": "d36e8af5298e371b1caa9ebc0e17e159c49e13d66a7089d63fa8484a628e3948",
+    "web/shared/theme.mjs": "41ea74565b77cc964e2aa0f3c7033cc80d1376a64dc6dea3cfe2d7c1a677006b",
+    "web/single-compartment/app.mjs": "6116a331659beac1a5cd82098eacf3bbaa6fa6cac8cd5bc3318b67172f1369d2",
+    "web/single-compartment/examples.mjs": "8895eee82470521cd130febe10a010eaa43ab7965e87812ea1d0854170272fd1",
+    "web/single-compartment/index.html": "2c7b2f9f61a658bc1d1e18253f5169b42274791e0a8277a17a9647e6f334e71f",
+    "web/single-compartment/model.mjs": "c2685910dd6b32175ba0a74ff1015df0ffb766041b6934719cf77676536105f6",
+    "web/single-compartment/style.css": "86d1bf2ada5ead6c06bdbcc8e72eab4621f3038dc451df0b7946bdf283fad369"
+  }
+}

@@ -1,0 +1,249 @@
+{
+  "date": "2026-09-18",
+  "scope": "PC 全宽内容区、可隐藏/调宽目录、可调练习双栏、默认代码软换行、容器变化后重绘",
+  "automated": {
+    "javascript_passed": 18,
+    "javascript_duration_ms": 425.2601,
+    "frontend_syntax": "passed",
+    "teaching_and_sync": "passed",
+    "documents": {
+      "files": 23,
+      "internal_links": 311,
+      "issues": []
+    }
+  },
+  "browser": {
+    "method": "实际浏览器拖动、点击、键盘、刷新和只读 DOM 测量；不是自动端到端脚本的运行报告",
+    "width_checks": [
+      {
+        "viewport": 1024,
+        "client_width": 1009,
+        "document_width": 1009,
+        "main_right": 1009,
+        "pages": [
+          "全书目录",
+          "计算题（含长代码）",
+          "可视化"
+        ]
+      },
+      {
+        "viewport": 1366,
+        "client_width": 1351,
+        "document_width": 1351,
+        "main_right": 1351,
+        "pages": [
+          "全书目录",
+          "计算题（含长代码）",
+          "可视化"
+        ]
+      },
+      {
+        "viewport": 1440,
+        "client_width": 1425,
+        "document_width": 1425,
+        "main_right": 1425,
+        "pages": [
+          "全书目录",
+          "计算题（含长代码）",
+          "可视化"
+        ]
+      },
+      {
+        "viewport": 1920,
+        "client_width": 1905,
+        "document_width": 1905,
+        "main_right": 1905,
+        "pages": [
+          "全书目录",
+          "计算题（含长代码）",
+          "可视化"
+        ]
+      },
+      {
+        "viewport": 2560,
+        "client_width": 2545,
+        "document_width": 2545,
+        "main_right": 2545,
+        "pages": [
+          "全书目录",
+          "计算题（含长代码）",
+          "可视化"
+        ]
+      }
+    ],
+    "practice_editor_widths": [
+      640,
+      461,
+      499,
+      749,
+      1081
+    ],
+    "practice_editor_scroll_widths_when_wrapped": [
+      640,
+      461,
+      499,
+      749,
+      1081
+    ],
+    "book_grid_columns": [
+      2,
+      3,
+      3,
+      4,
+      4
+    ],
+    "part_and_chapter": "1366 px 查看第十二篇六章卡片及 12.4 神经动力学与物理约束学习导览，无整页溢出",
+    "sidebar_mouse_drag": [
+      284,
+      360
+    ],
+    "sidebar_keyboard_width_and_reload": 344,
+    "sidebar_double_click_reset": 284,
+    "sidebar_escape": {
+      "hidden": true,
+      "focus": "directory-toggle"
+    },
+    "sidebar_cross_page_hidden_preserved": true,
+    "sidebar_narrow_window": {
+      "viewport": 1024,
+      "height": 720,
+      "max_width": 409,
+      "default_after_reset": 284,
+      "hidden_restores_two_columns": true
+    },
+    "workspace_mouse_drag": {
+      "reading_px": 366,
+      "answer_px": 631,
+      "reading_share_percent": 37
+    },
+    "workspace_keyboard_share_persisted_after_reload": 51,
+    "workspace_enter_reset_percent": 48,
+    "long_source": {
+      "characters": 760,
+      "lines": 8,
+      "contains": "长中文注释和 220 个连续英文字符",
+      "wrapped_scroll_width": 499,
+      "wrapped_client_width": 499,
+      "unwrapped_scroll_width": 4092,
+      "unwrapped_client_width": 514,
+      "source_unchanged_after_wrap_toggle_indent_outdent_and_reload": true,
+      "escape_tab_focus": "indent"
+    },
+    "opened_samples": {
+      "both_pre_wrap": true,
+      "code_client_width": 427,
+      "code_scroll_width": 427,
+      "question_panel_scrolled_independently": true
+    },
+    "chart_resize": "目录变化和窗口变化时 viewBox 随可见图形容器宽度重绘",
+    "playback": {
+      "first_time": 0.5,
+      "first_fill_height": 25.731650598723647,
+      "ended_time": 20,
+      "ended_fill_height": 116.36363636363635,
+      "replay_time": 0.53,
+      "replay_fill_height": 27.06320437111593,
+      "paused_time": 0.61
+    },
+    "console_errors_observed": []
+  },
+  "data": {
+    "test_server_port": 8001,
+    "test_records_path": ".work/m1/layout-learning/",
+    "new_submissions": 0,
+    "user_drafts_or_records_overwritten": false,
+    "simulation_data_included": false
+  },
+  "limits": [
+    "没有改动判题器或题库；本轮未运行 Python 判题回归或新增作答提交",
+    "一次可选浏览器提交检查被自动审批拒绝，改以源码逐字比较与布局/编辑器检查完成本轮验收",
+    "未更改或重跑 Notebook",
+    "未重验默认 IDE 打开",
+    "未开展目标读者试学",
+    "未新建正式教学章节"
+  ],
+  "source_sha256": {
+    "AGENTS.md": "55409bc3ae8bae828e85b9c4875ebf1f424fcb85a48c0e2a29069e22c34f758f",
+    "docs/01-看见系统.md": "9147e822bd6646a7daa63431d322336b1a5760775fa47eb017f8bc2af30b96b7",
+    "docs/02-系统随时间演化.md": "f8cb71492d3096273179fa1d50172c4a0c5f07444b30a9a908475619e45090da",
+    "docs/03-多变量相互作用.md": "f0339258eaac60ab6b4f492a2c035f43ff12f0e1d4f2d0dbd1048c7a9d185d8c",
+    "docs/04-非线性动态行为.md": "a644dffee8dd1fd348001dc61fb0d2c7ebac052e89c8364c9d386675674ef0c6",
+    "docs/05-随机性与信息.md": "3d6a89c97437eac67e8d57259ec6e990325214a69356febc727a2e9fc7f802a9",
+    "docs/06-从测量走向模型.md": "9832b2d5caef8f960e87c233a61847b3f935b0ed17604e924d9c0397fca27b84",
+    "docs/07-反馈、估计与控制.md": "e5a643af8c7d8bc4478fff4f42fc08f50b60f233140d76a59f487a96b7b10407",
+    "docs/08-目标、优化与约束.md": "bfb98ff338833487ed1baf56c9fda62412ed565f51ae077dc046f8f9e4e6a340",
+    "docs/09-网络上的系统.md": "aedf1536ff2035384441fe2dc201fe0cd9be99d276b0f4799da8169babde7e43",
+    "docs/10-个体与集体现象.md": "5c7f4a92cd161a7b278386dcfb476288beaf18442d59929a0bdd9ce7ca6e18b2",
+    "docs/11-临界变化与韧性.md": "53d89cc172a70b25cf24c987fdbac55024a996a234aeb5423711778c73527521",
+    "docs/12-融合方法与研究实践.md": "83fc71e65fb23e81ba834b1a71084d2db74b555f7ba442cfa74ee58cb38bdf01",
+    "docs/M1练习核验.md": "76f5594954cc37c9e0e44220ade7659e559ba0e43be5bb0b10adc8cff4fb9922",
+    "docs/M1验收.md": "88c7b43d45f5d8e7f22108af92db74fc97ed584511fd8c3f26ff1cdb99e10261",
+    "docs/交互练习与判题系统设计.md": "95fc322005181c26b15b5ac2a1775d039246474bf65c9be7ff4f5ab904f7447a",
+    "docs/学习指南.md": "4bed39f3ba446bddb2185968e2300a4cccce83ec652a5fe2a327426779ca7a42",
+    "docs/教材制作检查表.md": "18e994aa4d5978d22b0617c7fe5bb19cfdd23aaa474dbf18e88699ffa018d52c",
+    "docs/教材设计.md": "821c8b7c28ee61660e2400df2d82762b9a2a424057a8b0efb628c25b26b5f5bc",
+    "docs/网页设计规范.md": "18f2cc04555f818bffd32c813e3281e27bf087ef788d266313b1d5673363108f",
+    "exercises/samples/accumulation-clearance/questions.json": "e598b2a8afee39ad56c0248317df72ffefa4bd5c812fdbc570ffd0892aeb8da8",
+    "exercises/samples/accumulation-clearance/solutions.json": "24802136886c3bce13848e9962c9c97c7874523a1a4cf25115c948bf83c3afb3",
+    "exercises/samples/accumulation-clearance/verification.json": "dafe41aeecf40f61f3add43d36e7fd8ab13d6b74e25e609ec72fa18f3a3cc3cd",
+    "notebooks/samples/accumulation-clearance/01-boundaries-units.ipynb": "90e037c8d12aa4657276e179a66ed54f8ccf83e5dc28724da382106fb8f58ed3",
+    "notebooks/samples/accumulation-clearance/02-accumulation-clearance.ipynb": "2f4438bcc246744ac4d66b4cca07ae6af25331327de1746dca473be0d15d9f62",
+    "notebooks/samples/accumulation-clearance/03-equilibrium-feedback.ipynb": "b7d4731dabf71feb723e77e5361cde9ffb592a54af3ea6345be4ed903ab4b8be",
+    "notebooks/samples/accumulation-clearance/04-rates-ode.ipynb": "d0e0dbb397b44b91ddfed829a750f192ddb1a5dd0f8917191f95eeef17a6a072",
+    "notebooks/samples/accumulation-clearance/05-numerical-checks.ipynb": "7e8648cd402305ca80fd49fbfe8c143f5f7a6cd0c76e996e9400625b4a69a0ab",
+    "notebooks/samples/accumulation-clearance/06-transfer-experiment.ipynb": "a2cc41138636cc139f5973829642426cc05c0ab32298618fc2c8e1d8a864d6f5",
+    "notebooks/samples/accumulation-clearance/catalog.json": "5a72f9cab76385953bf14d193729dd8c533e46d757d26c1e9da2d3dc6359100a",
+    "notebooks/samples/accumulation-clearance/README.md": "aaae3650f1c9c5c9f69682cf307289b9468e12237adf2191731a68a3d36bad07",
+    "pyproject.toml": "b12bb5b1f5dc90872eb467ba793863c36edc39eac2cbd0186349817d8b7821e0",
+    "README.md": "6a09f20eee89825f3a7b96023cede221586dfd78337db01141162ef167da5bce",
+    "ROADMAP.md": "6e2d901dacfc376df8e148c7f5bafbc92d4c33da90cdd94ee74cbe86ca9da4cb",
+    "src/systems_science/__init__.py": "aae1b7a0bbe0fcfb0e5a21578317832660f1a7d07859eeaf83f9e2463be217fb",
+    "src/systems_science/presentation.py": "e27c1b93dbf4363f761b5c18f7d7fee9103a941041d24f44e8b522fb8fa7e415",
+    "src/systems_science/theme.json": "171f1b83f5f6f2ada0a3d19e2cf7862cee1f34958f0ae38800f6954bdda4a023",
+    "src/systems_science/theme.py": "30766668e8e930e5a97e12beacaf953ec1befdf7f6f968709f8c2e3d1084ad5c",
+    "tools/build_course.py": "baa04d46aa7356d54ea7a87ccb1fdafbec50496f72feba26384f6764a9b6b26e",
+    "tools/check_browser.mjs": "2e3cd6608e2b37c0039856c5e6a8c71e3ab87247343c720a0f9faf88016b8a47",
+    "tools/check_m1.py": "ad61acdb210ed4ef8bab59e73ab7f35e719e51eca3776de6d70d67a9814dbdaa",
+    "tools/check_teaching.py": "54f703e6769d4bdc01e5daa794a7c4c7ddbd73f5992d300de286ff9945b87b2a",
+    "tools/compare_m1_models.mjs": "f5a3c3cb9612d2902a77f61cf755e4224b4e4f8fd56cd4587a4c9d5ebda76377",
+    "tools/export_m1_reference.py": "c7c409c6f8d0dd42d9d1f0441e107a9f6cd76982503b238bccdaab76bf5827f1",
+    "tools/practice.py": "ccb051b3489e677689a7c01f68092e239bbb7664957732d49723951fa5873d15",
+    "tools/practice_worker.py": "66cf21631221fe7600638fbb1ee8dd17e732e74375e74dbf87468fb70a787548",
+    "tools/question_contracts.py": "603a645e555cb6530ee2a150a4615636b7d72c5752b43317414645cde39edffa",
+    "tools/review_notebooks.mjs": "9351020b626155a8a4bc178de143b53d3027c5bafae1d48f4b3175016980f117",
+    "tools/serve.py": "3275651396f205ec2a5ec9beff0d7c28c4005bddf6bc8966460c381dc9c834be",
+    "tools/sync_m1_exercises.py": "a87aa98f79ec44d739b09244528b857e9c0bef7dc2aac2e447f1540710289f82",
+    "tools/sync_theme.py": "5791fe22e6907fa035c7f53f0c6864949adf4305c23f112fd3113b0b00d4613c",
+    "tools/teaching_examples.py": "c9846d797088290e7953b6b700521de3ad8c96fe04ce639c423769f7d9b27458",
+    "tools/tests/editor-progress.test.mjs": "5c2e6ede2dbdb0ca4f3db0c8eccda0257d1eab275e6a8a256018c852b29039ac",
+    "tools/tests/example-toggle.test.mjs": "8d35f3866185fb15d659e34df741119840b229dd7f54a661f000f307e496d410",
+    "tools/tests/layout.test.mjs": "567231f2619c4ed2575206fd38416ab8ca8cf6f260b8aaeee9b6867e38b21f02",
+    "tools/tests/playback.test.mjs": "e3f0cbe7f3a821ee68934813fa59fc691ab82a1ffaad30348150a492c1721461",
+    "tools/tests/test_local_open.py": "e3ea45df181485b7df7e0f5212f1eec43894eeb6b3fd94ec30a2dd5a908a5e61",
+    "tools/tests/test_models.py": "fc2b7569895b0b944e09e8370fbd4d30332c76bd7a9fc23e859f610d58e4865c",
+    "tools/tests/test_practice.py": "75aa2a23c5f401bafce9789d98610f1e1e0def34fbb0eee42dc10c5172510201",
+    "tools/tests/test_teaching_examples.py": "6fe7ea7e8d4c1deb2c67b41e71917b9ac0096c41a44bb6b33361124f1cad5aa7",
+    "tools/tests/web-model.test.mjs": "8a5657ad76bd78113007e27485d562ec2c98be2788a002ef8b4ec72dce207bf3",
+    "web/course/app.mjs": "d20c09860ae84f5e7aee83e2f4c76dc8998106b56e659e3367b1f069fcdb1953",
+    "web/course/catalog.json": "61726c4c72f3510ac2c9a11d2b75f9cd3221dd4c10b883853d7085208b5c0e44",
+    "web/course/index.html": "b561f9584d0ac8bdef5fd067323301cafc7e832c1b5f12d886daf11bc22643d2",
+    "web/course/style.css": "dab42b51ec8a55cb0a4c437258477ffcb8245335816e58a6c28afbeff440924b",
+    "web/practice/app.mjs": "6ebd61ecb53624048bad730be8a3ca399cedbb9ba42acc733adeed15c875373d",
+    "web/practice/editor.mjs": "54d0680ab628fd034dd77f62aa3bedaad14dd0bed628482da8f016f5b70c75f2",
+    "web/practice/index.html": "de55f7e5c4e4107c4dc80d300fb2873f0412137b4007ae222a21a09de57cf9df",
+    "web/practice/style.css": "b8be308b34774135e0dbb94ee947ad19036f696452b50ab0d60a0649cec491d6",
+    "web/shared/boot.js": "03ec241d8a74e692984e9b6d8533e22c680b181a3b57d0d85a7750a759e5a05c",
+    "web/shared/course-shell.css": "1c36da49602c833a63186336b815398fb1addde11632971fb5ece2089fd55287",
+    "web/shared/course-shell.mjs": "39e8c21bd91b481aec90d3d221f1fecd1b8ee602e15c1fa0bc4d9819a3714522",
+    "web/shared/layout.mjs": "9393e840f0ebc3bca17c112cbe58478fe2d9b8d4df9807de1f7b8b9fba3c77a7",
+    "web/shared/playback.mjs": "cc2259915bd3eed84b1e703b80c645b2ba1f1bf26e4179b3784cbc2a19a3fc12",
+    "web/shared/progress.mjs": "4ef60e49f7a1485ccf0c2d8eebcd952b7fbe0f9abe647035e427bc662fa735ae",
+    "web/shared/theme.css": "d36e8af5298e371b1caa9ebc0e17e159c49e13d66a7089d63fa8484a628e3948",
+    "web/shared/theme.mjs": "41ea74565b77cc964e2aa0f3c7033cc80d1376a64dc6dea3cfe2d7c1a677006b",
+    "web/single-compartment/app.mjs": "9ec4b8180b158c192eeb66757783409ad64b0a2fe2a637ae92379873f7cb77f3",
+    "web/single-compartment/examples.mjs": "8895eee82470521cd130febe10a010eaa43ab7965e87812ea1d0854170272fd1",
+    "web/single-compartment/index.html": "2c7b2f9f61a658bc1d1e18253f5169b42274791e0a8277a17a9647e6f334e71f",
+    "web/single-compartment/model.mjs": "c2685910dd6b32175ba0a74ff1015df0ffb766041b6934719cf77676536105f6",
+    "web/single-compartment/style.css": "94b43105e608fc250d2791fe277b6be1537d269ef1f4716c81fe6a4011f0eeaf"
+  }
+}

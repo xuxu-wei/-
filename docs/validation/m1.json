@@ -1,0 +1,264 @@
+{
+  "milestone": "M1",
+  "date": "2026-09-17",
+  "scope": "六节 Notebook、双面板概念网页与最小教学包；正式章页面和在线判题从 M2 实施",
+  "execution": {
+    "python": "3.13.2",
+    "platform": "Windows",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "jupyterlab": "4.6.3",
+      "nbformat": "5.11.1",
+      "nbclient": "0.11.0",
+      "ipykernel": "7.3.0",
+      "pytest": "9.1.1"
+    },
+    "notebooks": [
+      {
+        "path": "notebooks/m1/01-boundaries-units.ipynb",
+        "seconds": 3.35,
+        "code_cells": 4,
+        "figures": 1,
+        "sha256": "e0222dabb63cb634e23814cc300dfdcf6943000f1a1c250c0e92c17c70e5aa4b",
+        "passed": true
+      },
+      {
+        "path": "notebooks/m1/02-accumulation-clearance.ipynb",
+        "seconds": 3.44,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "55f3838ed0b2705ec8f9390942742912321614f92f929edebcf28bb56dcdd305",
+        "passed": true
+      },
+      {
+        "path": "notebooks/m1/03-equilibrium-feedback.ipynb",
+        "seconds": 3.5,
+        "code_cells": 5,
+        "figures": 2,
+        "sha256": "5fcad8fe37840f526e6127bdf08e81b1fed981dfa8d64f94dce5a03c871e9c7f",
+        "passed": true
+      },
+      {
+        "path": "notebooks/m1/04-rates-ode.ipynb",
+        "seconds": 3.39,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "4101f801da79719e5a94b00d5537e0f6c90d39a64f664f52503dadbf8d2a45b3",
+        "passed": true
+      },
+      {
+        "path": "notebooks/m1/05-numerical-checks.ipynb",
+        "seconds": 3.55,
+        "code_cells": 6,
+        "figures": 2,
+        "sha256": "bf36e5af2e818c542c5fb7132f916675d8f80221d7cd8d7dee3d3e2780d1b0f2",
+        "passed": true
+      },
+      {
+        "path": "notebooks/m1/06-transfer-experiment.ipynb",
+        "seconds": 3.75,
+        "code_cells": 6,
+        "figures": 1,
+        "sha256": "0ff61714305e04f7fbc9fcda3513ee83c6be0025ae2a620ad91c83e0dde0fad5",
+        "passed": true
+      }
+    ]
+  },
+  "validation": {
+    "python_tests_passed": 25,
+    "javascript_tests_passed": 4,
+    "pip_check_passed": true,
+    "constraints_dry_run_passed": true,
+    "cross_runtime_cases": 64,
+    "maximum_normalized_difference": 4.844609562053534e-16,
+    "comparison_tolerance": 1e-10,
+    "notebook_sha256_matches_final_files": true
+  },
+  "browser": {
+    "browser": "153.0.4234.32",
+    "playwright": "1.62.1",
+    "checks": [
+      "默认参数、键盘调节、播放与暂停",
+      "零清除、共享参数、负值示例、减小步长与误差反馈",
+      "1440px 与 390px 布局，无整页横向溢出；保存宽窄图供人工检查",
+      "64 组 Python 与浏览器参考值一致；最大归一化差 4.844609562053534e-16",
+      "六节 Notebook 链接均返回有效文件",
+      "本地服务只提供教材内容"
+    ],
+    "consoleErrors": []
+  },
+  "jupyter_ui": {
+    "kernelspecs": [
+      "python3"
+    ],
+    "notebookOpened": true,
+    "renderedFormulaElements": 31,
+    "pageErrors": [],
+    "runAllCells": true,
+    "successfulExecutionReplies": 5
+  },
+  "figure_review": [
+    {
+      "file": "01-boundaries-units.html",
+      "figures": 1,
+      "teachingSections": 9
+    },
+    {
+      "file": "02-accumulation-clearance.html",
+      "figures": 1,
+      "teachingSections": 9
+    },
+    {
+      "file": "03-equilibrium-feedback.html",
+      "figures": 2,
+      "teachingSections": 9
+    },
+    {
+      "file": "04-rates-ode.html",
+      "figures": 1,
+      "teachingSections": 9
+    },
+    {
+      "file": "05-numerical-checks.html",
+      "figures": 2,
+      "teachingSections": 9
+    },
+    {
+      "file": "06-transfer-experiment.html",
+      "figures": 1,
+      "teachingSections": 9
+    }
+  ],
+  "exercises": {
+    "numerical_examples": {
+      "S01-E2": 2.375,
+      "S02-E2": [
+        0.1,
+        0.195,
+        0.28525000000000006
+      ],
+      "S02-E3": -0.1,
+      "S03-E2": [
+        {
+          "k": 0.25,
+          "u": 0.5,
+          "first_time_above_1": 2.8000000000000003
+        },
+        {
+          "k": 0.5,
+          "u": 1.0,
+          "first_time_above_1": 1.4000000000000001
+        }
+      ],
+      "S04-E2": {
+        "instantaneous": 0.0820849986238988,
+        "intervals": [
+          1.0,
+          0.1,
+          0.01,
+          0.001
+        ],
+        "mean_slopes": [
+          0.06459586051206978,
+          0.08006665245491318,
+          0.081880127721079,
+          0.08206448079417505
+        ]
+      },
+      "S05-E1-E3": [
+        {
+          "h": 1,
+          "steps": 20,
+          "maximum_error": 0.23575888234288467
+        },
+        {
+          "h": 0.5,
+          "steps": 40,
+          "maximum_error": 0.10294638234288467
+        },
+        {
+          "h": 0.25,
+          "steps": 80,
+          "maximum_error": 0.04854105073125137
+        },
+        {
+          "h": 0.125,
+          "steps": 160,
+          "maximum_error": 0.02361062143929904
+        },
+        {
+          "h": 0.0625,
+          "steps": 320,
+          "maximum_error": 0.011648303830251505
+        },
+        {
+          "h": 0.03125,
+          "steps": 640,
+          "maximum_error": 0.005785833855069811
+        }
+      ],
+      "S05-E2": [
+        {
+          "h": 2,
+          "first_amount": -5.0
+        },
+        {
+          "h": 1,
+          "first_amount": 2.5
+        },
+        {
+          "h": 0.5,
+          "first_amount": 6.25
+        }
+      ],
+      "S06-front": {
+        "total_input": 20.0,
+        "analytic_endpoint": 0.02677018827729193
+      },
+      "S06-back": {
+        "total_input": 20.0,
+        "analytic_endpoint": 3.973048212003658
+      },
+      "S06-three": {
+        "total_input": 20.0,
+        "analytic_endpoint": 2.0112635565175796
+      }
+    }
+  },
+  "pedagogical_review": {
+    "method": "编写者逐节自审及数值复算",
+    "prototype_exercises_reviewed": 18,
+    "figures_visually_reviewed": 8,
+    "independent_peer_review": false,
+    "target_reader_trial": false,
+    "learning_time_estimated": false
+  },
+  "limitations": [
+    "仅实测 Windows / Python 3.13.2 与 Edge",
+    "未公开部署网站",
+    "按章页面和在线客观判题服务尚待 M2 起实施"
+  ],
+  "independence": {
+    "external_data_required": false,
+    "external_generator_dependency": false,
+    "simulation_directory_git_ignored": true
+  },
+  "navigation": {
+    "files": 27,
+    "local_links": 291,
+    "issues": [],
+    "notebook_sections_per_file": 9,
+    "exercises_per_file": 3
+  },
+  "implementation_sha256": {
+    "pyproject.toml": "602923b03b4dd2da0972865269f5c69b8c0d959d1d730090e1043e147a78c85a",
+    "tools/constraints-m1.txt": "57fc22ca3fabb7188846426b39d2392a7ce78912d3195f76d3e56e33097cd760",
+    "src/systems_science/presentation.py": "8fea95eda2382fbc40939782ff8e47b7c50d6c6f8d67ae33fc2c3aefee80c107",
+    "src/systems_science/__init__.py": "aae1b7a0bbe0fcfb0e5a21578317832660f1a7d07859eeaf83f9e2463be217fb",
+    "web/single-compartment/app.mjs": "66f4c5eced3641f1b18ba5e75185907fcd08422603315f0b8390390927dd5b0f",
+    "web/single-compartment/index.html": "fa115b8330e5f2883cb436812827a22ff661a8aa4ce85cd0eb4800173957b8ce",
+    "web/single-compartment/model.mjs": "c2685910dd6b32175ba0a74ff1015df0ffb766041b6934719cf77676536105f6",
+    "web/single-compartment/style.css": "6ecbf35bf624f49a199a4698aaae88be77a909c57248eb250678211e72bf2d40"
+  }
+}

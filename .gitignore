@@ -8,6 +8,11 @@ __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
 .pytest_cache/
+*.egg-info/
+build/
+dist/
+.work/
+.local/
 
 # 本地依赖与环境配置
 node_modules/

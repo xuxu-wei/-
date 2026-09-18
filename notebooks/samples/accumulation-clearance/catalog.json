@@ -1,0 +1,38 @@
+[
+  {
+    "id": "S01",
+    "path": "notebooks/samples/accumulation-clearance/01-boundaries-units.ipynb",
+    "title": "系统边界、变量与单位",
+    "outcome": "区分存量与流量，用单位和收支核对结果。"
+  },
+  {
+    "id": "S02",
+    "path": "notebooks/samples/accumulation-clearance/02-accumulation-clearance.ipynb",
+    "title": "用 Python 表达积累与清除",
+    "outcome": "写出更新循环，检查手算值与逐步收支。"
+  },
+  {
+    "id": "S03",
+    "path": "notebooks/samples/accumulation-clearance/03-equilibrium-feedback.ipynb",
+    "title": "平衡、负反馈与参数变化",
+    "outcome": "分别解释平衡位置与靠近速度。"
+  },
+  {
+    "id": "S04",
+    "path": "notebooks/samples/accumulation-clearance/04-rates-ode.ipynb",
+    "title": "从变化率进入微分方程",
+    "outcome": "联系导数、积分、初值与解析解。"
+  },
+  {
+    "id": "S05",
+    "path": "notebooks/samples/accumulation-clearance/05-numerical-checks.ipynb",
+    "title": "检查数值模拟",
+    "outcome": "区分精度、稳定性和非负性。"
+  },
+  {
+    "id": "S06",
+    "path": "notebooks/samples/accumulation-clearance/06-transfer-experiment.ipynb",
+    "title": "独立迁移实验",
+    "outcome": "改变输入时序，完成建模、验证与解释。"
+  }
+]

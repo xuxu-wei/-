@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>积累与清除 · 动手学系统科学</title>
+  <link rel="stylesheet" href="/web/shared/theme.css">
+  <link rel="stylesheet" href="/web/single-compartment/style.css">
+  <link rel="stylesheet" href="/web/shared/course-shell.css">
+</head>
+<body>
+  <main id="main">
+      <section class="intro" aria-labelledby="page-title">
+        <div class="visual-page-meta"><span class="intro-tag">制作样章 · 可视化与探索</span><span id="connection-state" class="connection">正在连接本机</span></div><p class="eyebrow">一个模型，两种观察</p><h1 id="page-title">体内物质的积累与清除</h1>
+        <p class="lead" data-teaching>持续进入的物质，为什么不一定无限积累？存量（stock）是某时刻已有的量，流量（flow）是单位时间转移的量。改变流入和清除，观察留下多少。</p>
+        <ul class="learning-goals" data-teaching><li>区分存量与流量</li><li>解释平衡（equilibrium）与负反馈（negative feedback）</li><li>检查数值结果</li></ul>
+        <div class="open-action"><button class="primary notebook-open" type="button" data-notebook="S01" disabled>在默认 IDE 中开始学习 <span aria-hidden="true">↗</span></button></div>
+        <p class="caption">先修：基础 Python 与中学数学。</p>
+      </section>
+      <div id="loading-note" class="notice" role="status">交互正在准备，播放按钮将在准备完成后启用。如果此提示持续显示，请通过本地程序打开页面。</div>
+      <div id="connection-help" class="notice" hidden><p id="connection-message"></p><button type="button" id="reconnect">重新连接</button><p class="caption">在项目目录运行 <code>python tools/serve.py</code>，保持该程序运行。</p></div>
+      <noscript><p class="notice">请启用 JavaScript。Notebook 可直接在系统默认 IDE 中打开并学习。</p></noscript>
+
+      <section id="stock-flow" class="experiment" aria-labelledby="stock-title">
+        <div class="section-heading"><span class="section-number">01</span><div><p class="eyebrow">存量与流量</p><h2 id="stock-title">留下来的，是流入与清除的差</h2></div></div>
+        <p class="prediction"><strong>先作预测</strong>　只增加初始物质量，最终平衡位置会升高吗？</p>
+        <p data-teaching>把物质看作处于充分混合的单室模型（one-compartment model）中。参数（parameter）描述流入和清除的强弱；清除系数（elimination rate constant）k 表示每单位物质量的清除速率。初值（initial condition）A₀ 给出起点已有的量。</p>
+        <div class="experiment-grid">
+          <div class="controls">
+            <fieldset><legend>改变一个条件</legend>
+              <label for="u">流入速率 <span>u / (U/T)</span><output id="u-value" for="u">1.00</output></label>
+              <input id="u" type="range" min="0" max="3" step="0.05" value="1" disabled><div class="range-labels"><span>0</span><span>3</span></div>
+              <label for="k">清除系数 <span>k / (1/T)</span><output id="k-value" for="k">0.50</output></label>
+              <input id="k" type="range" min="0" max="1" step="0.05" value="0.5" disabled><div class="range-labels"><span>0</span><span>1</span></div>
+              <label for="a0">初始物质量 <span>A₀ / U</span><output id="a0-value" for="a0">0.00</output></label>
+              <input id="a0" type="range" min="0" max="10" step="0.25" value="0" disabled><div class="range-labels"><span>0</span><span>10</span></div>
+            </fieldset>
+            <div class="button-stack"><button type="button" id="reset" disabled>恢复默认</button><button type="button" id="no-clearance" disabled>试试没有清除</button></div>
+            <p class="caption">改变参数后从 t = 0 重新观察。</p>
+            <div class="model-note"><h3>模型与假设</h3><p class="equation">dA/dt = u − kA</p><p data-teaching>按存量比例清除；A 是总物质量，浓度（concentration）还需要除以分布体积。U、T 和参数均为教学设定。蓝线根据解析解（analytical solution）直接计算，即满足连续模型的精确公式。</p></div>
+            <div class="open-action"><button class="text-button notebook-open" type="button" data-notebook="S04" disabled>在 IDE 查看数学推导 ↗</button></div>
+          </div>
+          <div class="visuals">
+            <div class="figure-heading"><h3>观察流动如何积累</h3><span id="playback-state" role="status">准备中</span></div>
+            <svg id="compartment" viewBox="0 0 640 220" role="img" aria-labelledby="compartment-title compartment-desc">
+              <title id="compartment-title">存量与流量示意</title><desc id="compartment-desc">容器高度表示物质量，流入和清除由两侧箭头表示。</desc>
+              <defs><marker id="arrow-in" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="var(--data-1)"/></marker><marker id="arrow-out" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="var(--data-2)"/></marker></defs>
+              <path id="in-arrow" d="M 30 98 H 221" stroke="var(--data-1)" stroke-width="3" marker-end="url(#arrow-in)"/>
+              <path id="out-arrow" d="M 412 98 H 609" stroke="var(--data-2)" stroke-width="3" marker-end="url(#arrow-out)"/>
+              <circle id="in-particle" cx="30" cy="98" r="5" fill="var(--data-1)"/>
+              <rect id="out-particle" x="410" y="94" width="8" height="8" fill="var(--data-2)"/>
+              <text id="in-label" x="112" y="62" text-anchor="middle">流入 u</text><text id="in-rate" x="112" y="137" text-anchor="middle">1 U/T</text>
+              <text id="out-label" x="523" y="62" text-anchor="middle">清除 kA</text><text id="out-rate" x="523" y="137" text-anchor="middle">0 U/T</text>
+              <rect id="amount-fill" x="249" y="163" width="140" height="0" fill="var(--data-1)" fill-opacity="0.18"/>
+              <path id="tank-outline" d="M 247 30 V 165 H 391 V 30" fill="none" stroke="var(--ui-primary)" stroke-width="2"/>
+              <line id="amount-surface" x1="249" x2="389" y1="163" y2="163" stroke="var(--data-1)" stroke-width="2.5"/>
+              <text id="capacity" x="395" y="30" class="svg-small">2.2 U</text><text id="zero-label" x="398" y="169" class="svg-small">0</text>
+              <text id="amount-label" x="319" y="202" text-anchor="middle">A = 0 U</text>
+            </svg>
+            <div class="time-controls"><button class="primary" type="button" id="play" aria-pressed="false" aria-describedby="playback-state" disabled>播放动画</button><label class="visually-hidden" for="time">定位时间</label><input id="time" type="range" min="0" max="20" step="0.01" value="0" disabled><output id="time-value" for="time">0.00 T</output></div>
+            <p class="caption">播放速度：每秒推进 2 T。圆点与方点辅助表示流动，不代表离散粒子数。</p>
+            <div class="chart-wrap"><svg id="exact-chart" role="img" aria-label="解析轨迹随播放时间展开，横轴时间 T，纵轴物质量 U"></svg></div>
+            <div class="legend"><span class="exact-key">解析轨迹</span><span class="equilibrium-key">平衡参考</span><span class="time-key">当前时刻</span></div>
+            <p id="equilibrium-note" class="insight" aria-live="polite"></p>
+            <p class="caption">实线随时间展开，浅色线提示完整轨迹。容器刻度随参数范围调整，不表示组织体积。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="step-size" class="experiment" aria-labelledby="step-title">
+        <div class="section-heading"><span class="section-number">02</span><div><p class="eyebrow">数值方法</p><h2 id="step-title">模型不变，步长如何扭曲结果？</h2></div></div>
+        <p class="prediction"><strong>先作预测</strong>　一次跨得太远，会把平稳清除算成振荡吗？</p>
+        <p data-teaching>时间步长（time step）h 是相邻计算时刻的间隔。欧拉法（forward Euler method）用起点的净流率推算下一步；它与解析解之间的数值误差（numerical error），会随步长变化。</p>
+        <div class="experiment-grid">
+          <div class="controls">
+            <fieldset><legend>对照连续模型</legend><p class="caption">沿用上方的 u、k、A₀，观察区间为 0—20 T。</p><label for="h">数值步长 <span>h / T</span></label><select id="h" disabled><option>0.05</option><option selected>0.1</option><option>0.25</option><option>0.5</option><option>1</option><option>2</option><option>4</option><option>5</option></select></fieldset>
+            <div class="button-stack"><button type="button" id="decay-example" aria-describedby="decay-example-note" disabled>观察负值示例</button><button type="button" id="halve-step" disabled>换一个更小步长</button></div>
+            <p class="caption" id="decay-example-note" role="status">清除模型的两个步长：h = 2 出现负值，h = 1 保持正值；可往返比较。</p>
+            <div class="model-note"><h3>每一步冻结起点流率</h3><p class="equation">Aₙ₊₁ = Aₙ + h(u − kAₙ)</p><p data-teaching>分别检查精度、数值稳定性（numerical stability）和非负性（nonnegativity）。负值作为失败结果保留。最大绝对误差（maximum absolute error）取各计算时刻与解析解偏差绝对值的最大值。</p></div>
+            <div class="open-action"><button class="text-button notebook-open" type="button" data-notebook="S05" disabled>在 IDE 继续误差实验 ↗</button></div>
+          </div>
+          <div class="visuals numerical-panel">
+            <div class="metric-row"><div><span>步长与清除的乘积 kh</span><strong id="kh-value">0.05</strong></div><div><span>最大绝对误差 / U</span><strong id="error-value">—</strong></div></div>
+            <div class="chart-wrap"><svg id="numerical-chart" role="img" aria-label="欧拉法与解析解比较，横轴时间 T，纵轴物质量 U"></svg></div>
+            <div class="legend"><span class="exact-key">解析轨迹</span><span class="euler-key">欧拉法近似</span></div>
+            <div id="diagnosis" class="diagnosis" aria-live="polite"><p id="stability-note"></p><p id="positivity-note"></p></div>
+            <p class="caption">在当前步长的网格点上计算误差。玫红表示数值近似；是否失效由上方文字说明。纵轴保留所有有限负值。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="notebooks" class="notebook-section" aria-labelledby="notebook-title">
+        <p class="eyebrow">回到完整教学</p><h2 id="notebook-title">把观察变成推导与自己的实验</h2><p>按顺序学习，每节都能从全新内核运行。点击下方按钮，在系统默认 IDE 中打开项目原文件。</p>
+        <div id="notebook-links" class="notebook-links"></div>
+        <div class="study-note"><h3>用练习检查理解</h3><p>每节 3—5 题，共 14 道选择题与 8 道 Python 计算题。选择后查看逐项解析，提交代码后比较计算结果。</p><a href="/samples/accumulation-clearance/practice/">进入 22 道练习 →</a></div>
+      </section>
+      <footer><span>动手学系统科学 · 制作样章</span><a href="#main">返回顶部 ↑</a><a href="/docs/学习指南.md">安装与运行说明</a></footer>
+    </main>
+  <script src="/web/shared/boot.js"></script>
+  <script type="module" src="/web/single-compartment/app.mjs" data-main></script>
+</body>
+</html>
