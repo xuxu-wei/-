@@ -1,0 +1,78 @@
+{
+  "version": "1",
+  "part": "2",
+  "lesson_id": "P02-SUMMARY",
+  "title": "等总量输入的不同过程",
+  "objectives": [
+    {
+      "id": "T1",
+      "title": "建立动态模型",
+      "review_url": "/chapters/02-01-用递推描述增长与清除/"
+    },
+    {
+      "id": "T2",
+      "title": "连接变化与累积",
+      "review_url": "/chapters/02-02-变化率与累积：微积分入口/"
+    },
+    {
+      "id": "T3",
+      "title": "判断数值可信度",
+      "review_url": "/chapters/02-03-连续时间与一阶微分方程/"
+    },
+    {
+      "id": "T4",
+      "title": "迁移到变化输入",
+      "review_url": "/chapters/02-04-数值模拟、误差与迁移/"
+    }
+  ],
+  "items": [
+    {
+      "question_id": "p02-cap-rate-balance",
+      "level": 1,
+      "points": 10,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p02-equal-area-not-path",
+      "level": 1,
+      "points": 10,
+      "objective": "T4"
+    },
+    {
+      "question_id": "p02-input-totals",
+      "level": 2,
+      "points": 15,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p02-cap-integrated-balance",
+      "level": 2,
+      "points": 15,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p02-input-metrics",
+      "level": 3,
+      "points": 15,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p02-migration-evidence",
+      "level": 3,
+      "points": 15,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p02-cap-feasible-plans",
+      "level": 4,
+      "points": 10,
+      "objective": "T4"
+    },
+    {
+      "question_id": "p02-model-scope",
+      "level": 4,
+      "points": 10,
+      "objective": "T4"
+    }
+  ]
+}

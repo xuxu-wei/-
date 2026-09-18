@@ -1,0 +1,74 @@
+{
+  "date": "2026-09-18",
+  "scope": {
+    "design": "12 part-end assessment outlines",
+    "implemented_parts": [
+      1,
+      2
+    ],
+    "capstone_questions_per_part": 8,
+    "maximum_points": 100,
+    "chapter_exercises_changed": false
+  },
+  "environment": {
+    "platform": "Windows",
+    "python": "3.13",
+    "browser": "Codex in-app Chromium",
+    "viewport_width": 1280,
+    "learning_records": "isolated .work/capstone-scoring/preview-learning"
+  },
+  "status": "passed",
+  "tests": {
+    "python_scope": {
+      "passed": 136,
+      "command": "python -m pytest -q tools/tests/test_assessment.py tools/tests/test_practice.py tools/tests/test_part01.py tools/tests/test_part02.py tools/tests/test_local_open.py"
+    },
+    "javascript_suite": {
+      "passed": 28,
+      "command": "node --test tools/tests/*.test.mjs",
+      "note": "Includes newly present part 3 JavaScript checks; this does not establish part 3 teaching acceptance."
+    }
+  },
+  "teaching_checks": {
+    "part1": {
+      "notebooks": 9,
+      "questions": 41
+    },
+    "part2": {
+      "notebooks": 11,
+      "questions": 51
+    },
+    "question_contract_links_and_terms": "passed"
+  },
+  "browser_checks": [
+    "Part 1: wrong choice gives first 0, practice 0; corrected full choice gives first 0, practice 10; reload preserves both.",
+    "Tier and learning-objective tables show correct maxima and ordered review entries.",
+    "Part 2: actual editor sample run passes and scores remain 0; full Python submission passes and both scores become 10; reload preserves result.",
+    "Part home shows the same score as capstone practice.",
+    "Chapter 1.1 retains its original question and 0/8 progress, with no assessment panel.",
+    "1280 px browser: default and maximum directory widths inspected; tier navigation wraps, code workspace becomes one column, no horizontal document overflow.",
+    "Browser error log is empty for inspected scoring paths.",
+    "Final CSS check: assessment question click targets are at least 44 px high; no document overflow; temporary browser tab closed."
+  ],
+  "record_protection": "Existing user records were not used for browser tests; byte-for-byte scope check follows.",
+  "limits": [
+    "No target-reader pilot or empirical difficulty calibration.",
+    "Only parts 1 and 2 receive implemented scoring in this change. Other parts have design plans.",
+    "No chapter Notebook code cells or existing capstone teaching/code cells changed; full Notebook kernel runs were not repeated."
+  ],
+  "concurrent_work": "Part 3 implementation files appeared during the task. Validation and claims for this task are scoped to parts 1 and 2 and shared scoring; part 3 delivery is not claimed here.",
+  "completed_date": "2026-09-19",
+  "scope_checks": {
+    "protected_files": 47,
+    "chapter_questions": {
+      "1": 33,
+      "2": 43
+    },
+    "chapter_notebooks": 18,
+    "personal_records": 29,
+    "unchanged_chapter_question_answers": true,
+    "unchanged_capstone_teaching_and_code_cells": true,
+    "outline_groups": 12,
+    "internal_links": 237
+  }
+}

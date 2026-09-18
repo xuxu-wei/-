@@ -1561,13 +1561,438 @@
   },
   "p02-model-scope": {
     "correct": [
+      "A",
       "C"
     ],
     "explanations": {
-      "A": "教学参数没有提供临床个体依据。",
-      "B": "个体差异、分布空间与机制可能不同。",
-      "C": "区分算法验证与经验有效性。",
-      "D": "单位始终是模型一致性的必要条件。"
+      "A": "两种集中输入的峰值都超过 2 U，均匀方案峰值小于 2 U。",
+      "B": "全程上限约束峰值，不只约束终点；前置方案曾经越界。",
+      "C": "零清除且输入非负时，累计量不减；从零开始接收 4 U 后终值与峰值均为 4 U。",
+      "D": "计算只核验声明的人工模型，真实应用仍需额外验证机制、观测和参数。"
     }
+  },
+  "p02-cap-rate-balance": {
+    "correct": [
+      "C"
+    ],
+    "explanations": {
+      "A": "把速率直接加到存量上，量纲不相容；还漏了实际时长。",
+      "B": "流出项 kA 仍是速率，也必须乘实际时长。",
+      "C": "u 与 kA 都是 U/T；净速率乘 Δt 后得到 U，再与原存量相加。",
+      "D": "A、u 和 k 的单位不同，不能直接相加减。"
+    }
+  },
+  "p02-cap-integrated-balance": {
+    "cases": [
+      {
+        "arguments": {
+          "bounds": [
+            0,
+            1,
+            3
+          ],
+          "rates": [
+            2,
+            1
+          ],
+          "amounts": [
+            1,
+            2,
+            2.5
+          ]
+        },
+        "expected": [
+          4,
+          1.5,
+          2.5
+        ]
+      },
+      {
+        "arguments": {
+          "bounds": [
+            0,
+            2
+          ],
+          "rates": [
+            0
+          ],
+          "amounts": [
+            5,
+            2
+          ]
+        },
+        "expected": [
+          0,
+          -3,
+          3
+        ]
+      },
+      {
+        "arguments": {
+          "bounds": [
+            0,
+            0.5,
+            2
+          ],
+          "rates": [
+            4,
+            2
+          ],
+          "amounts": [
+            0,
+            2,
+            5
+          ]
+        },
+        "expected": [
+          5,
+          5,
+          0
+        ]
+      },
+      {
+        "arguments": {
+          "bounds": [
+            0,
+            1,
+            4
+          ],
+          "rates": [
+            1,
+            0
+          ],
+          "amounts": [
+            2,
+            2,
+            2
+          ]
+        },
+        "expected": [
+          1,
+          0,
+          1
+        ]
+      }
+    ],
+    "explanation": "总输入为 2×1+1×2=4 U；净变化为 2.5−1=1.5 U；累计清除为 4−1.5=2.5 U。"
+  },
+  "p02-cap-feasible-plans": {
+    "cases": [
+      {
+        "arguments": {
+          "bounds": [
+            0,
+            2,
+            4
+          ],
+          "plans": [
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "k": 0.5,
+          "A0": 0,
+          "required_total": 4,
+          "max_rate": 2,
+          "max_peak": 2
+        },
+        "expected": [
+          2
+        ]
+      },
+      {
+        "arguments": {
+          "bounds": [
+            0,
+            2,
+            4
+          ],
+          "plans": [
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "k": 0.5,
+          "A0": 0,
+          "required_total": 4,
+          "max_rate": 2,
+          "max_peak": 3
+        },
+        "expected": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "arguments": {
+          "bounds": [
+            0,
+            2,
+            4
+          ],
+          "plans": [
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "k": 0,
+          "A0": 0,
+          "required_total": 4,
+          "max_rate": 2,
+          "max_peak": 4
+        },
+        "expected": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "arguments": {
+          "bounds": [
+            0,
+            2,
+            4
+          ],
+          "plans": [
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "k": 0,
+          "A0": 0,
+          "required_total": 4,
+          "max_rate": 2,
+          "max_peak": 3
+        },
+        "expected": []
+      },
+      {
+        "arguments": {
+          "bounds": [
+            0,
+            2,
+            4
+          ],
+          "plans": [
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "k": 0.5,
+          "A0": 0,
+          "required_total": 4,
+          "max_rate": 1,
+          "max_peak": 3
+        },
+        "expected": [
+          2
+        ]
+      },
+      {
+        "arguments": {
+          "bounds": [
+            0,
+            2,
+            4
+          ],
+          "plans": [
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "k": 0.5,
+          "A0": 0,
+          "required_total": 3,
+          "max_rate": 2,
+          "max_peak": 2
+        },
+        "expected": []
+      },
+      {
+        "arguments": {
+          "bounds": [
+            0,
+            2,
+            4
+          ],
+          "plans": [],
+          "k": 0.5,
+          "A0": 0,
+          "required_total": 4,
+          "max_rate": 2,
+          "max_peak": 2
+        },
+        "expected": []
+      },
+      {
+        "arguments": {
+          "bounds": [
+            0,
+            2,
+            4
+          ],
+          "plans": [
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "k": 1e-12,
+          "A0": 0,
+          "required_total": 4,
+          "max_rate": 2,
+          "max_peak": 4
+        },
+        "expected": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "arguments": {
+          "bounds": [
+            0,
+            0.5,
+            2
+          ],
+          "plans": [
+            [
+              4,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "k": 0.5,
+          "A0": 1,
+          "required_total": 2,
+          "max_rate": 4,
+          "max_peak": 3
+        },
+        "expected": [
+          0,
+          1
+        ]
+      },
+      {
+        "arguments": {
+          "bounds": [
+            0,
+            1
+          ],
+          "plans": [
+            [
+              0
+            ],
+            [
+              0
+            ]
+          ],
+          "k": 1,
+          "A0": 4,
+          "required_total": 0,
+          "max_rate": 0,
+          "max_peak": 3
+        },
+        "expected": []
+      },
+      {
+        "arguments": {
+          "bounds": [
+            0,
+            1
+          ],
+          "plans": [
+            [
+              0
+            ],
+            [
+              0
+            ]
+          ],
+          "k": 1,
+          "A0": 4,
+          "required_total": 0,
+          "max_rate": 0,
+          "max_peak": 4
+        },
+        "expected": [
+          0,
+          1
+        ]
+      }
+    ],
+    "explanation": "三方案总输入均为 4 U，最大速率均不超过 2 U/T。前置和后置的峰值约 2.5284822353 U，均超过 2 U；均匀输入峰值约 1.7293294335 U，故返回 [2]。"
   }
 }

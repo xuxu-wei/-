@@ -1,19 +1,25 @@
 import {mountShell,locateLesson,applyProgress,rememberQuestion} from '../shared/course-shell.mjs';
 import {createEditor} from './editor.mjs';
 import {setupWorkspace} from '../shared/layout.mjs';
+import {renderAssessment} from '../shared/assessment.mjs';
 const $=id=>document.getElementById(id);
 const editor=createEditor($('source'));
 let session, catalog=[], question, active=null, pollTimer=null, selection=0, lastRecord=null, undo='';
 let prefix,chapter=null; // 每章独立保存草稿。
 let lessons=[],progressState={passed:[]};
-function progressLabel(value){const ids=new Set(catalog.map(q=>q.id));return `本章已完成 ${(value.passed||[]).filter(id=>ids.has(id)).length} / ${ids.size} 题${value.incomplete?' · 部分记录无法读取':''}`;}
+function progressLabel(value){const ids=new Set(catalog.map(q=>q.id));return `${chapter?.assessment?'篇末综合':'本章'}已完成 ${(value.passed||[]).filter(id=>ids.has(id)).length} / ${ids.size} 题${value.incomplete?' · 部分记录无法读取':''}`;}
+function scorePanel(){
+  const summary=chapter?.assessment?progressState.assessments?.[chapter.lessons[0].id]:null;
+  renderAssessment($('assessment-score'),summary,{onSelect:id=>void select(id).catch(connectionError)});
+}
 document.addEventListener('course-progress',event=>{
   progressState=event.detail;
   $('progress').textContent=progressLabel(progressState);
+  scorePanel();
   for(const link of $('questions').querySelectorAll('a')){
     const item=catalog.find(q=>q.id===link.dataset.id);if(!item)continue;
     const done=progressState.passed.includes(item.id);link.classList.toggle('passed',done);
-    link.querySelector('.question-status').textContent=done?'✓':'○';
+    link.querySelector('.question-status').textContent=(done?'✓':'○')+(item.assessment?` ${done?item.assessment.points:0}/${item.assessment.points}`:'');
     link.setAttribute('aria-label',`${item.title}${done?'，已完成':''}`);
   }
 });
@@ -82,13 +88,25 @@ function updateBusy(){
 function renderQuestions(){
   $('questions').replaceChildren();
   const items=catalog.filter(q=>q.lesson_id===question.lesson_id);
+  $('questions').classList.toggle('assessment-tabs',!!chapter.assessment);
+  const groups=new Map();
   items.forEach((item,index)=>{
+    let target=$('questions');
+    if(item.assessment){
+      const level=item.assessment.level;
+      if(!groups.has(level)){
+        const group=node('section',undefined,'assessment-question-group');
+        const total=items.filter(q=>q.assessment?.level===level).reduce((n,q)=>n+q.assessment.points,0);
+        group.append(node('h3',`${level}. ${item.assessment.level_title} · ${total} 分`));groups.set(level,group);target.append(group);
+      }
+      target=groups.get(level);
+    }
     const a=node('a');a.href=`?question=${item.slug}`;a.dataset.id=item.id;
     a.append(node('span',`第 ${index+1} 题 · ${item.title}`));
-    const done=progressState.passed.includes(item.id);a.append(node('span',done?'✓':'○','question-status'));a.classList.toggle('passed',done);
+    const done=progressState.passed.includes(item.id);a.append(node('span',(done?'✓':'○')+(item.assessment?` ${done?item.assessment.points:0}/${item.assessment.points}`:''),'question-status'));a.classList.toggle('passed',done);
     a.setAttribute('aria-label',`${item.title}${done?'，已完成':''}`);
     if(item.id===question.id)a.setAttribute('aria-current','page');
-    a.addEventListener('click',event=>{event.preventDefault();void select(item.id).catch(connectionError);});$('questions').append(a);
+    a.addEventListener('click',event=>{event.preventDefault();void select(item.id).catch(connectionError);});target.append(a);
   });
   $('lesson-picker').value=question.lesson_id;locateLesson(question.lesson_id);
   const index=catalog.findIndex(q=>q.id===question.id);$('previous-question').disabled=index===0;$('next-question').disabled=index===catalog.length-1;
@@ -178,6 +196,7 @@ async function select(id,push=true){
   document.querySelectorAll('#code-requirements details, .hint').forEach(d=>d.open=false);
   for(const link of $('questions').querySelectorAll('a')){if(link.dataset.id===q.id)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');}
   $('question-meta').textContent=`${lessons.find(l=>l.id===q.lesson_id).title} · ${q.type==='choice'?(q.multiple?'多项选择题':'单项选择题'):'Python 计算题'}`;
+  if(q.assessment)$('question-meta').textContent+=` · ${q.assessment.level_title} · ${q.assessment.points} 分`;
   $('question-title').textContent=q.title;$('statement').textContent=q.statement;
   $('choice-panel').hidden=q.type!=='choice';$('code-panel').hidden=q.type!=='python';$('code-requirements').hidden=q.type!=='python';
   $('hint').textContent=q.hint||'先根据本节的模型、单位和假设逐项判断，再提交答案查看解析。';
@@ -194,7 +213,7 @@ async function select(id,push=true){
     editor.setValue(getStored(draftKey())??q.starter_code);$('draft-note').textContent='';$('undo-restore').hidden=true;
     const oldDraft=q.previous_version&&getStored(`draft:${q.id}:${q.previous_version}`);
     $('download-previous').hidden=typeof oldDraft!=='string';
-    if(typeof oldDraft==='string')$('draft-note').textContent='本题已改用具名参数。旧版草稿仍保留，可下载后按新签名修改。';
+    if(typeof oldDraft==='string')$('draft-note').textContent='本题已更新。旧版草稿仍保留，可下载后按新题面修改。';
   }
   $('exercise').hidden=false;$('exercise').dataset.kind=q.type;$('question-reading').scrollTop=0;updateBusy();
   if(push)$('questions').scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
@@ -224,6 +243,7 @@ async function connect(){
   try{
     session=await api('/api/session');
     if(session.practice_version!=='named-parameters-2')throw new Error('请停止旧的本地程序，重新启动当前版本后恢复连接。');
+    if(chapter.assessment&&session.assessment_version!=='1')throw new Error('本机程序尚未载入篇末评分，请停止旧程序并重新启动后恢复连接。');
     const data=await api('/api/v1/catalog');
     const lessonIds=new Set(chapter.lessons.map(l=>l.id));
     catalog=data.exercises.filter(q=>lessonIds.has(q.lesson_id));lessons=data.notebooks.filter(l=>lessonIds.has(l.id));

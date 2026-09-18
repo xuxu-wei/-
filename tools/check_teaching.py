@@ -9,6 +9,7 @@ import nbformat
 from course_content import notebooks, question_banks
 from lesson_exercises import render_exercises
 from question_contracts import validate_contract
+from assessment import load_assessments
 
 ROOT = Path(__file__).resolve().parents[1]
 TERMS = json.loads((ROOT / 'docs/术语对照.json').read_text(encoding='utf-8'))
@@ -41,6 +42,7 @@ def main():
     catalog = [l for l in notebooks() if l.get('chapter_id') and (args.part is None or int(l['chapter_id'].split('.')[0]) == args.part)]
     ids = {l['id'] for l in catalog}
     questions, _ = question_banks()
+    assessments = load_assessments(questions)
     questions = [q for q in questions if q['lesson_id'] in ids]
     course = json.loads((ROOT / 'web/course/catalog.json').read_text(encoding='utf-8'))
     chapters = {c['id']: c for p in course['parts'] for c in [*p['chapters'], *([p['assessment']] if 'assessment' in p else [])]}
@@ -49,7 +51,10 @@ def main():
     for lesson in catalog:
         part = int(lesson['chapter_id'].split('.')[0])
         bank = [q for q in questions if q['lesson_id'] == lesson['id']]
-        assert 3 <= len(bank) <= 5, lesson['id']
+        if lesson['id'] in assessments:
+            assert len(bank) == len(assessments[lesson['id']]['items']), lesson['id']
+        else:
+            assert 3 <= len(bank) <= 5, lesson['id']
         for q in bank:
             assert q['type'] in {'choice', 'python'}
             if q['type'] == 'python':
@@ -67,7 +72,7 @@ def main():
         for word in ['网页', '内核', '安装', '验收', 'playground', '未实现']:
             if word in goal:
                 issues.append(f'{lesson["id"]}: 目标区混入制作/操作信息 {word}')
-        expected = render_exercises(lesson['id'], questions, chapters[lesson['chapter_id']]['url'] + 'practice/')
+        expected = render_exercises(lesson['id'], questions, chapters[lesson['chapter_id']]['url'] + 'practice/', assessments.get(lesson['id']))
         if not nb.cells[-1].source.startswith(expected):
             issues.append(f'{lesson["id"]}: 题面与题库不同步')
         for cell in nb.cells:

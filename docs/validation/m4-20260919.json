@@ -1,0 +1,253 @@
+{
+  "date": "2026-09-19",
+  "stage": "M4",
+  "status": "passed",
+  "scope": {
+    "part": 3,
+    "chapters": [
+      "3.1",
+      "3.2",
+      "3.3",
+      "3.4"
+    ],
+    "notebooks": 11,
+    "ordinary_questions": 45,
+    "capstone_questions": 8,
+    "questions": 53,
+    "choice": 37,
+    "python": 16,
+    "exploration_pages": 3,
+    "capstone_points": 100
+  },
+  "notebook_execution": {
+    "python": "3.13.2",
+    "platform": "Windows",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "nbclient": "0.11.0",
+      "nbformat": "5.11.1",
+      "nbconvert": "7.17.1",
+      "ipykernel": "7.3.0"
+    },
+    "notebooks": [
+      {
+        "id": "P03-C01-S01",
+        "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/01-两室交换与矩阵收支.ipynb",
+        "seconds": 12.74,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "dd17806554cb6101451d503c1945b6762536f3b5d30a43b404c8ffdf782ffb32",
+        "published_sha256": "dd17806554cb6101451d503c1945b6762536f3b5d30a43b404c8ffdf782ffb32"
+      },
+      {
+        "id": "P03-C01-S02",
+        "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/02-内积范数与投影.ipynb",
+        "seconds": 19.03,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "1ca7971952f2b23d54bd53a8c49b0adac6d62ae61ea2df522884e2b48442ce9c",
+        "published_sha256": "7b6ceb95daecb926a67c2675d9334f5a735c21b82c8238e535b63772c13ba7e5"
+      },
+      {
+        "id": "P03-C01-S03",
+        "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/03-平衡方程秩与唯一性.ipynb",
+        "seconds": 8.33,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "82747276e68167eb02b71d6956d3cbff9bc087dd12e45caad76d30de20413443",
+        "published_sha256": "82747276e68167eb02b71d6956d3cbff9bc087dd12e45caad76d30de20413443"
+      },
+      {
+        "id": "P03-C02-S01",
+        "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/01-状态输入与观测映射.ipynb",
+        "seconds": 7.69,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "7a7c98f9ec1002fb4c35410fb7a84d7f5f74ea51c81bcc228b80d6656b2e9226",
+        "published_sha256": "7a7c98f9ec1002fb4c35410fb7a84d7f5f74ea51c81bcc228b80d6656b2e9226"
+      },
+      {
+        "id": "P03-C02-S02",
+        "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/02-特征值模态与矩阵传播.ipynb",
+        "seconds": 6.98,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "4c3239b981dfeddbaef762619e5003d4759060203b5e203fd643cdeb8b2bca5e",
+        "published_sha256": "4c3239b981dfeddbaef762619e5003d4759060203b5e203fd643cdeb8b2bca5e"
+      },
+      {
+        "id": "P03-C02-S03",
+        "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/03-复数模态与阻尼旋转.ipynb",
+        "seconds": 5.97,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "66847787729242b4194907e1bdae538f5820d7fb44f61d130914a737a69b7baf",
+        "published_sha256": "817810ff8d23078a83bb210438513d7a00e666522ef5bdcdc25839d831676966"
+      },
+      {
+        "id": "P03-C03-S01",
+        "path": "notebooks/03-多变量相互作用/03-耦合、相平面与平衡/01-向量场相轨迹与时间.ipynb",
+        "seconds": 5.46,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "aa1e98154c163ab159f5fb92c607f773d43c291962b89ef91aac9b4d1b555cf8",
+        "published_sha256": "aa1e98154c163ab159f5fb92c607f773d43c291962b89ef91aac9b4d1b555cf8"
+      },
+      {
+        "id": "P03-C03-S02",
+        "path": "notebooks/03-多变量相互作用/03-耦合、相平面与平衡/02-通道改变与平衡集合.ipynb",
+        "seconds": 6.27,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "7d1c7b135b3c69b1f968982a3b37dc47f6c2bceb8499949a83e81201601f7ac1",
+        "published_sha256": "fee67502cf7087c7ff42998f781bfcddc7bf0147874bc2f5480a400943ba044e"
+      },
+      {
+        "id": "P03-C04-S01",
+        "path": "notebooks/03-多变量相互作用/04-多变量变化与局部线性化/01-偏导梯度与局部变化.ipynb",
+        "seconds": 6.24,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "41a70ead0597da458e0bfb9ba573a2740c0ef885378fce1b3d996ee37573feb6",
+        "published_sha256": "66c4286dd1e4ce3395d26c6648c604bfca1384cf0f56f4af9432fab85278f6dd"
+      },
+      {
+        "id": "P03-C04-S02",
+        "path": "notebooks/03-多变量相互作用/04-多变量变化与局部线性化/02-线性化能够走多远.ipynb",
+        "seconds": 6.12,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "8b0df56c35daee4a232848b3af5660b4bf0aa72df3a46841b23fb1dd913d0862",
+        "published_sha256": "8b0df56c35daee4a232848b3af5660b4bf0aa72df3a46841b23fb1dd913d0862"
+      },
+      {
+        "id": "P03-SUMMARY",
+        "path": "notebooks/03-多变量相互作用/05-篇末综合/01-二室交换与局部近似综合实验.ipynb",
+        "seconds": 8.14,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "bce9601b70046f652a87f784c22be5484d523d98f3c935a3d917b10a2f226208",
+        "published_sha256": "bce9601b70046f652a87f784c22be5484d523d98f3c935a3d917b10a2f226208"
+      }
+    ],
+    "code_cells": 55,
+    "figures": 11,
+    "post_execution_change": "运行后仅补充 Markdown 数学桥接与术语说明；未修改代码和保存输出。分别记录执行版与发布版哈希，不声称 Markdown 修订版重新运行。",
+    "visual_review": "逐张查看 11 幅保存图；临时 nbconvert 渲染中检查 3.4.2 的 11 处公式，无 MathJax 错误。临时公式依赖不加入教学环境或 Git。"
+  },
+  "automated_checks": {
+    "python": {
+      "command": "python -m pytest -q",
+      "passed": 222,
+      "failed": 0,
+      "seconds": 89.73
+    },
+    "javascript": {
+      "command": "node --test tools/tests/*.test.mjs",
+      "passed": 28,
+      "failed": 0
+    },
+    "independent_math": "100 位 Decimal 矩阵幂级数对照模态/旋转/Jordan；Cramer 法则对照平衡；70 位 Decimal 绝对坐标仿射欧拉对照偏差模型；有理式对照 Jacobian 中心差分误差。所有 16 道计算题的样例/完整提交与错误答案经真实子进程判定。",
+    "cross_implementation": {
+      "cases": 71,
+      "compared_values": 48817,
+      "maximum_absolute_difference": 8.881784197001252e-16,
+      "tolerance": "1e-10 * max(1, abs(Python))",
+      "scope": "same-model cross-implementation; independent mathematical checks are separate",
+      "notebooks": [
+        "notebooks/03-多变量相互作用/01-从多个室进入线性代数/01-两室交换与矩阵收支.ipynb",
+        "notebooks/03-多变量相互作用/01-从多个室进入线性代数/02-内积范数与投影.ipynb",
+        "notebooks/03-多变量相互作用/01-从多个室进入线性代数/03-平衡方程秩与唯一性.ipynb",
+        "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/01-状态输入与观测映射.ipynb",
+        "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/02-特征值模态与矩阵传播.ipynb",
+        "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/03-复数模态与阻尼旋转.ipynb",
+        "notebooks/03-多变量相互作用/03-耦合、相平面与平衡/01-向量场相轨迹与时间.ipynb",
+        "notebooks/03-多变量相互作用/03-耦合、相平面与平衡/02-通道改变与平衡集合.ipynb",
+        "notebooks/03-多变量相互作用/04-多变量变化与局部线性化/01-偏导梯度与局部变化.ipynb",
+        "notebooks/03-多变量相互作用/04-多变量变化与局部线性化/02-线性化能够走多远.ipynb",
+        "notebooks/03-多变量相互作用/05-篇末综合/01-二室交换与局部近似综合实验.ipynb"
+      ],
+      "web": "web/multivariable/model.mjs"
+    },
+    "teaching": {
+      "notebooks": 31,
+      "questions": 145,
+      "question_links": 145,
+      "issues": []
+    },
+    "pip_check": "No broken requirements found."
+  },
+  "actual_browser_checks": [
+    {
+      "case": "3.2 模态与观测",
+      "observed": "实际点击播放：t=0.39 T，状态点 cx=861.017；结束 t=12 T，cx=688.962。重播并暂停于 t=0.49 T，之后读取仍为该时刻。初值 [6,0] 与 [3,3] 往返；旋转与不旋转往返，标签随目标改变。"
+    },
+    {
+      "case": "3.3 相轨迹与时间",
+      "observed": "关闭/恢复回流通道两轮，手动改 b=.15 后按钮仍提示关闭。播放后暂停于 t=.57 T，状态 [5.38345,.61655]，时间和图形改变。"
+    },
+    {
+      "case": "3.4 局部近似",
+      "observed": "近平衡 .2 U 与远平衡 3 U 连续往返两轮；手动扰动 3.5 U 后按钮提示切回近平衡。恢复并播放，t=.57 T 状态 [2.167752,4.019971]。"
+    },
+    {
+      "case": "默认 IDE",
+      "observed": "实际点击线性化能够走多远的打开按钮；本机 open_in_default_app 接受项目原 .ipynb，反馈已请求系统默认 IDE 打开，浏览器没有转到 Notebook 或下载副本。"
+    },
+    {
+      "case": "Notebook 网页入口",
+      "observed": "从已渲染的 3.4.2 Notebook 点击观察本章的动态可视化，进入 8000 正式探索页，ready=true；点击作答比较原模型与平衡附近的近似，进入对应 p03-local-trajectories，题面、具名参数和编辑器可用。"
+    },
+    {
+      "case": "编辑、样例与完整判定",
+      "observed": "实际使用 Tab、行首 Backspace 和括号配对。把两室收支写成矩阵的样例通过后仍为 0/13，完整提交通过 4/4 用例后为 1/13；后续导航仍显示该进度。输入/输出各含说明表和可复制代码。"
+    },
+    {
+      "case": "traceback 与反馈位置",
+      "observed": "删除 def 行冒号：SyntaxError expected colon，显示 answer.py 第 1 行、源码和指示箭头。结果区域位于代码编辑器之前；修正代码后样例与完整判定通过。"
+    },
+    {
+      "case": "选择题与分层评分",
+      "observed": "综合第 1 题先答 B：首次/练习均 0；红字 rgb(125,43,49)，卡片 rgba(179,58,74,.08)，逐项解析可见。改答 A：首次仍 0，练习 10，1/8 完成；重新打开保持分数。四层最大分值为 20/30/30/20，合计 100。"
+    },
+    {
+      "case": "PC 目录与布局",
+      "observed": "当前 PC 浏览器 1066 px 窗口，文档宽度 1051 px，无横向溢出；新探索页窄窗口采用上方控制/下方大图。目录宽度通过右方向键 284→300 px，隐藏按钮可用；页面自动展开当前篇章。"
+    },
+    {
+      "case": "加载失败",
+      "observed": "用生产 HTML 的临时副本指向缺失模块，显示交互未能加载提示；播放和控制区禁用，未留下点击无反应的可用按钮。临时故障页不发布。"
+    }
+  ],
+  "record_protection": {
+    "before": 29,
+    "after": 29,
+    "existing_byte_identical": true,
+    "ui_test_records": ".work/m4/ui-learning",
+    "main_service_question_total": 145
+  },
+  "integration": "同时完成的项目规范任务已交付前两篇综合评分及共用组件；本轮全量检查覆盖集成结果，其独立范围见 capstone-scoring-20260918.json。",
+  "limits": [
+    "尚未进行目标读者试学、题目难度校准或独立同行评审。",
+    "验证 Windows / Python 3.13.2 与 PC 浏览器；不承诺未验证系统。",
+    "默认 IDE 的操作验证止于系统接受原文件打开请求；Notebook 执行由独立新内核完成，未自动操作原生 IDE。",
+    "31 本总教材中，本轮完整重跑第 3 篇 11 本；前两篇核心代码未改，使用既往运行证据和本轮全项目回归。"
+  ],
+  "document_links": {
+    "links": 313,
+    "issues": []
+  },
+  "teaching_review": "章目录先修仅列实际前置知识；矩阵/模态/偏导在对应章内首次引入，未把当章要教的数学误列为先修。"
+}

@@ -12,5 +12,6 @@
   "p01-first-failure": "def solve(initial, fixed, steps):\n    for i in range(1,steps+1):\n        if initial-i*fixed<0:\n            return i\n    return -1\n",
   "p01-separation": "def solve(initials, fixed, fraction, threshold):\n    return [i for i,a in enumerate(initials) if abs(fraction*a-fixed)>threshold]\n",
   "p01-cap-count": "def solve(initial, entered, left, born):\n    counts=[initial]\n    for u,v,b in zip(entered,left,born):\n        counts.append(counts[-1]+u-v+b)\n    return counts\n",
-  "p01-cap-predictions": "def solve(initials, fixed, fraction, steps):\n    return [a-fixed*steps for a in initials], [a*(1-fraction)**steps for a in initials]\n"
+  "p01-cap-predictions": "def solve(initials, fixed, fraction, steps):\n    return [a-fixed*steps for a in initials], [a*(1-fraction)**steps for a in initials]\n",
+  "p01-cap-calibrated-balance": "def solve(readings, gain, offset, entered, left, born):\n    counts = [(y-offset)/gain for y in readings]\n    return [counts[i]+entered[i]-left[i]+born[i]-counts[i+1] for i in range(len(entered))]\n"
 }

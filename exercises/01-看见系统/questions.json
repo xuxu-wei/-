@@ -1954,7 +1954,45 @@
     "mathematics": [
       "数01"
     ],
-    "difficulty": "综合"
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-cap-units",
+    "version": "1",
+    "lesson_id": "P01-SUMMARY",
+    "slug": "p01-cap-units",
+    "title": "先分清累计数量与变化速率",
+    "statement": "同一细胞视野在 2 小时内累计进入 6 个、离开 2 个，内部净新增 3 个。初始可见数量为 10 个。哪项记账正确？",
+    "part": "1",
+    "chapter": "1.summary",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础",
+    "type": "choice",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "末数量为 10+2×(6−2+3)=24 个。"
+      },
+      {
+        "id": "B",
+        "text": "末数量为 10+6−2+3=17 个。"
+      },
+      {
+        "id": "C",
+        "text": "只要数量增加，就可把增加量全部记为迁入。"
+      },
+      {
+        "id": "D",
+        "text": "进入数 6 个与进入速率 6 个/小时可直接互换。"
+      }
+    ],
+    "constraints": []
   },
   {
     "id": "p01-cap-count",
@@ -2054,7 +2092,7 @@
     "mathematics": [
       "数01"
     ],
-    "difficulty": "综合"
+    "difficulty": "应用"
   },
   {
     "id": "p01-cap-feedback",
@@ -2092,7 +2130,7 @@
     "mathematics": [
       "数01"
     ],
-    "difficulty": "综合"
+    "difficulty": "应用"
   },
   {
     "id": "p01-cap-predictions",
@@ -2200,33 +2238,12 @@
     "difficulty": "综合"
   },
   {
-    "id": "p01-cap-limits",
+    "id": "p01-cap-discriminate",
     "version": "1",
     "lesson_id": "P01-SUMMARY",
-    "type": "choice",
-    "slug": "p01-cap-limits",
-    "title": "给计算结论划定范围",
-    "statement": "综合前面的计算实验（computational experiment），以下哪句话最恰当地说明本篇成果？",
-    "multiple": false,
-    "options": [
-      {
-        "id": "A",
-        "text": "程序能运行，因此所有机制都是真实的。"
-      },
-      {
-        "id": "B",
-        "text": "选定边界、单位和规则后，可以检查收支（mass balance）及具体预测；对真实过程仍需独立观测（observation）和假设检验。"
-      },
-      {
-        "id": "C",
-        "text": "模拟点越多就越不需要观测。"
-      },
-      {
-        "id": "D",
-        "text": "一条轨迹（trajectory）足以证明任意条件下的长期行为。"
-      }
-    ],
-    "constraints": [],
+    "slug": "p01-cap-discriminate",
+    "title": "用新初值区分候选规则",
+    "statement": "两个清除模型（model）在起点 10 U 时都预测一段后为 9 U：甲每段减 1 U，乙每段减当前量的 10%。另做一次独立实验，起点 20 U，一段后测得 18.1 U，事先规定预测与读数的差不超过 0.2 U 才相符。哪些判断成立？",
     "part": "1",
     "chapter": "1.summary",
     "learning_targets": [
@@ -2235,6 +2252,185 @@
     "mathematics": [
       "数01"
     ],
-    "difficulty": "综合"
+    "difficulty": "综合",
+    "type": "choice",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "甲预测 19 U，乙预测 18 U，新条件能区分这两项预测。"
+      },
+      {
+        "id": "B",
+        "text": "甲与观测（observation）相符，因为它在原实验中通过了检查。"
+      },
+      {
+        "id": "C",
+        "text": "本次读数与乙相符，但这不证明乙适用于所有初值（initial condition）和所有时段。"
+      },
+      {
+        "id": "D",
+        "text": "应先固定允许误差与实验时长，再看观测结果。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p01-cap-calibrated-balance",
+    "version": "1",
+    "lesson_id": "P01-SUMMARY",
+    "slug": "p01-cap-calibrated-balance",
+    "title": "换测量方式后核对收支",
+    "statement": "仪器满足读数 = gain×可见数量 + offset。先换算各时刻数量，再核对已记录的移动和内部新增，返回各段尚未被这些记录解释的净流出量。正数表示额外净减少，负数表示额外净增加；残差（residual）本身不能识别死亡、漏记或其他原因。",
+    "part": "1",
+    "chapter": "1.summary",
+    "learning_targets": [
+      "T2",
+      "T1"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "迁移",
+    "type": "python",
+    "parameters": [
+      {
+        "name": "readings",
+        "type": "list[float]",
+        "description": "各段边界的仪器读数，含起点。",
+        "unit": "读数单位"
+      },
+      {
+        "name": "gain",
+        "type": "float",
+        "description": "每个细胞对应的读数增量，严格为正。",
+        "unit": "读数单位/个"
+      },
+      {
+        "name": "offset",
+        "type": "float",
+        "description": "固定零点偏移。",
+        "unit": "读数单位"
+      },
+      {
+        "name": "entered",
+        "type": "list[float]",
+        "description": "各段已累计的进入数。",
+        "unit": "个"
+      },
+      {
+        "name": "left",
+        "type": "list[float]",
+        "description": "各段已累计的离开数。",
+        "unit": "个"
+      },
+      {
+        "name": "born",
+        "type": "list[float]",
+        "description": "各段已累计的净新增数。",
+        "unit": "个"
+      }
+    ],
+    "returns": [
+      {
+        "name": "unexplained",
+        "type": "list[float]",
+        "description": "按时间顺序的未解释净流出量。",
+        "unit": "个"
+      }
+    ],
+    "contract": "令 N[i]=(readings[i]−offset)/gain。返回 N[i]+entered[i]−left[i]+born[i]−N[i+1]；保留正负号，不取绝对值、不裁剪。",
+    "constraints": [
+      "所有数值均为有限数；无需修改输入（input）。",
+      "0—100 段；readings 比其余三个等长列表多一项。",
+      "0.01≤gain≤100，|offset|≤1000；换算数量与各段记录数在 0—10000 内。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "samples": [
+      {
+        "arguments": {
+          "readings": [
+            21,
+            25,
+            23
+          ],
+          "gain": 2,
+          "offset": 1,
+          "entered": [
+            3,
+            0
+          ],
+          "left": [
+            0,
+            2
+          ],
+          "born": [
+            0,
+            2
+          ]
+        },
+        "expected": [
+          1,
+          1
+        ],
+        "explanation": "读数换算为 10、12、11 个。第一段记录预测为 13，实际为 12，未解释净流出 1；第二段 12−2+2−11=1。"
+      }
+    ],
+    "hint": "把计算分成可以单独检查的步骤，再核对边界条件与单位。",
+    "starter_code": "def solve(\n    readings: list[float],\n    gain: float,\n    offset: float,\n    entered: list[float],\n    left: list[float],\n    born: list[float],\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n"
+  },
+  {
+    "id": "p01-cap-limits",
+    "version": "2",
+    "lesson_id": "P01-SUMMARY",
+    "slug": "p01-cap-limits",
+    "title": "换观察边界后限定结论",
+    "statement": "在新培养孔中，中央视野可见数量由 20 降为 15 个，全孔数量保持 100 个。视野与全孔的仪器都已换算成细胞数；没有逐个追踪迁移、分裂和死亡。哪些结论有依据？",
+    "part": "1",
+    "chapter": "1.summary",
+    "learning_targets": [
+      "T4",
+      "T1"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "迁移",
+    "type": "choice",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "全孔总数不变，可以推出没有发生分裂或死亡。"
+      },
+      {
+        "id": "B",
+        "text": "中央视野的净减少与向外迁移相容，但也可能由多种过程共同造成。"
+      },
+      {
+        "id": "C",
+        "text": "改用全孔边界时，孔内跨视野移动不再计为全孔外部流量（flow）。"
+      },
+      {
+        "id": "D",
+        "text": "只凭这两组计数，仍不能唯一识别各项内部生成与损失。"
+      }
+    ],
+    "constraints": [],
+    "previous_version": "1"
   }
 ]

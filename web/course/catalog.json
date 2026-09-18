@@ -98,7 +98,7 @@
           "id": "1.2",
           "title": "存量、流量与守恒",
           "url": "/chapters/01-02-存量、流量与守恒/",
-          "goals": "从一段时间内的输入（input）输出计算存量（stock）变化，区分流率（flow rate）和该段累计量。",
+          "goals": "从一段时间内的输入（input）输出（output）计算存量（stock）变化，区分流率（flow rate）和该段累计量。",
           "prerequisites": "1.1；数学：中学函数、图像、指数对数和量纲（dimension）的最小复习。",
           "knowledge": [
             "容器与箭头表示“多少”和“多快”",
@@ -408,6 +408,12 @@
                 "type": "choice"
               },
               {
+                "id": "p01-cap-units",
+                "slug": "p01-cap-units",
+                "title": "先分清累计数量与变化速率",
+                "type": "choice"
+              },
+              {
                 "id": "p01-cap-count",
                 "slug": "p01-cap-count",
                 "title": "计数中的移动与新增",
@@ -426,9 +432,21 @@
                 "type": "python"
               },
               {
+                "id": "p01-cap-discriminate",
+                "slug": "p01-cap-discriminate",
+                "title": "用新初值区分候选规则",
+                "type": "choice"
+              },
+              {
+                "id": "p01-cap-calibrated-balance",
+                "slug": "p01-cap-calibrated-balance",
+                "title": "换测量方式后核对收支",
+                "type": "python"
+              },
+              {
                 "id": "p01-cap-limits",
                 "slug": "p01-cap-limits",
-                "title": "给计算结论划定范围",
+                "title": "换观察边界后限定结论",
                 "type": "choice"
               }
             ],
@@ -925,9 +943,27 @@
             },
             "questions": [
               {
+                "id": "p02-cap-rate-balance",
+                "slug": "p02-cap-rate-balance",
+                "title": "先把速率写进更新式",
+                "type": "choice"
+              },
+              {
+                "id": "p02-equal-area-not-path",
+                "slug": "p02-equal-area-not-path",
+                "title": "等总量为何不等轨迹",
+                "type": "choice"
+              },
+              {
                 "id": "p02-input-totals",
                 "slug": "p02-input-totals",
                 "title": "先确认比较方案的总量相同",
+                "type": "python"
+              },
+              {
+                "id": "p02-cap-integrated-balance",
+                "slug": "p02-cap-integrated-balance",
+                "title": "用累计量核对连续收支",
                 "type": "python"
               },
               {
@@ -937,25 +973,25 @@
                 "type": "python"
               },
               {
-                "id": "p02-equal-area-not-path",
-                "slug": "p02-equal-area-not-path",
-                "title": "等总量为何不等轨迹",
-                "type": "choice"
-              },
-              {
                 "id": "p02-migration-evidence",
                 "slug": "p02-migration-evidence",
                 "title": "哪些证据足以交付迁移实验",
                 "type": "choice"
               },
               {
+                "id": "p02-cap-feasible-plans",
+                "slug": "p02-cap-feasible-plans",
+                "title": "迁移到带过程上限的方案筛选",
+                "type": "python"
+              },
+              {
                 "id": "p02-model-scope",
                 "slug": "p02-model-scope",
-                "title": "数值通过之后还能声称什么",
+                "title": "改变约束后重新解释方案",
                 "type": "choice"
               }
             ],
-            "url": "/parts/02-系统随时间演化/综合练习/practice/?question=p02-input-totals"
+            "url": "/parts/02-系统随时间演化/综合练习/practice/?question=p02-cap-rate-balance"
           }
         ],
         "available": true,
@@ -971,67 +1007,549 @@
           "id": "3.1",
           "title": "从多个室进入线性代数",
           "url": "/chapters/03-01-从多个室进入线性代数/",
-          "goals": "说明向量分量、矩阵元素及维数的物理意义，理解内积、范数、秩和线性方程组。",
-          "prerequisites": "2.4；数学：一阶 ODE、初值（initial condition）、分离变量和指数解、向量、矩阵、内积、范数、秩、线性方程组与投影直觉。",
+          "goals": "说明向量（vector）分量、矩阵（matrix）元素及维数的物理意义，理解内积（inner product）、范数（norm）、秩（rank）和线性方程组（system of linear equations）。",
+          "prerequisites": "2.4 的收支（mass balance）计算、导数（derivative）与一阶微分方程；会用 Python 列表表达多项数值。",
           "knowledge": [
-            "两室交换的逐项收支（mass balance）",
-            "数组（array）、矩阵乘法与线性映射",
-            "内积与投影直觉、秩、平衡方程及唯一性"
+            "两室交换的逐项收支",
+            "数组（array）、矩阵乘法（matrix multiplication）与线性映射（linear map）",
+            "内积与投影（projection）直觉、秩、平衡方程及唯一性"
           ],
           "focus": "对应练习 初始变化率为 (−1.2, 1.2) U/T；封闭系统的平衡（equilibrium）要结合初始总量确定，不能把奇异矩阵强行求逆。",
-          "available": false,
-          "lessons": [],
+          "available": true,
+          "lessons": [
+            {
+              "id": "P03-C01-S01",
+              "chapter_id": "3.1",
+              "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/01-两室交换与矩阵收支.ipynb",
+              "title": "两室交换与矩阵收支",
+              "outcome": "能从两个室的逐项收支构造向量与矩阵，用矩阵乘法计算变化率，并检查内部交换、外部输入与清除的不同作用。",
+              "number": "3.1.1",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p03-exchange-columns",
+                  "slug": "p03-exchange-columns",
+                  "title": "交换发生在哪一列",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-exchange-balance",
+                  "slug": "p03-exchange-balance",
+                  "title": "把两室收支写成矩阵",
+                  "type": "python"
+                },
+                {
+                  "id": "p03-amount-concentration",
+                  "slug": "p03-amount-concentration",
+                  "title": "改用浓度时遗漏了什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-third-room",
+                  "slug": "p03-third-room",
+                  "title": "增加第三室后怎样检查守恒",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-exchange-columns"
+            },
+            {
+              "id": "P03-C01-S02",
+              "chapter_id": "3.1",
+              "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/02-内积范数与投影.ipynb",
+              "title": "内积范数与投影",
+              "outcome": "能计算内积、欧几里得范数与投影，把两室变化分成共同方向和差异方向，并解释单位与尺度对几何比较的影响。",
+              "number": "3.1.2",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p03-projection",
+                  "slug": "p03-projection",
+                  "title": "沿指定方向分解变化",
+                  "type": "python"
+                },
+                {
+                  "id": "p03-norm-units",
+                  "slug": "p03-norm-units",
+                  "title": "长度依赖怎样的坐标",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-projection-meaning",
+                  "slug": "p03-projection-meaning",
+                  "title": "投影误差为什么垂直",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-matrix-product",
+                  "slug": "p03-matrix-product",
+                  "title": "矩阵乘法怎样读取",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-projection"
+            },
+            {
+              "id": "P03-C01-S03",
+              "chapter_id": "3.1",
+              "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/03-平衡方程秩与唯一性.ipynb",
+              "title": "平衡方程秩与唯一性",
+              "outcome": "能用独立方程求平衡，区分唯一解、无解和一组平衡，解释封闭系统为什么需要补充守恒总量。",
+              "number": "3.1.3",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p03-open-equilibrium",
+                  "slug": "p03-open-equilibrium",
+                  "title": "求开放两室的平衡",
+                  "type": "python"
+                },
+                {
+                  "id": "p03-singular-equilibrium",
+                  "slug": "p03-singular-equilibrium",
+                  "title": "封闭系统为何不能直接求逆",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-rank-meaning",
+                  "slug": "p03-rank-meaning",
+                  "title": "秩与解的个数",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-no-clearance-input",
+                  "slug": "p03-no-clearance-input",
+                  "title": "封闭交换加输入能达到定常吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-equilibrium-limit",
+                  "slug": "p03-equilibrium-limit",
+                  "title": "计算出平衡就算完成了吗",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/03-01-从多个室进入线性代数/practice/?question=p03-open-equilibrium"
+            }
+          ],
           "visualization": null
         },
         {
           "id": "3.2",
           "title": "线性状态空间与动态模态",
           "url": "/chapters/03-02-线性状态空间与动态模态/",
-          "goals": "写出状态（state）、输入（input）和输出关系，用特征值解释动态时间尺度（time scale），并把复共轭模态还原为实轨迹（trajectory）。",
-          "prerequisites": "3.1；数学：一阶 ODE、初值（initial condition）、分离变量和指数解、向量、矩阵、内积、范数、秩、线性方程组与投影直觉、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数。",
+          "goals": "写出状态（state）、输入（input）和输出（output）关系，用特征值（eigenvalue）解释动态时间尺度（time scale），并把复共轭（complex conjugate）模态（mode）还原为实轨迹（trajectory）。",
+          "prerequisites": "3.1 的向量（vector）、矩阵乘法（matrix multiplication）与线性方程组（system of linear equations），以及第 2 篇的指数衰减。",
           "knowledge": [
-            "状态空间和不同观测（observation）映射",
-            "特征向量、矩阵幂与矩阵指数",
-            "快慢模态、复数与阻尼振荡，说明不可对角化情况的处理边界"
+            "状态空间（state space）和不同观测（observation）映射",
+            "特征向量（eigenvector）、矩阵（matrix）幂与矩阵指数",
+            "快慢模态、复数（complex number）与阻尼振荡，说明不可对角化情况的处理边界"
           ],
-          "focus": "对应练习 特征值为 −1 ± 2i；模态重建与矩阵指数参考一致；状态负值在偏差模型（model）与物质量模型中含义不同。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "focus": "对应练习 特征值为 −1 ± 2i；模态重建与矩阵指数（matrix exponential）参考一致；状态负值在偏差模型（model）与物质量模型中含义不同。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P03-C02-S01",
+              "chapter_id": "3.2",
+              "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/01-状态输入与观测映射.ipynb",
+              "title": "状态输入与观测映射",
+              "outcome": "能写出线性状态空间的动态与观测方程，核对矩阵维数和单位，解释不变的观测为何可能掩盖内部变化。",
+              "number": "3.2.1",
+              "visualization": "web/multivariable/index.html",
+              "questions": [
+                {
+                  "id": "p03-state-output",
+                  "slug": "p03-state-output",
+                  "title": "同一状态，不同测量",
+                  "type": "python"
+                },
+                {
+                  "id": "p03-observation-not-state",
+                  "slug": "p03-observation-not-state",
+                  "title": "一条测量能代表全部状态吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-dimensions",
+                  "slug": "p03-dimensions",
+                  "title": "状态空间中的维数",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-output-units",
+                  "slug": "p03-output-units",
+                  "title": "测量浓度如何写输出",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-state-output"
+            },
+            {
+              "id": "P03-C02-S02",
+              "chapter_id": "3.2",
+              "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/02-特征值模态与矩阵传播.ipynb",
+              "title": "特征值模态与矩阵传播",
+              "outcome": "能从特征值与特征向量建立模态解，区分慢快时间尺度、初值激发与观测抵消，并连接矩阵幂和矩阵指数。",
+              "number": "3.2.2",
+              "visualization": "web/multivariable/index.html",
+              "questions": [
+                {
+                  "id": "p03-symmetric-modes",
+                  "slug": "p03-symmetric-modes",
+                  "title": "分解共同衰减与室间差异",
+                  "type": "python"
+                },
+                {
+                  "id": "p03-unexcited-mode",
+                  "slug": "p03-unexcited-mode",
+                  "title": "模态存在但未被激发",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-invisible-mode",
+                  "slug": "p03-invisible-mode",
+                  "title": "被求和隐藏的模态",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-matrix-exponential",
+                  "slug": "p03-matrix-exponential",
+                  "title": "连续传播与逐元素指数",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-modal-time",
+                  "slug": "p03-modal-time",
+                  "title": "哪一个变化更慢",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-symmetric-modes"
+            },
+            {
+              "id": "P03-C02-S03",
+              "chapter_id": "3.2",
+              "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/03-复数模态与阻尼旋转.ipynb",
+              "title": "复数模态与阻尼旋转",
+              "outcome": "能把复数表示还原为二维实运动，用特征值实部与虚部分别解释衰减和旋转，并识别特征向量不足时的处理边界。",
+              "number": "3.2.3",
+              "visualization": "web/multivariable/index.html",
+              "questions": [
+                {
+                  "id": "p03-damped",
+                  "slug": "p03-damped",
+                  "title": "把复共轭模态还原成实轨迹",
+                  "type": "python"
+                },
+                {
+                  "id": "p03-jordan",
+                  "slug": "p03-jordan",
+                  "title": "特征向量不够时仍可求解",
+                  "type": "python"
+                },
+                {
+                  "id": "p03-complex-meaning",
+                  "slug": "p03-complex-meaning",
+                  "title": "虚数不是虚构的物理量",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-exchange-no-oscillation",
+                  "slug": "p03-exchange-no-oscillation",
+                  "title": "封闭两室会自发振荡吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-defective-limit",
+                  "slug": "p03-defective-limit",
+                  "title": "能否总把矩阵对角化",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/03-02-线性状态空间与动态模态/practice/?question=p03-damped"
+            }
+          ],
+          "visualization": "web/multivariable/index.html"
         },
         {
           "id": "3.3",
           "title": "耦合、相平面与平衡",
           "url": "/chapters/03-03-耦合、相平面与平衡/",
-          "goals": "从向量场辨认局部运动方向，解释平衡（equilibrium）、初值（initial condition）与轨迹（trajectory），并说明相图丢失了哪些时间信息。",
-          "prerequisites": "3.2；数学：一阶 ODE、初值、分离变量和指数解、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数。",
+          "goals": "从向量场（vector field）辨认局部运动方向，解释平衡（equilibrium）、初值（initial condition）与轨迹（trajectory），并说明相图（phase portrait）丢失了哪些时间信息。",
+          "prerequisites": "3.2 的状态空间（state space）、模态（mode）与时间曲线；会由矩阵（matrix）和状态（state）计算变化率。",
           "knowledge": [
-            "在状态（state）点计算变化方向",
-            "方向场、相轨迹和平衡",
+            "在状态点计算变化方向",
+            "方向场、相轨迹（phase trajectory）和平衡",
             "比较不同耦合与初值下的时间图和相图"
           ],
           "focus": "对应练习 保持轨迹的几何路径但改变时间参数（parameter）化；方向箭头的缩放方式需写明，不能仅靠箭头长度比较速度。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P03-C03-S01",
+              "chapter_id": "3.3",
+              "path": "notebooks/03-多变量相互作用/03-耦合、相平面与平衡/01-向量场相轨迹与时间.ipynb",
+              "title": "向量场相轨迹与时间",
+              "outcome": "能从状态点计算运动方向和速度，将时间曲线与相轨迹对应，并说明归一化箭头和几何路径各自省略的信息。",
+              "number": "3.3.1",
+              "visualization": "web/multivariable/index.html",
+              "questions": [
+                {
+                  "id": "p03-scaled-field",
+                  "slug": "p03-scaled-field",
+                  "title": "同一条路径可以走得更快",
+                  "type": "python"
+                },
+                {
+                  "id": "p03-phase-time",
+                  "slug": "p03-phase-time",
+                  "title": "一张相图省略了什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-normalized-arrows",
+                  "slug": "p03-normalized-arrows",
+                  "title": "等长箭头可以比较速度吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-equilibrium-direction",
+                  "slug": "p03-equilibrium-direction",
+                  "title": "一条分量为零等于平衡吗",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/03-03-耦合、相平面与平衡/practice/?question=p03-scaled-field"
+            },
+            {
+              "id": "P03-C03-S02",
+              "chapter_id": "3.3",
+              "path": "notebooks/03-多变量相互作用/03-耦合、相平面与平衡/02-通道改变与平衡集合.ipynb",
+              "title": "通道改变与平衡集合",
+              "outcome": "能比较双向、单向与完全断开的交换，说明平衡集合与初始总量如何共同决定长期状态，辨认坐标尺度造成的视觉变化。",
+              "number": "3.3.2",
+              "visualization": "web/multivariable/index.html",
+              "questions": [
+                {
+                  "id": "p03-closed-state",
+                  "slug": "p03-closed-state",
+                  "title": "关闭通道后物质流向哪里",
+                  "type": "python"
+                },
+                {
+                  "id": "p03-channel-off",
+                  "slug": "p03-channel-off",
+                  "title": "只关闭回流通道",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-axis-scale",
+                  "slug": "p03-axis-scale",
+                  "title": "拉伸坐标会改变系统吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-all-channels-off",
+                  "slug": "p03-all-channels-off",
+                  "title": "两个通道都关闭",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/03-03-耦合、相平面与平衡/practice/?question=p03-closed-state"
+            }
+          ],
+          "visualization": "web/multivariable/index.html"
         },
         {
           "id": "3.4",
           "title": "多变量变化与局部线性化",
           "url": "/chapters/03-04-多变量变化与局部线性化/",
-          "goals": "由偏导构建 Jacobian，围绕指定平衡（equilibrium）写出一阶近似，并用误差说明局部适用范围。",
-          "prerequisites": "3.3；数学：极限（limit）直觉、导数（derivative）、积分、基本定理和简单链式法则（chain rule）、向量、矩阵、内积、范数、秩、线性方程组与投影直觉、偏导、梯度方向、Jacobian、多变量链式法则和一阶 Taylor 近似。",
+          "goals": "由偏导（partial derivative）构建雅可比矩阵（Jacobian matrix），围绕指定平衡（equilibrium）写出一阶近似，并用误差说明局部适用范围。",
+          "prerequisites": "3.3 的相平面（phase plane）和平衡；复习第 2 篇的单变量导数（derivative）、链式法则（chain rule）及本篇矩阵（matrix）运算。",
           "knowledge": [
             "偏导和多变量链式法则",
             "Taylor 展开与 Jacobian",
             "在二室模型中加入饱和清除，比较局部近似与原模型"
           ],
-          "focus": "导数应为 vK/(K + A)²；线性化围绕偏差变量书写；不把有限差分（finite difference）一致性当作原模型（model）长期准确性的证明。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "focus": "导数应为 vK/(K + A)²；线性化（linearization）围绕偏差变量书写；不把有限差分（finite difference）一致性当作原模型（model）长期准确性的证明。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P03-C04-S01",
+              "chapter_id": "3.4",
+              "path": "notebooks/03-多变量相互作用/04-多变量变化与局部线性化/01-偏导梯度与局部变化.ipynb",
+              "title": "偏导梯度与局部变化",
+              "outcome": "能从单变量导数进入偏导数、梯度和多变量链式法则，逐列构造 Jacobian，并区分任意点的一阶近似与平衡附近的线性化。",
+              "number": "3.4.1",
+              "visualization": "web/multivariable/index.html",
+              "questions": [
+                {
+                  "id": "p03-jacobian",
+                  "slug": "p03-jacobian",
+                  "title": "逐列检查局部变化率",
+                  "type": "python"
+                },
+                {
+                  "id": "p03-chain-rate",
+                  "slug": "p03-chain-rate",
+                  "title": "沿轨迹计算平方距离的变化",
+                  "type": "python"
+                },
+                {
+                  "id": "p03-partial-meaning",
+                  "slug": "p03-partial-meaning",
+                  "title": "偏导数固定什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-affine-approximation",
+                  "slug": "p03-affine-approximation",
+                  "title": "不是平衡时还缺哪一项",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-difference-proof",
+                  "slug": "p03-difference-proof",
+                  "title": "差分一致性证明了什么",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-jacobian"
+            },
+            {
+              "id": "P03-C04-S02",
+              "chapter_id": "3.4",
+              "path": "notebooks/03-多变量相互作用/04-多变量变化与局部线性化/02-线性化能够走多远.ipynb",
+              "title": "线性化能够走多远",
+              "outcome": "能围绕平衡推进偏差模型，比较近远扰动的轨迹误差与向量场余项，用步长细化区分局部模型误差和离散误差，并限定局部稳定结论。",
+              "number": "3.4.2",
+              "visualization": "web/multivariable/index.html",
+              "questions": [
+                {
+                  "id": "p03-local-trajectories",
+                  "slug": "p03-local-trajectories",
+                  "title": "比较原模型与平衡附近的近似",
+                  "type": "python"
+                },
+                {
+                  "id": "p03-deviation-variable",
+                  "slug": "p03-deviation-variable",
+                  "title": "线性化究竟推进哪一个量",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-local-error-order",
+                  "slug": "p03-local-error-order",
+                  "title": "小扰动误差如何缩小",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-model-numerical-error",
+                  "slug": "p03-model-numerical-error",
+                  "title": "两条曲线接近是否足够",
+                  "type": "choice"
+                },
+                {
+                  "id": "p03-local-stability",
+                  "slug": "p03-local-stability",
+                  "title": "负特征值的结论到哪里为止",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/03-04-多变量变化与局部线性化/practice/?question=p03-local-trajectories"
+            }
+          ],
+          "visualization": "web/multivariable/index.html"
         }
-      ]
+      ],
+      "assessment": {
+        "id": "3.summary",
+        "assessment": true,
+        "title": "二室交换与局部近似综合实验",
+        "url": "/parts/03-多变量相互作用/综合练习/",
+        "goals": "连接二室收支（mass balance）、平衡（equilibrium）、观测（observation）和局部近似，独立检验单位、计算与适用范围。",
+        "prerequisites": "本篇四章。",
+        "focus": "总量与分配、激发与可见、局部模型（model）差与数值误差（numerical error）分别核对。",
+        "knowledge": [
+          "收支与单位 → 矩阵（matrix）和平衡",
+          "模态（mode）与观测 → 看见和遗漏的变化",
+          "Jacobian 与步长细化 → 局部范围证据"
+        ],
+        "lessons": [
+          {
+            "id": "P03-SUMMARY",
+            "chapter_id": "3.summary",
+            "path": "notebooks/03-多变量相互作用/05-篇末综合/01-二室交换与局部近似综合实验.ipynb",
+            "title": "二室交换与局部近似综合实验",
+            "outcome": "能在同一案例中连接变量与单位、矩阵与平衡、模态与观测、局部近似与误差，独立检查结果并限定结论的适用范围。",
+            "number": "篇末综合",
+            "visualization": null,
+            "overview": {
+              "goals": "连接二室收支、平衡、观测和局部近似，独立检验单位、计算与适用范围。",
+              "prerequisites": "本篇四章。",
+              "focus": "总量与分配、激发与可见、局部模型差与数值误差分别核对。",
+              "knowledge": [
+                "收支与单位 → 矩阵和平衡",
+                "模态与观测 → 看见和遗漏的变化",
+                "Jacobian 与步长细化 → 局部范围证据"
+              ]
+            },
+            "questions": [
+              {
+                "id": "p03-cap-units",
+                "slug": "p03-cap-units",
+                "title": "两室状态与浓度观测",
+                "type": "choice"
+              },
+              {
+                "id": "p03-cap-signs",
+                "slug": "p03-cap-signs",
+                "title": "交换与外部损失的区别",
+                "type": "choice"
+              },
+              {
+                "id": "p03-integrated-balance",
+                "slug": "p03-integrated-balance",
+                "title": "用收支、矩阵和观测互相核对",
+                "type": "python"
+              },
+              {
+                "id": "p03-cap-modes",
+                "slug": "p03-cap-modes",
+                "title": "初值与观测共同决定可见模态",
+                "type": "python"
+              },
+              {
+                "id": "p03-cap-phase",
+                "slug": "p03-cap-phase",
+                "title": "连接方向平衡与固定时刻",
+                "type": "python"
+              },
+              {
+                "id": "p03-integrated-output",
+                "slug": "p03-integrated-output",
+                "title": "总量观测下看不见的运动",
+                "type": "choice"
+              },
+              {
+                "id": "p03-cap-local",
+                "slug": "p03-cap-local",
+                "title": "分开模型差与步长差",
+                "type": "python"
+              },
+              {
+                "id": "p03-cap-scope",
+                "slug": "p03-cap-scope",
+                "title": "误差表支持怎样的范围",
+                "type": "choice"
+              }
+            ],
+            "url": "/parts/03-多变量相互作用/综合练习/practice/?question=p03-cap-units"
+          }
+        ],
+        "available": true,
+        "visualization": null
+      }
     },
     {
       "id": "4",
@@ -1043,7 +1561,7 @@
           "title": "多稳态与吸引域",
           "url": "/chapters/04-01-多稳态与吸引域/",
           "goals": "区分平衡（equilibrium）点、局部稳定与吸引域，解释同一参数（parameter）下的初值（initial condition）依赖。",
-          "prerequisites": "3.4；数学：一阶 ODE、初值、分离变量和指数解、偏导、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似。",
+          "prerequisites": "3.4；数学：一阶 ODE、初值、分离变量和指数解、偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似。",
           "knowledge": [
             "从线性近似过渡到多个平衡",
             "一维流向与局部导数判断",
@@ -1059,11 +1577,11 @@
           "title": "自维持振荡与极限环",
           "url": "/chapters/04-02-自维持振荡与极限环/",
           "goals": "根据输入（input）、暂态和多初值（initial condition）长期行为区分三种振荡，测量周期和振幅。",
-          "prerequisites": "4.1；数学：特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、偏导、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似。",
+          "prerequisites": "4.1；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似。",
           "knowledge": [
             "回顾阻尼振荡并加入周期驱动",
             "引入一个简化自激振子及其变量",
-            "用相图与周期测量辨认长期行为"
+            "用相图（phase portrait）与周期测量辨认长期行为"
           ],
           "focus": "周期测量方法、峰值筛选及暂态窗口需明确；三组初值的数值趋同不替代极限（limit）环存在性的数学证明。",
           "available": false,
@@ -1075,7 +1593,7 @@
           "title": "分岔与参数变化",
           "url": "/chapters/04-03-分岔与参数变化/",
           "goals": "区分参数（parameter）改变引起的行为转变与暂态、扫描方向、数值误差（numerical error）造成的假象。",
-          "prerequisites": "4.2；数学：特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、偏导、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似。",
+          "prerequisites": "4.2；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似。",
           "knowledge": [
             "平衡分支与稳定性标记",
             "开关和振子的参数扫描",
@@ -1091,7 +1609,7 @@
           "title": "混沌与可预测范围",
           "url": "/chapters/04-04-混沌与可预测范围/",
           "goals": "在确定性映射中测量邻近初值（initial condition）的分离，区分初值误差、数值误差（numerical error）与随机机制。",
-          "prerequisites": "4.3、2.4；数学：递推、有限求和和固定点（fixed point）代数、数值误差、收敛阶、递推稳定性与非负性（nonnegativity）、偏导、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似。",
+          "prerequisites": "4.3、2.4；数学：递推、有限求和和固定点（fixed point）代数、数值误差、收敛阶、递推稳定性与非负性（nonnegativity）、偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似。",
           "knowledge": [
             "离散种群映射与参数（parameter）范围",
             "邻近轨迹及有限时间增长率",
@@ -1107,7 +1625,7 @@
           "title": "用 Lyapunov 函数分析稳定性",
           "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/",
           "goals": "逐项检查候选函数的正定性、沿轨迹（trajectory）导数（derivative）与适用区域，区分稳定、渐近稳定（asymptotic stability）及证据不足。",
-          "prerequisites": "4.4；数学：偏导、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、Lyapunov 函数、沿轨迹导数和局部适用区域。",
+          "prerequisites": "4.4；数学：偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、Lyapunov 函数、沿轨迹导数和局部适用区域。",
           "knowledge": [
             "能量式函数的直觉与定义",
             "多变量链式法则计算沿轨迹导数",
@@ -1146,7 +1664,7 @@
           "title": "期望、方差、协方差与噪声",
           "url": "/chapters/05-02-期望、方差、协方差与噪声/",
           "goals": "计算与解释均值、方差、协方差及 Gaussian 分布，区分三类变异来源。",
-          "prerequisites": "5.1、3.1；数学：向量、矩阵、内积、范数、秩、线性方程组与投影直觉、事件、随机变量、离散/连续分布、抽样和 Monte Carlo、期望、方差、协方差、联合分布、Gaussian 分布。",
+          "prerequisites": "5.1、3.1；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、事件、随机变量、离散/连续分布、抽样和 Monte Carlo、期望、方差、协方差、联合分布、Gaussian 分布。",
           "knowledge": [
             "从样本摘要走向期望与方差",
             "联合分布、协方差及相关性",
@@ -1178,7 +1696,7 @@
           "title": "随机过程与马尔可夫模型",
           "url": "/chapters/05-04-随机过程与马尔可夫模型/",
           "goals": "写出转移约定，分别计算状态（state）分布和模拟单条路径，说明长期分布的条件。",
-          "prerequisites": "5.3、3.1；数学：向量、矩阵、内积、范数、秩、线性方程组与投影直觉、条件概率、Bayes 公式、似然、后验及条件 Gaussian、随机过程、有限马尔可夫链、转移矩阵与长期分布。",
+          "prerequisites": "5.3、3.1；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、条件概率、Bayes 公式、似然、后验及条件 Gaussian、随机过程、有限马尔可夫链、转移矩阵与长期分布。",
           "knowledge": [
             "时间索引随机量和马尔可夫假设",
             "转移矩阵及分布递推",
@@ -1233,7 +1751,7 @@
           "title": "卷积、频谱与频率响应",
           "url": "/chapters/06-02-卷积、频谱与频率响应/",
           "goals": "从叠加解释卷积，理解复指数、频率坐标、幅度和相位，并辨认有限记录的影响。",
-          "prerequisites": "6.1、3.2；数学：极限（limit）直觉、导数（derivative）、积分、基本定理和简单链式法则（chain rule）、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、复指数、卷积、Fourier 表示、频谱与相位。",
+          "prerequisites": "6.1、3.2；数学：极限（limit）直觉、导数（derivative）、积分、基本定理和简单链式法则（chain rule）、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、复指数、卷积、Fourier 表示、频谱与相位。",
           "knowledge": [
             "脉冲响应与离散卷积",
             "正弦、复指数与 Fourier 表示",
@@ -1253,7 +1771,7 @@
           "knowledge": [
             "线性与时不变的检验",
             "Laplace 变换、必要收敛域直觉及初值项",
-            "Z 变换和离散表示，与状态（state）空间对照"
+            "Z 变换和离散表示，与状态空间（state space）对照"
           ],
           "focus": "对应练习 因子分别为 exp(−kh) 与 1 − kh；不同离散化不能因使用相同采样间隔就被当作同一模型（model）。",
           "available": false,
@@ -1265,7 +1783,7 @@
           "title": "最小二乘与参数估计",
           "url": "/chapters/06-04-最小二乘与参数估计/",
           "goals": "定义残差（residual）和损失，说明最小二乘与 Gaussian 误差的关系，并为区间估计写明假设。",
-          "prerequisites": "5.3、3.4、6.1；数学：向量、矩阵、内积、范数、秩、线性方程组与投影直觉、期望、方差、协方差、联合分布、Gaussian 分布、条件概率、Bayes 公式、似然、后验及条件 Gaussian、最小二乘、Gaussian 似然、残差、估计区间及重采样入门。",
+          "prerequisites": "5.3、3.4、6.1；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、期望、方差、协方差、联合分布、Gaussian 分布、条件概率、Bayes 公式、似然、后验及条件 Gaussian、最小二乘、Gaussian 似然、残差、估计区间及重采样入门。",
           "knowledge": [
             "线性回归、投影和秩",
             "理想清除参数的拟合与残差",
@@ -1287,7 +1805,7 @@
             "输入激励、结构选择和参数混淆",
             "时间/个体划分、验证残差、外推与缺失观测（observation）"
           ],
-          "focus": "提交数据划分清单和回归矩阵的秩检查；已知核验参数（parameter）与状态（state）只能在评估时读取，不能作为拟合输入（input）或调参答案。",
+          "focus": "提交数据划分清单和回归矩阵（matrix）的秩（rank）检查；已知核验参数（parameter）与状态（state）只能在评估时读取，不能作为拟合输入（input）或调参答案。",
           "available": false,
           "lessons": [],
           "visualization": null
@@ -1320,7 +1838,7 @@
           "title": "频域稳定性与设计",
           "url": "/chapters/07-02-频域稳定性与设计/",
           "goals": "连接闭环极点、根轨迹（trajectory）、Bode、Nyquist 与稳定裕度，说明判据条件及符号约定。",
-          "prerequisites": "7.1；数学：特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、Laplace/Z 变换、收敛域的必要直觉、极点零点、复平面曲线、相位变化与绕数的几何解释。",
+          "prerequisites": "7.1；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、Laplace/Z 变换、收敛域的必要直觉、极点零点、复平面曲线、相位变化与绕数的几何解释。",
           "knowledge": [
             "从闭环特征方程到根轨迹",
             "幅相与裕度",
@@ -1336,7 +1854,7 @@
           "title": "能控性与状态反馈",
           "url": "/chapters/07-03-能控性与状态反馈/",
           "goals": "解释输入（input）位置决定的可达方向，在能控条件下设计状态（state）反馈（feedback）并检验闭环极点。",
-          "prerequisites": "7.2、3.2；数学：向量、矩阵、内积、范数、秩、线性方程组与投影直觉、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数。",
+          "prerequisites": "7.2、3.2；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵幂和矩阵指数（matrix exponential）。",
           "knowledge": [
             "输入经动态传播到其他状态",
             "能控矩阵和秩",
@@ -1351,8 +1869,8 @@
           "id": "7.4",
           "title": "能观性与状态观测器",
           "url": "/chapters/07-04-能观性与状态观测器/",
-          "goals": "判断已知模型（model）下哪些状态（state）可以从输出恢复，推导观测（observation）器误差动态并分析收敛条件。",
-          "prerequisites": "7.3、6.5；数学：向量、矩阵、内积、范数、秩、线性方程组与投影直觉、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门。",
+          "goals": "判断已知模型（model）下哪些状态（state）可以从输出（output）恢复，推导观测（observation）器误差动态并分析收敛条件。",
+          "prerequisites": "7.3、6.5；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门。",
           "knowledge": [
             "状态估计与参数（parameter）辨识的任务边界",
             "能观矩阵及传感器位置",
@@ -1368,7 +1886,7 @@
           "title": "Kalman 滤波与估计反馈",
           "url": "/chapters/07-05-Kalman 滤波与估计反馈/",
           "goals": "由线性 Gaussian 条件更新推导均值和协方差递推，区别过程噪声与测量噪声的作用。",
-          "prerequisites": "7.4、5.3；数学：向量、矩阵、内积、范数、秩、线性方程组与投影直觉、期望、方差、协方差、联合分布、Gaussian 分布、条件概率、Bayes 公式、似然、后验及条件 Gaussian。",
+          "prerequisites": "7.4、5.3；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、期望、方差、协方差、联合分布、Gaussian 分布、条件概率、Bayes 公式、似然、后验及条件 Gaussian。",
           "knowledge": [
             "动态预测及协方差传播",
             "观测（observation）更新与 Kalman 增益（gain）",
@@ -1390,8 +1908,8 @@
           "id": "8.1",
           "title": "从目标函数进入优化",
           "url": "/chapters/08-01-从目标函数进入优化/",
-          "goals": "定义目标、约束和决策变量，理解梯度、Hessian、二次型、凸性与正则化，说明最优性结论的条件。",
-          "prerequisites": "3.4、6.4、7.3；数学：偏导、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、目标函数、梯度、Hessian、二次型、正定性、凸性、约束与正则化。",
+          "goals": "定义目标、约束和决策变量，理解梯度（gradient）、Hessian、二次型、凸性与正则化，说明最优性结论的条件。",
+          "prerequisites": "3.4、6.4、7.3；数学：偏导（partial derivative）、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、目标函数、梯度、Hessian、二次型、正定性、凸性、约束与正则化。",
           "knowledge": [
             "跟踪误差与输入（input）代价的尺度",
             "梯度、曲率与凸优化直觉",
@@ -1407,7 +1925,7 @@
           "title": "动态规划与 LQR",
           "url": "/chapters/08-02-动态规划与 LQR/",
           "goals": "从一步决策推到有限时域 Bellman 递推，以二次价值函数推导离散 Riccati 递推与反馈（feedback）增益（gain）。",
-          "prerequisites": "8.1、7.3；数学：特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、目标函数、梯度、Hessian、二次型、正定性、凸性、约束与正则化、有限时域动态规划、Bellman 递推与离散 Riccati 递推。",
+          "prerequisites": "8.1、7.3；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、目标函数、梯度（gradient）、Hessian、二次型、正定性、凸性、约束与正则化、有限时域动态规划、Bellman 递推与离散 Riccati 递推。",
           "knowledge": [
             "有限时域与终端代价",
             "倒推价值和最优决策",
@@ -1423,7 +1941,7 @@
           "title": "带约束的 MPC",
           "url": "/chapters/08-03-带约束的 MPC/",
           "goals": "将预测模型（model）、初始估计、时域和约束写成优化问题，理解每次只执行第一步并重新求解。",
-          "prerequisites": "8.2、7.5；数学：目标函数、梯度、Hessian、二次型、正定性、凸性、约束与正则化、有限时域动态规划、Bellman 递推与离散 Riccati 递推。",
+          "prerequisites": "8.2、7.5；数学：目标函数、梯度（gradient）、Hessian、二次型、正定性、凸性、约束与正则化、有限时域动态规划、Bellman 递推与离散 Riccati 递推。",
           "knowledge": [
             "状态（state）与输入（input）序列的优化表达",
             "滚动时域及估计接口",
@@ -1439,7 +1957,7 @@
           "title": "估计、控制与模型误差的综合比较",
           "url": "/chapters/08-04-估计、控制与模型误差的综合比较/",
           "goals": "构造公平基线，区分调参条件和独立评估条件，综合解释性能、约束与计算代价。",
-          "prerequisites": "8.3、6.5；数学：期望、方差、协方差、联合分布、Gaussian 分布、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、目标函数、梯度、Hessian、二次型、正定性、凸性、约束与正则化。",
+          "prerequisites": "8.3、6.5；数学：期望、方差、协方差、联合分布、Gaussian 分布、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、目标函数、梯度（gradient）、Hessian、二次型、正定性、凸性、约束与正则化。",
           "knowledge": [
             "固定任务、信息和执行接口",
             "验证集调参、独立场景评估",
@@ -1461,8 +1979,8 @@
           "id": "9.1",
           "title": "从连接结构进入网络科学",
           "url": "/chapters/09-01-从连接结构进入网络科学/",
-          "goals": "构造并解释邻接矩阵、度、路径、连通分量与社区，辨认随机网络、小世界和度分布的条件。",
-          "prerequisites": "3.2、5.4；数学：向量、矩阵、内积、范数、秩、线性方程组与投影直觉、事件、随机变量、离散/连续分布、抽样和 Monte Carlo、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
+          "goals": "构造并解释邻接矩阵（matrix）、度、路径、连通分量与社区，辨认随机网络、小世界和度分布的条件。",
+          "prerequisites": "3.2、5.4；数学：向量（vector）、矩阵、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、事件、随机变量、离散/连续分布、抽样和 Monte Carlo、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
           "knowledge": [
             "节点、边与有向/无向、加权/无权语义",
             "度、连通性、社区和图拉普拉斯的基础定义",
@@ -1477,14 +1995,14 @@
           "id": "9.2",
           "title": "网络上的扩散与守恒",
           "url": "/chapters/09-02-网络上的扩散与守恒/",
-          "goals": "推导无向交换网络的 dx/dt = −Lx，说明守恒、连通分量和平衡（equilibrium）模态的关系。",
-          "prerequisites": "9.1、3.3；数学：特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
+          "goals": "推导无向交换网络的 dx/dt = −Lx，说明守恒、连通分量和平衡（equilibrium）模态（mode）的关系。",
+          "prerequisites": "9.1、3.3；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态、矩阵（matrix）幂和矩阵指数（matrix exponential）、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
           "knowledge": [
             "每条边的交换收支（mass balance）",
             "拉普拉斯零模态与连通性",
             "非零模态和趋近速度，限定等容积及对称交换假设"
           ],
-          "focus": "无外部输入（input）输出时检查物质量守恒；谱关系只用于满足假设的算子，不能把有向或非对称网络未经说明套入同一结论。",
+          "focus": "无外部输入（input）输出（output）时检查物质量守恒；谱关系只用于满足假设的算子，不能把有向或非对称网络未经说明套入同一结论。",
           "available": false,
           "lessons": [],
           "visualization": null
@@ -1494,7 +2012,7 @@
           "title": "接触结构与传播",
           "url": "/chapters/09-03-接触结构与传播/",
           "goals": "定义个体状态（state）和接触传播规则，比较平均混合与网络模型（model），说明初始位置及有限规模影响。",
-          "prerequisites": "9.2、5.4；数学：随机过程、有限马尔可夫链、转移矩阵与长期分布、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
+          "prerequisites": "9.2、5.4；数学：随机过程、有限马尔可夫链、转移矩阵（matrix）与长期分布、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
           "knowledge": [
             "状态转移和接触定义",
             "平均混合与固定网络",
@@ -1510,7 +2028,7 @@
           "title": "耦合振子与同步",
           "url": "/chapters/09-04-耦合振子与同步/",
           "goals": "区分相位接近、频率锁定与平均频率，说明同步指标和耦合归一化。",
-          "prerequisites": "9.3、4.2；数学：偏导、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
+          "prerequisites": "9.3、4.2；数学：偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、图、邻接矩阵（matrix）、图拉普拉斯、图谱与连通性。",
           "knowledge": [
             "单体节律到相位模型（model）的简化",
             "网络耦合、异质频率与同步指标",
@@ -1533,7 +2051,7 @@
           "title": "多主体模型与元胞自动机",
           "url": "/chapters/10-01-多主体模型与元胞自动机/",
           "goals": "把局部规则写成可复现程序，区分同步、随机顺序和异步更新。",
-          "prerequisites": "9.1、5.4；数学：递推、有限求和和固定点（fixed point）代数、事件、随机变量、离散/连续分布、抽样和 Monte Carlo、随机过程、有限马尔可夫链、转移矩阵与长期分布。",
+          "prerequisites": "9.1、5.4；数学：递推、有限求和和固定点（fixed point）代数、事件、随机变量、离散/连续分布、抽样和 Monte Carlo、随机过程、有限马尔可夫链、转移矩阵（matrix）与长期分布。",
           "knowledge": [
             "个体状态（state）、邻域和转移",
             "双缓冲同步更新与原地更新",
@@ -1548,7 +2066,7 @@
           "id": "10.2",
           "title": "合作与演化博弈",
           "url": "/chapters/10-02-合作与演化博弈/",
-          "goals": "从收益矩阵计算频率依赖收益，推导两类型复制动态，解释个体模型（model）与平均描述的假设。",
+          "goals": "从收益矩阵（matrix）计算频率依赖收益，推导两类型复制动态，解释个体模型（model）与平均描述的假设。",
           "prerequisites": "10.1、2.3；数学：一阶 ODE、初值（initial condition）、分离变量和指数解、收益矩阵、频率依赖与复制动态。",
           "knowledge": [
             "收益及其教学含义",
@@ -1565,7 +2083,7 @@
           "title": "选择、变异与适应",
           "url": "/chapters/10-03-选择、变异与适应/",
           "goals": "通过机制消融区分选择、随机漂变与变异，避免把适应叙述成预先设定的目标。",
-          "prerequisites": "10.2、5.4；数学：随机过程、有限马尔可夫链、转移矩阵与长期分布、收益矩阵、频率依赖与复制动态。",
+          "prerequisites": "10.2、5.4；数学：随机过程、有限马尔可夫链、转移矩阵（matrix）与长期分布、收益矩阵、频率依赖与复制动态。",
           "knowledge": [
             "有限种群抽样与漂变",
             "加入选择及双向变异",
@@ -1580,14 +2098,14 @@
           "id": "10.4",
           "title": "空间自组织与反应扩散",
           "url": "/chapters/10-04-空间自组织与反应扩散/",
-          "goals": "解释空间偏导、反应与扩散项，正确离散边界，区分机制失稳与数值伪模式。",
-          "prerequisites": "10.3、4.3、9.2；数学：数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、偏导、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、空间偏导、PDE、有限差分（finite difference）、边界条件与网格稳定性。",
+          "goals": "解释空间偏导（partial derivative）、反应与扩散项，正确离散边界，区分机制失稳与数值伪模式。",
+          "prerequisites": "10.3、4.3、9.2；数学：数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、偏导、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、空间偏导、PDE、有限差分（finite difference）、边界条件与网格稳定性。",
           "knowledge": [
             "从一维网格交换进入 PDE",
             "有限差分、边界与时间更新",
             "二成分反应扩散及均匀平衡（equilibrium）的扰动，逐步进入模式形成"
           ],
-          "focus": "显式纯扩散的稳定条件只适用于所声明维数和离散方案；加入反应后重新检查。出现图案不足以证明 Turing 失稳，还须核查均匀态与相关模态条件。",
+          "focus": "显式纯扩散的稳定条件只适用于所声明维数和离散方案；加入反应后重新检查。出现图案不足以证明 Turing 失稳，还须核查均匀态与相关模态（mode）条件。",
           "available": false,
           "lessons": [],
           "visualization": null
@@ -1597,7 +2115,7 @@
           "title": "从局部规则到宏观描述",
           "url": "/chapters/10-05-从局部规则到宏观描述/",
           "goals": "定义粗尺度变量，说明平均场忽略的相关性，比较哪些宏观量得到保留。",
-          "prerequisites": "10.4、5.5；数学：信息熵、条件熵、互信息与有限样本估计、收益矩阵、频率依赖与复制动态、空间偏导、PDE、有限差分（finite difference）、边界条件与网格稳定性。",
+          "prerequisites": "10.4、5.5；数学：信息熵、条件熵、互信息与有限样本估计、收益矩阵（matrix）、频率依赖与复制动态、空间偏导（partial derivative）、PDE、有限差分（finite difference）、边界条件与网格稳定性。",
           "knowledge": [
             "从个体轨迹（trajectory）聚合频率、密度与相关量",
             "平均场闭合的假设",
@@ -1636,7 +2154,7 @@
           "title": "级联失效与结构鲁棒性",
           "url": "/chapters/11-02-级联失效与结构鲁棒性/",
           "goals": "区分直接移除造成的损伤与规则传播造成的级联，解释容量、阈值与功能指标。",
-          "prerequisites": "11.1、9.3；数学：图、邻接矩阵、图拉普拉斯、图谱与连通性、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "prerequisites": "11.1、9.3；数学：图、邻接矩阵（matrix）、图拉普拉斯、图谱与连通性、序参量、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
             "节点或边失效及功能定义",
             "阈值/负载规则与级联更新",
@@ -1654,7 +2172,7 @@
           "goals": "测量局部恢复率，区分恢复速度与吸引域大小，并评价方差、自相关等指标的条件和失败。",
           "prerequisites": "11.2、4.5、6.5；数学：Lyapunov 函数、沿轨迹（trajectory）导数（derivative）和局部适用区域、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、序参量、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
-            "小扰动响应、线性化与恢复时间",
+            "小扰动响应、线性化（linearization）与恢复时间",
             "有限扰动和吸引域",
             "滑动窗口预警、趋势与观测影响、误报及漏报"
           ],
@@ -1691,7 +2209,7 @@
           "title": "非线性、鲁棒与自适应控制",
           "url": "/chapters/12-01-非线性、鲁棒与自适应控制/",
           "goals": "区分已知非线性、未知但有界参数（parameter）和在线参数变化，说明设计条件与失效边界。",
-          "prerequisites": "8.4、4.5、11.4；数学：Lyapunov 函数、沿轨迹（trajectory）导数（derivative）和局部适用区域、目标函数、梯度、Hessian、二次型、正定性、凸性、约束与正则化、有限时域动态规划、Bellman 递推与离散 Riccati 递推。",
+          "prerequisites": "8.4、4.5、11.4；数学：Lyapunov 函数、沿轨迹（trajectory）导数（derivative）和局部适用区域、目标函数、梯度（gradient）、Hessian、二次型、正定性、凸性、约束与正则化、有限时域动态规划、Bellman 递推与离散 Riccati 递推。",
           "knowledge": [
             "复习局部线性策略的适用域",
             "一种基于 Lyapunov 思路的简单非线性设计",
@@ -1707,7 +2225,7 @@
           "title": "随机与分布式控制",
           "url": "/chapters/12-02-随机与分布式控制/",
           "goals": "解释 Brownian 增量和 Itô SDE 的基本含义，正确离散噪声，并区分随机扰动与局部通信的影响。",
-          "prerequisites": "12.1、5.4、9.4；数学：随机过程、有限马尔可夫链、转移矩阵与长期分布、有限时域动态规划、Bellman 递推与离散 Riccati 递推、图、邻接矩阵、图拉普拉斯、图谱与连通性、Brownian 增量、Itô SDE、随机积分直觉与 Euler–Maruyama。",
+          "prerequisites": "12.1、5.4、9.4；数学：随机过程、有限马尔可夫链、转移矩阵（matrix）与长期分布、有限时域动态规划、Bellman 递推与离散 Riccati 递推、图、邻接矩阵、图拉普拉斯、图谱与连通性、Brownian 增量、Itô SDE、随机积分直觉与 Euler–Maruyama。",
           "knowledge": [
             "Brownian 增量、随机积分直觉",
             "Euler–Maruyama、强弱误差的入门区分",
@@ -1722,8 +2240,8 @@
           "id": "12.3",
           "title": "Koopman 与稀疏动力学辨识",
           "url": "/chapters/12-03-Koopman 与稀疏动力学辨识/",
-          "goals": "解释函数观测（observation）与有限字典投影，实现小型 EDMD 和稀疏方程辨识，评估字典与噪声的作用。",
-          "prerequisites": "12.2、6.5；数学：特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、目标函数、梯度、Hessian、二次型、正定性、凸性、约束与正则化、函数观测、线性算子、有限字典与投影。",
+          "goals": "解释函数观测（observation）与有限字典投影（projection），实现小型 EDMD 和稀疏方程辨识，评估字典与噪声的作用。",
+          "prerequisites": "12.2、6.5；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、目标函数、梯度（gradient）、Hessian、二次型、正定性、凸性、约束与正则化、函数观测、线性算子、有限字典与投影。",
           "knowledge": [
             "状态（state）、观测函数与算子，不默认泛函分析",
             "有限字典 EDMD 及数据矩阵",
@@ -1739,7 +2257,7 @@
           "title": "神经动力学与物理约束学习",
           "url": "/chapters/12-04-神经动力学与物理约束学习/",
           "goals": "从网络与计算图理解自动微分，构造神经 ODE 和方程残差（residual）约束的最小训练任务，分析不同误差来源。",
-          "prerequisites": "12.3、10.4；数学：偏导、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、目标函数、梯度、Hessian、二次型、正定性、凸性、约束与正则化、空间偏导、PDE、有限差分（finite difference）、边界条件与网格稳定性、神经网络、计算图、自动微分、训练目标及训练/验证划分。",
+          "prerequisites": "12.3、10.4；数学：偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、目标函数、梯度、Hessian、二次型、正定性、凸性、约束与正则化、空间偏导、PDE、有限差分（finite difference）、边界条件与网格稳定性、神经网络、计算图、自动微分、训练目标及训练/验证划分。",
           "knowledge": [
             "小网络、参数（parameter）、训练/验证与自动微分",
             "以网络表示 ODE 右端并训练",
@@ -1755,7 +2273,7 @@
           "title": "强化学习与模型决策",
           "url": "/chapters/12-05-强化学习与模型决策/",
           "goals": "定义状态（state）、动作、转移、回报和终止，连接随机 Bellman 方程、策略评估与改进，并设计公平决策比较。",
-          "prerequisites": "12.4、8.4；数学：条件概率、Bayes 公式、似然、后验及条件 Gaussian、随机过程、有限马尔可夫链、转移矩阵与长期分布、有限时域动态规划、Bellman 递推与离散 Riccati 递推、MDP、条件期望形式的 Bellman 方程、策略评估与改进。",
+          "prerequisites": "12.4、8.4；数学：条件概率、Bayes 公式、似然、后验及条件 Gaussian、随机过程、有限马尔可夫链、转移矩阵（matrix）与长期分布、有限时域动态规划、Bellman 递推与离散 Riccati 递推、MDP、条件期望形式的 Bellman 方程、策略评估与改进。",
           "knowledge": [
             "MDP 与回报及折扣",
             "小型有限状态任务中的策略评估与简单表格学习",
@@ -1771,7 +2289,7 @@
           "title": "完整研究复现与综合项目",
           "url": "/chapters/12-06-完整研究复现与综合项目/",
           "goals": "把论文主张缩成一个可验证问题，形成从证据来源到实验、比较、失败与限制的完整记录。",
-          "prerequisites": "12.5；数学：最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、目标函数、梯度、Hessian、二次型、正定性、凸性、约束与正则化、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "prerequisites": "12.5；数学：最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、目标函数、梯度（gradient）、Hessian、二次型、正定性、凸性、约束与正则化、序参量、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
             "选择原始论文、具体版本与待复现结论",
             "建立最小基线、固定数据与评估协议",

@@ -1,0 +1,111 @@
+[
+  {
+    "id": "P03-C01-S01",
+    "chapter_id": "3.1",
+    "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/01-两室交换与矩阵收支.ipynb",
+    "title": "两室交换与矩阵收支",
+    "outcome": "能从两个室的逐项收支构造向量与矩阵，用矩阵乘法计算变化率，并检查内部交换、外部输入与清除的不同作用。",
+    "number": "3.1.1",
+    "visualization": null
+  },
+  {
+    "id": "P03-C01-S02",
+    "chapter_id": "3.1",
+    "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/02-内积范数与投影.ipynb",
+    "title": "内积范数与投影",
+    "outcome": "能计算内积、欧几里得范数与投影，把两室变化分成共同方向和差异方向，并解释单位与尺度对几何比较的影响。",
+    "number": "3.1.2",
+    "visualization": null
+  },
+  {
+    "id": "P03-C01-S03",
+    "chapter_id": "3.1",
+    "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/03-平衡方程秩与唯一性.ipynb",
+    "title": "平衡方程秩与唯一性",
+    "outcome": "能用独立方程求平衡，区分唯一解、无解和一组平衡，解释封闭系统为什么需要补充守恒总量。",
+    "number": "3.1.3",
+    "visualization": null
+  },
+  {
+    "id": "P03-C02-S01",
+    "chapter_id": "3.2",
+    "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/01-状态输入与观测映射.ipynb",
+    "title": "状态输入与观测映射",
+    "outcome": "能写出线性状态空间的动态与观测方程，核对矩阵维数和单位，解释不变的观测为何可能掩盖内部变化。",
+    "number": "3.2.1",
+    "visualization": "web/multivariable/index.html"
+  },
+  {
+    "id": "P03-C02-S02",
+    "chapter_id": "3.2",
+    "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/02-特征值模态与矩阵传播.ipynb",
+    "title": "特征值模态与矩阵传播",
+    "outcome": "能从特征值与特征向量建立模态解，区分慢快时间尺度、初值激发与观测抵消，并连接矩阵幂和矩阵指数。",
+    "number": "3.2.2",
+    "visualization": "web/multivariable/index.html"
+  },
+  {
+    "id": "P03-C02-S03",
+    "chapter_id": "3.2",
+    "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/03-复数模态与阻尼旋转.ipynb",
+    "title": "复数模态与阻尼旋转",
+    "outcome": "能把复数表示还原为二维实运动，用特征值实部与虚部分别解释衰减和旋转，并识别特征向量不足时的处理边界。",
+    "number": "3.2.3",
+    "visualization": "web/multivariable/index.html"
+  },
+  {
+    "id": "P03-C03-S01",
+    "chapter_id": "3.3",
+    "path": "notebooks/03-多变量相互作用/03-耦合、相平面与平衡/01-向量场相轨迹与时间.ipynb",
+    "title": "向量场相轨迹与时间",
+    "outcome": "能从状态点计算运动方向和速度，将时间曲线与相轨迹对应，并说明归一化箭头和几何路径各自省略的信息。",
+    "number": "3.3.1",
+    "visualization": "web/multivariable/index.html"
+  },
+  {
+    "id": "P03-C03-S02",
+    "chapter_id": "3.3",
+    "path": "notebooks/03-多变量相互作用/03-耦合、相平面与平衡/02-通道改变与平衡集合.ipynb",
+    "title": "通道改变与平衡集合",
+    "outcome": "能比较双向、单向与完全断开的交换，说明平衡集合与初始总量如何共同决定长期状态，辨认坐标尺度造成的视觉变化。",
+    "number": "3.3.2",
+    "visualization": "web/multivariable/index.html"
+  },
+  {
+    "id": "P03-C04-S01",
+    "chapter_id": "3.4",
+    "path": "notebooks/03-多变量相互作用/04-多变量变化与局部线性化/01-偏导梯度与局部变化.ipynb",
+    "title": "偏导梯度与局部变化",
+    "outcome": "能从单变量导数进入偏导数、梯度和多变量链式法则，逐列构造 Jacobian，并区分任意点的一阶近似与平衡附近的线性化。",
+    "number": "3.4.1",
+    "visualization": "web/multivariable/index.html"
+  },
+  {
+    "id": "P03-C04-S02",
+    "chapter_id": "3.4",
+    "path": "notebooks/03-多变量相互作用/04-多变量变化与局部线性化/02-线性化能够走多远.ipynb",
+    "title": "线性化能够走多远",
+    "outcome": "能围绕平衡推进偏差模型，比较近远扰动的轨迹误差与向量场余项，用步长细化区分局部模型误差和离散误差，并限定局部稳定结论。",
+    "number": "3.4.2",
+    "visualization": "web/multivariable/index.html"
+  },
+  {
+    "id": "P03-SUMMARY",
+    "chapter_id": "3.summary",
+    "path": "notebooks/03-多变量相互作用/05-篇末综合/01-二室交换与局部近似综合实验.ipynb",
+    "title": "二室交换与局部近似综合实验",
+    "outcome": "能在同一案例中连接变量与单位、矩阵与平衡、模态与观测、局部近似与误差，独立检查结果并限定结论的适用范围。",
+    "number": "篇末综合",
+    "visualization": null,
+    "overview": {
+      "goals": "连接二室收支、平衡、观测和局部近似，独立检验单位、计算与适用范围。",
+      "prerequisites": "本篇四章。",
+      "focus": "总量与分配、激发与可见、局部模型差与数值误差分别核对。",
+      "knowledge": [
+        "收支与单位 → 矩阵和平衡",
+        "模态与观测 → 看见和遗漏的变化",
+        "Jacobian 与步长细化 → 局部范围证据"
+      ]
+    }
+  }
+]

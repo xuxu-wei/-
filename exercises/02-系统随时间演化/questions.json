@@ -2397,6 +2397,85 @@
     "constraints": []
   },
   {
+    "id": "p02-cap-rate-balance",
+    "version": "1",
+    "lesson_id": "P02-SUMMARY",
+    "slug": "p02-cap-rate-balance",
+    "title": "先把速率写进更新式",
+    "statement": "单室模型（one-compartment model）以 A 表示物质量（U），u 表示流入速率（U/T），k 表示清除系数（elimination rate constant）（1/T）。在一段实际时长 Δt 内用段首状态（state）计算变化。哪一项是本篇的欧拉更新？",
+    "part": "2",
+    "chapter": "2.summary",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "基础",
+    "type": "choice",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "A_next=A+u−kA。"
+      },
+      {
+        "id": "B",
+        "text": "A_next=A+u×Δt−kA。"
+      },
+      {
+        "id": "C",
+        "text": "A_next=A+(u−kA)×Δt。"
+      },
+      {
+        "id": "D",
+        "text": "A_next=(A+u−k)×Δt。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-equal-area-not-path",
+    "version": "1",
+    "lesson_id": "P02-SUMMARY",
+    "slug": "p02-equal-area-not-path",
+    "title": "等总量为何不等轨迹",
+    "type": "choice",
+    "statement": "从零开始，k=0.5 /T，观察 0—4 T；三个输入（input）分别为前 2 T 以 2 U/T、后 2 T 以 2 U/T、全程 1 U/T。哪些结论正确？",
+    "part": "2",
+    "chapter": "2.summary",
+    "learning_targets": [
+      "T4",
+      "T3"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "基础",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "总流入都为 4 U。"
+      },
+      {
+        "id": "B",
+        "text": "三者最终物质量必然相等。"
+      },
+      {
+        "id": "C",
+        "text": "较早进入的物质有更长时间被清除。"
+      },
+      {
+        "id": "D",
+        "text": "若改为 k=0，三者终值相同，但中间过程仍可不同。"
+      }
+    ],
+    "constraints": []
+  },
+  {
     "id": "p02-input-totals",
     "version": "1",
     "lesson_id": "P02-SUMMARY",
@@ -2407,6 +2486,7 @@
     "part": "2",
     "chapter": "2.summary",
     "learning_targets": [
+      "T1",
       "T3",
       "T4"
     ],
@@ -2492,6 +2572,114 @@
     ]
   },
   {
+    "id": "p02-cap-integrated-balance",
+    "version": "1",
+    "lesson_id": "P02-SUMMARY",
+    "slug": "p02-cap-integrated-balance",
+    "title": "用累计量核对连续收支",
+    "statement": "给定各段恒定输入（input）和边界时刻的物质量，计算总输入、存量（stock）净变化与累计清除量。忽略其他来源与损失，数据满足非负清除；累计清除量由整段收支（mass balance）确定，不等于末时刻清除速率。",
+    "part": "2",
+    "chapter": "2.summary",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "应用",
+    "type": "python",
+    "parameters": [
+      {
+        "name": "bounds",
+        "type": "list[float]",
+        "description": "严格递增的段边界，首项为 0。",
+        "unit": "T"
+      },
+      {
+        "name": "rates",
+        "type": "list[float]",
+        "description": "各段恒定流入速率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "amounts",
+        "type": "list[float]",
+        "description": "每个边界时刻的物质量。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "total_input",
+        "type": "float",
+        "description": "全部时段的累计流入量。",
+        "unit": "U"
+      },
+      {
+        "name": "change",
+        "type": "float",
+        "description": "末物质量减起点物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "removed",
+        "type": "float",
+        "description": "按收支推得的累计清除量。",
+        "unit": "U"
+      }
+    ],
+    "contract": "总输入 = 各段速率×实际时长之和；净变化 = amounts[-1]−amounts[0]；累计清除 = 总输入−净变化。",
+    "constraints": [
+      "所有数值均为有限数；无需修改输入。",
+      "2—100 个边界，末点≤100；amounts 与 bounds 等长，rates 少一项。",
+      "0≤rates[i],amounts[i]≤100；每段收支推得的清除量非负。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "samples": [
+      {
+        "arguments": {
+          "bounds": [
+            0,
+            1,
+            3
+          ],
+          "rates": [
+            2,
+            1
+          ],
+          "amounts": [
+            1,
+            2,
+            2.5
+          ]
+        },
+        "expected": [
+          4,
+          1.5,
+          2.5
+        ],
+        "explanation": "总输入为 2×1+1×2=4 U；净变化为 2.5−1=1.5 U；累计清除为 4−1.5=2.5 U。"
+      }
+    ],
+    "hint": "把计算分成可以单独检查的步骤，再核对边界条件与单位。",
+    "starter_code": "def solve(\n    bounds: list[float],\n    rates: list[float],\n    amounts: list[float],\n) -> tuple[float, float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n"
+  },
+  {
     "id": "p02-input-metrics",
     "version": "1",
     "lesson_id": "P02-SUMMARY",
@@ -2509,7 +2697,7 @@
       "数04",
       "数05"
     ],
-    "difficulty": "应用",
+    "difficulty": "综合",
     "parameters": [
       {
         "name": "A0",
@@ -2624,46 +2812,6 @@
     ]
   },
   {
-    "id": "p02-equal-area-not-path",
-    "version": "1",
-    "lesson_id": "P02-SUMMARY",
-    "slug": "p02-equal-area-not-path",
-    "title": "等总量为何不等轨迹",
-    "type": "choice",
-    "statement": "从零开始，k=0.5 /T，观察 0—4 T；三个输入（input）分别为前 2 T 以 2 U/T、后 2 T 以 2 U/T、全程 1 U/T。哪些结论正确？",
-    "part": "2",
-    "chapter": "2.summary",
-    "learning_targets": [
-      "T3",
-      "T4"
-    ],
-    "mathematics": [
-      "数04",
-      "数05"
-    ],
-    "difficulty": "基础",
-    "multiple": true,
-    "options": [
-      {
-        "id": "A",
-        "text": "总流入都为 4 U。"
-      },
-      {
-        "id": "B",
-        "text": "三者最终物质量必然相等。"
-      },
-      {
-        "id": "C",
-        "text": "较早进入的物质有更长时间被清除。"
-      },
-      {
-        "id": "D",
-        "text": "若改为 k=0，三者终值相同，但中间过程仍可不同。"
-      }
-    ],
-    "constraints": []
-  },
-  {
     "id": "p02-migration-evidence",
     "version": "1",
     "lesson_id": "P02-SUMMARY",
@@ -2681,7 +2829,7 @@
       "数04",
       "数05"
     ],
-    "difficulty": "基础",
+    "difficulty": "综合",
     "multiple": true,
     "options": [
       {
@@ -2704,43 +2852,173 @@
     "constraints": []
   },
   {
-    "id": "p02-model-scope",
+    "id": "p02-cap-feasible-plans",
     "version": "1",
     "lesson_id": "P02-SUMMARY",
-    "slug": "p02-model-scope",
-    "title": "数值通过之后还能声称什么",
-    "type": "choice",
-    "statement": "理想单室教学实验通过解析解（analytical solution）、收支（mass balance）与网格细化检查。哪项结论合适？",
+    "slug": "p02-cap-feasible-plans",
+    "title": "迁移到带过程上限的方案筛选",
+    "statement": "沿用一阶清除模型（model） dA/dt=u−kA，现要求候选方案同时满足指定总输入（input）、输入速率上限和全程物质量上限。每个方案独立从 A0 开始，返回所有满足要求的方案索引。参数（parameter）仅用于人工教学实验。",
     "part": "2",
     "chapter": "2.summary",
     "learning_targets": [
-      "T3",
+      "T4",
+      "T2"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "迁移",
+    "type": "python",
+    "parameters": [
+      {
+        "name": "bounds",
+        "type": "list[float]",
+        "description": "各方案共同的严格递增分段边界，首项 0。",
+        "unit": "T"
+      },
+      {
+        "name": "plans",
+        "type": "list[list[float]]",
+        "description": "每行一个方案的分段恒定输入（piecewise constant input）速率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除系数（elimination rate constant），所有方案相同。",
+        "unit": "1/T"
+      },
+      {
+        "name": "A0",
+        "type": "float",
+        "description": "每个方案的共同起点物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "required_total",
+        "type": "float",
+        "description": "要求的总输入量。",
+        "unit": "U"
+      },
+      {
+        "name": "max_rate",
+        "type": "float",
+        "description": "任何时段的输入速率上限。",
+        "unit": "U/T"
+      },
+      {
+        "name": "max_peak",
+        "type": "float",
+        "description": "包括起点在内的全程物质量上限。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "indices",
+        "type": "list[int]",
+        "description": "合格方案的从 0 开始索引，按原顺序排列；无合格方案时为空列表。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "先计算各方案的累计输入，再用每段解析传播核对全程峰值。恒定输入的单室轨迹（trajectory）每段单调，峰值取起点与各分段端点的最大值。总输入与 required_total 的绝对差≤1e−9，速率与峰值分别≤对应上限+1e−9 才合格。k=0 用线性积累；k 很小时注意指数差的精度。",
+    "constraints": [
+      "所有数值均为有限数；无需修改输入。",
+      "2—20 个边界，末点≤20，相邻间隔≥1e−4；0—10 个方案，每行比 bounds 少一项。",
+      "0≤A0,rates[i],max_rate,max_peak≤20；0≤k≤2；0≤required_total≤400。",
+      "峰值包括初始时刻；三项条件必须同时满足，不能只检查终值或总输入。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "samples": [
+      {
+        "arguments": {
+          "bounds": [
+            0,
+            2,
+            4
+          ],
+          "plans": [
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "k": 0.5,
+          "A0": 0,
+          "required_total": 4,
+          "max_rate": 2,
+          "max_peak": 2
+        },
+        "expected": [
+          2
+        ],
+        "explanation": "三方案总输入均为 4 U，最大速率均不超过 2 U/T。前置和后置的峰值约 2.5284822353 U，均超过 2 U；均匀输入峰值约 1.7293294335 U，故返回 [2]。"
+      }
+    ],
+    "hint": "把计算分成可以单独检查的步骤，再核对边界条件与单位。",
+    "starter_code": "def solve(\n    bounds: list[float],\n    plans: list[list[float]],\n    k: float,\n    A0: float,\n    required_total: float,\n    max_rate: float,\n    max_peak: float,\n) -> list[int]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n"
+  },
+  {
+    "id": "p02-model-scope",
+    "version": "2",
+    "lesson_id": "P02-SUMMARY",
+    "slug": "p02-model-scope",
+    "title": "改变约束后重新解释方案",
+    "statement": "从 A0=0 开始，k=0.5/T，观察 4 T。前置、后置、均匀三个方案总输入（input）均为 4 U，速率都不超过 2 U/T。独立解析计算给出峰值约 2.528、2.528、1.729 U，终值约 0.930、2.528、1.729 U。若全程上限为 2 U，哪些判断正确？",
+    "part": "2",
+    "chapter": "2.summary",
+    "learning_targets": [
       "T4"
     ],
     "mathematics": [
       "数04",
       "数05"
     ],
-    "difficulty": "基础",
-    "multiple": false,
+    "difficulty": "迁移",
+    "type": "choice",
+    "multiple": true,
     "options": [
       {
         "id": "A",
-        "text": "该规则足以决定真实个体的干预方案。"
+        "text": "在声明模型（model）与这些条件下，只有均匀方案满足全程上限。"
       },
       {
         "id": "B",
-        "text": "所有真实清除过程都与当前参数（parameter）相同。"
+        "text": "前置方案终值最低，所以必然满足全程上限。"
       },
       {
         "id": "C",
-        "text": "程序在这些条件下正确实现了所声明模型（model）；真实应用仍需检验机制与参数。"
+        "text": "若只将 k 改为 0，三个方案终值均为 4 U，因此都超过原上限。"
       },
       {
         "id": "D",
-        "text": "以后不需要检查单位。"
+        "text": "筛选计算正确，就足以把同样参数（parameter）直接用作真实个体的干预方案。"
       }
     ],
-    "constraints": []
+    "constraints": [],
+    "previous_version": "1"
   }
 ]

@@ -1,0 +1,4 @@
+@import url('../shared/exploration.css');
+.explore-grid{grid-template-columns:minmax(265px,.5fr) minmax(820px,1.5fr);gap:18px}
+.model-panel,.chart-panel{padding:20px}.model-panel p{line-height:1.7}.select-control{display:grid;gap:7px;margin-bottom:18px;font-size:.86rem}.select-control select{width:100%;min-height:38px;border:1px solid var(--line);border-radius:7px;padding:7px;background:white;color:var(--ui-text)}.readouts strong{font-size:1.5rem}.reading-links{display:flex;gap:10px;flex-wrap:wrap}#chart-note{min-height:2.5em}.slider{margin-bottom:10px}
+@container content (max-width:1250px){.explore-grid{grid-template-columns:1fr}.model-panel{display:grid;grid-template-columns:minmax(230px,.8fr) minmax(280px,1.2fr);gap:0 24px}.model-panel h2,.model-panel #explanation,.model-panel #formula{grid-column:1}.model-panel fieldset{grid-column:2;grid-row:1/6}.model-panel .caption{grid-column:1}.chart-panel{min-width:0}}

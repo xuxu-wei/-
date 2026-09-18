@@ -73,6 +73,10 @@ def independent(id,p):
         return n if n<=p['steps'] else -1
     if id=='separation':return [i for i,a in enumerate(p['initials']) if abs((a-p['fixed'])-a*(1-p['fraction']))>p['threshold']]
     if id=='cap-count':return [p['initial']+sum(p['entered'][:n])+sum(p['born'][:n])-sum(p['left'][:n]) for n in range(len(p['born'])+1)]
+    if id=='cap-calibrated-balance':
+        f=lambda x:Fraction(str(x))
+        return [float((f(a)-f(b))/f(p['gain'])+f(u)-f(v)+f(g))
+                for a,b,u,v,g in zip(p['readings'],p['readings'][1:],p['entered'],p['left'],p['born'])]
     if id=='cap-predictions':
         first,second=[],[]
         for a in p['initials']:
@@ -111,7 +115,7 @@ def test_formal_content_can_be_discovered_without_any_sample(tmp_path):
         shutil.copytree(ROOT/folder/'01-看见系统',tmp_path/folder/'01-看见系统')
     assert len(notebooks(tmp_path))==9
     qs,answers=question_banks(tmp_path)
-    assert len(qs)==38 and set(answers)=={q['id'] for q in qs}
+    assert len(qs)==41 and set(answers)=={q['id'] for q in qs}
     for lesson in notebooks(tmp_path):
         nb=json.loads((tmp_path/lesson['path']).read_text(encoding='utf-8'))
         assert 'samples/' not in json.dumps(nb,ensure_ascii=False)
@@ -119,8 +123,10 @@ def test_formal_content_can_be_discovered_without_any_sample(tmp_path):
 
 def test_formal_lesson_contracts_and_navigation():
     from lesson_exercises import render_exercises
+    from assessment import load_assessments
     import nbformat
     course=json.loads((ROOT/'web/course/catalog.json').read_text(encoding='utf-8'))['parts'][0]
+    assessments=load_assessments(question_banks()[0])
     for chapter in [*course['chapters'],course['assessment']]:
         for lesson in chapter['lessons']:
             nb=nbformat.read(ROOT/lesson['path'],as_version=4)
@@ -128,8 +134,8 @@ def test_formal_lesson_contracts_and_navigation():
             assert nb.cells[0].metadata['teaching_role']=='objectives'
             assert all(word not in goal for word in ['网页','内核','安装','验收','playground','未实现'])
             qs=[q for q in QUESTIONS if q['lesson_id']==lesson['id']]
-            assert 3<=len(qs)<=5
-            assert nb.cells[-1].source.startswith(render_exercises(lesson['id'],QUESTIONS,chapter['url']+'practice/'))
+            assert len(qs)==8 if chapter.get('assessment') else 3<=len(qs)<=5
+            assert nb.cells[-1].source.startswith(render_exercises(lesson['id'],QUESTIONS,chapter['url']+'practice/',assessments.get(lesson['id'])))
             assert all(q['slug'] in nb.cells[-1].source for q in qs)
             for cell in nb.cells:
                 if cell.cell_type=='code':ast.parse(cell.source)

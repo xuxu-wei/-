@@ -104,6 +104,23 @@ def independent(slug,p):
         if slug=='aligned-grid':return list(map(float,decimal_grid(p['bounds'],p['h'])))
         if slug=='piecewise':return piecewise_independent(p)
         if slug=='input-totals':return [float(sum((D(b)-D(a))*D(r) for a,b,r in zip(p['bounds'],p['bounds'][1:],rates))) for rates in p['plans']]
+        if slug=='cap-integrated-balance':
+            total=sum((D(b)-D(a))*D(r) for a,b,r in zip(p['bounds'],p['bounds'][1:],p['rates']))
+            change=D(p['amounts'][-1])-D(p['amounts'][0])
+            return list(map(float,[total,change,total-change]))
+        if slug=='cap-feasible-plans':
+            result=[]; k=D(p['k']); times=list(map(D,p['bounds']))
+            for i,rates in enumerate(p['plans']):
+                rates=list(map(D,rates));values=[]
+                for t in times:
+                    value=D(p['A0'])*(-k*t).exp()
+                    for a,b,r in zip(times,times[1:],rates):
+                        stop=min(t,b)
+                        if stop>a:value+=r*(stop-a) if k==0 else r/k*((-k*(t-stop)).exp()-(-k*(t-a)).exp())
+                    values.append(value)
+                total=sum((b-a)*r for a,b,r in zip(times,times[1:],rates))
+                if abs(total-D(p['required_total']))<=D('1e-9') and max(rates)<=D(p['max_rate'])+D('1e-9') and max(values)<=D(p['max_peak'])+D('1e-9'):result.append(i)
+            return result
         if slug=='input-metrics':
             t,a,ref=piecewise_independent(p);_,fine,fr=piecewise_independent({**p,'h':p['h']/2})
             return [float(sum((D(b)-D(a))*D(r) for a,b,r in zip(p['bounds'],p['bounds'][1:],p['rates']))),max(ref),ref[-1],max(abs(x-y) for x,y in zip(a,ref)),max(abs(x-y) for x,y in zip(fine,fr))]
@@ -163,7 +180,7 @@ def test_notebook_error_refinement_failure_and_piecewise():
 def test_lesson_question_coverage_and_plain_objectives():
     for lesson in CAT:
         qs=[q for q in Q if q['lesson_id']==lesson['id']]
-        assert len(qs)==(5 if lesson['chapter_id'] in {'2.4','2.summary'} else 4)
+        assert len(qs)==(8 if lesson['chapter_id']=='2.summary' else 5 if lesson['chapter_id']=='2.4' else 4)
         book=json.loads((ROOT/lesson['path']).read_text(encoding='utf-8'))
         text=''.join(book['cells'][0]['source'])
         assert not any(x in text.replace('核验收支','核对收支') for x in ['安装','内核','网页安排','验收','样章','playground'])

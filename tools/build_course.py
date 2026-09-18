@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import re
 from course_content import notebooks, question_banks
+from assessment import load_assessments
 
 ROOT = Path(__file__).resolve().parents[1]
 TERMS = json.loads((ROOT / 'docs/术语对照.json').read_text(encoding='utf-8'))
@@ -56,13 +57,17 @@ def build():
     assert len(parts) == 12 and sum(len(p['chapters']) for p in parts) == 55
     all_lessons = notebooks()
     questions, _ = question_banks()
+    assessments = load_assessments(questions)
     def attach(chapter, entries):
         chapter['lessons'] = entries
         chapter['available'] = bool(entries)
         for entry in entries:
             entry['questions'] = [{'id':q['id'],'slug':q['slug'],'title':q['title'],'type':q['type']}
                                   for q in questions if q['lesson_id']==entry['id']]
-            assert 3<=len(entry['questions'])<=5
+            if entry['id'] in assessments:
+                assert len(entry['questions']) == len(assessments[entry['id']]['items'])
+            else:
+                assert 3<=len(entry['questions'])<=5
             entry['url']=chapter['url']+'practice/?question='+entry['questions'][0]['slug']
         chapter['visualization']=next((l['visualization'] for l in entries if l.get('visualization')),None)
     for part in parts:

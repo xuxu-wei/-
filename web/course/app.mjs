@@ -1,6 +1,12 @@
 import {mountShell,el} from '../shared/course-shell.mjs';
+import {renderAssessment} from '../shared/assessment.mjs';
 
 const host=document.getElementById('overview');
+function assessmentPanel(lesson,practiceUrl){
+  const panel=el('section');panel.hidden=true;panel.setAttribute('aria-label','篇末综合成绩');host.append(panel);
+  document.addEventListener('course-progress',event=>renderAssessment(panel,event.detail.assessments?.[lesson],{practiceUrl}));
+  void fetch('/api/v1/progress',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(value=>renderAssessment(panel,value.assessments?.[lesson],{practiceUrl})).catch(()=>{});
+}
 function a(text,url,cls){const n=el('a',text,cls);n.href=url;return n;}
 
 function heading(label,title,description,note){
@@ -46,6 +52,7 @@ async function start(){
     heading(`第 ${part.id} 篇 · ${part.chapters.length} 章`,part.title,
       '按章推进，先看学习目标与先修知识，再进入知识体系。',
       part.chapters.some(c=>c.available)?'从第一章进入 Notebook，完成各节练习后用篇末综合题组检验理解。':'以下为教学设计导览；对应 Notebook 与习题尚待编写。');
+    if(part.assessment)assessmentPanel(part.assessment.lessons[0].id,part.assessment.url+'practice/');
     host.append(cards(part.chapters,'chapter'));
     if(part.assessment){host.append(el('h2','贯通本篇','lessons-heading'),cards([part.assessment],'chapter'));}
   }else{
@@ -53,6 +60,7 @@ async function start(){
     heading(`第 ${current.id.split('.')[0]} 篇 · ${current.assessment?'篇末综合':current.id+' 章'}`,current.title,
       '围绕本章问题，连接必要知识、关键方法与计算实验。',
       current.available?'在下方进入完整 Notebook；配套练习用于检查理解。':'本页展示教学设计；对应的正式 Notebook、可视化与练习尚待编写。');
+    if(current.assessment)assessmentPanel(current.lessons[0].id,current.url+'practice/');
     const summary=el('div',undefined,'chapter-summary');
     summary.append(section('本章学会什么',current.goals),section('先修知识',current.prerequisites),section('教学重点与难点',current.focus));host.append(summary);
     const knowledge=el('section',undefined,'overview-section knowledge-section');

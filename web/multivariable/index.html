@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>多变量相互作用 · 可视化与探索</title><link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css"><link rel="stylesheet" href="/web/multivariable/style.css"></head>
+<body><main id="main">
+<div id="loading-note" class="notice" role="status">正在准备模型、相平面与时间曲线…</div>
+<article class="exploration" hidden>
+<header class="intro"><p class="eyebrow" id="eyebrow"></p><h1 id="title"></h1><p id="question" class="lead" data-teaching></p></header>
+<div class="explore-grid">
+<section class="model-panel"><h2>先预测，再做比较</h2><p id="explanation" data-teaching></p><p id="formula" class="formula"></p>
+<fieldset id="controls" disabled><legend>实验条件</legend>
+<div id="model-select" class="select-control" hidden><label for="model">模型</label><select id="model"><option value="exchange">对称交换与共同清除</option><option value="rotation">人工偏差的阻尼旋转</option></select></div>
+<div id="sliders"></div>
+<div class="select-control"><label for="observation">观察哪个量</label><select id="observation"><option value="first">第一分量</option><option value="total">两分量之和</option><option value="difference">两分量之差</option></select></div>
+<div class="presets"><button id="alternate" type="button"></button><button id="reset" type="button">恢复起始条件</button></div>
+</fieldset><p id="preset-note" class="caption"></p><p id="assumptions" class="caption" data-teaching></p></section>
+<section class="chart-panel"><div class="chart-heading"><h2>同一运动，两种视角</h2><span id="time-readout" class="time-readout"></span></div>
+<div class="readouts"><div><span id="value-label">当前状态 / U</span><strong id="value"></strong></div><p id="observation-value"></p></div>
+<svg id="chart" viewBox="0 0 960 400" role="img" aria-labelledby="svg-title svg-desc"><title id="svg-title">时间曲线与相轨迹联动</title><desc id="svg-desc"></desc></svg>
+<div id="legend" class="chart-legend"></div><p id="chart-note" class="caption"></p>
+<div class="play-controls"><button id="play" type="button" class="primary" disabled>播放</button><button id="replay" type="button" disabled>从头重播</button><output id="play-counter" aria-live="off"></output><label for="timeline">观察位置</label><input id="timeline" type="range" min="0" max="12" step="0.01" value="0" disabled></div>
+<p id="play-status" class="caption" role="status"></p><p id="model-warning" class="notice error" hidden></p>
+<details class="values"><summary>展开状态、观测与误差数值</summary><p class="caption">表格每 1 T 一行，显示最多六位小数；完整推导与误差检查见 Notebook。</p><div id="value-table"></div></details>
+</section></div>
+<section class="reading"><h2>继续推导与完整实验</h2><p>回到对应小节计算模态、核对守恒或检查局部误差。</p><div id="notebooks" class="reading-links"></div><p id="open-status" role="status"></p></section>
+</article></main><script src="/web/shared/boot.js"></script><script type="module" src="/web/multivariable/app.mjs" data-main></script></body></html>

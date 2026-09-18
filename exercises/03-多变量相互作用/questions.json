@@ -1,0 +1,3435 @@
+[
+  {
+    "id": "p03-exchange-columns",
+    "slug": "p03-exchange-columns",
+    "version": "1",
+    "lesson_id": "P03-C01-S01",
+    "part": "3",
+    "chapter": "3.1",
+    "title": "交换发生在哪一列",
+    "type": "choice",
+    "statement": "用物质量列向量（vector） x=[A1,A2] 表示两个充分混合的室。a 表示 1→2，b 表示 2→1，均为每单位时间系数。封闭模型（model） x′=Mx 中，哪些说法正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "M=[[-a,b],[a,-b]]。"
+      },
+      {
+        "id": "B",
+        "text": "每一列的和为零，内部交换不改变总物质量。"
+      },
+      {
+        "id": "C",
+        "text": "M 的非对角元素必须为负。"
+      },
+      {
+        "id": "D",
+        "text": "把两条方程相加得到 A1′+A2′=0。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-exchange-balance",
+    "slug": "p03-exchange-balance",
+    "version": "1",
+    "lesson_id": "P03-C01-S01",
+    "part": "3",
+    "chapter": "3.1",
+    "title": "把两室收支写成矩阵",
+    "type": "python",
+    "statement": "两个室双向交换，恒定输入（input）进入室 1，线性清除也只在室 1。给定当前物质量，返回系统矩阵（matrix）、两个室的变化率和总变化率。",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "float",
+        "description": "室 1 到室 2 的交换系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "室 2 到室 1 的交换系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "c",
+        "type": "float",
+        "description": "仅从室 1 清除的系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "u",
+        "type": "float",
+        "description": "仅进入室 1 的恒定输入速率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "amounts",
+        "type": "list[float]",
+        "description": "按 [A1,A2] 排列的当前物质量。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "2×2 矩阵，行对应接收方程，列对应被乘的物质量。",
+        "unit": "1/T"
+      },
+      {
+        "name": "rates",
+        "type": "list[float]",
+        "description": "[A1′,A2′]。",
+        "unit": "U/T"
+      },
+      {
+        "name": "total_rate",
+        "type": "float",
+        "description": "两个变化率的和。",
+        "unit": "U/T"
+      }
+    ],
+    "contract": "M=[[-a-c,b],[a,-b]]；rates=M×amounts+[u,0]；total_rate=sum(rates)。",
+    "constraints": [
+      "所有数值有限；不修改输入列表。",
+      "0≤a,b,c≤1；0≤u≤5；amounts 长度为 2，各项 0—20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "独立检查 total_rate=u−c×A1；内部交换不应留下任何一项。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    a: float,\n    b: float,\n    c: float,\n    u: float,\n    amounts: list[float],\n) -> tuple[list[list[float]], list[float], float]:\n    # 根据题意计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "a": 0.2,
+          "b": 0.1,
+          "c": 0,
+          "u": 0,
+          "amounts": [
+            6,
+            0
+          ]
+        },
+        "expected": [
+          [
+            [
+              -0.2,
+              0.1
+            ],
+            [
+              0.2,
+              -0.1
+            ]
+          ],
+          [
+            -1.2000000000000002,
+            1.2000000000000002
+          ],
+          0.0
+        ],
+        "explanation": "室 1 每 T 转出 0.2×6=1.2 U，室 2 同时得到 1.2 U；总变化率为零。"
+      }
+    ]
+  },
+  {
+    "id": "p03-amount-concentration",
+    "slug": "p03-amount-concentration",
+    "version": "1",
+    "lesson_id": "P03-C01-S01",
+    "part": "3",
+    "chapter": "3.1",
+    "title": "改用浓度时遗漏了什么",
+    "type": "choice",
+    "statement": "室 1 和室 2 的容积分别为 2 L 和 1 L，物质量为 A1=4 U、A2=2 U。交换项是 aA1 与 bA2。哪些说法正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "两室浓度（concentration）都为 2 U/L。"
+      },
+      {
+        "id": "B",
+        "text": "A1+A2 等于两室浓度之和。"
+      },
+      {
+        "id": "C",
+        "text": "若 C1=A1/V1，C1′=−aC1+b(V2/V1)C2（封闭交换）。"
+      },
+      {
+        "id": "D",
+        "text": "把 A 全换成 C 而保留所有矩阵（matrix）元素，任何容积下都正确。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-third-room",
+    "slug": "p03-third-room",
+    "version": "1",
+    "lesson_id": "P03-C01-S01",
+    "part": "3",
+    "chapter": "3.1",
+    "title": "增加第三室后怎样检查守恒",
+    "type": "choice",
+    "statement": "三个室仅沿 1→2→3 单向交换，两个系数都为 r>0。状态（state）为物质量列向量（vector）。正确矩阵（matrix）是哪一个？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "[[-r,0,0],[r,-r,0],[0,r,0]]"
+      },
+      {
+        "id": "B",
+        "text": "[[-r,r,0],[0,-r,r],[0,0,0]]"
+      },
+      {
+        "id": "C",
+        "text": "[[-r,0,0],[r,r,0],[0,r,0]]"
+      },
+      {
+        "id": "D",
+        "text": "[[-r,0,0],[0,-r,0],[0,0,0]]"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-projection",
+    "slug": "p03-projection",
+    "version": "1",
+    "lesson_id": "P03-C01-S02",
+    "part": "3",
+    "chapter": "3.1",
+    "title": "沿指定方向分解变化",
+    "type": "python",
+    "statement": "给定两个以相同单位 U 表示的二维向量（vector）。把 vector 分解为沿非零 direction 的投影（projection）和垂直余量，同时返回内积（inner product）与原向量的欧几里得范数（Euclidean norm）。",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "vector",
+        "type": "list[float]",
+        "description": "待分解的二维向量。",
+        "unit": "U"
+      },
+      {
+        "name": "direction",
+        "type": "list[float]",
+        "description": "指定方向，保证不是零向量。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "dot",
+        "type": "float",
+        "description": "vector 与 direction 的内积。",
+        "unit": "U²"
+      },
+      {
+        "name": "length",
+        "type": "float",
+        "description": "vector 的欧几里得范数。",
+        "unit": "U"
+      },
+      {
+        "name": "projected",
+        "type": "list[float]",
+        "description": "沿 direction 的投影向量。",
+        "unit": "U"
+      },
+      {
+        "name": "residual",
+        "type": "list[float]",
+        "description": "vector 减 projected。",
+        "unit": "U"
+      }
+    ],
+    "contract": "dot=Σ vector[i]direction[i]；length=sqrt(Σ vector[i]²)；projected=direction×dot/Σ direction[i]²；residual=vector−projected。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "两个列表长度为 2；各分量绝对值≤20；direction 的平方和≥0.01。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "不把投影的两个分量相加当作投影；返回的是二维向量。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    vector: list[float],\n    direction: list[float],\n) -> tuple[float, float, list[float], list[float]]:\n    # 根据题意计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "vector": [
+            3,
+            1
+          ],
+          "direction": [
+            1,
+            1
+          ]
+        },
+        "expected": [
+          4,
+          3.1622776601683795,
+          [
+            2.0,
+            2.0
+          ],
+          [
+            1.0,
+            -1.0
+          ]
+        ],
+        "explanation": "内积为 4，范数（norm）为 sqrt(10)；投影为 [2,2]，余量为 [1,−1]，余量与 [1,1] 内积为零。"
+      }
+    ]
+  },
+  {
+    "id": "p03-norm-units",
+    "slug": "p03-norm-units",
+    "version": "1",
+    "lesson_id": "P03-C01-S02",
+    "part": "3",
+    "chapter": "3.1",
+    "title": "长度依赖怎样的坐标",
+    "type": "choice",
+    "statement": "状态（state）由物质量 A /U 和温度 θ /℃ 组成。直接计算 sqrt(A²+θ²) 并称为系统总量，哪里有问题？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "不同单位直接相加缺乏所需的度量定义，应先明确各自尺度与比较目的。"
+      },
+      {
+        "id": "B",
+        "text": "只要放入 NumPy 数组（array）就有统一物理单位。"
+      },
+      {
+        "id": "C",
+        "text": "平方会自动消除单位。"
+      },
+      {
+        "id": "D",
+        "text": "任何范数（norm）都等于守恒物质量。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-projection-meaning",
+    "slug": "p03-projection-meaning",
+    "version": "1",
+    "lesson_id": "P03-C01-S02",
+    "part": "3",
+    "chapter": "3.1",
+    "title": "投影误差为什么垂直",
+    "type": "choice",
+    "statement": "对同单位向量（vector） x，用 p=αd 逼近 x，d≠0。选择 α=(x·d)/(d·d)。哪些成立？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "(x−p)·d=0。"
+      },
+      {
+        "id": "B",
+        "text": "任何 x 都等于 p。"
+      },
+      {
+        "id": "C",
+        "text": "这个 α 使 ||x−αd||² 最小。"
+      },
+      {
+        "id": "D",
+        "text": "d 放大两倍后，投影（projection）向量 p 保持不变。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-matrix-product",
+    "slug": "p03-matrix-product",
+    "version": "1",
+    "lesson_id": "P03-C01-S02",
+    "part": "3",
+    "chapter": "3.1",
+    "title": "矩阵乘法怎样读取",
+    "type": "choice",
+    "statement": "M=[[-0.2,0.1],[0.2,−0.1]]，x=[6,0]。为什么 M@x 等于 [−1.2,1.2] 而非逐元素结果？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "每个结果分量是矩阵（matrix）一行与向量（vector）的内积（inner product）。"
+      },
+      {
+        "id": "B",
+        "text": "@ 自动寻找平衡（equilibrium）。"
+      },
+      {
+        "id": "C",
+        "text": "@ 与 * 对任意 NumPy 数组（array）都等价。"
+      },
+      {
+        "id": "D",
+        "text": "结果分量由对应行元素相乘得到。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-open-equilibrium",
+    "slug": "p03-open-equilibrium",
+    "version": "1",
+    "lesson_id": "P03-C01-S03",
+    "part": "3",
+    "chapter": "3.1",
+    "title": "求开放两室的平衡",
+    "type": "python",
+    "statement": "室 1 接受恒定输入（input） u，并以 cA1 清除；室间交换为 aA1 与 bA2。求非负平衡（equilibrium）物质量。",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "float",
+        "description": "室 1 到室 2 的交换系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "室 2 到室 1 的交换系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "c",
+        "type": "float",
+        "description": "仅从室 1 清除的系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "u",
+        "type": "float",
+        "description": "仅进入室 1 的恒定输入速率。",
+        "unit": "U/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "equilibrium",
+        "type": "list[float]",
+        "description": "[A1*,A2*]。",
+        "unit": "U"
+      }
+    ],
+    "contract": "0=u−(a+c)A1*+bA2*；0=aA1*−bA2*。只返回平衡，不返回矩阵（matrix）的逆。",
+    "constraints": [
+      "所有数值有限；不修改输入列表。",
+      "0≤a≤1；0.05≤b,c≤1；0≤u≤5。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先用总收支（mass balance），再用第二室收支；b 和 c 的正值条件保证此解唯一。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    a: float,\n    b: float,\n    c: float,\n    u: float,\n) -> list[float]:\n    # 根据题意计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "a": 0.2,
+          "b": 0.1,
+          "c": 0.5,
+          "u": 1
+        },
+        "expected": [
+          2.0,
+          4.0
+        ],
+        "explanation": "相加得 A1*=u/c=2 U；再由交换平衡得 A2*=aA1*/b=4 U。"
+      }
+    ]
+  },
+  {
+    "id": "p03-singular-equilibrium",
+    "slug": "p03-singular-equilibrium",
+    "version": "1",
+    "lesson_id": "P03-C01-S03",
+    "part": "3",
+    "chapter": "3.1",
+    "title": "封闭系统为何不能直接求逆",
+    "type": "choice",
+    "statement": "a,b>0 的封闭两室交换矩阵（matrix）秩（rank）为 1。要确定从初值（initial condition） [6,0] 出发所对应的平衡（equilibrium），还缺哪一条信息？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "A1*+A2*=6 U。"
+      },
+      {
+        "id": "B",
+        "text": "A1*=A2* 恒成立。"
+      },
+      {
+        "id": "C",
+        "text": "矩阵的每一项都非零。"
+      },
+      {
+        "id": "D",
+        "text": "任意指定 A1*=0。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-rank-meaning",
+    "slug": "p03-rank-meaning",
+    "version": "1",
+    "lesson_id": "P03-C01-S03",
+    "part": "3",
+    "chapter": "3.1",
+    "title": "秩与解的个数",
+    "type": "choice",
+    "statement": "线性方程 Mx=r 中，以下哪些说法正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "秩（rank）数的是独立方向或独立约束的数量。"
+      },
+      {
+        "id": "B",
+        "text": "任意奇异矩阵（matrix）都意味着无解。"
+      },
+      {
+        "id": "C",
+        "text": "二维可逆 M 对每个 r 都有唯一解。"
+      },
+      {
+        "id": "D",
+        "text": "M=0、r=0 时所有 x 都是解。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-no-clearance-input",
+    "slug": "p03-no-clearance-input",
+    "version": "1",
+    "lesson_id": "P03-C01-S03",
+    "part": "3",
+    "chapter": "3.1",
+    "title": "封闭交换加输入能达到定常吗",
+    "type": "choice",
+    "statement": "a,b>0，c=0，u=1 U/T 持续进入室 1。有没有有限的定常总物质量？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "有，因为两室会均衡。"
+      },
+      {
+        "id": "B",
+        "text": "没有，因为总变化率恒为 1 U/T。"
+      },
+      {
+        "id": "C",
+        "text": "有，只要矩阵（matrix）不可逆。"
+      },
+      {
+        "id": "D",
+        "text": "有，把任何负平衡（equilibrium）设为零即可。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-equilibrium-limit",
+    "slug": "p03-equilibrium-limit",
+    "version": "1",
+    "lesson_id": "P03-C01-S03",
+    "part": "3",
+    "chapter": "3.1",
+    "title": "计算出平衡就算完成了吗",
+    "type": "choice",
+    "statement": "由 Mx*+[u,0]=0 得到 x*=[2,4]。接下来哪些检查有意义？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "把 x* 代回两条原方程。"
+      },
+      {
+        "id": "B",
+        "text": "核对输入（input）与清除的总账。"
+      },
+      {
+        "id": "C",
+        "text": "仅凭方程有解，就断言所有初值（initial condition）必在有限时间到达。"
+      },
+      {
+        "id": "D",
+        "text": "区分平衡（equilibrium）存在、稳定性与到达速度。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-state-output",
+    "slug": "p03-state-output",
+    "version": "1",
+    "lesson_id": "P03-C02-S01",
+    "part": "3",
+    "chapter": "3.2",
+    "title": "同一状态，不同测量",
+    "type": "python",
+    "statement": "二维线性状态空间（state space）模型（model）为 x′=Mx+Bu、y=Cx+Du。状态（state）分量均为物质量 U，u 为流入速率 U/T，y 为物质量 U。计算瞬时变化率和标量观测（observation）。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "2×2 状态矩阵（matrix） M。",
+        "unit": "1/T"
+      },
+      {
+        "name": "input_vector",
+        "type": "list[float]",
+        "description": "输入（input）分配 B，长度 2。",
+        "unit": "1"
+      },
+      {
+        "name": "output_vector",
+        "type": "list[float]",
+        "description": "观测加权 C，长度 2。",
+        "unit": "1"
+      },
+      {
+        "name": "direct",
+        "type": "float",
+        "description": "直接输入到观测的系数 D；不参与状态更新。",
+        "unit": "T"
+      },
+      {
+        "name": "state",
+        "type": "list[float]",
+        "description": "当前二维状态。",
+        "unit": "U"
+      },
+      {
+        "name": "inflow",
+        "type": "float",
+        "description": "当前输入 u。",
+        "unit": "U/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "rates",
+        "type": "list[float]",
+        "description": "两个状态的变化率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "observed",
+        "type": "float",
+        "description": "当前观测 y。",
+        "unit": "U"
+      }
+    ],
+    "contract": "rates[i]=sum(matrix[i][j]*state[j] for j in range(2))+input_vector[i]*inflow；observed=sum(output_vector[j]*state[j] for j in range(2))+direct*inflow。",
+    "constraints": [
+      "所有数值有限；不修改输入列表。",
+      "矩阵和列表形状如说明；每个输入数的绝对值≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先分开动态方程与观测方程；D 不应混进 rates。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    matrix: list[list[float]],\n    input_vector: list[float],\n    output_vector: list[float],\n    direct: float,\n    state: list[float],\n    inflow: float,\n) -> tuple[list[float], float]:\n    # 根据题意计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              -0.2,
+              0.1
+            ],
+            [
+              0.2,
+              -0.1
+            ]
+          ],
+          "input_vector": [
+            1,
+            0
+          ],
+          "output_vector": [
+            1,
+            1
+          ],
+          "direct": 0,
+          "state": [
+            6,
+            0
+          ],
+          "inflow": 1
+        },
+        "expected": [
+          [
+            -0.20000000000000018,
+            1.2000000000000002
+          ],
+          6
+        ],
+        "explanation": "交换给出 [−1.2,1.2] U/T，输入使第一分量变为 −0.2；总量观测为 6 U。"
+      }
+    ]
+  },
+  {
+    "id": "p03-observation-not-state",
+    "slug": "p03-observation-not-state",
+    "version": "1",
+    "lesson_id": "P03-C02-S01",
+    "part": "3",
+    "chapter": "3.2",
+    "title": "一条测量能代表全部状态吗",
+    "type": "choice",
+    "statement": "测得封闭两室的 y=A1+A2，曲线恒为 6 U。哪些推论成立？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "总量观测（observation）可以不变，但两室仍在交换。"
+      },
+      {
+        "id": "B",
+        "text": "内部每个状态（state）必定不变。"
+      },
+      {
+        "id": "C",
+        "text": "测量只给出两分量之和，不能直接读出各室物质量。"
+      },
+      {
+        "id": "D",
+        "text": "若观察 A1，可能看见交换过程。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-dimensions",
+    "slug": "p03-dimensions",
+    "version": "1",
+    "lesson_id": "P03-C02-S01",
+    "part": "3",
+    "chapter": "3.2",
+    "title": "状态空间中的维数",
+    "type": "choice",
+    "statement": "两个状态（state）、一个输入（input）、一个输出（output）的 x′=Mx+Bu，y=Cx+Du 中，哪组维数正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "M:2×2，B:2×1，C:1×2，D:1×1。"
+      },
+      {
+        "id": "B",
+        "text": "M:1×2，B:2×2，C:2×1，D:2×2。"
+      },
+      {
+        "id": "C",
+        "text": "所有矩阵（matrix）都必须 2×2。"
+      },
+      {
+        "id": "D",
+        "text": "C 的行数必须等于状态数。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-output-units",
+    "slug": "p03-output-units",
+    "version": "1",
+    "lesson_id": "P03-C02-S01",
+    "part": "3",
+    "chapter": "3.2",
+    "title": "测量浓度如何写输出",
+    "type": "choice",
+    "statement": "x=[A1,A2]，V1=2 L。测量室 1 的浓度（concentration），不含直接输入（input）项。正确输出（output）关系是？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "y=[1,0]x，单位 U/L。"
+      },
+      {
+        "id": "B",
+        "text": "y=[1/2,0]x，C 的单位为 1/L。"
+      },
+      {
+        "id": "C",
+        "text": "y=[2,0]x，单位 L。"
+      },
+      {
+        "id": "D",
+        "text": "y=A1+A2，始终等于室 1 浓度。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-symmetric-modes",
+    "slug": "p03-symmetric-modes",
+    "version": "1",
+    "lesson_id": "P03-C02-S02",
+    "part": "3",
+    "chapter": "3.2",
+    "title": "分解共同衰减与室间差异",
+    "type": "python",
+    "statement": "两室以相同系数 a 双向交换，并且两个室都以系数 c 清除，无输入（input）。矩阵（matrix） M=[[-a-c,a],[a,-a-c]]。用慢模态（mode） [1,1] 和快模态 [1,−1] 求精确状态（state）。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "float",
+        "description": "双向交换系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "c",
+        "type": "float",
+        "description": "每个室各自的清除系数（elimination rate constant）。",
+        "unit": "1/T"
+      },
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "[A1(0),A2(0)]。",
+        "unit": "U"
+      },
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "所求时刻，依给定顺序返回。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "eigenvalues",
+        "type": "list[float]",
+        "description": "慢、快顺序的两个特征值（eigenvalue）。",
+        "unit": "1/T"
+      },
+      {
+        "name": "coefficients",
+        "type": "list[float]",
+        "description": "上述两个指定特征向量（eigenvector）的系数，不将向量（vector）归一化。",
+        "unit": "U"
+      },
+      {
+        "name": "states",
+        "type": "list[list[float]]",
+        "description": "每个时刻一行 [A1,A2]。",
+        "unit": "U"
+      }
+    ],
+    "contract": "λslow=−c，λfast=−(2a+c)；s=(A1(0)+A2(0))/2，d=(A1(0)−A2(0))/2；x(t)=s exp(−ct)[1,1]+d exp(−(2a+c)t)[1,−1]。",
+    "constraints": [
+      "所有数值有限；不修改输入列表。",
+      "0≤a,c≤1；initial 长度 2，各项 0—20；times 长度 1—30，各项 0—20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "用和、差分别化成一阶衰减，可独立检查特征分解；不要把第一个室等同于慢模态。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    a: float,\n    c: float,\n    initial: list[float],\n    times: list[float],\n) -> tuple[list[float], list[float], list[list[float]]]:\n    # 根据题意计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "a": 0.2,
+          "c": 0.1,
+          "initial": [
+            6,
+            0
+          ],
+          "times": [
+            0,
+            2
+          ]
+        },
+        "expected": [
+          [
+            -0.1,
+            -0.5
+          ],
+          [
+            3.0,
+            3.0
+          ],
+          [
+            [
+              6.0,
+              0.0
+            ],
+            [
+              3.5598305827482726,
+              1.3525539357196186
+            ]
+          ]
+        ],
+        "explanation": "特征值为 [−0.1,−0.5] /T，两个系数均为 3 U；t=0 两个模态相加还原 [6,0]。"
+      }
+    ]
+  },
+  {
+    "id": "p03-unexcited-mode",
+    "slug": "p03-unexcited-mode",
+    "version": "1",
+    "lesson_id": "P03-C02-S02",
+    "part": "3",
+    "chapter": "3.2",
+    "title": "模态存在但未被激发",
+    "type": "choice",
+    "statement": "上述对称交换模型（model） a>0，初值（initial condition） [2,2]。差异模态（mode） [1,−1] 的特征值（eigenvalue）仍存在，但其轨迹（trajectory）贡献为零。原因是？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "该初值在差异模态方向的系数为零。"
+      },
+      {
+        "id": "B",
+        "text": "所有快速模态都不存在。"
+      },
+      {
+        "id": "C",
+        "text": "两室矩阵（matrix）没有特征值。"
+      },
+      {
+        "id": "D",
+        "text": "观测（observation）曲线为零就能证明矩阵为零。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-invisible-mode",
+    "slug": "p03-invisible-mode",
+    "version": "1",
+    "lesson_id": "P03-C02-S02",
+    "part": "3",
+    "chapter": "3.2",
+    "title": "被求和隐藏的模态",
+    "type": "choice",
+    "statement": "慢向量（vector） [1,1]、快向量 [1,−1]，初值（initial condition） [6,0]，观测（observation） C=[1,1]。哪些成立？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "两个模态（mode）均被初值激发。"
+      },
+      {
+        "id": "B",
+        "text": "C[1,−1]=0，因此快模态在此观测中抵消。"
+      },
+      {
+        "id": "C",
+        "text": "快模态在完整状态（state）中也不存在。"
+      },
+      {
+        "id": "D",
+        "text": "换 C=[1,0] 能在该初值下看到两种衰减。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-matrix-exponential",
+    "slug": "p03-matrix-exponential",
+    "version": "1",
+    "lesson_id": "P03-C02-S02",
+    "part": "3",
+    "chapter": "3.2",
+    "title": "连续传播与逐元素指数",
+    "type": "choice",
+    "statement": "一般矩阵（matrix） M 的连续传播是 exp(Mt)。以下哪些正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "定义中的幂是矩阵乘法（matrix multiplication）幂。"
+      },
+      {
+        "id": "B",
+        "text": "通常可以直接用 np.exp(M*t) 得到矩阵指数（matrix exponential）。"
+      },
+      {
+        "id": "C",
+        "text": "若 M=VΛV⁻¹ 且 V 可逆，可写成 V exp(Λt)V⁻¹。"
+      },
+      {
+        "id": "D",
+        "text": "离散更新矩阵 P 的 n 步传播是 Pⁿ。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-modal-time",
+    "slug": "p03-modal-time",
+    "version": "1",
+    "lesson_id": "P03-C02-S02",
+    "part": "3",
+    "chapter": "3.2",
+    "title": "哪一个变化更慢",
+    "type": "choice",
+    "statement": "两个实特征值（eigenvalue）为 −0.1/T 和 −0.5/T。仅考虑各模态（mode）自身衰减，正确结论是？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "特征时间（characteristic time）分别为 10 T 和 2 T。"
+      },
+      {
+        "id": "B",
+        "text": "−0.5 对应更慢的模态。"
+      },
+      {
+        "id": "C",
+        "text": "特征值为负说明物质量必须负。"
+      },
+      {
+        "id": "D",
+        "text": "每个模态都在特征时间时恰好变为零。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-damped",
+    "slug": "p03-damped",
+    "version": "1",
+    "lesson_id": "P03-C02-S03",
+    "part": "3",
+    "chapter": "3.2",
+    "title": "把复共轭模态还原成实轨迹",
+    "type": "python",
+    "statement": "人工偏差模型（model） x′=[[-alpha,−omega],[omega,−alpha]]x，两个分量为相同单位 U 的偏离量，可为负，不是非负物质量。返回特征值（eigenvalue）的实虚部与实数轨迹（trajectory）。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "alpha",
+        "type": "float",
+        "description": "衰减率。",
+        "unit": "1/T"
+      },
+      {
+        "name": "omega",
+        "type": "float",
+        "description": "旋转角频率。",
+        "unit": "1/T"
+      },
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "两个起始偏离量。",
+        "unit": "U"
+      },
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "观察时刻。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "eigenvalues",
+        "type": "list[list[float]]",
+        "description": "[[实部,+虚部],[实部,−虚部]]；omega=0 时两行相同。",
+        "unit": "1/T"
+      },
+      {
+        "name": "states",
+        "type": "list[list[float]]",
+        "description": "每个时刻的 [x1,x2] 实数状态（state）。",
+        "unit": "U"
+      }
+    ],
+    "contract": "特征值=−alpha±i omega；x1=exp(−alpha*t)(initial[0]cos(omega*t)−initial[1]sin(omega*t))；x2=exp(−alpha*t)(initial[0]sin(omega*t)+initial[1]cos(omega*t))。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "0≤alpha≤2；0≤omega≤4；initial 长度 2，分量绝对值≤10；times 长度 1—30，0≤t≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "用 x1²+x2²=||initial||² exp(−2alpha*t) 独立检查衰减，omega=0 应回到不旋转的衰减。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    alpha: float,\n    omega: float,\n    initial: list[float],\n    times: list[float],\n) -> tuple[list[list[float]], list[list[float]]]:\n    # 根据题意计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "alpha": 1,
+          "omega": 2,
+          "initial": [
+            1,
+            0
+          ],
+          "times": [
+            0,
+            0.5
+          ]
+        },
+        "expected": [
+          [
+            [
+              -1,
+              2
+            ],
+            [
+              -1,
+              -2
+            ]
+          ],
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.32770991402245986,
+              0.5103779515445728
+            ]
+          ]
+        ],
+        "explanation": "特征值为 −1±2i。t=0.5 时转过 1 弧度，长度乘 exp(−0.5)，两分量仍为实数。"
+      }
+    ]
+  },
+  {
+    "id": "p03-jordan",
+    "slug": "p03-jordan",
+    "version": "1",
+    "lesson_id": "P03-C02-S03",
+    "part": "3",
+    "chapter": "3.2",
+    "title": "特征向量不够时仍可求解",
+    "type": "python",
+    "statement": "人工偏差模型（model） M=[[-rate,coupling],[0,−rate]]，无输入（input）。当 coupling≠0 时只有一个独立特征向量（eigenvector）。先解第二条方程，再代入第一条，返回实轨迹（trajectory）。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "rate",
+        "type": "float",
+        "description": "两条方程的衰减率。",
+        "unit": "1/T"
+      },
+      {
+        "name": "coupling",
+        "type": "float",
+        "description": "第二分量对第一分量的作用系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "两个起始偏离量。",
+        "unit": "U"
+      },
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "所求时刻。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "states",
+        "type": "list[list[float]]",
+        "description": "每个时刻的 [x1,x2]。",
+        "unit": "U"
+      }
+    ],
+    "contract": "x2(t)=exp(−rate*t)initial[1]；x1(t)=exp(−rate*t)(initial[0]+coupling*t*initial[1])。",
+    "constraints": [
+      "所有数值有限；不修改输入列表。",
+      "0≤rate,coupling≤2；initial 分量绝对值≤10；times 长度 1—20，0≤t≤10。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "对 x1 求导，验证 −rate*x1+coupling*x2；重复特征值（eigenvalue）不一定导致不可对角化，但本题 coupling≠0 时会。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    rate: float,\n    coupling: float,\n    initial: list[float],\n    times: list[float],\n) -> list[list[float]]:\n    # 根据题意计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "rate": 1,
+          "coupling": 1,
+          "initial": [
+            0,
+            1
+          ],
+          "times": [
+            0,
+            1
+          ]
+        },
+        "expected": [
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.36787944117144233,
+            0.36787944117144233
+          ]
+        ],
+        "explanation": "t=1 时两分量均为 exp(−1)；x1 含 t 因子，不能用两个相同的纯指数模态（mode）假装完成分解。"
+      }
+    ]
+  },
+  {
+    "id": "p03-complex-meaning",
+    "slug": "p03-complex-meaning",
+    "version": "1",
+    "lesson_id": "P03-C02-S03",
+    "part": "3",
+    "chapter": "3.2",
+    "title": "虚数不是虚构的物理量",
+    "type": "choice",
+    "statement": "对 z=x1+i x2，i²=−1，z′=(−alpha+i omega)z。哪些解释正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "i omega 部分描述平面旋转。"
+      },
+      {
+        "id": "B",
+        "text": "实状态（state） x1,x2 必须变成复数（complex number）测量。"
+      },
+      {
+        "id": "C",
+        "text": "e^(iθ)=cosθ+i sinθ 把复指数与实平面联系起来。"
+      },
+      {
+        "id": "D",
+        "text": "alpha>0 时半径按指数缩小。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-exchange-no-oscillation",
+    "slug": "p03-exchange-no-oscillation",
+    "version": "1",
+    "lesson_id": "P03-C02-S03",
+    "part": "3",
+    "chapter": "3.2",
+    "title": "封闭两室会自发振荡吗",
+    "type": "choice",
+    "statement": "普通封闭双向交换的 a,b>0。特征值（eigenvalue）为 0 与 −(a+b)。哪些成立？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "总量模态（mode）保持不变。"
+      },
+      {
+        "id": "B",
+        "text": "差异向平衡（equilibrium）分配指数衰减。"
+      },
+      {
+        "id": "C",
+        "text": "必然产生周期性正负摆动。"
+      },
+      {
+        "id": "D",
+        "text": "人工旋转模型（model）的负偏差不能解释成负物质量。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-defective-limit",
+    "slug": "p03-defective-limit",
+    "version": "1",
+    "lesson_id": "P03-C02-S03",
+    "part": "3",
+    "chapter": "3.2",
+    "title": "能否总把矩阵对角化",
+    "type": "choice",
+    "statement": "矩阵（matrix） [[−1,1],[0,−1]] 只有一个独立特征向量（eigenvector）。正确处理是？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "强行求两列相同向量（vector）组成的矩阵的逆。"
+      },
+      {
+        "id": "B",
+        "text": "认为微分方程没有解。"
+      },
+      {
+        "id": "C",
+        "text": "按耦合方程求解，或用不依赖完整特征向量组的矩阵指数（matrix exponential）方法。"
+      },
+      {
+        "id": "D",
+        "text": "删掉非对角元素，认为特征值（eigenvalue）一样就没有区别。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-scaled-field",
+    "slug": "p03-scaled-field",
+    "version": "1",
+    "lesson_id": "P03-C03-S01",
+    "part": "3",
+    "chapter": "3.3",
+    "title": "同一条路径可以走得更快",
+    "type": "python",
+    "statement": "无输入（input）二维系统 x′=Mx。对指定状态（state）点计算变化率，再把整个 M 乘正数 multiplier。返回原向量场（vector field）、缩放后的向量场，以及缩放后每点的欧几里得速度。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "2×2 系统矩阵（matrix）。",
+        "unit": "1/T"
+      },
+      {
+        "name": "points",
+        "type": "list[list[float]]",
+        "description": "各行是一个状态点 [x1,x2]，分量使用同一单位。",
+        "unit": "U"
+      },
+      {
+        "name": "multiplier",
+        "type": "float",
+        "description": "全部变化率的共同倍率。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "original",
+        "type": "list[list[float]]",
+        "description": "原模型（model）各点的变化率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "scaled",
+        "type": "list[list[float]]",
+        "description": "乘倍率后的变化率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "speeds",
+        "type": "list[float]",
+        "description": "缩放变化率的长度，顺序与 points 相同。",
+        "unit": "U/T"
+      }
+    ],
+    "contract": "original[i]=M×points[i]；scaled=multiplier×original；speeds[i]=sqrt(scaled[i][0]²+scaled[i][1]²)。",
+    "constraints": [
+      "所有数值有限；不修改输入列表。",
+      "matrix 各元素绝对值≤2；points 长度 1—30，各分量绝对值≤10；0.1≤multiplier≤5。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "正倍率保持方向和平衡（equilibrium）位置；轨迹（trajectory）位置与原模型的 multiplier×t 时刻对应。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    matrix: list[list[float]],\n    points: list[list[float]],\n    multiplier: float,\n) -> tuple[list[list[float]], list[list[float]], list[float]]:\n    # 根据题意计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              -1,
+              0
+            ],
+            [
+              0,
+              -2
+            ]
+          ],
+          "points": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "multiplier": 2
+        },
+        "expected": [
+          [
+            [
+              -1,
+              -2
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              -2,
+              -4
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            4.47213595499958,
+            0.0
+          ]
+        ],
+        "explanation": "在 [1,1] 原方向为 [−1,−2]，加倍后 [−2,−4]，速度为 sqrt(20)；原点速度为零。"
+      }
+    ]
+  },
+  {
+    "id": "p03-phase-time",
+    "slug": "p03-phase-time",
+    "version": "1",
+    "lesson_id": "P03-C03-S01",
+    "part": "3",
+    "chapter": "3.3",
+    "title": "一张相图省略了什么",
+    "type": "choice",
+    "statement": "两条相轨迹（phase trajectory）几何路径完全重合，箭头同向，但一条模型（model）的变化率是另一条的两倍。哪些成立？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "同一路径不保证同一时刻位于同一点。"
+      },
+      {
+        "id": "B",
+        "text": "时间曲线可以区分二者。"
+      },
+      {
+        "id": "C",
+        "text": "几何路径已证明速度相同。"
+      },
+      {
+        "id": "D",
+        "text": "相图（phase portrait）加等时间标记能帮助比较速度。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-normalized-arrows",
+    "slug": "p03-normalized-arrows",
+    "version": "1",
+    "lesson_id": "P03-C03-S01",
+    "part": "3",
+    "chapter": "3.3",
+    "title": "等长箭头可以比较速度吗",
+    "type": "choice",
+    "statement": "方向场把所有非零箭头都归一化为相同长度。下列哪项解释正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "只说明方向，速度需看数值或等时间标记。"
+      },
+      {
+        "id": "B",
+        "text": "所有状态（state）点速度都一样。"
+      },
+      {
+        "id": "C",
+        "text": "平衡（equilibrium）点必须画一个任意方向的箭头。"
+      },
+      {
+        "id": "D",
+        "text": "箭头越密表示运动越快。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-equilibrium-direction",
+    "slug": "p03-equilibrium-direction",
+    "version": "1",
+    "lesson_id": "P03-C03-S01",
+    "part": "3",
+    "chapter": "3.3",
+    "title": "一条分量为零等于平衡吗",
+    "type": "choice",
+    "statement": "某点 x′=[0,2] U/T。对于二维自治系统，这个点是什么情况？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "已在平衡（equilibrium），因为第一分量为零。"
+      },
+      {
+        "id": "B",
+        "text": "沿第二坐标正向运动，尚非平衡。"
+      },
+      {
+        "id": "C",
+        "text": "必定沿封闭周期运动。"
+      },
+      {
+        "id": "D",
+        "text": "所有初值（initial condition）都会经过它。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-closed-state",
+    "slug": "p03-closed-state",
+    "version": "1",
+    "lesson_id": "P03-C03-S02",
+    "part": "3",
+    "chapter": "3.3",
+    "title": "关闭通道后物质流向哪里",
+    "type": "python",
+    "statement": "无输入（input）、无清除的封闭两室，a 表示 1→2，b 表示 2→1。给定初值（initial condition），在各时刻返回物质量。允许关闭一个或两个交换通道。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "float",
+        "description": "室 1 到室 2 的交换系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "室 2 到室 1 的交换系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "初始 [A1,A2]。",
+        "unit": "U"
+      },
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "所求时刻，顺序保持不变。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "states",
+        "type": "list[list[float]]",
+        "description": "每个时刻的 [A1,A2]。",
+        "unit": "U"
+      }
+    ],
+    "contract": "总量 S=sum(initial)。a+b>0 时 A1*=bS/(a+b)，A1(t)=A1*+(initial[0]−A1*)exp(−(a+b)t)，A2=S−A1；a=b=0 时保持初值。",
+    "constraints": [
+      "所有数值有限；不修改输入列表。",
+      "0≤a,b≤1；initial 长度 2，各分量 0—20；times 长度 1—30，0≤t≤30。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "分别检查双向、单向与完全断开；在 a+b=0 时不要做除法。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    a: float,\n    b: float,\n    initial: list[float],\n    times: list[float],\n) -> list[list[float]]:\n    # 根据题意计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "a": 0.2,
+          "b": 0.1,
+          "initial": [
+            6,
+            0
+          ],
+          "times": [
+            0,
+            2
+          ]
+        },
+        "expected": [
+          [
+            6.0,
+            0.0
+          ],
+          [
+            4.195246544376105,
+            1.8047534556238942
+          ]
+        ],
+        "explanation": "总量为 6 U，平衡（equilibrium）为 [2,4] U；t=2 时 A1=2+4exp(−0.6)，A2=6−A1。"
+      }
+    ]
+  },
+  {
+    "id": "p03-channel-off",
+    "slug": "p03-channel-off",
+    "version": "1",
+    "lesson_id": "P03-C03-S02",
+    "part": "3",
+    "chapter": "3.3",
+    "title": "只关闭回流通道",
+    "type": "choice",
+    "statement": "封闭系统 a>0、b=0，总量为 6 U。哪些成立？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "长期趋向 [0,6] U。"
+      },
+      {
+        "id": "B",
+        "text": "总物质量仍守恒。"
+      },
+      {
+        "id": "C",
+        "text": "只要 b=0，就所有状态（state）都是平衡（equilibrium）。"
+      },
+      {
+        "id": "D",
+        "text": "平衡集合在非负区域为 A1=0、A2 任意非负值。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-axis-scale",
+    "slug": "p03-axis-scale",
+    "version": "1",
+    "lesson_id": "P03-C03-S02",
+    "part": "3",
+    "chapter": "3.3",
+    "title": "拉伸坐标会改变系统吗",
+    "type": "choice",
+    "statement": "同一轨迹（trajectory）把横坐标绘图比例扩大十倍，纵轴不变，时间和数据不变。哪些成立？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "外观角度和长度可能变，但方程没有改变。"
+      },
+      {
+        "id": "B",
+        "text": "由图上角度变化可证明耦合系数增大。"
+      },
+      {
+        "id": "C",
+        "text": "比较方向时应读坐标刻度与单位。"
+      },
+      {
+        "id": "D",
+        "text": "若比较欧几里得几何，应采用等比例轴或解释坐标变换。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-all-channels-off",
+    "slug": "p03-all-channels-off",
+    "version": "1",
+    "lesson_id": "P03-C03-S02",
+    "part": "3",
+    "chapter": "3.3",
+    "title": "两个通道都关闭",
+    "type": "choice",
+    "statement": "封闭两室 a=b=0，从 [2,4] 开始。下列哪项正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "最终自动均分为 [3,3]。"
+      },
+      {
+        "id": "B",
+        "text": "保持 [2,4]，且非负区域的每个状态（state）都是平衡（equilibrium）。"
+      },
+      {
+        "id": "C",
+        "text": "总量会衰减到零。"
+      },
+      {
+        "id": "D",
+        "text": "模型（model）必须产生振荡才能保持守恒。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-jacobian",
+    "slug": "p03-jacobian",
+    "version": "1",
+    "lesson_id": "P03-C04-S01",
+    "part": "3",
+    "chapter": "3.4",
+    "title": "逐列检查局部变化率",
+    "type": "python",
+    "statement": "模型（model） f1=u−aA1+bA2−vA1/(K+A1)，f2=aA1−bA2。计算指定状态（state）的 雅可比矩阵（Jacobian matrix），并用中心差分（central difference）逐列检查，返回解析矩阵（matrix）和最大元素差。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "list[float]",
+        "description": "指定 [A1,A2]，不要求恰好平衡（equilibrium）。",
+        "unit": "U"
+      },
+      {
+        "name": "a",
+        "type": "float",
+        "description": "室 1 到室 2 的交换系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "室 2 到室 1 的交换系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "u",
+        "type": "float",
+        "description": "进入室 1 的输入（input）速率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "v",
+        "type": "float",
+        "description": "室 1 饱和清除的最大速率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "K",
+        "type": "float",
+        "description": "清除速率达到 v/2 时的物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "epsilon",
+        "type": "float",
+        "description": "每次只扰动一个物质量分量的幅度。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "Jij=∂fi/∂Aj，先行后列。",
+        "unit": "1/T"
+      },
+      {
+        "name": "error",
+        "type": "float",
+        "description": "解析与中心差分矩阵逐元素绝对差的最大值。",
+        "unit": "1/T"
+      }
+    ],
+    "contract": "J=[[-a−vK/(K+A1)²,b],[a,−b]]。中心差分第 j 列为 (f(state+epsilon*e_j)−f(state−epsilon*e_j))/(2epsilon)。不对两个分量同时扰动。",
+    "constraints": [
+      "所有数值有限；不修改输入列表。",
+      "0≤a≤1；0.05≤b≤1；0≤u≤1；0.5≤v,K≤3；state 两项均 0.5—10；1e−3≤epsilon≤0.1。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "中心差分与解析式一致只核验导数实现，不证明线性近似在远处或长期仍准确。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: list[float],\n    a: float,\n    b: float,\n    u: float,\n    v: float,\n    K: float,\n    epsilon: float,\n) -> tuple[list[list[float]], float]:\n    # 根据题意计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": [
+            2,
+            4
+          ],
+          "a": 0.2,
+          "b": 0.1,
+          "u": 0.5,
+          "v": 1,
+          "K": 2,
+          "epsilon": 0.01
+        },
+        "expected": [
+          [
+            [
+              -0.325,
+              0.1
+            ],
+            [
+              0.2,
+              -0.1
+            ]
+          ],
+          7.812548805108399e-07
+        ],
+        "explanation": "在 [2,4] 清除导数（derivative）为 1×2/(2+2)²=0.125 /T，所以第一行是 [−0.325,0.1]；有限差分（finite difference）只产生很小的近似误差。"
+      }
+    ]
+  },
+  {
+    "id": "p03-chain-rate",
+    "slug": "p03-chain-rate",
+    "version": "1",
+    "lesson_id": "P03-C04-S01",
+    "part": "3",
+    "chapter": "3.4",
+    "title": "沿轨迹计算平方距离的变化",
+    "type": "python",
+    "statement": "两个状态（state）分量单位均为 U。定义 g(x)=1/2(x1²+x2²)，当前变化率已给出。返回 g 的梯度（gradient），以及沿轨迹（trajectory）的变化率。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "list[float]",
+        "description": "当前二维状态。",
+        "unit": "U"
+      },
+      {
+        "name": "rates",
+        "type": "list[float]",
+        "description": "当前 [x1′,x2′]。",
+        "unit": "U/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "gradient",
+        "type": "list[float]",
+        "description": "[∂g/∂x1,∂g/∂x2]。",
+        "unit": "U"
+      },
+      {
+        "name": "change",
+        "type": "float",
+        "description": "dg/dt。",
+        "unit": "U²/T"
+      }
+    ],
+    "contract": "gradient=[x1,x2]；dg/dt=gradient[0]*rates[0]+gradient[1]*rates[1]。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "两列表长度为 2；各分量绝对值≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "这里问的是沿给定运动的变化率，不是 g 本身，也不是两个变化率的平方和。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: list[float],\n    rates: list[float],\n) -> tuple[list[float], float]:\n    # 根据题意计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": [
+            3,
+            4
+          ],
+          "rates": [
+            -1,
+            2
+          ]
+        },
+        "expected": [
+          [
+            3,
+            4
+          ],
+          5
+        ],
+        "explanation": "梯度为 [3,4] U，沿轨迹变化率为 3×(−1)+4×2=5 U²/T。"
+      }
+    ]
+  },
+  {
+    "id": "p03-partial-meaning",
+    "slug": "p03-partial-meaning",
+    "version": "1",
+    "lesson_id": "P03-C04-S01",
+    "part": "3",
+    "chapter": "3.4",
+    "title": "偏导数固定什么",
+    "type": "choice",
+    "statement": "计算 f1 对 A1 的偏导（partial derivative）时，以下哪些操作正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "保持 A2 与模型（model）参数（parameter）不变。"
+      },
+      {
+        "id": "B",
+        "text": "把 A2 同时改为 A2+epsilon。"
+      },
+      {
+        "id": "C",
+        "text": "对 vA1/(K+A1) 求导得到 vK/(K+A1)²。"
+      },
+      {
+        "id": "D",
+        "text": "结果单位为 (U/T)/U=1/T。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-affine-approximation",
+    "slug": "p03-affine-approximation",
+    "version": "1",
+    "lesson_id": "P03-C04-S01",
+    "part": "3",
+    "chapter": "3.4",
+    "title": "不是平衡时还缺哪一项",
+    "type": "choice",
+    "statement": "在任意点 x0 附近，一阶 Taylor 近似 f(x0+δ) 应写成？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "J(x0)δ，总是没有常数项。"
+      },
+      {
+        "id": "B",
+        "text": "f(x0)+J(x0)δ。"
+      },
+      {
+        "id": "C",
+        "text": "J(x0)x0，与 δ 无关。"
+      },
+      {
+        "id": "D",
+        "text": "f(δ)，因为只是改了名字。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-difference-proof",
+    "slug": "p03-difference-proof",
+    "version": "1",
+    "lesson_id": "P03-C04-S01",
+    "part": "3",
+    "chapter": "3.4",
+    "title": "差分一致性证明了什么",
+    "type": "choice",
+    "statement": "解析 雅可比矩阵（Jacobian matrix） 与中心差分（central difference）在一个点十分接近。哪些结论可以得出？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "在所测点、扰动和精度下，两种导数（derivative）计算一致。"
+      },
+      {
+        "id": "B",
+        "text": "原非线性模型（model）必定真实描述人体。"
+      },
+      {
+        "id": "C",
+        "text": "任意大扰动都能由这一个矩阵（matrix）准确预测。"
+      },
+      {
+        "id": "D",
+        "text": "仍需要不同扰动幅度和轨迹（trajectory）误差对照。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-local-trajectories",
+    "slug": "p03-local-trajectories",
+    "version": "1",
+    "lesson_id": "P03-C04-S02",
+    "part": "3",
+    "chapter": "3.4",
+    "title": "比较原模型与平衡附近的近似",
+    "type": "python",
+    "statement": "沿用饱和清除两室模型（model） f1=u−aA1+bA2−vA1/(K+A1)，f2=aA1−bA2。u<v，平衡（equilibrium）为 x*=[uK/(v−u),a uK/(b(v−u))]。按同一步长分别推进原模型与局部线性模型。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "两条轨迹（trajectory）共同的非负初始物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "a",
+        "type": "float",
+        "description": "室 1 到室 2 的交换系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "室 2 到室 1 的交换系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "u",
+        "type": "float",
+        "description": "进入室 1 的输入（input）速率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "v",
+        "type": "float",
+        "description": "室 1 饱和清除的最大速率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "K",
+        "type": "float",
+        "description": "清除速率达到 v/2 时的物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "h",
+        "type": "float",
+        "description": "显式欧拉法（forward Euler method）步长。",
+        "unit": "T"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "更新次数。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "original",
+        "type": "list[list[float]]",
+        "description": "原模型轨迹，含初值（initial condition）共 steps+1 行。",
+        "unit": "U"
+      },
+      {
+        "name": "linear",
+        "type": "list[list[float]]",
+        "description": "局部近似轨迹，形状相同。",
+        "unit": "U"
+      },
+      {
+        "name": "error",
+        "type": "float",
+        "description": "所有时刻、两个分量上绝对差的最大值。",
+        "unit": "U"
+      }
+    ],
+    "contract": "每步原模型 x←x+h*f(x)；局部模型 z←z+h*J(x*)*(z−x*)，J=[[-a−vK/(K+x1*)²,b],[a,−b]]。每条轨迹使用自己的段首状态（state）；不裁剪，不在每步重新选平衡。",
+    "constraints": [
+      "所有数值有限；不修改输入列表。",
+      "0.1≤a,b≤0.5；0.1≤u≤0.5；1≤v,K≤2；initial 分量 0—10；0<h≤0.05；0≤steps≤400。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先由总收支（mass balance）求平衡，再计算该点 J；必须用 z−x* 而不是直接用 z。本题判定离散规则，连续轨迹精度另用步长细化检查。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    initial: list[float],\n    a: float,\n    b: float,\n    u: float,\n    v: float,\n    K: float,\n    h: float,\n    steps: int,\n) -> tuple[list[list[float]], list[list[float]], float]:\n    # 根据题意计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "initial": [
+            2.2,
+            4
+          ],
+          "a": 0.2,
+          "b": 0.1,
+          "u": 0.5,
+          "v": 1,
+          "K": 2,
+          "h": 0.05,
+          "steps": 2
+        },
+        "expected": [
+          [
+            [
+              2.2,
+              4
+            ],
+            [
+              2.1968095238095238,
+              4.002
+            ],
+            [
+              2.1936790527303702,
+              4.003958095238095
+            ]
+          ],
+          [
+            [
+              2.2,
+              4
+            ],
+            [
+              2.19675,
+              4.002
+            ],
+            [
+              2.1935628125,
+              4.003957499999999
+            ]
+          ],
+          0.00011624023037004605
+        ],
+        "explanation": "两条轨迹都从 [2.2,4] 开始。原模型首步第一分量约 2.19680952，局部模型为 2.19675；差异来自清除项曲率。"
+      }
+    ]
+  },
+  {
+    "id": "p03-deviation-variable",
+    "slug": "p03-deviation-variable",
+    "version": "1",
+    "lesson_id": "P03-C04-S02",
+    "part": "3",
+    "chapter": "3.4",
+    "title": "线性化究竟推进哪一个量",
+    "type": "choice",
+    "statement": "x*= [2,4] 是平衡（equilibrium），δ=x−x*。正确的局部模型（model）是哪一项？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "δ′=Jδ；若记录绝对状态（state）则 x′≈J(x−x*)。"
+      },
+      {
+        "id": "B",
+        "text": "x′≈Jx，完全不必减平衡。"
+      },
+      {
+        "id": "C",
+        "text": "δ′=Jx*。"
+      },
+      {
+        "id": "D",
+        "text": "x(t)=x* 对所有初值（initial condition）都成立。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-local-error-order",
+    "slug": "p03-local-error-order",
+    "version": "1",
+    "lesson_id": "P03-C04-S02",
+    "part": "3",
+    "chapter": "3.4",
+    "title": "小扰动误差如何缩小",
+    "type": "choice",
+    "statement": "在平衡（equilibrium） [2,4] 周围只把 A1 增加 ε，v=1 U/T、K=2 U。饱和清除造成的向量场（vector field）一阶近似余项绝对值是 ε²/[8(4+ε)]（数值按 U、T）。ε 足够小时减半，余项约变成多少？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "一半。"
+      },
+      {
+        "id": "B",
+        "text": "四分之一。"
+      },
+      {
+        "id": "C",
+        "text": "两倍。"
+      },
+      {
+        "id": "D",
+        "text": "始终为零。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-model-numerical-error",
+    "slug": "p03-model-numerical-error",
+    "version": "1",
+    "lesson_id": "P03-C04-S02",
+    "part": "3",
+    "chapter": "3.4",
+    "title": "两条曲线接近是否足够",
+    "type": "choice",
+    "statement": "用很粗欧拉步长比较原模型（model）与线性化（linearization）。两条曲线很接近。哪些后续动作合理？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "减半步长，分别检查每条轨迹（trajectory）是否稳定收敛。"
+      },
+      {
+        "id": "B",
+        "text": "直接宣布原系统全局线性。"
+      },
+      {
+        "id": "C",
+        "text": "比较近、远两组扰动，并保持其他条件不变。"
+      },
+      {
+        "id": "D",
+        "text": "把离散误差与模型线性化误差区分开。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-local-stability",
+    "slug": "p03-local-stability",
+    "version": "1",
+    "lesson_id": "P03-C04-S02",
+    "part": "3",
+    "chapter": "3.4",
+    "title": "负特征值的结论到哪里为止",
+    "type": "choice",
+    "statement": "光滑非线性模型（model）在内点平衡（equilibrium）的 雅可比矩阵（Jacobian matrix） 所有特征值（eigenvalue）实部严格为负。哪些解释正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "可推出该平衡的局部渐近稳定（local asymptotic stability）。"
+      },
+      {
+        "id": "B",
+        "text": "任何初值（initial condition）都一定回到该平衡。"
+      },
+      {
+        "id": "C",
+        "text": "有限几条模拟轨迹（trajectory）不能替代全局论证。"
+      },
+      {
+        "id": "D",
+        "text": "存在零实部特征值时，应继续分析高阶项而不直接套用此结论。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-cap-units",
+    "slug": "p03-cap-units",
+    "version": "1",
+    "lesson_id": "P03-SUMMARY",
+    "part": "3",
+    "chapter": "3.summary",
+    "title": "两室状态与浓度观测",
+    "type": "choice",
+    "statement": "两个固定容积的室 V1=2 L、V2=1 L，物质量状态（state）为 [2,4] U。哪一项正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "状态总量为 6 U，室 1 浓度（concentration）为 1 U/L。"
+      },
+      {
+        "id": "B",
+        "text": "总量为 5 U/L。"
+      },
+      {
+        "id": "C",
+        "text": "两室量之比必定等于浓度之比。"
+      },
+      {
+        "id": "D",
+        "text": "把观测（observation）由总量换成浓度，会自动改变实际交换机制。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-cap-signs",
+    "slug": "p03-cap-signs",
+    "version": "1",
+    "lesson_id": "P03-SUMMARY",
+    "part": "3",
+    "chapter": "3.summary",
+    "title": "交换与外部损失的区别",
+    "type": "choice",
+    "statement": "M=[[-a-c,b],[a,−b]]，输入（input）为 [u,0] U/T，状态（state）为两室物质量。哪些正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "第一列的和是 −c。"
+      },
+      {
+        "id": "B",
+        "text": "总变化率为 u−cA1。"
+      },
+      {
+        "id": "C",
+        "text": "aA1 和 bA2 都应再从总量扣除。"
+      },
+      {
+        "id": "D",
+        "text": "非对角正项表示来自另一室的接收。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-integrated-balance",
+    "slug": "p03-integrated-balance",
+    "version": "1",
+    "lesson_id": "P03-SUMMARY",
+    "part": "3",
+    "chapter": "3.summary",
+    "title": "用收支、矩阵和观测互相核对",
+    "type": "python",
+    "statement": "比较两个固定容积的组织室。室 1 有输入（input） u 和线性清除 cA1，室间交换为 aA1、bA2。返回系统矩阵（matrix）、平衡（equilibrium）物质量与平衡浓度（concentration）；体积只用于观测（observation），不改变题设按物质量定义的交换系数。",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "float",
+        "description": "室 1 到室 2 的交换系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "室 2 到室 1 的交换系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "c",
+        "type": "float",
+        "description": "仅从室 1 清除的系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "u",
+        "type": "float",
+        "description": "仅进入室 1 的恒定输入速率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "volume1",
+        "type": "float",
+        "description": "室 1 固定容积。",
+        "unit": "L"
+      },
+      {
+        "name": "volume2",
+        "type": "float",
+        "description": "室 2 固定容积。",
+        "unit": "L"
+      }
+    ],
+    "returns": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "物质量状态（state）的 2×2 矩阵。",
+        "unit": "1/T"
+      },
+      {
+        "name": "equilibrium",
+        "type": "list[float]",
+        "description": "两个室的平衡物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "concentrations",
+        "type": "list[float]",
+        "description": "两个室的平衡浓度。",
+        "unit": "U/L"
+      }
+    ],
+    "contract": "M=[[-a-c,b],[a,-b]]；由 Mx*+[u,0]=0 求平衡；浓度分别为 x1*/volume1、x2*/volume2。",
+    "constraints": [
+      "所有数值有限；不修改输入列表。",
+      "0≤a≤1；0.05≤b,c≤1；0≤u≤5；0.1≤volume1,volume2≤10。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "相加两条方程检查 u=cA1*；再检查 aA1*=bA2*；容积不应擅自乘进物质量交换矩阵。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    a: float,\n    b: float,\n    c: float,\n    u: float,\n    volume1: float,\n    volume2: float,\n) -> tuple[list[list[float]], list[float], list[float]]:\n    # 根据题意计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "a": 0.2,
+          "b": 0.1,
+          "c": 0.5,
+          "u": 1,
+          "volume1": 2,
+          "volume2": 1
+        },
+        "expected": [
+          [
+            [
+              -0.7,
+              0.1
+            ],
+            [
+              0.2,
+              -0.1
+            ]
+          ],
+          [
+            2.0,
+            4.0
+          ],
+          [
+            1.0,
+            4.0
+          ]
+        ],
+        "explanation": "平衡物质量 [2,4] U；除以 [2,1] L 后浓度为 [1,4] U/L。"
+      }
+    ]
+  },
+  {
+    "id": "p03-cap-modes",
+    "slug": "p03-cap-modes",
+    "version": "1",
+    "lesson_id": "P03-SUMMARY",
+    "part": "3",
+    "chapter": "3.summary",
+    "title": "初值与观测共同决定可见模态",
+    "type": "python",
+    "statement": "对称两室 M=[[-a-c,a],[a,−a-c]]，无输入（input），两个室都以 c 清除。观测（observation） y=weights[0]A1+weights[1]A2。计算两个模态（mode）及它们在观测中的逐时贡献，区分没有激发和被观测抵消。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "float",
+        "description": "双向交换系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "c",
+        "type": "float",
+        "description": "每室清除系数（elimination rate constant）。",
+        "unit": "1/T"
+      },
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "起始两室物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "weights",
+        "type": "list[float]",
+        "description": "两个观测权重。",
+        "unit": "1"
+      },
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "所求时刻。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "eigenvalues",
+        "type": "list[float]",
+        "description": "共同、差异模态顺序。",
+        "unit": "1/T"
+      },
+      {
+        "name": "coefficients",
+        "type": "list[float]",
+        "description": "未归一化 [1,1]、[1,−1] 的初值（initial condition）系数。",
+        "unit": "U"
+      },
+      {
+        "name": "states",
+        "type": "list[list[float]]",
+        "description": "每个时刻 [A1,A2]。",
+        "unit": "U"
+      },
+      {
+        "name": "contributions",
+        "type": "list[list[float]]",
+        "description": "每行分别为共同模态、差异模态对 y 的贡献，两项之和等于 y。",
+        "unit": "U"
+      }
+    ],
+    "contract": "共同模态特征值（eigenvalue） −c，差异模态 −(2a+c)。先把 initial 分解到 [1,1] 和 [1,−1]，再分别传播，并分别乘观测权重与该方向的内积（inner product）；输出（output）顺序固定。",
+    "constraints": [
+      "所有数值有限；不修改输入列表。",
+      "0.05≤a≤1；0≤c≤1；initial 长度 2，分量 0—20；weights 长度 2，分量绝对值≤2；times 长度 1—20，0≤t≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "用两条独立路径核对 y：直接对 states 加权，以及把 contributions 的两项相加。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    a: float,\n    c: float,\n    initial: list[float],\n    weights: list[float],\n    times: list[float],\n) -> tuple[list[float], list[float], list[list[float]], list[list[float]]]:\n    # 根据题意计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "a": 0.2,
+          "c": 0.1,
+          "initial": [
+            6,
+            0
+          ],
+          "weights": [
+            1,
+            1
+          ],
+          "times": [
+            0,
+            2
+          ]
+        },
+        "expected": [
+          [
+            -0.1,
+            -0.5
+          ],
+          [
+            3.0,
+            3.0
+          ],
+          [
+            [
+              6.0,
+              0.0
+            ],
+            [
+              3.5598305827482726,
+              1.3525539357196186
+            ]
+          ],
+          [
+            [
+              6.0,
+              0.0
+            ],
+            [
+              4.912384518467891,
+              0.0
+            ]
+          ]
+        ],
+        "explanation": "初值系数 [3,3] U，两个模态都被激发；总量观测 weights=[1,1] 把差异模态抵消，t=0 的两项观测贡献为 [6,0] U。"
+      }
+    ]
+  },
+  {
+    "id": "p03-cap-phase",
+    "slug": "p03-cap-phase",
+    "version": "1",
+    "lesson_id": "P03-SUMMARY",
+    "part": "3",
+    "chapter": "3.summary",
+    "title": "连接方向平衡与固定时刻",
+    "type": "python",
+    "statement": "封闭交换 a,b≥0 且 a+b>0，整个向量场（vector field）再乘正倍率 multiplier。给定完整初值（initial condition），计算起点方向、该守恒总量选定的平衡（equilibrium），以及指定时刻的状态（state）。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "float",
+        "description": "室 1 到室 2 的交换系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "室 2 到室 1 的交换系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "起始 [A1,A2]。",
+        "unit": "U"
+      },
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "指定观察时刻。",
+        "unit": "T"
+      },
+      {
+        "name": "multiplier",
+        "type": "float",
+        "description": "两个交换方向的共同倍率。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "rate",
+        "type": "list[float]",
+        "description": "乘倍率后的起点变化率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "equilibrium",
+        "type": "list[float]",
+        "description": "当前总量对应的平衡，不是有限时刻的末量。",
+        "unit": "U"
+      },
+      {
+        "name": "states",
+        "type": "list[list[float]]",
+        "description": "每个观察时刻的 [A1,A2]。",
+        "unit": "U"
+      }
+    ],
+    "contract": "内部交换守恒；平衡满足 aA1*=bA2*。倍率作用于两个变化率；用第 3.3 章闭式传播在 times 指定的时刻求解，不作欧拉近似。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "0≤a,b≤1，a+b≥0.05；initial 长度 2，各分量 0—20；0.1≤multiplier≤3；times 长度 1—20，0≤t≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "分开检查总量、平衡方程和时钟倍率；速度倍率不改变平衡分配。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    a: float,\n    b: float,\n    initial: list[float],\n    times: list[float],\n    multiplier: float,\n) -> tuple[list[float], list[float], list[list[float]]]:\n    # 根据题意计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "a": 0.2,
+          "b": 0.1,
+          "initial": [
+            6,
+            0
+          ],
+          "times": [
+            0,
+            1
+          ],
+          "multiplier": 2
+        },
+        "expected": [
+          [
+            -2.4000000000000004,
+            2.4000000000000004
+          ],
+          [
+            2.0,
+            4.0
+          ],
+          [
+            [
+              6.0,
+              0.0
+            ],
+            [
+              4.195246544376105,
+              1.8047534556238942
+            ]
+          ]
+        ],
+        "explanation": "起点方向从 [−1.2,1.2] 加倍为 [−2.4,2.4] U/T；平衡仍为 [2,4]，t=1 对应未加倍模型（model） t=2 的状态。"
+      }
+    ]
+  },
+  {
+    "id": "p03-integrated-output",
+    "slug": "p03-integrated-output",
+    "version": "1",
+    "lesson_id": "P03-SUMMARY",
+    "part": "3",
+    "chapter": "3.summary",
+    "title": "总量观测下看不见的运动",
+    "type": "choice",
+    "statement": "封闭交换 a=.2/T、b=.1/T，初值（initial condition） [6,0]。记录 y1=A1、y2=A1+A2。哪些正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "y2 一直为 6 U。"
+      },
+      {
+        "id": "B",
+        "text": "y1 从 6 向 2 U 靠近。"
+      },
+      {
+        "id": "C",
+        "text": "y2 不变说明两个室都没有运动。"
+      },
+      {
+        "id": "D",
+        "text": "从初值和平衡（equilibrium）的差 [4,−4] 可看出被总量观测（observation）抵消的变化方向。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p03-cap-local",
+    "slug": "p03-cap-local",
+    "version": "1",
+    "lesson_id": "P03-SUMMARY",
+    "part": "3",
+    "chapter": "3.summary",
+    "title": "分开模型差与步长差",
+    "type": "python",
+    "statement": "饱和两室 f1=u−aA1+bA2−vA1/(K+A1)，f2=aA1−bA2。给定若干初始物质量，用平衡（equilibrium）处同一 雅可比矩阵（Jacobian matrix） 比较原模型（model）和局部模型，并分别用半步长复算。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "initials",
+        "type": "list[list[float]]",
+        "description": "各行一组非负初值（initial condition）；各组独立实验。",
+        "unit": "U"
+      },
+      {
+        "name": "a",
+        "type": "float",
+        "description": "室 1 到室 2 的交换系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "室 2 到室 1 的交换系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "u",
+        "type": "float",
+        "description": "进入室 1 的输入（input）速率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "v",
+        "type": "float",
+        "description": "室 1 饱和清除的最大速率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "K",
+        "type": "float",
+        "description": "清除速率达到 v/2 时的物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "h",
+        "type": "float",
+        "description": "粗网格欧拉步长。",
+        "unit": "T"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "粗网格更新次数，细网格做两倍次数，终点相同。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "平衡处 雅可比矩阵。",
+        "unit": "1/T"
+      },
+      {
+        "name": "model_errors",
+        "type": "list[float]",
+        "description": "每组粗网格原模型与局部模型的最大分量差。",
+        "unit": "U"
+      },
+      {
+        "name": "grid_differences",
+        "type": "list[float]",
+        "description": "每组两种模型各自粗细对照的最大分量差，再在两种模型间取最大值。",
+        "unit": "U"
+      }
+    ],
+    "contract": "平衡 x*=[uK/(v−u),a uK/(b(v−u))]。粗网格各自用 x←x+h*f(x)、z←z+h*J(x*)*(z−x*)，两者都从该组初值出发。细网格 h/2 做 2*steps 次；只在与粗网格相同的时刻（细网格偶数下标）比较。各最大值包含起点、所有观察时刻与两个分量，不返回轨迹（trajectory）。",
+    "constraints": [
+      "所有数值有限；不修改输入列表。",
+      "initials 有 1—4 行，每行 2 个 0—10 的数；0.1≤a,b≤0.5；0.1≤u≤0.5；1≤v,K≤2；0<h≤0.05；0≤steps≤400。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "不要把细网格每个点直接与粗网格配对；先对齐时刻。步长差只评估数值变化，不是局部模型本身的误差。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    initials: list[list[float]],\n    a: float,\n    b: float,\n    u: float,\n    v: float,\n    K: float,\n    h: float,\n    steps: int,\n) -> tuple[list[list[float]], list[float], list[float]]:\n    # 根据题意计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "initials": [
+            [
+              2.2,
+              4
+            ],
+            [
+              5,
+              4
+            ]
+          ],
+          "a": 0.2,
+          "b": 0.1,
+          "u": 0.5,
+          "v": 1,
+          "K": 2,
+          "h": 0.05,
+          "steps": 2
+        },
+        "expected": [
+          [
+            [
+              -0.325,
+              0.1
+            ],
+            [
+              0.2,
+              -0.1
+            ]
+          ],
+          [
+            0.00011624023037004605,
+            0.015769960415719986
+          ],
+          [
+            3.079116360460432e-05,
+            0.00046186745407261753
+          ]
+        ],
+        "explanation": "两组共用平衡 [2,4] 和 J=[[-0.325,0.1],[0.2,−0.1]]。两步的粗轨迹与四步细轨迹在 t=0、0.05、0.1 对齐，分别求模型差和步长差。"
+      }
+    ]
+  },
+  {
+    "id": "p03-cap-scope",
+    "slug": "p03-cap-scope",
+    "version": "1",
+    "lesson_id": "P03-SUMMARY",
+    "part": "3",
+    "chapter": "3.summary",
+    "title": "误差表支持怎样的范围",
+    "type": "choice",
+    "statement": "某饱和模型（model）在相同 12 T 窗口内，近、远扰动的原模型与局部模型最大差分别为 0.004 U、0.55 U；两组的粗细网格差均小于各自模型差的 5%。这些是给定对照结果。若允许模型差不超过 0.01 U，哪些判断合理？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "近扰动在本次窗口和误差标准下通过。"
+      },
+      {
+        "id": "B",
+        "text": "远扰动在此标准下不通过。"
+      },
+      {
+        "id": "C",
+        "text": "这些结果足以证明所有初值（initial condition）和任意时长都适用。"
+      },
+      {
+        "id": "D",
+        "text": "主要差异不太可能仅由当前估计的网格误差解释，但仍须限制在已检查条件内。"
+      }
+    ],
+    "constraints": []
+  }
+]

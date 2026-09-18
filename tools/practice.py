@@ -16,6 +16,7 @@ import uuid
 from teaching_examples import example_view
 from question_contracts import contract_view, validate_contract, signature
 from course_content import question_banks
+from assessment import load_assessments, item_metadata, summarize_assessments
 
 ROOT=Path(__file__).resolve().parents[1]
 JUDGE_VERSION='named-parameters-2'
@@ -92,6 +93,8 @@ class PracticeEngine:
         questions, verification = question_banks()
         self.questions={q['id']:q for q in questions}
         self.verification=verification
+        self.assessments=load_assessments(questions)
+        self.assessment_items=item_metadata(self.assessments)
         for q in questions:
             if q['type']=='python':
                 validate_contract(q)
@@ -106,6 +109,8 @@ class PracticeEngine:
                     raise ValueError('记录字段不完整')
                 if record['state']=='FINISHED' and (not record.get('verdict') or ('selected' if record['type']=='choice' else 'source') not in record):
                     raise ValueError('完成记录缺少判定或快照')
+                if not isinstance(record['created_at'],str) or datetime.fromisoformat(record['created_at']).tzinfo is None:
+                    raise ValueError('记录时间无效，无法确定首次作答')
                 if record['state']!='FINISHED':
                     record.update(state='FINISHED',verdict='INTERRUPTED',ended_at=stamp(),message='本地程序重启前的计算未完成，请重新提交。')
                     self._save(record)
@@ -123,11 +128,15 @@ class PracticeEngine:
         record['saved']=True
 
     def catalog(self):
-        return [{key:q[key] for key in ['id','version','lesson_id','type','title','slug']} for q in self.questions.values()]
+        return [{**{key:q[key] for key in ['id','version','lesson_id','type','title','slug']},
+                 **({'assessment':self.assessment_items[q['id']]} if q['id'] in self.assessment_items else {})}
+                for q in self.questions.values()]
 
     def question(self,id):
         if id not in self.questions: raise RequestError(404,'没有这道练习。')
         question = copy.deepcopy(self.questions[id])
+        if id in self.assessment_items:
+            question['assessment']=copy.deepcopy(self.assessment_items[id])
         if question['type']=='python':
             question['example_view']=example_view(question)
             question['contract_view']=contract_view(question)
@@ -142,7 +151,8 @@ class PracticeEngine:
         with self.lock:
             passed={r['exercise_id'] for r in self.records.values() if r.get('saved') and r.get('state')=='FINISHED' and r.get('verdict')=='AC' and r.get('mode')=='full' and r.get('exercise_version')==self.questions.get(r.get('exercise_id'),{}).get('version')}
             started={r['exercise_id'] for r in self.records.values() if r.get('saved') and r.get('state')=='FINISHED' and r.get('verdict') not in {'SYSTEM_ERROR','CANCELLED','INTERRUPTED'} and r.get('exercise_version')==self.questions.get(r.get('exercise_id'),{}).get('version')}
-            return {'passed':sorted(passed),'started':sorted(started),'scope':'course','total':len(self.questions),'incomplete':bool(self.read_errors),'unreadable_files':self.read_errors,'active':self.active}
+            return {'passed':sorted(passed),'started':sorted(started),'scope':'course','total':len(self.questions),'incomplete':bool(self.read_errors),'unreadable_files':self.read_errors,'active':self.active,
+                'assessments':summarize_assessments(self.assessments,self.questions,self.records.values(),bool(self.read_errors))}
 
     def submit(self,payload,kind):
         with self.lock:
@@ -168,6 +178,8 @@ class PracticeEngine:
             record={**payload,'id':id,'schema_version':1,'request_hash':request_hash,'created_at':stamp(),'type':kind,
                 'mode':payload.get('mode','full'),'state':'PREPARING','saved':False,'judge_version':JUDGE_VERSION,
                 'question_sha256':digest(q),'verification_sha256':digest(self.verification[q['id']]),'python':platform.python_version()}
+            if q['id'] in self.assessment_items:
+                record['assessment_version']=self.assessment_items[q['id']]['assessment_version']
             if kind=='choice':
                 verification=self.verification[q['id']]
                 record.update(state='FINISHED',verdict='AC' if set(payload['selected'])==set(verification['correct']) else 'WA',ended_at=stamp(),result=verification)
