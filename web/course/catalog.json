@@ -103,7 +103,7 @@
           "knowledge": [
             "容器与箭头表示“多少”和“多快”",
             "按时间段手算收支（mass balance），再用循环累计",
-            "通过单位、边界与总量定位错误，不提前形式化差分方程"
+            "通过单位、边界与总量定位错误，不提前形式化差分方程（difference equation）"
           ],
           "focus": "对应练习 两段末应为 7 U、11 U；对应练习 整体净增应为 1 U。出现负存量时检查规则及条件，不能直接裁剪后宣称守恒。",
           "available": true,
@@ -390,6 +390,16 @@
             "outcome": "把边界、收支、反馈与候选模型比较用于三个相邻的生命系统情境。",
             "number": "篇末综合",
             "visualization": null,
+            "overview": {
+              "goals": "综合辨认边界、变量与收支（mass balance），比较候选规则，解释证据范围。",
+              "prerequisites": "本篇四章。",
+              "focus": "分开迁移与内部生成、局部与整体、计算核验与机制验证。",
+              "knowledge": [
+                "视野计数 → 选择边界与生成项",
+                "温度调节 → 核对反馈（feedback）与旁路",
+                "清除比较 → 保留独立预测和限制"
+              ]
+            },
             "questions": [
               {
                 "id": "p01-cap-boundary",
@@ -438,67 +448,519 @@
           "id": "2.1",
           "title": "用递推描述增长与清除",
           "url": "/chapters/02-01-用递推描述增长与清除/",
-          "goals": "由逐段收支（mass balance）得到差分方程，明确状态（state）、参数（parameter）、初值（initial condition）、步长与有限求和的角色。",
-          "prerequisites": "1.2、1.4；数学：中学函数、图像、指数对数和量纲（dimension）的最小复习、递推、有限求和和固定点代数。",
+          "goals": "由逐段收支（mass balance）形成差分方程（difference equation），区分每步保留比例与每时间清除系数（elimination rate constant），求固定点（fixed point）并解释逐步过程。",
+          "prerequisites": "第 1 篇 1.2、1.4；单位、函数与 Python 循环。下标、有限求和与等比和在本章引入。",
           "knowledge": [
-            "从表格走向下标与递推",
-            "比较每步损失比例与每时间清除系数（elimination rate constant）",
-            "求固定点，并说明它与逐步轨迹（trajectory）的区别"
+            "从逐步变化到递推规则",
+            "有限等比和与固定点",
+            "让实际时间间隔进入收支更新"
           ],
-          "focus": "对应练习 得到 1、1.5、1.75 U；对应练习 必须说明“离散模型（model）参数”与“连续速率的数值离散”各自含义，不能只按数值相等判断。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "focus": "以有限等比和和展开的加权输入（input）和独立核验递推；覆盖零步数、零清除、零输入和平衡（equilibrium）初值（initial condition）。改变 h 时，每步输入量和清除比例都随之改变。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P02-C01-S01",
+              "chapter_id": "2.1",
+              "path": "notebooks/02-系统随时间演化/01-用递推描述增长与清除/01-从逐步变化到递推规则.ipynb",
+              "title": "从逐步变化到递推规则",
+              "outcome": "能把逐步变化写成含下标的递推关系，区分初值、每步倍数和固定点；用有限求和核对累计变化。",
+              "number": "2.1.1",
+              "visualization": "web/time-evolution/index.html",
+              "questions": [
+                {
+                  "id": "p02-step-factor",
+                  "slug": "p02-step-factor",
+                  "title": "每步比例属于哪一个时钟",
+                  "type": "choice"
+                },
+                {
+                  "id": "p02-growth",
+                  "slug": "p02-growth",
+                  "title": "逐步计算保留或增长",
+                  "type": "python"
+                },
+                {
+                  "id": "p02-sum-index",
+                  "slug": "p02-sum-index",
+                  "title": "累计量为什么包含 n 项",
+                  "type": "choice"
+                },
+                {
+                  "id": "p02-fixed-point",
+                  "slug": "p02-fixed-point",
+                  "title": "不变状态与起点",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/02-01-用递推描述增长与清除/practice/?question=p02-step-factor"
+            },
+            {
+              "id": "P02-C01-S02",
+              "chapter_id": "2.1",
+              "path": "notebooks/02-系统随时间演化/01-用递推描述增长与清除/02-让时间进入收支更新.ipynb",
+              "title": "让时间进入收支更新",
+              "outcome": "能区分每步比例与每时间速率，把实际持续时间写入更新；用残差和独立累计账目检查实现。",
+              "number": "2.1.2",
+              "visualization": "web/time-evolution/index.html",
+              "questions": [
+                {
+                  "id": "p02-euler-balance",
+                  "slug": "p02-euler-balance",
+                  "title": "把每段流入和清除记到账上",
+                  "type": "python"
+                },
+                {
+                  "id": "p02-rate-unit",
+                  "slug": "p02-rate-unit",
+                  "title": "把速率转成每步比例",
+                  "type": "choice"
+                },
+                {
+                  "id": "p02-varying-steps",
+                  "slug": "p02-varying-steps",
+                  "title": "不等时长也要逐段记账",
+                  "type": "python"
+                },
+                {
+                  "id": "p02-balance-limit",
+                  "slug": "p02-balance-limit",
+                  "title": "零残差能证明什么",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/02-01-用递推描述增长与清除/practice/?question=p02-euler-balance"
+            }
+          ],
+          "visualization": "web/time-evolution/index.html"
         },
         {
           "id": "2.2",
           "title": "变化率与累积：微积分入口",
           "url": "/chapters/02-02-变化率与累积：微积分入口/",
-          "goals": "从有限变化率解释导数（derivative），从流量（flow）求和解释积分，并用基本定理连接二者。",
-          "prerequisites": "2.1；数学：递推、有限求和和固定点代数、极限（limit）直觉、导数、积分、基本定理和简单链式法则。",
+          "goals": "从差商（difference quotient）进入导数（derivative），从矩形累积进入定积分（definite integral），用微积分基本定理（fundamental theorem of calculus）连接二者，再用链式法则（chain rule）解释指数衰减。",
+          "prerequisites": "2.1；有限求和、函数读图与单位。极限（limit）、导数、定积分、指数和对数在本章从必要含义开始解释。",
           "knowledge": [
-            "缩短区间、割线（secant line）与局部斜率（slope）",
-            "矩形累积、积分记号和单位",
-            "导数与积分的联系、指数导数及后续需要的简单链式法则"
+            "从平均变化到导数",
+            "从矩形累积到定积分",
+            "指数、自然对数（natural logarithm）与链式法则"
           ],
-          "focus": "对应练习 的局部导数参考值为 2，累积参考值为 1；要求写出取样端点与误差，不能把离散求和定义成精确积分。",
-          "available": false,
-          "lessons": [],
+          "focus": "差商为 2t+h；左端和以等差求和独立检查，积分为 b²−a²；指数导数包含 −k。数值证据不替代极限定义，输入（input）积分也不自动等于终点存量（stock）。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P02-C02-S01",
+              "chapter_id": "2.2",
+              "path": "notebooks/02-系统随时间演化/02-变化率与累积微积分入口/01-从平均变化到导数.ipynb",
+              "title": "从平均变化到导数",
+              "outcome": "能用差商解释导数的含义和单位，区分有限区间斜率、局部斜率与浮点计算误差。",
+              "number": "2.2.1",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p02-slope-meaning",
+                  "slug": "p02-slope-meaning",
+                  "title": "平均变化与局部变化",
+                  "type": "choice"
+                },
+                {
+                  "id": "p02-difference",
+                  "slug": "p02-difference",
+                  "title": "用差商接近局部斜率",
+                  "type": "python"
+                },
+                {
+                  "id": "p02-limit-not-zero",
+                  "slug": "p02-limit-not-zero",
+                  "title": "趋近零与代入零",
+                  "type": "choice"
+                },
+                {
+                  "id": "p02-difference-noise",
+                  "slug": "p02-difference-noise",
+                  "title": "更小间隔总是更准确吗",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-slope-meaning"
+            },
+            {
+              "id": "P02-C02-S02",
+              "chapter_id": "2.2",
+              "path": "notebooks/02-系统随时间演化/02-变化率与累积微积分入口/02-从矩形累积到定积分.ipynb",
+              "title": "从矩形累积到定积分",
+              "outcome": "能把流率求和解释为定积分近似，用初值和净流率恢复存量，并解释连续输入与跳变输入下的累计曲线。",
+              "number": "2.2.2",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p02-area-unit",
+                  "slug": "p02-area-unit",
+                  "title": "流率曲线下面的面积",
+                  "type": "choice"
+                },
+                {
+                  "id": "p02-left-area",
+                  "slug": "p02-left-area",
+                  "title": "用左端矩形累积变化",
+                  "type": "python"
+                },
+                {
+                  "id": "p02-ftc",
+                  "slug": "p02-ftc",
+                  "title": "累积函数的变化率",
+                  "type": "choice"
+                },
+                {
+                  "id": "p02-jump-area",
+                  "slug": "p02-jump-area",
+                  "title": "输入跳变时存量是否跳变",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-area-unit"
+            },
+            {
+              "id": "P02-C02-S03",
+              "chapter_id": "2.2",
+              "path": "notebooks/02-系统随时间演化/02-变化率与累积微积分入口/03-指数对数与链式法则.ipynb",
+              "title": "指数对数与链式法则",
+              "outcome": "能解释指数函数、自然对数和简单链式法则，计算指数衰减曲线的变化率，并检查指数里的量纲。",
+              "number": "2.2.3",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p02-exponent-unit",
+                  "slug": "p02-exponent-unit",
+                  "title": "指数里的单位",
+                  "type": "choice"
+                },
+                {
+                  "id": "p02-chain-rule",
+                  "slug": "p02-chain-rule",
+                  "title": "给衰减曲线和变化率配对",
+                  "type": "python"
+                },
+                {
+                  "id": "p02-chain-factor",
+                  "slug": "p02-chain-factor",
+                  "title": "遗漏了哪个因子",
+                  "type": "choice"
+                },
+                {
+                  "id": "p02-integration-constant",
+                  "slug": "p02-integration-constant",
+                  "title": "相同导数为何还有不同曲线",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/02-02-变化率与累积：微积分入口/practice/?question=p02-exponent-unit"
+            }
+          ],
           "visualization": null
         },
         {
           "id": "2.3",
           "title": "连续时间与一阶微分方程",
           "url": "/chapters/02-03-连续时间与一阶微分方程/",
-          "goals": "推导并验证 dA/dt = u − kA 的恒定输入（input）解，说明初值（initial condition）、平衡（equilibrium）和时间尺度（time scale）。",
-          "prerequisites": "2.2；数学：极限（limit）直觉、导数（derivative）、积分、基本定理和简单链式法则、一阶 ODE、初值、分离变量和指数解。",
+          "goals": "推导 dA/dt=u−kA 的恒定输入（input）解，检查初值（initial condition）、方程与边界；区分平衡（equilibrium）位置、特征时间（characteristic time）和半衰期（half-life）。",
+          "prerequisites": "2.2；导数（derivative）、定积分（definite integral）、指数/对数和链式法则（chain rule）。分离变量与初值问题（initial value problem）在本章引入。",
           "knowledge": [
-            "从收支（mass balance）率形成初值问题（initial value problem）",
-            "先解无输入衰减，再通过偏离平衡求一般解",
-            "检查零清除、零输入和平衡初值，解释 1/k 的时间尺度"
+            "从收支（mass balance）率到初值问题",
+            "分离变量、偏离平衡与解析解（analytical solution）",
+            "比较平衡位置、到达比例与靠近速度"
           ],
-          "focus": "使用初值、方程残差（residual）和已知边界作独立依据；对应练习 平衡不变而特征时间减半，结论限于该恒定输入线性模型（model）。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "focus": "用初值、导数残差（residual）和高精度指数计算检查；k=0 单独返回 A0+ut，小 k 用 expm1(z)/z 的连续极限（limit）避免相减损失与 u/k 中间溢出。到达比例使用 −log(1−f)/k，条件为 k>0、0≤f<1、从零起步且 u>0。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P02-C03-S01",
+              "chapter_id": "2.3",
+              "path": "notebooks/02-系统随时间演化/03-连续时间与一阶微分方程/01-从收支率到一阶初值问题.ipynb",
+              "title": "从收支率到一阶初值问题",
+              "outcome": "能从持续收支推导一阶常微分方程，求出恒定输入解析解，并核对初值、方程和零清除等边界。",
+              "number": "2.3.1",
+              "visualization": "web/time-evolution/index.html",
+              "questions": [
+                {
+                  "id": "p02-ivp",
+                  "slug": "p02-ivp",
+                  "title": "方程还缺什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p02-exact",
+                  "slug": "p02-exact",
+                  "title": "恒定输入的连续解",
+                  "type": "python"
+                },
+                {
+                  "id": "p02-shift-equilibrium",
+                  "slug": "p02-shift-equilibrium",
+                  "title": "减去平衡为什么有用",
+                  "type": "choice"
+                },
+                {
+                  "id": "p02-zero-clearance",
+                  "slug": "p02-zero-clearance",
+                  "title": "不能除以零的分支",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-ivp"
+            },
+            {
+              "id": "P02-C03-S02",
+              "chapter_id": "2.3",
+              "path": "notebooks/02-系统随时间演化/03-连续时间与一阶微分方程/02-平衡位置与靠近速度.ipynb",
+              "title": "平衡位置与靠近速度",
+              "outcome": "能分开解释平衡位置和时间尺度，用自然对数求首次达到指定比例的时刻，辨认零清除与平衡初值等特例。",
+              "number": "2.3.2",
+              "visualization": "web/time-evolution/index.html",
+              "questions": [
+                {
+                  "id": "p02-timescale",
+                  "slug": "p02-timescale",
+                  "title": "同一平衡，不同速度",
+                  "type": "choice"
+                },
+                {
+                  "id": "p02-arrival",
+                  "slug": "p02-arrival",
+                  "title": "到达指定平衡比例要多久",
+                  "type": "python"
+                },
+                {
+                  "id": "p02-time-constant",
+                  "slug": "p02-time-constant",
+                  "title": "一个特征时间之后",
+                  "type": "choice"
+                },
+                {
+                  "id": "p02-solution-check",
+                  "slug": "p02-solution-check",
+                  "title": "怎样核验一条候选解",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/02-03-连续时间与一阶微分方程/practice/?question=p02-timescale"
+            }
+          ],
+          "visualization": "web/time-evolution/index.html"
         },
         {
           "id": "2.4",
           "title": "数值模拟、误差与迁移",
           "url": "/chapters/02-04-数值模拟、误差与迁移/",
-          "goals": "推导 Euler 平衡（equilibrium）误差递推，区分误差大小、渐近稳定性与非负性（nonnegativity），并正确处理输入（input）跳变。",
-          "prerequisites": "2.3；数学：递推、有限求和和固定点代数、一阶 ODE、初值（initial condition）、分离变量和指数解、数值误差（numerical error）、收敛阶、递推稳定性与非负性。",
+          "goals": "连接逐步误差与全程误差；推导 1−kh 的偏差传播；区分渐近稳定（asymptotic stability）与非负性（nonnegativity），正确处理输入（input）跳变。",
+          "prerequisites": "2.3；递推、解析解（analytical solution）、有限求和与对数。局部/全局误差、观察阶（observed order of convergence）和稳定性条件在本章说明。",
           "knowledge": [
-            "Euler 与解析参考",
-            "网格细化、最大误差和观察阶（observed order of convergence）",
-            "从 1 − kh 解释伪振荡与负值，再用分段解析传播检查变化输入"
+            "误差与网格细化",
+            "稳定性与非负性不是一回事",
+            "在输入跳变处分段计算"
           ],
-          "focus": "严格区分公式浮点一致性容差和离散近似误差；对应练习 不得把不足一个名义步长的区间仍按 0.8 T 计算；收敛标准沿用样章约定。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "focus": "误差采用各自网格的最大绝对误差（maximum absolute error），细化时保持问题与观察终点一致；k>0 时 0<kh<2 才严格渐近稳定，0≤kh≤1 才保证任意非负初值（initial condition）/输入的非负性。最后一小步使用实际时长，不能继续套名义 h。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P02-C04-S01",
+              "chapter_id": "2.4",
+              "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/01-误差与网格细化.ipynb",
+              "title": "误差与网格细化",
+              "outcome": "能在相同初值问题上测量最大绝对误差，解释欧拉法的典型一阶收敛，并识别观察阶不能使用的情形。",
+              "number": "2.4.1",
+              "visualization": "web/time-evolution/index.html",
+              "questions": [
+                {
+                  "id": "p02-errors",
+                  "slug": "p02-errors",
+                  "title": "把误差变成一张可比较的表",
+                  "type": "python"
+                },
+                {
+                  "id": "p02-orders",
+                  "slug": "p02-orders",
+                  "title": "从误差缩小比例估计阶数",
+                  "type": "python"
+                },
+                {
+                  "id": "p02-truncation",
+                  "slug": "p02-truncation",
+                  "title": "一次更新舍弃了什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p02-fair-refinement",
+                  "slug": "p02-fair-refinement",
+                  "title": "怎样公平地细化网格",
+                  "type": "choice"
+                },
+                {
+                  "id": "p02-zero-error",
+                  "slug": "p02-zero-error",
+                  "title": "误差为零还能取对数吗",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-errors"
+            },
+            {
+              "id": "P02-C04-S02",
+              "chapter_id": "2.4",
+              "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/02-稳定性与非负性不是一回事.ipynb",
+              "title": "稳定性与非负性不是一回事",
+              "outcome": "能推导欧拉偏差放大因子，分别判断渐近稳定、非负性和精度，保留并解释数值负值与振荡。",
+              "number": "2.4.2",
+              "visualization": "web/time-evolution/index.html",
+              "questions": [
+                {
+                  "id": "p02-step-properties",
+                  "slug": "p02-step-properties",
+                  "title": "分别检查稳定与非负条件",
+                  "type": "python"
+                },
+                {
+                  "id": "p02-first-decay",
+                  "slug": "p02-first-decay",
+                  "title": "负值出现在第一步",
+                  "type": "python"
+                },
+                {
+                  "id": "p02-stable-not-positive",
+                  "slug": "p02-stable-not-positive",
+                  "title": "稳定曲线也会不合理",
+                  "type": "choice"
+                },
+                {
+                  "id": "p02-stability-boundary",
+                  "slug": "p02-stability-boundary",
+                  "title": "边界 kh=2",
+                  "type": "choice"
+                },
+                {
+                  "id": "p02-do-not-clip",
+                  "slug": "p02-do-not-clip",
+                  "title": "发现负值后的正确处理",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-step-properties"
+            },
+            {
+              "id": "P02-C04-S03",
+              "chapter_id": "2.4",
+              "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/03-在输入跳变处分段计算.ipynb",
+              "title": "在输入跳变处分段计算",
+              "outcome": "能构造包含输入跳变的时间网格，用实际步长更新，并独立传播分段解析参考，区分规则一致性容差与离散误差。",
+              "number": "2.4.3",
+              "visualization": "web/time-evolution/index.html",
+              "questions": [
+                {
+                  "id": "p02-aligned-grid",
+                  "slug": "p02-aligned-grid",
+                  "title": "让网格停在输入跳变点",
+                  "type": "python"
+                },
+                {
+                  "id": "p02-piecewise",
+                  "slug": "p02-piecewise",
+                  "title": "同时保留数值轨迹与分段参考",
+                  "type": "python"
+                },
+                {
+                  "id": "p02-jump-side",
+                  "slug": "p02-jump-side",
+                  "title": "跳变点前后用哪个输入",
+                  "type": "choice"
+                },
+                {
+                  "id": "p02-continuity",
+                  "slug": "p02-continuity",
+                  "title": "传播什么到下一段",
+                  "type": "choice"
+                },
+                {
+                  "id": "p02-tolerance",
+                  "slug": "p02-tolerance",
+                  "title": "两种误差标准",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-aligned-grid"
+            }
+          ],
+          "visualization": "web/time-evolution/index.html"
         }
-      ]
+      ],
+      "assessment": {
+        "id": "2.summary",
+        "assessment": true,
+        "title": "等总量输入的不同过程",
+        "url": "/parts/02-系统随时间演化/综合练习/",
+        "goals": "在同一模型（model）下比较等总量输入（input），核验分段传播、峰值、终值和数值误差（numerical error）。",
+        "prerequisites": "本篇四章。",
+        "focus": "区分等总量与等过程；用分段解析参考、零清除边界和步长细化支持结论。",
+        "knowledge": [
+          "共同条件与等面积 → 公平比较",
+          "跳变对齐网格 → 独立参考",
+          "峰值、终值与误差 → 限定模型结论"
+        ],
+        "lessons": [
+          {
+            "id": "P02-SUMMARY",
+            "chapter_id": "2.summary",
+            "path": "notebooks/02-系统随时间演化/05-篇末综合/01-等总量输入的不同过程.ipynb",
+            "title": "等总量输入的不同过程",
+            "outcome": "能独立比较等总量输入方案，核验收支与误差，区分峰值、终值和时间分布的影响，并限定模型结论。",
+            "number": "篇末综合",
+            "visualization": null,
+            "overview": {
+              "goals": "在同一模型下比较等总量输入，核验分段传播、峰值、终值和数值误差。",
+              "prerequisites": "本篇四章。",
+              "focus": "区分等总量与等过程；用分段解析参考、零清除边界和步长细化支持结论。",
+              "knowledge": [
+                "共同条件与等面积 → 公平比较",
+                "跳变对齐网格 → 独立参考",
+                "峰值、终值与误差 → 限定模型结论"
+              ]
+            },
+            "questions": [
+              {
+                "id": "p02-input-totals",
+                "slug": "p02-input-totals",
+                "title": "先确认比较方案的总量相同",
+                "type": "python"
+              },
+              {
+                "id": "p02-input-metrics",
+                "slug": "p02-input-metrics",
+                "title": "解释方案差异前先核验误差",
+                "type": "python"
+              },
+              {
+                "id": "p02-equal-area-not-path",
+                "slug": "p02-equal-area-not-path",
+                "title": "等总量为何不等轨迹",
+                "type": "choice"
+              },
+              {
+                "id": "p02-migration-evidence",
+                "slug": "p02-migration-evidence",
+                "title": "哪些证据足以交付迁移实验",
+                "type": "choice"
+              },
+              {
+                "id": "p02-model-scope",
+                "slug": "p02-model-scope",
+                "title": "数值通过之后还能声称什么",
+                "type": "choice"
+              }
+            ],
+            "url": "/parts/02-系统随时间演化/综合练习/practice/?question=p02-input-totals"
+          }
+        ],
+        "available": true,
+        "visualization": null
+      }
     },
     {
       "id": "3",
@@ -558,7 +1020,7 @@
           "title": "多变量变化与局部线性化",
           "url": "/chapters/03-04-多变量变化与局部线性化/",
           "goals": "由偏导构建 Jacobian，围绕指定平衡（equilibrium）写出一阶近似，并用误差说明局部适用范围。",
-          "prerequisites": "3.3；数学：极限（limit）直觉、导数（derivative）、积分、基本定理和简单链式法则、向量、矩阵、内积、范数、秩、线性方程组与投影直觉、偏导、梯度方向、Jacobian、多变量链式法则和一阶 Taylor 近似。",
+          "prerequisites": "3.3；数学：极限（limit）直觉、导数（derivative）、积分、基本定理和简单链式法则（chain rule）、向量、矩阵、内积、范数、秩、线性方程组与投影直觉、偏导、梯度方向、Jacobian、多变量链式法则和一阶 Taylor 近似。",
           "knowledge": [
             "偏导和多变量链式法则",
             "Taylor 展开与 Jacobian",
@@ -581,7 +1043,7 @@
           "title": "多稳态与吸引域",
           "url": "/chapters/04-01-多稳态与吸引域/",
           "goals": "区分平衡（equilibrium）点、局部稳定与吸引域，解释同一参数（parameter）下的初值（initial condition）依赖。",
-          "prerequisites": "3.4；数学：一阶 ODE、初值、分离变量和指数解、偏导、梯度方向、Jacobian、多变量链式法则和一阶 Taylor 近似。",
+          "prerequisites": "3.4；数学：一阶 ODE、初值、分离变量和指数解、偏导、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似。",
           "knowledge": [
             "从线性近似过渡到多个平衡",
             "一维流向与局部导数判断",
@@ -597,7 +1059,7 @@
           "title": "自维持振荡与极限环",
           "url": "/chapters/04-02-自维持振荡与极限环/",
           "goals": "根据输入（input）、暂态和多初值（initial condition）长期行为区分三种振荡，测量周期和振幅。",
-          "prerequisites": "4.1；数学：特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、偏导、梯度方向、Jacobian、多变量链式法则和一阶 Taylor 近似。",
+          "prerequisites": "4.1；数学：特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、偏导、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似。",
           "knowledge": [
             "回顾阻尼振荡并加入周期驱动",
             "引入一个简化自激振子及其变量",
@@ -613,7 +1075,7 @@
           "title": "分岔与参数变化",
           "url": "/chapters/04-03-分岔与参数变化/",
           "goals": "区分参数（parameter）改变引起的行为转变与暂态、扫描方向、数值误差（numerical error）造成的假象。",
-          "prerequisites": "4.2；数学：特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、偏导、梯度方向、Jacobian、多变量链式法则和一阶 Taylor 近似。",
+          "prerequisites": "4.2；数学：特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、偏导、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似。",
           "knowledge": [
             "平衡分支与稳定性标记",
             "开关和振子的参数扫描",
@@ -629,7 +1091,7 @@
           "title": "混沌与可预测范围",
           "url": "/chapters/04-04-混沌与可预测范围/",
           "goals": "在确定性映射中测量邻近初值（initial condition）的分离，区分初值误差、数值误差（numerical error）与随机机制。",
-          "prerequisites": "4.3、2.4；数学：递推、有限求和和固定点代数、数值误差、收敛阶、递推稳定性与非负性（nonnegativity）、偏导、梯度方向、Jacobian、多变量链式法则和一阶 Taylor 近似。",
+          "prerequisites": "4.3、2.4；数学：递推、有限求和和固定点（fixed point）代数、数值误差、收敛阶、递推稳定性与非负性（nonnegativity）、偏导、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似。",
           "knowledge": [
             "离散种群映射与参数（parameter）范围",
             "邻近轨迹及有限时间增长率",
@@ -644,8 +1106,8 @@
           "id": "4.5",
           "title": "用 Lyapunov 函数分析稳定性",
           "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/",
-          "goals": "逐项检查候选函数的正定性、沿轨迹（trajectory）导数（derivative）与适用区域，区分稳定、渐近稳定及证据不足。",
-          "prerequisites": "4.4；数学：偏导、梯度方向、Jacobian、多变量链式法则和一阶 Taylor 近似、Lyapunov 函数、沿轨迹导数和局部适用区域。",
+          "goals": "逐项检查候选函数的正定性、沿轨迹（trajectory）导数（derivative）与适用区域，区分稳定、渐近稳定（asymptotic stability）及证据不足。",
+          "prerequisites": "4.4；数学：偏导、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、Lyapunov 函数、沿轨迹导数和局部适用区域。",
           "knowledge": [
             "能量式函数的直觉与定义",
             "多变量链式法则计算沿轨迹导数",
@@ -668,7 +1130,7 @@
           "title": "从重复实验建立概率",
           "url": "/chapters/05-01-从重复实验建立概率/",
           "goals": "区分事件、随机变量、概率分布与一次实现，说明频率近似的波动。",
-          "prerequisites": "2.4、1.4；数学：极限（limit）直觉、导数（derivative）、积分、基本定理和简单链式法则、事件、随机变量、离散/连续分布、抽样和 Monte Carlo。",
+          "prerequisites": "2.4、1.4；数学：极限（limit）直觉、导数（derivative）、积分、基本定理和简单链式法则（chain rule）、事件、随机变量、离散/连续分布、抽样和 Monte Carlo。",
           "knowledge": [
             "重复测量与事件",
             "离散、连续分布及概率密度",
@@ -755,7 +1217,7 @@
           "title": "观测、采样与滤波",
           "url": "/chapters/06-01-观测、采样与滤波/",
           "goals": "区分模型（model）时间步长（time step）、采样间隔与滤波窗口，识别混叠和滤波延迟（delay）。",
-          "prerequisites": "5.2、2.4；数学：递推、有限求和和固定点代数、数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、期望、方差、协方差、联合分布、Gaussian 分布。",
+          "prerequisites": "5.2、2.4；数学：递推、有限求和和固定点（fixed point）代数、数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、期望、方差、协方差、联合分布、Gaussian 分布。",
           "knowledge": [
             "状态（state）到观测（observation）及采样",
             "用正弦例子观察混叠",
@@ -771,7 +1233,7 @@
           "title": "卷积、频谱与频率响应",
           "url": "/chapters/06-02-卷积、频谱与频率响应/",
           "goals": "从叠加解释卷积，理解复指数、频率坐标、幅度和相位，并辨认有限记录的影响。",
-          "prerequisites": "6.1、3.2；数学：极限（limit）直觉、导数（derivative）、积分、基本定理和简单链式法则、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、复指数、卷积、Fourier 表示、频谱与相位。",
+          "prerequisites": "6.1、3.2；数学：极限（limit）直觉、导数（derivative）、积分、基本定理和简单链式法则（chain rule）、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、复指数、卷积、Fourier 表示、频谱与相位。",
           "knowledge": [
             "脉冲响应与离散卷积",
             "正弦、复指数与 Fourier 表示",
@@ -786,7 +1248,7 @@
           "id": "6.3",
           "title": "LTI 系统、Laplace 与 Z 变换",
           "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/",
-          "goals": "在明确初值（initial condition）和线性时不变假设下连接微分/差分方程、传递函数、极点与响应。",
+          "goals": "在明确初值（initial condition）和线性时不变假设下连接微分/差分方程（difference equation）、传递函数、极点与响应。",
           "prerequisites": "6.2；数学：一阶 ODE、初值、分离变量和指数解、复指数、卷积、Fourier 表示、频谱与相位、Laplace/Z 变换、收敛域的必要直觉、极点零点。",
           "knowledge": [
             "线性与时不变的检验",
@@ -842,7 +1304,7 @@
           "title": "开闭环与 PID",
           "url": "/chapters/07-01-开闭环与 PID/",
           "goals": "从误差构造 P、PI、PID，解释积分累积、微分对噪声的敏感性及执行饱和。",
-          "prerequisites": "6.3、4.5；数学：极限（limit）直觉、导数（derivative）、积分、基本定理和简单链式法则、Lyapunov 函数、沿轨迹（trajectory）导数和局部适用区域、Laplace/Z 变换、收敛域的必要直觉、极点零点。",
+          "prerequisites": "6.3、4.5；数学：极限（limit）直觉、导数（derivative）、积分、基本定理和简单链式法则（chain rule）、Lyapunov 函数、沿轨迹（trajectory）导数和局部适用区域、Laplace/Z 变换、收敛域的必要直觉、极点零点。",
           "knowledge": [
             "设定值、测量、误差和执行输入",
             "三个控制项及离散实现",
@@ -929,7 +1391,7 @@
           "title": "从目标函数进入优化",
           "url": "/chapters/08-01-从目标函数进入优化/",
           "goals": "定义目标、约束和决策变量，理解梯度、Hessian、二次型、凸性与正则化，说明最优性结论的条件。",
-          "prerequisites": "3.4、6.4、7.3；数学：偏导、梯度方向、Jacobian、多变量链式法则和一阶 Taylor 近似、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、目标函数、梯度、Hessian、二次型、正定性、凸性、约束与正则化。",
+          "prerequisites": "3.4、6.4、7.3；数学：偏导、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、目标函数、梯度、Hessian、二次型、正定性、凸性、约束与正则化。",
           "knowledge": [
             "跟踪误差与输入（input）代价的尺度",
             "梯度、曲率与凸优化直觉",
@@ -1048,7 +1510,7 @@
           "title": "耦合振子与同步",
           "url": "/chapters/09-04-耦合振子与同步/",
           "goals": "区分相位接近、频率锁定与平均频率，说明同步指标和耦合归一化。",
-          "prerequisites": "9.3、4.2；数学：偏导、梯度方向、Jacobian、多变量链式法则和一阶 Taylor 近似、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
+          "prerequisites": "9.3、4.2；数学：偏导、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
           "knowledge": [
             "单体节律到相位模型（model）的简化",
             "网络耦合、异质频率与同步指标",
@@ -1071,7 +1533,7 @@
           "title": "多主体模型与元胞自动机",
           "url": "/chapters/10-01-多主体模型与元胞自动机/",
           "goals": "把局部规则写成可复现程序，区分同步、随机顺序和异步更新。",
-          "prerequisites": "9.1、5.4；数学：递推、有限求和和固定点代数、事件、随机变量、离散/连续分布、抽样和 Monte Carlo、随机过程、有限马尔可夫链、转移矩阵与长期分布。",
+          "prerequisites": "9.1、5.4；数学：递推、有限求和和固定点（fixed point）代数、事件、随机变量、离散/连续分布、抽样和 Monte Carlo、随机过程、有限马尔可夫链、转移矩阵与长期分布。",
           "knowledge": [
             "个体状态（state）、邻域和转移",
             "双缓冲同步更新与原地更新",
@@ -1119,7 +1581,7 @@
           "title": "空间自组织与反应扩散",
           "url": "/chapters/10-04-空间自组织与反应扩散/",
           "goals": "解释空间偏导、反应与扩散项，正确离散边界，区分机制失稳与数值伪模式。",
-          "prerequisites": "10.3、4.3、9.2；数学：数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、偏导、梯度方向、Jacobian、多变量链式法则和一阶 Taylor 近似、空间偏导、PDE、有限差分（finite difference）、边界条件与网格稳定性。",
+          "prerequisites": "10.3、4.3、9.2；数学：数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、偏导、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、空间偏导、PDE、有限差分（finite difference）、边界条件与网格稳定性。",
           "knowledge": [
             "从一维网格交换进入 PDE",
             "有限差分、边界与时间更新",
@@ -1277,7 +1739,7 @@
           "title": "神经动力学与物理约束学习",
           "url": "/chapters/12-04-神经动力学与物理约束学习/",
           "goals": "从网络与计算图理解自动微分，构造神经 ODE 和方程残差（residual）约束的最小训练任务，分析不同误差来源。",
-          "prerequisites": "12.3、10.4；数学：偏导、梯度方向、Jacobian、多变量链式法则和一阶 Taylor 近似、目标函数、梯度、Hessian、二次型、正定性、凸性、约束与正则化、空间偏导、PDE、有限差分（finite difference）、边界条件与网格稳定性、神经网络、计算图、自动微分、训练目标及训练/验证划分。",
+          "prerequisites": "12.3、10.4；数学：偏导、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、目标函数、梯度、Hessian、二次型、正定性、凸性、约束与正则化、空间偏导、PDE、有限差分（finite difference）、边界条件与网格稳定性、神经网络、计算图、自动微分、训练目标及训练/验证划分。",
           "knowledge": [
             "小网络、参数（parameter）、训练/验证与自动微分",
             "以网络表示 ODE 右端并训练",
@@ -1322,211 +1784,5 @@
         }
       ]
     }
-  ],
-  "sample": {
-    "id": "accumulation-clearance",
-    "title": "体内物质的积累与清除",
-    "url": "/samples/accumulation-clearance/",
-    "available": true,
-    "visualization": "web/single-compartment/index.html",
-    "lessons": [
-      {
-        "id": "S01",
-        "path": "notebooks/samples/accumulation-clearance/01-boundaries-units.ipynb",
-        "title": "系统边界、变量与单位",
-        "outcome": "区分存量与流量，用单位和收支核对结果。",
-        "questions": [
-          {
-            "id": "S01-E1",
-            "slug": "stock-flow-units",
-            "title": "存量与流量的单位",
-            "type": "choice"
-          },
-          {
-            "id": "S01-E2",
-            "slug": "segment-balance",
-            "title": "计算逐段收支",
-            "type": "python"
-          },
-          {
-            "id": "S01-E3",
-            "slug": "reservoir-transfer",
-            "title": "把收支模型迁移到储水池",
-            "type": "choice"
-          }
-        ],
-        "url": "/samples/accumulation-clearance/practice/?question=stock-flow-units"
-      },
-      {
-        "id": "S02",
-        "path": "notebooks/samples/accumulation-clearance/02-accumulation-clearance.ipynb",
-        "title": "用 Python 表达积累与清除",
-        "outcome": "写出更新循环，检查手算值与逐步收支。",
-        "questions": [
-          {
-            "id": "S02-E1",
-            "slug": "clearance-coefficient",
-            "title": "清除系数和每步比例",
-            "type": "choice"
-          },
-          {
-            "id": "S02-E2",
-            "slug": "update-loop",
-            "title": "写出逐步更新循环",
-            "type": "python"
-          },
-          {
-            "id": "S02-E3",
-            "slug": "constant-outflow-limits",
-            "title": "恒定流出假设的适用边界",
-            "type": "choice"
-          }
-        ],
-        "url": "/samples/accumulation-clearance/practice/?question=clearance-coefficient"
-      },
-      {
-        "id": "S03",
-        "path": "notebooks/samples/accumulation-clearance/03-equilibrium-feedback.ipynb",
-        "title": "平衡、负反馈与参数变化",
-        "outcome": "分别解释平衡位置与靠近速度。",
-        "questions": [
-          {
-            "id": "S03-E1",
-            "slug": "exchange-at-equilibrium",
-            "title": "平衡时是否还有物质交换",
-            "type": "choice"
-          },
-          {
-            "id": "S03-E2",
-            "slug": "approach-speed",
-            "title": "在同一平衡位置比较靠近速度",
-            "type": "python"
-          },
-          {
-            "id": "S03-E3",
-            "slug": "zero-clearance",
-            "title": "零清除与改变流出机制",
-            "type": "choice"
-          }
-        ],
-        "url": "/samples/accumulation-clearance/practice/?question=exchange-at-equilibrium"
-      },
-      {
-        "id": "S04",
-        "path": "notebooks/samples/accumulation-clearance/04-rates-ode.ipynb",
-        "title": "从变化率进入微分方程",
-        "outcome": "联系导数、积分、初值与解析解。",
-        "questions": [
-          {
-            "id": "S04-E1",
-            "slug": "rate-and-initial-condition",
-            "title": "变化率、累积量与初值",
-            "type": "choice"
-          },
-          {
-            "id": "S04-E2",
-            "slug": "exact-solution",
-            "title": "实现含零清除分支的解析解",
-            "type": "python"
-          },
-          {
-            "id": "S04-E3",
-            "slug": "doubling-initial-amount",
-            "title": "初值加倍的适用条件",
-            "type": "choice"
-          },
-          {
-            "id": "S04-E4",
-            "slug": "verify-continuous-solution",
-            "title": "怎样核验一个连续模型的解",
-            "type": "choice"
-          }
-        ],
-        "url": "/samples/accumulation-clearance/practice/?question=rate-and-initial-condition"
-      },
-      {
-        "id": "S05",
-        "path": "notebooks/samples/accumulation-clearance/05-numerical-checks.ipynb",
-        "title": "检查数值模拟",
-        "outcome": "区分精度、稳定性和非负性。",
-        "questions": [
-          {
-            "id": "S05-E1",
-            "slug": "accuracy-stability-positivity",
-            "title": "稳定、非负与准确是不同检查",
-            "type": "choice"
-          },
-          {
-            "id": "S05-E2",
-            "slug": "detect-negative-values",
-            "title": "保留并识别数值负值",
-            "type": "python"
-          },
-          {
-            "id": "S05-E3",
-            "slug": "choose-step-size",
-            "title": "找到满足误差要求的第一个步长",
-            "type": "python"
-          },
-          {
-            "id": "S05-E4",
-            "slug": "wrong-mechanism",
-            "title": "缩小步长能修复错误机制吗",
-            "type": "choice"
-          },
-          {
-            "id": "S05-E5",
-            "slug": "critical-step-oscillation",
-            "title": "临界步长的振荡为何不消失",
-            "type": "choice"
-          }
-        ],
-        "url": "/samples/accumulation-clearance/practice/?question=accuracy-stability-positivity"
-      },
-      {
-        "id": "S06",
-        "path": "notebooks/samples/accumulation-clearance/06-transfer-experiment.ipynb",
-        "title": "独立迁移实验",
-        "outcome": "改变输入时序，完成建模、验证与解释。",
-        "questions": [
-          {
-            "id": "S06-E1",
-            "slug": "input-jump",
-            "title": "输入突变和存量连续",
-            "type": "choice"
-          },
-          {
-            "id": "S06-E2",
-            "slug": "piecewise-input",
-            "title": "计算分段输入的解析终点",
-            "type": "python"
-          },
-          {
-            "id": "S06-E3",
-            "slug": "align-change-points",
-            "title": "在输入变化点截断步长",
-            "type": "python"
-          },
-          {
-            "id": "S06-E4",
-            "slug": "input-timing",
-            "title": "相同总输入是否意味着相同终点",
-            "type": "choice"
-          }
-        ],
-        "url": "/samples/accumulation-clearance/practice/?question=input-jump"
-      }
-    ],
-    "goals": "辨认存量（stock）与流量（flow）；用收支（mass balance）建立更新规则；连接连续模型（model）与数值近似；独立改变输入（input）并检验结果。",
-    "prerequisites": "基础 Python、中学数学与函数读图。导数（derivative）、定积分（definite integral）和误差检查在单元内引入。",
-    "focus": "区分物质量和流率（flow rate）、平衡（equilibrium）位置和接近速度；把精度、数值稳定性（numerical stability）与非负性（nonnegativity）分开检查；在输入变化点分段计算。",
-    "knowledge": [
-      "边界与单位 → 确定什么在积累",
-      "输入与清除 → 写出逐步收支",
-      "平衡与反馈（feedback） → 解释动态过程",
-      "变化率与连续模型 → 对照解析解（analytical solution）",
-      "步长与误差 → 检验数值结果",
-      "时变输入 → 完成迁移实验"
-    ]
-  }
+  ]
 }

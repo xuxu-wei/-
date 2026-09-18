@@ -56,5 +56,13 @@
   {"zh":"计算实验","en":"computational experiment","scope":"part01"},
   {"zh":"模型结构","en":"model structure","scope":"part01"},
   {"zh":"轨迹","en":"trajectory","scope":"part01"},
-  {"zh":"无量纲","en":"dimensionless","scope":"part01"}
+  {"zh":"无量纲","en":"dimensionless","scope":"part01"},
+  {"zh":"差分方程","en":"difference equation","scope":"part02"},
+  {"zh":"固定点","en":"fixed point","scope":"part02"},
+  {"zh":"链式法则","en":"chain rule","scope":"part02"},
+  {"zh":"自然对数","en":"natural logarithm","scope":"part02"},
+  {"zh":"微积分基本定理","en":"fundamental theorem of calculus","scope":"part02"},
+  {"zh":"渐近稳定","en":"asymptotic stability","scope":"part02"},
+  {"zh":"半衰期","en":"half-life","scope":"part02"},
+  {"zh":"特征时间","en":"characteristic time","scope":"part02"}
 ]

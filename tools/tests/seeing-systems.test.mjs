@@ -21,8 +21,8 @@ test('Presets are reversible, and derive their next action from the actual setti
 });
 test('Part completion includes the capstone; sample records do not complete formal work',()=>{
   const course=JSON.parse(readFileSync(new URL('../../web/course/catalog.json',import.meta.url),'utf8'));
-  const ids=questionIds(course.parts[0]),sampleIds=questionIds(course.sample);
-  assert.equal(ids.length,38);assert.equal(new Set(ids).size,38);assert.equal(sampleIds.length,22);
+  const ids=questionIds(course.parts[0]),sampleIds=['S01-E1','S01-E2','S06-E4'];
+  assert.equal(ids.length,38);assert.equal(new Set(ids).size,38);assert.equal(course.sample,undefined);
   assert.equal(summarize(ids,{passed:sampleIds}).state,'new');
   assert.equal(summarize(ids,{passed:ids.slice(0,-5)}).state,'active');
   assert.equal(summarize(ids,{passed:ids}).state,'complete');

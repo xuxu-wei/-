@@ -1,0 +1,2746 @@
+[
+  {
+    "id": "p02-step-factor",
+    "version": "1",
+    "lesson_id": "P02-C01-S01",
+    "slug": "p02-step-factor",
+    "title": "每步比例属于哪一个时钟",
+    "type": "choice",
+    "statement": "一次人工细胞计数模型（model）规定每隔 1 T 更新一次，每次保留原计数的 80%，不含新增。若把记录时刻改成每 0.5 T 一次，哪项说法成立？",
+    "part": "2",
+    "chapter": "2.1",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数02"
+    ],
+    "difficulty": "基础",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "仍把每半个 T 的保留比例设为 0.8，必定是同一个模型。"
+      },
+      {
+        "id": "B",
+        "text": "若额外假设两个半步采用相同比例且乘积为 0.8，半步比例为 sqrt(0.8)。"
+      },
+      {
+        "id": "C",
+        "text": "每步 0.8 的单位是 1/T。"
+      },
+      {
+        "id": "D",
+        "text": "只需改横轴标签，任何更新次数都不影响终点。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-growth",
+    "version": "1",
+    "lesson_id": "P02-C01-S01",
+    "slug": "p02-growth",
+    "title": "逐步计算保留或增长",
+    "type": "python",
+    "statement": "用相同的每步倍数预测理想细胞计数。计数可为实数，代表模型（model）中的平均数量。返回起点和每次更新后的全部值；不把模型值取整。",
+    "part": "2",
+    "chapter": "2.1",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数02"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "initial",
+        "type": "float",
+        "description": "初始计数。",
+        "unit": "个"
+      },
+      {
+        "name": "factor",
+        "type": "float",
+        "description": "每次更新乘上的倍数。",
+        "unit": "1"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "更新次数。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "values",
+        "type": "list[float]",
+        "description": "含起点，长度为 steps + 1。",
+        "unit": "个"
+      }
+    ],
+    "contract": "values[0] = initial；values[n+1] = factor × values[n]。",
+    "constraints": [
+      "所有数值有限；无需修改输入（input）。",
+      "0 ≤ initial ≤ 100；0 ≤ factor ≤ 1.2；0 ≤ steps ≤ 30。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "保留起点，再循环 steps 次；可用 initial × factor**n 独立检查。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    initial: float,\n    factor: float,\n    steps: int,\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "initial": 10,
+          "factor": 0.8,
+          "steps": 3
+        },
+        "expected": [
+          10,
+          8.0,
+          6.4,
+          5.120000000000001
+        ],
+        "explanation": "10 个依次乘 0.8，得到 [10, 8, 6.4, 5.12]。列表第一个数是起点，不是第一步结果。"
+      }
+    ]
+  },
+  {
+    "id": "p02-sum-index",
+    "version": "1",
+    "lesson_id": "P02-C01-S01",
+    "slug": "p02-sum-index",
+    "title": "累计量为什么包含 n 项",
+    "type": "choice",
+    "statement": "规则为 A[n+1] = A[n] + b[n]，从 A[0] 更新到 A[3]。哪一个表达式与三次更新一致？",
+    "part": "2",
+    "chapter": "2.1",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数02"
+    ],
+    "difficulty": "基础",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "A[3] = b[3]。"
+      },
+      {
+        "id": "B",
+        "text": "A[3] = A[0] + b[1] + b[2] + b[3]。"
+      },
+      {
+        "id": "C",
+        "text": "A[3] = A[0] + b[0] + b[1] + b[2]。"
+      },
+      {
+        "id": "D",
+        "text": "A[3] = 3 × A[0] + b[0]。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-fixed-point",
+    "version": "1",
+    "lesson_id": "P02-C01-S01",
+    "slug": "p02-fixed-point",
+    "title": "不变状态与起点",
+    "type": "choice",
+    "statement": "人工离散模型（model） A[n+1] = 0.5 A[n] + 1，物质量单位 U。以下哪些成立？",
+    "part": "2",
+    "chapter": "2.1",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数02"
+    ],
+    "difficulty": "基础",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "A=2 U 是固定点（fixed point）。"
+      },
+      {
+        "id": "B",
+        "text": "只要固定点为 2 U，任何初值（initial condition）第一步都会变成 2 U。"
+      },
+      {
+        "id": "C",
+        "text": "从 0 U 开始，前三次更新是 1、1.5、1.75 U。"
+      },
+      {
+        "id": "D",
+        "text": "每步距 2 U 的偏差都乘 0.5。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-euler-balance",
+    "version": "1",
+    "lesson_id": "P02-C01-S02",
+    "slug": "p02-euler-balance",
+    "title": "把每段流入和清除记到账上",
+    "type": "python",
+    "statement": "人工单室模型（one-compartment model）在一段内用段首物质量计算清除速率 kA。实现更新，并返回每一步的收支（mass balance）残差（residual）。负结果保留，用于识别假设失败。",
+    "part": "2",
+    "chapter": "2.1",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数02"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "A0",
+        "type": "float",
+        "description": "起点物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "u",
+        "type": "float",
+        "description": "恒定流入速率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "每单位物质量的清除速率系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "h",
+        "type": "float",
+        "description": "每步持续时间。",
+        "unit": "T"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "更新次数。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "amounts",
+        "type": "list[float]",
+        "description": "起点及逐步物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "residuals",
+        "type": "list[float]",
+        "description": "每步末量减初量、减流入量、加清除量；长度 steps。",
+        "unit": "U"
+      }
+    ],
+    "contract": "after = before + h*u − h*k*before；残差 = after − before − h*u + h*k*before。不能用 after 代替清除项中的 before，也不裁剪负值。",
+    "constraints": [
+      "所有数值有限；无需修改输入（input）。",
+      "0 ≤ A0,u ≤ 20；0 ≤ k ≤ 2；0 < h ≤ 3；0 ≤ steps ≤ 20；允许 kh > 1。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "用旧值计算本段移除量；残差接近零只证明账目与所选规则一致。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    A0: float,\n    u: float,\n    k: float,\n    h: float,\n    steps: int,\n) -> tuple[list[float], list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "A0": 0,
+          "u": 1,
+          "k": 0.5,
+          "h": 1,
+          "steps": 3
+        },
+        "expected": [
+          [
+            0,
+            1.0,
+            1.5,
+            1.75
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "explanation": "前三步依次得到 1、1.5、1.75 U，返回物质量 [0,1,1.5,1.75] 和三个零残差。"
+      }
+    ]
+  },
+  {
+    "id": "p02-rate-unit",
+    "version": "1",
+    "lesson_id": "P02-C01-S02",
+    "slug": "p02-rate-unit",
+    "title": "把速率转成每步比例",
+    "type": "choice",
+    "statement": "清除系数（elimination rate constant） k = 0.2 /T，段首物质量为 A，假设本段流出速率保持 kA。时间步长（time step） h = 0.5 T 时，本段移除多少？",
+    "part": "2",
+    "chapter": "2.1",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数02"
+    ],
+    "difficulty": "基础",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "0.2A U，与 h 无关。"
+      },
+      {
+        "id": "B",
+        "text": "0.1A U。"
+      },
+      {
+        "id": "C",
+        "text": "0.4A U。"
+      },
+      {
+        "id": "D",
+        "text": "0.5A U。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-varying-steps",
+    "version": "1",
+    "lesson_id": "P02-C01-S02",
+    "slug": "p02-varying-steps",
+    "title": "不等时长也要逐段记账",
+    "type": "python",
+    "statement": "给定各段的流入速率和持续时间，清除速率在每段内固定为段首 kA。返回整条物质量轨迹（trajectory）和总流入量。",
+    "part": "2",
+    "chapter": "2.1",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数02"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "A0",
+        "type": "float",
+        "description": "起点物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "rates",
+        "type": "list[float]",
+        "description": "各段流入速率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "durations",
+        "type": "list[float]",
+        "description": "各段实际持续时间。",
+        "unit": "T"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除系数（elimination rate constant）。",
+        "unit": "1/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "amounts",
+        "type": "list[float]",
+        "description": "含起点的逐段末量。",
+        "unit": "U"
+      },
+      {
+        "name": "total",
+        "type": "float",
+        "description": "各段流入量之和。",
+        "unit": "U"
+      }
+    ],
+    "contract": "按给定顺序执行 A ← A + durations[i] × (rates[i] − kA)；total 为 sum(rates[i] × durations[i])。",
+    "constraints": [
+      "所有数值有限；无需修改输入（input）。",
+      "两个列表等长，长度 0—100；0 ≤ A0,rates[i] ≤ 20；0 ≤ k ≤ 2；0 < durations[i] ≤ 2。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "每段使用自己的时长；流入总量与净变化是两个量。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    A0: float,\n    rates: list[float],\n    durations: list[float],\n    k: float,\n) -> tuple[list[float], float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "A0": 1,
+          "rates": [
+            2,
+            0
+          ],
+          "durations": [
+            0.5,
+            1
+          ],
+          "k": 0.5
+        },
+        "expected": [
+          [
+            1,
+            1.75,
+            0.875
+          ],
+          1.0
+        ],
+        "explanation": "第一段增加 0.5×(2−0.5×1)=0.75 U，第二段剩下 0.875 U；总流入为 1 U。"
+      }
+    ]
+  },
+  {
+    "id": "p02-balance-limit",
+    "version": "1",
+    "lesson_id": "P02-C01-S02",
+    "slug": "p02-balance-limit",
+    "title": "零残差能证明什么",
+    "type": "choice",
+    "statement": "程序严格执行 A[n+1]=A[n]+h(u−kA[n])，各步收支（mass balance）残差（residual）约为零，但出现了 −5 U。哪些结论成立？",
+    "part": "2",
+    "chapter": "2.1",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数02"
+    ],
+    "difficulty": "基础",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "残差为零，说明负物质量一定真实。"
+      },
+      {
+        "id": "B",
+        "text": "残差只核对离散账目，不能替代物理合理性检查。"
+      },
+      {
+        "id": "C",
+        "text": "应直接把负值改为零，并继续声称同一更新式成立。"
+      },
+      {
+        "id": "D",
+        "text": "应检查步长和段内清除速率保持不变的假设。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-slope-meaning",
+    "version": "1",
+    "lesson_id": "P02-C02-S01",
+    "slug": "p02-slope-meaning",
+    "title": "平均变化与局部变化",
+    "type": "choice",
+    "statement": "人工曲线 A(t)=t² U，t 的数值以 T 为单位。区间 [1,1+h] 的差商（difference quotient）为 (A(1+h)−A(1))/h。哪些说法正确？",
+    "part": "2",
+    "chapter": "2.2",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数03"
+    ],
+    "difficulty": "基础",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "它的单位是 U/T。"
+      },
+      {
+        "id": "B",
+        "text": "当 h=0.5 T 时它等于 2.5 U/T。"
+      },
+      {
+        "id": "C",
+        "text": "任意非零 h 得到的数都恰好等于 t=1 的导数（derivative）。"
+      },
+      {
+        "id": "D",
+        "text": "h 趋近零时差商趋近 2 U/T。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-difference",
+    "version": "1",
+    "lesson_id": "P02-C02-S01",
+    "slug": "p02-difference",
+    "title": "用差商接近局部斜率",
+    "type": "python",
+    "statement": "给定 A(t)=t²，直接按前向差分计算位置 t 的平均变化率，不返回精确导数（derivative） 2t。t、h 是以 T 为单位的数值。",
+    "part": "2",
+    "chapter": "2.2",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数03"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "t",
+        "type": "float",
+        "description": "差分区间左端。",
+        "unit": "T"
+      },
+      {
+        "name": "h",
+        "type": "float",
+        "description": "区间长度。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "rate",
+        "type": "float",
+        "description": "[t,t+h] 上的平均变化率。",
+        "unit": "U/T"
+      }
+    ],
+    "contract": "返回 ((t+h)**2 − t**2) / h。",
+    "constraints": [
+      "所有数值有限；无需修改输入（input）。",
+      "0 ≤ t ≤ 10；1e−4 ≤ h ≤ 1。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "可用代数恒等式 2t+h 检查差分结果。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    t: float,\n    h: float,\n) -> float:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "t": 1,
+          "h": 0.5
+        },
+        "expected": 2.5,
+        "explanation": "(1.5²−1²)/0.5=2.5；比精确导数 2 大 0.5。"
+      }
+    ]
+  },
+  {
+    "id": "p02-limit-not-zero",
+    "version": "1",
+    "lesson_id": "P02-C02-S01",
+    "slug": "p02-limit-not-zero",
+    "title": "趋近零与代入零",
+    "type": "choice",
+    "statement": "定义导数（derivative）时，让 h 趋近零而不直接取零，主要原因是什么？",
+    "part": "2",
+    "chapter": "2.2",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数03"
+    ],
+    "difficulty": "基础",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "因为函数永远不能在 t=0 取值。"
+      },
+      {
+        "id": "B",
+        "text": "因为差商（difference quotient）分母为 h，直接取零通常得到 0/0。"
+      },
+      {
+        "id": "C",
+        "text": "因为电脑不允许任何零数值。"
+      },
+      {
+        "id": "D",
+        "text": "因为导数只是随意选一个很小的 h。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-difference-noise",
+    "version": "1",
+    "lesson_id": "P02-C02-S01",
+    "slug": "p02-difference-noise",
+    "title": "更小间隔总是更准确吗",
+    "type": "choice",
+    "statement": "用浮点数对光滑曲线做差分。h 缩小时，一开始误差减小，后来却变大。最合理的解释是？",
+    "part": "2",
+    "chapter": "2.2",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数03"
+    ],
+    "difficulty": "基础",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "导数（derivative）不存在。"
+      },
+      {
+        "id": "B",
+        "text": "所有差分方法必定不收敛。"
+      },
+      {
+        "id": "C",
+        "text": "相近数相减的舍入误差（round-off error）经除以很小的 h 放大。"
+      },
+      {
+        "id": "D",
+        "text": "应把所有结果取整。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-area-unit",
+    "version": "1",
+    "lesson_id": "P02-C02-S02",
+    "slug": "p02-area-unit",
+    "title": "流率曲线下面的面积",
+    "type": "choice",
+    "statement": "某物质只有流入，u(t) 的单位为 U/T，初始物质量为 3 U。0—2 T 内 u(t) 的定积分（definite integral）为 4 U。哪些结论正确？",
+    "part": "2",
+    "chapter": "2.2",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数03"
+    ],
+    "difficulty": "基础",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "流入累计量为 4 U。"
+      },
+      {
+        "id": "B",
+        "text": "终点物质量为 4 U。"
+      },
+      {
+        "id": "C",
+        "text": "终点物质量为 7 U。"
+      },
+      {
+        "id": "D",
+        "text": "定积分的单位为 U/T²。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-left-area",
+    "version": "1",
+    "lesson_id": "P02-C02-S02",
+    "slug": "p02-left-area",
+    "title": "用左端矩形累积变化",
+    "type": "python",
+    "statement": "流入速率 u(t)=2t，t 以 T 为单位。把 [start,end] 等分成 intervals 段，用每段左端速率乘段宽，返回累计近似。",
+    "part": "2",
+    "chapter": "2.2",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数03"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "start",
+        "type": "float",
+        "description": "起始时刻。",
+        "unit": "T"
+      },
+      {
+        "name": "end",
+        "type": "float",
+        "description": "终止时刻。",
+        "unit": "T"
+      },
+      {
+        "name": "intervals",
+        "type": "int",
+        "description": "等分段数。",
+        "unit": "段"
+      }
+    ],
+    "returns": [
+      {
+        "name": "total",
+        "type": "float",
+        "description": "左端矩形累计量。",
+        "unit": "U"
+      }
+    ],
+    "contract": "h=(end−start)/intervals；累加 2×(start+i×h)×h，i 从 0 到 intervals−1。题目要求近似和，不能直接返回精确积分 end²−start²。",
+    "constraints": [
+      "所有数值有限；无需修改输入（input）。",
+      "0 ≤ start < end ≤ 10；1 ≤ intervals ≤ 10000。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "该递增流率的左端矩形低估面积；细化后应趋近 end²−start²。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    start: float,\n    end: float,\n    intervals: int,\n) -> float:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "start": 0,
+          "end": 1,
+          "intervals": 4
+        },
+        "expected": 0.75,
+        "explanation": "四段左端为 0、0.25、0.5、0.75 T；流率（flow rate）为 0、0.5、1、1.5 U/T，乘 0.25 T 后合计 0.75 U。"
+      }
+    ]
+  },
+  {
+    "id": "p02-ftc",
+    "version": "1",
+    "lesson_id": "P02-C02-S02",
+    "slug": "p02-ftc",
+    "title": "累积函数的变化率",
+    "type": "choice",
+    "statement": "令 B(t)=∫₀ᵗ u(s) ds，且 u 在考察时刻连续。哪一项是微积分基本定理（fundamental theorem of calculus）在这里的含义？",
+    "part": "2",
+    "chapter": "2.2",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数03"
+    ],
+    "difficulty": "基础",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "B(t)=u(t)。"
+      },
+      {
+        "id": "B",
+        "text": "B′(t)=u(t)。"
+      },
+      {
+        "id": "C",
+        "text": "B′(t)=0。"
+      },
+      {
+        "id": "D",
+        "text": "只要知道 B′，无需初值（initial condition）就能确定原存量（stock）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-jump-area",
+    "version": "1",
+    "lesson_id": "P02-C02-S02",
+    "slug": "p02-jump-area",
+    "title": "输入跳变时存量是否跳变",
+    "type": "choice",
+    "statement": "只有有限流率（flow rate）输入（input）：0—1 T 为 2 U/T，1—2 T 为 0；没有瞬时注入、没有清除。哪些说法正确？",
+    "part": "2",
+    "chapter": "2.2",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数03"
+    ],
+    "difficulty": "基础",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "t=1 T 时累计量连续。"
+      },
+      {
+        "id": "B",
+        "text": "t=1 T 时累计曲线的左右斜率（slope）不同。"
+      },
+      {
+        "id": "C",
+        "text": "流率从 2 变 0，存量（stock）必须瞬间减少 2 U。"
+      },
+      {
+        "id": "D",
+        "text": "对该输入直接用一条处处光滑曲线会掩盖跳变。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-exponent-unit",
+    "version": "1",
+    "lesson_id": "P02-C02-S03",
+    "slug": "p02-exponent-unit",
+    "title": "指数里的单位",
+    "type": "choice",
+    "statement": "用 A(t)=A0 exp(−kt) 描述人工清除。t 的单位是 T。哪些判断成立？",
+    "part": "2",
+    "chapter": "2.2",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数03"
+    ],
+    "difficulty": "基础",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "k 的单位应为 1/T。"
+      },
+      {
+        "id": "B",
+        "text": "−kt 是无量纲（dimensionless）数。"
+      },
+      {
+        "id": "C",
+        "text": "把秒换成分钟后可直接保留 k 的原数值。"
+      },
+      {
+        "id": "D",
+        "text": "exp(0)=1，因此满足 A(0)=A0。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-chain-rule",
+    "version": "1",
+    "lesson_id": "P02-C02-S03",
+    "slug": "p02-chain-rule",
+    "title": "给衰减曲线和变化率配对",
+    "type": "python",
+    "statement": "计算无量纲（dimensionless）函数 f(t)=exp(−kt) 及其导数（derivative） f′(t)=−k exp(−kt)。导数结果用于核对曲线局部变化，不用有限差分（finite difference）近似。",
+    "part": "2",
+    "chapter": "2.2",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数03"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "k",
+        "type": "float",
+        "description": "非负衰减系数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "需要求值的时刻，按原顺序返回。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "values",
+        "type": "list[float]",
+        "description": "各时刻 f(t)。",
+        "unit": "1"
+      },
+      {
+        "name": "derivatives",
+        "type": "list[float]",
+        "description": "各时刻 f′(t)。",
+        "unit": "1/T"
+      }
+    ],
+    "contract": "分别构造 exp(−k*t) 与 −k*exp(−k*t) 的列表；k=0 时为常数 1、变化率 0。",
+    "constraints": [
+      "所有数值有限；无需修改输入（input）。",
+      "0 ≤ k ≤ 3；0 ≤ times[i] ≤ 20；列表长度 0—1000，可重复、可不排序。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "链式法则（chain rule）还要乘内层 −kt 的导数 −k。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    k: float,\n    times: list[float],\n) -> tuple[list[float], list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "k": 0.5,
+          "times": [
+            0,
+            2
+          ]
+        },
+        "expected": [
+          [
+            1.0,
+            0.36787944117144233
+          ],
+          [
+            -0.5,
+            -0.18393972058572117
+          ]
+        ],
+        "explanation": "t=0 时值为 1、导数 −0.5；t=2 时值为 exp(−1)，导数为该值的 −0.5 倍。"
+      }
+    ]
+  },
+  {
+    "id": "p02-chain-factor",
+    "version": "1",
+    "lesson_id": "P02-C02-S03",
+    "slug": "p02-chain-factor",
+    "title": "遗漏了哪个因子",
+    "type": "choice",
+    "statement": "某人把 d[exp(−2t)]/dt 写成 exp(−2t)。正确修正是什么？",
+    "part": "2",
+    "chapter": "2.2",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数03"
+    ],
+    "difficulty": "基础",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "乘 −2。"
+      },
+      {
+        "id": "B",
+        "text": "乘 t。"
+      },
+      {
+        "id": "C",
+        "text": "除以 exp(−2t)。"
+      },
+      {
+        "id": "D",
+        "text": "不需要修正。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-integration-constant",
+    "version": "1",
+    "lesson_id": "P02-C02-S03",
+    "slug": "p02-integration-constant",
+    "title": "相同导数为何还有不同曲线",
+    "type": "choice",
+    "statement": "在同一区间内，A′(t)=2t，B′(t)=2t，A(0)=1，B(0)=4。哪些结论成立？",
+    "part": "2",
+    "chapter": "2.2",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数03"
+    ],
+    "difficulty": "基础",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "A 与 B 完全相同。"
+      },
+      {
+        "id": "B",
+        "text": "B(t)−A(t)=3。"
+      },
+      {
+        "id": "C",
+        "text": "初值（initial condition）决定积分（definite integral）后的常数。"
+      },
+      {
+        "id": "D",
+        "text": "A(t)=1+t²，B(t)=4+t²。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-ivp",
+    "version": "1",
+    "lesson_id": "P02-C03-S01",
+    "slug": "p02-ivp",
+    "title": "方程还缺什么",
+    "type": "choice",
+    "statement": "已知 dA/dt=u−kA，u、k 为常数。为了唯一确定本例轨迹（trajectory），还必须提供什么？",
+    "part": "2",
+    "chapter": "2.3",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数04"
+    ],
+    "difficulty": "基础",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "一个起始时刻及该时刻物质量。"
+      },
+      {
+        "id": "B",
+        "text": "只需画一条看起来平滑的曲线。"
+      },
+      {
+        "id": "C",
+        "text": "所有未来时刻的真实测量。"
+      },
+      {
+        "id": "D",
+        "text": "任意一个时间步长（time step）即可代替初值（initial condition）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-exact",
+    "version": "1",
+    "lesson_id": "P02-C03-S01",
+    "slug": "p02-exact",
+    "title": "恒定输入的连续解",
+    "type": "python",
+    "statement": "理想单室模型（one-compartment model）满足 dA/dt=u−kA，A(0)=A0。返回指定时刻的解析物质量。包含 k=0 和很小 k，需避免两个近乎相等的数相减损失精度。",
+    "part": "2",
+    "chapter": "2.3",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数04"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "A0",
+        "type": "float",
+        "description": "初始物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "u",
+        "type": "float",
+        "description": "恒定输入（input）速率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "非负清除系数（elimination rate constant）。",
+        "unit": "1/T"
+      },
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "非负时刻，保留给定顺序。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "amounts",
+        "type": "list[float]",
+        "description": "各时刻的解析物质量。",
+        "unit": "U"
+      }
+    ],
+    "contract": "k=0 时 A=A0+u*t；k>0 时 A=A0*exp(−k*t)−(u/k)*expm1(−k*t)。math.expm1(z) 准确计算 exp(z)−1。",
+    "constraints": [
+      "所有数值有限；无需修改输入。",
+      "0 ≤ A0,u ≤ 20；k=0 或 1e−14 ≤ k ≤ 2；0 ≤ times[i] ≤ 20；列表长度 0—1000。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先处理 k=0；极小 k 的结果应接近 A0+u*t，而非产生明显抵消误差。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    A0: float,\n    u: float,\n    k: float,\n    times: list[float],\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "A0": 0,
+          "u": 1,
+          "k": 0.5,
+          "times": [
+            0,
+            2
+          ]
+        },
+        "expected": [
+          0.0,
+          1.2642411176571153
+        ],
+        "explanation": "平衡（equilibrium）量为 2 U，A(2)=2(1−exp(−1))≈1.2642411177 U；起点为 0。"
+      }
+    ]
+  },
+  {
+    "id": "p02-shift-equilibrium",
+    "version": "1",
+    "lesson_id": "P02-C03-S01",
+    "slug": "p02-shift-equilibrium",
+    "title": "减去平衡为什么有用",
+    "type": "choice",
+    "statement": "对 k>0，令 A*=u/k，x=A−A*。哪些推导成立？",
+    "part": "2",
+    "chapter": "2.3",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数04"
+    ],
+    "difficulty": "基础",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "因为 A* 为常数，x′=A′。"
+      },
+      {
+        "id": "B",
+        "text": "x′=−kx。"
+      },
+      {
+        "id": "C",
+        "text": "任何初值（initial condition）都必须等于 A*。"
+      },
+      {
+        "id": "D",
+        "text": "x(t)=(A0−A*)exp(−kt)。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-zero-clearance",
+    "version": "1",
+    "lesson_id": "P02-C03-S01",
+    "slug": "p02-zero-clearance",
+    "title": "不能除以零的分支",
+    "type": "choice",
+    "statement": "若 k=0、u=2 U/T、A0=3 U，则下面哪项成立？",
+    "part": "2",
+    "chapter": "2.3",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数04"
+    ],
+    "difficulty": "基础",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "平衡（equilibrium）为 u/k，应设为无限大并直接计算。"
+      },
+      {
+        "id": "B",
+        "text": "A(t)=3+2t，没有有限恒定平衡。"
+      },
+      {
+        "id": "C",
+        "text": "A(t)=3exp(−2t)。"
+      },
+      {
+        "id": "D",
+        "text": "A(t)=0。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-timescale",
+    "version": "1",
+    "lesson_id": "P02-C03-S02",
+    "slug": "p02-timescale",
+    "title": "同一平衡，不同速度",
+    "type": "choice",
+    "statement": "将恒定输入（input）模型（model）中的 u>0 和 k>0 同时乘 2，初值（initial condition）保持不变。哪些结论正确？",
+    "part": "2",
+    "chapter": "2.3",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数04"
+    ],
+    "difficulty": "基础",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "平衡（equilibrium）量 u/k 不变。"
+      },
+      {
+        "id": "B",
+        "text": "特征时间（characteristic time） 1/k 减半。"
+      },
+      {
+        "id": "C",
+        "text": "每个相同时刻的物质量必然与原来相同。"
+      },
+      {
+        "id": "D",
+        "text": "同样的偏离衰减比例在一半时间内达到。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-arrival",
+    "version": "1",
+    "lesson_id": "P02-C03-S02",
+    "slug": "p02-arrival",
+    "title": "到达指定平衡比例要多久",
+    "type": "python",
+    "statement": "从 A0=0 出发，u>0、k>0。解为 A(t)=(u/k)(1−exp(−kt))。给定若干比例 f，返回首次达到 f×(u/k) 的时刻。",
+    "part": "2",
+    "chapter": "2.3",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数04"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除系数（elimination rate constant）。",
+        "unit": "1/T"
+      },
+      {
+        "name": "fractions",
+        "type": "list[float]",
+        "description": "目标平衡（equilibrium）比例 f。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "与目标比例一一对应的首次达到时刻。",
+        "unit": "T"
+      }
+    ],
+    "contract": "由 exp(−kt)=1−f 得到 t=−log(1−f)/k，可用 math.log1p(−f)。f=0 返回 0；不包含永远无法有限时间精确达到的 f=1。",
+    "constraints": [
+      "所有数值有限；无需修改输入（input）。",
+      "1e−4 ≤ k ≤ 2；0 ≤ f ≤ 0.999999；列表长度 0—100。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "分离指数再取自然对数（natural logarithm）；不要把 90% 当成 90。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    k: float,\n    fractions: list[float],\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "k": 0.5,
+          "fractions": [
+            0,
+            0.5,
+            0.9
+          ]
+        },
+        "expected": [
+          -0.0,
+          1.3862943611198906,
+          4.605170185988092
+        ],
+        "explanation": "对应时间为 0、2 ln2≈1.3862943611 T、2 ln10≈4.6051701860 T。u 只决定平衡量，已在比例关系中抵消。"
+      }
+    ]
+  },
+  {
+    "id": "p02-time-constant",
+    "version": "1",
+    "lesson_id": "P02-C03-S02",
+    "slug": "p02-time-constant",
+    "title": "一个特征时间之后",
+    "type": "choice",
+    "statement": "无输入（input）衰减 A(t)=A0 exp(−kt)，k>0、A0>0。经过 τ=1/k 后还剩多少初始物质量？",
+    "part": "2",
+    "chapter": "2.3",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数04"
+    ],
+    "difficulty": "基础",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "零。"
+      },
+      {
+        "id": "B",
+        "text": "一半。"
+      },
+      {
+        "id": "C",
+        "text": "exp(−1)≈36.8%。"
+      },
+      {
+        "id": "D",
+        "text": "63.2%。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-solution-check",
+    "version": "1",
+    "lesson_id": "P02-C03-S02",
+    "slug": "p02-solution-check",
+    "title": "怎样核验一条候选解",
+    "type": "choice",
+    "statement": "候选函数画得很平滑，且最后靠近平衡（equilibrium）。要检查它是否为给定初值问题（initial value problem）的解析解（analytical solution），还应该做哪些事情？",
+    "part": "2",
+    "chapter": "2.3",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数04"
+    ],
+    "difficulty": "基础",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "代入起始时刻，核对初值（initial condition）。"
+      },
+      {
+        "id": "B",
+        "text": "求导并检查每个适用时刻都满足方程。"
+      },
+      {
+        "id": "C",
+        "text": "只检查终点是否接近 u/k。"
+      },
+      {
+        "id": "D",
+        "text": "检查 k=0 等公式分支和变量单位。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-errors",
+    "version": "1",
+    "lesson_id": "P02-C04-S01",
+    "slug": "p02-errors",
+    "title": "把误差变成一张可比较的表",
+    "type": "python",
+    "statement": "对同一恒定输入（input）初值问题（initial value problem），用给定的多个步长分别做显式欧拉法（forward Euler method）更新。对各自全部网格点与解析解（analytical solution）比较，返回最大绝对误差（maximum absolute error）。",
+    "part": "2",
+    "chapter": "2.4",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "A0",
+        "type": "float",
+        "description": "初始物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "u",
+        "type": "float",
+        "description": "恒定输入。",
+        "unit": "U/T"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除系数（elimination rate constant）。",
+        "unit": "1/T"
+      },
+      {
+        "name": "step_sizes",
+        "type": "list[float]",
+        "description": "逐一独立尝试的步长。",
+        "unit": "T"
+      },
+      {
+        "name": "end",
+        "type": "float",
+        "description": "共同终点。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "errors",
+        "type": "list[float]",
+        "description": "按步长顺序返回网格最大绝对误差。",
+        "unit": "U"
+      }
+    ],
+    "contract": "每个 h 都从同一 A0 开始；steps=round(end/h)；比较 i=0…steps 的 A[i] 与恒定输入解析解。k=0 用线性解。",
+    "constraints": [
+      "所有数值有限；无需修改输入。",
+      "0 ≤ A0,u ≤ 20；0 ≤ k ≤ 2；0 < end ≤ 20；step_sizes 长度 1—10；每个 end/h 为正整数（误差 <1e−10），最多 10000 步。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "比较共同问题，但每个网格上的全部点都要检查；仅终点误差不等于最大误差。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    A0: float,\n    u: float,\n    k: float,\n    step_sizes: list[float],\n    end: float,\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "A0": 0,
+          "u": 1,
+          "k": 0.5,
+          "step_sizes": [
+            1,
+            0.5,
+            0.25
+          ],
+          "end": 2
+        },
+        "expected": [
+          0.23575888234288467,
+          0.10294638234288467,
+          0.04854105073125137
+        ],
+        "explanation": "h=1 时轨迹（trajectory） [0,1,1.5]，误差约为 [0,0.2130613,0.2357589] U，取最大值；其他 h 重新计算。"
+      }
+    ]
+  },
+  {
+    "id": "p02-orders",
+    "version": "1",
+    "lesson_id": "P02-C04-S01",
+    "slug": "p02-orders",
+    "title": "从误差缩小比例估计阶数",
+    "type": "python",
+    "statement": "已按 h、h/2、h/4…得到正的最大误差序列。返回相邻两项对应的观察阶（observed order of convergence） p=log2(Eh/Eh/2)。",
+    "part": "2",
+    "chapter": "2.4",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "errors",
+        "type": "list[float]",
+        "description": "随步长逐次减半得到的正误差。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "orders",
+        "type": "list[float]",
+        "description": "每对相邻误差的观察阶，长度少一。",
+        "unit": "1"
+      }
+    ],
+    "contract": "按原顺序返回 log2(errors[i]/errors[i+1])；允许误差增大而产生负观察阶，不截断、不取整。",
+    "constraints": [
+      "所有数值有限；无需修改输入（input）。",
+      "1 ≤ len(errors) ≤ 100；1e−12 ≤ errors[i] ≤ 1e6；步长确为依次减半。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "该数值是当前网格范围内的观察，不自动证明所有网格的理论收敛阶。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    errors: list[float],\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "errors": [
+            0.2,
+            0.1,
+            0.05
+          ]
+        },
+        "expected": [
+          1.0,
+          1.0
+        ],
+        "explanation": "每次误差减半，比例为 2，因此两个观察阶均为 1。"
+      }
+    ]
+  },
+  {
+    "id": "p02-truncation",
+    "version": "1",
+    "lesson_id": "P02-C04-S01",
+    "slug": "p02-truncation",
+    "title": "一次更新舍弃了什么",
+    "type": "choice",
+    "statement": "欧拉法（forward Euler method）在整个步长 h 内使用段首变化率 f(t,A)。对于光滑解，一步从精确起点出发的遗漏量通常是 O(h²)。哪些结论合理？",
+    "part": "2",
+    "chapter": "2.4",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "基础",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "固定总时间内约有 1/h 次更新，稳定条件下全局误差通常为 O(h)。"
+      },
+      {
+        "id": "B",
+        "text": "只要一步误差是 O(h²)，全局一定二阶。"
+      },
+      {
+        "id": "C",
+        "text": "结果还受到舍入误差（round-off error）影响。"
+      },
+      {
+        "id": "D",
+        "text": "光滑性和误差传播条件可以忽略。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-fair-refinement",
+    "version": "1",
+    "lesson_id": "P02-C04-S01",
+    "slug": "p02-fair-refinement",
+    "title": "怎样公平地细化网格",
+    "type": "choice",
+    "statement": "比较 h=0.5 与 h=0.25 的误差，哪种安排合理？",
+    "part": "2",
+    "chapter": "2.4",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "基础",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "两次使用同一初值（initial condition）、参数（parameter）、输入（input）和观察区间。"
+      },
+      {
+        "id": "B",
+        "text": "第二次从第一次终点开始。"
+      },
+      {
+        "id": "C",
+        "text": "第二次同时改变 k，让曲线看起来接近。"
+      },
+      {
+        "id": "D",
+        "text": "只比较两幅图是否足够平滑。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-zero-error",
+    "version": "1",
+    "lesson_id": "P02-C04-S01",
+    "slug": "p02-zero-error",
+    "title": "误差为零还能取对数吗",
+    "type": "choice",
+    "statement": "零清除且输入（input）恒定时，欧拉法（forward Euler method）给出线性精确结果（忽略浮点舍入）。误差表 E(h)=E(h/2)=0。怎样处理观察阶（observed order of convergence）？",
+    "part": "2",
+    "chapter": "2.4",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "基础",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "认定方法无限阶。"
+      },
+      {
+        "id": "B",
+        "text": "报告此例不能用误差比估计阶数，另选非平凡衰减实验。"
+      },
+      {
+        "id": "C",
+        "text": "强行算 log2(0/0)。"
+      },
+      {
+        "id": "D",
+        "text": "把零改为一个任意正数即可得到证明。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-step-properties",
+    "version": "1",
+    "lesson_id": "P02-C04-S02",
+    "slug": "p02-step-properties",
+    "title": "分别检查稳定与非负条件",
+    "type": "python",
+    "statement": "本题只讨论恒定输入（input）一阶模型（model）的显式欧拉法（forward Euler method）更新。给定非负 k 和正 h，返回偏差放大因子 q，以及严格渐近稳定（asymptotic stability）、对所有非负初值（initial condition）与输入保持非负这两个布尔判断。",
+    "part": "2",
+    "chapter": "2.4",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除系数（elimination rate constant）。",
+        "unit": "1/T"
+      },
+      {
+        "name": "h",
+        "type": "float",
+        "description": "时间步长（time step）。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "q",
+        "type": "float",
+        "description": "1−k*h。",
+        "unit": "1"
+      },
+      {
+        "name": "stable",
+        "type": "bool",
+        "description": "是否 abs(q)<1；k=0 不属于严格渐近稳定。",
+        "unit": "1"
+      },
+      {
+        "name": "nonnegative",
+        "type": "bool",
+        "description": "是否 q≥0；保证所有 A0≥0、u≥0 的下一步非负。",
+        "unit": "1"
+      }
+    ],
+    "contract": "q=1−kh；stable=(abs(q)<1)；nonnegative=(q>=0)。本题要求精确不等号，不加数值容差扩大边界。",
+    "constraints": [
+      "所有数值有限；无需修改输入。",
+      "0 ≤ k ≤ 2；0 < h ≤ 4；测试数值包含 kh=0、1、2 及两侧。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "稳定判断是偏差会不会衰减，非负判断是所有物理初值的符号保证；二者不同。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    k: float,\n    h: float,\n) -> tuple[float, bool, bool]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "k": 0.75,
+          "h": 2
+        },
+        "expected": [
+          -0.5,
+          true,
+          false
+        ],
+        "explanation": "kh=1.5，q=−0.5：偏差大小逐步减半，因此 stable=True；但可能出现负物质量，nonnegative=False。"
+      }
+    ]
+  },
+  {
+    "id": "p02-first-decay",
+    "version": "1",
+    "lesson_id": "P02-C04-S02",
+    "slug": "p02-first-decay",
+    "title": "负值出现在第一步",
+    "type": "python",
+    "statement": "无输入（input）时从 A0≥0 开始，对不同步长分别做一次欧拉法（forward Euler method）更新。返回每个步长得到的第一步物质量，保留负值。",
+    "part": "2",
+    "chapter": "2.4",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "A0",
+        "type": "float",
+        "description": "初始物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除系数（elimination rate constant）。",
+        "unit": "1/T"
+      },
+      {
+        "name": "step_sizes",
+        "type": "list[float]",
+        "description": "分别尝试的步长。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "first",
+        "type": "list[float]",
+        "description": "各自第一步物质量。",
+        "unit": "U"
+      }
+    ],
+    "contract": "每个试验独立从 A0 出发，返回 A0*(1−k*h)，不裁剪、不连续串接。",
+    "constraints": [
+      "所有数值有限；无需修改输入。",
+      "0 ≤ A0 ≤ 20；0 ≤ k ≤ 2；0 < h ≤ 4；列表长度 1—100。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先计算 kh，再计算 1−kh；判断值时不能只看曲线是否最终衰减。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    A0: float,\n    k: float,\n    step_sizes: list[float],\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "A0": 10,
+          "k": 0.75,
+          "step_sizes": [
+            1,
+            2
+          ]
+        },
+        "expected": [
+          2.5,
+          -5.0
+        ],
+        "explanation": "h=1 时为 2.5 U；h=2 时为 −5 U。连续衰减在相同时刻都应为正，因此负值是算法失败信号。"
+      }
+    ]
+  },
+  {
+    "id": "p02-stable-not-positive",
+    "version": "1",
+    "lesson_id": "P02-C04-S02",
+    "slug": "p02-stable-not-positive",
+    "title": "稳定曲线也会不合理",
+    "type": "choice",
+    "statement": "无输入（input）清除中 kh=1.5、A0>0。偏差放大因子为 −0.5。哪些说法成立？",
+    "part": "2",
+    "chapter": "2.4",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "基础",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "数值绝对值趋向零。"
+      },
+      {
+        "id": "B",
+        "text": "每一步必定非负。"
+      },
+      {
+        "id": "C",
+        "text": "曲线交替正负，与连续解的单调正衰减不同。"
+      },
+      {
+        "id": "D",
+        "text": "稳定意味着任何步长精度都足够好。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-stability-boundary",
+    "version": "1",
+    "lesson_id": "P02-C04-S02",
+    "slug": "p02-stability-boundary",
+    "title": "边界 kh=2",
+    "type": "choice",
+    "statement": "无输入（input）、A0=10 U、kh=2。欧拉法（forward Euler method）轨迹（trajectory）是哪种行为？",
+    "part": "2",
+    "chapter": "2.4",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "基础",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "10、−10、10、−10…，幅值不衰减，不是严格渐近稳定（asymptotic stability）。"
+      },
+      {
+        "id": "B",
+        "text": "10、0、0…，一步达到零。"
+      },
+      {
+        "id": "C",
+        "text": "始终为 10。"
+      },
+      {
+        "id": "D",
+        "text": "平滑指数衰减。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-do-not-clip",
+    "version": "1",
+    "lesson_id": "P02-C04-S02",
+    "slug": "p02-do-not-clip",
+    "title": "发现负值后的正确处理",
+    "type": "choice",
+    "statement": "数值曲线出现负物质量，但方程在非负初值（initial condition）和输入（input）下保持非负。哪些操作有助于查明原因？",
+    "part": "2",
+    "chapter": "2.4",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "基础",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "保留失败轨迹（trajectory），减小步长并对照解析解（analytical solution）。"
+      },
+      {
+        "id": "B",
+        "text": "检查 kh 与实际步长。"
+      },
+      {
+        "id": "C",
+        "text": "直接隐藏负值，继续称原算法通过。"
+      },
+      {
+        "id": "D",
+        "text": "把模型（model）参数（parameter）改到没有负值，但不说明改变了问题。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-aligned-grid",
+    "version": "1",
+    "lesson_id": "P02-C04-S03",
+    "slug": "p02-aligned-grid",
+    "title": "让网格停在输入跳变点",
+    "type": "python",
+    "statement": "输入（input）在 bounds 中的时刻改变。每个分段都从其左端开始，以名义步长 h 前进；最后不足 h 时缩短，并精确保留右端。返回整个时间网格（time grid）。",
+    "part": "2",
+    "chapter": "2.4",
+    "learning_targets": [
+      "T3",
+      "T4"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "bounds",
+        "type": "list[float]",
+        "description": "严格递增的分段边界，首项为 0。",
+        "unit": "T"
+      },
+      {
+        "name": "h",
+        "type": "float",
+        "description": "每段重新起步的名义步长。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "含所有边界、严格递增、不重复的时刻。",
+        "unit": "T"
+      }
+    ],
+    "contract": "对每段 [left,right]，加入 left+h、left+2h… 中严格小于 right 的点，再加入 right；边界只出现一次。判断恰好整除时允许 1e−12 的商误差。",
+    "constraints": [
+      "所有数值有限；无需修改输入。",
+      "2 ≤ len(bounds) ≤ 20；相邻间隔至少 1e−4；终点 ≤ 20；0.01 ≤ h ≤ 5；总步数 ≤ 10000。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "不能让一步跨过跳变，也不能把短末步仍按 h 积分。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    bounds: list[float],\n    h: float,\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "bounds": [
+            0,
+            3,
+            5
+          ],
+          "h": 0.8
+        },
+        "expected": [
+          0,
+          0.8,
+          1.6,
+          2.4000000000000004,
+          3,
+          3.8,
+          4.6,
+          5
+        ],
+        "explanation": "返回 [0,0.8,1.6,2.4,3,3.8,4.6,5]；2.4→3 只有 0.6 T，4.6→5 只有 0.4 T。"
+      }
+    ]
+  },
+  {
+    "id": "p02-piecewise",
+    "version": "1",
+    "lesson_id": "P02-C04-S03",
+    "slug": "p02-piecewise",
+    "title": "同时保留数值轨迹与分段参考",
+    "type": "python",
+    "statement": "在同一跳变对齐网格上计算分段恒定输入（piecewise constant input）的欧拉法（forward Euler method）轨迹（trajectory）和解析参考。每段末的解析物质量连续传给下一段；欧拉解也连续，但用自己的段首值更新。",
+    "part": "2",
+    "chapter": "2.4",
+    "learning_targets": [
+      "T3",
+      "T4"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "A0",
+        "type": "float",
+        "description": "起点物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "各段相同的清除系数（elimination rate constant）。",
+        "unit": "1/T"
+      },
+      {
+        "name": "bounds",
+        "type": "list[float]",
+        "description": "严格递增分段边界，首项 0。",
+        "unit": "T"
+      },
+      {
+        "name": "rates",
+        "type": "list[float]",
+        "description": "每个 [bounds[j],bounds[j+1]) 的恒定输入（input）速率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "h",
+        "type": "float",
+        "description": "各段重新起步的名义步长。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "跳变对齐时间网格（time grid）。",
+        "unit": "T"
+      },
+      {
+        "name": "amounts",
+        "type": "list[float]",
+        "description": "欧拉物质量，含初值（initial condition）。",
+        "unit": "U"
+      },
+      {
+        "name": "reference",
+        "type": "list[float]",
+        "description": "相同网格上的分段解析物质量。",
+        "unit": "U"
+      }
+    ],
+    "contract": "网格规则与“让网格停在输入跳变点”相同。欧拉步使用 dt=times[i+1]−times[i] 及左端所在段的速率；到达跳变点后才使用新速率。解析值按各完整段的恒定输入解连续传播。",
+    "constraints": [
+      "所有数值有限；无需修改输入。",
+      "0 ≤ A0,rates[j] ≤ 20；0 ≤ k ≤ 2；2—20 个边界，末点 ≤20，相邻间隔≥1e−4；rates 比 bounds 少一项；0.01≤h≤5，总步数≤10000。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "两条轨迹各自延续；不能每段把欧拉值重置为解析值。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    A0: float,\n    k: float,\n    bounds: list[float],\n    rates: list[float],\n    h: float,\n) -> tuple[list[float], list[float], list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "A0": 0,
+          "k": 1,
+          "bounds": [
+            0,
+            1.5,
+            2
+          ],
+          "rates": [
+            2,
+            0
+          ],
+          "h": 1
+        },
+        "expected": [
+          [
+            0,
+            1,
+            1.5,
+            2
+          ],
+          [
+            0,
+            2,
+            2.0,
+            1.0
+          ],
+          [
+            0,
+            1.2642411176571153,
+            1.5537396797031404,
+            0.9423907529520416
+          ]
+        ],
+        "explanation": "网格 [0,1,1.5,2]；欧拉值 [0,2,2,1]。1→1.5 仍用速率 2，1.5→2 改为 0；参考值由连续解求得。"
+      }
+    ]
+  },
+  {
+    "id": "p02-jump-side",
+    "version": "1",
+    "lesson_id": "P02-C04-S03",
+    "slug": "p02-jump-side",
+    "title": "跳变点前后用哪个输入",
+    "type": "choice",
+    "statement": "u=2 U/T 持续到 t=3 T，此后 u=0。网格最后两个区间是 [2.4,3] 和 [3,3.8]。哪组流入累计量正确？",
+    "part": "2",
+    "chapter": "2.4",
+    "learning_targets": [
+      "T3",
+      "T4"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "基础",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "1.6、0 U。"
+      },
+      {
+        "id": "B",
+        "text": "0、0 U。"
+      },
+      {
+        "id": "C",
+        "text": "1.2、0 U。"
+      },
+      {
+        "id": "D",
+        "text": "1.2、1.6 U。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-continuity",
+    "version": "1",
+    "lesson_id": "P02-C04-S03",
+    "slug": "p02-continuity",
+    "title": "传播什么到下一段",
+    "type": "choice",
+    "statement": "有限输入（input）速率在边界跳变，模型（model）不包含瞬时注入。连接分段解析解（analytical solution）时应怎样处理？",
+    "part": "2",
+    "chapter": "2.4",
+    "learning_targets": [
+      "T3",
+      "T4"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "基础",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "把上一段末量当作下一段初值（initial condition）。"
+      },
+      {
+        "id": "B",
+        "text": "每段都从零开始。"
+      },
+      {
+        "id": "C",
+        "text": "把输入速率的跳变量直接加到物质量上。"
+      },
+      {
+        "id": "D",
+        "text": "把物质量强行改成新段的平衡（equilibrium）值。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-tolerance",
+    "version": "1",
+    "lesson_id": "P02-C04-S03",
+    "slug": "p02-tolerance",
+    "title": "两种误差标准",
+    "type": "choice",
+    "statement": "判题比较你算出的欧拉法（forward Euler method）值与同一欧拉规则的参考值，容差为 1e−9；同时它与连续解析解（analytical solution）相差 0.1 U。哪些结论成立？",
+    "part": "2",
+    "chapter": "2.4",
+    "learning_targets": [
+      "T3",
+      "T4"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "基础",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "两个数字矛盾，题目一定错误。"
+      },
+      {
+        "id": "B",
+        "text": "前者核对实现，后者衡量离散近似误差。"
+      },
+      {
+        "id": "C",
+        "text": "把判题容差放宽到 0.1 就等于改进数值方法。"
+      },
+      {
+        "id": "D",
+        "text": "要减小连续解误差，应检查步长、方法和输入（input）分段。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-input-totals",
+    "version": "1",
+    "lesson_id": "P02-SUMMARY",
+    "slug": "p02-input-totals",
+    "title": "先确认比较方案的总量相同",
+    "type": "python",
+    "statement": "三种人工输入（input）方案使用相同的分段边界。分别计算每个方案的累计输入量，作为公平比较的第一项检查。这里只累计流入，不扣清除。",
+    "part": "2",
+    "chapter": "2.summary",
+    "learning_targets": [
+      "T3",
+      "T4"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "bounds",
+        "type": "list[float]",
+        "description": "共同的严格递增分段边界，首项 0。",
+        "unit": "T"
+      },
+      {
+        "name": "plans",
+        "type": "list[list[float]]",
+        "description": "每行是一种方案的分段流入速率。",
+        "unit": "U/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "totals",
+        "type": "list[float]",
+        "description": "按方案顺序返回总流入量。",
+        "unit": "U"
+      }
+    ],
+    "contract": "对每行 rates，返回 sum((bounds[j+1]−bounds[j])*rates[j])。",
+    "constraints": [
+      "所有数值有限；无需修改输入。",
+      "2—20 个边界，末点≤20；1—10 个方案，每行长度为 len(bounds)−1；0≤rate≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "等总量只固定总面积，不固定输入发生的时刻。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    bounds: list[float],\n    plans: list[list[float]],\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "bounds": [
+            0,
+            2,
+            4
+          ],
+          "plans": [
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "expected": [
+          4,
+          4,
+          4
+        ],
+        "explanation": "三个方案分别为 2×2、2×2、1×2+1×2，总量都为 4 U。"
+      }
+    ]
+  },
+  {
+    "id": "p02-input-metrics",
+    "version": "1",
+    "lesson_id": "P02-SUMMARY",
+    "slug": "p02-input-metrics",
+    "title": "解释方案差异前先核验误差",
+    "type": "python",
+    "statement": "对一种分段恒定输入（piecewise constant input）方案，计算总流入量、解析峰值和终值，以及两种步长下的欧拉法（forward Euler method）最大误差。该模型（model）每个恒定输入（input）段内单调，因此解析峰值可在各段端点找到。",
+    "part": "2",
+    "chapter": "2.summary",
+    "learning_targets": [
+      "T3",
+      "T4"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "A0",
+        "type": "float",
+        "description": "共同起点物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "k",
+        "type": "float",
+        "description": "非负清除系数（elimination rate constant）。",
+        "unit": "1/T"
+      },
+      {
+        "name": "bounds",
+        "type": "list[float]",
+        "description": "严格递增边界，首项 0。",
+        "unit": "T"
+      },
+      {
+        "name": "rates",
+        "type": "list[float]",
+        "description": "各段非负输入速率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "h",
+        "type": "float",
+        "description": "较粗网格名义步长。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "total",
+        "type": "float",
+        "description": "总输入量。",
+        "unit": "U"
+      },
+      {
+        "name": "peak",
+        "type": "float",
+        "description": "分段解析轨迹（trajectory）的峰值，包括起点。",
+        "unit": "U"
+      },
+      {
+        "name": "final",
+        "type": "float",
+        "description": "分段解析终值。",
+        "unit": "U"
+      },
+      {
+        "name": "error",
+        "type": "float",
+        "description": "步长 h 的欧拉网格最大误差。",
+        "unit": "U"
+      },
+      {
+        "name": "fine_error",
+        "type": "float",
+        "description": "步长 h/2 的欧拉网格最大误差。",
+        "unit": "U"
+      }
+    ],
+    "contract": "使用本篇跳变对齐网格分别运行 h 与 h/2；误差在各自网格上相对分段解析解（analytical solution）计算。peak、final 来自解析参考，不取未验证的欧拉峰值。",
+    "constraints": [
+      "所有数值有限；无需修改输入。",
+      "0≤A0,rates[j]≤20；0≤k≤2；2—20 个边界，末点≤20，相邻间隔≥1e−4；rates 比 bounds 少一项；0.02≤h≤4，总步数≤10000。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先确认同一问题、同一参考；有限步长误差下降是验证依据之一，不能代替模型假设检查。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    A0: float,\n    k: float,\n    bounds: list[float],\n    rates: list[float],\n    h: float,\n) -> tuple[float, float, float, float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "A0": 0,
+          "k": 0.5,
+          "bounds": [
+            0,
+            2,
+            4
+          ],
+          "rates": [
+            2,
+            0
+          ],
+          "h": 0.5
+        },
+        "expected": [
+          4,
+          2.5284822353142307,
+          0.9301766317393185,
+          0.20589276468576934,
+          0.09708210146250273
+        ],
+        "explanation": "总流入 4 U；输入结束时达到峰值 4(1−exp(−1))≈2.5284822353 U，之后衰减到约 0.9301766317 U。误差需分别由两次网格计算。"
+      }
+    ]
+  },
+  {
+    "id": "p02-equal-area-not-path",
+    "version": "1",
+    "lesson_id": "P02-SUMMARY",
+    "slug": "p02-equal-area-not-path",
+    "title": "等总量为何不等轨迹",
+    "type": "choice",
+    "statement": "从零开始，k=0.5 /T，观察 0—4 T；三个输入（input）分别为前 2 T 以 2 U/T、后 2 T 以 2 U/T、全程 1 U/T。哪些结论正确？",
+    "part": "2",
+    "chapter": "2.summary",
+    "learning_targets": [
+      "T3",
+      "T4"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "基础",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "总流入都为 4 U。"
+      },
+      {
+        "id": "B",
+        "text": "三者最终物质量必然相等。"
+      },
+      {
+        "id": "C",
+        "text": "较早进入的物质有更长时间被清除。"
+      },
+      {
+        "id": "D",
+        "text": "若改为 k=0，三者终值相同，但中间过程仍可不同。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-migration-evidence",
+    "version": "1",
+    "lesson_id": "P02-SUMMARY",
+    "slug": "p02-migration-evidence",
+    "title": "哪些证据足以交付迁移实验",
+    "type": "choice",
+    "statement": "将恒定输入（input）改成分段输入后，哪些检查属于本例应保留的独立核验？",
+    "part": "2",
+    "chapter": "2.summary",
+    "learning_targets": [
+      "T3",
+      "T4"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "基础",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "确认网格包含每个跳变且用实际 dt 更新。"
+      },
+      {
+        "id": "B",
+        "text": "只看最后一幅曲线是否光滑。"
+      },
+      {
+        "id": "C",
+        "text": "用分段解析解（analytical solution）比较，并检查 k=0 的累计输入边界。"
+      },
+      {
+        "id": "D",
+        "text": "比较 h 与 h/2 的误差，报告失败情形。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p02-model-scope",
+    "version": "1",
+    "lesson_id": "P02-SUMMARY",
+    "slug": "p02-model-scope",
+    "title": "数值通过之后还能声称什么",
+    "type": "choice",
+    "statement": "理想单室教学实验通过解析解（analytical solution）、收支（mass balance）与网格细化检查。哪项结论合适？",
+    "part": "2",
+    "chapter": "2.summary",
+    "learning_targets": [
+      "T3",
+      "T4"
+    ],
+    "mathematics": [
+      "数04",
+      "数05"
+    ],
+    "difficulty": "基础",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "该规则足以决定真实个体的干预方案。"
+      },
+      {
+        "id": "B",
+        "text": "所有真实清除过程都与当前参数（parameter）相同。"
+      },
+      {
+        "id": "C",
+        "text": "程序在这些条件下正确实现了所声明模型（model）；真实应用仍需检验机制与参数。"
+      },
+      {
+        "id": "D",
+        "text": "以后不需要检查单位。"
+      }
+    ],
+    "constraints": []
+  }
+]

@@ -78,6 +78,16 @@
     "title": "系统边界与实验设计",
     "outcome": "把边界、收支、反馈与候选模型比较用于三个相邻的生命系统情境。",
     "number": "篇末综合",
-    "visualization": null
+    "visualization": null,
+    "overview": {
+      "goals": "综合辨认边界、变量与收支（mass balance），比较候选规则，解释证据范围。",
+      "prerequisites": "本篇四章。",
+      "focus": "分开迁移与内部生成、局部与整体、计算核验与机制验证。",
+      "knowledge": [
+        "视野计数 → 选择边界与生成项",
+        "温度调节 → 核对反馈（feedback）与旁路",
+        "清除比较 → 保留独立预测和限制"
+      ]
+    }
   }
 ]

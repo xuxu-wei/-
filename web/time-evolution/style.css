@@ -1,0 +1,2 @@
+@import url('/web/shared/exploration.css');
+.model-panel .mechanism{min-height:70px;justify-content:flex-start}.chart-panel{position:sticky;top:90px}.model-panel .presets button{flex-basis:100%}.readouts{min-height:72px}.readouts p{line-height:1.6}#play-counter{font-variant-numeric:tabular-nums;color:var(--ui-primary);font-weight:600}.values th{position:sticky;top:0;background:#fff}.chart-panel svg text{font-family:inherit}@container content (max-width:930px){.chart-panel{position:static}}

@@ -1,0 +1,111 @@
+[
+  {
+    "id": "P02-C01-S01",
+    "chapter_id": "2.1",
+    "path": "notebooks/02-系统随时间演化/01-用递推描述增长与清除/01-从逐步变化到递推规则.ipynb",
+    "title": "从逐步变化到递推规则",
+    "outcome": "能把逐步变化写成含下标的递推关系，区分初值、每步倍数和固定点；用有限求和核对累计变化。",
+    "number": "2.1.1",
+    "visualization": "web/time-evolution/index.html"
+  },
+  {
+    "id": "P02-C01-S02",
+    "chapter_id": "2.1",
+    "path": "notebooks/02-系统随时间演化/01-用递推描述增长与清除/02-让时间进入收支更新.ipynb",
+    "title": "让时间进入收支更新",
+    "outcome": "能区分每步比例与每时间速率，把实际持续时间写入更新；用残差和独立累计账目检查实现。",
+    "number": "2.1.2",
+    "visualization": "web/time-evolution/index.html"
+  },
+  {
+    "id": "P02-C02-S01",
+    "chapter_id": "2.2",
+    "path": "notebooks/02-系统随时间演化/02-变化率与累积微积分入口/01-从平均变化到导数.ipynb",
+    "title": "从平均变化到导数",
+    "outcome": "能用差商解释导数的含义和单位，区分有限区间斜率、局部斜率与浮点计算误差。",
+    "number": "2.2.1",
+    "visualization": null
+  },
+  {
+    "id": "P02-C02-S02",
+    "chapter_id": "2.2",
+    "path": "notebooks/02-系统随时间演化/02-变化率与累积微积分入口/02-从矩形累积到定积分.ipynb",
+    "title": "从矩形累积到定积分",
+    "outcome": "能把流率求和解释为定积分近似，用初值和净流率恢复存量，并解释连续输入与跳变输入下的累计曲线。",
+    "number": "2.2.2",
+    "visualization": null
+  },
+  {
+    "id": "P02-C02-S03",
+    "chapter_id": "2.2",
+    "path": "notebooks/02-系统随时间演化/02-变化率与累积微积分入口/03-指数对数与链式法则.ipynb",
+    "title": "指数对数与链式法则",
+    "outcome": "能解释指数函数、自然对数和简单链式法则，计算指数衰减曲线的变化率，并检查指数里的量纲。",
+    "number": "2.2.3",
+    "visualization": null
+  },
+  {
+    "id": "P02-C03-S01",
+    "chapter_id": "2.3",
+    "path": "notebooks/02-系统随时间演化/03-连续时间与一阶微分方程/01-从收支率到一阶初值问题.ipynb",
+    "title": "从收支率到一阶初值问题",
+    "outcome": "能从持续收支推导一阶常微分方程，求出恒定输入解析解，并核对初值、方程和零清除等边界。",
+    "number": "2.3.1",
+    "visualization": "web/time-evolution/index.html"
+  },
+  {
+    "id": "P02-C03-S02",
+    "chapter_id": "2.3",
+    "path": "notebooks/02-系统随时间演化/03-连续时间与一阶微分方程/02-平衡位置与靠近速度.ipynb",
+    "title": "平衡位置与靠近速度",
+    "outcome": "能分开解释平衡位置和时间尺度，用自然对数求首次达到指定比例的时刻，辨认零清除与平衡初值等特例。",
+    "number": "2.3.2",
+    "visualization": "web/time-evolution/index.html"
+  },
+  {
+    "id": "P02-C04-S01",
+    "chapter_id": "2.4",
+    "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/01-误差与网格细化.ipynb",
+    "title": "误差与网格细化",
+    "outcome": "能在相同初值问题上测量最大绝对误差，解释欧拉法的典型一阶收敛，并识别观察阶不能使用的情形。",
+    "number": "2.4.1",
+    "visualization": "web/time-evolution/index.html"
+  },
+  {
+    "id": "P02-C04-S02",
+    "chapter_id": "2.4",
+    "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/02-稳定性与非负性不是一回事.ipynb",
+    "title": "稳定性与非负性不是一回事",
+    "outcome": "能推导欧拉偏差放大因子，分别判断渐近稳定、非负性和精度，保留并解释数值负值与振荡。",
+    "number": "2.4.2",
+    "visualization": "web/time-evolution/index.html"
+  },
+  {
+    "id": "P02-C04-S03",
+    "chapter_id": "2.4",
+    "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/03-在输入跳变处分段计算.ipynb",
+    "title": "在输入跳变处分段计算",
+    "outcome": "能构造包含输入跳变的时间网格，用实际步长更新，并独立传播分段解析参考，区分规则一致性容差与离散误差。",
+    "number": "2.4.3",
+    "visualization": "web/time-evolution/index.html"
+  },
+  {
+    "id": "P02-SUMMARY",
+    "chapter_id": "2.summary",
+    "path": "notebooks/02-系统随时间演化/05-篇末综合/01-等总量输入的不同过程.ipynb",
+    "title": "等总量输入的不同过程",
+    "outcome": "能独立比较等总量输入方案，核验收支与误差，区分峰值、终值和时间分布的影响，并限定模型结论。",
+    "number": "篇末综合",
+    "visualization": null,
+    "overview": {
+      "goals": "在同一模型下比较等总量输入，核验分段传播、峰值、终值和数值误差。",
+      "prerequisites": "本篇四章。",
+      "focus": "区分等总量与等过程；用分段解析参考、零清除边界和步长细化支持结论。",
+      "knowledge": [
+        "共同条件与等面积 → 公平比较",
+        "跳变对齐网格 → 独立参考",
+        "峰值、终值与误差 → 限定模型结论"
+      ]
+    }
+  }
+]

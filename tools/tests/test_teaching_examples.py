@@ -11,11 +11,14 @@ from teaching_examples import example_view, example_markdown
 from question_contracts import validate_contract, contract_markdown
 from practice import difference
 
-QUESTIONS=json.loads((ROOT/'exercises/samples/accumulation-clearance/questions.json').read_text(encoding='utf-8'))
-SOLUTIONS=json.loads((ROOT/'exercises/samples/accumulation-clearance/solutions.json').read_text(encoding='utf-8'))
+QUESTIONS=[]
+SOLUTIONS={}
+for path in sorted((ROOT/'exercises').glob('[0-9]*/questions.json')):
+    QUESTIONS.extend(json.loads(path.read_text(encoding='utf-8')))
+    SOLUTIONS.update(json.loads(path.with_name('solutions.json').read_text(encoding='utf-8')))
 
 
-def test_all_eight_code_examples_have_separate_readable_inputs_and_outputs():
+def test_all_code_examples_have_separate_readable_inputs_and_outputs():
     for q in QUESTIONS:
         if q['type']!='python':continue
         view=example_view(q)
@@ -33,14 +36,16 @@ def test_all_eight_code_examples_have_separate_readable_inputs_and_outputs():
         assert 'payload' not in contract_markdown(q)
 
 
-def test_segment_table_and_rounded_results_keep_the_sample_meaning():
-    q=next(q for q in QUESTIONS if q['id']=='S01-E2')
+def test_tables_preserve_named_parameters_and_raw_output_precision():
+    q=next(q for q in QUESTIONS if q['id']=='p02-piecewise')
     view=example_view(q)
-    assert view['input']['tables'][1]['rows'][1]==['2','0.25','2','1.5']
-    assert view['output']['tables'][0]['rows'][0]==['起点','2']
-    assert view['output']['tables'][0]['rows'][-1]==['第 3 区间末','2.375']
-    exact=example_view(next(q for q in QUESTIONS if q['id']=='S04-E2'))
-    assert exact['output']['tables'][0]['rows'][1]==['1','≈ 0.7869387']
+    rows=view['input']['tables'][0]['rows']
+    assert [row[0] for row in rows]==[p['name'] for p in q['parameters']]
+    assert any(row[0]=='bounds' and '[' in row[2] for row in rows)
+    scope={};exec(view['output']['code'],scope)
+    assert json.loads(json.dumps(scope['expected_output']))==q['samples'][0]['expected']
+    flags=example_view(next(q for q in QUESTIONS if q['id']=='p02-step-properties'))
+    assert [row[2] for row in flags['output']['tables'][0]['rows']]==['-0.5','True','False']
 
 
 @pytest.mark.parametrize('question',[q for q in QUESTIONS if q['type']=='python'],ids=lambda q:q['slug'])
@@ -63,5 +68,5 @@ def test_contract_check_rejects_generic_wrappers_and_template_drift():
         q=copy.deepcopy(original)
         if change=='wrapper':q['parameters'][0]['name']='payload'
         elif change=='template':q['starter_code']='def solve(payload):\n    return []\n'
-        else:q['samples'][0]['arguments'].pop('A0')
+        else:q['samples'][0]['arguments'].pop(q['parameters'][0]['name'])
         with pytest.raises(ValueError):validate_contract(q)

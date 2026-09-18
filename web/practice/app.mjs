@@ -4,7 +4,7 @@ import {setupWorkspace} from '../shared/layout.mjs';
 const $=id=>document.getElementById(id);
 const editor=createEditor($('source'));
 let session, catalog=[], question, active=null, pollTimer=null, selection=0, lastRecord=null, undo='';
-let prefix='systems-science:m1:',chapter=null; // 保留已有样章草稿，正式课节使用独立作用域。
+let prefix,chapter=null; // 每章独立保存草稿。
 let lessons=[],progressState={passed:[]};
 function progressLabel(value){const ids=new Set(catalog.map(q=>q.id));return `本章已完成 ${(value.passed||[]).filter(id=>ids.has(id)).length} / ${ids.size} 题${value.incomplete?' · 部分记录无法读取':''}`;}
 document.addEventListener('course-progress',event=>{
@@ -262,7 +262,7 @@ $('lesson-picker').addEventListener('change',()=>void select(catalog.find(q=>q.l
 for(const [button,offset] of [['previous-question',-1],['next-question',1]])$(button).addEventListener('click',()=>{const next=catalog[catalog.findIndex(q=>q.id===question.id)+offset];if(next)void select(next.id).catch(connectionError);});
 const context=await mountShell('practice');chapter=context.current;
 if(!chapter?.available)throw Error('本章练习尚未提供。');
-if(chapter!==context.course.sample)prefix=`systems-science:course:${chapter.id}:`;
-document.querySelector('.practice-heading .eyebrow').textContent=`${chapter===context.course.sample?'制作样章':chapter.assessment?'篇末综合':chapter.id+' 章'} · 练习`;
+prefix=`systems-science:course:${chapter.id}:`;
+document.querySelector('.practice-heading .eyebrow').textContent=`${chapter.assessment?'篇末综合':chapter.id+' 章'} · 练习`;
 setupWorkspace($('exercise-workspace'),$('workspace-resizer'),$('wrap-code'),$('source'));
 void connect();

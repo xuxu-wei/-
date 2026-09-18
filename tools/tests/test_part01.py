@@ -91,18 +91,18 @@ def test_verification_has_independent_numeric_basis():
             assert difference(normalize(result),c['expected'],q['tolerance']) is None,(q['id'],c,result)
 
 
-def test_formal_progress_restores_without_counting_samples(tmp_path):
+def test_formal_progress_restores_and_is_scoped_to_its_part(tmp_path):
     directory=tmp_path/'learning';engine=PracticeEngine(directory)
-    engine.submit(payload(engine,'S01-E1'),'choice')
+    engine.submit(payload(engine,'p02-step-factor'),'choice')
     assert not set(engine.progress()['passed']) & {q['id'] for q in QUESTIONS}
     engine.submit(payload(engine,'p01-boundary'),'choice')
     bad=completed(engine,engine.submit(payload(engine,'p01-calibrate','def solve(:\n pass'),'python'))
     assert bad['verdict']=='CE' and bad['result']['traceback'] and 'p01-calibrate' not in engine.progress()['passed']
     engine.close();engine=PracticeEngine(directory)
     try:
-        assert engine.progress()['passed']==['S01-E1','p01-boundary']
+        assert engine.progress()['passed']==['p01-boundary','p02-step-factor']
         engine.questions['p01-boundary']['version']='2'
-        assert engine.progress()['passed']==['S01-E1']
+        assert engine.progress()['passed']==['p02-step-factor']
     finally:engine.close()
 
 

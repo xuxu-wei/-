@@ -1,0 +1,357 @@
+{
+  "stage": "M3",
+  "scope": "第 2 篇四章与篇末综合；验收后移除样章并复验正式第 1、2 篇",
+  "completed_at": "2026-09-18T22:55:31.671392+08:00",
+  "delivery": {
+    "chapters": 4,
+    "new_notebooks": 11,
+    "new_choice_questions": 32,
+    "new_python_questions": 16,
+    "new_exploration_pages": [
+      "2.1",
+      "2.3",
+      "2.4"
+    ],
+    "formal_totals": {
+      "notebooks": 20,
+      "questions": 86,
+      "exploration_pages": 5
+    }
+  },
+  "environment": {
+    "python": "3.13.2",
+    "platform": "Windows",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "nbclient": "0.11.0",
+      "nbformat": "5.11.1",
+      "nbconvert": "7.17.1",
+      "ipykernel": "7.3.0"
+    }
+  },
+  "execution_after_cleanup": {
+    "part01": [
+      {
+        "id": "P01-C01-S01",
+        "path": "notebooks/01-看见系统/01-从生理现象提出系统问题/01-边界状态与观测.ipynb",
+        "seconds": 11.64,
+        "code_cells": 3,
+        "figures": 1,
+        "sha256": "51328aebb321cfd7e6f27e3f371d4e74b589297479199538798db3f77f6e6185",
+        "passed": true
+      },
+      {
+        "id": "P01-C01-S02",
+        "path": "notebooks/01-看见系统/01-从生理现象提出系统问题/02-单位量纲与时间序列.ipynb",
+        "seconds": 5.49,
+        "code_cells": 3,
+        "figures": 1,
+        "sha256": "ff4a89064de27f875a713fdfc74d41f736acffc0c14461d3c93826871e095661",
+        "passed": true
+      },
+      {
+        "id": "P01-C02-S01",
+        "path": "notebooks/01-看见系统/02-存量流量与守恒/01-一段时间的物质收支.ipynb",
+        "seconds": 6.21,
+        "code_cells": 3,
+        "figures": 1,
+        "sha256": "fbd54d69e075c5e62301b8158afb05e74c626165720c35364142a8cc1f138cee",
+        "passed": true
+      },
+      {
+        "id": "P01-C02-S02",
+        "path": "notebooks/01-看见系统/02-存量流量与守恒/02-内部交换与整体守恒.ipynb",
+        "seconds": 6.46,
+        "code_cells": 3,
+        "figures": 1,
+        "sha256": "03c0c9dc35e3af24364712696e2caa36b6c4090d60d8601b55b0af2ae0e2e58c",
+        "passed": true
+      },
+      {
+        "id": "P01-C03-S01",
+        "path": "notebooks/01-看见系统/03-反馈延迟与层级/01-作用方向与反馈回路.ipynb",
+        "seconds": 5.67,
+        "code_cells": 3,
+        "figures": 1,
+        "sha256": "18961c64f2106ddad888a035f8a5b4e67ba69ff09c5f9a655185e97f161fd191",
+        "passed": true
+      },
+      {
+        "id": "P01-C03-S02",
+        "path": "notebooks/01-看见系统/03-反馈延迟与层级/02-延迟怎样改变调节.ipynb",
+        "seconds": 7.79,
+        "code_cells": 3,
+        "figures": 1,
+        "sha256": "45e416a278aeeea712276fb873ad14889921875f51b455b9ae26dcde5323be44",
+        "passed": true
+      },
+      {
+        "id": "P01-C04-S01",
+        "path": "notebooks/01-看见系统/04-模型假设与计算实验/01-规则参数与初值.ipynb",
+        "seconds": 6.17,
+        "code_cells": 3,
+        "figures": 1,
+        "sha256": "f194201fcc9478ccd836a9ae28be78347749abef9efb38d14f24054196cf27c4",
+        "passed": true
+      },
+      {
+        "id": "P01-C04-S02",
+        "path": "notebooks/01-看见系统/04-模型假设与计算实验/02-设计可以区分解释的实验.ipynb",
+        "seconds": 10.75,
+        "code_cells": 3,
+        "figures": 1,
+        "sha256": "805f8aa6a38669ccbe463f30fd59f0f114270742e24a87e5007653c956b041e6",
+        "passed": true
+      },
+      {
+        "id": "P01-SUMMARY",
+        "path": "notebooks/01-看见系统/05-篇末综合/01-系统边界与实验设计.ipynb",
+        "seconds": 10.52,
+        "code_cells": 3,
+        "figures": 1,
+        "sha256": "b188b330bfac857d9532424bd1513fb00244d34678ad1468fbd4a56671264049",
+        "passed": true
+      }
+    ],
+    "part02": [
+      {
+        "id": "P02-C01-S01",
+        "path": "notebooks/02-系统随时间演化/01-用递推描述增长与清除/01-从逐步变化到递推规则.ipynb",
+        "seconds": 5.72,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "79e3f1f54fad776c52bf09c1bd9b699dfe436975ba36ad8616b5ca0094dcca6a",
+        "passed": true
+      },
+      {
+        "id": "P02-C01-S02",
+        "path": "notebooks/02-系统随时间演化/01-用递推描述增长与清除/02-让时间进入收支更新.ipynb",
+        "seconds": 5.09,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "562208c56626c6e49b50c4a12cfbe0277e9858f452b3dacc3b06a5ffee4194af",
+        "passed": true
+      },
+      {
+        "id": "P02-C02-S01",
+        "path": "notebooks/02-系统随时间演化/02-变化率与累积微积分入口/01-从平均变化到导数.ipynb",
+        "seconds": 5.91,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "636c258fee9e80404cfbf84f9edc1c1b3d99f398b61aa3c1c6936a8203525503",
+        "passed": true
+      },
+      {
+        "id": "P02-C02-S02",
+        "path": "notebooks/02-系统随时间演化/02-变化率与累积微积分入口/02-从矩形累积到定积分.ipynb",
+        "seconds": 6.07,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "03d11cd96c9a9b01626673f981d2eddea53309903826482388e9668f5eb9c797",
+        "passed": true
+      },
+      {
+        "id": "P02-C02-S03",
+        "path": "notebooks/02-系统随时间演化/02-变化率与累积微积分入口/03-指数对数与链式法则.ipynb",
+        "seconds": 5.66,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "2cf58de4f29cdc37af6e7c2de7ee7b10323bcbc5e4e2ed87480e67e7f2724046",
+        "passed": true
+      },
+      {
+        "id": "P02-C03-S01",
+        "path": "notebooks/02-系统随时间演化/03-连续时间与一阶微分方程/01-从收支率到一阶初值问题.ipynb",
+        "seconds": 5.04,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "7724c7a1616d745d5d28f5a197bddff31c8476c4ad4b09ed56b4af8a6192ef5b",
+        "passed": true,
+        "published_sha256": "368d4ed7c017f26523904d4fbc6ce63030d039ef954c0da685471d7309820223",
+        "post_execution_edit": "推导文字改为 ln(A/A0)，明确对数作用于无量纲比值；可执行代码及输出未改动。"
+      },
+      {
+        "id": "P02-C03-S02",
+        "path": "notebooks/02-系统随时间演化/03-连续时间与一阶微分方程/02-平衡位置与靠近速度.ipynb",
+        "seconds": 5.78,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "4391e3bafa8e34fca71232bf71491ba858d5b310740f83d8e1b346e1121a9be9",
+        "passed": true
+      },
+      {
+        "id": "P02-C04-S01",
+        "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/01-误差与网格细化.ipynb",
+        "seconds": 5.23,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "f607cbf0659e2cedb308ccac9bfa5924f553da667b038ab4e883f668bfad23e0",
+        "passed": true
+      },
+      {
+        "id": "P02-C04-S02",
+        "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/02-稳定性与非负性不是一回事.ipynb",
+        "seconds": 5.72,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "0b1e7321f5a01335545307f066c464f57490537f887284ca1347231e5cad45d0",
+        "passed": true
+      },
+      {
+        "id": "P02-C04-S03",
+        "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/03-在输入跳变处分段计算.ipynb",
+        "seconds": 4.84,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "20b9f6f296f2f3b94b7b4d12f0f8febf3aedddb1dd2687bafc7495fae65bc860",
+        "passed": true
+      },
+      {
+        "id": "P02-SUMMARY",
+        "path": "notebooks/02-系统随时间演化/05-篇末综合/01-等总量输入的不同过程.ipynb",
+        "seconds": 4.44,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "910522b060212ce53d6ce3304208ad2a3d4a8a2d929b789ee83a3cda1a006e32",
+        "passed": true
+      }
+    ],
+    "code_cells": 82,
+    "figures": 20,
+    "preview_note": "全部新内容的图像经人工查看。nbconvert 检查预览的远程公式脚本未加载，改用 .work 中的 MathJax 3.2.2 本地脚本审阅；此临时依赖不加入教学运行或 Git。"
+  },
+  "automated_checks": {
+    "python": {
+      "command": "python -m pytest -q",
+      "passed": 143,
+      "failed": 0,
+      "seconds": 54.54
+    },
+    "javascript": {
+      "command": "node --test tools/tests/*.test.mjs",
+      "passed": 22,
+      "failed": 0
+    },
+    "teaching": {
+      "notebooks": 20,
+      "questions": 86,
+      "question_links": 86,
+      "issues": []
+    },
+    "pip_check": "No broken requirements found",
+    "editable_install": "python -m pip install -e . --no-deps --no-cache-dir succeeded with isolated build; no learning dependency added",
+    "independent_math": "闭式等比和、展开的加权输入、400 位 Decimal 指数/对数、面积公式；另检验步长细化、实际末步、零清除、极小清除系数、kh=0/1/2。参考答案与 Notebook 实际函数分别核对。",
+    "cross_implementation": {
+      "cases": 216,
+      "compared_values": 11988,
+      "maximum_absolute_difference": 7.105427357601002e-15,
+      "tolerance": "1e-10 * max(1, abs(Python reference))",
+      "scope": "same-model cross-implementation; not an independent accuracy proof",
+      "notebook": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/03-在输入跳变处分段计算.ipynb",
+      "web": "web/time-evolution/model.mjs"
+    }
+  },
+  "actual_browser_checks": [
+    {
+      "case": "2.1 播放与步长往返",
+      "observed": "点击后 t=0.53 T、两条曲线点数变化；暂停、重播有效；h=1→0.25→1→0.25→1，标签显示下一目标。"
+    },
+    {
+      "case": "2.3 播放与等平衡比较",
+      "observed": "点击后 t=0.43 T、A=0.385626 U、两条曲线各 10 点；u/k 保持 2，u=1,k=0.5 与 u=2,k=1 连续往返两次，重播有效。"
+    },
+    {
+      "case": "2.4 负值与正值",
+      "observed": "清理前及清理后均实际点击播放与示例；最终播放推进到 0.56 T。负值 h=2 首步 -5 U、解析 2.231302 U；正值 h=1 首步 2.5 U、解析 4.723666 U；连续往返两次，参数变化回到 t=0。"
+    },
+    {
+      "case": "正式 Notebook 双向入口",
+      "observed": "从渲染后的 2.4.2 点击动态可视化进入 8000 正式探索页，点击指定习题进入 p02-step-properties；页面正常渲染。实际点击第 1 篇与第 2 篇默认 IDE 按钮，系统接受项目原文件打开请求，并显示成功反馈。"
+    },
+    {
+      "case": "判题、进度与重启",
+      "observed": "隔离记录中，p02-step-properties 的具名参数代码通过样例后为 0/15，完整提交通过 6/6 用例后为 1/15；重启后仍为 1/15 且草稿保留。"
+    },
+    {
+      "case": "语法错误 traceback",
+      "observed": "去掉 def 行冒号，结果为 SyntaxError: expected ':'，answer.py 第 1 行、源码与箭头可见；结果在视口 y=333.95，编辑器 y=784.30，位于代码区上方。"
+    },
+    {
+      "case": "样例含义和代码",
+      "observed": "输入表给出 k=0.75、h=2、单位及解释，另有 solve(k,h) 调用；输出表和代码均为 (-0.5, True, False)。修复 bool 被按整数显示为 1/0 的问题；全部 30 道正式计算题的复制样例均经程序执行核验。"
+    },
+    {
+      "case": "错误选择与逐项解析",
+      "observed": "p02-stable-not-positive 仅选 B 判错；文字 rgb(179,58,74)、卡片 rgba(179,58,74,0.08)，显示 A—D 解析。改选 A、C 通过，隔离进度更新为 2/15。"
+    },
+    {
+      "case": "PC 布局与目录",
+      "observed": "实际设置并读取 1024、1366、1440、1920、2560 宽窗口，均无文档水平溢出；目录可键盘调宽到 332px，Enter 恢复，隐藏/展开可用，跨页保持；最大窗口编辑区宽 1114px。临时尺寸覆盖已重置。"
+    },
+    {
+      "case": "第一篇清理后回归",
+      "observed": "1.2 播放后 t=0.14 T、A=5.2833 U；暂停、净流入/净流出往返与系统默认 IDE 打开请求成功。"
+    },
+    {
+      "case": "公式审阅",
+      "observed": "临时渲染页面中 2.4.2 检查过 10 处公式；最终 2.3.1 显示 16 处 MathJax 公式且无公式错误，对数无量纲比值和稳定计算说明均可见。人工审读推导、假设、单位和图像。"
+    }
+  ],
+  "cleanup": {
+    "timing": "先完成新内容运行与实际操作验收，再删除样章；随后复验正式内容。",
+    "removed_files": [
+      "notebooks/samples/accumulation-clearance/01-boundaries-units.ipynb",
+      "notebooks/samples/accumulation-clearance/02-accumulation-clearance.ipynb",
+      "notebooks/samples/accumulation-clearance/03-equilibrium-feedback.ipynb",
+      "notebooks/samples/accumulation-clearance/04-rates-ode.ipynb",
+      "notebooks/samples/accumulation-clearance/05-numerical-checks.ipynb",
+      "notebooks/samples/accumulation-clearance/06-transfer-experiment.ipynb",
+      "notebooks/samples/accumulation-clearance/catalog.json",
+      "notebooks/samples/accumulation-clearance/README.md",
+      "exercises/samples/accumulation-clearance/questions.json",
+      "exercises/samples/accumulation-clearance/solutions.json",
+      "exercises/samples/accumulation-clearance/verification.json",
+      "web/single-compartment/app.mjs",
+      "web/single-compartment/examples.mjs",
+      "web/single-compartment/index.html",
+      "web/single-compartment/model.mjs",
+      "web/single-compartment/style.css",
+      "tools/check_m1.py",
+      "tools/sync_m1_exercises.py",
+      "tools/export_m1_reference.py",
+      "tools/compare_m1_models.mjs",
+      "tools/check_browser.mjs",
+      "tools/review_notebooks.mjs",
+      "tools/tests/web-model.test.mjs",
+      "tools/tests/example-toggle.test.mjs",
+      "tools/tests/test_models.py"
+    ],
+    "shared_components_retained": [
+      "web/shared/",
+      "web/practice/",
+      "src/systems_science/",
+      "tools/practice.py",
+      "tools/practice_worker.py",
+      "tools/constraints.txt"
+    ],
+    "constraints_note": "原 constraints-m1.txt 更名为通用约束文件，环境组合继续适用于当前已交付内容。",
+    "historical_evidence": "M1 文档和验证 JSON 保留；涉及删除文件的文档链接固定到清理前 46e5619。",
+    "personal_records": {
+      "before": 29,
+      "after": 29,
+      "byte_identical": true,
+      "retired_question_records_count_toward_current_progress": false
+    }
+  },
+  "limits": [
+    "未进行目标读者试学或独立同行评审；不估计学习时间。",
+    "本轮实际环境为 Windows / Python 3.13.2 与 PC 浏览器；未承诺其他系统环境。",
+    "系统默认 IDE 请求实际执行；Notebook 计算通过独立新内核验证，未自动化操作 IDE 内的运行按钮。",
+    "动画加载失败恢复等共用机制已有既往证据与程序检查，本轮实际点击聚焦新页面及样章清理后的正式入口。"
+  ],
+  "document_links": {
+    "checked": 294,
+    "issues": []
+  }
+}

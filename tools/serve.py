@@ -76,7 +76,7 @@ class TeachingHandler(SimpleHTTPRequestHandler):
             self.send_error(403)
             return
         if urlsplit(self.path).path == '/api/session':
-            self.respond_json(200, {'version': 'm1-local-ide-1', 'token': self.server.token,
+            self.respond_json(200, {'version': 'course-local-ide-1', 'token': self.server.token,
                                     'notebooks': self.server.catalog,'practice_version':'named-parameters-2'})
             return
         path=urlsplit(self.path).path
@@ -142,14 +142,7 @@ class TeachingHandler(SimpleHTTPRequestHandler):
             self.send_error(403)
             return None
         requested = unquote(urlsplit(self.path).path).lstrip('/')
-        if requested in {'practice/m1', 'practice/m1/', 'web/single-compartment', 'web/single-compartment/'}:
-            query=urlsplit(self.path).query
-            target='/samples/accumulation-clearance/'+('practice/' if requested.startswith('practice') else 'explore/')
-            self.send_response(302); self.send_header('Location',target+('?' + query if query else '')); self.end_headers(); return None
-        routes={'':'web/course/index.html',
-                'samples/accumulation-clearance/':'web/course/index.html',
-                'samples/accumulation-clearance/explore/':'web/single-compartment/index.html',
-                'samples/accumulation-clearance/practice/':'web/practice/index.html'}
+        routes={'':'web/course/index.html'}
         for part in self.server.course['parts']:
             routes[part['url'].lstrip('/')]='web/course/index.html'
             for chapter in [*part['chapters'], *([part['assessment']] if part.get('assessment') else [])]:
@@ -167,7 +160,7 @@ class TeachingHandler(SimpleHTTPRequestHandler):
             return None
         parts = resolved.relative_to(ROOT).parts
         allowed = parts and (parts[0] in {'web', 'notebooks', 'docs'} or requested in {'README.md', 'LICENSE'})
-        if self.server.previews and len(parts)>=3 and parts[0]=='.work' and parts[1] in {'m1','m2'} and parts[2]=='previews':
+        if self.server.previews and len(parts)>=3 and parts[0]=='.work' and parts[1] in {'m1','m2','m3','m3-part01'} and parts[2]=='previews':
             allowed = True
         if not allowed:
             self.send_error(404)

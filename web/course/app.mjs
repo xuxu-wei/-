@@ -1,4 +1,4 @@
-import {mountShell,el,sampleBase} from '../shared/course-shell.mjs';
+import {mountShell,el} from '../shared/course-shell.mjs';
 
 const host=document.getElementById('overview');
 function a(text,url,cls){const n=el('a',text,cls);n.href=url;return n;}
@@ -41,9 +41,6 @@ async function start(){
       '提出问题，建立模型，用计算检验解释。沿着篇章顺序，逐步进入系统科学。',
       ready.length?`第 ${ready.join('、')} 篇已提供完整 Notebook 与练习，其余篇章目前提供教学设计导览。`:'当前提供教学设计导览。');
     host.append(cards(course.parts,'part'));
-    if(course.sample){const sample=el('aside',undefined,'sample-entry');
-    const description=el('div');description.append(el('h2','制作样章 · 体内物质的积累与清除'),el('p','六节 Notebook、模型可视化与 22 道练习。独立于正式课程，进度分别记录。'));
-    sample.append(description,a('进入样章 →',sampleBase));host.append(sample);}
   }else if(part){
     document.body.dataset.guide='part';
     heading(`第 ${part.id} 篇 · ${part.chapters.length} 章`,part.title,
@@ -53,10 +50,9 @@ async function start(){
     if(part.assessment){host.append(el('h2','贯通本篇','lessons-heading'),cards([part.assessment],'chapter'));}
   }else{
     document.body.dataset.guide='chapter';
-    const sample=current===course.sample;
-    heading(sample?'制作样章':`第 ${current.id.split('.')[0]} 篇 · ${current.assessment?'篇末综合':current.id+' 章'}`,current.title,
-      sample?'从存量与流量出发，建立并检验一个理想单室模型。':'围绕本章问题，连接必要知识、关键方法与计算实验。',
-      sample?'本样章供教学与交互制作参考，可复制改写；正式章节独立验收，后续将移除样章。':current.available?'在下方进入完整 Notebook；配套练习用于检查理解。':'本页展示教学设计；对应的正式 Notebook、可视化与练习尚待编写。');
+    heading(`第 ${current.id.split('.')[0]} 篇 · ${current.assessment?'篇末综合':current.id+' 章'}`,current.title,
+      '围绕本章问题，连接必要知识、关键方法与计算实验。',
+      current.available?'在下方进入完整 Notebook；配套练习用于检查理解。':'本页展示教学设计；对应的正式 Notebook、可视化与练习尚待编写。');
     const summary=el('div',undefined,'chapter-summary');
     summary.append(section('本章学会什么',current.goals),section('先修知识',current.prerequisites),section('教学重点与难点',current.focus));host.append(summary);
     const knowledge=el('section',undefined,'overview-section knowledge-section');

@@ -1,11 +1,10 @@
 import {summarize,questionIds} from './progress.mjs';
 import {setupSidebar} from './layout.mjs';
-export const sampleBase='/samples/accumulation-clearance/';
 export const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const link=(title,url,cls)=>{const a=el('a',title,cls);a.href=url;return a;};
 let course,current,mode,progress={},tree,section=null;
 const progressNodes=[];
-function questionKey(){return current===course?.sample?'sample:accumulation-clearance:question':`chapter:${current?.id}:question`;}
+function questionKey(){return `chapter:${current?.id}:question`;}
 export function rememberQuestion(slug){try{sessionStorage.setItem(questionKey(),slug);}catch{}}
 export function applyProgress(value){
   progress=value;
@@ -43,7 +42,7 @@ export async function mountShell(pageMode='overview'){
   const path=decodeURI(location.pathname);
   const part=course.parts.find(p=>p.url===path);
   const chapterItems=course.parts.flatMap(p=>[...p.chapters,...(p.assessment?[p.assessment]:[])]);
-  current=chapterItems.find(c=>path.startsWith(c.url))|| (course.sample&&path.startsWith(course.sample.url)?course.sample:part);
+  current=chapterItems.find(c=>path.startsWith(c.url))|| part;
   const header=el('header',undefined,'course-header');
   const toggle=el('button','☰ 隐藏目录','directory-toggle');toggle.id='directory-toggle';toggle.type='button';toggle.setAttribute('aria-controls','course-directory');
   const identity=el('div',undefined,'header-identity');identity.append(toggle,link('动手学系统科学','/','brand'));header.append(identity,el('span','观察 · 建模 · 计算 · 理解','brand-note'));
@@ -61,15 +60,10 @@ export async function mountShell(pageMode='overview'){
       chapterLinks(chapter,d);
     }
   }
-  let sample;
-  if(course.sample){
-    tree.append(el('p','制作样章 · 独立于正式教材','nav-label sample-label'));
-    sample=branch(course.sample,tree,current===course.sample);sample.classList.add('sample-branch');chapterLinks(course.sample,sample);
-  }
   sidebar.append(tree);document.body.prepend(header,sidebar,resize);setupSidebar(sidebar,toggle,resize);
   const main=document.getElementById('main');main.classList.add('course-main');
   const toolbar=el('div',undefined,'chapter-toolbar');
-  const crumb=el('div',undefined,'breadcrumb');crumb.append(link('目录','/'));if(current){crumb.append(el('span','/'),link(current===course.sample?'制作样章':part?'篇导览':`第 ${current.id.split('.')[0]} 篇`,current===course.sample?sampleBase:(part?.url||course.parts.find(p=>p.id===current.id.split('.')[0]).url)),el('span','/'),el('span',current.title));}
+  const crumb=el('div',undefined,'breadcrumb');crumb.append(link('目录','/'));if(current){crumb.append(el('span','/'),link(part?'篇导览':`第 ${current.id.split('.')[0]} 篇`,part?.url||course.parts.find(p=>p.id===current.id.split('.')[0]).url),el('span','/'),el('span',current.title));}
   const sectionName=el('span','','crumb-section');sectionName.id='current-section';crumb.append(sectionName);toolbar.append(crumb);
   if(current&&!part){
     const tabs=el('nav',undefined,'chapter-tabs');tabs.setAttribute('aria-label','本章页面切换');
@@ -87,8 +81,7 @@ export async function mountShell(pageMode='overview'){
   const skip=link('跳到正文','#main','skip-link');document.body.prepend(skip);
   await refreshProgress();
   // 只滚动目录自己的视口，避免把正文标题卷出屏幕。
-  if(sample&&current===course.sample)sidebar.scrollTop=sample.offsetTop-sidebar.offsetTop-130;
-  else {const active=tree.querySelector('[aria-current]');if(active)sidebar.scrollTop=Math.max(0,active.offsetTop-180);}
+  {const active=tree.querySelector('[aria-current]');if(active)sidebar.scrollTop=Math.max(0,active.offsetTop-180);}
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)void refreshProgress();});
   window.addEventListener('focus',()=>void refreshProgress());
   setInterval(()=>{if(!document.hidden)void refreshProgress();},15000);
