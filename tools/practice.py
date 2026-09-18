@@ -1,4 +1,4 @@
-"""M1 本机客观练习：单计算槽、独立子进程、逐次 JSON 记录。"""
+"""本机客观练习：单计算槽、独立子进程、逐次 JSON 记录。"""
 import copy
 from datetime import datetime, timezone
 import hashlib
@@ -15,6 +15,7 @@ import time
 import uuid
 from teaching_examples import example_view
 from question_contracts import contract_view, validate_contract, signature
+from course_content import question_banks
 
 ROOT=Path(__file__).resolve().parents[1]
 JUDGE_VERSION='named-parameters-2'
@@ -88,9 +89,9 @@ class PracticeEngine:
         except OSError as error:
             self.file_lock.close()
             raise RuntimeError('学习记录正被另一个本机程序使用，请先关闭旧程序。') from error
-        questions=json.loads((ROOT/'exercises/samples/accumulation-clearance/questions.json').read_text(encoding='utf-8'))
+        questions, verification = question_banks()
         self.questions={q['id']:q for q in questions}
-        self.verification=json.loads((ROOT/'exercises/samples/accumulation-clearance/verification.json').read_text(encoding='utf-8'))
+        self.verification=verification
         for q in questions:
             if q['type']=='python':
                 validate_contract(q)
@@ -141,7 +142,7 @@ class PracticeEngine:
         with self.lock:
             passed={r['exercise_id'] for r in self.records.values() if r.get('saved') and r.get('state')=='FINISHED' and r.get('verdict')=='AC' and r.get('mode')=='full' and r.get('exercise_version')==self.questions.get(r.get('exercise_id'),{}).get('version')}
             started={r['exercise_id'] for r in self.records.values() if r.get('saved') and r.get('state')=='FINISHED' and r.get('verdict') not in {'SYSTEM_ERROR','CANCELLED','INTERRUPTED'} and r.get('exercise_version')==self.questions.get(r.get('exercise_id'),{}).get('version')}
-            return {'passed':sorted(passed),'started':sorted(started),'scope':'sample:accumulation-clearance','total':len(self.questions),'incomplete':bool(self.read_errors),'unreadable_files':self.read_errors,'active':self.active}
+            return {'passed':sorted(passed),'started':sorted(started),'scope':'course','total':len(self.questions),'incomplete':bool(self.read_errors),'unreadable_files':self.read_errors,'active':self.active}
 
     def submit(self,payload,kind):
         with self.lock:

@@ -42,7 +42,13 @@ def example_view(question):
     names=[item['name'] for item in question['returns']]
     expected={names[0]:sample['expected']} if len(names)==1 else dict(zip(names,sample['expected']))
     inputs, outputs = [scalar_table(data)], []
-    if 'durations' in data:
+    generic = question.get('example_format') == 'parameters'
+    if generic:
+        inputs = [table('给定条件', ['参数', '含义', '给定值', '单位'],
+                        [[p['name'],p['description'],data[p['name']],p['unit']] for p in question['parameters']])]
+        outputs = [table('计算结果', ['返回项', '含义', '结果', '单位'],
+                         [[p['name'],p['description'],expected[p['name']],p['unit']] for p in question['returns']])]
+    elif 'durations' in data:
         inputs.append(table('各区间的流入与流出', ['区间', '时长 durations / T', '流入 inflows / (U/T)', '流出 outflows / (U/T)'],
                             [[i+1, h, incoming, outgoing] for i, (h,incoming,outgoing) in enumerate(zip(data['durations'],data['inflows'],data['outflows']))]))
         outputs.append(table('依次返回起点与各区间末的物质量', ['位置', '物质量 amounts / U'],
@@ -71,7 +77,7 @@ def example_view(question):
         outputs.append(scalar_table(expected, True))
     return {
         'input': {
-            'description': '以下是一组传给 solve 的参数；U、T 分别是物质量与时间单位。每个参数直接对应上方函数签名中的同名变量。',
+            'description': ('每个参数对应函数签名中的同名变量；单位与顺序见下表。' if generic else '以下是一组传给 solve 的参数；U、T 分别是物质量与时间单位。每个参数直接对应上方函数签名中的同名变量。'),
             'tables': inputs,
             'code_title': '输入与调用代码',
             'code_note': '完成 solve 函数后，将下面的参数赋值与调用代码放在函数定义下方运行。',

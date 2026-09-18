@@ -1,0 +1,2240 @@
+[
+  {
+    "id": "p01-boundary",
+    "version": "1",
+    "lesson_id": "P01-C01-S01",
+    "type": "choice",
+    "slug": "p01-boundary",
+    "title": "边界由问题决定",
+    "statement": "研究对象是一次人工物质转移实验。系统边界（system boundary）可以只包围血液，也可以同时包围血液和组织。以下哪些判断合理？",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "只包围血液时，血液到组织的转移是跨边界输出。"
+      },
+      {
+        "id": "B",
+        "text": "包围血液和组织时，两者之间的转移仍是整个系统的外部损失。"
+      },
+      {
+        "id": "C",
+        "text": "选择边界之前，应明确要解释哪个量在什么时间内的变化。"
+      },
+      {
+        "id": "D",
+        "text": "无论研究目的如何，包含的对象越多，模型（model）一定越好。"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.1",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-state-observation",
+    "version": "1",
+    "lesson_id": "P01-C01-S01",
+    "type": "choice",
+    "slug": "p01-state-observation",
+    "title": "体温读数等于内部状态吗",
+    "statement": "一个简化模型（model）把内部温度 x 作为状态（state），体表读数 y 作为观测（observation），环境温度 u 作为输入（input），传热系数 k 作为参数（parameter）。哪项说法最合适？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "x 与 y 都用 °C，因此一定相等。"
+      },
+      {
+        "id": "B",
+        "text": "k 一定随每次读数改变，否则不能解释任何变化。"
+      },
+      {
+        "id": "C",
+        "text": "需要说明从 x 和环境条件得到 y 的测量关系，才能用读数推断内部温度。"
+      },
+      {
+        "id": "D",
+        "text": "u 是环境变量，所以不能影响所选系统。"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.1",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-calibrate",
+    "version": "1",
+    "lesson_id": "P01-C01-S01",
+    "type": "python",
+    "slug": "p01-calibrate",
+    "title": "去除已知的读数偏移",
+    "statement": "在人工测量模型（model） y = x + b 中，观测（observation）y 比内部量 x 多一个已知常数 b。给定一组读数和偏移量，返回模型推断的 x。这里不包含随机误差。",
+    "parameters": [
+      {
+        "name": "readings",
+        "type": "list[float]",
+        "description": "依次记录的温度读数 y。",
+        "unit": "°C"
+      },
+      {
+        "name": "offset",
+        "type": "float",
+        "description": "已知偏移 b；可为负数。",
+        "unit": "°C"
+      }
+    ],
+    "returns": [
+      {
+        "name": "estimates",
+        "type": "list[float]",
+        "description": "按输入（input）顺序返回每个 y − b。",
+        "unit": "°C"
+      }
+    ],
+    "contract": "逐项计算 readings[i] − offset；不取平均、不排序、不改变输入列表。",
+    "constraints": [
+      "所有数值均为有限数。",
+      "0 ≤ len(readings) ≤ 1000；读数和偏移的绝对值不超过 100。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先把 y = x + b 中的 b 移到另一边；这只在题设测量关系成立时有效。",
+    "samples": [
+      {
+        "arguments": {
+          "readings": [
+            37.4,
+            37.1
+          ],
+          "offset": 0.3
+        },
+        "expected": [
+          37.1,
+          36.8
+        ],
+        "explanation": "已知读数均多了 0.3 °C，因此两次分别减去 0.3；得到 37.1、36.8 °C。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    readings: list[float],\n    offset: float,\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "part": "1",
+    "chapter": "1.1",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "应用"
+  },
+  {
+    "id": "p01-cell-question",
+    "version": "1",
+    "lesson_id": "P01-C01-S01",
+    "type": "choice",
+    "slug": "p01-cell-question",
+    "title": "提出可检验的问题",
+    "statement": "准备每小时拍摄同一个培养孔，共观察 4 小时。哪一个关于细胞数量的问题具有明确范围，且没有把待解释的机制直接当成事实？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "细胞为什么总是完美适应环境？"
+      },
+      {
+        "id": "B",
+        "text": "既然所有增长都由营养导致，怎样证明它？"
+      },
+      {
+        "id": "C",
+        "text": "为什么生命会变化？"
+      },
+      {
+        "id": "D",
+        "text": "在计数规则不变时，0—4 小时的可见细胞数是否增加？若不增加，便反驳“这段时间必然增加”的预测。"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.1",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-time-units",
+    "version": "1",
+    "lesson_id": "P01-C01-S02",
+    "type": "python",
+    "slug": "p01-time-units",
+    "title": "换时间单位，不换物质量",
+    "statement": "同一组时间序列（time series）原来以分钟记录。将时间数字乘以 factor，物质量数字保持不变，返回两个新列表。",
+    "parameters": [
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "原单位下、从早到晚的时刻。",
+        "unit": "原时间单位"
+      },
+      {
+        "name": "amounts",
+        "type": "list[float]",
+        "description": "与每个时刻一一对应的物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "factor",
+        "type": "float",
+        "description": "一个原时间单位等于多少个新时间单位。",
+        "unit": "新单位 / 原单位"
+      }
+    ],
+    "returns": [
+      {
+        "name": "converted_times",
+        "type": "list[float]",
+        "description": "times 中各项乘 factor。",
+        "unit": "新时间单位"
+      },
+      {
+        "name": "same_amounts",
+        "type": "list[float]",
+        "description": "原顺序的物质量。",
+        "unit": "U"
+      }
+    ],
+    "contract": "返回 (converted_times, same_amounts)；例如分钟转秒取 factor=60，分钟转小时取 1/60。",
+    "constraints": [
+      "所有数值均为有限数。",
+      "0 ≤ len(times) = len(amounts) ≤ 1000；非空时 times 严格递增。",
+      "0 < factor ≤ 3600；时间、物质量都在 0 到 10000 之间。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "两个列表必须保持位置对应；换坐标单位不会改变已经发生的物质变化。",
+    "samples": [
+      {
+        "arguments": {
+          "times": [
+            0,
+            1,
+            3
+          ],
+          "amounts": [
+            10,
+            8,
+            5
+          ],
+          "factor": 60
+        },
+        "expected": [
+          [
+            0,
+            60,
+            180
+          ],
+          [
+            10,
+            8,
+            5
+          ]
+        ],
+        "explanation": "1 分钟和 60 秒是同一时刻；该时刻的物质量仍为 8 U。3 分钟对应 180 秒，仍为 5 U。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    times: list[float],\n    amounts: list[float],\n    factor: float,\n) -> tuple[list[float], list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "part": "1",
+    "chapter": "1.1",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "应用"
+  },
+  {
+    "id": "p01-dimension",
+    "version": "1",
+    "lesson_id": "P01-C01-S02",
+    "type": "choice",
+    "slug": "p01-dimension",
+    "title": "相加之前先检查单位",
+    "statement": "物质量（amount of substance）记为 A，浓度（concentration）c = A/V，体积 V。单位分别为 U、U/L、L。以下哪个表达式的单位可以是物质量？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "A + c"
+      },
+      {
+        "id": "B",
+        "text": "A + V"
+      },
+      {
+        "id": "C",
+        "text": "c × V"
+      },
+      {
+        "id": "D",
+        "text": "c / V"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.1",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-curve-cause",
+    "version": "1",
+    "lesson_id": "P01-C01-S02",
+    "type": "choice",
+    "slug": "p01-curve-cause",
+    "title": "一条下降曲线说明什么",
+    "statement": "人工物质量序列（time series）在 0、1、2 T 为 10、8、6 U。我们尚未测量输入（input）和输出。以下哪些判断成立？",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "这些记录支持所观察时刻的物质量下降。"
+      },
+      {
+        "id": "B",
+        "text": "仅凭这三个点，就证明只存在恒定速率清除。"
+      },
+      {
+        "id": "C",
+        "text": "时刻之间连接的直线可以帮助读图，但不是额外测量。"
+      },
+      {
+        "id": "D",
+        "text": "换成秒作横轴后，所记录的物质消失机制改变了。"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.1",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-concentration",
+    "version": "1",
+    "lesson_id": "P01-C01-S02",
+    "type": "python",
+    "slug": "p01-concentration",
+    "title": "总量与浓度要分别计算",
+    "statement": "给定同一时刻几个培养孔的物质量 A 和体积 V。按浓度（concentration）c = A/V 返回各孔浓度。不要先合并培养孔。",
+    "parameters": [
+      {
+        "name": "amounts",
+        "type": "list[float]",
+        "description": "各孔的物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "volumes",
+        "type": "list[float]",
+        "description": "与物质量对应的体积。",
+        "unit": "L"
+      }
+    ],
+    "returns": [
+      {
+        "name": "concentrations",
+        "type": "list[float]",
+        "description": "每孔的物质量除以自身的体积。",
+        "unit": "U/L"
+      }
+    ],
+    "contract": "第 i 项为 amounts[i]/volumes[i]，顺序不变；空输入（input）返回空列表。",
+    "constraints": [
+      "所有数值均为有限数。",
+      "0 ≤ len(amounts) = len(volumes) ≤ 1000。",
+      "0 ≤ amounts[i] ≤ 10000；0 < volumes[i] ≤ 1000。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "用 zip 配对两组数据，再逐孔计算。",
+    "samples": [
+      {
+        "arguments": {
+          "amounts": [
+            6,
+            6,
+            10
+          ],
+          "volumes": [
+            2,
+            3,
+            5
+          ]
+        },
+        "expected": [
+          3,
+          2,
+          2
+        ],
+        "explanation": "前两个孔物质量都为 6 U，但体积不同，浓度分别为 3、2 U/L；总量相同不代表浓度相同。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    amounts: list[float],\n    volumes: list[float],\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "part": "1",
+    "chapter": "1.1",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "应用"
+  },
+  {
+    "id": "p01-rate-amount",
+    "version": "1",
+    "lesson_id": "P01-C02-S01",
+    "type": "choice",
+    "slug": "p01-rate-amount",
+    "title": "流率要乘以时间",
+    "statement": "存量（stock）A 的单位为 U，恒定流率（flow rate）q 的单位为 U/T，持续时间 h 的单位为 T。哪项能表示这段时间的流入量？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "q"
+      },
+      {
+        "id": "B",
+        "text": "q/h"
+      },
+      {
+        "id": "C",
+        "text": "h×q"
+      },
+      {
+        "id": "D",
+        "text": "A+q"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.2",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-balance",
+    "version": "1",
+    "lesson_id": "P01-C02-S01",
+    "type": "python",
+    "slug": "p01-balance",
+    "title": "逐段计算物质收支",
+    "statement": "边界内初始存量（stock）为 initial。每段的流入和流出速率恒定，但各段时长可以不同。返回起点及每段末的物质量。",
+    "parameters": [
+      {
+        "name": "initial",
+        "type": "float",
+        "description": "起点物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "durations",
+        "type": "list[float]",
+        "description": "每段持续时间。",
+        "unit": "T"
+      },
+      {
+        "name": "inflows",
+        "type": "list[float]",
+        "description": "各段恒定流入速率。",
+        "unit": "U/T"
+      },
+      {
+        "name": "outflows",
+        "type": "list[float]",
+        "description": "各段恒定流出速率。",
+        "unit": "U/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "amounts",
+        "type": "list[float]",
+        "description": "包含起点，共段数加一项。",
+        "unit": "U"
+      }
+    ],
+    "contract": "每段末 = 每段初 + durations[i]×(inflows[i]−outflows[i])。按时间顺序累积；即使得到负数也照实返回，不能裁剪。",
+    "constraints": [
+      "所有数值均为有限数。",
+      "三个列表等长，长度 0 到 1000。",
+      "initial、流率（flow rate）都在 0 到 1000 之间；0 < durations[i] ≤ 100。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "每段使用自己的时长；负值表明这些流出假设在该条件下不能描述真实非负物质量。",
+    "samples": [
+      {
+        "arguments": {
+          "initial": 5,
+          "durations": [
+            1,
+            2
+          ],
+          "inflows": [
+            3,
+            3
+          ],
+          "outflows": [
+            1,
+            1
+          ]
+        },
+        "expected": [
+          5,
+          7,
+          11
+        ],
+        "explanation": "第一段净流率为 2 U/T，持续 1 T，得到 7 U；第二段同样的净流率持续 2 T，增加 4 U，得到 11 U。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    initial: float,\n    durations: list[float],\n    inflows: list[float],\n    outflows: list[float],\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "part": "1",
+    "chapter": "1.2",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "应用"
+  },
+  {
+    "id": "p01-negative-stock",
+    "version": "1",
+    "lesson_id": "P01-C02-S01",
+    "type": "choice",
+    "slug": "p01-negative-stock",
+    "title": "负数是规则失效的线索",
+    "statement": "初始存量（stock）1 U，无流入，固定流出 2 U/T，假设持续 1 T 后计算为 −1 U。哪项处理最合理？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "直接设为 0，并声称原来的流出 2 U 完全符合守恒。"
+      },
+      {
+        "id": "B",
+        "text": "报告原规则产生负值，并检查“固定流出持续整个时段”的假设。"
+      },
+      {
+        "id": "C",
+        "text": "把 −1 U 解释为真实的负物质量。"
+      },
+      {
+        "id": "D",
+        "text": "删掉这个实验，不必修改解释。"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.2",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-infer-outflow",
+    "version": "1",
+    "lesson_id": "P01-C02-S01",
+    "type": "python",
+    "slug": "p01-infer-outflow",
+    "title": "从收支反求总流出",
+    "statement": "一段实验只有跨边界流入和流出，没有内部产生或转化。已知起点、终点、持续时间和恒定流入速率，返回该段总流出量。",
+    "parameters": [
+      {
+        "name": "initial",
+        "type": "float",
+        "description": "起点物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "final",
+        "type": "float",
+        "description": "终点物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "duration",
+        "type": "float",
+        "description": "观察持续时间。",
+        "unit": "T"
+      },
+      {
+        "name": "inflow",
+        "type": "float",
+        "description": "恒定流入速率。",
+        "unit": "U/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "total_out",
+        "type": "float",
+        "description": "整个时段流出总量，不是流出速率。",
+        "unit": "U"
+      }
+    ],
+    "contract": "由 final = initial + duration×inflow − total_out 移项求解。",
+    "constraints": [
+      "所有数值均为有限数。",
+      "0 ≤ initial, final, inflow ≤ 1000；0 < duration ≤ 100。",
+      "输入（input）保证总流出量非负。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先求累计流入，再减去存量增加。",
+    "samples": [
+      {
+        "arguments": {
+          "initial": 5,
+          "final": 7,
+          "duration": 2,
+          "inflow": 3
+        },
+        "expected": 4,
+        "explanation": "流入 2×3=6 U，而存量（stock）只增加 2 U，所以流出总量为 4 U；对应平均流出速率才是 2 U/T。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    initial: float,\n    final: float,\n    duration: float,\n    inflow: float,\n) -> float:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "part": "1",
+    "chapter": "1.2",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "应用"
+  },
+  {
+    "id": "p01-internal-transfer",
+    "version": "1",
+    "lesson_id": "P01-C02-S02",
+    "type": "choice",
+    "slug": "p01-internal-transfer",
+    "title": "扩大边界后什么抵消",
+    "statement": "血液室 B 向组织室 C 转移 3 U，外界向 B 输入（input） 2 U，C 向外界排出 1 U。没有其他变化。关于物质收支（mass balance），哪些结论正确？",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "B 改变 −1 U。"
+      },
+      {
+        "id": "B",
+        "text": "C 改变 +2 U。"
+      },
+      {
+        "id": "C",
+        "text": "B+C 改变 +1 U。"
+      },
+      {
+        "id": "D",
+        "text": "B+C 改变 −2 U，因为还要减去内部转移 3 U。"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.2",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-two-rooms",
+    "version": "1",
+    "lesson_id": "P01-C02-S02",
+    "type": "python",
+    "slug": "p01-two-rooms",
+    "title": "两个房间，一本总账",
+    "statement": "一个细胞物质被分在 B、C 两个区域。每段给定的是已经累计的外部输入（input）、B 到 C 内部转移和外部输出，均为 U，不是速率。返回两区及总量轨迹（trajectory）。",
+    "parameters": [
+      {
+        "name": "first",
+        "type": "float",
+        "description": "B 区初始物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "second",
+        "type": "float",
+        "description": "C 区初始物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "incoming",
+        "type": "list[float]",
+        "description": "每段从外界进入 B 的量。",
+        "unit": "U"
+      },
+      {
+        "name": "transferred",
+        "type": "list[float]",
+        "description": "每段从 B 转入 C 的量。",
+        "unit": "U"
+      },
+      {
+        "name": "outgoing",
+        "type": "list[float]",
+        "description": "每段从 C 离开整体的量。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "first_path",
+        "type": "list[float]",
+        "description": "B 的轨迹，包含初值（initial condition）。",
+        "unit": "U"
+      },
+      {
+        "name": "second_path",
+        "type": "list[float]",
+        "description": "C 的轨迹，包含初值。",
+        "unit": "U"
+      },
+      {
+        "name": "total_path",
+        "type": "list[float]",
+        "description": "对应时刻 B+C，包含初值。",
+        "unit": "U"
+      }
+    ],
+    "contract": "逐段更新 B = B + incoming[i] − transferred[i]，C = C + transferred[i] − outgoing[i]。内部转移只记一次流出 B 和一次流入 C。",
+    "constraints": [
+      "所有数值均为有限数。",
+      "三个列表等长，长度 0 到 1000；各输入值在 0 到 1000 之间。",
+      "给定数据保证各段末两区均非负；返回三个列表，长度都是段数加一。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "用只包含外部输入和输出的总账交叉核对两区之和。",
+    "samples": [
+      {
+        "arguments": {
+          "first": 5,
+          "second": 2,
+          "incoming": [
+            2,
+            0
+          ],
+          "transferred": [
+            3,
+            1
+          ],
+          "outgoing": [
+            1,
+            2
+          ]
+        },
+        "expected": [
+          [
+            5,
+            4,
+            3
+          ],
+          [
+            2,
+            4,
+            3
+          ],
+          [
+            7,
+            8,
+            6
+          ]
+        ],
+        "explanation": "第一段 B 为 5+2−3=4，C 为 2+3−1=4，总量为 8；第二段总量只因向外输出 2 U 而减至 6。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    first: float,\n    second: float,\n    incoming: list[float],\n    transferred: list[float],\n    outgoing: list[float],\n) -> tuple[list[float], list[float], list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "part": "1",
+    "chapter": "1.2",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "应用"
+  },
+  {
+    "id": "p01-hidden-production",
+    "version": "1",
+    "lesson_id": "P01-C02-S02",
+    "type": "choice",
+    "slug": "p01-hidden-production",
+    "title": "守恒需要说清所追踪的对象",
+    "statement": "若某种物质能在边界内由另一种物质生成，下列哪项最准确？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "该物质的增加只能来自跨边界流入。"
+      },
+      {
+        "id": "B",
+        "text": "所追踪的单一物质需要生成项；不能把漏掉的生成误认成外界输入（input）。"
+      },
+      {
+        "id": "C",
+        "text": "任何边界内的物质数量都永远不变。"
+      },
+      {
+        "id": "D",
+        "text": "只要总量增加，就一定发生了计数错误。"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.2",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-conserved-total",
+    "version": "1",
+    "lesson_id": "P01-C02-S02",
+    "type": "choice",
+    "slug": "p01-conserved-total",
+    "title": "总量不变能推出什么",
+    "statement": "一个封闭的两区模型（model）只允许内部物质转移。观测（observation）到 B 减少 3 U，C 增加 3 U。哪些判断合理？",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "联合存量（stock）不变。"
+      },
+      {
+        "id": "B",
+        "text": "两区各自的状态（state）都不变。"
+      },
+      {
+        "id": "C",
+        "text": "这一结果与内部转移相容，但仅凭端点不能确认全过程只有这一种机制。"
+      },
+      {
+        "id": "D",
+        "text": "可以在联合收支（mass balance）中把这 3 U 再计为外部输入（input）。"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.2",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-signed-arrow",
+    "version": "1",
+    "lesson_id": "P01-C03-S01",
+    "type": "choice",
+    "slug": "p01-signed-arrow",
+    "title": "箭头上的正号不是“有益”",
+    "statement": "在因果回路图（causal loop diagram）中，箭头 X → Y 标“+”。正确解释是什么？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "X 大于零。"
+      },
+      {
+        "id": "B",
+        "text": "X 增大时，在其他条件相同的局部关系假设下，Y 比原本更大。"
+      },
+      {
+        "id": "C",
+        "text": "X 与 Y 的数值必然相同。"
+      },
+      {
+        "id": "D",
+        "text": "这条作用对健康有益。"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.3",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-loop-sign",
+    "version": "1",
+    "lesson_id": "P01-C03-S01",
+    "type": "python",
+    "slug": "p01-loop-sign",
+    "title": "沿一个闭环追踪作用方向",
+    "statement": "反馈（feedback）闭环中每条边以 +1 表示同向局部作用，−1 表示反向局部作用。返回整个闭环的符号。",
+    "parameters": [
+      {
+        "name": "signs",
+        "type": "list[int]",
+        "description": "沿一个已确认闭合的回路，依次列出的边符号。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "loop_sign",
+        "type": "int",
+        "description": "所有边符号的乘积，只能为 +1 或 −1。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "把所有符号相乘。正号表示扰动沿回路返回时同向，负号表示反向；该结果不判定响应快慢或长期行为。",
+    "constraints": [
+      "所有数值均为有限数。",
+      "1 ≤ len(signs) ≤ 100；每项只为 1 或 −1。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "每经过一条负边，方向反转一次；奇数次反转为负。",
+    "samples": [
+      {
+        "arguments": {
+          "signs": [
+            1,
+            1,
+            -1
+          ]
+        },
+        "expected": -1,
+        "explanation": "前两条边保持作用方向，最后一条反转，因此返回方向为 −1。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    signs: list[int],\n) -> int:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "part": "1",
+    "chapter": "1.3",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "应用"
+  },
+  {
+    "id": "p01-negative-feedback",
+    "version": "1",
+    "lesson_id": "P01-C03-S01",
+    "type": "choice",
+    "slug": "p01-negative-feedback",
+    "title": "负反馈能保证什么",
+    "statement": "一个假想温度调节环为：温度偏差升高 → 冷却作用增强 → 温度偏差减小。关于负反馈（negative feedback），哪些说法正确？",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "沿此闭环的总作用方向为负。"
+      },
+      {
+        "id": "B",
+        "text": "它保证任意延迟（delay）和强度下都平滑回到目标。"
+      },
+      {
+        "id": "C",
+        "text": "因果图是一组需要核对的机制假设，不能仅凭相关曲线认定。"
+      },
+      {
+        "id": "D",
+        "text": "“负”表示这种机制一定有害。"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.3",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-coupled-loops",
+    "version": "1",
+    "lesson_id": "P01-C03-S01",
+    "type": "choice",
+    "slug": "p01-coupled-loops",
+    "title": "局部改善与另一个变量的代价",
+    "statement": "在一个人工生理示意模型（model）中，散热作用增加会减小温度偏差，同时增大失水；补水可以减小失水。要区分“散热改善温度但加重失水”和“读数偏移造成表面改善”，哪项观测（observation）最有帮助？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "只看调节装置是否启动。"
+      },
+      {
+        "id": "B",
+        "text": "只比较两张温度截图，不管时刻。"
+      },
+      {
+        "id": "C",
+        "text": "同时记录独立温度读数、物质收支（mass balance）与散热和补水条件，保持测量标定一致。"
+      },
+      {
+        "id": "D",
+        "text": "只选温度改善的实验，删除其余情况。"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.3",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-delay-history",
+    "version": "1",
+    "lesson_id": "P01-C03-S02",
+    "type": "choice",
+    "slug": "p01-delay-history",
+    "title": "第一步使用哪一个历史值",
+    "statement": "温度偏差（deviation）规则为“新偏差 = 当前偏差 − gain×delay 步以前的偏差”。history 按从早到晚给出 −delay 到 0 的值。delay=2、history=[3,2,1]、gain=0.5 时，第一步是多少？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "0.5"
+      },
+      {
+        "id": "B",
+        "text": "−0.5"
+      },
+      {
+        "id": "C",
+        "text": "1.5"
+      },
+      {
+        "id": "D",
+        "text": "−1"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.3",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-delayed-response",
+    "version": "1",
+    "lesson_id": "P01-C03-S02",
+    "type": "python",
+    "slug": "p01-delayed-response",
+    "title": "让调节读取过去的信息",
+    "statement": "给定人工温度偏差规则及延迟（delay），返回从时刻 0 起的轨迹（trajectory）、最大绝对偏差和转向次数。偏差可正可负；它不是绝对温度。",
+    "parameters": [
+      {
+        "name": "history",
+        "type": "list[float]",
+        "description": "从时刻 −delay 到 0 的已知偏差；最后一项是起点。",
+        "unit": "°C"
+      },
+      {
+        "name": "gain",
+        "type": "float",
+        "description": "每次调节使用过去偏差的比例。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "delay",
+        "type": "int",
+        "description": "读取多少步以前的信息。",
+        "unit": "步"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "从时刻 0 向后更新的步数。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "trajectory",
+        "type": "list[float]",
+        "description": "时刻 0 到 steps 的偏差；不含负时刻历史。",
+        "unit": "°C"
+      },
+      {
+        "name": "max_abs",
+        "type": "float",
+        "description": "返回轨迹中绝对值的最大值，包含起点。",
+        "unit": "°C"
+      },
+      {
+        "name": "turns",
+        "type": "int",
+        "description": "相邻非零增量方向改变的次数。",
+        "unit": "次"
+      }
+    ],
+    "contract": "每步：新偏差 = 当前偏差 − gain×delay 步以前的偏差。计算返回轨迹的相邻增量；绝对值 ≤ 1e−12 的增量视作零并忽略，其余增量的正负号相邻改变一次记一次转向。",
+    "constraints": [
+      "所有数值均为有限数。",
+      "delay 为 0、1、2；len(history)=delay+1；history 每项绝对值 ≤ 10。",
+      "0 ≤ gain ≤ 1；0 ≤ steps ≤ 100；返回长度 steps+1。",
+      "不把负时刻到 0 的变化计入转向次数；steps=0 时 turns=0。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "把历史一起存进列表；新值添加之前用 values[-1-delay] 读取旧信息。",
+    "samples": [
+      {
+        "arguments": {
+          "history": [
+            2,
+            2,
+            2
+          ],
+          "gain": 0.5,
+          "delay": 2,
+          "steps": 4
+        },
+        "expected": [
+          [
+            2,
+            1,
+            0,
+            -1,
+            -1.5
+          ],
+          2,
+          0
+        ],
+        "explanation": "前 3 次都读取偏差 2，依次得到 1、0、−1；第 4 次读取时刻 1 的偏差 1，得到 −1.5。轨迹一直下降，因此尚无转向。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    history: list[float],\n    gain: float,\n    delay: int,\n    steps: int,\n) -> tuple[list[float], float, int]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "part": "1",
+    "chapter": "1.3",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "应用"
+  },
+  {
+    "id": "p01-fair-delay",
+    "version": "1",
+    "lesson_id": "P01-C03-S02",
+    "type": "choice",
+    "slug": "p01-fair-delay",
+    "title": "怎样只比较延迟",
+    "statement": "要用人工温度规则研究延迟（delay）的作用。即时组和两步延迟组怎样设置最合理？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "同时改变起点、gain、观察长度和延迟。"
+      },
+      {
+        "id": "B",
+        "text": "起点同为 2，历史恒为 2，gain 和更新次数相同，只改变读取信息的延迟。"
+      },
+      {
+        "id": "C",
+        "text": "即时组观察 2 步，延迟组观察 100 步。"
+      },
+      {
+        "id": "D",
+        "text": "每次挑选看起来最平滑的一段轨迹（trajectory）。"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.3",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-turn-count",
+    "version": "1",
+    "lesson_id": "P01-C03-S02",
+    "type": "python",
+    "slug": "p01-turn-count",
+    "title": "平台之后算一次转向",
+    "statement": "给定已经计算好的偏差轨迹（trajectory），统计方向改变次数。连续不变的平台不产生新方向；平台前后由升转降或由降转升才计一次。",
+    "parameters": [
+      {
+        "name": "values",
+        "type": "list[float]",
+        "description": "从早到晚的偏差。",
+        "unit": "°C"
+      }
+    ],
+    "returns": [
+      {
+        "name": "turns",
+        "type": "int",
+        "description": "去掉零增量后，增量符号相邻变化的次数。",
+        "unit": "次"
+      }
+    ],
+    "contract": "计算相邻差值；绝对值 ≤ 1e−12 视作零。忽略这些零，再统计正负号切换。",
+    "constraints": [
+      "所有数值均为有限数。",
+      "1 ≤ len(values) ≤ 1000；每项绝对值 ≤ 1000。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "忽略零增量，而不是让零成为第三种运动方向。",
+    "samples": [
+      {
+        "arguments": {
+          "values": [
+            2,
+            1,
+            1,
+            2,
+            2,
+            0
+          ]
+        },
+        "expected": 2,
+        "explanation": "非零增量依次为 −1、+1、−2，符号从负到正、正到负，共两次。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    values: list[float],\n) -> int:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "part": "1",
+    "chapter": "1.3",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "应用"
+  },
+  {
+    "id": "p01-finite-path",
+    "version": "1",
+    "lesson_id": "P01-C03-S02",
+    "type": "choice",
+    "slug": "p01-finite-path",
+    "title": "八步实验的结论范围",
+    "statement": "在 gain=0.5 的人工规则下，两步延迟（delay）轨迹（trajectory）越过目标，而即时组未越过。以下哪些结论有依据？",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "这组条件下的延迟对照出现不同轨迹。"
+      },
+      {
+        "id": "B",
+        "text": "所有人体调节都必须取 gain=0.5。"
+      },
+      {
+        "id": "C",
+        "text": "只需八步就证明任意长时间都不会再增长。"
+      },
+      {
+        "id": "D",
+        "text": "负反馈（negative feedback）的方向不能单独保证单调接近目标。"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.3",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-change-class",
+    "version": "1",
+    "lesson_id": "P01-C04-S01",
+    "type": "choice",
+    "slug": "p01-change-class",
+    "title": "改变的是哪一层假设",
+    "statement": "对“每段移除当前物质量的 10%”这一模型（model），以下哪些分类正确？",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "把初始物质量从 10 改成 20，是改变初值（initial condition）。"
+      },
+      {
+        "id": "B",
+        "text": "把 10% 改成 20%，保持同一比例规则，是改变参数（parameter）。"
+      },
+      {
+        "id": "C",
+        "text": "把比例清除改成每段移除 1 U，是改变模型结构（model structure）。"
+      },
+      {
+        "id": "D",
+        "text": "把结果显示成两位小数，必然改变真实清除机制。"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.4",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-compare-rules",
+    "version": "1",
+    "lesson_id": "P01-C04-S01",
+    "type": "python",
+    "slug": "p01-compare-rules",
+    "title": "固定量与固定比例",
+    "statement": "比较两种没有外部输入（input）的清除模型（model）：每段移除 fixed U，或移除当前物质量的 fraction。给定相同初值（initial condition）和步数，返回两条轨迹（trajectory）。",
+    "parameters": [
+      {
+        "name": "initial",
+        "type": "float",
+        "description": "两组共同的起点物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "fixed",
+        "type": "float",
+        "description": "固定量规则每段移除的量。",
+        "unit": "U/段"
+      },
+      {
+        "name": "fraction",
+        "type": "float",
+        "description": "比例规则每段移除的比例。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "更新次数。",
+        "unit": "段"
+      }
+    ],
+    "returns": [
+      {
+        "name": "fixed_path",
+        "type": "list[float]",
+        "description": "固定量轨迹，包含起点。",
+        "unit": "U"
+      },
+      {
+        "name": "fraction_path",
+        "type": "list[float]",
+        "description": "比例轨迹，包含起点。",
+        "unit": "U"
+      }
+    ],
+    "contract": "固定量组每次减 fixed；比例组每次乘 (1−fraction)。返回 (fixed_path, fraction_path)。",
+    "constraints": [
+      "所有数值均为有限数。",
+      "0 ≤ initial,fixed ≤ 1000；0 ≤ fraction ≤ 1；0 ≤ steps ≤ 1000。",
+      "fixed×steps ≤ initial，保证固定量规则不越过零；两条列表长度均为 steps+1。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "比例必须乘当前值；一直乘初值就换成了固定量规则。",
+    "samples": [
+      {
+        "arguments": {
+          "initial": 10,
+          "fixed": 1,
+          "fraction": 0.1,
+          "steps": 3
+        },
+        "expected": [
+          [
+            10,
+            9,
+            8,
+            7
+          ],
+          [
+            10,
+            9,
+            8.1,
+            7.29
+          ]
+        ],
+        "explanation": "第一段两组同为 9；之后比例组移除量从 1 减为 0.9、0.81，所以第三段末为 7.29，而固定组为 7。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    initial: float,\n    fixed: float,\n    fraction: float,\n    steps: int,\n) -> tuple[list[float], list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "part": "1",
+    "chapter": "1.4",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "应用"
+  },
+  {
+    "id": "p01-first-step",
+    "version": "1",
+    "lesson_id": "P01-C04-S01",
+    "type": "choice",
+    "slug": "p01-first-step",
+    "title": "第一步相同就说明模型相同吗",
+    "statement": "初始 10 U，每段移除 1 U 或当前量的 10%，第一步都为 9 U。哪项解释合理？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "两种模型结构（model structure）完全相同。"
+      },
+      {
+        "id": "B",
+        "text": "这一条件的第一步观测（observation）不足以区分两种规则，需要其他预测。"
+      },
+      {
+        "id": "C",
+        "text": "两种模型（model）在所有初值（initial condition）下都相同。"
+      },
+      {
+        "id": "D",
+        "text": "必须删除其中一个模型，否则无法计算。"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.4",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-first-failure",
+    "version": "1",
+    "lesson_id": "P01-C04-S01",
+    "type": "python",
+    "slug": "p01-first-failure",
+    "title": "第一次越过零发生在哪段",
+    "statement": "在固定移除规则中，起点为 initial，每段减去 fixed。只检查前 steps 段，返回第一次得到严格负物质量的段号，从 1 开始；若没有则返回 −1。",
+    "parameters": [
+      {
+        "name": "initial",
+        "type": "int",
+        "description": "初始物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "fixed",
+        "type": "int",
+        "description": "每段移除量。",
+        "unit": "U/段"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "最多检查的段数。",
+        "unit": "段"
+      }
+    ],
+    "returns": [
+      {
+        "name": "first_negative",
+        "type": "int",
+        "description": "首个负值段号；未发生返回 −1。",
+        "unit": "段号"
+      }
+    ],
+    "contract": "等于零不算负；不裁剪负值。输入（input）为整数，因此不需要浮点阈值。",
+    "constraints": [
+      "所有数值均为有限数。",
+      "0 ≤ initial,fixed,steps ≤ 10000。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "返回第一次失败的位置，不返回负物质量本身。",
+    "samples": [
+      {
+        "arguments": {
+          "initial": 5,
+          "fixed": 2,
+          "steps": 4
+        },
+        "expected": 3,
+        "explanation": "第 1、2、3 段末为 3、1、−1，因此第一次失败在第 3 段。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    initial: int,\n    fixed: int,\n    steps: int,\n) -> int:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "part": "1",
+    "chapter": "1.4",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "应用"
+  },
+  {
+    "id": "p01-distinguish-design",
+    "version": "1",
+    "lesson_id": "P01-C04-S02",
+    "type": "choice",
+    "slug": "p01-distinguish-design",
+    "title": "选择能区分解释的实验",
+    "statement": "已知固定移除 1 U/段和比例移除 10%/段在初值（initial condition） 10 U 的第一段预测相同。要比较模型（model），哪项设计最合适？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "改初值为 20 U，保持段长、输入（input）、测量方法与两组原参数（parameter）相同，比较第一段末。"
+      },
+      {
+        "id": "B",
+        "text": "同时把比例改成 5%，并改变段长。"
+      },
+      {
+        "id": "C",
+        "text": "只记录两组起点，不记录之后。"
+      },
+      {
+        "id": "D",
+        "text": "先看结果，再随意修改两组参数直到一致。"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.4",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-separation",
+    "version": "1",
+    "lesson_id": "P01-C04-S02",
+    "type": "python",
+    "slug": "p01-separation",
+    "title": "找出预测分离的初值",
+    "statement": "候选初值（initial condition）列表中，每段固定移除 fixed U 或移除当前量的 fraction。寻找两组第一段末预测差的绝对值严格大于 threshold 的候选，返回其从 0 开始的索引。",
+    "parameters": [
+      {
+        "name": "initials",
+        "type": "list[float]",
+        "description": "候选起点物质量，保留原顺序。",
+        "unit": "U"
+      },
+      {
+        "name": "fixed",
+        "type": "float",
+        "description": "每段固定移除量。",
+        "unit": "U/段"
+      },
+      {
+        "name": "fraction",
+        "type": "float",
+        "description": "比例移除系数。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "threshold",
+        "type": "float",
+        "description": "希望预测差超过的数值门槛。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "indices",
+        "type": "list[int]",
+        "description": "满足严格大于条件的候选索引，按原顺序。",
+        "unit": "索引"
+      }
+    ],
+    "contract": "第一段末分别为 A−fixed 和 A×(1−fraction)。差可等价写成 abs(fraction×A−fixed)。仅将严格大于 threshold 的索引加入结果。门槛是本题实验选择条件，不是统计显著性。",
+    "constraints": [
+      "所有数值均为有限数。",
+      "0 ≤ len(initials) ≤ 1000；0 ≤ fixed ≤ A ≤ 1000。",
+      "0 ≤ fraction ≤ 1；0 ≤ threshold ≤ 1000。",
+      "测试中预测差距门槛至少 1e−6，或恰好相等且能被二进制精确表示。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "比较两条规则的预测差，不要把初值自身与门槛比较。",
+    "samples": [
+      {
+        "arguments": {
+          "initials": [
+            10,
+            20,
+            30
+          ],
+          "fixed": 1,
+          "fraction": 0.1,
+          "threshold": 0.5
+        },
+        "expected": [
+          1,
+          2
+        ],
+        "explanation": "三组第一段末预测差为 0、1、2 U；只有索引 1、2 严格超过 0.5 U。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    initials: list[float],\n    fixed: float,\n    fraction: float,\n    threshold: float,\n) -> list[int]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "part": "1",
+    "chapter": "1.4",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "应用"
+  },
+  {
+    "id": "p01-prediction-record",
+    "version": "1",
+    "lesson_id": "P01-C04-S02",
+    "type": "choice",
+    "slug": "p01-prediction-record",
+    "title": "先写下可能的反例",
+    "statement": "一个计算实验（computational experiment）准备比较两种清除规则。以下哪些做法支持可检验的解释？",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "运行前记录两种规则的参数（parameter）、预测和不能支持它们的结果。"
+      },
+      {
+        "id": "B",
+        "text": "看到观测（observation）后悄悄改变原先声称固定的系数。"
+      },
+      {
+        "id": "C",
+        "text": "把独立条件留作核对，并写明误差和未纳入的过程。"
+      },
+      {
+        "id": "D",
+        "text": "只要一条曲线看起来更平滑，就确定它是真实机制。"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.4",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-falsification",
+    "version": "1",
+    "lesson_id": "P01-C04-S02",
+    "type": "choice",
+    "slug": "p01-falsification",
+    "title": "观测落在两个预测之外",
+    "statement": "在初值（initial condition） 20 U 的一段实验中，两种固定候选模型（model）预测为 19 与 18 U。按题设观测（observation）准确为 17 U，且条件记录无误。最恰当的结论是什么？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "选 18 U 那个并宣称它完全正确。"
+      },
+      {
+        "id": "B",
+        "text": "17 比 18 小，所以物质量不可能守恒。"
+      },
+      {
+        "id": "C",
+        "text": "两个固定候选在这组条件下都不符合观测，应检查遗漏机制或提出新假设。"
+      },
+      {
+        "id": "D",
+        "text": "把观测改写成 18 U。"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.4",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "基础"
+  },
+  {
+    "id": "p01-cap-boundary",
+    "version": "1",
+    "lesson_id": "P01-SUMMARY",
+    "type": "choice",
+    "slug": "p01-cap-boundary",
+    "title": "细胞计数的边界",
+    "statement": "篇末场景：每小时拍摄培养孔中央视野。细胞可以进入或离开视野，也可能分裂。把“可见细胞数”作为存量（stock）时，哪些判断正确？",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "边界是视野，跨边界移动会改变可见数量。"
+      },
+      {
+        "id": "B",
+        "text": "可见数量增加足以证明所有增加都来自分裂。"
+      },
+      {
+        "id": "C",
+        "text": "需要分别考虑跨边界迁入迁出与视野内部的生成。"
+      },
+      {
+        "id": "D",
+        "text": "若改成整个培养孔，内部跨视野移动不再是孔的外部流量（flow）。"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.summary",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "综合"
+  },
+  {
+    "id": "p01-cap-count",
+    "version": "1",
+    "lesson_id": "P01-SUMMARY",
+    "type": "python",
+    "slug": "p01-cap-count",
+    "title": "计数中的移动与新增",
+    "statement": "给定视野起始细胞数，每段已累计的进入、离开和分裂净新增数。一次一变二的分裂只净增加一个细胞。返回可见数量轨迹（trajectory），不把新增误记为进入。",
+    "parameters": [
+      {
+        "name": "initial",
+        "type": "int",
+        "description": "起始可见细胞数。",
+        "unit": "个"
+      },
+      {
+        "name": "entered",
+        "type": "list[int]",
+        "description": "各段跨边界进入数。",
+        "unit": "个"
+      },
+      {
+        "name": "left",
+        "type": "list[int]",
+        "description": "各段跨边界离开数。",
+        "unit": "个"
+      },
+      {
+        "name": "born",
+        "type": "list[int]",
+        "description": "各段分裂净新增数。",
+        "unit": "个"
+      }
+    ],
+    "returns": [
+      {
+        "name": "counts",
+        "type": "list[int]",
+        "description": "起点与各段末的可见细胞数。",
+        "unit": "个"
+      }
+    ],
+    "contract": "新数量 = 旧数量 + entered[i] − left[i] + born[i]。各段这些数已累计，不再乘时长；题设忽略死亡。",
+    "constraints": [
+      "所有数值均为有限数。",
+      "三个列表等长，长度 0 到 1000；所有计数都是 0 到 10000 的整数。",
+      "各段末数量保证非负。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先按机制逐项记账，再讨论净增减；净变化会掩盖同时发生的过程。",
+    "samples": [
+      {
+        "arguments": {
+          "initial": 10,
+          "entered": [
+            2,
+            0
+          ],
+          "left": [
+            1,
+            3
+          ],
+          "born": [
+            1,
+            2
+          ]
+        },
+        "expected": [
+          10,
+          12,
+          11
+        ],
+        "explanation": "第一段 10+2−1+1=12；第二段 12+0−3+2=11。第二段数量下降，但仍有分裂新增，下降不能证明“没有分裂”。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    initial: int,\n    entered: list[int],\n    left: list[int],\n    born: list[int],\n) -> list[int]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "part": "1",
+    "chapter": "1.summary",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "综合"
+  },
+  {
+    "id": "p01-cap-feedback",
+    "version": "1",
+    "lesson_id": "P01-SUMMARY",
+    "type": "choice",
+    "slug": "p01-cap-feedback",
+    "title": "偏差下降与旁路影响",
+    "statement": "篇末人工调节模型（model）：温度偏差增大会增强散热，散热会降低温度偏差并增加失水。哪些结论合理？",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "温度调节方向属于负反馈（negative feedback）。"
+      },
+      {
+        "id": "B",
+        "text": "温度偏差下降说明其他变量必然也改善。"
+      },
+      {
+        "id": "C",
+        "text": "若存在延迟（delay），需要看同步轨迹（trajectory），不能只看起点和终点。"
+      },
+      {
+        "id": "D",
+        "text": "这些作用方向是具体假设，应分别用观测（observation）核对。"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.summary",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "综合"
+  },
+  {
+    "id": "p01-cap-predictions",
+    "version": "1",
+    "lesson_id": "P01-SUMMARY",
+    "type": "python",
+    "slug": "p01-cap-predictions",
+    "title": "在多种初值下保留两套预测",
+    "statement": "篇末清除实验：每段固定移除 fixed，或移除当前量的 fraction。在每个候选初值（initial condition）下都执行相同的 steps 段，只返回两组终点预测，以便与后续观测（observation）比较。",
+    "parameters": [
+      {
+        "name": "initials",
+        "type": "list[float]",
+        "description": "各独立实验的起点物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "fixed",
+        "type": "float",
+        "description": "固定规则每段移除量。",
+        "unit": "U/段"
+      },
+      {
+        "name": "fraction",
+        "type": "float",
+        "description": "比例规则每段移除比例。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "每个独立实验的段数。",
+        "unit": "段"
+      }
+    ],
+    "returns": [
+      {
+        "name": "fixed_ends",
+        "type": "list[float]",
+        "description": "依照初值顺序排列的固定量规则终点。",
+        "unit": "U"
+      },
+      {
+        "name": "fraction_ends",
+        "type": "list[float]",
+        "description": "依照初值顺序排列的比例规则终点。",
+        "unit": "U"
+      }
+    ],
+    "contract": "各实验独立重置到该初值。固定规则重复相减，比例规则重复乘 (1−fraction)。不得把上一实验终点作为下一实验起点。",
+    "constraints": [
+      "所有数值均为有限数。",
+      "0 ≤ len(initials) ≤ 100；0 ≤ steps ≤ 100；0 ≤ fraction ≤ 1。",
+      "0 ≤ fixed ≤ A ≤ 1000，且 fixed×steps ≤ 每个 A。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "每个初值是一项独立实验；先检查步骤为零时应返回什么。",
+    "samples": [
+      {
+        "arguments": {
+          "initials": [
+            10,
+            20
+          ],
+          "fixed": 1,
+          "fraction": 0.1,
+          "steps": 2
+        },
+        "expected": [
+          [
+            8,
+            18
+          ],
+          [
+            8.1,
+            16.2
+          ]
+        ],
+        "explanation": "从 10 和 20 分别独立出发，固定组各减 2；比例组各乘 0.9 两次。两次实验不能首尾接在一起。"
+      }
+    ],
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    initials: list[float],\n    fixed: float,\n    fraction: float,\n    steps: int,\n) -> tuple[list[float], list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "part": "1",
+    "chapter": "1.summary",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "综合"
+  },
+  {
+    "id": "p01-cap-limits",
+    "version": "1",
+    "lesson_id": "P01-SUMMARY",
+    "type": "choice",
+    "slug": "p01-cap-limits",
+    "title": "给计算结论划定范围",
+    "statement": "综合前面的计算实验（computational experiment），以下哪句话最恰当地说明本篇成果？",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "程序能运行，因此所有机制都是真实的。"
+      },
+      {
+        "id": "B",
+        "text": "选定边界、单位和规则后，可以检查收支（mass balance）及具体预测；对真实过程仍需独立观测（observation）和假设检验。"
+      },
+      {
+        "id": "C",
+        "text": "模拟点越多就越不需要观测。"
+      },
+      {
+        "id": "D",
+        "text": "一条轨迹（trajectory）足以证明任意条件下的长期行为。"
+      }
+    ],
+    "constraints": [],
+    "part": "1",
+    "chapter": "1.summary",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数01"
+    ],
+    "difficulty": "综合"
+  }
+]

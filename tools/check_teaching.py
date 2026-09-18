@@ -9,7 +9,7 @@ from sync_m1_exercises import render_exercises
 from question_contracts import validate_contract
 
 ROOT=Path(__file__).resolve().parents[1]
-TERMS=json.loads((ROOT/'docs/术语对照.json').read_text(encoding='utf-8'))
+TERMS=[t for t in json.loads((ROOT/'docs/术语对照.json').read_text(encoding='utf-8')) if t.get('scope')!='part01']
 LOOKUP={t['zh']:t for t in TERMS}
 PATTERN=re.compile('|'.join(re.escape(t['zh']) for t in sorted(TERMS,key=lambda x:-len(x['zh']))))
 

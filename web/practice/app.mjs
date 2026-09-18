@@ -4,11 +4,12 @@ import {setupWorkspace} from '../shared/layout.mjs';
 const $=id=>document.getElementById(id);
 const editor=createEditor($('source'));
 let session, catalog=[], question, active=null, pollTimer=null, selection=0, lastRecord=null, undo='';
-const prefix='systems-science:m1:'; // 保留样章已有草稿；正式课程另设作用域。
+let prefix='systems-science:m1:',chapter=null; // 保留已有样章草稿，正式课节使用独立作用域。
 let lessons=[],progressState={passed:[]};
+function progressLabel(value){const ids=new Set(catalog.map(q=>q.id));return `本章已完成 ${(value.passed||[]).filter(id=>ids.has(id)).length} / ${ids.size} 题${value.incomplete?' · 部分记录无法读取':''}`;}
 document.addEventListener('course-progress',event=>{
   progressState=event.detail;
-  $('progress').textContent=`样章已完成 ${progressState.passed.length} / ${progressState.total} 题${progressState.incomplete?' · 部分记录无法读取':''}`;
+  $('progress').textContent=progressLabel(progressState);
   for(const link of $('questions').querySelectorAll('a')){
     const item=catalog.find(q=>q.id===link.dataset.id);if(!item)continue;
     const done=progressState.passed.includes(item.id);link.classList.toggle('passed',done);
@@ -95,7 +96,7 @@ function renderQuestions(){
 async function progress(){
   const result=await api('/api/v1/progress');progressState=result;applyProgress(result);
   if(result.active){active=result.active;updateBusy();}
-  $('progress').textContent=`样章已完成 ${result.passed.length} / ${result.total} 题${result.incomplete?' · 部分记录无法读取':''}`;
+  $('progress').textContent=progressLabel(result);
   if(question)renderQuestions();
 }
 function showResult(record,fresh=false){
@@ -173,7 +174,7 @@ async function select(id,push=true){
   if(revision!==selection)return;
   question=q;lastRecord=null;$('result').hidden=true;$('attempt-message').textContent='';$('open-feedback').textContent='';
   const url=new URL(location.href);url.searchParams.delete('exercise');url.searchParams.set('question',q.slug);if(push)history.pushState({},'',url);else history.replaceState({},'',url);
-  renderQuestions();rememberQuestion(q.slug);document.title=`${q.title} · 样章练习`;
+  renderQuestions();rememberQuestion(q.slug);document.title=`${q.title} · ${chapter.title}`;
   document.querySelectorAll('#code-requirements details, .hint').forEach(d=>d.open=false);
   for(const link of $('questions').querySelectorAll('a')){if(link.dataset.id===q.id)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');}
   $('question-meta').textContent=`${lessons.find(l=>l.id===q.lesson_id).title} · ${q.type==='choice'?(q.multiple?'多项选择题':'单项选择题'):'Python 计算题'}`;
@@ -223,7 +224,10 @@ async function connect(){
   try{
     session=await api('/api/session');
     if(session.practice_version!=='named-parameters-2')throw new Error('请停止旧的本地程序，重新启动当前版本后恢复连接。');
-    const data=await api('/api/v1/catalog');catalog=data.exercises;lessons=data.notebooks;
+    const data=await api('/api/v1/catalog');
+    const lessonIds=new Set(chapter.lessons.map(l=>l.id));
+    catalog=data.exercises.filter(q=>lessonIds.has(q.lesson_id));lessons=data.notebooks.filter(l=>lessonIds.has(l.id));
+    if(!catalog.length||lessons.length!==lessonIds.size)throw new Error('本机程序尚未载入本章，请重新启动教材服务。');
     $('lesson-picker').replaceChildren();for(const lesson of lessons){const option=node('option',lesson.title);option.value=lesson.id;$('lesson-picker').append(option);}
     $('connection-help').hidden=true;$('loading-note').hidden=true;document.body.dataset.ready='true';
     await progress();
@@ -256,6 +260,9 @@ function requestedQuestion(){const params=new URL(location.href).searchParams;re
 window.addEventListener('popstate',()=>void select(requestedQuestion(),false).catch(connectionError));
 $('lesson-picker').addEventListener('change',()=>void select(catalog.find(q=>q.lesson_id===$('lesson-picker').value).id).catch(connectionError));
 for(const [button,offset] of [['previous-question',-1],['next-question',1]])$(button).addEventListener('click',()=>{const next=catalog[catalog.findIndex(q=>q.id===question.id)+offset];if(next)void select(next.id).catch(connectionError);});
-await mountShell('practice');
+const context=await mountShell('practice');chapter=context.current;
+if(!chapter?.available)throw Error('本章练习尚未提供。');
+if(chapter!==context.course.sample)prefix=`systems-science:course:${chapter.id}:`;
+document.querySelector('.practice-heading .eyebrow').textContent=`${chapter===context.course.sample?'制作样章':chapter.assessment?'篇末综合':chapter.id+' 章'} · 练习`;
 setupWorkspace($('exercise-workspace'),$('workspace-resizer'),$('wrap-code'),$('source'));
 void connect();

@@ -7,5 +7,5 @@ export function summarize(ids, progress={}) {
 }
 export function questionIds(item) {
   if(item.questions)return item.questions.map(q=>q.id);
-  return (item.chapters||item.lessons||[]).flatMap(questionIds);
+  return [...(item.chapters||item.lessons||[]), ...(item.assessment&&typeof item.assessment==='object'?[item.assessment]:[])].flatMap(questionIds);
 }

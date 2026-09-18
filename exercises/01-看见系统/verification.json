@@ -1,0 +1,1053 @@
+{
+  "p01-boundary": {
+    "correct": [
+      "A",
+      "C"
+    ],
+    "explanations": {
+      "A": "转移离开了所选血液边界。",
+      "B": "这时转移发生在边界内部，整体并未失去这些物质。",
+      "C": "问题决定需要追踪的对象、尺度和输出。",
+      "D": "增加对象也会增加假设和未知量，不能保证解释更好。"
+    }
+  },
+  "p01-state-observation": {
+    "correct": [
+      "C"
+    ],
+    "explanations": {
+      "A": "相同单位只意味着可比较，不说明数值相同。",
+      "B": "参数可以在一个实验内固定，状态仍可变化。",
+      "C": "状态与观测的联系是模型的一部分，不能跳过。",
+      "D": "输入正是边界外影响系统的量。"
+    }
+  },
+  "p01-calibrate": {
+    "cases": [
+      {
+        "arguments": {
+          "readings": [
+            37.4,
+            37.1
+          ],
+          "offset": 0.3
+        },
+        "expected": [
+          37.1,
+          36.8
+        ]
+      },
+      {
+        "arguments": {
+          "readings": [],
+          "offset": 1
+        },
+        "expected": []
+      },
+      {
+        "arguments": {
+          "readings": [
+            0,
+            2
+          ],
+          "offset": -1
+        },
+        "expected": [
+          1,
+          3
+        ]
+      }
+    ],
+    "explanation": "先把 y = x + b 中的 b 移到另一边；这只在题设测量关系成立时有效。"
+  },
+  "p01-cell-question": {
+    "correct": [
+      "D"
+    ],
+    "explanations": {
+      "A": "没有明确时间、观测量或可反驳条件。",
+      "B": "把唯一原因预设为事实，还缺少可区分其他原因的实验。",
+      "C": "问题有启发性，但这里尚未变成可测量的问题。",
+      "D": "对象、时间、观测规则和反例都明确；增加仍不能单独证明原因。"
+    }
+  },
+  "p01-time-units": {
+    "cases": [
+      {
+        "arguments": {
+          "times": [
+            0,
+            1,
+            3
+          ],
+          "amounts": [
+            10,
+            8,
+            5
+          ],
+          "factor": 60
+        },
+        "expected": [
+          [
+            0,
+            60,
+            180
+          ],
+          [
+            10,
+            8,
+            5
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "times": [],
+          "amounts": [],
+          "factor": 0.5
+        },
+        "expected": [
+          [],
+          []
+        ]
+      },
+      {
+        "arguments": {
+          "times": [
+            0,
+            60
+          ],
+          "amounts": [
+            2,
+            1
+          ],
+          "factor": 0.016666666666666666
+        },
+        "expected": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      }
+    ],
+    "explanation": "两个列表必须保持位置对应；换坐标单位不会改变已经发生的物质变化。"
+  },
+  "p01-dimension": {
+    "correct": [
+      "C"
+    ],
+    "explanations": {
+      "A": "U 与 U/L 不能直接相加。",
+      "B": "U 与 L 是不同种类的量。",
+      "C": "(U/L)×L = U；单位正确还需检查情境是否适用。",
+      "D": "单位是 U/L²，不是物质量。"
+    }
+  },
+  "p01-curve-cause": {
+    "correct": [
+      "A",
+      "C"
+    ],
+    "explanations": {
+      "A": "直接比较记录即可得到这个有限结论。",
+      "B": "许多不同输入、输出或测量规则能给出同样的点。",
+      "C": "线是显示约定，不能当成时刻间新增证据。",
+      "D": "换单位改变数字表示，不改变机制。"
+    }
+  },
+  "p01-concentration": {
+    "cases": [
+      {
+        "arguments": {
+          "amounts": [
+            6,
+            6,
+            10
+          ],
+          "volumes": [
+            2,
+            3,
+            5
+          ]
+        },
+        "expected": [
+          3,
+          2,
+          2
+        ]
+      },
+      {
+        "arguments": {
+          "amounts": [],
+          "volumes": []
+        },
+        "expected": []
+      },
+      {
+        "arguments": {
+          "amounts": [
+            0,
+            1
+          ],
+          "volumes": [
+            0.5,
+            0.25
+          ]
+        },
+        "expected": [
+          0,
+          4
+        ]
+      }
+    ],
+    "explanation": "用 zip 配对两组数据，再逐孔计算。"
+  },
+  "p01-rate-amount": {
+    "correct": [
+      "C"
+    ],
+    "explanations": {
+      "A": "q 是每单位时间的量，还不是区间总量。",
+      "B": "q/h 的单位是 U/T²。",
+      "C": "T×U/T = U，且恒定流率下累计量就是这个乘积。",
+      "D": "U 不能直接加 U/T。"
+    }
+  },
+  "p01-balance": {
+    "cases": [
+      {
+        "arguments": {
+          "initial": 5,
+          "durations": [
+            1,
+            2
+          ],
+          "inflows": [
+            3,
+            3
+          ],
+          "outflows": [
+            1,
+            1
+          ]
+        },
+        "expected": [
+          5,
+          7,
+          11
+        ]
+      },
+      {
+        "arguments": {
+          "initial": 2,
+          "durations": [],
+          "inflows": [],
+          "outflows": []
+        },
+        "expected": [
+          2
+        ]
+      },
+      {
+        "arguments": {
+          "initial": 1,
+          "durations": [
+            2,
+            0.5
+          ],
+          "inflows": [
+            0,
+            4
+          ],
+          "outflows": [
+            1,
+            0
+          ]
+        },
+        "expected": [
+          1,
+          -1,
+          1
+        ]
+      }
+    ],
+    "explanation": "每段使用自己的时长；负值表明这些流出假设在该条件下不能描述真实非负物质量。"
+  },
+  "p01-negative-stock": {
+    "correct": [
+      "B"
+    ],
+    "explanations": {
+      "A": "裁剪后账目从 −1 变 0，原设定下无端增加了 1 U。",
+      "B": "真实物质量不能为负；可以另设耗尽后停止流出的新规则，但必须重算。",
+      "C": "这是模型条件失效，不是可实现的物质量。",
+      "D": "反例帮助发现适用范围，应保留并解释。"
+    }
+  },
+  "p01-infer-outflow": {
+    "cases": [
+      {
+        "arguments": {
+          "initial": 5,
+          "final": 7,
+          "duration": 2,
+          "inflow": 3
+        },
+        "expected": 4
+      },
+      {
+        "arguments": {
+          "initial": 2,
+          "final": 0,
+          "duration": 0.5,
+          "inflow": 0
+        },
+        "expected": 2
+      },
+      {
+        "arguments": {
+          "initial": 1,
+          "final": 4,
+          "duration": 3,
+          "inflow": 1
+        },
+        "expected": 0
+      }
+    ],
+    "explanation": "先求累计流入，再减去存量增加。"
+  },
+  "p01-internal-transfer": {
+    "correct": [
+      "A",
+      "B",
+      "C"
+    ],
+    "explanations": {
+      "A": "2−3=−1 U。",
+      "B": "3−1=2 U。",
+      "C": "两室相加时内部转移 −3 和 +3 抵消，只剩 2−1。",
+      "D": "内部转移没有离开联合边界，不能再扣一次。"
+    }
+  },
+  "p01-two-rooms": {
+    "cases": [
+      {
+        "arguments": {
+          "first": 5,
+          "second": 2,
+          "incoming": [
+            2,
+            0
+          ],
+          "transferred": [
+            3,
+            1
+          ],
+          "outgoing": [
+            1,
+            2
+          ]
+        },
+        "expected": [
+          [
+            5,
+            4,
+            3
+          ],
+          [
+            2,
+            4,
+            3
+          ],
+          [
+            7,
+            8,
+            6
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "first": 0,
+          "second": 2,
+          "incoming": [],
+          "transferred": [],
+          "outgoing": []
+        },
+        "expected": [
+          [
+            0
+          ],
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "first": 5,
+          "second": 0,
+          "incoming": [
+            0
+          ],
+          "transferred": [
+            5
+          ],
+          "outgoing": [
+            0
+          ]
+        },
+        "expected": [
+          [
+            5,
+            0
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            5,
+            5
+          ]
+        ]
+      }
+    ],
+    "explanation": "用只包含外部输入和输出的总账交叉核对两区之和。"
+  },
+  "p01-hidden-production": {
+    "correct": [
+      "B"
+    ],
+    "explanations": {
+      "A": "忽略了题目明确给出的内部生成。",
+      "B": "守恒要明确追踪的物种或总质量；转化项不能无声省略。",
+      "C": "开放系统可以流入流出，单一物种也可发生转化。",
+      "D": "输入、生成等都可能使所追踪量增加。"
+    }
+  },
+  "p01-conserved-total": {
+    "correct": [
+      "A",
+      "C"
+    ],
+    "explanations": {
+      "A": "−3+3=0。",
+      "B": "分量已明确改变，整体不变不等于每部分不变。",
+      "C": "相同端点也可能有未测量的来回流动，需要更多观测排除。",
+      "D": "这会重复计算没有跨越联合边界的流动。"
+    }
+  },
+  "p01-signed-arrow": {
+    "correct": [
+      "B"
+    ],
+    "explanations": {
+      "A": "符号描述影响方向，不是 X 的数值符号。",
+      "B": "“+”表示同向影响，需要说明条件和可检验机制。",
+      "C": "同向变化不意味着数值相等。",
+      "D": "“正”不是价值判断，也不是医学结论。"
+    }
+  },
+  "p01-loop-sign": {
+    "cases": [
+      {
+        "arguments": {
+          "signs": [
+            1,
+            1,
+            -1
+          ]
+        },
+        "expected": -1
+      },
+      {
+        "arguments": {
+          "signs": [
+            -1,
+            -1
+          ]
+        },
+        "expected": 1
+      },
+      {
+        "arguments": {
+          "signs": [
+            1
+          ]
+        },
+        "expected": 1
+      },
+      {
+        "arguments": {
+          "signs": [
+            -1
+          ]
+        },
+        "expected": -1
+      }
+    ],
+    "explanation": "每经过一条负边，方向反转一次；奇数次反转为负。"
+  },
+  "p01-negative-feedback": {
+    "correct": [
+      "A",
+      "C"
+    ],
+    "explanations": {
+      "A": "偏差到冷却为正，冷却到偏差为负，乘积为负。",
+      "B": "延迟和作用强度也决定轨迹，符号本身不提供这个保证。",
+      "C": "共同原因、测量关系和反向作用都可能混淆观察。",
+      "D": "符号仅表示方向，不是价值判断。"
+    }
+  },
+  "p01-coupled-loops": {
+    "correct": [
+      "C"
+    ],
+    "explanations": {
+      "A": "启动不说明实际作用或测量偏移。",
+      "B": "缺少同步时刻与其他变量，不能区分假设。",
+      "C": "独立观测与收支可检查路径是否同时成立；仍需报告简化条件。",
+      "D": "选择性删除会掩盖模型失效。"
+    }
+  },
+  "p01-delay-history": {
+    "correct": [
+      "B"
+    ],
+    "explanations": {
+      "A": "用了当前值 1，忽略两步延迟。",
+      "B": "当前为 1，两步以前为 3，所以 1−0.5×3=−0.5。",
+      "C": "把调节方向写成了增加。",
+      "D": "这不是按给定索引得到的结果。"
+    }
+  },
+  "p01-delayed-response": {
+    "cases": [
+      {
+        "arguments": {
+          "history": [
+            2,
+            2,
+            2
+          ],
+          "gain": 0.5,
+          "delay": 2,
+          "steps": 4
+        },
+        "expected": [
+          [
+            2,
+            1,
+            0,
+            -1,
+            -1.5
+          ],
+          2,
+          0
+        ]
+      },
+      {
+        "arguments": {
+          "history": [
+            2
+          ],
+          "gain": 0.5,
+          "delay": 0,
+          "steps": 3
+        },
+        "expected": [
+          [
+            2,
+            1,
+            0.5,
+            0.25
+          ],
+          2,
+          0
+        ]
+      },
+      {
+        "arguments": {
+          "history": [
+            3,
+            2,
+            1
+          ],
+          "gain": 0.5,
+          "delay": 2,
+          "steps": 0
+        },
+        "expected": [
+          [
+            1
+          ],
+          1,
+          0
+        ]
+      },
+      {
+        "arguments": {
+          "history": [
+            2,
+            2,
+            2
+          ],
+          "gain": 0.5,
+          "delay": 2,
+          "steps": 8
+        },
+        "expected": [
+          [
+            2,
+            1,
+            0,
+            -1,
+            -1.5,
+            -1.5,
+            -1,
+            -0.25,
+            0.5
+          ],
+          2,
+          1
+        ]
+      }
+    ],
+    "explanation": "把历史一起存进列表；新值添加之前用 values[-1-delay] 读取旧信息。"
+  },
+  "p01-fair-delay": {
+    "correct": [
+      "B"
+    ],
+    "explanations": {
+      "A": "差异将无法归因于本次比较的延迟。",
+      "B": "两组共享边界条件与作用强度，差异来自给定规则的延迟设置。",
+      "C": "观察区间不同会混入另一个因素。",
+      "D": "事后选区间可能隐去转向或过冲。"
+    }
+  },
+  "p01-turn-count": {
+    "cases": [
+      {
+        "arguments": {
+          "values": [
+            2,
+            1,
+            1,
+            2,
+            2,
+            0
+          ]
+        },
+        "expected": 2
+      },
+      {
+        "arguments": {
+          "values": [
+            1
+          ]
+        },
+        "expected": 0
+      },
+      {
+        "arguments": {
+          "values": [
+            2,
+            2,
+            2
+          ]
+        },
+        "expected": 0
+      },
+      {
+        "arguments": {
+          "values": [
+            0,
+            1,
+            2,
+            1
+          ]
+        },
+        "expected": 1
+      }
+    ],
+    "explanation": "忽略零增量，而不是让零成为第三种运动方向。"
+  },
+  "p01-finite-path": {
+    "correct": [
+      "A",
+      "D"
+    ],
+    "explanations": {
+      "A": "这是所运行对照直接支持的有限结论。",
+      "B": "参数为教学选值，不是实际生理推荐。",
+      "C": "有限观察不能替代长期分析。",
+      "D": "给定负方向规则已出现过冲，足以反驳这种普遍保证。"
+    }
+  },
+  "p01-change-class": {
+    "correct": [
+      "A",
+      "B",
+      "C"
+    ],
+    "explanations": {
+      "A": "只改变开始时的状态。",
+      "B": "规则形式相同，系数不同。",
+      "C": "移除量是否依赖当前状态发生了改变。",
+      "D": "显示精度是观测或呈现设置，并不自动改变机制。"
+    }
+  },
+  "p01-compare-rules": {
+    "cases": [
+      {
+        "arguments": {
+          "initial": 10,
+          "fixed": 1,
+          "fraction": 0.1,
+          "steps": 3
+        },
+        "expected": [
+          [
+            10,
+            9,
+            8,
+            7
+          ],
+          [
+            10,
+            9,
+            8.1,
+            7.29
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "initial": 4,
+          "fixed": 0,
+          "fraction": 1,
+          "steps": 2
+        },
+        "expected": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "initial": 0,
+          "fixed": 0,
+          "fraction": 0,
+          "steps": 0
+        },
+        "expected": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ]
+      }
+    ],
+    "explanation": "比例必须乘当前值；一直乘初值就换成了固定量规则。"
+  },
+  "p01-first-step": {
+    "correct": [
+      "B"
+    ],
+    "explanations": {
+      "A": "规则依赖当前量的方式不同，下一步已可不同。",
+      "B": "可延长同一实验，或改变初值并保持其他条件。",
+      "C": "例如初值 20 时，第一步为 19 与 18。",
+      "D": "可以并行比较候选解释，计算本身没有矛盾。"
+    }
+  },
+  "p01-first-failure": {
+    "cases": [
+      {
+        "arguments": {
+          "initial": 5,
+          "fixed": 2,
+          "steps": 4
+        },
+        "expected": 3
+      },
+      {
+        "arguments": {
+          "initial": 4,
+          "fixed": 2,
+          "steps": 2
+        },
+        "expected": -1
+      },
+      {
+        "arguments": {
+          "initial": 0,
+          "fixed": 0,
+          "steps": 5
+        },
+        "expected": -1
+      },
+      {
+        "arguments": {
+          "initial": 0,
+          "fixed": 2,
+          "steps": 0
+        },
+        "expected": -1
+      }
+    ],
+    "explanation": "返回第一次失败的位置，不返回负物质量本身。"
+  },
+  "p01-distinguish-design": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "事前预测为 19 和 18 U，给出可区分结果。",
+      "B": "额外变化会混淆比较，不再是这两个固定假设。",
+      "C": "共同起点不区分未来变化规则。",
+      "D": "事后调参没有保留原预测的可反驳性。"
+    }
+  },
+  "p01-separation": {
+    "cases": [
+      {
+        "arguments": {
+          "initials": [
+            10,
+            20,
+            30
+          ],
+          "fixed": 1,
+          "fraction": 0.1,
+          "threshold": 0.5
+        },
+        "expected": [
+          1,
+          2
+        ]
+      },
+      {
+        "arguments": {
+          "initials": [
+            2,
+            4,
+            6
+          ],
+          "fixed": 1,
+          "fraction": 0.5,
+          "threshold": 1
+        },
+        "expected": [
+          2
+        ]
+      },
+      {
+        "arguments": {
+          "initials": [],
+          "fixed": 0,
+          "fraction": 0,
+          "threshold": 0
+        },
+        "expected": []
+      }
+    ],
+    "explanation": "比较两条规则的预测差，不要把初值自身与门槛比较。"
+  },
+  "p01-prediction-record": {
+    "correct": [
+      "A",
+      "C"
+    ],
+    "explanations": {
+      "A": "保留事前预测可以发现假设与结果冲突。",
+      "B": "改变可以做，但必须声明成新假设，不能伪装成原预测成功。",
+      "C": "独立条件与局限说明让验证范围清楚。",
+      "D": "视觉平滑不是机制证据。"
+    }
+  },
+  "p01-falsification": {
+    "correct": [
+      "C"
+    ],
+    "explanations": {
+      "A": "更接近不等于符合题设准确观测。",
+      "B": "额外输出或内部转化等都可能改变结果，需要重新建账。",
+      "C": "反例约束的是这两个候选及其参数；不直接告诉我们唯一新机制。",
+      "D": "修改数据迎合预测破坏检验。"
+    }
+  },
+  "p01-cap-boundary": {
+    "correct": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "A": "所选视野的边界决定迁入迁出的含义。",
+      "B": "缺少迁移与分裂的分别观测，不能唯一归因。",
+      "C": "把物理迁移与细胞生成分开才能正确记账。",
+      "D": "同一次移动在新边界内成为内部变化。"
+    }
+  },
+  "p01-cap-count": {
+    "cases": [
+      {
+        "arguments": {
+          "initial": 10,
+          "entered": [
+            2,
+            0
+          ],
+          "left": [
+            1,
+            3
+          ],
+          "born": [
+            1,
+            2
+          ]
+        },
+        "expected": [
+          10,
+          12,
+          11
+        ]
+      },
+      {
+        "arguments": {
+          "initial": 0,
+          "entered": [],
+          "left": [],
+          "born": []
+        },
+        "expected": [
+          0
+        ]
+      },
+      {
+        "arguments": {
+          "initial": 2,
+          "entered": [
+            0
+          ],
+          "left": [
+            2
+          ],
+          "born": [
+            0
+          ]
+        },
+        "expected": [
+          2,
+          0
+        ]
+      }
+    ],
+    "explanation": "先按机制逐项记账，再讨论净增减；净变化会掩盖同时发生的过程。"
+  },
+  "p01-cap-feedback": {
+    "correct": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "A": "偏差到散热为正，散热到偏差为负，闭环为负。",
+      "B": "题设已包含失水增加的旁路影响。",
+      "C": "端点可能漏掉中途过冲与转向。",
+      "D": "图中的箭头不是对真实生理的自动证明。"
+    }
+  },
+  "p01-cap-predictions": {
+    "cases": [
+      {
+        "arguments": {
+          "initials": [
+            10,
+            20
+          ],
+          "fixed": 1,
+          "fraction": 0.1,
+          "steps": 2
+        },
+        "expected": [
+          [
+            8,
+            18
+          ],
+          [
+            8.1,
+            16.2
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "initials": [],
+          "fixed": 0,
+          "fraction": 0.5,
+          "steps": 3
+        },
+        "expected": [
+          [],
+          []
+        ]
+      },
+      {
+        "arguments": {
+          "initials": [
+            0,
+            2
+          ],
+          "fixed": 0,
+          "fraction": 1,
+          "steps": 0
+        },
+        "expected": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      }
+    ],
+    "explanation": "每个初值是一项独立实验；先检查步骤为零时应返回什么。"
+  },
+  "p01-cap-limits": {
+    "correct": [
+      "B"
+    ],
+    "explanations": {
+      "A": "程序执行只说明按代码得到结果，不验证机制。",
+      "B": "把计算正确、假设适用与外部验证分开，才有可解释的结论。",
+      "C": "增加计算量不能替代测量机制是否成立。",
+      "D": "单个有限实验的证据范围有限。"
+    }
+  }
+}

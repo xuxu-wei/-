@@ -39,5 +39,22 @@
   {"zh":"差商","en":"difference quotient"},
   {"zh":"指数函数","en":"exponential function"},
   {"zh":"一阶收敛","en":"first-order convergence"},
-  {"zh":"时间尺度","en":"time scale"}
+  {"zh":"时间尺度","en":"time scale"},
+  {"zh":"观测","en":"observation","scope":"part01"},
+  {"zh":"输入","en":"input","scope":"part01"},
+  {"zh":"模型","en":"model","scope":"part01"},
+  {"zh":"量纲","en":"dimension","scope":"part01"},
+  {"zh":"流率","en":"flow rate","scope":"part01"},
+  {"zh":"增益","en":"gain","scope":"part01"},
+  {"zh":"过冲","en":"overshoot","scope":"part01"},
+  {"zh":"因果回路图","en":"causal loop diagram","scope":"part01"},
+  {"zh":"正反馈","en":"positive feedback","scope":"part01"},
+  {"zh":"反馈","en":"feedback","scope":"part01"},
+  {"zh":"延迟","en":"delay","scope":"part01"},
+  {"zh":"时间序列","en":"time series","scope":"part01"},
+  {"zh":"数组","en":"array","scope":"part01"},
+  {"zh":"计算实验","en":"computational experiment","scope":"part01"},
+  {"zh":"模型结构","en":"model structure","scope":"part01"},
+  {"zh":"轨迹","en":"trajectory","scope":"part01"},
+  {"zh":"无量纲","en":"dimensionless","scope":"part01"}
 ]

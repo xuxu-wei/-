@@ -14,7 +14,7 @@ function cards(items,kind){
   for(const item of items){
     const card=a(undefined,item.url,`catalog-card ${kind}-card`);
     const title=el('h2');
-    title.append(el('span',kind==='part'?`第 ${item.id} 篇`:item.id,'card-number'),el('span',item.title,'card-title'));
+    title.append(el('span',kind==='part'?`第 ${item.id} 篇`:item.assessment?'篇末综合':item.id,'card-number'),el('span',item.title,'card-title'));
     card.append(title);
     if(kind==='part'){
       const topics=el('ul',undefined,'card-topics');
@@ -24,7 +24,7 @@ function cards(items,kind){
       card.append(el('p',item.goals,'card-goal'),el('p',`先修：${item.prerequisites}`,'card-prerequisites'));
     }
     const footer=el('div',undefined,'card-footer');
-    footer.append(el('span',kind==='part'?`${item.chapters.length} 章 · 篇导览`:'学习重点与知识体系'),el('span','→','card-arrow'));
+    footer.append(el('span',kind==='part'?`${item.chapters.length} 章 · ${item.chapters.filter(c=>c.available).length} 章可学习`:item.available?`${item.lessons.length} 节 Notebook · 进入学习`:'教学设计导览'),el('span','→','card-arrow'));
     card.append(footer);grid.append(card);
   }
   return grid;
@@ -36,33 +36,35 @@ async function start(){
   const {course,current,part}=await mountShell();
   if(!current){
     document.body.dataset.guide='book';
+    const ready=course.parts.filter(p=>p.chapters.every(c=>c.available)).map(p=>p.id);
     heading('全书目录 · 十二篇', '从看见系统，到理解复杂性',
       '提出问题，建立模型，用计算检验解释。沿着篇章顺序，逐步进入系统科学。',
-      '正式教材现提供篇章导览，Notebook 与习题待编写。制作样章独立提供参考体验。');
+      ready.length?`第 ${ready.join('、')} 篇已提供完整 Notebook 与练习，其余篇章目前提供教学设计导览。`:'当前提供教学设计导览。');
     host.append(cards(course.parts,'part'));
-    const sample=el('aside',undefined,'sample-entry');
+    if(course.sample){const sample=el('aside',undefined,'sample-entry');
     const description=el('div');description.append(el('h2','制作样章 · 体内物质的积累与清除'),el('p','六节 Notebook、模型可视化与 22 道练习。独立于正式课程，进度分别记录。'));
-    sample.append(description,a('进入样章 →',sampleBase));host.append(sample);
+    sample.append(description,a('进入样章 →',sampleBase));host.append(sample);}
   }else if(part){
     document.body.dataset.guide='part';
     heading(`第 ${part.id} 篇 · ${part.chapters.length} 章`,part.title,
       '按章推进，先看学习目标与先修知识，再进入知识体系。',
-      '以下为正式章节的教学设计导览；对应 Notebook 与习题尚待编写。');
+      part.chapters.some(c=>c.available)?'从第一章进入 Notebook，完成各节练习后用篇末综合题组检验理解。':'以下为教学设计导览；对应 Notebook 与习题尚待编写。');
     host.append(cards(part.chapters,'chapter'));
+    if(part.assessment){host.append(el('h2','贯通本篇','lessons-heading'),cards([part.assessment],'chapter'));}
   }else{
     document.body.dataset.guide='chapter';
     const sample=current===course.sample;
-    heading(sample?'制作样章':`第 ${current.id.split('.')[0]} 篇 · ${current.id} 章`,current.title,
+    heading(sample?'制作样章':`第 ${current.id.split('.')[0]} 篇 · ${current.assessment?'篇末综合':current.id+' 章'}`,current.title,
       sample?'从存量与流量出发，建立并检验一个理想单室模型。':'围绕本章问题，连接必要知识、关键方法与计算实验。',
-      sample?'本样章供教学与交互制作参考，可复制改写；正式章节独立验收，后续将移除样章。':'本页展示教学设计；对应的正式 Notebook、可视化与练习尚待编写。');
+      sample?'本样章供教学与交互制作参考，可复制改写；正式章节独立验收，后续将移除样章。':current.available?'在下方进入完整 Notebook；配套练习用于检查理解。':'本页展示教学设计；对应的正式 Notebook、可视化与练习尚待编写。');
     const summary=el('div',undefined,'chapter-summary');
     summary.append(section('本章学会什么',current.goals),section('先修知识',current.prerequisites),section('教学重点与难点',current.focus));host.append(summary);
     const knowledge=el('section',undefined,'overview-section knowledge-section');
     knowledge.append(el('h2','知识体系与学习顺序'));
     const list=el('ol',undefined,'knowledge-path');for(const text of current.knowledge)list.append(el('li',text));
     knowledge.append(list);host.append(knowledge);
-    if(sample){
-      host.append(el('h2','六节完整教学','lessons-heading'));
+    if(current.available){
+      host.append(el('h2','完整教学与练习','lessons-heading'));
       const grid=el('div',undefined,'chapter-cards');
       for(const [index,lesson] of current.lessons.entries()){
         const card=el('article',undefined,'overview-card');

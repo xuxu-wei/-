@@ -49,11 +49,12 @@ def request(server, path, payload=None, *, token=None, origin=None, host=None):
         return response.status, response.headers, response.read()
 
 
-def test_all_six_buttons_target_existing_local_notebooks(server):
+def test_all_delivered_buttons_target_existing_local_notebooks(server):
     code, headers, body = request(server, '/api/session')
     assert code == 200 and headers['Cache-Control'] == 'no-store'
     session = json.loads(body)
-    assert len(session['notebooks']) == 6
+    assert len(session['notebooks']) == 15
+    assert sum('chapter_id' in l for l in session['notebooks']) == 9
     for lesson in session['notebooks']:
         code, _, body = request(server, '/api/notebooks/open', {'id': lesson['id']}, token=session['token'])
         assert code == 202 and json.loads(body)['status'] == 'requested'
@@ -80,14 +81,20 @@ def test_all_planned_overview_routes_and_sample_counts(server):
         for item in [part,*part['chapters']]:
             code,headers,_=request(server,quote(item['url']))
             assert code==200 and headers.get_content_type()=='text/html'
-        assert all(not c['available'] and not c['lessons'] for c in part['chapters'])
+        assert all(c['available']==(part['id']=='1') for c in part['chapters'])
+        if part['id']=='1':
+            for chapter in [*part['chapters'],part['assessment']]:
+                assert request(server,quote(chapter['url']+'practice/'))[0]==200
+                if chapter.get('visualization'):assert request(server,quote(chapter['url']+'explore/'))[0]==200
+        else:assert all(not c['lessons'] for c in part['chapters'])
     assert [len(l['questions']) for l in course['sample']['lessons']]==[3,3,3,4,5,4]
     assert request(server,'/chapters/missing/')[0]==404
 
 
 def test_http_practice_choice_code_and_progress(server):
     code,_,body=request(server,'/api/v1/catalog');catalog=json.loads(body)
-    assert code==200 and len(catalog['exercises'])==22
+    assert code==200 and len(catalog['exercises'])==60
+    assert sum(q['id'].startswith('p01-') for q in catalog['exercises'])==38
     code,_,body=request(server,'/api/v1/exercises/S01-E1')
     assert code==200 and 'correct' not in json.loads(body)
     choice={'exercise_id':'S01-E1','exercise_version':'1','request_id':str(uuid.uuid4()),'selected':['A']}

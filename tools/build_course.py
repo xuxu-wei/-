@@ -2,6 +2,7 @@
 import json
 from pathlib import Path
 import re
+from course_content import notebooks, question_banks
 
 ROOT = Path(__file__).resolve().parents[1]
 SAMPLE = 'samples/accumulation-clearance'
@@ -54,14 +55,35 @@ def build():
                 'available': False, 'lessons': []})
         parts.append({'id': str(number), 'title': title, 'url': f'/parts/{path.stem}/', 'chapters': chapters})
     assert len(parts) == 12 and sum(len(p['chapters']) for p in parts) == 55
-    lessons = json.loads((ROOT / f'notebooks/{SAMPLE}/catalog.json').read_text(encoding='utf-8'))
-    questions = json.loads((ROOT / f'exercises/{SAMPLE}/questions.json').read_text(encoding='utf-8'))
+    all_lessons = notebooks()
+    questions, _ = question_banks()
+    def attach(chapter, entries):
+        chapter['lessons'] = entries
+        chapter['available'] = bool(entries)
+        for entry in entries:
+            entry['questions'] = [{'id':q['id'],'slug':q['slug'],'title':q['title'],'type':q['type']}
+                                  for q in questions if q['lesson_id']==entry['id']]
+            assert 3<=len(entry['questions'])<=5
+            entry['url']=chapter['url']+'practice/?question='+entry['questions'][0]['slug']
+        chapter['visualization']=next((l['visualization'] for l in entries if l.get('visualization')),None)
+    for part in parts:
+        for chapter in part['chapters']:
+            attach(chapter,[l for l in all_lessons if l.get('chapter_id')==chapter['id']])
+        assessment_lessons=[l for l in all_lessons if l.get('chapter_id')==part['id']+'.summary']
+        if assessment_lessons:
+            part['assessment']={'id':part['id']+'.summary','assessment':True,'title':assessment_lessons[0]['title'],
+                'url':part['url']+'综合练习/','goals':'综合辨认边界、变量与收支，比较候选规则，解释证据范围。',
+                'prerequisites':'本篇四章。','focus':'分开迁移与内部生成、局部与整体、计算核验与机制验证。',
+                'knowledge':['视野计数 → 选择边界与生成项','温度调节 → 核对反馈与旁路','清除比较 → 保留独立预测和限制']}
+            attach(part['assessment'],assessment_lessons)
+            annotate_overview(part['assessment'])
+    lessons = [l for l in all_lessons if l['path'].startswith(f'notebooks/{SAMPLE}/')]
     for lesson in lessons:
         lesson['questions'] = [{'id': q['id'], 'slug': q['slug'], 'title': q['title'], 'type': q['type']}
                                for q in questions if q['lesson_id'] == lesson['id']]
         lesson['url'] = f'/samples/accumulation-clearance/practice/?question={lesson["questions"][0]["slug"]}'
     sample = {'id': 'accumulation-clearance', 'title': '体内物质的积累与清除',
-        'url': '/samples/accumulation-clearance/', 'available': True, 'lessons': lessons,
+        'url': '/samples/accumulation-clearance/', 'available': True, 'visualization':'web/single-compartment/index.html', 'lessons': lessons,
         'goals': '辨认存量与流量；用收支建立更新规则；连接连续模型与数值近似；独立改变输入并检验结果。',
         'prerequisites': '基础 Python、中学数学与函数读图。导数、定积分和误差检查在单元内引入。',
         'focus': '区分物质量和流率、平衡位置和接近速度；把精度、数值稳定性与非负性分开检查；在输入变化点分段计算。',
@@ -69,11 +91,11 @@ def build():
                       '变化率与连续模型 → 对照解析解', '步长与误差 → 检验数值结果', '时变输入 → 完成迁移实验']}
     for chapter in [sample, *(chapter for part in parts for chapter in part['chapters'])]:
         annotate_overview(chapter)
-    result = {'parts': parts, 'sample': sample}
+    result = {'parts': parts, **({'sample':sample} if lessons else {})}
     path = ROOT / 'web/course/catalog.json'
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    print('Course directory: 12 parts, 55 planned chapters; sample is separate.')
+    print(f'Course directory: 12 parts, 55 chapters; {sum(c["available"] for p in parts for c in p["chapters"])} available. Sample is separate.')
 
 
 if __name__ == '__main__':

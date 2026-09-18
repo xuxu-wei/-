@@ -12,6 +12,7 @@ from urllib.parse import unquote, urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from practice import PracticeEngine, RequestError
+from course_content import notebooks
 
 
 def open_in_default_app(path):
@@ -32,7 +33,7 @@ class TeachingServer(ThreadingHTTPServer):
         self.previews = previews
         self.opener = opener
         self.token = secrets.token_urlsafe(32)
-        self.catalog = json.loads((ROOT / 'notebooks/samples/accumulation-clearance/catalog.json').read_text(encoding='utf-8'))
+        self.catalog = notebooks()
         self.course = json.loads((ROOT / 'web/course/catalog.json').read_text(encoding='utf-8'))
         try:
             self.practice = PracticeEngine(learning_directory or ROOT / '.local/learning')
@@ -151,7 +152,13 @@ class TeachingHandler(SimpleHTTPRequestHandler):
                 'samples/accumulation-clearance/practice/':'web/practice/index.html'}
         for part in self.server.course['parts']:
             routes[part['url'].lstrip('/')]='web/course/index.html'
-            for chapter in part['chapters']:routes[chapter['url'].lstrip('/')]='web/course/index.html'
+            for chapter in [*part['chapters'], *([part['assessment']] if part.get('assessment') else [])]:
+                base=chapter['url'].lstrip('/')
+                routes[base]='web/course/index.html'
+                if chapter['available']:
+                    routes[base+'practice/']='web/practice/index.html'
+                    if chapter.get('visualization'):
+                        routes[base+'explore/']=chapter['visualization']
         if requested in routes:
             requested=routes[requested];self.path='/'+requested
         resolved = (ROOT / requested).resolve()
@@ -160,7 +167,7 @@ class TeachingHandler(SimpleHTTPRequestHandler):
             return None
         parts = resolved.relative_to(ROOT).parts
         allowed = parts and (parts[0] in {'web', 'notebooks', 'docs'} or requested in {'README.md', 'LICENSE'})
-        if self.server.previews and parts[:3] == ('.work', 'm1', 'previews'):
+        if self.server.previews and len(parts)>=3 and parts[0]=='.work' and parts[1] in {'m1','m2'} and parts[2]=='previews':
             allowed = True
         if not allowed:
             self.send_error(404)

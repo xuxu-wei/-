@@ -1,0 +1,673 @@
+{
+  "stage": "M2：第 1 篇 看见系统",
+  "recorded_at": "2026-09-18T12:44:25.637354+00:00",
+  "scope": {
+    "formal_chapters": [
+      "1.1",
+      "1.2",
+      "1.3",
+      "1.4"
+    ],
+    "notebooks": 9,
+    "regular_lessons": 8,
+    "capstone_lessons": 1,
+    "questions": 38,
+    "choice_questions": 24,
+    "python_questions": 14,
+    "visualizations": [
+      "存量与流率",
+      "即时与延迟反馈"
+    ]
+  },
+  "sample_retirement": {
+    "phase": "M3",
+    "condition": "第 1、2 篇正式内容验收通过后清理样章，并完成删除后的运行、导航、判题与默认 IDE 复验；M4 开始前完成。",
+    "removed_now": false,
+    "personal_records": "保留既有记录，不迁移成正式课程完成状态。"
+  },
+  "notebook_execution": {
+    "python": "3.13.2",
+    "platform": "Windows",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "nbclient": "0.11.0",
+      "nbformat": "5.11.1",
+      "nbconvert": "7.17.1",
+      "ipykernel": "7.3.0"
+    },
+    "notebooks": [
+      {
+        "id": "P01-C01-S01",
+        "path": "notebooks/01-看见系统/01-从生理现象提出系统问题/01-边界状态与观测.ipynb",
+        "seconds": 10.63,
+        "code_cells": 3,
+        "figures": 1,
+        "passed": true,
+        "sha256_at_execution": "d62f3b17fac25ef6e1a7e3561794de947eef844a40efc826a8d28c43d697629f",
+        "current_sha256": "d62f3b17fac25ef6e1a7e3561794de947eef844a40efc826a8d28c43d697629f",
+        "code_sha256": "811c3efe240031bd8c5d8786a3f97840527bb82a3d339d780d33b0f464bf5956"
+      },
+      {
+        "id": "P01-C01-S02",
+        "path": "notebooks/01-看见系统/01-从生理现象提出系统问题/02-单位量纲与时间序列.ipynb",
+        "seconds": 3.82,
+        "code_cells": 3,
+        "figures": 1,
+        "passed": true,
+        "sha256_at_execution": "ee4da1c9dc9ea930f089ee232e32c971783f0e8e016a89b7feba9e756d51f470",
+        "current_sha256": "ee4da1c9dc9ea930f089ee232e32c971783f0e8e016a89b7feba9e756d51f470",
+        "code_sha256": "c72f07f07dd9cd93893eb398ad6ee73e93c46abbc0e3214b823b11478d1786b4"
+      },
+      {
+        "id": "P01-C02-S01",
+        "path": "notebooks/01-看见系统/02-存量流量与守恒/01-一段时间的物质收支.ipynb",
+        "seconds": 3.54,
+        "code_cells": 3,
+        "figures": 1,
+        "passed": true,
+        "sha256_at_execution": "f7be36434e9d562251591fcce53e583851f81dc3ab54903c8ee412acfb20e60e",
+        "current_sha256": "f7be36434e9d562251591fcce53e583851f81dc3ab54903c8ee412acfb20e60e",
+        "code_sha256": "bb1c5fb8aab9924e4643c8c2b926cfe270b3286fabead4f8e3fbb6bddcf167cf"
+      },
+      {
+        "id": "P01-C02-S02",
+        "path": "notebooks/01-看见系统/02-存量流量与守恒/02-内部交换与整体守恒.ipynb",
+        "seconds": 3.6,
+        "code_cells": 3,
+        "figures": 1,
+        "passed": true,
+        "sha256_at_execution": "3153919febe992a635c3b25af1b5e2f2aea5e055e3e04a5bee44a37b80424a58",
+        "current_sha256": "3153919febe992a635c3b25af1b5e2f2aea5e055e3e04a5bee44a37b80424a58",
+        "code_sha256": "c07ecdb5f506caff43faa063e41b09172603a284c5dc75ab1b2c765ba695e4a9"
+      },
+      {
+        "id": "P01-C03-S01",
+        "path": "notebooks/01-看见系统/03-反馈延迟与层级/01-作用方向与反馈回路.ipynb",
+        "seconds": 3.31,
+        "code_cells": 3,
+        "figures": 1,
+        "passed": true,
+        "sha256_at_execution": "205a2bfba446d70053f6b11b549114ee3b70d3426c2ea423b4406473ffcd7c50",
+        "current_sha256": "205a2bfba446d70053f6b11b549114ee3b70d3426c2ea423b4406473ffcd7c50",
+        "code_sha256": "bf4909ec0323fb304b185d079887e18c78d07909a93c7f2798a6dfe69e2433f0"
+      },
+      {
+        "id": "P01-C03-S02",
+        "path": "notebooks/01-看见系统/03-反馈延迟与层级/02-延迟怎样改变调节.ipynb",
+        "seconds": 3.65,
+        "code_cells": 3,
+        "figures": 1,
+        "passed": true,
+        "sha256_at_execution": "04d88ef29468fb0ab5ff4a6fa5b4f7eca0432758f88bd2d255ce9045e39713fc",
+        "current_sha256": "d052cb4a3eeedeaa5728b253488732c07ad9e97c03455f59d788dbb7598b7984",
+        "code_sha256": "4a430f4e5a4daca0a53e8d4c1cfd2f8aaa4290994649180016224132f9b948ee"
+      },
+      {
+        "id": "P01-C04-S01",
+        "path": "notebooks/01-看见系统/04-模型假设与计算实验/01-规则参数与初值.ipynb",
+        "seconds": 3.6,
+        "code_cells": 3,
+        "figures": 1,
+        "passed": true,
+        "sha256_at_execution": "e77105238108bb44bab5d65139e478805655b9020d3922bfa39d49da29b4cc9a",
+        "current_sha256": "95a55cde26c20eeb051f7f76ddfc924f0842ce1283109aa02d100085ffb8466f",
+        "code_sha256": "760b97bfb8ea539960d16232553c63a4977960915824fdae6732dd8b2c230daa"
+      },
+      {
+        "id": "P01-C04-S02",
+        "path": "notebooks/01-看见系统/04-模型假设与计算实验/02-设计可以区分解释的实验.ipynb",
+        "seconds": 3.65,
+        "code_cells": 3,
+        "figures": 1,
+        "passed": true,
+        "sha256_at_execution": "17a4ac4819e6286ebaa66b9cdaf8f3c42ea89ab09f02c9665bf09c469db1c9f0",
+        "current_sha256": "17a4ac4819e6286ebaa66b9cdaf8f3c42ea89ab09f02c9665bf09c469db1c9f0",
+        "code_sha256": "82000757609ef1a43413f4af0c0e8fb1ec2b6488e52a381614095bebc379a84e"
+      },
+      {
+        "id": "P01-SUMMARY",
+        "path": "notebooks/01-看见系统/05-篇末综合/01-系统边界与实验设计.ipynb",
+        "seconds": 3.56,
+        "code_cells": 3,
+        "figures": 1,
+        "passed": true,
+        "sha256_at_execution": "cde938fccc5bd270536eeea940287ee212f2f6cc8a504b964a2a9abd06f278cf",
+        "current_sha256": "cde938fccc5bd270536eeea940287ee212f2f6cc8a504b964a2a9abd06f278cf",
+        "code_sha256": "13afba06b6b0f02e6f8b9869fa41b37a905c293627ef8ba8b27cf829061f5b7d"
+      }
+    ]
+  },
+  "execution_note": "九本均在独立新内核执行，27 个代码单元、9 幅图。执行后仅修正 1.3.2、1.4.1 的增益/无量纲术语文案，代码与输出未改；同时保存执行时与最终文件散列。",
+  "model_crosscheck": {
+    "stock_cases": 27,
+    "delay_cases": 36,
+    "values_compared": 576,
+    "max_absolute_difference": 0,
+    "passed": true
+  },
+  "automated_checks": {
+    "python": {
+      "command": ".venv/Scripts/python.exe -X utf8 -m pytest -q",
+      "passed": 100,
+      "seconds": 37.86
+    },
+    "javascript": {
+      "command": "node --test tools/tests/*.test.mjs",
+      "passed": 24
+    },
+    "teaching": {
+      "notebooks": 9,
+      "questions": 38,
+      "question_links": 38,
+      "first_use": [
+        {
+          "unit": "p01-boundary",
+          "terms": [
+            "模型",
+            "系统边界"
+          ]
+        },
+        {
+          "unit": "p01-state-observation",
+          "terms": [
+            "参数",
+            "模型",
+            "状态",
+            "观测",
+            "输入"
+          ]
+        },
+        {
+          "unit": "p01-calibrate",
+          "terms": [
+            "模型",
+            "观测",
+            "输入"
+          ]
+        },
+        {
+          "unit": "p01-cell-question",
+          "terms": []
+        },
+        {
+          "unit": "p01-time-units",
+          "terms": [
+            "时间序列"
+          ]
+        },
+        {
+          "unit": "p01-dimension",
+          "terms": [
+            "浓度"
+          ]
+        },
+        {
+          "unit": "p01-curve-cause",
+          "terms": [
+            "输入"
+          ]
+        },
+        {
+          "unit": "p01-concentration",
+          "terms": [
+            "浓度",
+            "输入"
+          ]
+        },
+        {
+          "unit": "p01-rate-amount",
+          "terms": [
+            "存量",
+            "流率"
+          ]
+        },
+        {
+          "unit": "p01-balance",
+          "terms": [
+            "存量",
+            "流率"
+          ]
+        },
+        {
+          "unit": "p01-negative-stock",
+          "terms": [
+            "存量"
+          ]
+        },
+        {
+          "unit": "p01-infer-outflow",
+          "terms": [
+            "存量",
+            "输入"
+          ]
+        },
+        {
+          "unit": "p01-internal-transfer",
+          "terms": [
+            "收支",
+            "输入"
+          ]
+        },
+        {
+          "unit": "p01-two-rooms",
+          "terms": [
+            "初值",
+            "轨迹",
+            "输入"
+          ]
+        },
+        {
+          "unit": "p01-hidden-production",
+          "terms": [
+            "输入"
+          ]
+        },
+        {
+          "unit": "p01-conserved-total",
+          "terms": [
+            "存量",
+            "收支",
+            "模型",
+            "状态",
+            "观测",
+            "输入"
+          ]
+        },
+        {
+          "unit": "p01-signed-arrow",
+          "terms": [
+            "因果回路图"
+          ]
+        },
+        {
+          "unit": "p01-loop-sign",
+          "terms": [
+            "反馈"
+          ]
+        },
+        {
+          "unit": "p01-negative-feedback",
+          "terms": [
+            "延迟",
+            "负反馈"
+          ]
+        },
+        {
+          "unit": "p01-coupled-loops",
+          "terms": [
+            "收支",
+            "模型",
+            "观测"
+          ]
+        },
+        {
+          "unit": "p01-delay-history",
+          "terms": []
+        },
+        {
+          "unit": "p01-delayed-response",
+          "terms": [
+            "延迟",
+            "轨迹"
+          ]
+        },
+        {
+          "unit": "p01-fair-delay",
+          "terms": [
+            "延迟",
+            "轨迹"
+          ]
+        },
+        {
+          "unit": "p01-turn-count",
+          "terms": [
+            "轨迹"
+          ]
+        },
+        {
+          "unit": "p01-finite-path",
+          "terms": [
+            "延迟",
+            "负反馈",
+            "轨迹"
+          ]
+        },
+        {
+          "unit": "p01-change-class",
+          "terms": [
+            "初值",
+            "参数",
+            "模型",
+            "模型结构"
+          ]
+        },
+        {
+          "unit": "p01-compare-rules",
+          "terms": [
+            "初值",
+            "模型",
+            "轨迹",
+            "输入"
+          ]
+        },
+        {
+          "unit": "p01-first-step",
+          "terms": [
+            "初值",
+            "模型",
+            "模型结构",
+            "观测"
+          ]
+        },
+        {
+          "unit": "p01-first-failure",
+          "terms": [
+            "输入"
+          ]
+        },
+        {
+          "unit": "p01-distinguish-design",
+          "terms": [
+            "初值",
+            "参数",
+            "模型",
+            "输入"
+          ]
+        },
+        {
+          "unit": "p01-separation",
+          "terms": [
+            "初值"
+          ]
+        },
+        {
+          "unit": "p01-prediction-record",
+          "terms": [
+            "参数",
+            "观测",
+            "计算实验"
+          ]
+        },
+        {
+          "unit": "p01-falsification",
+          "terms": [
+            "初值",
+            "模型",
+            "观测"
+          ]
+        },
+        {
+          "unit": "p01-cap-boundary",
+          "terms": [
+            "存量",
+            "流量"
+          ]
+        },
+        {
+          "unit": "p01-cap-count",
+          "terms": [
+            "轨迹"
+          ]
+        },
+        {
+          "unit": "p01-cap-feedback",
+          "terms": [
+            "延迟",
+            "模型",
+            "观测",
+            "负反馈",
+            "轨迹"
+          ]
+        },
+        {
+          "unit": "p01-cap-predictions",
+          "terms": [
+            "初值",
+            "观测"
+          ]
+        },
+        {
+          "unit": "p01-cap-limits",
+          "terms": [
+            "收支",
+            "观测",
+            "计算实验",
+            "轨迹"
+          ]
+        },
+        {
+          "unit": "P01-C01-S01",
+          "terms": [
+            "参数",
+            "模型",
+            "状态",
+            "系统边界",
+            "观测",
+            "输入"
+          ]
+        },
+        {
+          "unit": "P01-C01-S02",
+          "terms": [
+            "数组",
+            "时间序列",
+            "浓度",
+            "观测",
+            "输入",
+            "量纲"
+          ]
+        },
+        {
+          "unit": "P01-C02-S01",
+          "terms": [
+            "参数",
+            "存量",
+            "收支",
+            "模型",
+            "流率",
+            "流量",
+            "状态",
+            "系统边界"
+          ]
+        },
+        {
+          "unit": "P01-C02-S02",
+          "terms": [
+            "存量",
+            "收支",
+            "状态",
+            "系统边界",
+            "输入"
+          ]
+        },
+        {
+          "unit": "P01-C03-S01",
+          "terms": [
+            "参数",
+            "反馈",
+            "因果回路图",
+            "模型",
+            "正反馈",
+            "观测",
+            "负反馈",
+            "轨迹"
+          ]
+        },
+        {
+          "unit": "P01-C03-S02",
+          "terms": [
+            "增益",
+            "延迟",
+            "无量纲",
+            "负反馈",
+            "轨迹",
+            "过冲"
+          ]
+        },
+        {
+          "unit": "P01-C04-S01",
+          "terms": [
+            "初值",
+            "参数",
+            "无量纲",
+            "模型",
+            "模型结构",
+            "观测",
+            "输入"
+          ]
+        },
+        {
+          "unit": "P01-C04-S02",
+          "terms": [
+            "初值",
+            "参数",
+            "数组",
+            "模型",
+            "观测",
+            "计算实验",
+            "输入"
+          ]
+        },
+        {
+          "unit": "P01-SUMMARY",
+          "terms": [
+            "反馈",
+            "收支",
+            "模型",
+            "状态",
+            "系统边界",
+            "观测"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    "sample_regressions": [
+      "check_teaching.py 通过",
+      "sync_m1_exercises.py --check 通过",
+      "sync_theme.py --check 通过"
+    ],
+    "coverage": [
+      "14 道正式代码题的样例、完整提交、错误解及复制样例代码",
+      "24 道选择题正确集合与逐项解释、错误选项",
+      "独立累计账目、闭式规则、精确分数历史值和转向计数核验",
+      "样例不记完整通过，旧版本失效，记录恢复、CE traceback 与已有取消/中断/系统错误回归",
+      "所有正式与样章 Notebook ID 的 HTTP 打开路由；55 章导览、4 章练习及篇末入口",
+      "复制正式目录到不含样章的临时根，发现 9 本与 38 题；正式 Notebook 无样章引用"
+    ]
+  },
+  "manual_content_review": {
+    "performed_by": "本次实施代理；非独立同行评审",
+    "reviewed": [
+      "九本目标、先修、假设、变量单位、推导、结果边界及三组生命系统例子",
+      "九幅实际执行图形的坐标、单位、图例、颜色、线型和可读性",
+      "38 道题的已知条件、具名参数、返回值、边界、答案及样例",
+      "修正渲染审读发现的 gain 括注嵌套和 dimension/dimensionless 区别"
+    ],
+    "reference_notes": "MIT 15.871 Assignment 3 A—D 部分用于概念核对；FBS 第二版只核对目录/主题，未宣称访问失败的正文已经精读。"
+  },
+  "browser_checks": {
+    "tool": "CUA / Codex in-app browser",
+    "server": "127.0.0.1:8001 为隔离判题记录；正式 Notebook 网页链接在 8000 实际点击",
+    "actions": [
+      {
+        "case": "全书→篇目录→1.2→可视化",
+        "result": "篇/章卡片有编号，正确进入正式探索页"
+      },
+      {
+        "case": "存量播放",
+        "observed_start": "t=0.13 T，5.2651 U，折线已增长",
+        "observed_end": "t=3 T，11 U；按钮变为再次播放"
+      },
+      {
+        "case": "净流出/净流入两次往返",
+        "result": "流出示例终点 −1 U，有失败说明；按钮可切回，回到 t=0 且流入/流出=3/1"
+      },
+      {
+        "case": "反馈播放与两次往返",
+        "result": "两步延迟第 12 步为 0.375 °C；即时为显示值 0.0005 °C，和计算一致；按钮依实际延迟改名"
+      },
+      {
+        "case": "选择题错误提交",
+        "result": "显示回答不正确；文字 rgb(125,43,49)，背景 rgba(179,58,74,0.08)"
+      },
+      {
+        "case": "正式计算题 p01-loop-sign",
+        "result": "在编辑器实际输入具名 solve(signs)；样例通过时 0/9，完整通过后 1/9"
+      },
+      {
+        "case": "错误定位",
+        "result": "删除冒号后显示 answer.py 第 1 行及 SyntaxError: expected 冒号；结果在代码区上方，可定位错误行"
+      },
+      {
+        "case": "输入/输出样例",
+        "result": "实际展开后可见 signs 赋值、solve(signs) 调用及 expected_output=-1；延迟题同样具有四个具名参数与独立样例代码"
+      },
+      {
+        "case": "导航与目录",
+        "result": "当前节自动定位；本章进行中 1/9；目录可展开，键盘调宽到 300 px，隐藏状态保留"
+      },
+      {
+        "case": "渲染 Notebook 的实际链接",
+        "result": "1.3.2 HTML 预览点击可视化入口，进入 text/html 页面；点击题目入口，定位 p01-delayed-response"
+      },
+      {
+        "case": "系统默认 IDE",
+        "result": "正常本机权限下，实际点击练习/可视化按钮，操作系统打开请求成功，HTTP 202，目标分别为正式 1.3.1 与 1.3.2 原 ipynb 文件；没有下载或浏览器 Notebook 回退"
+      }
+    ],
+    "layout": [
+      {
+        "width": 1024,
+        "editor_width": 626.0625,
+        "page_horizontal_overflow": false
+      },
+      {
+        "width": 1366,
+        "editor_width": 489.40625,
+        "page_horizontal_overflow": false
+      },
+      {
+        "width": 1440,
+        "editor_width": 529.359375,
+        "page_horizontal_overflow": false
+      },
+      {
+        "width": 1920,
+        "editor_width": 793.359375,
+        "page_horizontal_overflow": false
+      },
+      {
+        "width": 2560,
+        "editor_width": 1145.359375,
+        "page_horizontal_overflow": false
+      }
+    ],
+    "resolved_environment_issue": "首次隔离服务处于工具受限环境，默认应用调用返回 503；直接正常权限打开成功。确认进程后停止旧隔离服务并以正常权限重启，网页实际点击复验成功。",
+    "limitations": [
+      "原生 IDE 窗口内容未由自动化读取；核对的是实际系统调用成功及原文件路径。",
+      "截图在本次会话中检查，未将临时浏览器截图作为教材文件发布。"
+    ]
+  },
+  "data_and_records": {
+    "external_simulation_data_added": false,
+    "generator_dependency_added": false,
+    "personal_learning_records_changed_by_tests": false,
+    "test_records_location": ".work/m2/learning（Git 忽略）",
+    "existing_records_preserved": true
+  },
+  "limits": [
+    "已验证 Windows / Python 3.13 与本机 PC 浏览器；未验证其他操作系统。",
+    "未开展目标读者试学或独立同行评审，不据此估计学习时长或学习效果。"
+  ],
+  "document_checks": {
+    "local_links": 291,
+    "report_lines": {
+      "M0": 9,
+      "M1": 11,
+      "M2": 11
+    },
+    "issues": []
+  }
+}

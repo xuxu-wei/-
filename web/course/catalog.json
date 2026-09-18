@@ -9,63 +9,425 @@
           "id": "1.1",
           "title": "从生理现象提出系统问题",
           "url": "/chapters/01-01-从生理现象提出系统问题/",
-          "goals": "把“为什么会变化”改写成含观察对象、时间范围与可测量结果的问题；说明状态（state）与观测的区别。",
-          "prerequisites": "入口；数学：中学函数、图像、指数对数和量纲的最小复习。",
+          "goals": "把“为什么会变化”改写成含观察对象、时间范围与可测量结果的问题；说明状态（state）与观测（observation）的区别。",
+          "prerequisites": "入口；数学：中学函数、图像、指数对数和量纲（dimension）的最小复习。",
           "knowledge": [
             "以物质清除和体温变化比较系统边界（system boundary）",
-            "建立变量、单位、输入、参数（parameter）与观测表",
+            "建立变量、单位、输入（input）、参数（parameter）与观测表",
             "读取短序列，绘图并解释坐标、尺度和缺失的机制信息"
           ],
           "focus": "变量不能只写符号而不写含义与单位；换单位后的同一时刻必须对应同一物质量；问题卡应包含一个能由观测反驳的预期。",
-          "available": false,
-          "lessons": []
+          "available": true,
+          "lessons": [
+            {
+              "id": "P01-C01-S01",
+              "chapter_id": "1.1",
+              "path": "notebooks/01-看见系统/01-从生理现象提出系统问题/01-边界状态与观测.ipynb",
+              "title": "边界、状态与观测",
+              "outcome": "把现象改写成有范围的问题，区分系统内部的量与实际读数。",
+              "number": "1.1.1",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p01-boundary",
+                  "slug": "p01-boundary",
+                  "title": "边界由问题决定",
+                  "type": "choice"
+                },
+                {
+                  "id": "p01-state-observation",
+                  "slug": "p01-state-observation",
+                  "title": "体温读数等于内部状态吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p01-calibrate",
+                  "slug": "p01-calibrate",
+                  "title": "去除已知的读数偏移",
+                  "type": "python"
+                },
+                {
+                  "id": "p01-cell-question",
+                  "slug": "p01-cell-question",
+                  "title": "提出可检验的问题",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-boundary"
+            },
+            {
+              "id": "P01-C01-S02",
+              "chapter_id": "1.1",
+              "path": "notebooks/01-看见系统/01-从生理现象提出系统问题/02-单位量纲与时间序列.ipynb",
+              "title": "单位、量纲与时间序列",
+              "outcome": "把数值连同单位与时刻一起解释，完成坐标换算并识别观测的限制。",
+              "number": "1.1.2",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p01-time-units",
+                  "slug": "p01-time-units",
+                  "title": "换时间单位，不换物质量",
+                  "type": "python"
+                },
+                {
+                  "id": "p01-dimension",
+                  "slug": "p01-dimension",
+                  "title": "相加之前先检查单位",
+                  "type": "choice"
+                },
+                {
+                  "id": "p01-curve-cause",
+                  "slug": "p01-curve-cause",
+                  "title": "一条下降曲线说明什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p01-concentration",
+                  "slug": "p01-concentration",
+                  "title": "总量与浓度要分别计算",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/01-01-从生理现象提出系统问题/practice/?question=p01-time-units"
+            }
+          ],
+          "visualization": null
         },
         {
           "id": "1.2",
           "title": "存量、流量与守恒",
           "url": "/chapters/01-02-存量、流量与守恒/",
-          "goals": "从一段时间内的输入输出计算存量（stock）变化，区分流率和该段累计量。",
-          "prerequisites": "1.1；数学：中学函数、图像、指数对数和量纲的最小复习。",
+          "goals": "从一段时间内的输入（input）输出计算存量（stock）变化，区分流率（flow rate）和该段累计量。",
+          "prerequisites": "1.1；数学：中学函数、图像、指数对数和量纲（dimension）的最小复习。",
           "knowledge": [
             "容器与箭头表示“多少”和“多快”",
             "按时间段手算收支（mass balance），再用循环累计",
             "通过单位、边界与总量定位错误，不提前形式化差分方程"
           ],
           "focus": "对应练习 两段末应为 7 U、11 U；对应练习 整体净增应为 1 U。出现负存量时检查规则及条件，不能直接裁剪后宣称守恒。",
-          "available": false,
-          "lessons": []
+          "available": true,
+          "lessons": [
+            {
+              "id": "P01-C02-S01",
+              "chapter_id": "1.2",
+              "path": "notebooks/01-看见系统/02-存量流量与守恒/01-一段时间的物质收支.ipynb",
+              "title": "一段时间的物质收支",
+              "outcome": "从每单位时间的流入和流出得到累计变化，再逐段建立可核对的账目。",
+              "number": "1.2.1",
+              "visualization": "web/seeing-systems/index.html",
+              "questions": [
+                {
+                  "id": "p01-rate-amount",
+                  "slug": "p01-rate-amount",
+                  "title": "流率要乘以时间",
+                  "type": "choice"
+                },
+                {
+                  "id": "p01-balance",
+                  "slug": "p01-balance",
+                  "title": "逐段计算物质收支",
+                  "type": "python"
+                },
+                {
+                  "id": "p01-negative-stock",
+                  "slug": "p01-negative-stock",
+                  "title": "负数是规则失效的线索",
+                  "type": "choice"
+                },
+                {
+                  "id": "p01-infer-outflow",
+                  "slug": "p01-infer-outflow",
+                  "title": "从收支反求总流出",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/01-02-存量、流量与守恒/practice/?question=p01-rate-amount"
+            },
+            {
+              "id": "P01-C02-S02",
+              "chapter_id": "1.2",
+              "path": "notebooks/01-看见系统/02-存量流量与守恒/02-内部交换与整体守恒.ipynb",
+              "title": "内部交换与整体守恒",
+              "outcome": "分别记两区的账，再通过内部交换抵消验证整体收支。",
+              "number": "1.2.2",
+              "visualization": "web/seeing-systems/index.html",
+              "questions": [
+                {
+                  "id": "p01-internal-transfer",
+                  "slug": "p01-internal-transfer",
+                  "title": "扩大边界后什么抵消",
+                  "type": "choice"
+                },
+                {
+                  "id": "p01-two-rooms",
+                  "slug": "p01-two-rooms",
+                  "title": "两个房间，一本总账",
+                  "type": "python"
+                },
+                {
+                  "id": "p01-hidden-production",
+                  "slug": "p01-hidden-production",
+                  "title": "守恒需要说清所追踪的对象",
+                  "type": "choice"
+                },
+                {
+                  "id": "p01-conserved-total",
+                  "slug": "p01-conserved-total",
+                  "title": "总量不变能推出什么",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/01-02-存量、流量与守恒/practice/?question=p01-internal-transfer"
+            }
+          ],
+          "visualization": "web/seeing-systems/index.html"
         },
         {
           "id": "1.3",
           "title": "反馈、延迟与层级",
           "url": "/chapters/01-03-反馈、延迟与层级/",
-          "goals": "根据局部作用方向判断反馈环的符号，并通过规则实验说明延迟可能改变响应。",
-          "prerequisites": "1.2；数学：中学函数、图像、指数对数和量纲的最小复习。",
+          "goals": "根据局部作用方向判断反馈（feedback）环的符号，并通过规则实验说明延迟（delay）可能改变响应。",
+          "prerequisites": "1.2；数学：中学函数、图像、指数对数和量纲（dimension）的最小复习。",
           "knowledge": [
             "因果箭头是待检验的作用假设",
             "比较增强与抵消偏差的回路",
             "用给定人工调节规则观察即时、延迟以及局部与整体响应"
           ],
-          "focus": "检查环路方向是否由各边关系推出；延迟对照必须使用相同初值（initial condition）、增益与观察长度；有限轨迹只支持该规则下的观察，不作为普遍稳定性结论。",
-          "available": false,
-          "lessons": []
+          "focus": "检查环路方向是否由各边关系推出；延迟对照必须使用相同初值（initial condition）、增益（gain）与观察长度；有限轨迹（trajectory）只支持该规则下的观察，不作为普遍稳定性结论。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P01-C03-S01",
+              "chapter_id": "1.3",
+              "path": "notebooks/01-看见系统/03-反馈延迟与层级/01-作用方向与反馈回路.ipynb",
+              "title": "作用方向与反馈回路",
+              "outcome": "把闭合的局部作用连接起来，区分作用方向、实际轨迹与机制证据。",
+              "number": "1.3.1",
+              "visualization": "web/seeing-systems/index.html",
+              "questions": [
+                {
+                  "id": "p01-signed-arrow",
+                  "slug": "p01-signed-arrow",
+                  "title": "箭头上的正号不是“有益”",
+                  "type": "choice"
+                },
+                {
+                  "id": "p01-loop-sign",
+                  "slug": "p01-loop-sign",
+                  "title": "沿一个闭环追踪作用方向",
+                  "type": "python"
+                },
+                {
+                  "id": "p01-negative-feedback",
+                  "slug": "p01-negative-feedback",
+                  "title": "负反馈能保证什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p01-coupled-loops",
+                  "slug": "p01-coupled-loops",
+                  "title": "局部改善与另一个变量的代价",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-signed-arrow"
+            },
+            {
+              "id": "P01-C03-S02",
+              "chapter_id": "1.3",
+              "path": "notebooks/01-看见系统/03-反馈延迟与层级/02-延迟怎样改变调节.ipynb",
+              "title": "延迟怎样改变调节",
+              "outcome": "固定其他条件比较即时和延迟调节，用轨迹与转向统计限定结论。",
+              "number": "1.3.2",
+              "visualization": "web/seeing-systems/index.html",
+              "questions": [
+                {
+                  "id": "p01-delay-history",
+                  "slug": "p01-delay-history",
+                  "title": "第一步使用哪一个历史值",
+                  "type": "choice"
+                },
+                {
+                  "id": "p01-delayed-response",
+                  "slug": "p01-delayed-response",
+                  "title": "让调节读取过去的信息",
+                  "type": "python"
+                },
+                {
+                  "id": "p01-fair-delay",
+                  "slug": "p01-fair-delay",
+                  "title": "怎样只比较延迟",
+                  "type": "choice"
+                },
+                {
+                  "id": "p01-turn-count",
+                  "slug": "p01-turn-count",
+                  "title": "平台之后算一次转向",
+                  "type": "python"
+                },
+                {
+                  "id": "p01-finite-path",
+                  "slug": "p01-finite-path",
+                  "title": "八步实验的结论范围",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/01-03-反馈、延迟与层级/practice/?question=p01-delay-history"
+            }
+          ],
+          "visualization": "web/seeing-systems/index.html"
         },
         {
           "id": "1.4",
           "title": "模型假设与计算实验",
           "url": "/chapters/01-04-模型假设与计算实验/",
-          "goals": "区分结构改变与参数（parameter）改变，为一个假设设置对照、观测量和可能的反例。",
-          "prerequisites": "1.3；数学：中学函数、图像、指数对数和量纲的最小复习。",
+          "goals": "区分结构改变与参数（parameter）改变，为一个假设设置对照、观测（observation）量和可能的反例。",
+          "prerequisites": "1.3；数学：中学函数、图像、指数对数和量纲（dimension）的最小复习。",
           "knowledge": [
             "把文字机制转为给定的计算规则",
             "区分初值（initial condition）、参数、结构和观测设置",
             "形成“预测—对照—核验—限制”的实验记录"
           ],
           "focus": "对应练习 第三段末分别为 7 U、7.29 U；实验须保留事前预测，结论只能覆盖所比较规则与参数。",
-          "available": false,
-          "lessons": []
+          "available": true,
+          "lessons": [
+            {
+              "id": "P01-C04-S01",
+              "chapter_id": "1.4",
+              "path": "notebooks/01-看见系统/04-模型假设与计算实验/01-规则参数与初值.ipynb",
+              "title": "规则、参数与初值",
+              "outcome": "明确两种清除假设的区别，在同一条件下计算并检查适用区间。",
+              "number": "1.4.1",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p01-change-class",
+                  "slug": "p01-change-class",
+                  "title": "改变的是哪一层假设",
+                  "type": "choice"
+                },
+                {
+                  "id": "p01-compare-rules",
+                  "slug": "p01-compare-rules",
+                  "title": "固定量与固定比例",
+                  "type": "python"
+                },
+                {
+                  "id": "p01-first-step",
+                  "slug": "p01-first-step",
+                  "title": "第一步相同就说明模型相同吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p01-first-failure",
+                  "slug": "p01-first-failure",
+                  "title": "第一次越过零发生在哪段",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-change-class"
+            },
+            {
+              "id": "P01-C04-S02",
+              "chapter_id": "1.4",
+              "path": "notebooks/01-看见系统/04-模型假设与计算实验/02-设计可以区分解释的实验.ipynb",
+              "title": "设计可以区分解释的实验",
+              "outcome": "保留事前预测，选择公平对照，并说明反例究竟否定了什么。",
+              "number": "1.4.2",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p01-distinguish-design",
+                  "slug": "p01-distinguish-design",
+                  "title": "选择能区分解释的实验",
+                  "type": "choice"
+                },
+                {
+                  "id": "p01-separation",
+                  "slug": "p01-separation",
+                  "title": "找出预测分离的初值",
+                  "type": "python"
+                },
+                {
+                  "id": "p01-prediction-record",
+                  "slug": "p01-prediction-record",
+                  "title": "先写下可能的反例",
+                  "type": "choice"
+                },
+                {
+                  "id": "p01-falsification",
+                  "slug": "p01-falsification",
+                  "title": "观测落在两个预测之外",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/01-04-模型假设与计算实验/practice/?question=p01-distinguish-design"
+            }
+          ],
+          "visualization": null
         }
-      ]
+      ],
+      "assessment": {
+        "id": "1.summary",
+        "assessment": true,
+        "title": "系统边界与实验设计",
+        "url": "/parts/01-看见系统/综合练习/",
+        "goals": "综合辨认边界、变量与收支（mass balance），比较候选规则，解释证据范围。",
+        "prerequisites": "本篇四章。",
+        "focus": "分开迁移与内部生成、局部与整体、计算核验与机制验证。",
+        "knowledge": [
+          "视野计数 → 选择边界与生成项",
+          "温度调节 → 核对反馈（feedback）与旁路",
+          "清除比较 → 保留独立预测和限制"
+        ],
+        "lessons": [
+          {
+            "id": "P01-SUMMARY",
+            "chapter_id": "1.summary",
+            "path": "notebooks/01-看见系统/05-篇末综合/01-系统边界与实验设计.ipynb",
+            "title": "系统边界与实验设计",
+            "outcome": "把边界、收支、反馈与候选模型比较用于三个相邻的生命系统情境。",
+            "number": "篇末综合",
+            "visualization": null,
+            "questions": [
+              {
+                "id": "p01-cap-boundary",
+                "slug": "p01-cap-boundary",
+                "title": "细胞计数的边界",
+                "type": "choice"
+              },
+              {
+                "id": "p01-cap-count",
+                "slug": "p01-cap-count",
+                "title": "计数中的移动与新增",
+                "type": "python"
+              },
+              {
+                "id": "p01-cap-feedback",
+                "slug": "p01-cap-feedback",
+                "title": "偏差下降与旁路影响",
+                "type": "choice"
+              },
+              {
+                "id": "p01-cap-predictions",
+                "slug": "p01-cap-predictions",
+                "title": "在多种初值下保留两套预测",
+                "type": "python"
+              },
+              {
+                "id": "p01-cap-limits",
+                "slug": "p01-cap-limits",
+                "title": "给计算结论划定范围",
+                "type": "choice"
+              }
+            ],
+            "url": "/parts/01-看见系统/综合练习/practice/?question=p01-cap-boundary"
+          }
+        ],
+        "available": true,
+        "visualization": null
+      }
     },
     {
       "id": "2",
@@ -77,15 +439,16 @@
           "title": "用递推描述增长与清除",
           "url": "/chapters/02-01-用递推描述增长与清除/",
           "goals": "由逐段收支（mass balance）得到差分方程，明确状态（state）、参数（parameter）、初值（initial condition）、步长与有限求和的角色。",
-          "prerequisites": "1.2、1.4；数学：中学函数、图像、指数对数和量纲的最小复习、递推、有限求和和固定点代数。",
+          "prerequisites": "1.2、1.4；数学：中学函数、图像、指数对数和量纲（dimension）的最小复习、递推、有限求和和固定点代数。",
           "knowledge": [
             "从表格走向下标与递推",
             "比较每步损失比例与每时间清除系数（elimination rate constant）",
-            "求固定点，并说明它与逐步轨迹的区别"
+            "求固定点，并说明它与逐步轨迹（trajectory）的区别"
           ],
-          "focus": "对应练习 得到 1、1.5、1.75 U；对应练习 必须说明“离散模型参数”与“连续速率的数值离散”各自含义，不能只按数值相等判断。",
+          "focus": "对应练习 得到 1、1.5、1.75 U；对应练习 必须说明“离散模型（model）参数”与“连续速率的数值离散”各自含义，不能只按数值相等判断。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "2.2",
@@ -100,28 +463,30 @@
           ],
           "focus": "对应练习 的局部导数参考值为 2，累积参考值为 1；要求写出取样端点与误差，不能把离散求和定义成精确积分。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "2.3",
           "title": "连续时间与一阶微分方程",
           "url": "/chapters/02-03-连续时间与一阶微分方程/",
-          "goals": "推导并验证 dA/dt = u − kA 的恒定输入解，说明初值（initial condition）、平衡（equilibrium）和时间尺度（time scale）。",
+          "goals": "推导并验证 dA/dt = u − kA 的恒定输入（input）解，说明初值（initial condition）、平衡（equilibrium）和时间尺度（time scale）。",
           "prerequisites": "2.2；数学：极限（limit）直觉、导数（derivative）、积分、基本定理和简单链式法则、一阶 ODE、初值、分离变量和指数解。",
           "knowledge": [
             "从收支（mass balance）率形成初值问题（initial value problem）",
             "先解无输入衰减，再通过偏离平衡求一般解",
             "检查零清除、零输入和平衡初值，解释 1/k 的时间尺度"
           ],
-          "focus": "使用初值、方程残差（residual）和已知边界作独立依据；对应练习 平衡不变而特征时间减半，结论限于该恒定输入线性模型。",
+          "focus": "使用初值、方程残差（residual）和已知边界作独立依据；对应练习 平衡不变而特征时间减半，结论限于该恒定输入线性模型（model）。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "2.4",
           "title": "数值模拟、误差与迁移",
           "url": "/chapters/02-04-数值模拟、误差与迁移/",
-          "goals": "推导 Euler 平衡（equilibrium）误差递推，区分误差大小、渐近稳定性与非负性（nonnegativity），并正确处理输入跳变。",
+          "goals": "推导 Euler 平衡（equilibrium）误差递推，区分误差大小、渐近稳定性与非负性（nonnegativity），并正确处理输入（input）跳变。",
           "prerequisites": "2.3；数学：递推、有限求和和固定点代数、一阶 ODE、初值（initial condition）、分离变量和指数解、数值误差（numerical error）、收敛阶、递推稳定性与非负性。",
           "knowledge": [
             "Euler 与解析参考",
@@ -130,7 +495,8 @@
           ],
           "focus": "严格区分公式浮点一致性容差和离散近似误差；对应练习 不得把不足一个名义步长的区间仍按 0.8 T 计算；收敛标准沿用样章约定。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         }
       ]
     },
@@ -147,33 +513,35 @@
           "prerequisites": "2.4；数学：一阶 ODE、初值（initial condition）、分离变量和指数解、向量、矩阵、内积、范数、秩、线性方程组与投影直觉。",
           "knowledge": [
             "两室交换的逐项收支（mass balance）",
-            "数组、矩阵乘法与线性映射",
+            "数组（array）、矩阵乘法与线性映射",
             "内积与投影直觉、秩、平衡方程及唯一性"
           ],
           "focus": "对应练习 初始变化率为 (−1.2, 1.2) U/T；封闭系统的平衡（equilibrium）要结合初始总量确定，不能把奇异矩阵强行求逆。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "3.2",
           "title": "线性状态空间与动态模态",
           "url": "/chapters/03-02-线性状态空间与动态模态/",
-          "goals": "写出状态（state）、输入和输出关系，用特征值解释动态时间尺度（time scale），并把复共轭模态还原为实轨迹。",
+          "goals": "写出状态（state）、输入（input）和输出关系，用特征值解释动态时间尺度（time scale），并把复共轭模态还原为实轨迹（trajectory）。",
           "prerequisites": "3.1；数学：一阶 ODE、初值（initial condition）、分离变量和指数解、向量、矩阵、内积、范数、秩、线性方程组与投影直觉、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数。",
           "knowledge": [
-            "状态空间和不同观测映射",
+            "状态空间和不同观测（observation）映射",
             "特征向量、矩阵幂与矩阵指数",
             "快慢模态、复数与阻尼振荡，说明不可对角化情况的处理边界"
           ],
-          "focus": "对应练习 特征值为 −1 ± 2i；模态重建与矩阵指数参考一致；状态负值在偏差模型与物质量模型中含义不同。",
+          "focus": "对应练习 特征值为 −1 ± 2i；模态重建与矩阵指数参考一致；状态负值在偏差模型（model）与物质量模型中含义不同。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "3.3",
           "title": "耦合、相平面与平衡",
           "url": "/chapters/03-03-耦合、相平面与平衡/",
-          "goals": "从向量场辨认局部运动方向，解释平衡（equilibrium）、初值（initial condition）与轨迹，并说明相图丢失了哪些时间信息。",
+          "goals": "从向量场辨认局部运动方向，解释平衡（equilibrium）、初值（initial condition）与轨迹（trajectory），并说明相图丢失了哪些时间信息。",
           "prerequisites": "3.2；数学：一阶 ODE、初值、分离变量和指数解、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数。",
           "knowledge": [
             "在状态（state）点计算变化方向",
@@ -182,7 +550,8 @@
           ],
           "focus": "对应练习 保持轨迹的几何路径但改变时间参数（parameter）化；方向箭头的缩放方式需写明，不能仅靠箭头长度比较速度。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "3.4",
@@ -195,9 +564,10 @@
             "Taylor 展开与 Jacobian",
             "在二室模型中加入饱和清除，比较局部近似与原模型"
           ],
-          "focus": "导数应为 vK/(K + A)²；线性化围绕偏差变量书写；不把有限差分（finite difference）一致性当作原模型长期准确性的证明。",
+          "focus": "导数应为 vK/(K + A)²；线性化围绕偏差变量书写；不把有限差分（finite difference）一致性当作原模型（model）长期准确性的证明。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         }
       ]
     },
@@ -219,13 +589,14 @@
           ],
           "focus": "无偏置时平衡为 −1、0、1；非零稳定点两侧的方向与局部导数（derivative）应一致；初值网格只提供边界的数值近似。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "4.2",
           "title": "自维持振荡与极限环",
           "url": "/chapters/04-02-自维持振荡与极限环/",
-          "goals": "根据输入、暂态和多初值（initial condition）长期行为区分三种振荡，测量周期和振幅。",
+          "goals": "根据输入（input）、暂态和多初值（initial condition）长期行为区分三种振荡，测量周期和振幅。",
           "prerequisites": "4.1；数学：特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、偏导、梯度方向、Jacobian、多变量链式法则和一阶 Taylor 近似。",
           "knowledge": [
             "回顾阻尼振荡并加入周期驱动",
@@ -234,7 +605,8 @@
           ],
           "focus": "周期测量方法、峰值筛选及暂态窗口需明确；三组初值的数值趋同不替代极限（limit）环存在性的数学证明。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "4.3",
@@ -249,7 +621,8 @@
           ],
           "focus": "分支标记需有平衡（equilibrium）分析或局部证据；转变位置报告分辨率和未解决的不确定性，不能声称扫描得到精确阈值。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "4.4",
@@ -262,15 +635,16 @@
             "邻近轨迹及有限时间增长率",
             "有限精度、饱和分离和预测阈值，说明与连续 ODE 的差别"
           ],
-          "focus": "有限时间增长率仅作为指定轨迹与窗口下的数值证据；不得引入尚未学习的随机统计结论来证明混沌。",
+          "focus": "有限时间增长率仅作为指定轨迹（trajectory）与窗口下的数值证据；不得引入尚未学习的随机统计结论来证明混沌。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "4.5",
           "title": "用 Lyapunov 函数分析稳定性",
           "url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/",
-          "goals": "逐项检查候选函数的正定性、沿轨迹导数（derivative）与适用区域，区分稳定、渐近稳定及证据不足。",
+          "goals": "逐项检查候选函数的正定性、沿轨迹（trajectory）导数（derivative）与适用区域，区分稳定、渐近稳定及证据不足。",
           "prerequisites": "4.4；数学：偏导、梯度方向、Jacobian、多变量链式法则和一阶 Taylor 近似、Lyapunov 函数、沿轨迹导数和局部适用区域。",
           "knowledge": [
             "能量式函数的直觉与定义",
@@ -279,7 +653,8 @@
           ],
           "focus": "对应练习 的严格负导数区域为 0 < |x| < 1；区分解析符号判断与网格采样，后者不能证明区域内处处成立。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         }
       ]
     },
@@ -301,7 +676,8 @@
           ],
           "focus": "频率落在 [0, 1]，分布总概率为 1；记录种子列表或确定的派生方式，不把重复使用同一随机序列称为独立重复。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "5.2",
@@ -312,11 +688,12 @@
           "knowledge": [
             "从样本摘要走向期望与方差",
             "联合分布、协方差及相关性",
-            "状态（state）更新噪声、观测噪声和固定个体参数差异"
+            "状态（state）更新噪声、观测（observation）噪声和固定个体参数差异"
           ],
           "focus": "对应练习 方差为 0.04、0.0656；重复样本误差需与理论量区分，经验分位带只是样本分布摘要，不能未经说明称为参数（parameter）置信区间。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "5.3",
@@ -327,11 +704,12 @@
           "knowledge": [
             "二维概率表与条件概率",
             "Bayes 公式与归一化",
-            "重复观测、Gaussian 均值和方差更新，衔接未来状态（state）估计"
+            "重复观测（observation）、Gaussian 均值和方差更新，衔接未来状态（state）估计"
           ],
-          "focus": "对应练习 后验为 9/13；概率归一，Gaussian 方差保持非负；“多次输入同一数据”不等于增加独立信息。",
+          "focus": "对应练习 后验为 9/13；概率归一，Gaussian 方差保持非负；“多次输入（input）同一数据”不等于增加独立信息。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "5.4",
@@ -346,7 +724,8 @@
           ],
           "focus": "对应练习 不变分布为 (1/3, 2/3)，前两步为 (0.8, 0.2)、(0.66, 0.34)；矩阵行和、概率非负性（nonnegativity）与随机误差分别检查。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "5.5",
@@ -357,11 +736,12 @@
           "knowledge": [
             "信息量、熵与对数底",
             "条件熵和互信息",
-            "分箱、有限样本和观测通道比较"
+            "分箱、有限样本和观测（observation）通道比较"
           ],
           "focus": "对应练习 熵为 1 bit，互信息分别为 1、0 bit；处理零概率项，区分离散熵与连续变量分箱后的量。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         }
       ]
     },
@@ -374,16 +754,17 @@
           "id": "6.1",
           "title": "观测、采样与滤波",
           "url": "/chapters/06-01-观测、采样与滤波/",
-          "goals": "区分模型时间步长（time step）、采样间隔与滤波窗口，识别混叠和滤波延迟。",
+          "goals": "区分模型（model）时间步长（time step）、采样间隔与滤波窗口，识别混叠和滤波延迟（delay）。",
           "prerequisites": "5.2、2.4；数学：递推、有限求和和固定点代数、数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、期望、方差、协方差、联合分布、Gaussian 分布。",
           "knowledge": [
-            "状态（state）到观测及采样",
+            "状态（state）到观测（observation）及采样",
             "用正弦例子观察混叠",
             "移动平均、窗口边界和在线/离线差别"
           ],
           "focus": "对应练习 在给定采样时刻无法区分；滤波效果同时报告噪声变化与时间偏移，禁止在在线任务中悄悄使用未来值。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "6.2",
@@ -396,9 +777,10 @@
             "正弦、复指数与 Fourier 表示",
             "频谱、窗长、泄漏及滤波频率响应"
           ],
-          "focus": "对应练习 结果为 [0.5, 1.5, 1, 0]；避免把循环卷积与线性卷积混用，不把补零解释为增加独立观测信息。",
+          "focus": "对应练习 结果为 [0.5, 1.5, 1, 0]；避免把循环卷积与线性卷积混用，不把补零解释为增加独立观测（observation）信息。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "6.3",
@@ -411,9 +793,10 @@
             "Laplace 变换、必要收敛域直觉及初值项",
             "Z 变换和离散表示，与状态（state）空间对照"
           ],
-          "focus": "对应练习 因子分别为 exp(−kh) 与 1 − kh；不同离散化不能因使用相同采样间隔就被当作同一模型。",
+          "focus": "对应练习 因子分别为 exp(−kh) 与 1 − kh；不同离散化不能因使用相同采样间隔就被当作同一模型（model）。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "6.4",
@@ -424,26 +807,28 @@
           "knowledge": [
             "线性回归、投影和秩",
             "理想清除参数的拟合与残差",
-            "重复观测、参数区间和重采样入门，区分参数不确定性与预测误差"
+            "重复观测（observation）、参数区间和重采样入门，区分参数不确定性与预测误差"
           ],
-          "focus": "简单线性例子用已知参数（parameter）和代数参考核验；报告区间方法、假设和重复次数，不把区间宽度当作所有模型误差的总和。",
+          "focus": "简单线性例子用已知参数（parameter）和代数参考核验；报告区间方法、假设和重复次数，不把区间宽度当作所有模型（model）误差的总和。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "6.5",
           "title": "动态辨识、实验设计与验证",
           "url": "/chapters/06-05-动态辨识、实验设计与验证/",
-          "goals": "构建简单 ARX 模型，区分拟合、一步预测和自由运行，比较激励、结构与可辨识范围。",
+          "goals": "构建简单 ARX 模型（model），区分拟合、一步预测和自由运行，比较激励、结构与可辨识范围。",
           "prerequisites": "6.3、6.4；数学：Laplace/Z 变换、收敛域的必要直觉、极点零点、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门。",
           "knowledge": [
-            "回归量、延迟与动态模型",
+            "回归量、延迟（delay）与动态模型",
             "输入激励、结构选择和参数混淆",
-            "时间/个体划分、验证残差、外推与缺失观测"
+            "时间/个体划分、验证残差、外推与缺失观测（observation）"
           ],
-          "focus": "提交数据划分清单和回归矩阵的秩检查；已知核验参数（parameter）与状态（state）只能在评估时读取，不能作为拟合输入或调参答案。",
+          "focus": "提交数据划分清单和回归矩阵的秩检查；已知核验参数（parameter）与状态（state）只能在评估时读取，不能作为拟合输入（input）或调参答案。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         }
       ]
     },
@@ -457,36 +842,38 @@
           "title": "开闭环与 PID",
           "url": "/chapters/07-01-开闭环与 PID/",
           "goals": "从误差构造 P、PI、PID，解释积分累积、微分对噪声的敏感性及执行饱和。",
-          "prerequisites": "6.3、4.5；数学：极限（limit）直觉、导数（derivative）、积分、基本定理和简单链式法则、Lyapunov 函数、沿轨迹导数和局部适用区域、Laplace/Z 变换、收敛域的必要直觉、极点零点。",
+          "prerequisites": "6.3、4.5；数学：极限（limit）直觉、导数（derivative）、积分、基本定理和简单链式法则、Lyapunov 函数、沿轨迹（trajectory）导数和局部适用区域、Laplace/Z 变换、收敛域的必要直觉、极点零点。",
           "knowledge": [
             "设定值、测量、误差和执行输入",
             "三个控制项及离散实现",
             "跟踪、扰动、饱和与抗积分累积的基本处理"
           ],
-          "focus": "明确离散积分和微分的时间尺度（time scale）；比较结果包含控制代价、超调和稳态表现，裁剪输入后必须按实际输入推进模型。",
+          "focus": "明确离散积分和微分的时间尺度（time scale）；比较结果包含控制代价、超调和稳态表现，裁剪输入（input）后必须按实际输入推进模型（model）。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "7.2",
           "title": "频域稳定性与设计",
           "url": "/chapters/07-02-频域稳定性与设计/",
-          "goals": "连接闭环极点、根轨迹、Bode、Nyquist 与稳定裕度，说明判据条件及符号约定。",
+          "goals": "连接闭环极点、根轨迹（trajectory）、Bode、Nyquist 与稳定裕度，说明判据条件及符号约定。",
           "prerequisites": "7.1；数学：特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、Laplace/Z 变换、收敛域的必要直觉、极点零点、复平面曲线、相位变化与绕数的几何解释。",
           "knowledge": [
             "从闭环特征方程到根轨迹",
             "幅相与裕度",
             "复平面轨迹和绕数的必要几何桥接，再应用 Nyquist"
           ],
-          "focus": "必须固定 Nyquist 的计数约定；裕度只支持所声明模型和回路条件，不能替代非线性饱和系统的完整验证。",
+          "focus": "必须固定 Nyquist 的计数约定；裕度只支持所声明模型（model）和回路条件，不能替代非线性饱和系统的完整验证。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "7.3",
           "title": "能控性与状态反馈",
           "url": "/chapters/07-03-能控性与状态反馈/",
-          "goals": "解释输入位置决定的可达方向，在能控条件下设计状态（state）反馈并检验闭环极点。",
+          "goals": "解释输入（input）位置决定的可达方向，在能控条件下设计状态（state）反馈（feedback）并检验闭环极点。",
           "prerequisites": "7.2、3.2；数学：向量、矩阵、内积、范数、秩、线性方程组与投影直觉、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数。",
           "knowledge": [
             "输入经动态传播到其他状态",
@@ -495,22 +882,24 @@
           ],
           "focus": "对应练习 两种秩分别为 2、1；反馈符号约定和 A − BK 的核验一致；近似秩须报告数值容差与尺度。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "7.4",
           "title": "能观性与状态观测器",
           "url": "/chapters/07-04-能观性与状态观测器/",
-          "goals": "判断已知模型下哪些状态（state）可以从输出恢复，推导观测器误差动态并分析收敛条件。",
+          "goals": "判断已知模型（model）下哪些状态（state）可以从输出恢复，推导观测（observation）器误差动态并分析收敛条件。",
           "prerequisites": "7.3、6.5；数学：向量、矩阵、内积、范数、秩、线性方程组与投影直觉、特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门。",
           "knowledge": [
             "状态估计与参数（parameter）辨识的任务边界",
             "能观矩阵及传感器位置",
-            "观测器增益、误差动态与速度/噪声权衡"
+            "观测器增益（gain）、误差动态与速度/噪声权衡"
           ],
           "focus": "对应练习 两种秩分别为 2、1；只有课程已知状态作为隔离核验答案时，才能直接报告完整状态误差。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "7.5",
@@ -520,12 +909,13 @@
           "prerequisites": "7.4、5.3；数学：向量、矩阵、内积、范数、秩、线性方程组与投影直觉、期望、方差、协方差、联合分布、Gaussian 分布、条件概率、Bayes 公式、似然、后验及条件 Gaussian。",
           "knowledge": [
             "动态预测及协方差传播",
-            "观测更新与 Kalman 增益",
-            "接入状态（state）反馈，比较真实状态、估计状态与错误噪声设定"
+            "观测（observation）更新与 Kalman 增益（gain）",
+            "接入状态（state）反馈（feedback），比较真实状态、估计状态与错误噪声设定"
           ],
-          "focus": "对应练习 结果为 0.8、1.6、0.8；协方差保持对称且在容差内半正定，已知无噪极限（limit）单独处理；理想线性条件下的性质不直接扩展到饱和和错误模型。",
+          "focus": "对应练习 结果为 0.8、1.6、0.8；协方差保持对称且在容差内半正定，已知无噪极限（limit）单独处理；理想线性条件下的性质不直接扩展到饱和和错误模型（model）。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         }
       ]
     },
@@ -541,43 +931,46 @@
           "goals": "定义目标、约束和决策变量，理解梯度、Hessian、二次型、凸性与正则化，说明最优性结论的条件。",
           "prerequisites": "3.4、6.4、7.3；数学：偏导、梯度方向、Jacobian、多变量链式法则和一阶 Taylor 近似、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、目标函数、梯度、Hessian、二次型、正定性、凸性、约束与正则化。",
           "knowledge": [
-            "跟踪误差与输入代价的尺度",
+            "跟踪误差与输入（input）代价的尺度",
             "梯度、曲率与凸优化直觉",
             "等式/不等式约束、可行性、最优性条件及求解状态（state）"
           ],
           "focus": "对应练习 解分别为 4/3、1；需要同时检查可行性和目标值，求解器返回成功也须核对约束残差；最优性条件写出适用假设。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "8.2",
           "title": "动态规划与 LQR",
           "url": "/chapters/08-02-动态规划与 LQR/",
-          "goals": "从一步决策推到有限时域 Bellman 递推，以二次价值函数推导离散 Riccati 递推与反馈增益。",
+          "goals": "从一步决策推到有限时域 Bellman 递推，以二次价值函数推导离散 Riccati 递推与反馈（feedback）增益（gain）。",
           "prerequisites": "8.1、7.3；数学：特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、目标函数、梯度、Hessian、二次型、正定性、凸性、约束与正则化、有限时域动态规划、Bellman 递推与离散 Riccati 递推。",
           "knowledge": [
             "有限时域与终端代价",
             "倒推价值和最优决策",
             "LQR、权重正定条件及有限/无限时域区别"
           ],
-          "focus": "对应练习 最优 u = −x/2、价值为 3x²/2；Riccati 结果与小问题独立计算一致，不能将截断输入后的方案继续称为原约束问题的最优解。",
+          "focus": "对应练习 最优 u = −x/2、价值为 3x²/2；Riccati 结果与小问题独立计算一致，不能将截断输入（input）后的方案继续称为原约束问题的最优解。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "8.3",
           "title": "带约束的 MPC",
           "url": "/chapters/08-03-带约束的 MPC/",
-          "goals": "将预测模型、初始估计、时域和约束写成优化问题，理解每次只执行第一步并重新求解。",
+          "goals": "将预测模型（model）、初始估计、时域和约束写成优化问题，理解每次只执行第一步并重新求解。",
           "prerequisites": "8.2、7.5；数学：目标函数、梯度、Hessian、二次型、正定性、凸性、约束与正则化、有限时域动态规划、Bellman 递推与离散 Riccati 递推。",
           "knowledge": [
-            "状态（state）与输入序列的优化表达",
+            "状态（state）与输入（input）序列的优化表达",
             "滚动时域及估计接口",
             "软硬约束、不可行、超时和模型误差的处理"
           ],
           "focus": "不得默认可行性或稳定性；如采用备用控制，必须独立说明其适用域并核验；禁止用未经核验的上次解掩盖求解失败。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "8.4",
@@ -592,7 +985,8 @@
           ],
           "focus": "计划以不少于 30 组独立随机场景估计波动，实施时按不确定性和预算调整并记录；方法间共享场景不等于场景之间重复使用同一序列。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         }
       ]
     },
@@ -614,7 +1008,8 @@
           ],
           "focus": "无向简单图的度和等于两倍边数；图的绘制位置不默认具有空间含义；不凭双对数直线宣布幂律。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "9.2",
@@ -627,15 +1022,16 @@
             "拉普拉斯零模态与连通性",
             "非零模态和趋近速度，限定等容积及对称交换假设"
           ],
-          "focus": "无外部输入输出时检查物质量守恒；谱关系只用于满足假设的算子，不能把有向或非对称网络未经说明套入同一结论。",
+          "focus": "无外部输入（input）输出时检查物质量守恒；谱关系只用于满足假设的算子，不能把有向或非对称网络未经说明套入同一结论。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "9.3",
           "title": "接触结构与传播",
           "url": "/chapters/09-03-接触结构与传播/",
-          "goals": "定义个体状态（state）和接触传播规则，比较平均混合与网络模型，说明初始位置及有限规模影响。",
+          "goals": "定义个体状态（state）和接触传播规则，比较平均混合与网络模型（model），说明初始位置及有限规模影响。",
           "prerequisites": "9.2、5.4；数学：随机过程、有限马尔可夫链、转移矩阵与长期分布、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
           "knowledge": [
             "状态转移和接触定义",
@@ -644,7 +1040,8 @@
           ],
           "focus": "总个体数、状态合法性和更新规则一致；建议至少 20 个网络实现、每图 30 次动态重复，实际数量由预算与不确定性检查确定并写明。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "9.4",
@@ -653,13 +1050,14 @@
           "goals": "区分相位接近、频率锁定与平均频率，说明同步指标和耦合归一化。",
           "prerequisites": "9.3、4.2；数学：偏导、梯度方向、Jacobian、多变量链式法则和一阶 Taylor 近似、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
           "knowledge": [
-            "单体节律到相位模型的简化",
+            "单体节律到相位模型（model）的简化",
             "网络耦合、异质频率与同步指标",
             "扫描耦合及初相，比较结构和规模"
           ],
           "focus": "R 在 [0, 1]，共同平移所有相位不改变 R；扫描结论检查暂态、步长和初值（initial condition），不将单次跃变称为普遍同步阈值。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         }
       ]
     },
@@ -677,17 +1075,18 @@
           "knowledge": [
             "个体状态（state）、邻域和转移",
             "双缓冲同步更新与原地更新",
-            "更新次序、周期/固定边界和观测指标"
+            "更新次序、周期/固定边界和观测（observation）指标"
           ],
           "focus": "规则表与实现逐项对照；异步实验记录抽样和时间计量方式；动画相似不代表更新机制相同。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "10.2",
           "title": "合作与演化博弈",
           "url": "/chapters/10-02-合作与演化博弈/",
-          "goals": "从收益矩阵计算频率依赖收益，推导两类型复制动态，解释个体模型与平均描述的假设。",
+          "goals": "从收益矩阵计算频率依赖收益，推导两类型复制动态，解释个体模型（model）与平均描述的假设。",
           "prerequisites": "10.1、2.3；数学：一阶 ODE、初值（initial condition）、分离变量和指数解、收益矩阵、频率依赖与复制动态。",
           "knowledge": [
             "收益及其教学含义",
@@ -696,7 +1095,8 @@
           ],
           "focus": "频率位于 [0, 1]，总频率为 1；收益是模型假设，不把某张收益表当成所有生物合作的定律。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "10.3",
@@ -709,9 +1109,10 @@
             "加入选择及双向变异",
             "规模、固定/灭绝事件及确定性近似"
           ],
-          "focus": "对应练习 方差为 p(1 − p)/N；重复次数、事件定义和观察窗口明确；零变异时的吸收态不能直接类推到有变异模型。",
+          "focus": "对应练习 方差为 p(1 − p)/N；重复次数、事件定义和观察窗口明确；零变异时的吸收态不能直接类推到有变异模型（model）。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "10.4",
@@ -726,7 +1127,8 @@
           ],
           "focus": "显式纯扩散的稳定条件只适用于所声明维数和离散方案；加入反应后重新检查。出现图案不足以证明 Turing 失稳，还须核查均匀态与相关模态条件。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "10.5",
@@ -735,13 +1137,14 @@
           "goals": "定义粗尺度变量，说明平均场忽略的相关性，比较哪些宏观量得到保留。",
           "prerequisites": "10.4、5.5；数学：信息熵、条件熵、互信息与有限样本估计、收益矩阵、频率依赖与复制动态、空间偏导、PDE、有限差分（finite difference）、边界条件与网格稳定性。",
           "knowledge": [
-            "从个体轨迹聚合频率、密度与相关量",
+            "从个体轨迹（trajectory）聚合频率、密度与相关量",
             "平均场闭合的假设",
             "时间/空间聚合与信息损失，比较失效情形"
           ],
           "focus": "比较尺度与误差定义事先固定；平均场失败应回到相关性或规则假设，不能只通过反复调参掩盖结构差异。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         }
       ]
     },
@@ -763,7 +1166,8 @@
           ],
           "focus": "尺度比较包含重复次数和不确定性；拟合一条尺度直线不能单独证明普适指数，未验证的无限规模结论明确留作开放问题。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "11.2",
@@ -778,28 +1182,30 @@
           ],
           "focus": "零初始损伤、无级联规则和高容量条件有预期边界结果；失效节点不能在同一规则中无说明地恢复或重复计数。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "11.3",
           "title": "扰动、恢复与早期预警",
           "url": "/chapters/11-03-扰动、恢复与早期预警/",
           "goals": "测量局部恢复率，区分恢复速度与吸引域大小，并评价方差、自相关等指标的条件和失败。",
-          "prerequisites": "11.2、4.5、6.5；数学：Lyapunov 函数、沿轨迹导数（derivative）和局部适用区域、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "prerequisites": "11.2、4.5、6.5；数学：Lyapunov 函数、沿轨迹（trajectory）导数（derivative）和局部适用区域、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、序参量、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
             "小扰动响应、线性化与恢复时间",
             "有限扰动和吸引域",
             "滑动窗口预警、趋势与观测影响、误报及漏报"
           ],
-          "focus": "预测时刻不能使用未来数据；采样变化时“滞后一步”不等于相同物理滞后；预警指标变化只支持所声明模型与观测条件。",
+          "focus": "预测时刻不能使用未来数据；采样变化时“滞后一步”不等于相同物理滞后；预警指标变化只支持所声明模型（model）与观测（observation）条件。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "11.4",
           "title": "多尺度、粗粒化与不确定性",
           "url": "/chapters/11-04-多尺度、粗粒化与不确定性/",
-          "goals": "区分参数（parameter）、随机、观测和结构误差，比较个体、网络与平均模型的结论是否一致。",
+          "goals": "区分参数（parameter）、随机、观测（observation）和结构误差，比较个体、网络与平均模型（model）的结论是否一致。",
           "prerequisites": "11.3、10.5；数学：期望、方差、协方差、联合分布、Gaussian 分布、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、序参量、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
             "选择时间、空间与个体层级",
@@ -808,7 +1214,8 @@
           ],
           "focus": "模型比较须使用一致指标、单位和条件；敏感性是所选扰动范围内的数值证据，范围外不自动成立。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         }
       ]
     },
@@ -822,15 +1229,16 @@
           "title": "非线性、鲁棒与自适应控制",
           "url": "/chapters/12-01-非线性、鲁棒与自适应控制/",
           "goals": "区分已知非线性、未知但有界参数（parameter）和在线参数变化，说明设计条件与失效边界。",
-          "prerequisites": "8.4、4.5、11.4；数学：Lyapunov 函数、沿轨迹导数（derivative）和局部适用区域、目标函数、梯度、Hessian、二次型、正定性、凸性、约束与正则化、有限时域动态规划、Bellman 递推与离散 Riccati 递推。",
+          "prerequisites": "8.4、4.5、11.4；数学：Lyapunov 函数、沿轨迹（trajectory）导数（derivative）和局部适用区域、目标函数、梯度、Hessian、二次型、正定性、凸性、约束与正则化、有限时域动态规划、Bellman 递推与离散 Riccati 递推。",
           "knowledge": [
             "复习局部线性策略的适用域",
             "一种基于 Lyapunov 思路的简单非线性设计",
             "鲁棒与自适应的区别，选择一种作计算基线，另一种说明核心假设"
           ],
-          "focus": "有限参数扫描是经验核验，不替代全参数区间的鲁棒证明；设计条件、实际观测与执行限制必须一致。",
+          "focus": "有限参数扫描是经验核验，不替代全参数区间的鲁棒证明；设计条件、实际观测（observation）与执行限制必须一致。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "12.2",
@@ -841,17 +1249,18 @@
           "knowledge": [
             "Brownian 增量、随机积分直觉",
             "Euler–Maruyama、强弱误差的入门区分",
-            "网络局部反馈与集中信息基线，先分别验证再组合"
+            "网络局部反馈（feedback）与集中信息基线，先分别验证再组合"
           ],
           "focus": "对应练习 均值为 X₀ + aT、方差为 σ²T；独立路径之间比较分布，同路径细化才用于路径误差；不把一种误差指标当作另一种收敛证据。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "12.3",
           "title": "Koopman 与稀疏动力学辨识",
           "url": "/chapters/12-03-Koopman 与稀疏动力学辨识/",
-          "goals": "解释函数观测与有限字典投影，实现小型 EDMD 和稀疏方程辨识，评估字典与噪声的作用。",
+          "goals": "解释函数观测（observation）与有限字典投影，实现小型 EDMD 和稀疏方程辨识，评估字典与噪声的作用。",
           "prerequisites": "12.2、6.5；数学：特征值、特征向量、复数与共轭模态、矩阵幂和矩阵指数、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、目标函数、梯度、Hessian、二次型、正定性、凸性、约束与正则化、函数观测、线性算子、有限字典与投影。",
           "knowledge": [
             "状态（state）、观测函数与算子，不默认泛函分析",
@@ -860,7 +1269,8 @@
           ],
           "focus": "先用可精确表示的线性小例子核验实现；真值方程只用于独立评估，字典与超参数（parameter）不依据最终评估答案选择。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "12.4",
@@ -873,9 +1283,10 @@
             "以网络表示 ODE 右端并训练",
             "方程、初值（initial condition）/边界与数据损失，比较残差约束学习"
           ],
-          "focus": "求解误差、梯度误差、优化未收敛和模型偏差分别记录；训练损失低不替代独立验证，多种初始化需报告波动与预算。",
+          "focus": "求解误差、梯度误差、优化未收敛和模型（model）偏差分别记录；训练损失低不替代独立验证，多种初始化需报告波动与预算。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "12.5",
@@ -888,9 +1299,10 @@
             "小型有限状态任务中的策略评估与简单表格学习",
             "在人工调节任务上比较学习策略与 MPC"
           ],
-          "focus": "训练回报不作为独立效果证据；共同约束与传感信息一致，无法对齐的模型知识差异明确报告；失败回合纳入统计。",
+          "focus": "训练回报不作为独立效果证据；共同约束与传感信息一致，无法对齐的模型（model）知识差异明确报告；失败回合纳入统计。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         },
         {
           "id": "12.6",
@@ -905,7 +1317,8 @@
           ],
           "focus": "未复现结果如实报告并检查实现、数据、指标和预算差异；不得为了与论文一致而只保留有利随机种子。",
           "available": false,
-          "lessons": []
+          "lessons": [],
+          "visualization": null
         }
       ]
     }
@@ -915,6 +1328,7 @@
     "title": "体内物质的积累与清除",
     "url": "/samples/accumulation-clearance/",
     "available": true,
+    "visualization": "web/single-compartment/index.html",
     "lessons": [
       {
         "id": "S01",
@@ -1103,13 +1517,13 @@
         "url": "/samples/accumulation-clearance/practice/?question=input-jump"
       }
     ],
-    "goals": "辨认存量（stock）与流量（flow）；用收支（mass balance）建立更新规则；连接连续模型与数值近似；独立改变输入并检验结果。",
+    "goals": "辨认存量（stock）与流量（flow）；用收支（mass balance）建立更新规则；连接连续模型（model）与数值近似；独立改变输入（input）并检验结果。",
     "prerequisites": "基础 Python、中学数学与函数读图。导数（derivative）、定积分（definite integral）和误差检查在单元内引入。",
-    "focus": "区分物质量和流率、平衡（equilibrium）位置和接近速度；把精度、数值稳定性（numerical stability）与非负性（nonnegativity）分开检查；在输入变化点分段计算。",
+    "focus": "区分物质量和流率（flow rate）、平衡（equilibrium）位置和接近速度；把精度、数值稳定性（numerical stability）与非负性（nonnegativity）分开检查；在输入变化点分段计算。",
     "knowledge": [
       "边界与单位 → 确定什么在积累",
       "输入与清除 → 写出逐步收支",
-      "平衡与反馈 → 解释动态过程",
+      "平衡与反馈（feedback） → 解释动态过程",
       "变化率与连续模型 → 对照解析解（analytical solution）",
       "步长与误差 → 检验数值结果",
       "时变输入 → 完成迁移实验"

@@ -1,0 +1,16 @@
+{
+  "p01-calibrate": "def solve(readings, offset):\n    return [y-offset for y in readings]\n",
+  "p01-time-units": "def solve(times, amounts, factor):\n    return [t*factor for t in times], list(amounts)\n",
+  "p01-concentration": "def solve(amounts, volumes):\n    return [a/v for a,v in zip(amounts,volumes)]\n",
+  "p01-balance": "def solve(initial, durations, inflows, outflows):\n    result=[initial]\n    for h,u,v in zip(durations,inflows,outflows):\n        result.append(result[-1]+h*(u-v))\n    return result\n",
+  "p01-infer-outflow": "def solve(initial, final, duration, inflow):\n    return initial+duration*inflow-final\n",
+  "p01-two-rooms": "def solve(first, second, incoming, transferred, outgoing):\n    a,b,total=[first],[second],[first+second]\n    for u,v,w in zip(incoming,transferred,outgoing):\n        a.append(a[-1]+u-v)\n        b.append(b[-1]+v-w)\n        total.append(a[-1]+b[-1])\n    return a,b,total\n",
+  "p01-loop-sign": "def solve(signs):\n    result=1\n    for s in signs:\n        result*=s\n    return result\n",
+  "p01-delayed-response": "def solve(history, gain, delay, steps):\n    values=list(history)\n    for _ in range(steps):\n        values.append(values[-1]-gain*values[-1-delay])\n    path=values[delay:]\n    directions=[1 if b>a else -1 for a,b in zip(path,path[1:]) if abs(b-a)>1e-12]\n    turns=sum(a!=b for a,b in zip(directions,directions[1:]))\n    return path,max(abs(v) for v in path),turns\n",
+  "p01-turn-count": "def solve(values):\n    directions=[1 if b>a else -1 for a,b in zip(values,values[1:]) if abs(b-a)>1e-12]\n    return sum(a!=b for a,b in zip(directions,directions[1:]))\n",
+  "p01-compare-rules": "def solve(initial, fixed, fraction, steps):\n    a,b=[initial],[initial]\n    for _ in range(steps):\n        a.append(a[-1]-fixed)\n        b.append(b[-1]*(1-fraction))\n    return a,b\n",
+  "p01-first-failure": "def solve(initial, fixed, steps):\n    for i in range(1,steps+1):\n        if initial-i*fixed<0:\n            return i\n    return -1\n",
+  "p01-separation": "def solve(initials, fixed, fraction, threshold):\n    return [i for i,a in enumerate(initials) if abs(fraction*a-fixed)>threshold]\n",
+  "p01-cap-count": "def solve(initial, entered, left, born):\n    counts=[initial]\n    for u,v,b in zip(entered,left,born):\n        counts.append(counts[-1]+u-v+b)\n    return counts\n",
+  "p01-cap-predictions": "def solve(initials, fixed, fraction, steps):\n    return [a-fixed*steps for a in initials], [a*(1-fraction)**steps for a in initials]\n"
+}

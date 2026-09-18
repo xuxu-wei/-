@@ -70,7 +70,7 @@ def test_progress_distinguishes_valid_attempts_versions_and_interruption(engine)
     engine.submit(payload(engine,'S01-E1',selected=['B']),'choice')
     progress=engine.progress()
     assert progress['started']==['S01-E1'] and not progress['passed']
-    assert progress['scope']=='sample:accumulation-clearance'
+    assert progress['scope']=='course'
     sample=completed(engine,engine.submit(payload(engine,'S01-E2',SOLUTIONS['S01-E2'],mode='samples'),'python'))
     assert sample['verdict']=='AC' and 'S01-E2' in engine.progress()['started'] and 'S01-E2' not in engine.progress()['passed']
     engine.questions['S01-E1']['version']='2'
@@ -154,6 +154,7 @@ def test_verification_vectors_against_independent_math_and_notebook_algorithms(e
     piecewise=notebook_functions('06-transfer-experiment.ipynb')['piecewise_experiment']
     from practice import difference
     for id,verification in engine.verification.items():
+        if id not in SOLUTIONS:continue  # 本项专门核验样章模型；正式模型在 test_part01.py 独立核验。
         for case in verification.get('cases',[]):
             p=case['arguments'];expected=case['expected']
             if id=='S01-E2':

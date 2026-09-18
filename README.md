@@ -6,8 +6,8 @@
 
 ## 当前状态
 
-- 已完成十二篇、55 章的课程设计，以及六节 Notebook、可视化和 22 道练习组成的制作样章。
-- 正式教材尚未编写。样章独立于正式课程，可复制改编；正式内容完成且不再依赖样章后将删除样章。
+- 已完成十二篇、55 章的课程设计；第 1 篇正式内容提供九本 Notebook（含篇末综合）、两张可视化与 38 道练习。
+- 六节制作样章独立保留供改编参考；在 M3 的第 2 篇正式内容验收后清理并复验，条件见 [ROADMAP](ROADMAP.md#milestone-m3)。
 - 支持本机交互练习、Python 判题与学习记录，代码编辑器提供高亮、缩进和 traceback 调试。
 
 <a id="run-m1"></a>
@@ -18,11 +18,11 @@
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -e ".[learn,dev]"
-Invoke-Item .\notebooks\samples\accumulation-clearance\01-boundaries-units.ipynb
+Invoke-Item .\notebooks\01-看见系统\01-从生理现象提出系统问题\01-边界状态与观测.ipynb
 .\.venv\Scripts\python.exe tools/serve.py
 ```
 
-在默认 IDE 中选择项目 `.venv` 作为 Notebook 内核，从[六节样章目录](notebooks/samples/accumulation-clearance/README.md)学习。启动本机程序后可打开[网页目录](http://127.0.0.1:8000/)；环境、操作与故障处理见[学习指南](docs/学习指南.md)。
+在默认 IDE 中选择项目 `.venv` 作为 Notebook 内核，从[第 1 篇 Notebook 目录](notebooks/01-看见系统/README.md)学习。启动本机程序后可打开[网页目录](http://127.0.0.1:8000/)；环境、操作与故障处理见[学习指南](docs/学习指南.md)。
 
 项目面向 PC 本机学习，基础实验无需 GPU。教学运行独立于外部数据制备工具；模拟数据、本地环境、个人作答记录和临时文件不纳入 Git 同步。
 

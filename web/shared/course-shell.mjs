@@ -5,7 +5,8 @@ export const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==u
 const link=(title,url,cls)=>{const a=el('a',title,cls);a.href=url;return a;};
 let course,current,mode,progress={},tree,section=null;
 const progressNodes=[];
-export function rememberQuestion(slug){try{sessionStorage.setItem('sample:accumulation-clearance:question',slug);}catch{}}
+function questionKey(){return current===course?.sample?'sample:accumulation-clearance:question':`chapter:${current?.id}:question`;}
+export function rememberQuestion(slug){try{sessionStorage.setItem(questionKey(),slug);}catch{}}
 export function applyProgress(value){
   progress=value;
   for(const {node,item} of progressNodes){
@@ -41,7 +42,8 @@ export async function mountShell(pageMode='overview'){
   const response=await fetch('/web/course/catalog.json',{signal:AbortSignal.timeout(6000)});if(!response.ok)throw Error('目录加载失败，请刷新页面。');course=await response.json();
   const path=decodeURI(location.pathname);
   const part=course.parts.find(p=>p.url===path);
-  current=course.parts.flatMap(p=>p.chapters).find(c=>c.url===path)|| (path.includes('/samples/')||path.includes('/practice/')||path.includes('/single-compartment/')?course.sample:part);
+  const chapterItems=course.parts.flatMap(p=>[...p.chapters,...(p.assessment?[p.assessment]:[])]);
+  current=chapterItems.find(c=>path.startsWith(c.url))|| (course.sample&&path.startsWith(course.sample.url)?course.sample:part);
   const header=el('header',undefined,'course-header');
   const toggle=el('button','☰ 隐藏目录','directory-toggle');toggle.id='directory-toggle';toggle.type='button';toggle.setAttribute('aria-controls','course-directory');
   const identity=el('div',undefined,'header-identity');identity.append(toggle,link('动手学系统科学','/','brand'));header.append(identity,el('span','观察 · 建模 · 计算 · 理解','brand-note'));
@@ -52,25 +54,31 @@ export async function mountShell(pageMode='overview'){
   const error=el('p','进度暂时无法读取，请恢复本机连接后刷新。','error-note');error.id='progress-error';error.hidden=true;sidebar.append(error);
   tree=el('nav',undefined,'course-tree');tree.setAttribute('aria-label','按篇章选择内容');
   for(const p of course.parts){
-    const parent=branch({...p,title:`第 ${p.id} 篇 · ${p.title}`},tree,p===current||p.chapters.includes(current));
-    for(const chapter of p.chapters){const d=branch({...chapter,title:`${chapter.id} ${chapter.title}`},parent,chapter===current);d.classList.add('chapter-branch');}
+    const chapters=[...p.chapters,...(p.assessment?[p.assessment]:[])];
+    const parent=branch({...p,title:`第 ${p.id} 篇 · ${p.title}`},tree,p===current||chapters.includes(current));
+    for(const chapter of chapters){
+      const d=branch({...chapter,title:`${chapter.assessment?'篇末综合':chapter.id} ${chapter.title}`},parent,chapter===current);d.classList.add('chapter-branch');
+      chapterLinks(chapter,d);
+    }
   }
-  tree.append(el('p','制作样章 · 独立于正式教材','nav-label sample-label'));
-  const sample=branch(course.sample,tree,current===course.sample);sample.classList.add('sample-branch');
-  const exploreLink=link('可视化与探索',sampleBase+'explore/','tree-overview');if(current===course.sample&&mode==='explore')exploreLink.setAttribute('aria-current','page');sample.append(exploreLink);
-  for(const lesson of course.sample.lessons){const a=link(lesson.title,lesson.url,'tree-lesson');a.dataset.lesson=lesson.id;a.append(badge(lesson));sample.append(a);}
+  let sample;
+  if(course.sample){
+    tree.append(el('p','制作样章 · 独立于正式教材','nav-label sample-label'));
+    sample=branch(course.sample,tree,current===course.sample);sample.classList.add('sample-branch');chapterLinks(course.sample,sample);
+  }
   sidebar.append(tree);document.body.prepend(header,sidebar,resize);setupSidebar(sidebar,toggle,resize);
   const main=document.getElementById('main');main.classList.add('course-main');
   const toolbar=el('div',undefined,'chapter-toolbar');
-  const crumb=el('div',undefined,'breadcrumb');crumb.append(link('目录','/'));if(current){crumb.append(el('span','/'),link(current===course.sample?'制作样章':part?'篇导览':`第 ${current.id.split('.')[0]} 篇`,current===course.sample?sampleBase:(part?.url||course.parts.find(p=>p.chapters.includes(current)).url)),el('span','/'),el('span',current.title));}
+  const crumb=el('div',undefined,'breadcrumb');crumb.append(link('目录','/'));if(current){crumb.append(el('span','/'),link(current===course.sample?'制作样章':part?'篇导览':`第 ${current.id.split('.')[0]} 篇`,current===course.sample?sampleBase:(part?.url||course.parts.find(p=>p.id===current.id.split('.')[0]).url)),el('span','/'),el('span',current.title));}
   const sectionName=el('span','','crumb-section');sectionName.id='current-section';crumb.append(sectionName);toolbar.append(crumb);
   if(current&&!part){
     const tabs=el('nav',undefined,'chapter-tabs');tabs.setAttribute('aria-label','本章页面切换');
     const base=current.url;
     for(const [key,title,url] of [['overview','本章导览',base],['explore','可视化与探索',base+'explore/'],['practice','练习',base+'practice/']]){
       if(key!=='overview'&&!current.available)continue;
+      if(key==='explore'&&!current.visualization)continue;
       let destination=url;
-      if(key==='practice'&&current===course.sample){try{const last=sessionStorage.getItem('sample:accumulation-clearance:question');if(current.lessons.some(l=>l.questions.some(q=>q.slug===last)))destination+='?question='+last;}catch{}}
+      if(key==='practice'){try{const last=sessionStorage.getItem(questionKey());if(current.lessons.some(l=>l.questions.some(q=>q.slug===last)))destination+='?question='+last;}catch{}}
       const a=link(title,destination,'chapter-tab');if(key===mode)a.setAttribute('aria-current','page');tabs.append(a);
     }
     const status=el('span','','progress-badge');status.id='chapter-progress';status.setAttribute('role','status');toolbar.append(tabs,status);
@@ -79,10 +87,21 @@ export async function mountShell(pageMode='overview'){
   const skip=link('跳到正文','#main','skip-link');document.body.prepend(skip);
   await refreshProgress();
   // 只滚动目录自己的视口，避免把正文标题卷出屏幕。
-  if(current===course.sample)sidebar.scrollTop=sample.offsetTop-sidebar.offsetTop-130;
+  if(sample&&current===course.sample)sidebar.scrollTop=sample.offsetTop-sidebar.offsetTop-130;
   else {const active=tree.querySelector('[aria-current]');if(active)sidebar.scrollTop=Math.max(0,active.offsetTop-180);}
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)void refreshProgress();});
   window.addEventListener('focus',()=>void refreshProgress());
   setInterval(()=>{if(!document.hidden)void refreshProgress();},15000);
   return {course,current,part};
+}
+
+function chapterLinks(chapter, branch){
+  if(chapter.visualization){
+    const a=link('可视化与探索',chapter.url+'explore/','tree-overview');
+    if(current===chapter&&mode==='explore')a.setAttribute('aria-current','page');branch.append(a);
+  }
+  for(const lesson of chapter.lessons||[]){
+    const a=link(`${lesson.number?lesson.number+' ':''}${lesson.title}`,lesson.url,'tree-lesson');
+    a.dataset.lesson=lesson.id;a.append(badge(lesson));branch.append(a);
+  }
 }
