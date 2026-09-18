@@ -1,0 +1,3382 @@
+[
+  {
+    "id": "p04-switch-equilibria",
+    "slug": "p04-switch-equilibria",
+    "version": "1",
+    "lesson_id": "P04-C01-S01",
+    "part": "4",
+    "chapter": "4.1",
+    "title": "三个不动点具有相同性质吗",
+    "type": "choice",
+    "statement": "理想开关 x′=x−x³ 中，x 是无量纲（dimensionless）偏差。哪些说法成立？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "平衡（equilibrium）为 −1、0、1。"
+      },
+      {
+        "id": "B",
+        "text": "在 0 精确起步会永远保持 0，因此 0 渐近稳定（asymptotic stability）。"
+      },
+      {
+        "id": "C",
+        "text": "±1 的局部导数（derivative）均为 −2。"
+      },
+      {
+        "id": "D",
+        "text": "足够小的正初值（initial condition）最终趋向 1。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-switch-exact",
+    "slug": "p04-switch-exact",
+    "version": "1",
+    "lesson_id": "P04-C01-S01",
+    "part": "4",
+    "chapter": "4.1",
+    "title": "按解析式预测开关状态",
+    "type": "python",
+    "statement": "给定无偏置开关 x′=x−x³ 的初值（initial condition），在指定无量纲（dimensionless）时刻计算状态（state）。零初值必须保持为零。",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "initial",
+        "type": "float",
+        "description": "时刻 0 的无量纲状态。",
+        "unit": "1"
+      },
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "要求计算的时刻，按输入（input）顺序返回。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "states",
+        "type": "list[float]",
+        "description": "每个时刻的 x。",
+        "unit": "1"
+      }
+    ],
+    "contract": "initial=0 时全部为 0；否则 x(t)=initial/sqrt(initial²+(1−initial²)exp(−2t))。不使用时间步迭代。",
+    "constraints": [
+      "所有输入数值有限；不修改输入列表。",
+      "−2≤initial≤2；times 长度 1—30，每项在 [0,20]。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "核对 t=0、initial=0、±1 平衡（equilibrium）及正负对称性。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    initial: float,\n    times: list[float],\n) -> list[float]:\n    # 根据已知条件计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "initial": 0.5,
+          "times": [
+            0,
+            1,
+            2
+          ]
+        },
+        "expected": [
+          0.5,
+          0.8433472560147415,
+          0.9736092613710675
+        ],
+        "explanation": "时刻 0 返回 0.5；随后状态向 1 增长。分母中的指数随时间下降，但初值的正负号被保留。"
+      }
+    ]
+  },
+  {
+    "id": "p04-zero-slope",
+    "slug": "p04-zero-slope",
+    "version": "1",
+    "lesson_id": "P04-C01-S01",
+    "part": "4",
+    "chapter": "4.1",
+    "title": "导数为零后应该怎样判断",
+    "type": "choice",
+    "statement": "在平衡（equilibrium） x=0，模型（model）一 x′=−x³，模型二 x′=x³ 的局部导数（derivative）都为 0。可以得出什么？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "线性判据不能决定，需看高阶项或流向；模型一渐近稳定（asymptotic stability），模型二不稳定。"
+      },
+      {
+        "id": "B",
+        "text": "导数为零说明所有邻近点都保持不变。"
+      },
+      {
+        "id": "C",
+        "text": "二者都稳定。"
+      },
+      {
+        "id": "D",
+        "text": "二者都不稳定。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-line-no-cycle",
+    "slug": "p04-line-no-cycle",
+    "version": "1",
+    "lesson_id": "P04-C01-S01",
+    "part": "4",
+    "chapter": "4.1",
+    "title": "一条状态轴能形成自维持周期吗",
+    "type": "choice",
+    "statement": "对光滑、自治的一维方程 x′=f(x)，解唯一且没有外部周期输入（input）。哪项正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "任何一维离散映射也都不能产生周期。"
+      },
+      {
+        "id": "B",
+        "text": "只要 f 含三次项，就会产生非平凡周期轨道。"
+      },
+      {
+        "id": "C",
+        "text": "相邻平衡（equilibrium）之间流向固定，非平凡解不能掉头形成周期。"
+      },
+      {
+        "id": "D",
+        "text": "数值图有来回波动即可证明真实周期。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-basin-window",
+    "slug": "p04-basin-window",
+    "version": "1",
+    "lesson_id": "P04-C01-S02",
+    "part": "4",
+    "chapter": "4.1",
+    "title": "扫描初值但保留未决状态",
+    "type": "python",
+    "statement": "对 x′=x−x³ 进行显式中点法（explicit midpoint method）积分，用有限观察时刻的状态（state）做阈值分类。分类 0 表示尚未越过阈值，不等同于平衡（equilibrium）或吸引域（basin of attraction）已确定。",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "initials",
+        "type": "list[float]",
+        "description": "待比较的初值（initial condition）。",
+        "unit": "1"
+      },
+      {
+        "name": "h",
+        "type": "float",
+        "description": "每步无量纲（dimensionless）时间长度。",
+        "unit": "1"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "每个初值积分的步数。",
+        "unit": "1"
+      },
+      {
+        "name": "threshold",
+        "type": "float",
+        "description": "分类阈值。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "final_states",
+        "type": "list[float]",
+        "description": "对应每个初值的末态。",
+        "unit": "1"
+      },
+      {
+        "name": "labels",
+        "type": "list[int]",
+        "description": "x<−threshold 为 −1，x>threshold 为 1，其余为 0。",
+        "unit": "1"
+      }
+    ],
+    "contract": "每步先计算 k1=x−x³，m=x+h*k1/2，再同步更新 x←x+h*(m−m³)；恰做 steps 步。用严格不等式分类。",
+    "constraints": [
+      "所有输入（input）数值有限；不修改输入列表。",
+      "initials 长度 1—20，各项在 [−1.5,1.5]；0<h≤0.05；0≤steps≤3000；0<threshold<1。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "不要把有限时间标签直接称为吸引域判定；steps=0 返回原初值。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    initials: list[float],\n    h: float,\n    steps: int,\n    threshold: float,\n) -> tuple[list[float], list[int]]:\n    # 根据已知条件计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "initials": [
+            -0.5,
+            0,
+            0.5
+          ],
+          "h": 0.05,
+          "steps": 1,
+          "threshold": 0.6
+        },
+        "expected": [
+          [
+            -0.5188605545043945,
+            0.0,
+            0.5188605545043945
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "explanation": "只推进一步，两个非零末态绝对值都小于 0.6，因此三项标签均为 0；这没有否定非零初值最终趋向 ±1。"
+      }
+    ]
+  },
+  {
+    "id": "p04-midpoint-step",
+    "slug": "p04-midpoint-step",
+    "version": "1",
+    "lesson_id": "P04-C01-S02",
+    "part": "4",
+    "chapter": "4.1",
+    "title": "用半步预测计算整步更新",
+    "type": "python",
+    "statement": "对带偏置的开关 x′=x−x³+bias，完成一个显式中点法（explicit midpoint method）更新。",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "float",
+        "description": "当前 x。",
+        "unit": "1"
+      },
+      {
+        "name": "bias",
+        "type": "float",
+        "description": "本步保持不变的偏置。",
+        "unit": "1"
+      },
+      {
+        "name": "h",
+        "type": "float",
+        "description": "整步时间长度。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "next_state",
+        "type": "float",
+        "description": "一个整步后的近似 x。",
+        "unit": "1"
+      }
+    ],
+    "contract": "first=state−state³+bias；middle=state+h*first/2；next_state=state+h*(middle−middle³+bias)。第二次斜率（slope）必须在 middle 处计算。",
+    "constraints": [
+      "所有输入（input）数值有限；不修改输入列表。",
+      "−1.5≤state≤1.5；−0.6≤bias≤0.6；0≤h≤0.05。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "整步使用中点斜率，起点仍是原 state。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: float,\n    bias: float,\n    h: float,\n) -> float:\n    # 根据已知条件计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": 0,
+          "bias": 0.4,
+          "h": 0.05
+        },
+        "expected": 0.020499950000000003,
+        "explanation": "first=0.4，middle=0.01；下一状态（state）为 0.05×(0.01−0.01³+0.4)=0.02049995。"
+      }
+    ]
+  },
+  {
+    "id": "p04-kick-basin",
+    "slug": "p04-kick-basin",
+    "version": "1",
+    "lesson_id": "P04-C01-S02",
+    "part": "4",
+    "chapter": "4.1",
+    "title": "瞬时扰动是否越过边界",
+    "type": "choice",
+    "statement": "无偏置开关已经在 x=−1。瞬时扰动把状态（state）改成 −1+Δ，随后恢复原方程。哪些成立？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "Δ=1.2 后趋向 1。"
+      },
+      {
+        "id": "B",
+        "text": "只要 Δ>0 就会切换到 1。"
+      },
+      {
+        "id": "C",
+        "text": "Δ=0.8 后回到 −1。"
+      },
+      {
+        "id": "D",
+        "text": "Δ=1 后精确留在 0，但对再扰动敏感。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-finite-grid",
+    "slug": "p04-finite-grid",
+    "version": "1",
+    "lesson_id": "P04-C01-S02",
+    "part": "4",
+    "chapter": "4.1",
+    "title": "初值网格能给出精确边界吗",
+    "type": "choice",
+    "statement": "只计算初值（initial condition） −0.01、0.01，观察到末态分别接近 −1、1。哪项表述最稳妥？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "再增加一条任意轨迹（trajectory）就能证明所有初值的结论。"
+      },
+      {
+        "id": "B",
+        "text": "已数值证明边界恰为 0。"
+      },
+      {
+        "id": "C",
+        "text": "这两条轨迹只约束边界所在区间；结合方程流向和唯一性才可说明本例边界为 0。"
+      },
+      {
+        "id": "D",
+        "text": "边界肯定是 0.01。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-bias-shift",
+    "slug": "p04-bias-shift",
+    "version": "1",
+    "lesson_id": "P04-C01-S02",
+    "part": "4",
+    "chapter": "4.1",
+    "title": "偏置改变的是规则还是起点",
+    "type": "choice",
+    "statement": "把 x′=x−x³ 改成 x′=x−x³+0.1，并保持同一初值（initial condition）。哪些成立？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "这是参数（parameter）变化，改变整个流向函数。"
+      },
+      {
+        "id": "B",
+        "text": "平衡（equilibrium）仍必定为 −1、0、1。"
+      },
+      {
+        "id": "C",
+        "text": "x=0 时新的初始变化率为 0.1。"
+      },
+      {
+        "id": "D",
+        "text": "与只在时刻 0 增加状态（state） 0.1 完全等价。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-oscillation-source",
+    "slug": "p04-oscillation-source",
+    "version": "1",
+    "lesson_id": "P04-C02-S01",
+    "part": "4",
+    "chapter": "4.2",
+    "title": "周期曲线是否说明自维持振荡",
+    "type": "choice",
+    "statement": "一段时间曲线在多周期内保持振幅（amplitude）。还需什么信息来判断是否自维持？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "应检查是否有周期驱动、去除驱动后的行为，以及多个初值（initial condition）的长期轨迹（trajectory）。"
+      },
+      {
+        "id": "B",
+        "text": "只要两次峰值相同就是极限环（limit cycle）。"
+      },
+      {
+        "id": "C",
+        "text": "测量更密即可替代输入（input）信息。"
+      },
+      {
+        "id": "D",
+        "text": "只需曲线足够平滑。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-radial-solution",
+    "slug": "p04-radial-solution",
+    "version": "1",
+    "lesson_id": "P04-C02-S01",
+    "part": "4",
+    "chapter": "4.2",
+    "title": "从半径与角度恢复二维轨迹",
+    "type": "python",
+    "statement": "径向振子满足 R′=μR−R³、θ′=ω。给定二维初值（initial condition），按解析式计算状态（state），不能把负分量当作负浓度（concentration）。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "mu",
+        "type": "float",
+        "description": "线性径向增长系数 μ。",
+        "unit": "1"
+      },
+      {
+        "name": "omega",
+        "type": "float",
+        "description": "角度增长率 ω。",
+        "unit": "1"
+      },
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "二维无量纲（dimensionless）偏差 [x0,y0]。",
+        "unit": "1"
+      },
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "无量纲时刻。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "states",
+        "type": "list[list[float]]",
+        "description": "依次返回 [x(t),y(t)]。",
+        "unit": "1"
+      }
+    ],
+    "contract": "s0=x0²+y0²。s0=0 时状态全零；μ=0 时 s=s0/(1+2s0*t)；否则 s=s0*exp(2μt)/(1+s0*expm1(2μt)/μ)。以 sqrt(s/s0) 缩放初值旋转 ωt 后的向量（vector）。",
+    "constraints": [
+      "所有输入（input）数值有限；不修改输入列表。",
+      "−0.5≤mu≤0.8；0<omega≤2；initial 长度为 2，分量绝对值≤2；times 长度 1—30，时刻在 [0,30]。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "处理 s0=0 和 μ=0 两个分支；旋转不改变半径。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    mu: float,\n    omega: float,\n    initial: list[float],\n    times: list[float],\n) -> list[list[float]]:\n    # 根据已知条件计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "mu": 0.25,
+          "omega": 1,
+          "initial": [
+            0.5,
+            0
+          ],
+          "times": [
+            0,
+            1.5707963267948966,
+            3.141592653589793
+          ]
+        },
+        "expected": [
+          [
+            0.5,
+            0.0
+          ],
+          [
+            3.061616997868383e-17,
+            0.5
+          ],
+          [
+            -0.5,
+            6.123233995736766e-17
+          ]
+        ],
+        "explanation": "初始半径 0.5 正好等于 sqrt(μ)，半径保持不变；三个时刻分别接近 [0.5,0]、[0,0.5]、[−0.5,0]。"
+      }
+    ]
+  },
+  {
+    "id": "p04-forcing-removed",
+    "slug": "p04-forcing-removed",
+    "version": "1",
+    "lesson_id": "P04-C02-S01",
+    "part": "4",
+    "chapter": "4.2",
+    "title": "移除周期驱动以后",
+    "type": "choice",
+    "statement": "阻尼系统 z′=(−α+iω)z+F exp(iΩt)，α>0。在某时刻把 F 改为 0。哪个结论成立？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "Ω 会自动变成系统的自激频率。"
+      },
+      {
+        "id": "B",
+        "text": "之后仍由周期驱动维持固定振幅（amplitude）。"
+      },
+      {
+        "id": "C",
+        "text": "之后从当时状态（state）开始按 exp(−αΔt) 衰减。"
+      },
+      {
+        "id": "D",
+        "text": "状态必须立刻变为 0。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-origin-exception",
+    "slug": "p04-origin-exception",
+    "version": "1",
+    "lesson_id": "P04-C02-S01",
+    "part": "4",
+    "chapter": "4.2",
+    "title": "为什么正增长系数仍可能不动",
+    "type": "choice",
+    "statement": "径向振子 μ>0，二维初值（initial condition）精确为 [0,0]。哪项正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "它必定立刻进入极限环（limit cycle）。"
+      },
+      {
+        "id": "B",
+        "text": "它保持在不稳定平衡（equilibrium）；非零小扰动才会离开。"
+      },
+      {
+        "id": "C",
+        "text": "μ>0 说明原点稳定。"
+      },
+      {
+        "id": "D",
+        "text": "程序必须添加噪声才能算正确。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-radial-stability",
+    "slug": "p04-radial-stability",
+    "version": "1",
+    "lesson_id": "P04-C02-S01",
+    "part": "4",
+    "chapter": "4.2",
+    "title": "径向方程怎样支持极限环",
+    "type": "choice",
+    "statement": "对于 μ>0、ω>0 的径向振子，哪些论证成立？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "R>sqrt(μ) 时半径下降。"
+      },
+      {
+        "id": "B",
+        "text": "在 R=sqrt(μ) 上有周期运动，且邻近非零半径趋向它。"
+      },
+      {
+        "id": "C",
+        "text": "所有初值（initial condition）在同一时刻收敛到同一个状态（state）点。"
+      },
+      {
+        "id": "D",
+        "text": "0<R<sqrt(μ) 时半径增长。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-peak-period",
+    "slug": "p04-peak-period",
+    "version": "1",
+    "lesson_id": "P04-C02-S02",
+    "part": "4",
+    "chapter": "4.2",
+    "title": "在明确峰值规则下测量周期",
+    "type": "python",
+    "statement": "输入（input）等间隔观测（observation）值。截去前段后计算半峰峰值振幅（amplitude），以及严格局部峰之间的平均间隔。平台峰和端点不记作峰。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "values",
+        "type": "list[float]",
+        "description": "时刻 i*dt 的观测值。",
+        "unit": "1"
+      },
+      {
+        "name": "dt",
+        "type": "float",
+        "description": "采样间隔。",
+        "unit": "1"
+      },
+      {
+        "name": "start",
+        "type": "int",
+        "description": "保留窗口的首个下标，包含该值。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "amplitude",
+        "type": "float",
+        "description": "窗口内 (最大值−最小值)/2。",
+        "unit": "1"
+      },
+      {
+        "name": "peak_times",
+        "type": "list[float]",
+        "description": "满足严格峰值条件的时刻。",
+        "unit": "1"
+      },
+      {
+        "name": "mean_period",
+        "type": "float | None",
+        "description": "至少两个峰时返回相邻峰间隔均值，否则 None。",
+        "unit": "1"
+      }
+    ],
+    "contract": "振幅使用 values[start:]。峰下标为 start+1≤i≤len(values)−2，且 values[i] 同时严格大于两邻点。至少两个峰时 period=(最后峰时刻−首峰时刻)/(峰数−1)。",
+    "constraints": [
+      "所有输入数值有限；不修改输入列表。",
+      "3≤len(values)≤5000；0≤start≤len(values)−3；0<dt≤2；值的绝对值≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "不要把端点或平台的一端偷偷算作峰；没有两个峰时保留 None。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    values: list[float],\n    dt: float,\n    start: int,\n) -> tuple[float, list[float], float | None]:\n    # 根据已知条件计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "values": [
+            0,
+            1,
+            0,
+            -1,
+            0,
+            1,
+            0,
+            -1,
+            0
+          ],
+          "dt": 0.5,
+          "start": 0
+        },
+        "expected": [
+          1.0,
+          [
+            0.5,
+            2.5
+          ],
+          2.0
+        ],
+        "explanation": "峰在下标 1 和 5，即时刻 0.5 和 2.5；振幅为 1，平均周期为 2。"
+      }
+    ]
+  },
+  {
+    "id": "p04-crossing-period",
+    "slug": "p04-crossing-period",
+    "version": "1",
+    "lesson_id": "P04-C02-S02",
+    "part": "4",
+    "chapter": "4.2",
+    "title": "用向上过零估计周期",
+    "type": "python",
+    "statement": "对等间隔轨迹（trajectory）做分段直线插值，找向上过零时刻。重复零值只在最后一个零接到正值的片段计一次。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "values",
+        "type": "list[float]",
+        "description": "时刻 i*dt 的观测（observation）值。",
+        "unit": "1"
+      },
+      {
+        "name": "dt",
+        "type": "float",
+        "description": "采样间隔。",
+        "unit": "1"
+      },
+      {
+        "name": "start",
+        "type": "int",
+        "description": "开始检查的片段左端下标。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "crossings",
+        "type": "list[float]",
+        "description": "按时间顺序排列的向上过零时刻。",
+        "unit": "1"
+      },
+      {
+        "name": "mean_period",
+        "type": "float | None",
+        "description": "至少两次过零时的平均间隔，否则 None。",
+        "unit": "1"
+      }
+    ],
+    "contract": "对 i=start,...,len(values)−2，若 values[i]≤0<values[i+1]，记录 (i−values[i]/(values[i+1]−values[i]))*dt。两次以上按首末间隔平均。",
+    "constraints": [
+      "所有输入（input）数值有限；不修改输入列表。",
+      "2≤len(values)≤5000；0≤start≤len(values)−2；0<dt≤2；值的绝对值≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "要求方向为向上；所有过零混算会把正弦周期误减半。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    values: list[float],\n    dt: float,\n    start: int,\n) -> tuple[list[float], float | None]:\n    # 根据已知条件计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "values": [
+            -1,
+            1,
+            -1,
+            1
+          ],
+          "dt": 1,
+          "start": 0
+        },
+        "expected": [
+          [
+            0.5,
+            2.5
+          ],
+          2.0
+        ],
+        "explanation": "两个过零时刻为 0.5 和 2.5，平均间隔为 2；使用插值而不是直接取右端采样时刻。"
+      }
+    ]
+  },
+  {
+    "id": "p04-phase-after-kick",
+    "slug": "p04-phase-after-kick",
+    "version": "1",
+    "lesson_id": "P04-C02-S02",
+    "part": "4",
+    "chapter": "4.2",
+    "title": "回到圆环等于回到原来的时钟吗",
+    "type": "choice",
+    "statement": "径向振子已在稳定极限环（limit cycle）上。扰动改变了半径和角度，之后恢复原方程。哪些成立？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "半径可恢复到同一极限环。"
+      },
+      {
+        "id": "B",
+        "text": "角度变化一定自动消失。"
+      },
+      {
+        "id": "C",
+        "text": "本模型（model） θ′=ω，两条轨迹（trajectory）的相位（phase）差保持不变。"
+      },
+      {
+        "id": "D",
+        "text": "轨道吸引与逐点同步是不同结论。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-measurement-window",
+    "slug": "p04-measurement-window",
+    "version": "1",
+    "lesson_id": "P04-C02-S02",
+    "part": "4",
+    "chapter": "4.2",
+    "title": "周期数值相同就足够了吗",
+    "type": "choice",
+    "statement": "一段短轨迹（trajectory）仅包含两个很早的峰。计算得到一个峰间周期。哪个后续检查最合适？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "延长观察、增加暂态（transient）截断并细化采样，与模型（model）的解析周期比较。"
+      },
+      {
+        "id": "B",
+        "text": "把输出（output）小数位增多即可提高可信度。"
+      },
+      {
+        "id": "C",
+        "text": "只需删除振幅（amplitude）较小的峰，不说明规则。"
+      },
+      {
+        "id": "D",
+        "text": "直接把它宣布为长期极限环（limit cycle）周期。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-fold-locations",
+    "slug": "p04-fold-locations",
+    "version": "1",
+    "lesson_id": "P04-C03-S01",
+    "part": "4",
+    "chapter": "4.3",
+    "title": "同时求平衡与零斜率",
+    "type": "python",
+    "statement": "对 x′=a*x−x³+b，a>0。计算平衡（equilibrium）分支折叠处的状态（state）以及对应偏置。返回按状态从小到大排列的一对结果。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "float",
+        "description": "给定正线性系数。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "states",
+        "type": "list[float]",
+        "description": "两个折叠状态，升序。",
+        "unit": "1"
+      },
+      {
+        "name": "biases",
+        "type": "list[float]",
+        "description": "与 states 一一对应的 b，不另外排序。",
+        "unit": "1"
+      }
+    ],
+    "contract": "由 a−3x²=0 求 x=±sqrt(a/3)，再用平衡关系 b=x³−a*x 求偏置。",
+    "constraints": [
+      "所有输入（input）数值有限；不修改输入列表。",
+      "0.1≤a≤3。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "零斜率（slope）条件和原平衡方程都必须满足。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    a: float,\n) -> tuple[list[float], list[float]]:\n    # 根据已知条件计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "a": 3
+        },
+        "expected": [
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            2.0,
+            -2.0
+          ]
+        ],
+        "explanation": "a=3 时折叠状态为 [−1,1]，对应偏置为 [2,−2]；两组数组（array）必须保持配对关系。"
+      }
+    ]
+  },
+  {
+    "id": "p04-bias-continuation",
+    "slug": "p04-bias-continuation",
+    "version": "1",
+    "lesson_id": "P04-C03-S01",
+    "part": "4",
+    "chapter": "4.3",
+    "title": "区分重启扫描与接续扫描",
+    "type": "python",
+    "statement": "对 x′=x−x³+b，按给定顺序逐个使用 biases 中的偏置。每个偏置做相同步数的显式中点积分。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "biases",
+        "type": "list[float]",
+        "description": "扫描顺序，不能擅自排序。",
+        "unit": "1"
+      },
+      {
+        "name": "initial",
+        "type": "float",
+        "description": "第一个偏置的起点；重启方案中也是每个偏置的起点。",
+        "unit": "1"
+      },
+      {
+        "name": "h",
+        "type": "float",
+        "description": "时间步长（time step）。",
+        "unit": "1"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "每个偏置停留的积分步数。",
+        "unit": "1"
+      },
+      {
+        "name": "carry",
+        "type": "bool",
+        "description": "True 沿用上一末态；False 每个偏置都从 initial 重启。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "final_states",
+        "type": "list[float]",
+        "description": "每个偏置停留结束后的状态（state）。",
+        "unit": "1"
+      }
+    ],
+    "contract": "每一步 m=x+h*(x−x³+b)/2，x←x+h*(m−m³+b)。接续时把当前末态作为下一偏置起点；重启时不沿用。",
+    "constraints": [
+      "所有输入（input）数值有限；不修改输入列表。",
+      "1≤len(biases)≤40，各值在 [−0.6,0.6]；−1.5≤initial≤1.5；0<h≤0.02；0≤steps≤2000。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "扫描摘要是有限停留结果，不自动等于精确平衡（equilibrium）分支。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    biases: list[float],\n    initial: float,\n    h: float,\n    steps: int,\n    carry: bool,\n) -> list[float]:\n    # 根据已知条件计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "biases": [
+            0,
+            0.4,
+            0
+          ],
+          "initial": 0,
+          "h": 0.02,
+          "steps": 1,
+          "carry": true
+        },
+        "expected": [
+          0.0,
+          0.00807999872,
+          0.008243203718701131
+        ],
+        "explanation": "第一个偏置 0 使零初值（initial condition）保持零；偏置 0.4 使状态变正；最后恢复偏置 0 时沿用这个正状态，而非重新设为零。"
+      }
+    ]
+  },
+  {
+    "id": "p04-branch-stability",
+    "slug": "p04-branch-stability",
+    "version": "1",
+    "lesson_id": "P04-C03-S01",
+    "part": "4",
+    "chapter": "4.3",
+    "title": "分支图应该标记什么",
+    "type": "choice",
+    "statement": "偏置开关的平衡（equilibrium）关系为 b=x³−x。哪些标记正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "|x|>1/sqrt(3) 的分支局部渐近稳定（local asymptotic stability）。"
+      },
+      {
+        "id": "B",
+        "text": "|x|<1/sqrt(3) 的分支不稳定。"
+      },
+      {
+        "id": "C",
+        "text": "在折叠点 f′=0，不能只用一阶导数（derivative）的严格正负判据。"
+      },
+      {
+        "id": "D",
+        "text": "只画接续扫描终点就能找全所有不稳定分支。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-scan-protocol",
+    "slug": "p04-scan-protocol",
+    "version": "1",
+    "lesson_id": "P04-C03-S01",
+    "part": "4",
+    "chapter": "4.3",
+    "title": "为什么正反扫描不重合",
+    "type": "choice",
+    "statement": "正向扫描沿用上一末态，反向也沿用上一末态。某一区间两条结果不同。哪项正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "可能来自多稳态（multistability）及历史，也可能含有限停留造成的延迟（delay）；需对照分支和停留时间。"
+      },
+      {
+        "id": "B",
+        "text": "足以证明系统受随机噪声驱动。"
+      },
+      {
+        "id": "C",
+        "text": "忽略初值（initial condition）并平均两条曲线，就得到真正唯一平衡（equilibrium）。"
+      },
+      {
+        "id": "D",
+        "text": "必然是程序错误。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-threshold-resolution",
+    "slug": "p04-threshold-resolution",
+    "version": "1",
+    "lesson_id": "P04-C03-S01",
+    "part": "4",
+    "chapter": "4.3",
+    "title": "转变位置该报告到几位",
+    "type": "choice",
+    "statement": "扫描 b 的间隔是 0.02，观察到状态（state）在 b=0.38 与 0.40 之间跳变，停留时间有限。哪项正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "阈值精确等于 0.40，最后一位没有误差。"
+      },
+      {
+        "id": "B",
+        "text": "只细化时间步就能消除参数（parameter）网格误差。"
+      },
+      {
+        "id": "C",
+        "text": "阈值精确等于 0.390000。"
+      },
+      {
+        "id": "D",
+        "text": "只报告当前网格与停留条件下的转变区间，并结合解析折叠值和更细实验。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-hopf-branch",
+    "slug": "p04-hopf-branch",
+    "version": "1",
+    "lesson_id": "P04-C03-S02",
+    "part": "4",
+    "chapter": "4.3",
+    "title": "给出长期半径与周期",
+    "type": "python",
+    "statement": "对 R′=μR−R³、θ′=ω，ω>0。返回非零初值（initial condition）的吸引运动半径：μ≤0 为 0，μ>0 为 sqrt(μ)。没有非零周期轨道时周期返回 None。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "mus",
+        "type": "list[float]",
+        "description": "需要比较的 μ，保留输入（input）顺序。",
+        "unit": "1"
+      },
+      {
+        "name": "omega",
+        "type": "float",
+        "description": "固定正角速度。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "radii",
+        "type": "list[float]",
+        "description": "对应吸引运动的长期半径。",
+        "unit": "1"
+      },
+      {
+        "name": "periods",
+        "type": "list[float | None]",
+        "description": "存在非零周期轨道时为 2π/omega，否则 None。",
+        "unit": "1"
+      }
+    ],
+    "contract": "逐项分支判断 μ>0；不要对 μ≤0 强行开方，不要把原点的固定状态（state）赋予振荡周期。",
+    "constraints": [
+      "所有输入数值有限；不修改输入列表。",
+      "1≤len(mus)≤30；−1≤mu≤1；0.1≤omega≤3。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "半径来自径向平衡（equilibrium），周期来自角运动，两者的参数（parameter）作用不同。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    mus: list[float],\n    omega: float,\n) -> tuple[list[float], list[float | None]]:\n    # 根据已知条件计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "mus": [
+            -0.25,
+            0,
+            0.25
+          ],
+          "omega": 3.141592653589793
+        },
+        "expected": [
+          [
+            0.0,
+            0.0,
+            0.5
+          ],
+          [
+            null,
+            null,
+            2.0
+          ]
+        ],
+        "explanation": "长期半径为 [0,0,0.5]；只有第三项有非零周期轨道，周期为 2，因此 periods=[None,None,2]。"
+      }
+    ]
+  },
+  {
+    "id": "p04-critical-slow",
+    "slug": "p04-critical-slow",
+    "version": "1",
+    "lesson_id": "P04-C03-S02",
+    "part": "4",
+    "chapter": "4.3",
+    "title": "μ=0 时为什么不能说不稳定",
+    "type": "choice",
+    "statement": "径向方程 μ=0 时 R′=−R³。哪些成立？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "非零半径缓慢趋于 0。"
+      },
+      {
+        "id": "B",
+        "text": "原点线性化（linearization）实部为零，因此一定不稳定。"
+      },
+      {
+        "id": "C",
+        "text": "衰减是代数型 R=R0/sqrt(1+2R0²t)，可能需要很长观察窗。"
+      },
+      {
+        "id": "D",
+        "text": "线性判据不决定本例，但非线性径向方程能决定。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-zero-frequency",
+    "slug": "p04-zero-frequency",
+    "version": "1",
+    "lesson_id": "P04-C03-S02",
+    "part": "4",
+    "chapter": "4.3",
+    "title": "有稳定半径就一定是极限环吗",
+    "type": "choice",
+    "statement": "若把径向振子设为 μ>0、ω=0，则 R=sqrt(μ) 上每点都静止。应怎样解释？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "这是一圈平衡（equilibrium）点，不是该模型（model）的非平凡周期轨道。"
+      },
+      {
+        "id": "B",
+        "text": "所有点同时变成原点。"
+      },
+      {
+        "id": "C",
+        "text": "只要相图（phase portrait）上是圆，就可以叫极限环（limit cycle）。"
+      },
+      {
+        "id": "D",
+        "text": "仍有周期 2π/0。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-amplitude-axis",
+    "slug": "p04-amplitude-axis",
+    "version": "1",
+    "lesson_id": "P04-C03-S02",
+    "part": "4",
+    "chapter": "4.3",
+    "title": "分岔图的纵轴为何不能混用",
+    "type": "choice",
+    "statement": "比较开关与径向振子的参数（parameter）扫描，哪项正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "只要无量纲（dimensionless），任何数值都能合成同一物理量。"
+      },
+      {
+        "id": "B",
+        "text": "振子的振幅（amplitude）只由最后一个时刻决定。"
+      },
+      {
+        "id": "C",
+        "text": "开关平衡（equilibrium）状态（state） x 与振子长期半径 R 是不同摘要，应分别标轴。"
+      },
+      {
+        "id": "D",
+        "text": "把振子的单个末态 x 叫长期振幅总是正确。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-hopf-evidence",
+    "slug": "p04-hopf-evidence",
+    "version": "1",
+    "lesson_id": "P04-C03-S02",
+    "part": "4",
+    "chapter": "4.3",
+    "title": "特征值穿过虚轴以后",
+    "type": "choice",
+    "statement": "原点特征值（eigenvalue）为 μ±iω，ω>0。对于指定的径向模型（model），哪些支持超临界（supercritical） Hopf 转变？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "径向三次项的负号决定了本例的幅度饱和。"
+      },
+      {
+        "id": "B",
+        "text": "μ 由负变正时原点从吸引变排斥。"
+      },
+      {
+        "id": "C",
+        "text": "稳定周期半径 sqrt(μ) 从零连续出现。"
+      },
+      {
+        "id": "D",
+        "text": "对任意其他非线性项，只要同样线性化（linearization）就必然有同样稳定环。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-logistic-iterate",
+    "slug": "p04-logistic-iterate",
+    "version": "1",
+    "lesson_id": "P04-C04-S01",
+    "part": "4",
+    "chapter": "4.4",
+    "title": "按代次更新一个比例",
+    "type": "python",
+    "statement": "离散种群比例满足 x[n+1]=r*x[n]*(1−x[n])。返回从初值（initial condition）开始的全部 steps+1 项，不能把它当作微分方程欧拉更新。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "r",
+        "type": "float",
+        "description": "每代无量纲（dimensionless）参数（parameter）。",
+        "unit": "1"
+      },
+      {
+        "name": "initial",
+        "type": "float",
+        "description": "第 0 代比例。",
+        "unit": "1"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "更新代数。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "states",
+        "type": "list[float]",
+        "description": "包含初值的序列。",
+        "unit": "1"
+      }
+    ],
+    "contract": "每代直接令 next=r*x*(1−x)，不加回 x，不引入 h。 为固定浮点实验，使用 Python float；每次更新按 (r*x)*(1-x) 的括号次序，不改写成 r*(x-x*x)。长轨迹（trajectory）的舍入差异会被放大。",
+    "constraints": [
+      "所有输入（input）数值有限；不修改输入列表。",
+      "0≤r≤4；0≤initial≤1；0≤steps≤200。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "检查长度、初值、r=0 和 x0=1 的边界。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    r: float,\n    initial: float,\n    steps: int,\n) -> list[float]:\n    # 根据已知条件计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "r": 2,
+          "initial": 0.25,
+          "steps": 3
+        },
+        "expected": [
+          0.25,
+          0.375,
+          0.46875,
+          0.498046875
+        ],
+        "explanation": "序列为 [0.25,0.375,0.46875,0.498046875]；每步直接使用映射右端。"
+      }
+    ]
+  },
+  {
+    "id": "p04-interval-invariance",
+    "slug": "p04-interval-invariance",
+    "version": "1",
+    "lesson_id": "P04-C04-S01",
+    "part": "4",
+    "chapter": "4.4",
+    "title": "为什么选择 0≤r≤4",
+    "type": "choice",
+    "statement": "logistic 映射（logistic map）中 x∈[0,1]。哪些成立？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "0≤r≤4 时下一代仍在 [0,1]。"
+      },
+      {
+        "id": "B",
+        "text": "只要初值（initial condition）在 [0,1]，任意 r 都保持区间。"
+      },
+      {
+        "id": "C",
+        "text": "这个区间结论不等于任意 r 都有相同长期行为。"
+      },
+      {
+        "id": "D",
+        "text": "x(1−x) 在区间内非负且不超过 1/4。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-map-stability",
+    "slug": "p04-map-stability",
+    "version": "1",
+    "lesson_id": "P04-C04-S01",
+    "part": "4",
+    "chapter": "4.4",
+    "title": "映射的不动点如何判断稳定",
+    "type": "choice",
+    "statement": "非零不动点（fixed point） x*=1−1/r（r>1），映射导数（derivative）在该点为 2−r。哪个是局部吸引的严格条件？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "2−r>0 即可。"
+      },
+      {
+        "id": "B",
+        "text": "任何 r>1 都局部吸引。"
+      },
+      {
+        "id": "C",
+        "text": "2−r<0 即可。"
+      },
+      {
+        "id": "D",
+        "text": "|2−r|<1，即 1<r<3。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-periodic-not-chaotic",
+    "slug": "p04-periodic-not-chaotic",
+    "version": "1",
+    "lesson_id": "P04-C04-S01",
+    "part": "4",
+    "chapter": "4.4",
+    "title": "两点交替属于混沌吗",
+    "type": "choice",
+    "statement": "参数（parameter） r=3.2 的后段序列在两个值附近交替，步进规则确定。哪项正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "两点周期违反一维 ODE 无周期结论，因此程序错了。"
+      },
+      {
+        "id": "B",
+        "text": "只要一直变化就是混沌（chaos）。"
+      },
+      {
+        "id": "C",
+        "text": "周期二（period-two cycle）行为与混沌不同；需继续检查长期重复和初值敏感性（sensitivity to initial conditions）。"
+      },
+      {
+        "id": "D",
+        "text": "只有随机数能产生交替。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-prediction-horizon",
+    "slug": "p04-prediction-horizon",
+    "version": "1",
+    "lesson_id": "P04-C04-S02",
+    "part": "4",
+    "chapter": "4.4",
+    "title": "何时第一次超过误差容许值",
+    "type": "python",
+    "statement": "在同一个 logistic 映射（logistic map）下推进两个初值（initial condition），逐代计算绝对距离，并找首次严格超过 threshold 的代次。若一直不超过，返回 None。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "r",
+        "type": "float",
+        "description": "共同映射参数（parameter）。",
+        "unit": "1"
+      },
+      {
+        "name": "first",
+        "type": "float",
+        "description": "第一条轨迹（trajectory）的第 0 代。",
+        "unit": "1"
+      },
+      {
+        "name": "second",
+        "type": "float",
+        "description": "第二条轨迹的第 0 代。",
+        "unit": "1"
+      },
+      {
+        "name": "threshold",
+        "type": "float",
+        "description": "允许的绝对距离。",
+        "unit": "1"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "更新次数。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "distances",
+        "type": "list[float]",
+        "description": "包含第 0 代的 steps+1 个距离。",
+        "unit": "1"
+      },
+      {
+        "name": "first_exceedance",
+        "type": "int | None",
+        "description": "第一个严格超阈值下标；包括 0。",
+        "unit": "1"
+      }
+    ],
+    "contract": "两条轨迹分别按 x←r*x*(1−x) 同步迭代。距离取绝对值；d==threshold 不算超过。 为固定浮点实验，使用 Python float；每次更新按 (r*x)*(1-x) 的括号次序，不改写成 r*(x-x*x)。长轨迹的舍入差异会被放大。",
+    "constraints": [
+      "所有输入（input）数值有限；不修改输入列表。",
+      "0≤r≤4；两个初值在 [0,1]；0≤threshold≤1；0≤steps≤120。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "保留未越界 None；不要把最终距离当作首次预测期限。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    r: float,\n    first: float,\n    second: float,\n    threshold: float,\n    steps: int,\n) -> tuple[list[float], int | None]:\n    # 根据已知条件计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "r": 2,
+          "first": 0.25,
+          "second": 0.5,
+          "threshold": 0.2,
+          "steps": 2
+        },
+        "expected": [
+          [
+            0.25,
+            0.125,
+            0.03125
+          ],
+          0
+        ],
+        "explanation": "第 0 代距离 0.25 已严格超过 0.2，所以首次下标为 0；后续距离缩小也不能改写首次越界。"
+      }
+    ]
+  },
+  {
+    "id": "p04-strict-threshold",
+    "slug": "p04-strict-threshold",
+    "version": "1",
+    "lesson_id": "P04-C04-S02",
+    "part": "4",
+    "chapter": "4.4",
+    "title": "阈值相等算越界吗",
+    "type": "choice",
+    "statement": "距离序列为 [0.01,0.05,0.1,0.08]，要求首次严格超过 0.05。正确下标是？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "1"
+      },
+      {
+        "id": "B",
+        "text": "2"
+      },
+      {
+        "id": "C",
+        "text": "3"
+      },
+      {
+        "id": "D",
+        "text": "0"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-bounded-separation",
+    "slug": "p04-bounded-separation",
+    "version": "1",
+    "lesson_id": "P04-C04-S02",
+    "part": "4",
+    "chapter": "4.4",
+    "title": "距离饱和是否推翻初值敏感性",
+    "type": "choice",
+    "statement": "两条轨迹（trajectory）都在 [0,1]，距离先增大后不再指数上升。哪些成立？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "这证明前段增长一定是随机噪声。"
+      },
+      {
+        "id": "B",
+        "text": "应区分小扰动增长窗口与饱和阶段。"
+      },
+      {
+        "id": "C",
+        "text": "距离最多为 1，因此不可能永远指数增长。"
+      },
+      {
+        "id": "D",
+        "text": "远离后局部线性扰动近似可能不再适用。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-precision-merge",
+    "slug": "p04-precision-merge",
+    "version": "1",
+    "lesson_id": "P04-C04-S02",
+    "part": "4",
+    "chapter": "4.4",
+    "title": "两个输入为何变成同一条轨迹",
+    "type": "choice",
+    "statement": "两个不同十进制初值（initial condition）转成 Python float 后恰好相等。能从二者轨迹（trajectory）距离全零推出什么？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "添加随机噪声后原问题自动得到解答。"
+      },
+      {
+        "id": "B",
+        "text": "数学模型（model）不敏感。"
+      },
+      {
+        "id": "C",
+        "text": "只能说明这次计算实际用了同一浮点初值，实验未保留想比较的扰动。"
+      },
+      {
+        "id": "D",
+        "text": "已证明真实预测无限准确。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-map-not-step",
+    "slug": "p04-map-not-step",
+    "version": "1",
+    "lesson_id": "P04-C04-S02",
+    "part": "4",
+    "chapter": "4.4",
+    "title": "怎样检查映射计算误差",
+    "type": "choice",
+    "statement": "对原始 logistic 代次映射，哪个精度检查成立？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "把一步拆成两次半步更新而不说明新模型（model）。"
+      },
+      {
+        "id": "B",
+        "text": "比较不同算术精度、表达式求值与初值（initial condition）表示；保留原代次定义。"
+      },
+      {
+        "id": "C",
+        "text": "把 r 除以二即可得到更精确的相同轨迹（trajectory）。"
+      },
+      {
+        "id": "D",
+        "text": "使用更多小数位打印即可增加计算精度。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-finite-growth",
+    "slug": "p04-finite-growth",
+    "version": "1",
+    "lesson_id": "P04-C04-S03",
+    "part": "4",
+    "chapter": "4.4",
+    "title": "计算指定窗口的切向增长率",
+    "type": "python",
+    "statement": "先丢弃 burn 次迭代，再对 logistic 映射（logistic map）计算 steps 个局部导数（derivative）的自然对数（natural logarithm）均值。遇到零导数时返回 None，表示该有限和包含 log(0)，不能擅自加一个小数规避。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "r",
+        "type": "float",
+        "description": "共同参数（parameter）。",
+        "unit": "1"
+      },
+      {
+        "name": "initial",
+        "type": "float",
+        "description": "最初状态（state）。",
+        "unit": "1"
+      },
+      {
+        "name": "burn",
+        "type": "int",
+        "description": "先丢弃的更新次数。",
+        "unit": "1"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "取对数项数。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "growth",
+        "type": "float | None",
+        "description": "有限窗口均值；任何导数为零时 None。",
+        "unit": "每代"
+      }
+    ],
+    "contract": "烧去 burn 步后，以当前 x 计算 log(abs(r*(1−2*x)))，再更新 x；重复 steps 次并平均。使用自然对数。 为固定浮点实验，使用 Python float；每次更新按 (r*x)*(1-x) 的括号次序，不改写成 r*(x-x*x)。长轨迹（trajectory）的舍入差异会被放大。",
+    "constraints": [
+      "所有输入（input）数值有限；不修改输入列表。",
+      "0≤r≤4；0≤initial≤1；0≤burn≤1000；1≤steps≤2000。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先求当前状态导数再推进；None 表示有零导数，不能解释为零增长率。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    r: float,\n    initial: float,\n    burn: int,\n    steps: int,\n) -> float | None:\n    # 根据已知条件计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "r": 2.5,
+          "initial": 0.6,
+          "burn": 0,
+          "steps": 3
+        },
+        "expected": -0.6931471805599451,
+        "explanation": "r=2.5、x=0.6 为不动点（fixed point），导数绝对值为 0.5，每项都是 log(0.5)，均值约 −0.693147。"
+      }
+    ]
+  },
+  {
+    "id": "p04-finite-positive",
+    "slug": "p04-finite-positive",
+    "version": "1",
+    "lesson_id": "P04-C04-S03",
+    "part": "4",
+    "chapter": "4.4",
+    "title": "有限时间正值能证明什么",
+    "type": "choice",
+    "statement": "某条轨迹（trajectory）一个短窗口的对数导数（derivative）均值为正。哪项正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "所有初值（initial condition）的长期指数完全相同。"
+      },
+      {
+        "id": "B",
+        "text": "任意观测（observation）误差都永远指数增长。"
+      },
+      {
+        "id": "C",
+        "text": "已经证明整个参数（parameter）区间都混沌（chaos）。"
+      },
+      {
+        "id": "D",
+        "text": "它是该轨迹该窗口的切向扩张证据，仍需检查窗口、暂态（transient）、轨道和数值精度。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-log-zero",
+    "slug": "p04-log-zero",
+    "version": "1",
+    "lesson_id": "P04-C04-S03",
+    "part": "4",
+    "chapter": "4.4",
+    "title": "怎样处理零导数",
+    "type": "choice",
+    "statement": "局部导数（derivative）恰为零。对对数增长率的处理哪项正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "强行返回 0，表示不变。"
+      },
+      {
+        "id": "B",
+        "text": "换成 10⁻⁸ 且不说明。"
+      },
+      {
+        "id": "C",
+        "text": "数学上对数为负无穷；计算契约可返回明确的缺失标记，并解释原因。"
+      },
+      {
+        "id": "D",
+        "text": "把这一项删除，平均分母保持原样。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-exact-special-orbit",
+    "slug": "p04-exact-special-orbit",
+    "version": "1",
+    "lesson_id": "P04-C04-S03",
+    "part": "4",
+    "chapter": "4.4",
+    "title": "特殊初值为何推翻不了典型行为",
+    "type": "choice",
+    "statement": "r=4，初值（initial condition） x0=0.5 给出 0.5→1→0→0。哪项正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "r=4 的每条轨迹（trajectory）都如此。"
+      },
+      {
+        "id": "B",
+        "text": "存在特殊轨道；不能把它外推为所有初值，也不能把所有初值强称为混沌（chaos）。"
+      },
+      {
+        "id": "C",
+        "text": "计算必须加噪声来阻止这条轨道。"
+      },
+      {
+        "id": "D",
+        "text": "数学确定性排除了复杂长期行为。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-digits-vs-certainty",
+    "slug": "p04-digits-vs-certainty",
+    "version": "1",
+    "lesson_id": "P04-C04-S03",
+    "part": "4",
+    "chapter": "4.4",
+    "title": "增加算术精度意味着什么",
+    "type": "choice",
+    "statement": "两个精度版本在早期一致、后期分离。哪项解读合适？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "舍入误差（round-off error）会被动力学放大；更高精度提供更长参考窗口，但仍需模型（model）与初值（initial condition）误差分析。"
+      },
+      {
+        "id": "B",
+        "text": "舍入本质上就是随机过程。"
+      },
+      {
+        "id": "C",
+        "text": "只选与预期图像最像的版本即可。"
+      },
+      {
+        "id": "D",
+        "text": "精度较高的版本一定等于真实生理系统。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-local-energy",
+    "slug": "p04-local-energy",
+    "version": "1",
+    "lesson_id": "P04-C05-S01",
+    "part": "4",
+    "chapter": "4.5",
+    "title": "逐点计算候选函数与导数",
+    "type": "python",
+    "statement": "系统 x′=−x+x³，候选函数 V=x²/2。返回各点的 V、沿轨迹（trajectory）导数（derivative），以及是否位于严格衰减区域。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数09"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "points",
+        "type": "list[float]",
+        "description": "需要计算的状态（state）点。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "values",
+        "type": "list[float]",
+        "description": "各点 V。",
+        "unit": "1"
+      },
+      {
+        "name": "derivatives",
+        "type": "list[float]",
+        "description": "各点 dV/dt。",
+        "unit": "1"
+      },
+      {
+        "name": "strict",
+        "type": "list[bool]",
+        "description": "是否满足 0<abs(x)<1。",
+        "unit": "1"
+      }
+    ],
+    "contract": "V=x²/2；dV/dt=x*(−x+x³)=−x²+x⁴。strict 在 0 和 ±1 都为 False；点上成立不等于已经证明整个区域。",
+    "constraints": [
+      "所有输入（input）数值有限；不修改输入列表。",
+      "1≤len(points)≤50；每项在 [−2,2]。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "导数必须通过链式法则（chain rule）计算；边界不能算严格负。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    points: list[float],\n) -> tuple[list[float], list[float], list[bool]]:\n    # 根据已知条件计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "points": [
+            -1,
+            -0.5,
+            0,
+            0.5,
+            1,
+            2
+          ]
+        },
+        "expected": [
+          [
+            0.5,
+            0.125,
+            0.0,
+            0.125,
+            0.5,
+            2.0
+          ],
+          [
+            0,
+            -0.1875,
+            0,
+            -0.1875,
+            0,
+            12
+          ],
+          [
+            false,
+            true,
+            false,
+            true,
+            false,
+            false
+          ]
+        ],
+        "explanation": "x=±0.5 时 V=0.125、导数为 −0.1875；x=0、±1 导数为零；x=2 导数为 12，不在局部衰减区。"
+      }
+    ]
+  },
+  {
+    "id": "p04-positive-definite",
+    "slug": "p04-positive-definite",
+    "version": "1",
+    "lesson_id": "P04-C05-S01",
+    "part": "4",
+    "chapter": "4.5",
+    "title": "正定要求检查哪几项",
+    "type": "choice",
+    "statement": "要用 V 研究原点，哪些是正定性（positive definiteness）的要求？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数09"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "V 可以在另一非零状态（state）等于零而仍称相对原点正定（positive definite）。"
+      },
+      {
+        "id": "B",
+        "text": "V(0)=0。"
+      },
+      {
+        "id": "C",
+        "text": "区域内所有非零 x 都有 V(x)>0。"
+      },
+      {
+        "id": "D",
+        "text": "只检查采样点 V≥0 即可证明。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-local-domain",
+    "slug": "p04-local-domain",
+    "version": "1",
+    "lesson_id": "P04-C05-S01",
+    "part": "4",
+    "chapter": "4.5",
+    "title": "为什么只在一个区域内作结论",
+    "type": "choice",
+    "statement": "对于 x′=−x+x³、V=x²/2，哪些成立？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数09"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "原点局部渐近稳定（local asymptotic stability）。"
+      },
+      {
+        "id": "B",
+        "text": "对任意 |x0|<1，可选包含初值（initial condition）的子水平集（sublevel set） V≤c<1/2，使轨迹（trajectory）保持在衰减区。"
+      },
+      {
+        "id": "C",
+        "text": "因为 V 正定（positive definite），所以所有实数初值都趋向 0。"
+      },
+      {
+        "id": "D",
+        "text": "±1 是边界平衡（equilibrium），不能并入原点的吸引域（basin of attraction）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-global-decay",
+    "slug": "p04-global-decay",
+    "version": "1",
+    "lesson_id": "P04-C05-S01",
+    "part": "4",
+    "chapter": "4.5",
+    "title": "全局结论还需要什么",
+    "type": "choice",
+    "statement": "对 x′=−x，V=x²/2，V′=−x²。哪组理由支持全局渐近稳定（asymptotic stability）？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数09"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "正定（positive definite）、全空间非零点严格负导数（derivative）、径向无界（radially unbounded）且解全局存在；也可直接用 x=x0 exp(−t) 核对。"
+      },
+      {
+        "id": "B",
+        "text": "仅因为 V 有平方。"
+      },
+      {
+        "id": "C",
+        "text": "只在原点导数为零就足够。"
+      },
+      {
+        "id": "D",
+        "text": "仅因为画出的五条轨迹（trajectory）下降。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-function-vs-exponent",
+    "slug": "p04-function-vs-exponent",
+    "version": "1",
+    "lesson_id": "P04-C05-S01",
+    "part": "4",
+    "chapter": "4.5",
+    "title": "同姓不代表同一种判据",
+    "type": "choice",
+    "statement": "Lyapunov 函数（Lyapunov function）与 Lyapunov 指数（Lyapunov exponent）有何区别？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数09"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "函数为正意味着指数为正。"
+      },
+      {
+        "id": "B",
+        "text": "指数的有限时间估计可自动替代函数的区域证明。"
+      },
+      {
+        "id": "C",
+        "text": "前者是状态（state）上的候选标量及符号判据，后者描述邻近扰动沿轨迹（trajectory）的增长率。"
+      },
+      {
+        "id": "D",
+        "text": "它们都是同一条曲线的不同名字。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-rotating-energy",
+    "slug": "p04-rotating-energy",
+    "version": "1",
+    "lesson_id": "P04-C05-S02",
+    "part": "4",
+    "chapter": "4.5",
+    "title": "旋转项是否改变总平方长度",
+    "type": "python",
+    "statement": "二维系统 x′=−αx−ωy，y′=ωx−αy。计算 V=(x²+y²)/2 及沿轨迹（trajectory）导数（derivative）。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数09"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "points",
+        "type": "list[list[float]]",
+        "description": "按 [x,y] 排列的状态（state）点。",
+        "unit": "1"
+      },
+      {
+        "name": "alpha",
+        "type": "float",
+        "description": "非负阻尼系数。",
+        "unit": "1"
+      },
+      {
+        "name": "omega",
+        "type": "float",
+        "description": "旋转角速度。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "values",
+        "type": "list[float]",
+        "description": "各点候选函数 V。",
+        "unit": "1"
+      },
+      {
+        "name": "derivatives",
+        "type": "list[float]",
+        "description": "各点 V′。",
+        "unit": "1"
+      }
+    ],
+    "contract": "先计算两个状态变化率，再使用 V′=x*x′+y*y′；代数核对为 −alpha*(x²+y²)，旋转交叉项抵消。",
+    "constraints": [
+      "所有输入（input）数值有限；不修改输入列表。",
+      "points 长度 1—30，每点两个分量，绝对值≤5；0≤alpha≤1；0≤omega≤3。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "ω 只改变方向，阻尼控制这个候选函数的下降。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    points: list[list[float]],\n    alpha: float,\n    omega: float,\n) -> tuple[list[float], list[float]]:\n    # 根据已知条件计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "points": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "alpha": 0.5,
+          "omega": 2
+        },
+        "expected": [
+          [
+            0.5,
+            2.0,
+            0.0
+          ],
+          [
+            -0.5,
+            -2.0,
+            0.0
+          ]
+        ],
+        "explanation": "α=0.5 时三个 V 为 [0.5,2,0]，导数为 [−0.5,−2,0]；ω 不出现在最终导数中。"
+      }
+    ]
+  },
+  {
+    "id": "p04-semidefinite-counterexample",
+    "slug": "p04-semidefinite-counterexample",
+    "version": "1",
+    "lesson_id": "P04-C05-S02",
+    "part": "4",
+    "chapter": "4.5",
+    "title": "导数非正能保证收敛到原点吗",
+    "type": "choice",
+    "statement": "纯旋转 x′=−y，y′=x，V=(x²+y²)/2。正确结论是？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数09"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "V′=0，原点稳定但不渐近稳定（asymptotic stability），非零轨迹（trajectory）沿圆旋转。"
+      },
+      {
+        "id": "B",
+        "text": "V′=0，所有轨迹都保持同一个点。"
+      },
+      {
+        "id": "C",
+        "text": "V>0，所以原点不稳定。"
+      },
+      {
+        "id": "D",
+        "text": "V′≤0 足以保证所有轨迹到原点。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-missed-invariant-set",
+    "slug": "p04-missed-invariant-set",
+    "version": "1",
+    "lesson_id": "P04-C05-S02",
+    "part": "4",
+    "chapter": "4.5",
+    "title": "只对部分方向衰减会怎样",
+    "type": "choice",
+    "statement": "系统 x′=−x，y′=0，V=(x²+y²)/2。哪些成立？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数09"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "所有初值（initial condition）都趋向原点。"
+      },
+      {
+        "id": "B",
+        "text": "初值 [1,2] 趋向 [0,2]。"
+      },
+      {
+        "id": "C",
+        "text": "V′=0 的集合含非零平衡（equilibrium），不能由此宣布原点渐近稳定（asymptotic stability）。"
+      },
+      {
+        "id": "D",
+        "text": "V′=−x²≤0。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-sampled-proof",
+    "slug": "p04-sampled-proof",
+    "version": "1",
+    "lesson_id": "P04-C05-S02",
+    "part": "4",
+    "chapter": "4.5",
+    "title": "有限采样可替代符号条件吗",
+    "type": "choice",
+    "statement": "在圆盘内抽取 1000 个点都得到 V′<0。哪项正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数09"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "点数超过 100 就自动成为数学证明。"
+      },
+      {
+        "id": "B",
+        "text": "只检查边界更能保证所有内部点。"
+      },
+      {
+        "id": "C",
+        "text": "已严格证明每一点都小于零，包括原点。"
+      },
+      {
+        "id": "D",
+        "text": "这是数值支持；要宣称区域判据，还需解析不等式或有保证的全域核验。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-cap-equilibrium",
+    "slug": "p04-cap-equilibrium",
+    "version": "1",
+    "lesson_id": "P04-SUMMARY",
+    "part": "4",
+    "chapter": "4.summary",
+    "title": "用方向表辨认吸引去向",
+    "type": "choice",
+    "statement": "开关 x′=x−x³ 的方向为：x<−1 向右；−1<x<0 向左；0<x<1 向右；x>1 向左。哪些结论成立？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "方向表可解释正负初值（initial condition）趋向不同状态（state）。"
+      },
+      {
+        "id": "B",
+        "text": "−1 和 1 吸引各自邻近状态。"
+      },
+      {
+        "id": "C",
+        "text": "0 对非零小扰动吸引。"
+      },
+      {
+        "id": "D",
+        "text": "x0=0 精确保持 0。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-cap-source",
+    "slug": "p04-cap-source",
+    "version": "1",
+    "lesson_id": "P04-SUMMARY",
+    "part": "4",
+    "chapter": "4.summary",
+    "title": "长期周期来自哪一种机制",
+    "type": "choice",
+    "statement": "模型（model）甲去掉周期驱动后振幅（amplitude）衰减；模型乙没有周期输入（input），多个非零初值（initial condition）的半径趋于同一正值且持续旋转。最合适的判断是？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "甲的持续周期依靠驱动，乙与自维持振荡（self-sustained oscillation）一致；仍按各自方程核对条件。"
+      },
+      {
+        "id": "B",
+        "text": "甲乙都只能是随机噪声。"
+      },
+      {
+        "id": "C",
+        "text": "只要长时间不停止，甲乙机制就一样。"
+      },
+      {
+        "id": "D",
+        "text": "乙必定模拟了真实心脏的全部机制。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-cap-basins",
+    "slug": "p04-cap-basins",
+    "version": "1",
+    "lesson_id": "P04-SUMMARY",
+    "part": "4",
+    "chapter": "4.summary",
+    "title": "复算多初值扫描的有限结果",
+    "type": "python",
+    "statement": "对 x′=x−x³，按明确的显式中点积分和阈值规则返回末态与分类。包含恰好在不稳定平衡（equilibrium）及接近边界的初值（initial condition）。",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "initials",
+        "type": "list[float]",
+        "description": "给定初值列表。",
+        "unit": "1"
+      },
+      {
+        "name": "h",
+        "type": "float",
+        "description": "时间步长（time step）。",
+        "unit": "1"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "固定积分（definite integral）步数。",
+        "unit": "1"
+      },
+      {
+        "name": "threshold",
+        "type": "float",
+        "description": "有限时间分类阈值。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "final_states",
+        "type": "list[float]",
+        "description": "各初值末态。",
+        "unit": "1"
+      },
+      {
+        "name": "labels",
+        "type": "list[int]",
+        "description": "小于负阈值 −1，大于正阈值 1，其余 0。",
+        "unit": "1"
+      }
+    ],
+    "contract": "每步 m=x+h*(x−x³)/2，再令 x←x+h*(m−m³)。恰做 steps 步。分类使用严格不等式。",
+    "constraints": [
+      "所有输入（input）数值有限；不修改输入列表。",
+      "1≤len(initials)≤20；各项在 [−1.5,1.5]；0<h≤0.05；0≤steps≤3000；0<threshold<1。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "有限时间未决与真正的边界平衡要分开解释。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    initials: list[float],\n    h: float,\n    steps: int,\n    threshold: float,\n) -> tuple[list[float], list[int]]:\n    # 根据已知条件计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "initials": [
+            -0.8,
+            0,
+            0.8
+          ],
+          "h": 0.01,
+          "steps": 0,
+          "threshold": 0.8
+        },
+        "expected": [
+          [
+            -0.8,
+            0,
+            0.8
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "explanation": "零步返回原初值，±0.8 恰等于阈值，不是严格越界，所以所有标签为 0。"
+      }
+    ]
+  },
+  {
+    "id": "p04-cap-period",
+    "slug": "p04-cap-period",
+    "version": "1",
+    "lesson_id": "P04-SUMMARY",
+    "part": "4",
+    "chapter": "4.summary",
+    "title": "用固定过零约定测量后段周期",
+    "type": "python",
+    "statement": "给定等间隔节律观测（observation）和暂态（transient）截断下标。仅使用向上过零，并用线性插值报告时刻和平均周期。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "values",
+        "type": "list[float]",
+        "description": "包含暂态的观测序列。",
+        "unit": "1"
+      },
+      {
+        "name": "dt",
+        "type": "float",
+        "description": "采样间隔。",
+        "unit": "1"
+      },
+      {
+        "name": "start",
+        "type": "int",
+        "description": "首个检查片段左端下标。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "crossings",
+        "type": "list[float]",
+        "description": "所有后段向上过零时刻。",
+        "unit": "1"
+      },
+      {
+        "name": "mean_period",
+        "type": "float | None",
+        "description": "至少两次事件时的平均间隔，否则 None。",
+        "unit": "1"
+      }
+    ],
+    "contract": "i 从 start 到 len(values)−2；条件 values[i]≤0<values[i+1]；时刻为 (i−values[i]/(values[i+1]−values[i]))*dt。period=(末次−首次)/(次数−1)。",
+    "constraints": [
+      "所有输入（input）数值有限；不修改输入列表。",
+      "2≤len(values)≤5000；0≤start≤len(values)−2；0<dt≤2；观测绝对值≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "截断不应把原来的时间坐标重置为零。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    values: list[float],\n    dt: float,\n    start: int,\n) -> tuple[list[float], float | None]:\n    # 根据已知条件计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "values": [
+            9,
+            -1,
+            1,
+            -1,
+            1
+          ],
+          "dt": 0.5,
+          "start": 1
+        },
+        "expected": [
+          [
+            0.75,
+            1.75
+          ],
+          1.0
+        ],
+        "explanation": "保留片段中的过零时刻是 0.75 和 1.75，平均周期为 1；时刻仍按原序列下标计算。"
+      }
+    ]
+  },
+  {
+    "id": "p04-cap-precision",
+    "slug": "p04-cap-precision",
+    "version": "1",
+    "lesson_id": "P04-SUMMARY",
+    "part": "4",
+    "chapter": "4.summary",
+    "title": "比较两种算术精度的轨迹分离",
+    "type": "python",
+    "statement": "同一 logistic 映射（logistic map）使用两种算术：Python float 与指定精度的 Decimal。两套计算都推进两个初值（initial condition），并报告距离与首次严格越过阈值的代次。输入（input）用十进制字符串保留原始定义。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "r_text",
+        "type": "str",
+        "description": "参数（parameter）的十进制字符串。",
+        "unit": "1"
+      },
+      {
+        "name": "first_text",
+        "type": "str",
+        "description": "第一初值的十进制字符串。",
+        "unit": "1"
+      },
+      {
+        "name": "second_text",
+        "type": "str",
+        "description": "第二初值的十进制字符串。",
+        "unit": "1"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "更新代数。",
+        "unit": "1"
+      },
+      {
+        "name": "precision",
+        "type": "int",
+        "description": "Decimal 有效十进制位数。",
+        "unit": "1"
+      },
+      {
+        "name": "threshold",
+        "type": "float",
+        "description": "比较距离的阈值。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "float_distances",
+        "type": "list[float]",
+        "description": "float 两条轨迹（trajectory）的逐代距离。",
+        "unit": "1"
+      },
+      {
+        "name": "decimal_distances",
+        "type": "list[float]",
+        "description": "Decimal 两条轨迹的距离，逐项转 float 后返回。",
+        "unit": "1"
+      },
+      {
+        "name": "float_first",
+        "type": "int | None",
+        "description": "float 距离首次越界下标。",
+        "unit": "1"
+      },
+      {
+        "name": "decimal_first",
+        "type": "int | None",
+        "description": "Decimal 距离首次越界下标。",
+        "unit": "1"
+      }
+    ],
+    "contract": "使用 decimal.localcontext()，prec=precision，舍入模式保持默认 ROUND_HALF_EVEN；Decimal 直接从字符串构造，不先转 float。每次按 (r*x)*(1−x) 的括号次序求值；float 也用相同次序。距离包含第 0 代；Decimal 距离转 float 后再按严格大于 threshold 查首次下标，无越界返回 None。",
+    "constraints": [
+      "所有输入数值有限；不修改输入列表。",
+      "字符串表示 r∈[0,4]，初值∈[0,1]；最多 12 个有效数字；0≤steps≤40；16≤precision≤60；0≤threshold≤1。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "提高精度用于数值对照，不代表已经验证模型（model）对真实生理系统的预测。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    r_text: str,\n    first_text: str,\n    second_text: str,\n    steps: int,\n    precision: int,\n    threshold: float,\n) -> tuple[list[float], list[float], int | None, int | None]:\n    # 根据已知条件计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "r_text": "2",
+          "first_text": "0.25",
+          "second_text": "0.5",
+          "steps": 2,
+          "precision": 30,
+          "threshold": 0.2
+        },
+        "expected": [
+          [
+            0.25,
+            0.125,
+            0.03125
+          ],
+          [
+            0.25,
+            0.125,
+            0.03125
+          ],
+          0,
+          0
+        ],
+        "explanation": "两种算术在该短例都得到距离 [0.25,0.125,0.03125]，首次越界均为 0；较复杂参数下才可能在后段体现精度差异。"
+      }
+    ]
+  },
+  {
+    "id": "p04-cap-irregular",
+    "slug": "p04-cap-irregular",
+    "version": "1",
+    "lesson_id": "P04-SUMMARY",
+    "part": "4",
+    "chapter": "4.summary",
+    "title": "从不规则后段能够说到哪里",
+    "type": "choice",
+    "statement": "某映射后段不规则，有限时间对数增长率为正；已比较两种算术精度，但只用了一个初值（initial condition）和一个窗口。哪个结论与证据匹配？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "已经证明所有初值都混沌（chaos）。"
+      },
+      {
+        "id": "B",
+        "text": "支持该实验窗口内的复杂运动与局部扩张，需要继续限定初值、窗口和数学条件。"
+      },
+      {
+        "id": "C",
+        "text": "已经证明存在随机噪声。"
+      },
+      {
+        "id": "D",
+        "text": "可以忽略初值误差并无限期预测。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-cap-region",
+    "slug": "p04-cap-region",
+    "version": "1",
+    "lesson_id": "P04-SUMMARY",
+    "part": "4",
+    "chapter": "4.summary",
+    "title": "在新二维区域中检查候选函数",
+    "type": "python",
+    "statement": "二维系统 x′=−a*x+(x²+y²)x，y′=−b*y+(x²+y²)y，a,b>0。用 V=(x²+y²)/2 检查给定点，并给出整个开圆盘的一条充分证书。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "points",
+        "type": "list[list[float]]",
+        "description": "按 [x,y] 排列的检查点，可在圆盘外。",
+        "unit": "1"
+      },
+      {
+        "name": "a",
+        "type": "float",
+        "description": "第一方向的衰减系数。",
+        "unit": "1"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "第二方向的衰减系数。",
+        "unit": "1"
+      },
+      {
+        "name": "radius",
+        "type": "float",
+        "description": "要论证的开圆盘半径。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "values",
+        "type": "list[float]",
+        "description": "各点 V。",
+        "unit": "1"
+      },
+      {
+        "name": "derivatives",
+        "type": "list[float]",
+        "description": "各点 V′。",
+        "unit": "1"
+      },
+      {
+        "name": "strict_inside",
+        "type": "list[bool]",
+        "description": "非零、严格在圆盘内且 V′<0。",
+        "unit": "1"
+      },
+      {
+        "name": "certificate",
+        "type": "bool",
+        "description": "充分条件 radius²≤min(a,b) 是否成立。",
+        "unit": "1"
+      }
+    ],
+    "contract": "令 s=x²+y²，V=s/2，V′=−a*x²−b*y²+s²。strict_inside 为 0<s<radius² 且 V′<0；certificate 仅检查 radius²≤min(a,b)。这是对全部开圆盘的解析上界条件，不从采样标签数量推断。",
+    "constraints": [
+      "所有输入（input）数值有限；不修改输入列表。",
+      "1≤len(points)≤30；每点两个分量，绝对值≤2；0.1≤a,b≤2；0<radius≤2。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "上界 V′≤−min(a,b)*s+s²；开圆盘允许半径平方等于最小阻尼，边界不在结论中。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    points: list[list[float]],\n    a: float,\n    b: float,\n    radius: float,\n) -> tuple[list[float], list[float], list[bool], bool]:\n    # 根据已知条件计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              0.5,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "a": 1,
+          "b": 2,
+          "radius": 1
+        },
+        "expected": [
+          [
+            0.0,
+            0.125,
+            0.5
+          ],
+          [
+            0,
+            -0.1875,
+            0
+          ],
+          [
+            false,
+            true,
+            false
+          ],
+          true
+        ],
+        "explanation": "s 为 [0,0.25,1]，V 为 [0,0.125,0.5]，导数（derivative）为 [0,−0.1875,0]；只有中间点严格在盘内衰减。radius²=min(a,b)=1，开圆盘证书成立。"
+      }
+    ]
+  },
+  {
+    "id": "p04-cap-scope",
+    "slug": "p04-cap-scope",
+    "version": "1",
+    "lesson_id": "P04-SUMMARY",
+    "part": "4",
+    "chapter": "4.summary",
+    "title": "如何把区域证书变成稳定结论",
+    "type": "choice",
+    "statement": "已知光滑系统在原点平衡（equilibrium），V=(x²+y²)/2，在 0<||x||<R 上 V′<0。哪些结论有依据？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "有限条模拟轨迹（trajectory）不替代对整个区域的符号条件。"
+      },
+      {
+        "id": "B",
+        "text": "若只知 V′≤0，一般还缺少吸引性论证。"
+      },
+      {
+        "id": "C",
+        "text": "可选择包含足够小初值（initial condition）的紧子水平集（sublevel set） V≤c<R²/2，得到局部渐近稳定（local asymptotic stability）。"
+      },
+      {
+        "id": "D",
+        "text": "无需检查圆盘外，就能宣布全局渐近稳定（asymptotic stability）。"
+      }
+    ],
+    "constraints": []
+  }
+]

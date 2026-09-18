@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>非线性动态行为 · 可视化与探索</title><link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css"><link rel="stylesheet" href="/web/nonlinear/style.css"></head>
+<body><main id="main"><div id="loading-note" class="notice" role="status">正在准备轨迹与对照图…</div>
+<article class="exploration" hidden>
+<header class="intro"><p id="eyebrow" class="eyebrow"></p><h1 id="title"></h1><p id="question" class="lead" data-teaching></p></header>
+<div class="explore-grid"><section class="model-panel"><h2>先预测，再改变条件</h2><p id="explanation" data-teaching></p><p id="formula" class="formula"></p>
+<fieldset id="controls" disabled><legend>实验条件</legend><div id="model-select" class="select-control" hidden><label for="model">比较的模型</label><select id="model"></select></div><div id="sliders"></div><div class="presets"><button id="alternate" type="button"></button><button id="reset" type="button">恢复起始条件</button></div></fieldset>
+<p id="preset-note" class="caption"></p><p id="assumptions" class="caption" data-teaching></p></section>
+<section class="chart-panel"><div class="chart-heading"><h2 id="chart-heading"></h2><span id="time-readout" class="time-readout"></span></div>
+<div class="readouts"><div><span id="value-label"></span><strong id="value"></strong></div><p id="observation-value"></p></div>
+<svg id="chart" viewBox="0 0 1080 400" role="img" aria-labelledby="svg-title svg-desc"><title id="svg-title">动态轨迹与独立参照</title><desc id="svg-desc"></desc></svg>
+<div id="legend" class="chart-legend"></div><p id="chart-note" class="caption"></p>
+<div class="play-controls"><button id="play" type="button" class="primary" disabled>播放</button><button id="replay" type="button" disabled>从头重播</button><output id="play-counter" aria-live="off"></output><label for="timeline">观察位置</label><input id="timeline" type="range" min="0" max="20" step=".01" value="0" disabled></div>
+<p id="play-status" class="caption" role="status"></p>
+<details class="values"><summary>展开数值对照</summary><p id="table-note" class="caption"></p><div id="value-table"></div></details></section></div>
+<section class="reading"><h2>继续推导与完整实验</h2><p>在对应小节检查解析条件、误差与适用范围。</p><div id="notebooks" class="reading-links"></div><p id="open-status" role="status"></p></section>
+</article></main><script src="/web/shared/boot.js"></script><script type="module" src="/web/nonlinear/app.mjs" data-main></script></body></html>

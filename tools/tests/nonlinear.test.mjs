@@ -1,0 +1,9 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {switchPath,scanBias,radial,driven,logistic,separate,alternateInitial,alternateMu,alternateBias,alternateR} from '../../web/nonlinear/model.mjs';
+const close=(a,b,e=1e-10)=>assert.ok(Math.abs(a-b)<e,`${a} differs from ${b}`);
+test('switch independent closed solution, symmetry and step refinement',()=>{for(const x of [-1.5,-.2,.2,1.5]){const exact=Math.sign(x)/Math.sqrt(1+(1/(x*x)-1)*Math.exp(-4));const errors=[.1,.05,.025].map(h=>Math.abs(switchPath(x,0,h,2/h).at(-1)-exact));assert.ok(errors[0]>3*errors[1]&&errors[1]>3*errors[2]);}assert.deepEqual(switchPath(0,0,.01,2),[0,0,0]);});
+test('radial analytic boundaries and forced initial condition',()=>{for(const mu of [-.2,0,.5])assert.deepEqual(radial(mu,1,[0,0],20),[0,0]);close(Math.hypot(...radial(0,1,[1,0],3)),1/Math.sqrt(7));close(Math.hypot(...radial(.25,2,[.5,0],10)),.5);const z=driven(.3,1,.35,1.3,[.2,0],0);close(z[0],.2);close(z[1],0);});
+test('discrete thresholds, exact special orbit and bounded state',()=>{assert.deepEqual(logistic(4,.5,3),[.5,1,0,0]);assert.equal(separate(4,.25,.75,.5,10).crossing,null);assert.equal(separate(2,0,1,.5,0).crossing,0);for(const r of [0,1,3.2,3.9,4])assert.ok(logistic(r,.2,80).every(v=>v>=0&&v<=1));});
+test('paired presets derive direction from current values and keep working twice',()=>{for(const [fn,start,other] of [[alternateInitial,.2,-.2],[alternateMu,.5,-.2],[alternateR,3.9,3.2],[alternateBias,.45,-.45]]){let x=start;for(let k=0;k<2;k++){x=fn(x);assert.equal(x,other);x=fn(x);assert.equal(x,start);}}assert.equal(alternateInitial(0),.2);assert.equal(alternateMu(.05),-.2);assert.equal(alternateR(3.4),3.9);});
+test('continuation and restarting are distinct protocols',()=>{const a=scanBias([0,.4,0],0,.02,1,true),b=scanBias([0,.4,0],0,.02,1,false);assert.equal(a[0],0);assert.ok(a[2]>0);assert.equal(b[2],0);});

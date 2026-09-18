@@ -1,0 +1,269 @@
+{
+  "date": "2026-09-19",
+  "stage": "M5",
+  "status": "passed",
+  "scope": {
+    "part": 4,
+    "chapters": [
+      "4.1",
+      "4.2",
+      "4.3",
+      "4.4",
+      "4.5"
+    ],
+    "notebooks": 12,
+    "ordinary_questions": 51,
+    "capstone_questions": 8,
+    "questions": 59,
+    "choice": 41,
+    "python": 18,
+    "exploration_pages": 4,
+    "capstone_points": 100
+  },
+  "notebook_execution": {
+    "python": "3.13.2",
+    "platform": "Windows",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "nbclient": "0.11.0",
+      "nbformat": "5.11.1",
+      "nbconvert": "7.17.1",
+      "ipykernel": "7.3.0"
+    },
+    "notebooks": [
+      {
+        "id": "P04-C01-S01",
+        "path": "notebooks/04-非线性动态行为/01-多稳态与吸引域/01-从三个平衡进入多稳态.ipynb",
+        "seconds": 5.48,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "9a4563bdf32925fc9969b4ca05d22e98306c0dfcc8be46b18999b5af6078ac40",
+        "published_sha256": "9a4563bdf32925fc9969b4ca05d22e98306c0dfcc8be46b18999b5af6078ac40"
+      },
+      {
+        "id": "P04-C01-S02",
+        "path": "notebooks/04-非线性动态行为/01-多稳态与吸引域/02-吸引域扰动与有限时间扫描.ipynb",
+        "seconds": 3.73,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "2ffac5dfb6756fd8ce56e91a0c54753d7faabf7efe64981391fefe42df9e9ce6",
+        "published_sha256": "2ffac5dfb6756fd8ce56e91a0c54753d7faabf7efe64981391fefe42df9e9ce6"
+      },
+      {
+        "id": "P04-C02-S01",
+        "path": "notebooks/04-非线性动态行为/02-自维持振荡与极限环/01-阻尼受迫与自维持振荡.ipynb",
+        "seconds": 3.62,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "6989ab327070a95b8e1b3b2abbae13ce77a3b3d04c275ff7cd8537fff7f035a8",
+        "published_sha256": "6989ab327070a95b8e1b3b2abbae13ce77a3b3d04c275ff7cd8537fff7f035a8"
+      },
+      {
+        "id": "P04-C02-S02",
+        "path": "notebooks/04-非线性动态行为/02-自维持振荡与极限环/02-周期振幅与相位的测量.ipynb",
+        "seconds": 3.27,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "7e513520b17944fd38167b99ca6ae18198df6f72eee930ab891560a9d381cfd3",
+        "published_sha256": "7e513520b17944fd38167b99ca6ae18198df6f72eee930ab891560a9d381cfd3"
+      },
+      {
+        "id": "P04-C03-S01",
+        "path": "notebooks/04-非线性动态行为/03-分岔与参数变化/01-平衡分支折叠与滞后.ipynb",
+        "seconds": 3.94,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "68e0902b564120a2630d52a7eff0246554e03d2cd15be98c8db5a61624b72b59",
+        "published_sha256": "68e0902b564120a2630d52a7eff0246554e03d2cd15be98c8db5a61624b72b59"
+      },
+      {
+        "id": "P04-C03-S02",
+        "path": "notebooks/04-非线性动态行为/03-分岔与参数变化/02-从平衡到周期的Hopf转变.ipynb",
+        "seconds": 2.76,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "529c3798ce0651afcbc70a9d4d504358c4fe7d7ffb928718adbc7e9fbfe2854d",
+        "published_sha256": "34805ce0688e61b59e514a401f4e6a458d7de616cb2ab16113e0f78ec6ca3e0b"
+      },
+      {
+        "id": "P04-C04-S01",
+        "path": "notebooks/04-非线性动态行为/04-混沌与可预测范围/01-离散映射的不动点与周期.ipynb",
+        "seconds": 1.9,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "f28d24d94973ee23a448dea26f339ac839f58f9b8cfa7ab55f5b793d71d17e21",
+        "published_sha256": "d7945006899cbd19ff5e4b41c4eb36399e882cc39c94fbe647e8fce8da038acd"
+      },
+      {
+        "id": "P04-C04-S02",
+        "path": "notebooks/04-非线性动态行为/04-混沌与可预测范围/02-邻近轨迹与预测期限.ipynb",
+        "seconds": 2.11,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "e49d70b19564687af8b131cd1807cd68dcca0937ae31f12ec2787f40066c46ed",
+        "published_sha256": "ba3744a61943d16e97545e76a17de7fd9e76d11e2804bb4af4b30df3fe555949"
+      },
+      {
+        "id": "P04-C04-S03",
+        "path": "notebooks/04-非线性动态行为/04-混沌与可预测范围/03-有限时间增长率与算术精度.ipynb",
+        "seconds": 2.23,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "6b33fd0a030f9acaef5cab62baeeb6646cc86e848859ccb589fc28c0731682e2",
+        "published_sha256": "c115ba3c36d3e69b35e6a70f42175b8378e5a657b72f8a977204a479fb9e6647"
+      },
+      {
+        "id": "P04-C05-S01",
+        "path": "notebooks/04-非线性动态行为/05-用 Lyapunov 函数分析稳定性/01-候选函数与局部稳定性证明.ipynb",
+        "seconds": 1.88,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "29fc61b412a346021a6a578c290afe748c9437add941c31393f10021189b4ff1",
+        "published_sha256": "bb8708535700a68379df2e23f36d9fc1cf7007d94c2df22f48f472a32b428deb"
+      },
+      {
+        "id": "P04-C05-S02",
+        "path": "notebooks/04-非线性动态行为/05-用 Lyapunov 函数分析稳定性/02-非严格衰减与不能省略的条件.ipynb",
+        "seconds": 1.96,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "f49c2cc731ae3e2394919ab93ff6c4e686cb16b8dfae8b46b26ccc25475d6d5e",
+        "published_sha256": "76faf501019f16b9c8953c2b97c6e2000b28e52335288e69ec104488246d6d5d"
+      },
+      {
+        "id": "P04-SUMMARY",
+        "path": "notebooks/04-非线性动态行为/06-篇末综合/01-非线性行为与证据边界.ipynb",
+        "seconds": 2.14,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "executed_sha256": "994150f0e9d353b146d4d834b3c2eadeef7375a60d422177e190a060571b7c0c",
+        "published_sha256": "994150f0e9d353b146d4d834b3c2eadeef7375a60d422177e190a060571b7c0c"
+      }
+    ],
+    "code_cells": 60,
+    "figures": 12,
+    "post_execution_change": "运行后仅修订 Markdown：补齐术语、紧集/正向不变说明、正子水平集条件和习题浮点次序契约；代码与保存输出未改。分别记录执行版与发布版哈希，不宣称文案修订版再次运行。",
+    "visual_review": "逐张查看 12 幅实际保存图；另在临时 nbconvert 渲染中检查 4.3.2、4.5.1 的公式及目标/先修正文，两页 MathJax 错误均为 0。"
+  },
+  "automated_checks": {
+    "python": {
+      "command": "python -m pytest -q",
+      "passed": 279,
+      "failed": 0,
+      "seconds": 49.21
+    },
+    "javascript": {
+      "command": "node --test tools/tests/*.test.mjs",
+      "passed": 33,
+      "failed": 0
+    },
+    "independent_math": "70 位 Decimal 倒数闭式和展开中点多项式；独立 RK4 参照径向解析解；手算峰/过零与开区域边界；精确有理算术逐操作舍入核对敏感 float 轨迹；Decimal Context 对照指定十进制算术；r=4 三角共轭与区间不变性；解析折叠、半步长和停留时间分别检查。18 道 Python 题均经过实际子进程样例/完整判定及错误答案检查。",
+    "cross_implementation": {
+      "cases": 117,
+      "compared_values": 32659,
+      "maximum_absolute_difference": 4.163336342344337e-16,
+      "tolerance": "atol=rtol=1e-10",
+      "scope": "same-model cross-implementation, not independent mathematical proof",
+      "notebooks": [
+        "notebooks/04-非线性动态行为/01-多稳态与吸引域/01-从三个平衡进入多稳态.ipynb",
+        "notebooks/04-非线性动态行为/01-多稳态与吸引域/02-吸引域扰动与有限时间扫描.ipynb",
+        "notebooks/04-非线性动态行为/02-自维持振荡与极限环/01-阻尼受迫与自维持振荡.ipynb",
+        "notebooks/04-非线性动态行为/02-自维持振荡与极限环/02-周期振幅与相位的测量.ipynb",
+        "notebooks/04-非线性动态行为/03-分岔与参数变化/01-平衡分支折叠与滞后.ipynb",
+        "notebooks/04-非线性动态行为/03-分岔与参数变化/02-从平衡到周期的Hopf转变.ipynb",
+        "notebooks/04-非线性动态行为/04-混沌与可预测范围/01-离散映射的不动点与周期.ipynb",
+        "notebooks/04-非线性动态行为/04-混沌与可预测范围/02-邻近轨迹与预测期限.ipynb",
+        "notebooks/04-非线性动态行为/04-混沌与可预测范围/03-有限时间增长率与算术精度.ipynb",
+        "notebooks/04-非线性动态行为/05-用 Lyapunov 函数分析稳定性/01-候选函数与局部稳定性证明.ipynb",
+        "notebooks/04-非线性动态行为/05-用 Lyapunov 函数分析稳定性/02-非严格衰减与不能省略的条件.ipynb",
+        "notebooks/04-非线性动态行为/06-篇末综合/01-非线性行为与证据边界.ipynb"
+      ],
+      "web": "web/nonlinear/model.mjs"
+    },
+    "teaching": {
+      "notebooks": 43,
+      "questions": 204,
+      "question_links": 204,
+      "issues": []
+    },
+    "pip_check": "No broken requirements found.",
+    "final_frontend_syntax": "node --check web/nonlinear/app.mjs passed; after final copy/preset edits, forced-input toggling rechecked through UI."
+  },
+  "actual_browser_checks": [
+    {
+      "case": "4.1 播放、暂停与往返",
+      "observed": "实际播放后 τ=.48、x=.313273，暂停于 τ=.58、x=.342519；稍后仍为 .58。正/负初值连续往返两轮，手动将初值 .2 改为 .1 后按钮仍提示切换到负初值；恢复后重播并暂停。"
+    },
+    {
+      "case": "4.2 三类振荡",
+      "observed": "播放至 τ=.50，状态 [.219738,.120043]。衰减/自维持往返两轮；周期驱动可撤去与恢复。最终复验：手动 R0=.3 后，驱动开关连续往返两轮，R0 仍为 .3。受迫模型下不适用的 μ、ω 控件禁用。"
+    },
+    {
+      "case": "4.3 分岔与边界",
+      "observed": "开关播放后 τ=.53、x=−1.057551；正/负偏置两轮往返。切换 Hopf 后衰减/自维持可返回；手动将 ω 设为 0，τ=.93 时状态 [.300492,0]，半径变化而不旋转，页面明确不称其为极限环。"
+    },
+    {
+      "case": "4.4 离散映射",
+      "observed": "播放后 n=1、轨迹 [.624,.624002]；周期/敏感示例连续往返两轮，手动 r=3.85 后按钮保持正确方向。恢复后到 n=80，状态 [.616696,.829774]、距离 .213078、首次超过 .1 在第 22 轮。"
+    },
+    {
+      "case": "默认 IDE 打开",
+      "observed": "实际点击 4.2.1 的按钮，受限启动的服务先显示系统打开失败；用桌面用户权限运行服务后复验，操作系统接受项目原 .ipynb 的打开请求，反馈已请求系统默认 IDE 打开。未更改用户文件关联。"
+    },
+    {
+      "case": "渲染 Notebook 的实际入口",
+      "observed": "从已渲染 4.3.2 点击观察本章的动态可视化，进入 8000 正式分岔页，ready=true；再从同一 Notebook 点击作答给出长期半径与周期，进入 p04-hopf-branch，显示具名 mus、omega 的 solve 签名。"
+    },
+    {
+      "case": "输入输出与编辑",
+      "observed": "开关解析计算题分别展开输入样例/输出样例：可读表格、initial/times 赋值与 solve 调用、expected_output 均存在。实际 Tab 插入缩进，行首 Backspace 退一级，输入左括号出现配对括号并可成对删除。"
+    },
+    {
+      "case": "语法错误与判定",
+      "observed": "缺少函数冒号时，代码区上方显示 SyntaxError expected colon、answer.py 第 1 行、源码与箭头。修正解析解后样例 1/1 通过、完成仍为 0/9；完整判定 5/5 通过、变为 1/9。"
+    },
+    {
+      "case": "篇末计分与重启",
+      "observed": "综合第一题先答错再订正：首次 0/100，练习 10/100，首轮 1/8、通过 1/8。刷新与重启隔离服务后结果保持。四层上限 20/30/30/20。所有测试记录在 .work/m5/ui-learning，与用户记录隔离。"
+    },
+    {
+      "case": "错误选择的视觉反馈",
+      "observed": "综合第二题答错后，标题颜色 rgb(179,58,74)，卡片背景 rgba(179,58,74,.08)；显示本次选择、正确项和 A—D 逐项解析。"
+    },
+    {
+      "case": "PC 布局与目录",
+      "observed": "实际读到 1024/1366/1440/1920/2560 px 窗口，文档均未横向溢出。1024 下编辑器宽约 612 px，1440 下约 476 px，2560 下约 1059 px；1920 隐藏目录后约 873 px。目录键盘调宽、隐藏可用；新页面定位当前篇章，单/双栏随可用空间变化。"
+    },
+    {
+      "case": "加载失败",
+      "observed": "使用生产 HTML 的临时副本指向缺失模块，显示交互未能加载及恢复提示，播放与控制组均 disabled=true。临时故障页不发布。"
+    }
+  ],
+  "record_protection": {
+    "before": 29,
+    "after": 29,
+    "byte_identical": true,
+    "main_service_question_total": 204
+  },
+  "data_scope": "仅教材、显式理想模型、题库与核验代码；不导入外部数据生成器，不同步模拟数据集、临时输出目录、个人记录或虚拟环境。Notebook 的图形为教学实验保存输出。",
+  "limits": [
+    "未进行目标读者试学、难度校准或独立同行评审。",
+    "验证 Windows / Python 3.13.2 与 PC 浏览器；不声称支持未经验证的平台。",
+    "默认 IDE 操作验证止于系统接受原文件打开请求；Notebook 执行由独立新内核完成，没有自动操作原生 IDE。",
+    "本轮完整执行第 4 篇 12 本；前三篇核心代码未改，沿用既往执行证据并纳入本轮全项目回归。",
+    "一般 Hopf 与 LaSalle 定理的完整证明作为拓展；混沌实验只作指定初值、窗口与算术下的证据，不当作普遍数学证明。"
+  ]
+}

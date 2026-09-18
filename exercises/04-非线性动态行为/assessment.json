@@ -1,0 +1,78 @@
+{
+  "version": "1",
+  "part": "4",
+  "lesson_id": "P04-SUMMARY",
+  "title": "非线性行为与证据边界",
+  "objectives": [
+    {
+      "id": "T1",
+      "title": "分析多稳态",
+      "review_url": "/chapters/04-01-多稳态与吸引域/"
+    },
+    {
+      "id": "T2",
+      "title": "区分振荡与分岔",
+      "review_url": "/chapters/04-02-自维持振荡与极限环/"
+    },
+    {
+      "id": "T3",
+      "title": "限定预测结论",
+      "review_url": "/chapters/04-04-混沌与可预测范围/"
+    },
+    {
+      "id": "T4",
+      "title": "论证稳定性",
+      "review_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/"
+    }
+  ],
+  "items": [
+    {
+      "question_id": "p04-cap-equilibrium",
+      "level": 1,
+      "points": 10,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p04-cap-source",
+      "level": 1,
+      "points": 10,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p04-cap-basins",
+      "level": 2,
+      "points": 15,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p04-cap-period",
+      "level": 2,
+      "points": 15,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p04-cap-precision",
+      "level": 3,
+      "points": 15,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p04-cap-irregular",
+      "level": 3,
+      "points": 15,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p04-cap-region",
+      "level": 4,
+      "points": 10,
+      "objective": "T4"
+    },
+    {
+      "question_id": "p04-cap-scope",
+      "level": 4,
+      "points": 10,
+      "objective": "T4"
+    }
+  ]
+}
