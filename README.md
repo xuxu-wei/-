@@ -36,4 +36,4 @@ Invoke-Item .\notebooks\01-看见系统\01-从生理现象提出系统问题\01-
 | [制作检查表](docs/教材制作检查表.md) | 教材与功能的具体验收要求 |
 | [AGENTS](AGENTS.md) | 总体协作原则 |
 
-仓库：[xuxu-wei/-](https://github.com/xuxu-wei/-)。
+仓库：[xuxu-wei/dive-2-systems-science](https://github.com/xuxu-wei/dive-2-systems-science)。
