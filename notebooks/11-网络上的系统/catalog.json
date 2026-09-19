@@ -1,0 +1,94 @@
+[
+  {
+    "id": "P11-C01-S01",
+    "chapter_id": "11.1",
+    "number": "11.1.1",
+    "title": "从边表到结构统计",
+    "outcome": "用明确的边语义构造邻接矩阵、度、分量与路径。",
+    "path": "notebooks/11-网络上的系统/01-从连接结构进入网络科学/01-从边表到结构统计.ipynb",
+    "visualization": "web/network/index.html"
+  },
+  {
+    "id": "P11-C01-S02",
+    "chapter_id": "11.1",
+    "number": "11.1.2",
+    "title": "规则网络与重连基线",
+    "outcome": "在相同节点和边数下比较聚类、路径和重连随机性。",
+    "path": "notebooks/11-网络上的系统/01-从连接结构进入网络科学/02-规则网络与重连基线.ipynb",
+    "visualization": "web/network/index.html"
+  },
+  {
+    "id": "P11-C02-S01",
+    "chapter_id": "11.2",
+    "number": "11.2.1",
+    "title": "每条边的交换与守恒",
+    "outcome": "从边收支推导图拉普拉斯并检查总量守恒。",
+    "path": "notebooks/11-网络上的系统/02-网络上的扩散与守恒/01-每条边的交换与守恒.ipynb",
+    "visualization": "web/network/index.html"
+  },
+  {
+    "id": "P11-C02-S02",
+    "chapter_id": "11.2",
+    "number": "11.2.2",
+    "title": "连通性、模态与容积",
+    "outcome": "用拉普拉斯零模态解释平衡并核验数值步长。",
+    "path": "notebooks/11-网络上的系统/02-网络上的扩散与守恒/02-连通性、模态与容积.ipynb",
+    "visualization": "web/network/index.html"
+  },
+  {
+    "id": "P11-C03-S01",
+    "chapter_id": "11.3",
+    "number": "11.3.1",
+    "title": "固定随机数的同步传播",
+    "outcome": "写出同步 SIR 更新并复查传播与恢复事件。",
+    "path": "notebooks/11-网络上的系统/03-接触结构与传播/01-固定随机数的同步传播.ipynb",
+    "visualization": "web/network/index.html"
+  },
+  {
+    "id": "P11-C03-S02",
+    "chapter_id": "11.3",
+    "number": "11.3.2",
+    "title": "网络随机与传播随机",
+    "outcome": "在等接触预算下分层重复，分开两类随机变异。",
+    "path": "notebooks/11-网络上的系统/03-接触结构与传播/02-网络随机与传播随机.ipynb",
+    "visualization": "web/network/index.html"
+  },
+  {
+    "id": "P11-C04-S01",
+    "chapter_id": "11.4",
+    "number": "11.4.1",
+    "title": "从单体相位到群体指标",
+    "outcome": "实现耦合相位模型并分辨全局相位一致与分群。",
+    "path": "notebooks/11-网络上的系统/04-耦合振子与同步/01-从单体相位到群体指标.ipynb",
+    "visualization": "web/network/index.html"
+  },
+  {
+    "id": "P11-C04-S02",
+    "chapter_id": "11.4",
+    "number": "11.4.2",
+    "title": "结构、耦合与频率锁定",
+    "outcome": "比较两种结构的相位一致和尾段频率差，限定结论。",
+    "path": "notebooks/11-网络上的系统/04-耦合振子与同步/02-结构、耦合与频率锁定.ipynb",
+    "visualization": "web/network/index.html"
+  },
+  {
+    "id": "P11-SUMMARY",
+    "chapter_id": "11.summary",
+    "number": "篇末综合",
+    "title": "网络结构、传播与同步",
+    "outcome": "在同一网络语义下比较结构、扩散、传播及集体节律。",
+    "path": "notebooks/11-网络上的系统/05-篇末综合/01-网络结构传播与同步.ipynb",
+    "visualization": null,
+    "overview": {
+      "goals": "先定义连接含义和预算，再比较动力学。",
+      "prerequisites": "本篇11.1—11.4；第5篇随机过程与第3篇多变量动态。",
+      "focus": "结构语义、守恒扩散、分层重复、全局与局部同步。",
+      "knowledge": [
+        "邻接、度和路径",
+        "拉普拉斯与容积",
+        "同步 SIR 与分层重复",
+        "相位序参量与锁定"
+      ]
+    }
+  }
+]

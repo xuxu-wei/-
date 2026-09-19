@@ -6388,67 +6388,449 @@
           "id": "11.1",
           "title": "从连接结构进入网络科学",
           "url": "/chapters/11-01-从连接结构进入网络科学/",
-          "goals": "构造并解释邻接矩阵（matrix）、度、路径、连通分量与社区，辨认随机网络、小世界和度分布（distribution）的条件。",
-          "prerequisites": "3.2、5.4；数学：向量（vector）、矩阵、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、事件（event）、随机变量（random variable）、离散/连续分布、抽样和 Monte Carlo、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
+          "goals": "构造并解释邻接矩阵（adjacency matrix）、度、路径、连通分量（connected component）与社区（community），辨认随机网络、小世界（small-world）和度分布（degree distribution）的条件。",
+          "prerequisites": "3.2、5.4；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、事件（event）、随机变量（random variable）、离散/连续分布（distribution）、抽样和 Monte Carlo、图、邻接矩阵、图拉普拉斯（graph Laplacian）、图谱与连通性。",
           "knowledge": [
             "节点、边与有向/无向、加权/无权语义",
             "度、连通性、社区和图拉普拉斯的基础定义",
             "随机图、规则图与重连图，讨论度分布证据"
           ],
           "focus": "无向简单图的度和等于两倍边数；图的绘制位置不默认具有空间含义；不凭双对数直线宣布幂律。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P11-C01-S01",
+              "chapter_id": "11.1",
+              "number": "11.1.1",
+              "title": "从边表到结构统计",
+              "outcome": "用明确的边语义构造邻接矩阵、度、分量与路径。",
+              "path": "notebooks/11-网络上的系统/01-从连接结构进入网络科学/01-从边表到结构统计.ipynb",
+              "visualization": "web/network/index.html",
+              "questions": [
+                {
+                  "id": "p11-small-graph-statistics",
+                  "slug": "p11-small-graph-statistics",
+                  "title": "计算小图的结构统计",
+                  "type": "python"
+                },
+                {
+                  "id": "p11-edge-semantics",
+                  "slug": "p11-edge-semantics",
+                  "title": "边的含义先于矩阵",
+                  "type": "choice"
+                },
+                {
+                  "id": "p11-hand-drawn-path",
+                  "slug": "p11-hand-drawn-path",
+                  "title": "闭合四节点路径后",
+                  "type": "choice"
+                },
+                {
+                  "id": "p11-degree-sum",
+                  "slug": "p11-degree-sum",
+                  "title": "度数总和检查",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-small-graph-statistics"
+            },
+            {
+              "id": "P11-C01-S02",
+              "chapter_id": "11.1",
+              "number": "11.1.2",
+              "title": "规则网络与重连基线",
+              "outcome": "在相同节点和边数下比较聚类、路径和重连随机性。",
+              "path": "notebooks/11-网络上的系统/01-从连接结构进入网络科学/02-规则网络与重连基线.ipynb",
+              "visualization": "web/network/index.html",
+              "questions": [
+                {
+                  "id": "p11-mean-local-clustering",
+                  "slug": "p11-mean-local-clustering",
+                  "title": "计算平均局部聚类",
+                  "type": "python"
+                },
+                {
+                  "id": "p11-matched-edge-budget",
+                  "slug": "p11-matched-edge-budget",
+                  "title": "比较结构要匹配什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p11-power-law-evidence",
+                  "slug": "p11-power-law-evidence",
+                  "title": "度分布的证据边界",
+                  "type": "choice"
+                },
+                {
+                  "id": "p11-rewire-repeats",
+                  "slug": "p11-rewire-repeats",
+                  "title": "重连实验的随机性",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-mean-local-clustering"
+            }
+          ],
+          "visualization": "web/network/index.html"
         },
         {
           "id": "11.2",
           "title": "网络上的扩散与守恒",
           "url": "/chapters/11-02-网络上的扩散与守恒/",
-          "goals": "推导无向交换网络的 dx/dt = −Lx，说明守恒、连通分量和平衡（equilibrium）模态（mode）的关系。",
-          "prerequisites": "11.1、3.3；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态、矩阵（matrix）幂和矩阵指数（matrix exponential）、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
+          "goals": "推导无向交换网络的 dx/dt = −Lx，说明守恒、连通分量（connected component）和平衡（equilibrium）模态（mode）的关系。",
+          "prerequisites": "11.1、3.3；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态、矩阵（matrix）幂和矩阵指数（matrix exponential）、图、邻接矩阵（adjacency matrix）、图拉普拉斯（graph Laplacian）、图谱与连通性。",
           "knowledge": [
             "每条边的交换收支（mass balance）",
             "拉普拉斯零模态与连通性",
             "非零模态和趋近速度，限定等容积及对称交换假设"
           ],
           "focus": "无外部输入（input）输出（output）时检查总量守恒；谱关系只用于满足假设的算子，不能把有向或非对称网络未经说明套入同一结论。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P11-C02-S01",
+              "chapter_id": "11.2",
+              "number": "11.2.1",
+              "title": "每条边的交换与守恒",
+              "outcome": "从边收支推导图拉普拉斯并检查总量守恒。",
+              "path": "notebooks/11-网络上的系统/02-网络上的扩散与守恒/01-每条边的交换与守恒.ipynb",
+              "visualization": "web/network/index.html",
+              "questions": [
+                {
+                  "id": "p11-exchange-laplacian",
+                  "slug": "p11-exchange-laplacian",
+                  "title": "由交换边构造拉普拉斯",
+                  "type": "python"
+                },
+                {
+                  "id": "p11-edge-conservation",
+                  "slug": "p11-edge-conservation",
+                  "title": "一条边的收支",
+                  "type": "choice"
+                },
+                {
+                  "id": "p11-directed-warning",
+                  "slug": "p11-directed-warning",
+                  "title": "有向边不能偷换算子",
+                  "type": "choice"
+                },
+                {
+                  "id": "p11-zero-mode",
+                  "slug": "p11-zero-mode",
+                  "title": "孤立节点的零模态",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-exchange-laplacian"
+            },
+            {
+              "id": "P11-C02-S02",
+              "chapter_id": "11.2",
+              "number": "11.2.2",
+              "title": "连通性、模态与容积",
+              "outcome": "用拉普拉斯零模态解释平衡并核验数值步长。",
+              "path": "notebooks/11-网络上的系统/02-网络上的扩散与守恒/02-连通性、模态与容积.ipynb",
+              "visualization": "web/network/index.html",
+              "questions": [
+                {
+                  "id": "p11-amounts-with-volumes",
+                  "slug": "p11-amounts-with-volumes",
+                  "title": "按容积交换物质总量",
+                  "type": "python"
+                },
+                {
+                  "id": "p11-volume-equilibrium",
+                  "slug": "p11-volume-equilibrium",
+                  "title": "不同容积时的平衡",
+                  "type": "choice"
+                },
+                {
+                  "id": "p11-euler-too-large",
+                  "slug": "p11-euler-too-large",
+                  "title": "守恒不等于物理合理",
+                  "type": "choice"
+                },
+                {
+                  "id": "p11-spectral-gap",
+                  "slug": "p11-spectral-gap",
+                  "title": "谱间隔能说明什么",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-amounts-with-volumes"
+            }
+          ],
+          "visualization": "web/network/index.html"
         },
         {
           "id": "11.3",
           "title": "接触结构与传播",
           "url": "/chapters/11-03-接触结构与传播/",
-          "goals": "定义个体状态（state）和接触传播规则，比较平均混合与网络模型（model），说明初始位置及有限规模影响。",
-          "prerequisites": "11.2、5.4；数学：随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布（distribution）、图、邻接矩阵（matrix）、图拉普拉斯、图谱与连通性。",
+          "goals": "定义个体状态（state）和接触传播规则，比较平均混合（homogeneous mixing）与网络模型（model），说明初始位置及有限规模影响。",
+          "prerequisites": "11.2、5.4；数学：随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布（distribution）、图、邻接矩阵（adjacency matrix）、图拉普拉斯（graph Laplacian）、图谱与连通性。",
           "knowledge": [
             "状态转移和接触定义",
             "平均混合与固定网络",
             "结构、初始节点与干预的对照，区分单次灭绝和平均传播规模"
           ],
           "focus": "总个体数、状态合法性和更新规则一致；建议至少 20 个网络实现、每图 30 次动态重复，实际数量由预算与不确定性检查确定并写明。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P11-C03-S01",
+              "chapter_id": "11.3",
+              "number": "11.3.1",
+              "title": "固定随机数的同步传播",
+              "outcome": "写出同步 SIR 更新并复查传播与恢复事件。",
+              "path": "notebooks/11-网络上的系统/03-接触结构与传播/01-固定随机数的同步传播.ipynb",
+              "visualization": "web/network/index.html",
+              "questions": [
+                {
+                  "id": "p11-synchronous-sir",
+                  "slug": "p11-synchronous-sir",
+                  "title": "用固定随机数重放传播",
+                  "type": "python"
+                },
+                {
+                  "id": "p11-synchronous-order",
+                  "slug": "p11-synchronous-order",
+                  "title": "同步更新为何用旧状态",
+                  "type": "choice"
+                },
+                {
+                  "id": "p11-per-edge-budget",
+                  "slug": "p11-per-edge-budget",
+                  "title": "每边概率与总接触预算",
+                  "type": "choice"
+                },
+                {
+                  "id": "p11-extinction-vs-mean",
+                  "slug": "p11-extinction-vs-mean",
+                  "title": "一次灭绝不是总体结论",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/11-03-接触结构与传播/practice/?question=p11-synchronous-sir"
+            },
+            {
+              "id": "P11-C03-S02",
+              "chapter_id": "11.3",
+              "number": "11.3.2",
+              "title": "网络随机与传播随机",
+              "outcome": "在等接触预算下分层重复，分开两类随机变异。",
+              "path": "notebooks/11-网络上的系统/03-接触结构与传播/02-网络随机与传播随机.ipynb",
+              "visualization": "web/network/index.html",
+              "questions": [
+                {
+                  "id": "p11-nested-outbreak-variation",
+                  "slug": "p11-nested-outbreak-variation",
+                  "title": "分开网络与传播重复",
+                  "type": "python"
+                },
+                {
+                  "id": "p11-one-graph-many-draws",
+                  "slug": "p11-one-graph-many-draws",
+                  "title": "一张网络重复很多次够吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p11-paired-intervention",
+                  "slug": "p11-paired-intervention",
+                  "title": "定向干预的比较",
+                  "type": "choice"
+                },
+                {
+                  "id": "p11-uncertainty-boundary",
+                  "slug": "p11-uncertainty-boundary",
+                  "title": "有限重复能支持什么",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/11-03-接触结构与传播/practice/?question=p11-nested-outbreak-variation"
+            }
+          ],
+          "visualization": "web/network/index.html"
         },
         {
           "id": "11.4",
           "title": "耦合振子与同步",
           "url": "/chapters/11-04-耦合振子与同步/",
-          "goals": "区分相位（phase）接近、频率锁定与平均频率，说明同步指标和耦合归一化。",
-          "prerequisites": "11.3、4.2；数学：偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、图、邻接矩阵（matrix）、图拉普拉斯、图谱与连通性。",
+          "goals": "区分相位（phase）接近、频率锁定（frequency locking）与平均频率，说明同步指标和耦合归一化。",
+          "prerequisites": "11.3、4.2；数学：偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、图、邻接矩阵（adjacency matrix）、图拉普拉斯（graph Laplacian）、图谱与连通性。",
           "knowledge": [
             "单体节律到相位模型（model）的简化",
             "网络耦合、异质频率与同步指标",
             "扫描耦合及初相，比较结构和规模"
           ],
           "focus": "R 在 [0, 1]，共同平移所有相位不改变 R；扫描结论检查暂态（transient）、步长和初值（initial condition），不将单次跃变称为普遍同步阈值。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P11-C04-S01",
+              "chapter_id": "11.4",
+              "number": "11.4.1",
+              "title": "从单体相位到群体指标",
+              "outcome": "实现耦合相位模型并分辨全局相位一致与分群。",
+              "path": "notebooks/11-网络上的系统/04-耦合振子与同步/01-从单体相位到群体指标.ipynb",
+              "visualization": "web/network/index.html",
+              "questions": [
+                {
+                  "id": "p11-phase-order-parameter",
+                  "slug": "p11-phase-order-parameter",
+                  "title": "计算全局相位序参量",
+                  "type": "python"
+                },
+                {
+                  "id": "p11-phase-shift-invariance",
+                  "slug": "p11-phase-shift-invariance",
+                  "title": "共同平移全部相位",
+                  "type": "choice"
+                },
+                {
+                  "id": "p11-antiphase-clusters",
+                  "slug": "p11-antiphase-clusters",
+                  "title": "全局 R 小也可能有结构",
+                  "type": "choice"
+                },
+                {
+                  "id": "p11-phase-vs-frequency",
+                  "slug": "p11-phase-vs-frequency",
+                  "title": "相位靠近与频率锁定",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-phase-order-parameter"
+            },
+            {
+              "id": "P11-C04-S02",
+              "chapter_id": "11.4",
+              "number": "11.4.2",
+              "title": "结构、耦合与频率锁定",
+              "outcome": "比较两种结构的相位一致和尾段频率差，限定结论。",
+              "path": "notebooks/11-网络上的系统/04-耦合振子与同步/02-结构、耦合与频率锁定.ipynb",
+              "visualization": "web/network/index.html",
+              "questions": [
+                {
+                  "id": "p11-one-phase-network-step",
+                  "slug": "p11-one-phase-network-step",
+                  "title": "一步网络相位耦合",
+                  "type": "python"
+                },
+                {
+                  "id": "p11-degree-normalization",
+                  "slug": "p11-degree-normalization",
+                  "title": "耦合预算的定义",
+                  "type": "choice"
+                },
+                {
+                  "id": "p11-finite-scan-threshold",
+                  "slug": "p11-finite-scan-threshold",
+                  "title": "有限扫描不是通用阈值",
+                  "type": "choice"
+                },
+                {
+                  "id": "p11-same-frequencies",
+                  "slug": "p11-same-frequencies",
+                  "title": "比较结构时共用频率",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-one-phase-network-step"
+            }
+          ],
+          "visualization": "web/network/index.html"
         }
-      ]
+      ],
+      "assessment": {
+        "id": "11.summary",
+        "assessment": true,
+        "title": "网络结构、传播与同步",
+        "url": "/parts/11-网络上的系统/综合练习/",
+        "goals": "先定义连接含义和预算，再比较动力学。",
+        "prerequisites": "本篇11.1—11.4；第5篇随机过程（stochastic process）与第3篇多变量动态。",
+        "focus": "结构语义、守恒扩散、分层重复、全局与局部同步。",
+        "knowledge": [
+          "邻接、度和路径",
+          "拉普拉斯与容积",
+          "同步 SIR 与分层重复",
+          "相位（phase）序参量（order parameter）与锁定"
+        ],
+        "lessons": [
+          {
+            "id": "P11-SUMMARY",
+            "chapter_id": "11.summary",
+            "number": "篇末综合",
+            "title": "网络结构、传播与同步",
+            "outcome": "在同一网络语义下比较结构、扩散、传播及集体节律。",
+            "path": "notebooks/11-网络上的系统/05-篇末综合/01-网络结构传播与同步.ipynb",
+            "visualization": null,
+            "overview": {
+              "goals": "先定义连接含义和预算，再比较动力学。",
+              "prerequisites": "本篇11.1—11.4；第5篇随机过程与第3篇多变量动态。",
+              "focus": "结构语义、守恒扩散、分层重复、全局与局部同步。",
+              "knowledge": [
+                "邻接、度和路径",
+                "拉普拉斯与容积",
+                "同步 SIR 与分层重复",
+                "相位序参量与锁定"
+              ]
+            },
+            "questions": [
+              {
+                "id": "p11-network-contract",
+                "slug": "p11-network-contract",
+                "title": "先说清连接契约",
+                "type": "choice"
+              },
+              {
+                "id": "p11-propagation-budget",
+                "slug": "p11-propagation-budget",
+                "title": "传播结构比较的预算",
+                "type": "choice"
+              },
+              {
+                "id": "p11-capstone-graph",
+                "slug": "p11-capstone-graph",
+                "title": "统计综合图",
+                "type": "python"
+              },
+              {
+                "id": "p11-capstone-laplacian",
+                "slug": "p11-capstone-laplacian",
+                "title": "守恒算子与孤点",
+                "type": "python"
+              },
+              {
+                "id": "p11-capstone-spread",
+                "slug": "p11-capstone-spread",
+                "title": "同一随机输入下传播",
+                "type": "python"
+              },
+              {
+                "id": "p11-capstone-phase",
+                "slug": "p11-capstone-phase",
+                "title": "判断尾窗频率锁定",
+                "type": "python"
+              },
+              {
+                "id": "p11-capstone-gap",
+                "slug": "p11-capstone-gap",
+                "title": "改变连接后的扩散尺度",
+                "type": "python"
+              },
+              {
+                "id": "p11-network-claim-limit",
+                "slug": "p11-network-claim-limit",
+                "title": "有限网络的结构结论",
+                "type": "choice"
+              }
+            ],
+            "url": "/parts/11-网络上的系统/综合练习/practice/?question=p11-network-contract"
+          }
+        ],
+        "available": true,
+        "visualization": null
+      }
     },
     {
       "id": "12",
@@ -6546,7 +6928,7 @@
           "id": "13.1",
           "title": "相变、临界性与有限规模",
           "url": "/chapters/13-01-相变、临界性与有限规模/",
-          "goals": "选择可测量的序参量，对有限系统的变化给出规模与统计证据，不把一次突变当作相变证明。",
+          "goals": "选择可测量的序参量（order parameter），对有限系统的变化给出规模与统计证据，不把一次突变当作相变证明。",
           "prerequisites": "12.5、4.3、6.4；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、序参量、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
             "回顾分岔（bifurcation）与群体行为",
@@ -6563,7 +6945,7 @@
           "title": "级联失效与结构鲁棒性",
           "url": "/chapters/13-02-级联失效与结构鲁棒性/",
           "goals": "区分直接移除造成的损伤与规则传播造成的级联，解释容量、阈值与功能指标。",
-          "prerequisites": "13.1、11.3；数学：图、邻接矩阵（matrix）、图拉普拉斯、图谱与连通性、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "prerequisites": "13.1、11.3；数学：图、邻接矩阵（adjacency matrix）、图拉普拉斯（graph Laplacian）、图谱与连通性、序参量（order parameter）、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
             "节点或边失效及功能定义",
             "阈值/负载规则与级联更新",
@@ -6579,7 +6961,7 @@
           "title": "扰动、恢复与早期预警",
           "url": "/chapters/13-03-扰动、恢复与早期预警/",
           "goals": "测量局部恢复率，区分恢复速度与吸引域（basin of attraction）大小，并评价方差（variance）、自相关等指标的条件和失败。",
-          "prerequisites": "13.2、4.5、6.5；数学：Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数（derivative）和局部适用区域、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量、尺度关系、有限规模比较与不确定性评估、点到集合距离、紧集（compact set）直觉、不变集（invariant set）、吸引子（attractor）与吸引域。",
+          "prerequisites": "13.2、4.5、6.5；数学：Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数（derivative）和局部适用区域、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模比较与不确定性评估、点到集合距离、紧集（compact set）直觉、不变集（invariant set）、吸引子（attractor）与吸引域。",
           "knowledge": [
             "小扰动响应、线性化（linearization）与恢复时间",
             "有限扰动、吸引子与吸引域，区分回到长期集合和回到原时间相位（phase）",
@@ -6595,7 +6977,7 @@
           "title": "多尺度、粗粒化与不确定性",
           "url": "/chapters/13-04-多尺度、粗粒化与不确定性/",
           "goals": "区分参数（parameter）、随机、观测（observation）和结构误差，比较个体、网络与平均模型（model）的结论是否一致。",
-          "prerequisites": "13.3、12.5、9.5；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "prerequisites": "13.3、12.5、9.5；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
             "选择时间、空间与个体层级",
             "参数敏感性与观测聚合",
@@ -6682,7 +7064,7 @@
           "title": "噪声、外推与结构保持",
           "url": "/chapters/14-05-噪声、外推与结构保持/",
           "goals": "在共同协议下比较降阶与动力学发现，检查守恒、非负性（nonnegativity）、外推和噪声敏感性。",
-          "prerequisites": "14.4、13.4；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量、尺度关系、有限规模比较与不确定性评估、正则化（regularization）、非光滑目标、近端更新与软阈值（soft thresholding）、奇异值分解（singular value decomposition，SVD）、截断、伪逆与低秩（rank）投影（projection）。",
+          "prerequisites": "14.4、13.4；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模比较与不确定性评估、正则化（regularization）、非光滑目标、近端更新与软阈值（soft thresholding）、奇异值分解（singular value decomposition，SVD）、截断、伪逆与低秩（rank）投影（projection）。",
           "knowledge": [
             "对齐物理变量、采样（sampling）、数据量和预测时域，固定结构误差与数值误差（numerical error）的分项指标",
             "由多室交换的列和及符号条件检查候选线性模型（model）的守恒与非负性",
@@ -6858,10 +7240,10 @@
           "title": "分布式控制与通信限制",
           "url": "/chapters/16-05-分布式控制与通信限制/",
           "goals": "由局部通信构造协同反馈（feedback），检查连通性、权重和延迟（delay）对收敛与性能的影响。",
-          "prerequisites": "11.4、10.3；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
+          "prerequisites": "11.4、10.3；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、图、邻接矩阵（adjacency matrix）、图拉普拉斯（graph Laplacian）、图谱与连通性。",
           "knowledge": [
             "从网络扩散推导一致性控制（consensus control），明确有向/无向图与局部可用信息",
-            "分析离散步长、连通分量和不变总量，区别状态（state）一致与平均一致",
+            "分析离散步长、连通分量（connected component）和不变总量，区别状态（state）一致与平均一致",
             "加入固定通信延迟、断边和输入（input）上限，与集中信息基线公平比较"
           ],
           "focus": "无向无延迟情形与图拉普拉斯谱及矩阵幂对照；断连时逐分量比较，不将有向权重下的极限（limit）都解释为算术平均。",
@@ -6913,7 +7295,7 @@
           "title": "研究问题与证据",
           "url": "/chapters/17-01-研究问题与证据/",
           "goals": "把论文主张转成有明确假设、对象、指标和证据范围的可复现问题。",
-          "prerequisites": "9.5、13.4、14.5、15.5、16.7；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "prerequisites": "9.5、13.4、14.5、15.5、16.7；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
             "固定原论文及版本，区分方法定义、原实验结论与作者解释",
             "将原问题缩为普通 CPU 可运行的低维实验，声明缩减改变了哪些条件",
@@ -6945,7 +7327,7 @@
           "title": "消融、失效与结论边界",
           "url": "/chapters/17-03-消融、失效与结论边界/",
           "goals": "通过消融、重复和失效实验定位效果来源，区分统计波动与可支持的机制解释。",
-          "prerequisites": "17.2；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "prerequisites": "17.2；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
             "预先确定消融因素、配对场景和评价量，保持其他条件可比",
             "比较重复效果差和不确定性，保留全部失败与未复现结果",
@@ -6961,7 +7343,7 @@
           "title": "研究方法综合比较",
           "url": "/chapters/17-04-研究方法综合比较/",
           "goals": "把机制、推断和学习结果组织为可追溯比较，在新条件下判断结论仍成立的范围。",
-          "prerequisites": "17.3；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量、尺度关系、有限规模比较与不确定性评估、神经网络、计算图、自动微分（automatic differentiation，AD）与反向传播（backpropagation）。",
+          "prerequisites": "17.3；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模比较与不确定性评估、神经网络、计算图、自动微分（automatic differentiation，AD）与反向传播（backpropagation）。",
           "knowledge": [
             "以三组贯穿案例整理观测（observation）条件、状态（state）/参数（parameter）问题及可选择的方法",
             "连接独立评估、预算、失效与不确定性，分别给出可以和不能支持的结论",

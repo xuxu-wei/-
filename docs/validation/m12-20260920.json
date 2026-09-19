@@ -1,0 +1,183 @@
+{
+  "stage": "M12：第11篇网络上的系统",
+  "date": "2026-09-20",
+  "status": "passed",
+  "scope": {
+    "chapters": [
+      "11.1",
+      "11.2",
+      "11.3",
+      "11.4"
+    ],
+    "body_notebooks": 8,
+    "capstone_notebooks": 1,
+    "questions": 40,
+    "choice": 27,
+    "python": 13,
+    "exploration_views": 4,
+    "exploration_path": "web/network/index.html",
+    "capstone_levels": [
+      20,
+      30,
+      30,
+      20
+    ]
+  },
+  "environment": {
+    "python": "3.13.2",
+    "platform": "Windows",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "nbclient": "0.11.0",
+      "nbformat": "5.11.1",
+      "nbconvert": "7.17.1",
+      "ipykernel": "7.3.0"
+    }
+  },
+  "notebooks": [
+    {
+      "id": "P11-C01-S01",
+      "path": "notebooks/11-网络上的系统/01-从连接结构进入网络科学/01-从边表到结构统计.ipynb",
+      "seconds": 2.82,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "37ee3cdfc1afc8551507032b10accd19be23f9aa10302b7185829096f8b18ade",
+      "passed": true
+    },
+    {
+      "id": "P11-C01-S02",
+      "path": "notebooks/11-网络上的系统/01-从连接结构进入网络科学/02-规则网络与重连基线.ipynb",
+      "seconds": 2.79,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "9692b8a223503b06714f16eae3cba6038d9e28d12672cca9d193215f6fab9853",
+      "passed": true
+    },
+    {
+      "id": "P11-C02-S01",
+      "path": "notebooks/11-网络上的系统/02-网络上的扩散与守恒/01-每条边的交换与守恒.ipynb",
+      "seconds": 2.48,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "76f01f7621bb283b36764be5c34d340d90ccc4da71167fb7aee3880cf075db8e",
+      "passed": true
+    },
+    {
+      "id": "P11-C02-S02",
+      "path": "notebooks/11-网络上的系统/02-网络上的扩散与守恒/02-连通性、模态与容积.ipynb",
+      "seconds": 2.9,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "e0d410c4cd38bb85d9b4aec520dd8c0bfa494c0075591e9afe81b12db5fd0197",
+      "passed": true
+    },
+    {
+      "id": "P11-C03-S01",
+      "path": "notebooks/11-网络上的系统/03-接触结构与传播/01-固定随机数的同步传播.ipynb",
+      "seconds": 2.66,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "9e3a44dadb3cf8c34aed0f5e75db4438517b4a840d2c571cb2a64e6d49db95f2",
+      "passed": true
+    },
+    {
+      "id": "P11-C03-S02",
+      "path": "notebooks/11-网络上的系统/03-接触结构与传播/02-网络随机与传播随机.ipynb",
+      "seconds": 3.16,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "38ac2cf0a13a20af8d3ef4c4592133c8939565a13dae0bff6a4390736e8cd32d",
+      "passed": true
+    },
+    {
+      "id": "P11-C04-S01",
+      "path": "notebooks/11-网络上的系统/04-耦合振子与同步/01-从单体相位到群体指标.ipynb",
+      "seconds": 2.85,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "5277193521163b10599a6411b81a146884d8018db468c032d6b5aec19d2b99ae",
+      "passed": true
+    },
+    {
+      "id": "P11-C04-S02",
+      "path": "notebooks/11-网络上的系统/04-耦合振子与同步/02-结构、耦合与频率锁定.ipynb",
+      "seconds": 3.82,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "ec533a846899faae4f131e45d5e3f1d236bded40cb71bf90b8054067ddcc5094",
+      "passed": true
+    },
+    {
+      "id": "P11-SUMMARY",
+      "path": "notebooks/11-网络上的系统/05-篇末综合/01-网络结构传播与同步.ipynb",
+      "seconds": 3.13,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "eb0b4d1ce60953c587af33a949b3e6cbaa98b4b2eba2f56db1f2390bd7e8a3cf",
+      "passed": true
+    }
+  ],
+  "automated": {
+    "python_passed": 747,
+    "javascript_passed": 118,
+    "part11_python_tests": 22,
+    "part11_exploration_js_tests": 5,
+    "all_notebooks": 137,
+    "all_questions_and_links": 642,
+    "figure_glyph_warning_streams": 0,
+    "commands": [
+      "python tools/check_notebooks.py --part 11-网络上的系统 --work m12 --write",
+      "python tools/check_teaching.py --work m12",
+      "python -m pytest -q",
+      "node --test"
+    ]
+  },
+  "independent_checks": [
+    "四节点路径与三角形用手算距离、度和及局部聚类核对；重连图保持节点、边数和简单图约束。",
+    "对称拉普拉斯与两室交换解析解、断连分量守恒、不同容积共同浓度及过大 Euler 步长的负值反例核对。",
+    "同步 SIR 的旧状态事件顺序用固定随机表手算；两层方差用 2×2 小表核对，平均混合首步由接触概率公式独立计算。",
+    "相位平移不变、零耦合线性解与尾窗频率差独立核对；13 道 Python 题逐题经过真实判题器的样例、完整及错误答案。",
+    "新增“非零特征值”“非平衡”长词优先注释回归；全篇图形无中文缺字警告。"
+  ],
+  "browser": {
+    "engine": "Codex In-app Browser；隔离端口8021、.work/m12/learning 记录和 IDE opener 注入；未修改个人学习记录",
+    "four_chapters": "11.1—11.4 均实际加载图形、点击播放并观察进度/读数；11.3 的 β 默认值经可见结果复验",
+    "roundtrips": [
+      "11.1 结构路径指标 1.909→1.788→1.909",
+      "11.2 桥断/连/断的分量总量 4/2→3.114/2.886→4/2，全图始终 6",
+      "11.3 相同固定随机流与 β=0.25 下规则/重连/规则最终曾感染 4→10→4",
+      "11.4 序参量 R 0.409→0.988→0.409，并同时显示频率极差，避免将相位集中误判为锁频"
+    ],
+    "ide_open": "11.4 默认 IDE 按钮返回 202；测试 opener 收到本项目原始 .ipynb 的绝对路径，文件存在",
+    "practice": "11.1 Python 题实际页面显示 def solve(n, edges)；输入与输出样例各含表格和代码；试算 1/1 不计进度，正式提交 3/3 后进度 1/8",
+    "notebook_preview": "11.2.2 MathJax 公式和图形实际渲染；修复 CJK 字体缺字及“非零特征值（zero eigenvalue）”误注后重新生成并检查"
+  },
+  "navigation": {
+    "planned_parts": 17,
+    "planned_chapters": 85,
+    "published_chapters": 55,
+    "graph_nodes": 607,
+    "graph_edges": 892,
+    "notebook_entry": "notebooks/11-网络上的系统/README.md"
+  },
+  "artifact_hashes": {
+    "exercises/11-网络上的系统/questions.json": "603400b09e08c80828a0fbdba756d82674cdccbf1724c74b5f53ffe94f43106e",
+    "exercises/11-网络上的系统/verification.json": "7c99c84279638ad4dd346f5e0fa6ce7f0f6a62f27209027e03bebf0da46c642b",
+    "web/network/app.mjs": "a8ff0de538c20a94b726a55a991d9f5e4fec80a09a4b207c2f80c9b7bd2cc206",
+    "web/network/model.mjs": "6c7d74e310a82c6ee39b3d950b657384424b38434d4cbd2b288f125ea84b0951",
+    "web/course/catalog.json": "1f0e25ffa1559fbbec77253fc8b822688bb17f394eb9cfe9318ccec3038f7126",
+    "web/home/graph.json": "688f001724d0283b318cda9f872fe09681ce327383fde0c30cee2f956dd1d557"
+  },
+  "preservation": {
+    "AGENTS_unchanged": true,
+    "external_data_generator_imported": false,
+    "simulation_data_added": false,
+    "new_runtime_dependencies": []
+  },
+  "limits": [
+    "网络生成与传播、交换、节律都是明示条件下的有限教学模型；平均混合参照并非固定网络随机实验的真值，单次轨迹不支持总体断言。",
+    "验收环境为 Windows/Python 3.13 与 PC 本机浏览器；未开展目标读者试学、独立同行评审或默认 IDE 内部渲染检查。"
+  ],
+  "next_stage": "M13：第12篇个体与集体现象"
+}

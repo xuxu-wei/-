@@ -1,0 +1,78 @@
+{
+  "version": "1",
+  "part": "11",
+  "lesson_id": "P11-SUMMARY",
+  "title": "网络结构、传播与同步",
+  "objectives": [
+    {
+      "id": "T1",
+      "title": "定义网络模型",
+      "review_url": "/chapters/11-01-从连接结构进入网络科学/"
+    },
+    {
+      "id": "T2",
+      "title": "解释网络扩散",
+      "review_url": "/chapters/11-02-网络上的扩散与守恒/"
+    },
+    {
+      "id": "T3",
+      "title": "比较传播机制",
+      "review_url": "/chapters/11-03-接触结构与传播/"
+    },
+    {
+      "id": "T4",
+      "title": "分析集体节律",
+      "review_url": "/chapters/11-04-耦合振子与同步/"
+    }
+  ],
+  "items": [
+    {
+      "question_id": "p11-network-contract",
+      "level": 1,
+      "points": 10,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p11-propagation-budget",
+      "level": 1,
+      "points": 10,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p11-capstone-graph",
+      "level": 2,
+      "points": 15,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p11-capstone-laplacian",
+      "level": 2,
+      "points": 15,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p11-capstone-spread",
+      "level": 3,
+      "points": 15,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p11-capstone-phase",
+      "level": 3,
+      "points": 15,
+      "objective": "T4"
+    },
+    {
+      "question_id": "p11-capstone-gap",
+      "level": 4,
+      "points": 10,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p11-network-claim-limit",
+      "level": 4,
+      "points": 10,
+      "objective": "T4"
+    }
+  ]
+}

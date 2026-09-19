@@ -1,0 +1,2551 @@
+[
+  {
+    "id": "p11-small-graph-statistics",
+    "slug": "p11-small-graph-statistics",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.1",
+    "lesson_id": "P11-C01-S01",
+    "title": "计算小图的结构统计",
+    "statement": "节点编号从0到n−1，edges 的每项 [i,j] 表示一条无向、无权、无自环的边且不重复。返回度、按最小节点排序的连通分量（connected component）和全图不同节点对的平均最短路径长度；若图不连通或 n=1，路径平均值返回 None。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数21"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "n",
+        "type": "int",
+        "description": "节点总数。",
+        "unit": "个"
+      },
+      {
+        "name": "edges",
+        "type": "list[list[int]]",
+        "description": "无向简单边，每条只列一次。",
+        "unit": "条"
+      }
+    ],
+    "returns": [
+      {
+        "name": "degrees",
+        "type": "list[int]",
+        "description": "按节点编号排列的度。",
+        "unit": "条"
+      },
+      {
+        "name": "components",
+        "type": "list[list[int]]",
+        "description": "每个分量及分量顺序均升序。",
+        "unit": "节点编号"
+      },
+      {
+        "name": "mean_path",
+        "type": "float | None",
+        "description": "全图平均最短边数；未定义时为 None。",
+        "unit": "边"
+      }
+    ],
+    "contract": "先构造对称邻接矩阵（adjacency matrix）；用 BFS 找分量及从每个起点的距离。只对 i<j 计一次；有不可达对则 mean_path=None。",
+    "constraints": [
+      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "四节点路径的度为[1,2,2,1]；6 对距离之和为10，故平均为10/6。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    n: int,\n    edges: list[list[int]],\n) -> tuple[list[int], list[list[int]], float | None]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "n": 4,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        },
+        "expected": [
+          [
+            1,
+            2,
+            2,
+            1
+          ],
+          [
+            [
+              0,
+              1,
+              2,
+              3
+            ]
+          ],
+          1.6666666666666667
+        ],
+        "explanation": "四节点路径的度为[1,2,2,1]；6 对距离之和为10，故平均为10/6。"
+      }
+    ]
+  },
+  {
+    "id": "p11-edge-semantics",
+    "slug": "p11-edge-semantics",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.1",
+    "lesson_id": "P11-C01-S01",
+    "title": "边的含义先于矩阵",
+    "statement": "把同一份边表用于物质交换与人与人接触。哪些信息必须先说明？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "节点和边分别代表什么。"
+      },
+      {
+        "id": "B",
+        "text": "边有无方向、权重表示交换率还是接触次数。"
+      },
+      {
+        "id": "C",
+        "text": "绘图软件给出的坐标一定是实际空间位置。"
+      },
+      {
+        "id": "D",
+        "text": "图中边的颜色由物理定律唯一决定。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-hand-drawn-path",
+    "slug": "p11-hand-drawn-path",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.1",
+    "lesson_id": "P11-C01-S01",
+    "title": "闭合四节点路径后",
+    "statement": "四节点路径0—1—2—3再增加边3—0，新的度序列与分量数是什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "[2,2,2,2]，1个分量。"
+      },
+      {
+        "id": "B",
+        "text": "[1,2,2,1]，2个分量。"
+      },
+      {
+        "id": "C",
+        "text": "[2,2,2,2]，4个分量。"
+      },
+      {
+        "id": "D",
+        "text": "[3,3,3,3]，1个分量。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-degree-sum",
+    "slug": "p11-degree-sum",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.1",
+    "lesson_id": "P11-C01-S01",
+    "title": "度数总和检查",
+    "statement": "无向简单图共有 m 条边。哪些陈述正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "所有节点的度之和为2m。"
+      },
+      {
+        "id": "B",
+        "text": "每条边在两个端点各贡献1度。"
+      },
+      {
+        "id": "C",
+        "text": "度之和必等于m。"
+      },
+      {
+        "id": "D",
+        "text": "用布局距离可以直接替代最短边数。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-mean-local-clustering",
+    "slug": "p11-mean-local-clustering",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.1",
+    "lesson_id": "P11-C01-S02",
+    "title": "计算平均局部聚类",
+    "statement": "在无向简单图上，对每个节点计算邻居之间实际相连的边数除以邻居可能边数；度不足2的节点本题局部聚类（local clustering）定义为0。返回 n 个节点的算术平均。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数21"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "n",
+        "type": "int",
+        "description": "节点总数，至少1。",
+        "unit": "个"
+      },
+      {
+        "name": "edges",
+        "type": "list[list[int]]",
+        "description": "无向简单边。",
+        "unit": "条"
+      }
+    ],
+    "returns": [
+      {
+        "name": "mean_clustering",
+        "type": "float",
+        "description": "平均局部聚类系数。",
+        "unit": "1"
+      }
+    ],
+    "contract": "局部系数 C_i=已连接邻居对数 / [d_i(d_i−1)/2]，d_i<2 时取0；最后除以 n。",
+    "constraints": [
+      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "三角形每个节点的邻居彼此连接，平均聚类为1；路径图无三角。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    n: int,\n    edges: list[list[int]],\n) -> float:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "n": 3,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        },
+        "expected": 1.0,
+        "explanation": "三角形每个节点的邻居彼此连接，平均聚类为1；路径图无三角。"
+      }
+    ]
+  },
+  {
+    "id": "p11-matched-edge-budget",
+    "slug": "p11-matched-edge-budget",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.1",
+    "lesson_id": "P11-C01-S02",
+    "title": "比较结构要匹配什么",
+    "statement": "比较规则环与重连图的路径和聚类，哪组约束让结构差异更容易解释？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "固定节点数和边数，记录重连概率（probability）与随机种子（random seed）。"
+      },
+      {
+        "id": "B",
+        "text": "只固定图片宽度。"
+      },
+      {
+        "id": "C",
+        "text": "让重连图边数翻倍，再把差异全归因于捷径。"
+      },
+      {
+        "id": "D",
+        "text": "只选一次最漂亮的随机网络。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-power-law-evidence",
+    "slug": "p11-power-law-evidence",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.1",
+    "lesson_id": "P11-C01-S02",
+    "title": "度分布的证据边界",
+    "statement": "某个仅40节点的图的度频数在双对数坐标看似近直线。最稳妥的结论是什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "可以立即宣布普遍幂律。"
+      },
+      {
+        "id": "B",
+        "text": "需与其他候选分布（distribution）、有限规模与采样（sampling）过程比较，不能凭图形判断。"
+      },
+      {
+        "id": "C",
+        "text": "所有重连图都必有同一幂律指数。"
+      },
+      {
+        "id": "D",
+        "text": "坐标变换能创造未观测（observation）到的节点。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-rewire-repeats",
+    "slug": "p11-rewire-repeats",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.1",
+    "lesson_id": "P11-C01-S02",
+    "title": "重连实验的随机性",
+    "statement": "固定 n、k、重连概率（probability），但每次换种子。哪些判断成立？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "边数应由声明的重连规则保持。"
+      },
+      {
+        "id": "B",
+        "text": "平均路径和聚类可能随具体实现波动。"
+      },
+      {
+        "id": "C",
+        "text": "一个实现就能给出无不确定性的普遍结论。"
+      },
+      {
+        "id": "D",
+        "text": "网络生成随机性与之后传播事件（event）随机性是同一随机来源。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-exchange-laplacian",
+    "slug": "p11-exchange-laplacian",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.2",
+    "lesson_id": "P11-C02-S01",
+    "title": "由交换边构造拉普拉斯",
+    "statement": "每项 [i,j,rate] 是无向边两端的对称交换率。构造 L，使等容积模型（model）的变化率为 −Lx；边贡献 L_ii+=rate、L_jj+=rate、L_ij−=rate、L_ji−=rate。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数07",
+      "数21"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "n",
+        "type": "int",
+        "description": "节点数。",
+        "unit": "个"
+      },
+      {
+        "name": "weighted_edges",
+        "type": "list[list[float]]",
+        "description": "每条无向边的两端编号与非负交换率。",
+        "unit": "1/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "L",
+        "type": "list[list[float]]",
+        "description": "n×n 对称拉普拉斯矩阵（matrix）。",
+        "unit": "1/T"
+      }
+    ],
+    "contract": "同一无向边只给一次；孤立节点保留全零行。",
+    "constraints": [
+      "只计算题定有限图和数值模型；返回普通 Python 列表、数值或元组。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例的行和全为0；第一条边给(0,1)与(1,0)各减去2。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    n: int,\n    weighted_edges: list[list[float]],\n) -> list[list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "n": 3,
+          "weighted_edges": [
+            [
+              0,
+              1,
+              2.0
+            ],
+            [
+              1,
+              2,
+              1.0
+            ]
+          ]
+        },
+        "expected": [
+          [
+            2.0,
+            -2.0,
+            0.0
+          ],
+          [
+            -2.0,
+            3.0,
+            -1.0
+          ],
+          [
+            0.0,
+            -1.0,
+            1.0
+          ]
+        ],
+        "explanation": "首例的行和全为0；第一条边给(0,1)与(1,0)各减去2。"
+      }
+    ]
+  },
+  {
+    "id": "p11-edge-conservation",
+    "slug": "p11-edge-conservation",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.2",
+    "lesson_id": "P11-C02-S01",
+    "title": "一条边的收支",
+    "statement": "两等容积节点以 rate·(x_i−x_j) 从 i 流向 j。哪组变化率守恒？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数07",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "节点i为−rate(x_i−x_j)，节点j为+rate(x_i−x_j)。"
+      },
+      {
+        "id": "B",
+        "text": "两个节点都为−rate(x_i−x_j)。"
+      },
+      {
+        "id": "C",
+        "text": "只更新i而不更新j。"
+      },
+      {
+        "id": "D",
+        "text": "无向交换可产生外部输入（input）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-directed-warning",
+    "slug": "p11-directed-warning",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.2",
+    "lesson_id": "P11-C02-S01",
+    "title": "有向边不能偷换算子",
+    "statement": "一个有向非对称传播矩阵（matrix）的行和为0。能否直接套用本章无向 L 的实特征值（eigenvalue）和正交（orthogonality）模态（mode）结论？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数07",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "能，因为只要行和为0就足够。"
+      },
+      {
+        "id": "B",
+        "text": "不能；守恒还需检查合适的列和，正交谱分解也依赖对称性。"
+      },
+      {
+        "id": "C",
+        "text": "能，因为绘图里箭头可忽略。"
+      },
+      {
+        "id": "D",
+        "text": "能，因为所有矩阵的特征向量（eigenvector）都正交。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-zero-mode",
+    "slug": "p11-zero-mode",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.2",
+    "lesson_id": "P11-C02-S01",
+    "title": "孤立节点的零模态",
+    "statement": "一个图有两个互不连接的分量，所有边为正对称交换。长期状态（state）的正确描述是什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数07",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "全图必达到一个共同平均值。"
+      },
+      {
+        "id": "B",
+        "text": "每个连通分量（connected component）各自保留初始总量并趋向本分量平均值。"
+      },
+      {
+        "id": "C",
+        "text": "孤立分量的总量会流入另一分量。"
+      },
+      {
+        "id": "D",
+        "text": "只有一个零模态（mode）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-amounts-with-volumes",
+    "slug": "p11-amounts-with-volumes",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.2",
+    "lesson_id": "P11-C02-S02",
+    "title": "按容积交换物质总量",
+    "statement": "amount[i] 是第 i 室的所追踪物质总量（tracked amount），volume[i]>0；浓度（concentration） c_i=amount_i/volume_i。边流率（flow rate） rate·(c_i−c_j)，用题给固定步长显式 Euler 更新指定步数，返回包含初态的每步总量列表。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数07",
+      "数21"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "n",
+        "type": "int",
+        "description": "室数。",
+        "unit": "个"
+      },
+      {
+        "name": "weighted_edges",
+        "type": "list[list[float]]",
+        "description": "无向对称交换边 [i,j,rate]。",
+        "unit": "容积/T"
+      },
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "初始各室所追踪物质总量。",
+        "unit": "U"
+      },
+      {
+        "name": "volumes",
+        "type": "list[float]",
+        "description": "各室容积。",
+        "unit": "V"
+      },
+      {
+        "name": "dt",
+        "type": "float",
+        "description": "固定数值步长。",
+        "unit": "T"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "更新次数。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "history",
+        "type": "list[list[float]]",
+        "description": "长度 steps+1 的各室总量轨迹（trajectory）。",
+        "unit": "U"
+      }
+    ],
+    "contract": "每步同时用旧总量计算浓度，m_next=m−dt·L(m/V)；输入（input）保证 dt≤min_i(volume_i/∑_j rate_ij)，故轨迹非负。",
+    "constraints": [
+      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例第一步为[1.5,0.5]，两室总量之和始终为2；不同容积时长期相等的是浓度而不是总量。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    n: int,\n    weighted_edges: list[list[float]],\n    initial: list[float],\n    volumes: list[float],\n    dt: float,\n    steps: int,\n) -> list[list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "n": 2,
+          "weighted_edges": [
+            [
+              0,
+              1,
+              1.0
+            ]
+          ],
+          "initial": [
+            2.0,
+            0.0
+          ],
+          "volumes": [
+            1.0,
+            1.0
+          ],
+          "dt": 0.25,
+          "steps": 2
+        },
+        "expected": [
+          [
+            2.0,
+            0.0
+          ],
+          [
+            1.5,
+            0.5
+          ],
+          [
+            1.25,
+            0.75
+          ]
+        ],
+        "explanation": "首例第一步为[1.5,0.5]，两室总量之和始终为2；不同容积时长期相等的是浓度而不是总量。"
+      }
+    ]
+  },
+  {
+    "id": "p11-volume-equilibrium",
+    "slug": "p11-volume-equilibrium",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.2",
+    "lesson_id": "P11-C02-S02",
+    "title": "不同容积时的平衡",
+    "statement": "两个相连容积分别为1 V、3 V，总量共8 U且没有输入（input）输出（output）。最终浓度（concentration）和两室总量应为多少？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数07",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "浓度各2 U/V；总量分别2 U、6 U。"
+      },
+      {
+        "id": "B",
+        "text": "总量各4 U；浓度各4和4/3 U/V。"
+      },
+      {
+        "id": "C",
+        "text": "浓度各4 U/V；总量共16 U。"
+      },
+      {
+        "id": "D",
+        "text": "无法由质量守恒与浓度相等确定。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-euler-too-large",
+    "slug": "p11-euler-too-large",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.2",
+    "lesson_id": "P11-C02-S02",
+    "title": "守恒不等于物理合理",
+    "statement": "无向交换显式 Euler 步长很大，数值结果出现某室负总量，但各室总和仍守恒。应如何解释？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数07",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "守恒通过就证明数值结果可用。"
+      },
+      {
+        "id": "B",
+        "text": "这是离散步长造成的非负性（nonnegativity）失败；应细化步长或选合适方法。"
+      },
+      {
+        "id": "C",
+        "text": "真实物质出现负量。"
+      },
+      {
+        "id": "D",
+        "text": "一定是图不连通。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-spectral-gap",
+    "slug": "p11-spectral-gap",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.2",
+    "lesson_id": "P11-C02-S02",
+    "title": "谱间隔能说明什么",
+    "statement": "相同等容积无向连通网络，L 的最小非零特征值（nonzero eigenvalue）较大。以下哪项在本模型（model）内有根据？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数07",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "最慢非平衡（nonequilibrium）模态（mode）的指数衰减更快。"
+      },
+      {
+        "id": "B",
+        "text": "任何有向感染过程也必更快。"
+      },
+      {
+        "id": "C",
+        "text": "有限步长 Euler 总是更稳定。"
+      },
+      {
+        "id": "D",
+        "text": "所有节点有完全相同的瞬时轨迹（trajectory）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-synchronous-sir",
+    "slug": "p11-synchronous-sir",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.3",
+    "lesson_id": "P11-C03-S01",
+    "title": "用固定随机数重放传播",
+    "statement": "状态（state） 0=S、1=I、2=R。每步用旧状态同步更新：易感节点若任一旧感染邻居的定向抽样 edge_draws[t][i][j]<beta，则下一步变 I；旧感染节点若 recovery_draws[t][i]<gamma，则下一步变 R。返回全轨迹（trajectory）、曾感染人数和更新前仍有 I 的步数。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12",
+      "数13",
+      "数21"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "n",
+        "type": "int",
+        "description": "人数。",
+        "unit": "人"
+      },
+      {
+        "name": "edges",
+        "type": "list[list[int]]",
+        "description": "无向接触边。",
+        "unit": "条"
+      },
+      {
+        "name": "initial",
+        "type": "list[int]",
+        "description": "初态，每人取0、1或2。",
+        "unit": "类别"
+      },
+      {
+        "name": "beta",
+        "type": "float",
+        "description": "每条感染邻边每步成功概率（probability）。",
+        "unit": "1"
+      },
+      {
+        "name": "gamma",
+        "type": "float",
+        "description": "每个旧感染者每步恢复概率。",
+        "unit": "1"
+      },
+      {
+        "name": "infection_draws",
+        "type": "list[list[list[float]]]",
+        "description": "逐步 n×n 定向感染抽样，只有易感i读取感染邻居j的值。",
+        "unit": "1"
+      },
+      {
+        "name": "recovery_draws",
+        "type": "list[list[float]]",
+        "description": "逐步每人的恢复抽样。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "history",
+        "type": "list[list[int]]",
+        "description": "含初态的同步状态序列。",
+        "unit": "类别"
+      },
+      {
+        "name": "ever",
+        "type": "int",
+        "description": "轨迹中曾为 I 或 R 的人数。",
+        "unit": "人"
+      },
+      {
+        "name": "active_steps",
+        "type": "int",
+        "description": "每步更新前至少有一位 I 的步数。",
+        "unit": "步"
+      }
+    ],
+    "contract": "只用旧状态判定全部节点；恰好等于阈值不触发事件（event）。恢复的人不能在同一步用新状态再传播。随机表长度相同。",
+    "constraints": [
+      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例第1步只有中间节点感染；第2步旧中间节点仍可向右传播，同时左端恢复。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    n: int,\n    edges: list[list[int]],\n    initial: list[int],\n    beta: float,\n    gamma: float,\n    infection_draws: list[list[list[float]]],\n    recovery_draws: list[list[float]],\n) -> tuple[list[list[int]], int, int]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "n": 3,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "initial": [
+            1,
+            0,
+            0
+          ],
+          "beta": 0.5,
+          "gamma": 0.5,
+          "infection_draws": [
+            [
+              [
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.2,
+                1.0,
+                1.0
+              ],
+              [
+                1.0,
+                1.0,
+                1.0
+              ]
+            ],
+            [
+              [
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                1.0,
+                0.1,
+                1.0
+              ]
+            ]
+          ],
+          "recovery_draws": [
+            [
+              0.8,
+              1.0,
+              1.0
+            ],
+            [
+              0.2,
+              0.8,
+              1.0
+            ]
+          ]
+        },
+        "expected": [
+          [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              2,
+              1,
+              1
+            ]
+          ],
+          3,
+          2
+        ],
+        "explanation": "首例第1步只有中间节点感染；第2步旧中间节点仍可向右传播，同时左端恢复。"
+      }
+    ]
+  },
+  {
+    "id": "p11-synchronous-order",
+    "slug": "p11-synchronous-order",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.3",
+    "lesson_id": "P11-C03-S01",
+    "title": "同步更新为何用旧状态",
+    "statement": "S— I —S 的三节点路径，第一步只有中间节点为 I。同步规则下，左端在本步被感染后，能否立刻在同一步感染其他节点？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12",
+      "数13",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "能，按程序循环顺序决定。"
+      },
+      {
+        "id": "B",
+        "text": "不能；本步全部事件（event）只读取更新前状态（state）。"
+      },
+      {
+        "id": "C",
+        "text": "能，除非 gamma=0。"
+      },
+      {
+        "id": "D",
+        "text": "只要画图时靠得近就能。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-per-edge-budget",
+    "slug": "p11-per-edge-budget",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.3",
+    "lesson_id": "P11-C03-S01",
+    "title": "每边概率与总接触预算",
+    "statement": "两个网络有不同平均度，却把每条边每步感染概率（probability） beta 设为同值。可否将传播规模差异仅归因于结构形状？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12",
+      "数13",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "可以，beta 已相同。"
+      },
+      {
+        "id": "B",
+        "text": "不能；高平均度节点的总暴露机会也更大，需匹配边数/度或按每人接触预算归一化。"
+      },
+      {
+        "id": "C",
+        "text": "可以，因为节点数相同即可。"
+      },
+      {
+        "id": "D",
+        "text": "不需要声明概率作用于边还是人。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-extinction-vs-mean",
+    "slug": "p11-extinction-vs-mean",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.3",
+    "lesson_id": "P11-C03-S01",
+    "title": "一次灭绝不是总体结论",
+    "statement": "固定网络和参数（parameter）下，某次传播只感染初始1人。哪项结论更稳妥？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12",
+      "数13",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "模型（model）必然无法传播。"
+      },
+      {
+        "id": "B",
+        "text": "这一条随机轨迹（trajectory）早期灭绝；应固定比较条件并重复运行估计传播规模分布（distribution）。"
+      },
+      {
+        "id": "C",
+        "text": "改变随机种子（random seed）直到得到大规模传播再报告。"
+      },
+      {
+        "id": "D",
+        "text": "恢复机制一定不存在。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-nested-outbreak-variation",
+    "slug": "p11-nested-outbreak-variation",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.3",
+    "lesson_id": "P11-C03-S02",
+    "title": "分开网络与传播重复",
+    "statement": "replicates[g][r] 是第 g 张网络上第 r 次传播的最终感染人数。每张图先求均值；网络内方差（variance）为所有观测（observation）减去本图均值后的平方平均，网络间方差为各图均值围绕总均值的平方平均。返回各图均值、两种总体方差与总均值。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12",
+      "数13",
+      "数21"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "replicates",
+        "type": "list[list[float]]",
+        "description": "至少2张图、每图至少2次，矩形表；各图重复次数相同。",
+        "unit": "人"
+      }
+    ],
+    "returns": [
+      {
+        "name": "network_means",
+        "type": "list[float]",
+        "description": "逐图的传播均值。",
+        "unit": "人"
+      },
+      {
+        "name": "within",
+        "type": "float",
+        "description": "图内总体方差。",
+        "unit": "人²"
+      },
+      {
+        "name": "between",
+        "type": "float",
+        "description": "图均值间的总体方差。",
+        "unit": "人²"
+      },
+      {
+        "name": "overall",
+        "type": "float",
+        "description": "全部观测均值。",
+        "unit": "人"
+      }
+    ],
+    "contract": "若 G 张图、R 次重复，within=∑_{g,r}(x_gr−mean_g)²/(GR)，between=∑_g(mean_g−overall)²/G。不是自由度（degrees of freedom）校正样本方差。",
+    "constraints": [
+      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例图均值为2和6，图内方差1，图间方差4，总均值4。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    replicates: list[list[float]],\n) -> tuple[list[float], float, float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "replicates": [
+            [
+              1.0,
+              3.0
+            ],
+            [
+              5.0,
+              7.0
+            ]
+          ]
+        },
+        "expected": [
+          [
+            2.0,
+            6.0
+          ],
+          1.0,
+          4.0,
+          4.0
+        ],
+        "explanation": "首例图均值为2和6，图内方差1，图间方差4，总均值4。"
+      }
+    ]
+  },
+  {
+    "id": "p11-one-graph-many-draws",
+    "slug": "p11-one-graph-many-draws",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.3",
+    "lesson_id": "P11-C03-S02",
+    "title": "一张网络重复很多次够吗",
+    "statement": "只生成一张重连图，在其上运行1000次传播。能够估计哪种随机性？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12",
+      "数13",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "固定这张图条件下的传播随机性。"
+      },
+      {
+        "id": "B",
+        "text": "不同重连网络之间的结构变异。"
+      },
+      {
+        "id": "C",
+        "text": "所有真实人群的普遍效应。"
+      },
+      {
+        "id": "D",
+        "text": "网络生成概率（probability）的不确定性为零。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-paired-intervention",
+    "slug": "p11-paired-intervention",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.3",
+    "lesson_id": "P11-C03-S02",
+    "title": "定向干预的比较",
+    "statement": "比较随机删边与优先删高接触节点的边。什么设计更能支持结构差异？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12",
+      "数13",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "两方案在同一原始网络上、相同删边预算，复用可比随机流并保留所有失败。"
+      },
+      {
+        "id": "B",
+        "text": "定向方案删两倍边后宣称更有效。"
+      },
+      {
+        "id": "C",
+        "text": "只报告最好一次结果。"
+      },
+      {
+        "id": "D",
+        "text": "把网络生成种子与传播种子混成一项且不记录。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-uncertainty-boundary",
+    "slug": "p11-uncertainty-boundary",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.3",
+    "lesson_id": "P11-C03-S02",
+    "title": "有限重复能支持什么",
+    "statement": "20 张网络、每张30次动态重复显示某方案的平均传播人数较低。哪项说法合理？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12",
+      "数13",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "这已证明任何网络规模都如此。"
+      },
+      {
+        "id": "B",
+        "text": "应同时报告跨网络与网络内波动，并检查差值不确定性和预算。"
+      },
+      {
+        "id": "C",
+        "text": "只画一条代表性轨迹（trajectory）更可靠。"
+      },
+      {
+        "id": "D",
+        "text": "此结果直接等于真实人群因果效应。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-phase-order-parameter",
+    "slug": "p11-phase-order-parameter",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.4",
+    "lesson_id": "P11-C04-S01",
+    "title": "计算全局相位序参量",
+    "statement": "给出同一时刻 n 个相位（phase）（弧度），计算 R=|n⁻¹∑ exp(iθ_j)|。不要把相位先做普通算术平均；R 应在[0,1]。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数21"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "phases",
+        "type": "list[float]",
+        "description": "非空相位列表。",
+        "unit": "rad"
+      }
+    ],
+    "returns": [
+      {
+        "name": "R",
+        "type": "float",
+        "description": "全局相位一致程度。",
+        "unit": "1"
+      }
+    ],
+    "contract": "分别平均 cosθ 与 sinθ，再取向量（vector）长度；所有相位共同平移不改变 R。",
+    "constraints": [
+      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "两组反相各两个振子时复向量正负抵消，R 约为0；这不表示组内没有同步。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    phases: list[float],\n) -> float:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "phases": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "expected": 1.0,
+        "explanation": "两组反相各两个振子时复向量正负抵消，R 约为0；这不表示组内没有同步。"
+      }
+    ]
+  },
+  {
+    "id": "p11-phase-shift-invariance",
+    "slug": "p11-phase-shift-invariance",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.4",
+    "lesson_id": "P11-C04-S01",
+    "title": "共同平移全部相位",
+    "statement": "全部相位（phase）加同一个常数 φ，R 会怎样？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "保持不变，因为平均复相位只整体旋转。"
+      },
+      {
+        "id": "B",
+        "text": "必加上 φ。"
+      },
+      {
+        "id": "C",
+        "text": "只在 φ=0 时不变。"
+      },
+      {
+        "id": "D",
+        "text": "变成平均频率。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-antiphase-clusters",
+    "slug": "p11-antiphase-clusters",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.4",
+    "lesson_id": "P11-C04-S01",
+    "title": "全局 R 小也可能有结构",
+    "statement": "四个相位（phase）为[0,0,π,π]。哪项描述最准确？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "全局R≈0，但存在两组组内相位一致。"
+      },
+      {
+        "id": "B",
+        "text": "R≈1，所有相位完全相同。"
+      },
+      {
+        "id": "C",
+        "text": "没有任何成对相位关系。"
+      },
+      {
+        "id": "D",
+        "text": "仅凭这一时刻就可证明频率锁定（frequency locking）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-phase-vs-frequency",
+    "slug": "p11-phase-vs-frequency",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.4",
+    "lesson_id": "P11-C04-S01",
+    "title": "相位靠近与频率锁定",
+    "statement": "单时刻 R=0.95。能否证明各振子长期平均频率相同？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "能，R 足够大。"
+      },
+      {
+        "id": "B",
+        "text": "不能；R 是瞬时相位（phase）指标，还需检查时间窗内的相位漂移或平均频率。"
+      },
+      {
+        "id": "C",
+        "text": "能，因为固有频率必相同。"
+      },
+      {
+        "id": "D",
+        "text": "不能测量 R，因为相位有弧度单位。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-one-phase-network-step",
+    "slug": "p11-one-phase-network-step",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.4",
+    "lesson_id": "P11-C04-S02",
+    "title": "一步网络相位耦合",
+    "statement": "网络相位（phase）方程 dθ_i/dt=ω_i+[K/max(1,d_i)]∑_j A_ij sin(θ_j−θ_i)。用显式 Euler 走一步；孤立节点只按固有频率前进。返回未取模的相位，供后续频率计算。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数21"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "phases",
+        "type": "list[float]",
+        "description": "当前各节点相位。",
+        "unit": "rad"
+      },
+      {
+        "name": "frequencies",
+        "type": "list[float]",
+        "description": "各节点固有频率。",
+        "unit": "rad/T"
+      },
+      {
+        "name": "edges",
+        "type": "list[list[int]]",
+        "description": "无向简单耦合边。",
+        "unit": "条"
+      },
+      {
+        "name": "coupling",
+        "type": "float",
+        "description": "各节点总耦合尺度。",
+        "unit": "rad/T"
+      },
+      {
+        "name": "dt",
+        "type": "float",
+        "description": "正时间步长（time step）。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "next_phases",
+        "type": "list[float]",
+        "description": "下一步未取模相位。",
+        "unit": "rad"
+      }
+    ],
+    "contract": "旧相位同时用于所有节点；节点度为0时耦合和为0。只要求一次题定 Euler 更新，不声称有限 dt 精确。",
+    "constraints": [
+      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例两个节点分别增减0.1 rad；第三例孤立振子只按自身频率增加0.5 rad。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    phases: list[float],\n    frequencies: list[float],\n    edges: list[list[int]],\n    coupling: float,\n    dt: float,\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "phases": [
+            0.0,
+            1.5707963267948966
+          ],
+          "frequencies": [
+            0.0,
+            0.0
+          ],
+          "edges": [
+            [
+              0,
+              1
+            ]
+          ],
+          "coupling": 1.0,
+          "dt": 0.1
+        },
+        "expected": [
+          0.1,
+          1.4707963267948965
+        ],
+        "explanation": "首例两个节点分别增减0.1 rad；第三例孤立振子只按自身频率增加0.5 rad。"
+      }
+    ]
+  },
+  {
+    "id": "p11-degree-normalization",
+    "slug": "p11-degree-normalization",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.4",
+    "lesson_id": "P11-C04-S02",
+    "title": "耦合预算的定义",
+    "statement": "将每节点耦合项除以 max(1,d_i) 的主要作用是什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "让不同度节点的总耦合量具有可比尺度；仍需声明拓扑和权重。"
+      },
+      {
+        "id": "B",
+        "text": "保证所有网络完全同步。"
+      },
+      {
+        "id": "C",
+        "text": "把异质固有频率自动消掉。"
+      },
+      {
+        "id": "D",
+        "text": "使图拉普拉斯（graph Laplacian）对任何有向网络都对称。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-finite-scan-threshold",
+    "slug": "p11-finite-scan-threshold",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.4",
+    "lesson_id": "P11-C04-S02",
+    "title": "有限扫描不是通用阈值",
+    "statement": "某个8节点网络只用一种初相，随 K 增加时 R 突然升高。哪种判断合理？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "已证明无限规模普遍临界点。"
+      },
+      {
+        "id": "B",
+        "text": "需检查暂态（transient）、步长、初相、固有频率和规模后再谈模型（model）内转变。"
+      },
+      {
+        "id": "C",
+        "text": "R 变化必由代码绘图造成。"
+      },
+      {
+        "id": "D",
+        "text": "所有节点此后频率必锁定。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-same-frequencies",
+    "slug": "p11-same-frequencies",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.4",
+    "lesson_id": "P11-C04-S02",
+    "title": "比较结构时共用频率",
+    "statement": "比较环图与增加捷径图的同步过程，应优先固定什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数08",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "相同频率集合、初相分布（distribution）、节点数、耦合定义与时间网格（time grid）。"
+      },
+      {
+        "id": "B",
+        "text": "只固定图的绘制颜色。"
+      },
+      {
+        "id": "C",
+        "text": "给捷径图更大 K 而不说明。"
+      },
+      {
+        "id": "D",
+        "text": "只比较最后一帧截图。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-network-contract",
+    "slug": "p11-network-contract",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.summary",
+    "lesson_id": "P11-SUMMARY",
+    "title": "先说清连接契约",
+    "statement": "在课程人工网络中，边权可能表示接触次数或交换率。哪些陈述成立？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数07",
+      "数12",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "解释动态前先明确权重、方向和节点含义。"
+      },
+      {
+        "id": "B",
+        "text": "画面上相近的节点必须有边。"
+      },
+      {
+        "id": "C",
+        "text": "交换率可直接当成无量纲（dimensionless）感染概率（probability）。"
+      },
+      {
+        "id": "D",
+        "text": "两种机制的边权需要各自单位和规则。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-propagation-budget",
+    "slug": "p11-propagation-budget",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.summary",
+    "lesson_id": "P11-SUMMARY",
+    "title": "传播结构比较的预算",
+    "statement": "要比较同人数的两种网络上的传播规模，哪种安排最适合解释结构作用？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数07",
+      "数12",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "固定或明确匹配边/接触预算、概率（probability）规则，分层重复网络与动态抽样。"
+      },
+      {
+        "id": "B",
+        "text": "只让两张图颜色相同。"
+      },
+      {
+        "id": "C",
+        "text": "选两个最有利的随机轨迹（trajectory）。"
+      },
+      {
+        "id": "D",
+        "text": "一种每边概率固定，另一种每人总接触固定但不说明。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p11-capstone-graph",
+    "slug": "p11-capstone-graph",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.summary",
+    "lesson_id": "P11-SUMMARY",
+    "title": "统计综合图",
+    "statement": "对题给无向简单图返回度、分量及全图平均最短路径；不连通时平均路径为 None。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数07",
+      "数12",
+      "数21"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "n",
+        "type": "int",
+        "description": "节点数。",
+        "unit": "个"
+      },
+      {
+        "name": "edges",
+        "type": "list[list[int]]",
+        "description": "无向简单边。",
+        "unit": "条"
+      }
+    ],
+    "returns": [
+      {
+        "name": "degrees",
+        "type": "list[int]",
+        "description": "各节点度。",
+        "unit": "条"
+      },
+      {
+        "name": "components",
+        "type": "list[list[int]]",
+        "description": "分量。",
+        "unit": "节点编号"
+      },
+      {
+        "name": "mean_path",
+        "type": "float | None",
+        "description": "连通图的不同节点对平均距离。",
+        "unit": "边"
+      }
+    ],
+    "contract": "同11.1.1，路径只按边数，不按布局距离。",
+    "constraints": [
+      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先核对度和等于两倍边数，再检查路径与连通性。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    n: int,\n    edges: list[list[int]],\n) -> tuple[list[int], list[list[int]], float | None]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "n": 3,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        },
+        "expected": [
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            [
+              0,
+              1,
+              2
+            ]
+          ],
+          1.3333333333333333
+        ],
+        "explanation": "先核对度和等于两倍边数，再检查路径与连通性。"
+      }
+    ]
+  },
+  {
+    "id": "p11-capstone-laplacian",
+    "slug": "p11-capstone-laplacian",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.summary",
+    "lesson_id": "P11-SUMMARY",
+    "title": "守恒算子与孤点",
+    "statement": "给定对称交换边，返回图拉普拉斯（graph Laplacian）；孤立节点行列为零。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数07",
+      "数12",
+      "数21"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "n",
+        "type": "int",
+        "description": "室数。",
+        "unit": "个"
+      },
+      {
+        "name": "weighted_edges",
+        "type": "list[list[float]]",
+        "description": "每条 [i,j,rate]。",
+        "unit": "容积/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "L",
+        "type": "list[list[float]]",
+        "description": "对称、行和为零的矩阵（matrix）。",
+        "unit": "容积/T"
+      }
+    ],
+    "contract": "逐边增加两端对角并减去两个非对角；不凭节点图片位置加边。",
+    "constraints": [
+      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "对每条边单独写两个室的正负收支。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    n: int,\n    weighted_edges: list[list[float]],\n) -> list[list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "n": 3,
+          "weighted_edges": [
+            [
+              0,
+              1,
+              1.0
+            ]
+          ]
+        },
+        "expected": [
+          [
+            1.0,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "explanation": "对每条边单独写两个室的正负收支（mass balance）。"
+      }
+    ]
+  },
+  {
+    "id": "p11-capstone-spread",
+    "slug": "p11-capstone-spread",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.summary",
+    "lesson_id": "P11-SUMMARY",
+    "title": "同一随机输入下传播",
+    "statement": "同步 SIR 的旧状态（state）事件（event）和随机表已给定；返回状态轨迹（trajectory）、曾感染人数和更新前活跃步数。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数07",
+      "数12",
+      "数21"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "n",
+        "type": "int",
+        "description": "人数。",
+        "unit": "人"
+      },
+      {
+        "name": "edges",
+        "type": "list[list[int]]",
+        "description": "无向接触边。",
+        "unit": "条"
+      },
+      {
+        "name": "initial",
+        "type": "list[int]",
+        "description": "初始 0=S、1=I、2=R。",
+        "unit": "类别"
+      },
+      {
+        "name": "beta",
+        "type": "float",
+        "description": "每边感染概率（probability）。",
+        "unit": "1"
+      },
+      {
+        "name": "gamma",
+        "type": "float",
+        "description": "逐人恢复概率。",
+        "unit": "1"
+      },
+      {
+        "name": "infection_draws",
+        "type": "list[list[list[float]]]",
+        "description": "定向边感染抽样表。",
+        "unit": "1"
+      },
+      {
+        "name": "recovery_draws",
+        "type": "list[list[float]]",
+        "description": "恢复抽样表。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "history",
+        "type": "list[list[int]]",
+        "description": "全部状态。",
+        "unit": "类别"
+      },
+      {
+        "name": "ever",
+        "type": "int",
+        "description": "曾感染人数。",
+        "unit": "人"
+      },
+      {
+        "name": "active_steps",
+        "type": "int",
+        "description": "更新前至少一人感染的步数。",
+        "unit": "步"
+      }
+    ],
+    "contract": "同步读取旧状态；比较使用严格小于阈值。",
+    "constraints": [
+      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "感染与恢复同一步发生时，先统一读旧状态再写新状态。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    n: int,\n    edges: list[list[int]],\n    initial: list[int],\n    beta: float,\n    gamma: float,\n    infection_draws: list[list[list[float]]],\n    recovery_draws: list[list[float]],\n) -> tuple[list[list[int]], int, int]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "n": 2,
+          "edges": [
+            [
+              0,
+              1
+            ]
+          ],
+          "initial": [
+            1,
+            0
+          ],
+          "beta": 0.5,
+          "gamma": 0.5,
+          "infection_draws": [
+            [
+              [
+                1.0,
+                1.0
+              ],
+              [
+                0.3,
+                1.0
+              ]
+            ]
+          ],
+          "recovery_draws": [
+            [
+              0.1,
+              1.0
+            ]
+          ]
+        },
+        "expected": [
+          [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          2,
+          1
+        ],
+        "explanation": "感染与恢复同一步发生时，先统一读旧状态再写新状态。"
+      }
+    ]
+  },
+  {
+    "id": "p11-capstone-phase",
+    "slug": "p11-capstone-phase",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.summary",
+    "lesson_id": "P11-SUMMARY",
+    "title": "判断尾窗频率锁定",
+    "statement": "history 是未取模相位（phase）轨迹（trajectory），dt 是每步时间；用最后 tail_steps 步位移除以时长计算各节点平均频率，返回最大与最小频率的差及各频率。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数07",
+      "数12",
+      "数21"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "history",
+        "type": "list[list[float]]",
+        "description": "长度至少 tail_steps+1 的相位轨迹。",
+        "unit": "rad"
+      },
+      {
+        "name": "dt",
+        "type": "float",
+        "description": "步长。",
+        "unit": "T"
+      },
+      {
+        "name": "tail_steps",
+        "type": "int",
+        "description": "末尾窗口步数，至少1。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "spread",
+        "type": "float",
+        "description": "尾窗平均频率极差。",
+        "unit": "rad/T"
+      },
+      {
+        "name": "frequencies",
+        "type": "list[float]",
+        "description": "各节点尾窗平均频率。",
+        "unit": "rad/T"
+      }
+    ],
+    "contract": "保留未取模相位；不要对起末两次取模后相减。",
+    "constraints": [
+      "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例每个节点尾窗平均频率均为1 rad/T，极差为0。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    history: list[list[float]],\n    dt: float,\n    tail_steps: int,\n) -> tuple[float, list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "history": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              1.0
+            ],
+            [
+              2.0,
+              2.0
+            ]
+          ],
+          "dt": 1.0,
+          "tail_steps": 2
+        },
+        "expected": [
+          0.0,
+          [
+            1.0,
+            1.0
+          ]
+        ],
+        "explanation": "首例每个节点尾窗平均频率均为1 rad/T，极差为0。"
+      }
+    ]
+  },
+  {
+    "id": "p11-capstone-gap",
+    "slug": "p11-capstone-gap",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.summary",
+    "lesson_id": "P11-SUMMARY",
+    "title": "改变连接后的扩散尺度",
+    "statement": "对等容积无向加权图，返回拉普拉斯升序特征值（eigenvalue）和最小正特征值；若不连通，则零值不止一个，返回最小正值仍仅描述各连通分量（connected component）内部最慢的可衰减模态（mode）。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数07",
+      "数12",
+      "数21"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "n",
+        "type": "int",
+        "description": "节点数。",
+        "unit": "个"
+      },
+      {
+        "name": "weighted_edges",
+        "type": "list[list[float]]",
+        "description": "对称交换边。",
+        "unit": "1/T"
+      },
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "初始状态（state），用于核对精确演化。",
+        "unit": "U"
+      },
+      {
+        "name": "time",
+        "type": "float",
+        "description": "非负时间。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "state",
+        "type": "list[float]",
+        "description": "精确等容积扩散状态。",
+        "unit": "U"
+      },
+      {
+        "name": "eigenvalues",
+        "type": "list[float]",
+        "description": "升序谱，零值允许浮点舍入。",
+        "unit": "1/T"
+      }
+    ],
+    "contract": "使用对称特征分解 x(t)=V exp(−Λt)Vᵀx(0)。只比较同一交换模型（model）；返回完整谱由读者辨认零模态数。",
+    "constraints": [
+      "只计算题定有限图和数值模型；返回普通 Python 列表、数值或元组。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例特征值为0和2，平均模态不衰减；断连例存在多个零模态。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    n: int,\n    weighted_edges: list[list[float]],\n    initial: list[float],\n    time: float,\n) -> tuple[list[float], list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "n": 2,
+          "weighted_edges": [
+            [
+              0,
+              1,
+              1.0
+            ]
+          ],
+          "initial": [
+            2.0,
+            0.0
+          ],
+          "time": 1.0
+        },
+        "expected": [
+          [
+            1.1353352832366126,
+            0.8646647167633872
+          ],
+          [
+            0.0,
+            2.0
+          ]
+        ],
+        "explanation": "首例特征值为0和2，平均模态不衰减；断连例存在多个零模态。"
+      }
+    ]
+  },
+  {
+    "id": "p11-network-claim-limit",
+    "slug": "p11-network-claim-limit",
+    "version": "1",
+    "part": "11",
+    "chapter": "11.summary",
+    "lesson_id": "P11-SUMMARY",
+    "title": "有限网络的结构结论",
+    "statement": "同频率集合、同 K 下某张捷径图的 R 较高。哪些解释仍需谨慎？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数07",
+      "数12",
+      "数21"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "需核对初相、暂态（transient）、步长、网络重复与尾窗锁频。"
+      },
+      {
+        "id": "B",
+        "text": "只凭一张图就能推出任意规模临界阈值。"
+      },
+      {
+        "id": "C",
+        "text": "R 高说明所有相位（phase）在本时刻较集中，但不能单独证明长期频率锁定（frequency locking）。"
+      },
+      {
+        "id": "D",
+        "text": "布局颜色已证明机制。"
+      }
+    ],
+    "constraints": []
+  }
+]

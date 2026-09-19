@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "118860d69ead25ea23cda790d546a3a42e90cd2765ac2abce6605a27b119beea",
+    "catalogSha256": "1f0e25ffa1559fbbec77253fc8b822688bb17f394eb9cfe9318ccec3038f7126",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -13497,12 +13497,55 @@
         "11.3",
         "11.4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p11-small-graph-statistics",
+        "p11-edge-semantics",
+        "p11-hand-drawn-path",
+        "p11-degree-sum",
+        "p11-mean-local-clustering",
+        "p11-matched-edge-budget",
+        "p11-power-law-evidence",
+        "p11-rewire-repeats",
+        "p11-exchange-laplacian",
+        "p11-edge-conservation",
+        "p11-directed-warning",
+        "p11-zero-mode",
+        "p11-amounts-with-volumes",
+        "p11-volume-equilibrium",
+        "p11-euler-too-large",
+        "p11-spectral-gap",
+        "p11-synchronous-sir",
+        "p11-synchronous-order",
+        "p11-per-edge-budget",
+        "p11-extinction-vs-mean",
+        "p11-nested-outbreak-variation",
+        "p11-one-graph-many-draws",
+        "p11-paired-intervention",
+        "p11-uncertainty-boundary",
+        "p11-phase-order-parameter",
+        "p11-phase-shift-invariance",
+        "p11-antiphase-clusters",
+        "p11-phase-vs-frequency",
+        "p11-one-phase-network-step",
+        "p11-degree-normalization",
+        "p11-finite-scan-threshold",
+        "p11-same-frequencies",
+        "p11-network-contract",
+        "p11-propagation-budget",
+        "p11-capstone-graph",
+        "p11-capstone-laplacian",
+        "p11-capstone-spread",
+        "p11-capstone-phase",
+        "p11-capstone-gap",
+        "p11-network-claim-limit"
+      ],
+      "available": true,
+      "published": 4,
       "total": 4,
-      "assessmentIds": [],
-      "assessmentUrl": null,
+      "assessmentIds": [
+        "P11-SUMMARY"
+      ],
+      "assessmentUrl": "/parts/11-网络上的系统/综合练习/",
       "progressScope": "已发布篇章练习（含篇末综合）"
     },
     {
@@ -13512,118 +13555,207 @@
       "number": "11.1",
       "parentId": "11",
       "url": "/chapters/11-01-从连接结构进入网络科学/",
-      "description": "构造并解释邻接矩阵（matrix）、度、路径、连通分量与社区，辨认随机网络、小世界和度分布（distribution）的条件。",
+      "description": "构造并解释邻接矩阵（adjacency matrix）、度、路径、连通分量（connected component）与社区（community），辨认随机网络、小世界（small-world）和度分布（degree distribution）的条件。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [
-        "11.1:planned:1",
-        "11.1:planned:2",
-        "11.1:planned:3",
-        "11.1:planned:4"
+        "11.1.1:concept:1",
+        "11.1.1:concept:2",
+        "11.1.1:concept:3",
+        "11.1.2:concept:1",
+        "11.1.2:concept:2",
+        "11.1.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p11-small-graph-statistics",
+        "p11-edge-semantics",
+        "p11-hand-drawn-path",
+        "p11-degree-sum",
+        "p11-mean-local-clustering",
+        "p11-matched-edge-budget",
+        "p11-power-law-evidence",
+        "p11-rewire-repeats"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "11.1:planned:1",
+      "id": "11.1.1:concept:1",
       "kind": "concept",
-      "title": "节点与边",
+      "title": "邻接与度",
       "english": null,
-      "number": "11.1",
+      "number": "11.1.1",
       "parentId": "11.1",
-      "url": "/chapters/11-01-从连接结构进入网络科学/",
-      "description": "构造并解释邻接矩阵（matrix）、度、路径、连通分量与社区，辨认随机网络、小世界和度分布（distribution）的条件。",
+      "url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-small-graph-statistics",
+      "description": "用明确的边语义构造邻接矩阵、度、分量与路径。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p11-small-graph-statistics",
+        "p11-edge-semantics",
+        "p11-hand-drawn-path",
+        "p11-degree-sum"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P11-C01-S01",
+      "lessonNumber": "11.1.1",
+      "lessonTitle": "从边表到结构统计",
       "chapterUrl": "/chapters/11-01-从连接结构进入网络科学/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "11.1:planned:2",
+      "id": "11.1.1:concept:2",
       "kind": "concept",
-      "title": "连通性",
-      "english": null,
-      "number": "11.1",
+      "title": "连通分量",
+      "english": "connected component",
+      "number": "11.1.1",
       "parentId": "11.1",
-      "url": "/chapters/11-01-从连接结构进入网络科学/",
-      "description": "构造并解释邻接矩阵（matrix）、度、路径、连通分量与社区，辨认随机网络、小世界和度分布（distribution）的条件。",
+      "url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-small-graph-statistics",
+      "description": "用明确的边语义构造邻接矩阵、度、分量与路径。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p11-small-graph-statistics",
+        "p11-edge-semantics",
+        "p11-hand-drawn-path",
+        "p11-degree-sum"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P11-C01-S01",
+      "lessonNumber": "11.1.1",
+      "lessonTitle": "从边表到结构统计",
       "chapterUrl": "/chapters/11-01-从连接结构进入网络科学/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "11.1:planned:3",
+      "id": "11.1.1:concept:3",
       "kind": "concept",
-      "title": "图拉普拉斯",
+      "title": "最短路径",
       "english": null,
-      "number": "11.1",
+      "number": "11.1.1",
       "parentId": "11.1",
-      "url": "/chapters/11-01-从连接结构进入网络科学/",
-      "description": "构造并解释邻接矩阵（matrix）、度、路径、连通分量与社区，辨认随机网络、小世界和度分布（distribution）的条件。",
+      "url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-small-graph-statistics",
+      "description": "用明确的边语义构造邻接矩阵、度、分量与路径。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p11-small-graph-statistics",
+        "p11-edge-semantics",
+        "p11-hand-drawn-path",
+        "p11-degree-sum"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P11-C01-S01",
+      "lessonNumber": "11.1.1",
+      "lessonTitle": "从边表到结构统计",
       "chapterUrl": "/chapters/11-01-从连接结构进入网络科学/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "11.1:planned:4",
+      "id": "11.1.2:concept:1",
       "kind": "concept",
-      "title": "度分布",
+      "title": "规则环与重连",
       "english": null,
-      "number": "11.1",
+      "number": "11.1.2",
       "parentId": "11.1",
-      "url": "/chapters/11-01-从连接结构进入网络科学/",
-      "description": "构造并解释邻接矩阵（matrix）、度、路径、连通分量与社区，辨认随机网络、小世界和度分布（distribution）的条件。",
+      "url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-mean-local-clustering",
+      "description": "在相同节点和边数下比较聚类、路径和重连随机性。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p11-mean-local-clustering",
+        "p11-matched-edge-budget",
+        "p11-power-law-evidence",
+        "p11-rewire-repeats"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P11-C01-S02",
+      "lessonNumber": "11.1.2",
+      "lessonTitle": "规则网络与重连基线",
       "chapterUrl": "/chapters/11-01-从连接结构进入网络科学/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "11.1.2:concept:2",
+      "kind": "concept",
+      "title": "聚类",
+      "english": null,
+      "number": "11.1.2",
+      "parentId": "11.1",
+      "url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-mean-local-clustering",
+      "description": "在相同节点和边数下比较聚类、路径和重连随机性。",
+      "categories": [
+        "evolution",
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p11-mean-local-clustering",
+        "p11-matched-edge-budget",
+        "p11-power-law-evidence",
+        "p11-rewire-repeats"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P11-C01-S02",
+      "lessonNumber": "11.1.2",
+      "lessonTitle": "规则网络与重连基线",
+      "chapterUrl": "/chapters/11-01-从连接结构进入网络科学/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "11.1.2:concept:3",
+      "kind": "concept",
+      "title": "结构随机性",
+      "english": null,
+      "number": "11.1.2",
+      "parentId": "11.1",
+      "url": "/chapters/11-01-从连接结构进入网络科学/practice/?question=p11-mean-local-clustering",
+      "description": "在相同节点和边数下比较聚类、路径和重连随机性。",
+      "categories": [
+        "evolution",
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p11-mean-local-clustering",
+        "p11-matched-edge-budget",
+        "p11-power-law-evidence",
+        "p11-rewire-repeats"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P11-C01-S02",
+      "lessonNumber": "11.1.2",
+      "lessonTitle": "规则网络与重连基线",
+      "chapterUrl": "/chapters/11-01-从连接结构进入网络科学/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "11.2",
@@ -13632,93 +13764,207 @@
       "number": "11.2",
       "parentId": "11",
       "url": "/chapters/11-02-网络上的扩散与守恒/",
-      "description": "推导无向交换网络的 dx/dt = −Lx，说明守恒、连通分量和平衡（equilibrium）模态（mode）的关系。",
+      "description": "推导无向交换网络的 dx/dt = −Lx，说明守恒、连通分量（connected component）和平衡（equilibrium）模态（mode）的关系。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [
-        "11.2:planned:1",
-        "11.2:planned:2",
-        "11.2:planned:3"
+        "11.2.1:concept:1",
+        "11.2.1:concept:2",
+        "11.2.1:concept:3",
+        "11.2.2:concept:1",
+        "11.2.2:concept:2",
+        "11.2.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p11-exchange-laplacian",
+        "p11-edge-conservation",
+        "p11-directed-warning",
+        "p11-zero-mode",
+        "p11-amounts-with-volumes",
+        "p11-volume-equilibrium",
+        "p11-euler-too-large",
+        "p11-spectral-gap"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "11.2:planned:1",
+      "id": "11.2.1:concept:1",
       "kind": "concept",
-      "title": "边上的交换",
+      "title": "边交换收支",
       "english": null,
-      "number": "11.2",
+      "number": "11.2.1",
       "parentId": "11.2",
-      "url": "/chapters/11-02-网络上的扩散与守恒/",
-      "description": "推导无向交换网络的 dx/dt = −Lx，说明守恒、连通分量和平衡（equilibrium）模态（mode）的关系。",
+      "url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-exchange-laplacian",
+      "description": "从边收支推导图拉普拉斯并检查总量守恒。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p11-exchange-laplacian",
+        "p11-edge-conservation",
+        "p11-directed-warning",
+        "p11-zero-mode"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P11-C02-S01",
+      "lessonNumber": "11.2.1",
+      "lessonTitle": "每条边的交换与守恒",
       "chapterUrl": "/chapters/11-02-网络上的扩散与守恒/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "11.2:planned:2",
+      "id": "11.2.1:concept:2",
       "kind": "concept",
-      "title": "拉普拉斯零模态",
-      "english": null,
-      "number": "11.2",
+      "title": "图拉普拉斯",
+      "english": "graph Laplacian",
+      "number": "11.2.1",
       "parentId": "11.2",
-      "url": "/chapters/11-02-网络上的扩散与守恒/",
-      "description": "推导无向交换网络的 dx/dt = −Lx，说明守恒、连通分量和平衡（equilibrium）模态（mode）的关系。",
+      "url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-exchange-laplacian",
+      "description": "从边收支推导图拉普拉斯并检查总量守恒。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p11-exchange-laplacian",
+        "p11-edge-conservation",
+        "p11-directed-warning",
+        "p11-zero-mode"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P11-C02-S01",
+      "lessonNumber": "11.2.1",
+      "lessonTitle": "每条边的交换与守恒",
       "chapterUrl": "/chapters/11-02-网络上的扩散与守恒/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "11.2:planned:3",
+      "id": "11.2.1:concept:3",
       "kind": "concept",
-      "title": "扩散与守恒",
+      "title": "总量守恒",
       "english": null,
-      "number": "11.2",
+      "number": "11.2.1",
       "parentId": "11.2",
-      "url": "/chapters/11-02-网络上的扩散与守恒/",
-      "description": "推导无向交换网络的 dx/dt = −Lx，说明守恒、连通分量和平衡（equilibrium）模态（mode）的关系。",
+      "url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-exchange-laplacian",
+      "description": "从边收支推导图拉普拉斯并检查总量守恒。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p11-exchange-laplacian",
+        "p11-edge-conservation",
+        "p11-directed-warning",
+        "p11-zero-mode"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P11-C02-S01",
+      "lessonNumber": "11.2.1",
+      "lessonTitle": "每条边的交换与守恒",
       "chapterUrl": "/chapters/11-02-网络上的扩散与守恒/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "11.2.2:concept:1",
+      "kind": "concept",
+      "title": "零模态",
+      "english": null,
+      "number": "11.2.2",
+      "parentId": "11.2",
+      "url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-amounts-with-volumes",
+      "description": "用拉普拉斯零模态解释平衡并核验数值步长。",
+      "categories": [
+        "evolution",
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p11-amounts-with-volumes",
+        "p11-volume-equilibrium",
+        "p11-euler-too-large",
+        "p11-spectral-gap"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P11-C02-S02",
+      "lessonNumber": "11.2.2",
+      "lessonTitle": "连通性、模态与容积",
+      "chapterUrl": "/chapters/11-02-网络上的扩散与守恒/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "11.2.2:concept:2",
+      "kind": "concept",
+      "title": "容积与浓度",
+      "english": null,
+      "number": "11.2.2",
+      "parentId": "11.2",
+      "url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-amounts-with-volumes",
+      "description": "用拉普拉斯零模态解释平衡并核验数值步长。",
+      "categories": [
+        "evolution",
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p11-amounts-with-volumes",
+        "p11-volume-equilibrium",
+        "p11-euler-too-large",
+        "p11-spectral-gap"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P11-C02-S02",
+      "lessonNumber": "11.2.2",
+      "lessonTitle": "连通性、模态与容积",
+      "chapterUrl": "/chapters/11-02-网络上的扩散与守恒/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "11.2.2:concept:3",
+      "kind": "concept",
+      "title": "数值步长",
+      "english": null,
+      "number": "11.2.2",
+      "parentId": "11.2",
+      "url": "/chapters/11-02-网络上的扩散与守恒/practice/?question=p11-amounts-with-volumes",
+      "description": "用拉普拉斯零模态解释平衡并核验数值步长。",
+      "categories": [
+        "evolution",
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p11-amounts-with-volumes",
+        "p11-volume-equilibrium",
+        "p11-euler-too-large",
+        "p11-spectral-gap"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P11-C02-S02",
+      "lessonNumber": "11.2.2",
+      "lessonTitle": "连通性、模态与容积",
+      "chapterUrl": "/chapters/11-02-网络上的扩散与守恒/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "11.3",
@@ -13727,118 +13973,207 @@
       "number": "11.3",
       "parentId": "11",
       "url": "/chapters/11-03-接触结构与传播/",
-      "description": "定义个体状态（state）和接触传播规则，比较平均混合与网络模型（model），说明初始位置及有限规模影响。",
+      "description": "定义个体状态（state）和接触传播规则，比较平均混合（homogeneous mixing）与网络模型（model），说明初始位置及有限规模影响。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [
-        "11.3:planned:1",
-        "11.3:planned:2",
-        "11.3:planned:3",
-        "11.3:planned:4"
+        "11.3.1:concept:1",
+        "11.3.1:concept:2",
+        "11.3.1:concept:3",
+        "11.3.2:concept:1",
+        "11.3.2:concept:2",
+        "11.3.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p11-synchronous-sir",
+        "p11-synchronous-order",
+        "p11-per-edge-budget",
+        "p11-extinction-vs-mean",
+        "p11-nested-outbreak-variation",
+        "p11-one-graph-many-draws",
+        "p11-paired-intervention",
+        "p11-uncertainty-boundary"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "11.3:planned:1",
+      "id": "11.3.1:concept:1",
       "kind": "concept",
-      "title": "接触网络",
+      "title": "同步传播",
       "english": null,
-      "number": "11.3",
+      "number": "11.3.1",
       "parentId": "11.3",
-      "url": "/chapters/11-03-接触结构与传播/",
-      "description": "定义个体状态（state）和接触传播规则，比较平均混合与网络模型（model），说明初始位置及有限规模影响。",
+      "url": "/chapters/11-03-接触结构与传播/practice/?question=p11-synchronous-sir",
+      "description": "写出同步 SIR 更新并复查传播与恢复事件。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p11-synchronous-sir",
+        "p11-synchronous-order",
+        "p11-per-edge-budget",
+        "p11-extinction-vs-mean"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P11-C03-S01",
+      "lessonNumber": "11.3.1",
+      "lessonTitle": "固定随机数的同步传播",
       "chapterUrl": "/chapters/11-03-接触结构与传播/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "11.3:planned:2",
+      "id": "11.3.1:concept:2",
       "kind": "concept",
-      "title": "状态转移",
+      "title": "固定随机输入",
       "english": null,
-      "number": "11.3",
+      "number": "11.3.1",
       "parentId": "11.3",
-      "url": "/chapters/11-03-接触结构与传播/",
-      "description": "定义个体状态（state）和接触传播规则，比较平均混合与网络模型（model），说明初始位置及有限规模影响。",
+      "url": "/chapters/11-03-接触结构与传播/practice/?question=p11-synchronous-sir",
+      "description": "写出同步 SIR 更新并复查传播与恢复事件。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p11-synchronous-sir",
+        "p11-synchronous-order",
+        "p11-per-edge-budget",
+        "p11-extinction-vs-mean"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P11-C03-S01",
+      "lessonNumber": "11.3.1",
+      "lessonTitle": "固定随机数的同步传播",
       "chapterUrl": "/chapters/11-03-接触结构与传播/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "11.3:planned:3",
+      "id": "11.3.1:concept:3",
       "kind": "concept",
-      "title": "平均混合",
+      "title": "接触预算",
       "english": null,
-      "number": "11.3",
+      "number": "11.3.1",
       "parentId": "11.3",
-      "url": "/chapters/11-03-接触结构与传播/",
-      "description": "定义个体状态（state）和接触传播规则，比较平均混合与网络模型（model），说明初始位置及有限规模影响。",
+      "url": "/chapters/11-03-接触结构与传播/practice/?question=p11-synchronous-sir",
+      "description": "写出同步 SIR 更新并复查传播与恢复事件。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p11-synchronous-sir",
+        "p11-synchronous-order",
+        "p11-per-edge-budget",
+        "p11-extinction-vs-mean"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P11-C03-S01",
+      "lessonNumber": "11.3.1",
+      "lessonTitle": "固定随机数的同步传播",
       "chapterUrl": "/chapters/11-03-接触结构与传播/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "11.3:planned:4",
+      "id": "11.3.2:concept:1",
       "kind": "concept",
-      "title": "传播规模",
+      "title": "网络重复",
       "english": null,
-      "number": "11.3",
+      "number": "11.3.2",
       "parentId": "11.3",
-      "url": "/chapters/11-03-接触结构与传播/",
-      "description": "定义个体状态（state）和接触传播规则，比较平均混合与网络模型（model），说明初始位置及有限规模影响。",
+      "url": "/chapters/11-03-接触结构与传播/practice/?question=p11-nested-outbreak-variation",
+      "description": "在等接触预算下分层重复，分开两类随机变异。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p11-nested-outbreak-variation",
+        "p11-one-graph-many-draws",
+        "p11-paired-intervention",
+        "p11-uncertainty-boundary"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P11-C03-S02",
+      "lessonNumber": "11.3.2",
+      "lessonTitle": "网络随机与传播随机",
       "chapterUrl": "/chapters/11-03-接触结构与传播/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "11.3.2:concept:2",
+      "kind": "concept",
+      "title": "动态重复",
+      "english": null,
+      "number": "11.3.2",
+      "parentId": "11.3",
+      "url": "/chapters/11-03-接触结构与传播/practice/?question=p11-nested-outbreak-variation",
+      "description": "在等接触预算下分层重复，分开两类随机变异。",
+      "categories": [
+        "evolution",
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p11-nested-outbreak-variation",
+        "p11-one-graph-many-draws",
+        "p11-paired-intervention",
+        "p11-uncertainty-boundary"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P11-C03-S02",
+      "lessonNumber": "11.3.2",
+      "lessonTitle": "网络随机与传播随机",
+      "chapterUrl": "/chapters/11-03-接触结构与传播/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "11.3.2:concept:3",
+      "kind": "concept",
+      "title": "配对比较",
+      "english": null,
+      "number": "11.3.2",
+      "parentId": "11.3",
+      "url": "/chapters/11-03-接触结构与传播/practice/?question=p11-nested-outbreak-variation",
+      "description": "在等接触预算下分层重复，分开两类随机变异。",
+      "categories": [
+        "evolution",
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p11-nested-outbreak-variation",
+        "p11-one-graph-many-draws",
+        "p11-paired-intervention",
+        "p11-uncertainty-boundary"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P11-C03-S02",
+      "lessonNumber": "11.3.2",
+      "lessonTitle": "网络随机与传播随机",
+      "chapterUrl": "/chapters/11-03-接触结构与传播/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "11.4",
@@ -13847,118 +14182,207 @@
       "number": "11.4",
       "parentId": "11",
       "url": "/chapters/11-04-耦合振子与同步/",
-      "description": "区分相位（phase）接近、频率锁定与平均频率，说明同步指标和耦合归一化。",
+      "description": "区分相位（phase）接近、频率锁定（frequency locking）与平均频率，说明同步指标和耦合归一化。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [
-        "11.4:planned:1",
-        "11.4:planned:2",
-        "11.4:planned:3",
-        "11.4:planned:4"
+        "11.4.1:concept:1",
+        "11.4.1:concept:2",
+        "11.4.1:concept:3",
+        "11.4.2:concept:1",
+        "11.4.2:concept:2",
+        "11.4.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p11-phase-order-parameter",
+        "p11-phase-shift-invariance",
+        "p11-antiphase-clusters",
+        "p11-phase-vs-frequency",
+        "p11-one-phase-network-step",
+        "p11-degree-normalization",
+        "p11-finite-scan-threshold",
+        "p11-same-frequencies"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "11.4:planned:1",
+      "id": "11.4.1:concept:1",
       "kind": "concept",
-      "title": "相位模型",
+      "title": "相位耦合",
       "english": null,
-      "number": "11.4",
+      "number": "11.4.1",
       "parentId": "11.4",
-      "url": "/chapters/11-04-耦合振子与同步/",
-      "description": "区分相位（phase）接近、频率锁定与平均频率，说明同步指标和耦合归一化。",
+      "url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-phase-order-parameter",
+      "description": "实现耦合相位模型并分辨全局相位一致与分群。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p11-phase-order-parameter",
+        "p11-phase-shift-invariance",
+        "p11-antiphase-clusters",
+        "p11-phase-vs-frequency"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P11-C04-S01",
+      "lessonNumber": "11.4.1",
+      "lessonTitle": "从单体相位到群体指标",
       "chapterUrl": "/chapters/11-04-耦合振子与同步/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "11.4:planned:2",
+      "id": "11.4.1:concept:2",
       "kind": "concept",
-      "title": "网络耦合",
-      "english": null,
-      "number": "11.4",
+      "title": "序参量",
+      "english": "order parameter",
+      "number": "11.4.1",
       "parentId": "11.4",
-      "url": "/chapters/11-04-耦合振子与同步/",
-      "description": "区分相位（phase）接近、频率锁定与平均频率，说明同步指标和耦合归一化。",
+      "url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-phase-order-parameter",
+      "description": "实现耦合相位模型并分辨全局相位一致与分群。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p11-phase-order-parameter",
+        "p11-phase-shift-invariance",
+        "p11-antiphase-clusters",
+        "p11-phase-vs-frequency"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P11-C04-S01",
+      "lessonNumber": "11.4.1",
+      "lessonTitle": "从单体相位到群体指标",
       "chapterUrl": "/chapters/11-04-耦合振子与同步/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "11.4:planned:3",
+      "id": "11.4.1:concept:3",
       "kind": "concept",
-      "title": "异质频率",
+      "title": "反相分群",
       "english": null,
-      "number": "11.4",
+      "number": "11.4.1",
       "parentId": "11.4",
-      "url": "/chapters/11-04-耦合振子与同步/",
-      "description": "区分相位（phase）接近、频率锁定与平均频率，说明同步指标和耦合归一化。",
+      "url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-phase-order-parameter",
+      "description": "实现耦合相位模型并分辨全局相位一致与分群。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p11-phase-order-parameter",
+        "p11-phase-shift-invariance",
+        "p11-antiphase-clusters",
+        "p11-phase-vs-frequency"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P11-C04-S01",
+      "lessonNumber": "11.4.1",
+      "lessonTitle": "从单体相位到群体指标",
       "chapterUrl": "/chapters/11-04-耦合振子与同步/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "11.4:planned:4",
+      "id": "11.4.2:concept:1",
       "kind": "concept",
-      "title": "同步指标",
+      "title": "耦合归一化",
       "english": null,
-      "number": "11.4",
+      "number": "11.4.2",
       "parentId": "11.4",
-      "url": "/chapters/11-04-耦合振子与同步/",
-      "description": "区分相位（phase）接近、频率锁定与平均频率，说明同步指标和耦合归一化。",
+      "url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-one-phase-network-step",
+      "description": "比较两种结构的相位一致和尾段频率差，限定结论。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p11-one-phase-network-step",
+        "p11-degree-normalization",
+        "p11-finite-scan-threshold",
+        "p11-same-frequencies"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P11-C04-S02",
+      "lessonNumber": "11.4.2",
+      "lessonTitle": "结构、耦合与频率锁定",
       "chapterUrl": "/chapters/11-04-耦合振子与同步/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "11.4.2:concept:2",
+      "kind": "concept",
+      "title": "频率锁定",
+      "english": "frequency locking",
+      "number": "11.4.2",
+      "parentId": "11.4",
+      "url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-one-phase-network-step",
+      "description": "比较两种结构的相位一致和尾段频率差，限定结论。",
+      "categories": [
+        "evolution",
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p11-one-phase-network-step",
+        "p11-degree-normalization",
+        "p11-finite-scan-threshold",
+        "p11-same-frequencies"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P11-C04-S02",
+      "lessonNumber": "11.4.2",
+      "lessonTitle": "结构、耦合与频率锁定",
+      "chapterUrl": "/chapters/11-04-耦合振子与同步/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "11.4.2:concept:3",
+      "kind": "concept",
+      "title": "有限扫描",
+      "english": null,
+      "number": "11.4.2",
+      "parentId": "11.4",
+      "url": "/chapters/11-04-耦合振子与同步/practice/?question=p11-one-phase-network-step",
+      "description": "比较两种结构的相位一致和尾段频率差，限定结论。",
+      "categories": [
+        "evolution",
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p11-one-phase-network-step",
+        "p11-degree-normalization",
+        "p11-finite-scan-threshold",
+        "p11-same-frequencies"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P11-C04-S02",
+      "lessonNumber": "11.4.2",
+      "lessonTitle": "结构、耦合与频率锁定",
+      "chapterUrl": "/chapters/11-04-耦合振子与同步/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "12",
@@ -14546,7 +14970,7 @@
       "number": "13.1",
       "parentId": "13",
       "url": "/chapters/13-01-相变、临界性与有限规模/",
-      "description": "选择可测量的序参量，对有限系统的变化给出规模与统计证据，不把一次突变当作相变证明。",
+      "description": "选择可测量的序参量（order parameter），对有限系统的变化给出规模与统计证据，不把一次突变当作相变证明。",
       "categories": [
         "evolution",
         "regulation"
@@ -14567,11 +14991,11 @@
       "id": "13.1:planned:1",
       "kind": "concept",
       "title": "序参量",
-      "english": null,
+      "english": "order parameter",
       "number": "13.1",
       "parentId": "13.1",
       "url": "/chapters/13-01-相变、临界性与有限规模/",
-      "description": "选择可测量的序参量，对有限系统的变化给出规模与统计证据，不把一次突变当作相变证明。",
+      "description": "选择可测量的序参量（order parameter），对有限系统的变化给出规模与统计证据，不把一次突变当作相变证明。",
       "categories": [
         "evolution",
         "regulation"
@@ -14595,7 +15019,7 @@
       "number": "13.1",
       "parentId": "13.1",
       "url": "/chapters/13-01-相变、临界性与有限规模/",
-      "description": "选择可测量的序参量，对有限系统的变化给出规模与统计证据，不把一次突变当作相变证明。",
+      "description": "选择可测量的序参量（order parameter），对有限系统的变化给出规模与统计证据，不把一次突变当作相变证明。",
       "categories": [
         "evolution",
         "regulation"
@@ -14619,7 +15043,7 @@
       "number": "13.1",
       "parentId": "13.1",
       "url": "/chapters/13-01-相变、临界性与有限规模/",
-      "description": "选择可测量的序参量，对有限系统的变化给出规模与统计证据，不把一次突变当作相变证明。",
+      "description": "选择可测量的序参量（order parameter），对有限系统的变化给出规模与统计证据，不把一次突变当作相变证明。",
       "categories": [
         "evolution",
         "regulation"
@@ -14643,7 +15067,7 @@
       "number": "13.1",
       "parentId": "13.1",
       "url": "/chapters/13-01-相变、临界性与有限规模/",
-      "description": "选择可测量的序参量，对有限系统的变化给出规模与统计证据，不把一次突变当作相变证明。",
+      "description": "选择可测量的序参量（order parameter），对有限系统的变化给出规模与统计证据，不把一次突变当作相变证明。",
       "categories": [
         "evolution",
         "regulation"
@@ -21461,46 +21885,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "11.1:planned:1",
-      "target": "11.1:planned:2",
+      "source": "11.1.1:concept:1",
+      "target": "11.1.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "11.1:planned:1",
-      "target": "11.1:planned:3",
+      "source": "11.1.1:concept:1",
+      "target": "11.1.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "11.1:planned:1",
-      "target": "11.1:planned:4",
+      "source": "11.1.1:concept:2",
+      "target": "11.1.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "11.1:planned:2",
-      "target": "11.1:planned:3",
+      "source": "11.1.2:concept:1",
+      "target": "11.1.2:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "11.1:planned:2",
-      "target": "11.1:planned:4",
+      "source": "11.1.2:concept:1",
+      "target": "11.1.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "11.1:planned:3",
-      "target": "11.1:planned:4",
+      "source": "11.1.2:concept:2",
+      "target": "11.1.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "11.1.1:concept:3",
+      "target": "11.1.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "3.2",
@@ -21517,25 +21948,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "11.2:planned:1",
-      "target": "11.2:planned:2",
+      "source": "11.2.1:concept:1",
+      "target": "11.2.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "11.2:planned:1",
-      "target": "11.2:planned:3",
+      "source": "11.2.1:concept:1",
+      "target": "11.2.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "11.2:planned:2",
-      "target": "11.2:planned:3",
+      "source": "11.2.1:concept:2",
+      "target": "11.2.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "11.2.2:concept:1",
+      "target": "11.2.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "11.2.2:concept:1",
+      "target": "11.2.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "11.2.2:concept:2",
+      "target": "11.2.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "11.2.1:concept:3",
+      "target": "11.2.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "3.3",
@@ -21552,46 +22011,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "11.3:planned:1",
-      "target": "11.3:planned:2",
+      "source": "11.3.1:concept:1",
+      "target": "11.3.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "11.3:planned:1",
-      "target": "11.3:planned:3",
+      "source": "11.3.1:concept:1",
+      "target": "11.3.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "11.3:planned:1",
-      "target": "11.3:planned:4",
+      "source": "11.3.1:concept:2",
+      "target": "11.3.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "11.3:planned:2",
-      "target": "11.3:planned:3",
+      "source": "11.3.2:concept:1",
+      "target": "11.3.2:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "11.3:planned:2",
-      "target": "11.3:planned:4",
+      "source": "11.3.2:concept:1",
+      "target": "11.3.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "11.3:planned:3",
-      "target": "11.3:planned:4",
+      "source": "11.3.2:concept:2",
+      "target": "11.3.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "11.3.1:concept:3",
+      "target": "11.3.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "5.4",
@@ -21608,46 +22074,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "11.4:planned:1",
-      "target": "11.4:planned:2",
+      "source": "11.4.1:concept:1",
+      "target": "11.4.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "11.4:planned:1",
-      "target": "11.4:planned:3",
+      "source": "11.4.1:concept:1",
+      "target": "11.4.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "11.4:planned:1",
-      "target": "11.4:planned:4",
+      "source": "11.4.1:concept:2",
+      "target": "11.4.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "11.4:planned:2",
-      "target": "11.4:planned:3",
+      "source": "11.4.2:concept:1",
+      "target": "11.4.2:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "11.4:planned:2",
-      "target": "11.4:planned:4",
+      "source": "11.4.2:concept:1",
+      "target": "11.4.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "11.4:planned:3",
-      "target": "11.4:planned:4",
+      "source": "11.4.2:concept:2",
+      "target": "11.4.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "11.4.1:concept:3",
+      "target": "11.4.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "4.2",
