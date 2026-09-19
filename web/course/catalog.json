@@ -680,7 +680,7 @@
           "id": "2.3",
           "title": "连续时间与一阶微分方程",
           "url": "/chapters/02-03-连续时间与一阶微分方程/",
-          "goals": "推导 dA/dt=u−kA 的恒定输入（input）解，检查初值（initial condition）、方程与边界；区分平衡（equilibrium）位置、特征时间（characteristic time）和半衰期（half-life）。",
+          "goals": "推导 dA/dt=u−kA 的恒定输入（input）解，检查初值（initial condition）、方程与边界；区分平衡（equilibrium）位置、特征时间（characteristic time）、偏离半衰时间与无输入时的物质量半衰期（half-life）。",
           "prerequisites": "2.2；导数（derivative）、定积分（definite integral）、指数/对数和链式法则（chain rule）。分离变量与初值问题（initial value problem）在本章引入。",
           "knowledge": [
             "从收支（mass balance）率到初值问题",
