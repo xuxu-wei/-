@@ -1,0 +1,345 @@
+{
+  "date": "2026-09-19",
+  "stage": "M6",
+  "status": "passed",
+  "scope": {
+    "part": 5,
+    "chapters": [
+      "5.1",
+      "5.2",
+      "5.3",
+      "5.4",
+      "5.5"
+    ],
+    "notebooks": 13,
+    "ordinary_questions": 54,
+    "capstone_questions": 8,
+    "questions": 62,
+    "choice": 43,
+    "python": 19,
+    "exploration_pages": 4,
+    "capstone_points": 100,
+    "new_environment_dependencies": []
+  },
+  "notebook_execution": {
+    "python": "3.13.2",
+    "platform": "Windows",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "nbclient": "0.11.0",
+      "nbformat": "5.11.1",
+      "nbconvert": "7.17.1",
+      "ipykernel": "7.3.0"
+    },
+    "notebooks": [
+      {
+        "id": "P05-C01-S01",
+        "path": "notebooks/05-随机性与信息/01-从重复实验建立概率/01-事件分布与一次实现.ipynb",
+        "seconds": 4.47,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "bf6dd96a4365d10bbe847c4e1abde1b3be1139118367e9414c4cc81a17c2e4b2",
+        "passed": true
+      },
+      {
+        "id": "P05-C01-S02",
+        "path": "notebooks/05-随机性与信息/01-从重复实验建立概率/02-把抽样变成可比较的重复实验.ipynb",
+        "seconds": 3.95,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "9695642ea363e574fb4bef10289655623f873bfd55d5f4004e0009bfd8452832",
+        "passed": true
+      },
+      {
+        "id": "P05-C02-S01",
+        "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/01-用期望与方差描述随机量.ipynb",
+        "seconds": 4.2,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "f9581b8b1dd1888f805b0ef7a9e340e498f7258130ab0fbceb32f04de708103a",
+        "passed": true
+      },
+      {
+        "id": "P05-C02-S02",
+        "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/02-联合变化与协方差.ipynb",
+        "seconds": 4.75,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "33507e02d2d5f8caf0da2396534e325ac4ee588397b5be3373a337d4c817edcb",
+        "passed": true
+      },
+      {
+        "id": "P05-C02-S03",
+        "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/03-过程测量与个体差异.ipynb",
+        "seconds": 5.13,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "71c6881bd730cd5171acb29e060ab0e9dcd04c47dbc112b7349e9123b7550933",
+        "passed": true
+      },
+      {
+        "id": "P05-C03-S01",
+        "path": "notebooks/05-随机性与信息/03-条件概率与贝叶斯更新/01-由条件概率推导贝叶斯更新.ipynb",
+        "seconds": 4.16,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "6766fcca98410dc642acc0a1b1aa4fbfafac014c385f50ecdc276a55a76aa802",
+        "passed": true
+      },
+      {
+        "id": "P05-C03-S02",
+        "path": "notebooks/05-随机性与信息/03-条件概率与贝叶斯更新/02-固定未知量的高斯更新.ipynb",
+        "seconds": 4.64,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "d97ae698bba4ea2f0b90cea910d7f41ec47c40c527efdcff057425c1763f7fc5",
+        "passed": true
+      },
+      {
+        "id": "P05-C04-S01",
+        "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/01-状态路径与概率分布的两种推进.ipynb",
+        "seconds": 4.69,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "e93a271fb3b69a05a639110447a8cbe475e3dada7fedc7f0786dec71422353d0",
+        "passed": true
+      },
+      {
+        "id": "P05-C04-S02",
+        "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/02-不变分布与长期收敛的条件.ipynb",
+        "seconds": 4.61,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "201161a21d3541841f06cb605b603ee93852477b4b749c15d64e93d8604962de",
+        "passed": true
+      },
+      {
+        "id": "P05-C04-S03",
+        "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/03-随机游走中的漂移与扩散.ipynb",
+        "seconds": 4.59,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "164620572657f599baf8d604658a6142a2beaa71b7dda17c65f58e044172f63e",
+        "passed": true
+      },
+      {
+        "id": "P05-C05-S01",
+        "path": "notebooks/05-随机性与信息/05-熵、互信息与测量价值/01-熵与互信息的离散定义.ipynb",
+        "seconds": 4.29,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "90a1108baaf7590c09ab7d9640708ab49d5165b4830f211d830e01b8510f3b77",
+        "passed": true
+      },
+      {
+        "id": "P05-C05-S02",
+        "path": "notebooks/05-随机性与信息/05-熵、互信息与测量价值/02-有限样本分箱与信息偏差.ipynb",
+        "seconds": 4.33,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "5e1cbd85d741708304a8e02b52627fe3f0203ebf354e77f0305159213ec4d4c8",
+        "passed": true
+      },
+      {
+        "id": "P05-SUMMARY",
+        "path": "notebooks/05-随机性与信息/06-篇末综合/01-噪声概率更新与信息的综合实验.ipynb",
+        "seconds": 4.6,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "c4acd033c724a120859dac966d9bb17d351dd89db05e12d771a148d853a1f406",
+        "passed": true
+      }
+    ]
+  },
+  "execution_notes": [
+    "全部 13 本从新内核运行，65 个代码单元、13 幅图；最终 sha256 与实际提交文件一致。",
+    "统一使用教学包的 constrained layout；消除重复切换布局产生的警告。5.1.1 成功/失败颜色与网页保持一致后单独重新执行。",
+    "本次新增内容均为课程模型的内存实验，无外部数据生成器依赖。",
+    "5.2.3 另行明确固定个体对照 x0=1 U，与随机路径 x0=0 分开；该本再次从新内核运行。"
+  ],
+  "scientific_review": {
+    "manual_scope": "审读 13 本教学顺序、假设、变量与单位、推导范围、结果解释和完整题面；自动术语检查后人工纠正了“重复数据”误匹配“复数”的注释。",
+    "independent_references": [
+      "有理数概率归一与后验、离散精确矩和协方差",
+      "高斯后验的批量精度式与逆序观测核对",
+      "矩阵幂、两态闭式、不变分布及周期/吸收反例",
+      "四步随机游走枚举、二项终点矩",
+      "条件熵恒等式、零概率支持、独立/复制/翻转通道和分箱端点"
+    ],
+    "conditions_reviewed": [
+      "物理非负量与可为负的高斯偏差分开；噪声方差带平方单位。",
+      "过程、测量与个体固定差异分别建模；独立性假设写明。",
+      "固定未知量更新要求条件独立；复制观测不能提供独立新证据；零证据概率无后验。",
+      "不变分布存在不等于所有初值收敛；不可约且非周期是有限齐次链的充分条件。",
+      "互信息非负性证明保留联合分布的非零支持；分箱信息不当作因果关系或连续微分熵。",
+      "同一样本的嵌套粗化与任意更换分箱区别说明；有限样本正偏不能声称总体存在依赖。"
+    ],
+    "sources_checked": [
+      "https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/pages/lecture-notes/",
+      "https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/pages/lecture-notes/",
+      "https://numpy.org/doc/stable/reference/random/parallel.html"
+    ]
+  },
+  "random_experiments": {
+    "generator": "NumPy PCG64; SeedSequence.spawn; fixed child order",
+    "root_seeds": {
+      "5.1.2": 51020,
+      "5.2.1": 5201,
+      "5.2.2": 5202,
+      "5.2.3": 5203,
+      "5.4.1": 5401,
+      "5.4.3": 5403,
+      "5.5.2": 5502
+    },
+    "repeats": "每组条件 200 次重复或 200 条路径；子流顺序和样本量在对应 Notebook 中声明。",
+    "uncertainty": "跨重复/路径经验分位带、Monte Carlo 标准误、条件高斯后验可信区间分别解释；逐时刻带不称为整条曲线同时区间。",
+    "diagnostics": "预先指定统计量的五倍标准误检查有有限概率误报；不作为必然性证明。"
+  },
+  "web_model_comparison": {
+    "cases": 79,
+    "compared_values": 10705,
+    "maximum_absolute_difference": 0.0,
+    "tolerance": "atol=rtol=1e-12",
+    "scope": "显式演示随机流、相同抽样规则与方程的跨实现比较；不声称演示生成器与 NumPy PCG64 同种子同输出，独立数学参照见 test_part05。"
+  },
+  "web_simplifications": [
+    "演示随机流使用显式 32 位整数递推，不声称与 NumPy PCG64 同种子同输出或生成真正独立随机数。",
+    "5.2 演示为零均值均匀扰动，方差与 Notebook 高斯扰动一致；分布形状不同且页面明确说明。",
+    "5.3 使用固定标记序列，没有随机抽样；仅更新固定标签的知识分布。"
+  ],
+  "automated_checks": {
+    "python": {
+      "command": "python -m pytest -q",
+      "passed": 339
+    },
+    "part05_independent_and_real_judge": {
+      "command": "python -m pytest -q tools/tests/test_part05.py",
+      "passed": 41,
+      "scope": "19 个计算题独立参照、19 个真实子进程判题链路及 3 项模型/重复/评分核验；逐题样例、完整正确与错误答案检查。"
+    },
+    "javascript": {
+      "command": "node --test tools/tests/*.test.mjs",
+      "passed": 37
+    },
+    "final_scope_note": "全回归后仅调整 Notebook 注释/绘图布局与颜色、SVG 轴标签和换题提示清除；13 本最终重新运行，两个前端入口 node --check 通过，变动的页面实际操作复核。教学算法未变。",
+    "environment": "pip check: No broken requirements found.",
+    "teaching": {
+      "notebooks": 56,
+      "questions": 266,
+      "question_links": 266,
+      "issues": []
+    },
+    "documents": {
+      "links": 356,
+      "issues": []
+    }
+  },
+  "manual_browser": {
+    "browser": "Codex in-app browser; Windows PC; actual clicks and rendered DOM, isolated 127.0.0.1:8006",
+    "navigation": "篇首页的 5.1—5.5 编号卡片、篇末综合、当前目录展开定位、章内导览/探索/练习实际跳转；5.5 无额外探索按钮。",
+    "playback": {
+      "5.1": "播放后从第 1 个观察推进到 20，频率 0.2；重播和暂停有效，暂停前后计数/进度保持；20↔200 两次往返，手动 n=40 后仍可切换。",
+      "5.2": "播放推进到周期 2、状态 0.525 后暂停；Q 开关两次往返，手动 Q=0.05 后关闭保持 R=0.09；周期 40 时状态 0、观测 -0.30263，测量误差仍存在。",
+      "5.3": "固定 8 次标记播放到终点，后验 0.95294、总概率 1；先验 0.2↔0.8 两次往返，手动先验 0.25 后仍可切换；重置有效。",
+      "5.4": "播放、暂停可见周期推进；混合↔交替两次往返，手动 α=0.25 后仍可切换；交替链周期 40 为 0。最终轴仅标 0、1，重新实际播放到周期 1、进度 4.0% 后暂停。"
+    },
+    "notebook_links": {
+      "rendered_previews": [
+        "5.4.1：2 个 MathJax 公式，无错误；实际点击可视化链接到 8000 正常页面。",
+        "5.5.1：5 个 MathJax 公式，无错误；实际点击“作答：联合计数包含多少信息”到 8000 正确题目。"
+      ],
+      "default_ide": {
+        "lesson": "5.1.1 事件分布与一次实现",
+        "request_accepted": true,
+        "original_project_file": true,
+        "scope": "点击页面按钮后本机 opener 调用系统默认应用，并显示已请求打开；未观察 IDE 内部内容。"
+      },
+      "source_html_not_shown": true
+    },
+    "exercise": {
+      "code": "具名 solve(counts)；输入/输出表和代码样例均可见；Tab 缩进、Backspace 整缩进删除、括号配对、Monokai 高亮及自动换行实际检查。",
+      "syntax_error": "p05-information 缺冒号返回 answer.py 第 1 行、源码和 SyntaxError traceback；判定在代码区上方显示。",
+      "sample_vs_submit": "样例 AC 1/1 不计完成；完整 AC 4/4 后计 1 题。",
+      "choice": "p05-entropy 错选 A 后显示逐项解析；红字 rgb(125,43,49)、背景 rgba(179,58,74,0.08)；改选 D 后通过。",
+      "question_switch": "切到 p05-conditional-entropy 后上一题公告为空、结果区域隐藏；修复旧提示残留。",
+      "capstone": "p05-cap-repeat 首选 A 错误后改 C 正确；首次分 0/100、练习分 10/100、首轮提交 1/8；20/30/30/20 四层和复习入口可见。未声称人工逐题完成全部八题。"
+    },
+    "record_restart": {
+      "progress_equal": true,
+      "passed_after_restart": [
+        "p05-cap-repeat",
+        "p05-entropy",
+        "p05-information"
+      ],
+      "ui_confirmed": "重启后重新打开综合题，首次 0、练习 10、通过 1/8 保持；恢复上次 C 的判定与解析。"
+    },
+    "pc_layout": [
+      {
+        "width": 1024,
+        "height": 768,
+        "editor_width": 641.04,
+        "horizontal_overflow": false
+      },
+      {
+        "width": 1366,
+        "height": 768,
+        "editor_width": 615.04,
+        "navigation": "hidden",
+        "horizontal_overflow": false
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "editor_width": 754.72,
+        "horizontal_overflow": false
+      },
+      {
+        "width": 2560,
+        "height": 1080,
+        "editor_width": 1087.51,
+        "horizontal_overflow": false
+      },
+      {
+        "width": 1440,
+        "height": 600,
+        "editor_width": 505.13,
+        "horizontal_overflow": false
+      }
+    ],
+    "navigation_resize": "目录可隐藏/展开；键盘调宽到 220、480 像素边界，无页面水平溢出；Enter 恢复；代码自动换行开启。"
+  },
+  "figure_review": {
+    "figures": 13,
+    "all_viewed": true,
+    "final_layout": "最终 constrained-layout 输出逐图查看，标签、单位、图例与数据无遮挡；5.1.1 调整颜色后再次查看。"
+  },
+  "protection": {
+    "existing_personal_json_files": 29,
+    "all_hashes_unchanged": true,
+    "test_records": ".work/m6/ui-learning (ignored)",
+    "AGENTS_modified": false,
+    "excluded_from_sync": [
+      "模拟数据",
+      "本地环境",
+      ".work",
+      ".local",
+      "个人作答记录"
+    ]
+  },
+  "stage_report_lines": {
+    "M0": 9,
+    "M1": 11,
+    "M2": 12,
+    "M3": 14,
+    "M4": 12,
+    "M5": 11,
+    "M6": 12
+  },
+  "limitations": [
+    "技术与操作验收覆盖 Windows / Python 3.13 / PC；未进行其他操作系统验证。",
+    "未开展目标读者试学或独立同行评审。",
+    "伪随机有限重复提供数值核验，不替代理论条件或真实生命系统验证。"
+  ],
+  "next": "M7：第 6 篇，从测量走向模型。"
+}

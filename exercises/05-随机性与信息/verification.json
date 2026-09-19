@@ -1,0 +1,2230 @@
+{
+  "p05-event-variable": {
+    "correct": [
+      "A",
+      "C"
+    ],
+    "explanations": {
+      "A": "两种可能结果分别映射到 0、1。",
+      "B": "实现值与概率不同。",
+      "C": "事件是一组符合条件的结果。",
+      "D": "概率描述重复机制，有限次数会波动。"
+    }
+  },
+  "p05-uniform-area": {
+    "cases": [
+      {
+        "arguments": {
+          "low": -0.2,
+          "high": 0.2,
+          "left": 0,
+          "right": 0.1
+        },
+        "expected": 0.25
+      },
+      {
+        "arguments": {
+          "low": 0,
+          "high": 1,
+          "left": -1,
+          "right": 0.5
+        },
+        "expected": 0.5
+      },
+      {
+        "arguments": {
+          "low": 0,
+          "high": 1,
+          "left": 2,
+          "right": 3
+        },
+        "expected": 0.0
+      },
+      {
+        "arguments": {
+          "low": 0,
+          "high": 1,
+          "left": 0.5,
+          "right": 0.5
+        },
+        "expected": 0.0
+      },
+      {
+        "arguments": {
+          "low": -1,
+          "high": 1,
+          "left": -2,
+          "right": 2
+        },
+        "expected": 1.0
+      }
+    ],
+    "explanation": "概率是面积，不是一个点上的密度值。"
+  },
+  "p05-density-point": {
+    "correct": [
+      "A",
+      "C"
+    ],
+    "explanations": {
+      "C": "归一化面积为 2.5×0.4=1。",
+      "D": "点没有区间宽度，概率为零。",
+      "A": "区间长度占支持集的一半。",
+      "B": "仪器显示有舍入区间，显示零不等于真值精确为零。"
+    }
+  },
+  "p05-normalization": {
+    "correct": [
+      "C"
+    ],
+    "explanations": {
+      "B": "0.8 是前两态之和。",
+      "C": "总概率为 1，剩余 0.2。",
+      "D": "乘积并非剩余概率。",
+      "A": "归一化即可确定。"
+    }
+  },
+  "p05-frequencies": {
+    "cases": [
+      {
+        "arguments": {
+          "groups": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1,
+              0
+            ]
+          ]
+        },
+        "expected": [
+          [
+            0.5,
+            0.75
+          ],
+          0.625,
+          0.6666666666666666
+        ]
+      },
+      {
+        "arguments": {
+          "groups": [
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        "expected": [
+          [
+            0.0,
+            1.0,
+            1.0
+          ],
+          0.6666666666666666,
+          0.6666666666666666
+        ]
+      },
+      {
+        "arguments": {
+          "groups": [
+            [
+              0,
+              0
+            ],
+            [
+              0
+            ]
+          ]
+        },
+        "expected": [
+          [
+            0.0,
+            0.0
+          ],
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "arguments": {
+          "groups": [
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "expected": [
+          [
+            1.0
+          ],
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "explanation": "先明确观察单位是组还是细胞，不能混用分母。"
+  },
+  "p05-seed-repeats": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "D": "机制可能有波动，代码重复了同一实现。",
+      "A": "应使用不同子流或持续抽取独立样本的生成器。",
+      "B": "重复次数增加，仍不能让同一份数据变成独立的新证据。",
+      "C": "种子决定伪随机流的起始状态（state）。"
+    }
+  },
+  "p05-repeat-band": {
+    "correct": [
+      "A",
+      "B",
+      "C"
+    ],
+    "explanations": {
+      "C": "分布（distribution）对象是每次实验得到的频率。",
+      "D": "参数（parameter）区间涉及另外的构造与覆盖定义。",
+      "A": "波动减小是分布层面的结论。",
+      "B": "分位数本身也由有限样本估计。"
+    }
+  },
+  "p05-shared-environment": {
+    "correct": [
+      "D"
+    ],
+    "explanations": {
+      "B": "复制不增加独立观察。",
+      "C": "重读不能创造新实现。",
+      "D": "明确了共同概率与独立抽样假设。",
+      "A": "共同变化改变模型（model），并可引入组内相关。"
+    }
+  },
+  "p05-moments": {
+    "cases": [
+      {
+        "arguments": {
+          "values": [
+            0,
+            2
+          ],
+          "probabilities": [
+            0.75,
+            0.25
+          ]
+        },
+        "expected": [
+          0.5,
+          0.75
+        ]
+      },
+      {
+        "arguments": {
+          "values": [
+            -2,
+            2
+          ],
+          "probabilities": [
+            0.5,
+            0.5
+          ]
+        },
+        "expected": [
+          0.0,
+          4.0
+        ]
+      },
+      {
+        "arguments": {
+          "values": [
+            3
+          ],
+          "probabilities": [
+            1
+          ]
+        },
+        "expected": [
+          3,
+          0
+        ]
+      },
+      {
+        "arguments": {
+          "values": [
+            0,
+            10.0
+          ],
+          "probabilities": [
+            1,
+            0
+          ]
+        },
+        "expected": [
+          0.0,
+          0.0
+        ]
+      }
+    ],
+    "explanation": "先按概率求均值，再计算中心平方偏差。"
+  },
+  "p05-variance-units": {
+    "correct": [
+      "B",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "D": "期望（expectation）线性，10×2+5=25。",
+      "A": "固定平移不增加方差（variance）。",
+      "B": "缩放平方进入方差，100×3=300。",
+      "C": "标准差是方差的平方根。"
+    }
+  },
+  "p05-gaussian-domain": {
+    "correct": [
+      "D"
+    ],
+    "explanations": {
+      "C": "高斯分布（Gaussian distribution）没有有限支持边界。",
+      "D": "误差是差值，允许正负。",
+      "A": "方差是 0.04 U²。",
+      "B": "正负实现可在平均意义抵消。"
+    }
+  },
+  "p05-sample-denominator": {
+    "correct": [
+      "B"
+    ],
+    "explanations": {
+      "B": "均值为 1，平方偏差和 2；除以 2 或 1。",
+      "C": "分母越小结果越大。",
+      "D": "n−1 修正改变结果。",
+      "A": "数组并非没有散布。"
+    }
+  },
+  "p05-covariance": {
+    "cases": [
+      {
+        "arguments": {
+          "xs": [
+            0,
+            1,
+            2
+          ],
+          "ys": [
+            2,
+            1,
+            0
+          ]
+        },
+        "expected": [
+          1.0,
+          1.0,
+          0.6666666666666666,
+          0.6666666666666666,
+          -0.6666666666666666
+        ]
+      },
+      {
+        "arguments": {
+          "xs": [
+            -1,
+            0,
+            1
+          ],
+          "ys": [
+            1,
+            0,
+            1
+          ]
+        },
+        "expected": [
+          0.0,
+          0.6666666666666666,
+          0.6666666666666666,
+          0.22222222222222224,
+          0.0
+        ]
+      },
+      {
+        "arguments": {
+          "xs": [
+            3
+          ],
+          "ys": [
+            5
+          ]
+        },
+        "expected": [
+          3.0,
+          5.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "arguments": {
+          "xs": [
+            1,
+            1
+          ],
+          "ys": [
+            0,
+            2
+          ]
+        },
+        "expected": [
+          1.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0
+        ]
+      }
+    ],
+    "explanation": "单个样本在描述性 n 分母下返回零中心矩；不能据此断言总体无波动。"
+  },
+  "p05-uncorrelated": {
+    "correct": [
+      "B",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "D": "E[X]=E[X³]=0，所以协方差为零。",
+      "A": "Y 完全由 X 决定，且并非常数。",
+      "B": "只有 X=0 才有平方为零。",
+      "C": "非线性依赖仍可能存在。"
+    }
+  },
+  "p05-sum-variance": {
+    "correct": [
+      "D"
+    ],
+    "explanations": {
+      "C": "这漏掉了两个交叉项。",
+      "D": "1+4+2×1=7。",
+      "A": "中心乘积出现两次。",
+      "B": "正协方差（covariance）增加和的方差（variance）。"
+    }
+  },
+  "p05-correlation-zero-var": {
+    "correct": [
+      "D"
+    ],
+    "explanations": {
+      "B": "共同来源不决定相关系数。",
+      "C": "零协方差（covariance）不自动给出可定义的相关系数。",
+      "D": "公式的非零方差（variance）条件不满足。",
+      "A": "人为改分母改变定义。"
+    }
+  },
+  "p05-shared-offset": {
+    "correct": [
+      "B"
+    ],
+    "explanations": {
+      "A": "同组 b 重复出现，不能作为独立项平均掉。",
+      "B": "平均仍含 b，独立读数噪声的方差缩为 R/n。",
+      "C": "恰好相反。",
+      "D": "共同偏移留下 B。"
+    }
+  },
+  "p05-variance-path": {
+    "cases": [
+      {
+        "arguments": {
+          "a": 0.8,
+          "process_variance": 0.04,
+          "initial_variance": 0,
+          "steps": 2
+        },
+        "expected": [
+          0,
+          0.04,
+          0.0656
+        ]
+      },
+      {
+        "arguments": {
+          "a": 0,
+          "process_variance": 0.2,
+          "initial_variance": 1,
+          "steps": 3
+        },
+        "expected": [
+          1,
+          0.2,
+          0.2,
+          0.2
+        ]
+      },
+      {
+        "arguments": {
+          "a": -0.5,
+          "process_variance": 0,
+          "initial_variance": 2,
+          "steps": 3
+        },
+        "expected": [
+          2,
+          0.5,
+          0.125,
+          0.03125
+        ]
+      },
+      {
+        "arguments": {
+          "a": 1,
+          "process_variance": 0.1,
+          "initial_variance": 0,
+          "steps": 0
+        },
+        "expected": [
+          0
+        ]
+      }
+    ],
+    "explanation": "独立性消除了交叉协方差；一般相关扰动时不能直接用此递推。"
+  },
+  "p05-noise-location": {
+    "correct": [
+      "B",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "C": "状态更新包含 w。",
+      "D": "当前模型（model）没有把观测回送到状态。",
+      "A": "固定参数（parameter）差异有不同时间结构。",
+      "B": "独立使交叉协方差（covariance）为零。"
+    }
+  },
+  "p05-stationary-variance": {
+    "correct": [
+      "B",
+      "C"
+    ],
+    "explanations": {
+      "B": "几何和收敛给出该结果。",
+      "C": "a²=1，递推成为累加。",
+      "D": "a²=4 放大方差，条件是绝对值。",
+      "A": "分布（distribution）的散布稳定与单条实现不变不同。"
+    }
+  },
+  "p05-individual-fixed": {
+    "correct": [
+      "B"
+    ],
+    "explanations": {
+      "A": "同一参数和起点产生相同确定轨迹。",
+      "B": "无需每步噪声也可形成群体差异。",
+      "C": "机制不能只凭轨迹不同来确定。",
+      "D": "题设明确实验期间固定。"
+    }
+  },
+  "p05-quantiles": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "D": "尾部路径可在带外。",
+      "A": "对象是状态，不是参数（parameter）。",
+      "B": "逐时刻覆盖不等于整个路径联合覆盖。",
+      "C": "有限样本分位数会波动。"
+    }
+  },
+  "p05-bayes": {
+    "cases": [
+      {
+        "arguments": {
+          "prior": [
+            0.2,
+            0.8
+          ],
+          "likelihood": [
+            0.9,
+            0.1
+          ]
+        },
+        "expected": [
+          0.6923076923076924,
+          0.30769230769230776
+        ]
+      },
+      {
+        "arguments": {
+          "prior": [
+            1,
+            0
+          ],
+          "likelihood": [
+            0,
+            1
+          ]
+        },
+        "expected": null
+      },
+      {
+        "arguments": {
+          "prior": [
+            0.5,
+            0.5
+          ],
+          "likelihood": [
+            1,
+            1
+          ]
+        },
+        "expected": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "arguments": {
+          "prior": [
+            0,
+            0.2,
+            0.8
+          ],
+          "likelihood": [
+            1,
+            0,
+            0.5
+          ]
+        },
+        "expected": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    ],
+    "explanation": "后验既取决于观测机制，也取决于先验；零分母表示这次观测被当前模型排除。"
+  },
+  "p05-base-rate": {
+    "correct": [
+      "D"
+    ],
+    "explanations": {
+      "B": "这是条件方向相反的似然（likelihood）。",
+      "C": "联合概率（joint probability）还需除以证据概率（evidence probability）。",
+      "D": "0.18/(0.18+0.08)=9/13。",
+      "A": "有区分力的观测（observation）改变先验。"
+    }
+  },
+  "p05-duplicate-observation": {
+    "correct": [
+      "B"
+    ],
+    "explanations": {
+      "A": "记录条数不是独立信息数。",
+      "B": "条件独立假设被破坏。",
+      "C": "第二次乘似然（likelihood）改变结果。",
+      "D": "零先验乘任何有限似然仍为零。"
+    }
+  },
+  "p05-conditioning": {
+    "correct": [
+      "B",
+      "D"
+    ],
+    "explanations": {
+      "D": "列和是事件（event） Y=y 的概率。",
+      "A": "该事件在模型（model）下为零，普通条件概率（conditional probability）公式未定义。",
+      "B": "条件概率是在该事件内重新分配质量。",
+      "C": "必须限定事件并重新归一化。"
+    }
+  },
+  "p05-normal-update": {
+    "cases": [
+      {
+        "arguments": {
+          "prior_mean": 0,
+          "prior_variance": 1,
+          "observations": [
+            1,
+            1
+          ],
+          "noise_variances": [
+            1,
+            1
+          ]
+        },
+        "expected": [
+          [
+            0,
+            0.5,
+            0.6666666666666666
+          ],
+          [
+            1,
+            0.5,
+            0.3333333333333333
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "prior_mean": 2,
+          "prior_variance": 0.5,
+          "observations": [],
+          "noise_variances": []
+        },
+        "expected": [
+          [
+            2
+          ],
+          [
+            0.5
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "prior_mean": -1,
+          "prior_variance": 2,
+          "observations": [
+            3,
+            -2
+          ],
+          "noise_variances": [
+            0.1,
+            4
+          ]
+        },
+        "expected": [
+          [
+            -1,
+            2.8095238095238093,
+            2.697674418604651
+          ],
+          [
+            2,
+            0.09523809523809523,
+            0.09302325581395349
+          ]
+        ]
+      }
+    ],
+    "explanation": "这是固定量的条件更新；若 θ 随时间变化，需要额外状态模型。"
+  },
+  "p05-prior-sensitivity": {
+    "cases": [
+      {
+        "arguments": {
+          "prior_means": [
+            0,
+            2
+          ],
+          "prior_variances": [
+            1,
+            1
+          ],
+          "observations": [
+            1
+          ],
+          "noise_variances": [
+            1
+          ]
+        },
+        "expected": [
+          [
+            0.5,
+            1.5
+          ],
+          [
+            0.5,
+            0.5
+          ],
+          1.0
+        ]
+      },
+      {
+        "arguments": {
+          "prior_means": [
+            -1,
+            1
+          ],
+          "prior_variances": [
+            1,
+            2
+          ],
+          "observations": [],
+          "noise_variances": []
+        },
+        "expected": [
+          [
+            -1,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          2
+        ]
+      },
+      {
+        "arguments": {
+          "prior_means": [
+            0,
+            2
+          ],
+          "prior_variances": [
+            1,
+            1
+          ],
+          "observations": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "noise_variances": [
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1
+          ]
+        },
+        "expected": [
+          [
+            0.9900990099009901,
+            1.00990099009901
+          ],
+          [
+            0.009900990099009903,
+            0.009900990099009903
+          ],
+          0.01980198019801982
+        ]
+      }
+    ],
+    "explanation": "比较先验敏感性时固定观测与噪声假设。"
+  },
+  "p05-precision": {
+    "correct": [
+      "A",
+      "C"
+    ],
+    "explanations": {
+      "A": "K=P/(P+R)，R 越小权重越大。",
+      "B": "方差更大表示更不精确。",
+      "C": "P*R/(P+R) 随 R 增大。",
+      "D": "后验依赖高斯、已知方差及独立性等假设。"
+    }
+  },
+  "p05-fixed-quantity": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "D": "不能凭空添加状态机制。",
+      "A": "变化的是对 θ 的知识。",
+      "B": "观测噪声决定证据权重。",
+      "C": "后验（posterior）均值改变并不意味着 θ 改变。"
+    }
+  },
+  "p05-order": {
+    "correct": [
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "C": "平方配方中二次项系数相加。",
+      "D": "最终加权和与顺序无关。",
+      "A": "这改变了每个读数的权重。",
+      "B": "中间使用的观测集合不同。"
+    }
+  },
+  "p05-propagation": {
+    "cases": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              0.8,
+              0.2
+            ],
+            [
+              0.1,
+              0.9
+            ]
+          ],
+          "initial": [
+            1,
+            0
+          ],
+          "steps": 2
+        },
+        "expected": [
+          [
+            1,
+            0
+          ],
+          [
+            0.8,
+            0.2
+          ],
+          [
+            0.6600000000000001,
+            0.3400000000000001
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "initial": [
+            1,
+            0
+          ],
+          "steps": 3
+        },
+        "expected": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              1,
+              0
+            ],
+            [
+              0.3,
+              0.7
+            ]
+          ],
+          "initial": [
+            0,
+            1
+          ],
+          "steps": 3
+        },
+        "expected": [
+          [
+            0,
+            1
+          ],
+          [
+            0.3,
+            0.7
+          ],
+          [
+            0.51,
+            0.48999999999999994
+          ],
+          [
+            0.657,
+            0.3429999999999999
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              0.8,
+              0.2
+            ],
+            [
+              0.1,
+              0.9
+            ]
+          ],
+          "initial": [
+            0.3333333333333333,
+            0.6666666666666666
+          ],
+          "steps": 4
+        },
+        "expected": [
+          [
+            0.3333333333333333,
+            0.6666666666666666
+          ],
+          [
+            0.3333333333333333,
+            0.6666666666666666
+          ],
+          [
+            0.3333333333333333,
+            0.6666666666666666
+          ],
+          [
+            0.3333333333333333,
+            0.6666666666666666
+          ],
+          [
+            0.3333333333333333,
+            0.6666666666666666
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              1
+            ]
+          ],
+          "initial": [
+            1
+          ],
+          "steps": 0
+        },
+        "expected": [
+          [
+            1
+          ]
+        ]
+      }
+    ],
+    "explanation": "检查概率和为 1；行向量右乘矩阵，不把矩阵列当出发状态。"
+  },
+  "p05-path": {
+    "cases": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              0.8,
+              0.2
+            ],
+            [
+              0.1,
+              0.9
+            ]
+          ],
+          "initial_state": 0,
+          "uniforms": [
+            0.7,
+            0.8,
+            0.05
+          ]
+        },
+        "expected": [
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "initial_state": 1,
+          "uniforms": [
+            0,
+            0.99
+          ]
+        },
+        "expected": [
+          1,
+          0,
+          1
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              1
+            ]
+          ],
+          "initial_state": 0,
+          "uniforms": []
+        },
+        "expected": [
+          0
+        ]
+      }
+    ],
+    "explanation": "每一步使用更新后的当前状态选择行。"
+  },
+  "p05-markov-assumption": {
+    "correct": [
+      "B",
+      "D"
+    ],
+    "explanations": {
+      "D": "这就是对历史依赖的模型假设。",
+      "A": "下一步通常依赖当前状态。",
+      "B": "时间齐次限定规则不随时刻变。",
+      "C": "隐藏记忆可能使标签序列不满足该假设。"
+    }
+  },
+  "p05-path-distribution": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "C": "单个状态（state）标签是离散的。",
+      "D": "单条有限路径占比不是边缘概率的精确值。",
+      "A": "固定时刻的跨路径频率对应这个概率。",
+      "B": "静息概率仍为 0.66。"
+    }
+  },
+  "p05-stochastic-matrix": {
+    "correct": [
+      "A",
+      "B",
+      "C"
+    ],
+    "explanations": {
+      "B": "元素表示条件概率（conditional probability）。",
+      "C": "每个出发状态的去向穷尽。",
+      "D": "列和为 1 是额外条件，并非一般要求。",
+      "A": "每个状态对应一个出发行。"
+    }
+  },
+  "p05-stationary": {
+    "cases": [
+      {
+        "arguments": {
+          "alpha": 0.2,
+          "beta": 0.1
+        },
+        "expected": [
+          0.3333333333333333,
+          0.6666666666666666
+        ]
+      },
+      {
+        "arguments": {
+          "alpha": 1,
+          "beta": 1
+        },
+        "expected": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "arguments": {
+          "alpha": 0,
+          "beta": 0.4
+        },
+        "expected": [
+          1.0,
+          0.0
+        ]
+      },
+      {
+        "arguments": {
+          "alpha": 0,
+          "beta": 0
+        },
+        "expected": null
+      }
+    ],
+    "explanation": "唯一不变不等于所有起点逐时刻收敛；alpha=beta=1 是反例。"
+  },
+  "p05-periodic": {
+    "correct": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "D": "每步确定地切换。",
+      "A": "右乘 P 后不变。",
+      "B": "周期性阻止本题起点收敛。",
+      "C": "不变分布定义即如此。"
+    }
+  },
+  "p05-ergodic-conditions": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "C": "还需要行和为 1 等，且不保证长期性质。",
+      "D": "周期链和多吸收类构成反例。",
+      "A": "这些是有限链的标准充分条件。",
+      "B": "有限数值图不能代替结构条件。"
+    }
+  },
+  "p05-absorbing": {
+    "correct": [
+      "C"
+    ],
+    "explanations": {
+      "B": "状态（state）之间没有交换。",
+      "C": "pP=p 对所有 p 成立。",
+      "D": "恰恰有无穷多个。",
+      "A": "转移规则并不随模拟时间改变。"
+    }
+  },
+  "p05-walk": {
+    "cases": [
+      {
+        "arguments": {
+          "probability": 0.5,
+          "step_size": 1,
+          "steps": 3
+        },
+        "expected": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "probability": 0.75,
+          "step_size": 2,
+          "steps": 2
+        },
+        "expected": [
+          [
+            0.0,
+            1.0,
+            2.0
+          ],
+          [
+            0.0,
+            3.0,
+            6.0
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "probability": 1,
+          "step_size": 0.5,
+          "steps": 2
+        },
+        "expected": [
+          [
+            0.0,
+            0.5,
+            1.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "probability": 0,
+          "step_size": 1,
+          "steps": 0
+        },
+        "expected": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ]
+      }
+    ],
+    "explanation": "方差相加依赖独立增量；位置本身跨时刻相关。"
+  },
+  "p05-walk-path": {
+    "correct": [
+      "A",
+      "B",
+      "C"
+    ],
+    "explanations": {
+      "D": "路径每一步都会改变。",
+      "A": "左右对称使均值为零。",
+      "B": "独立增量方差累加。",
+      "C": "零均值时均方根等于标准差（standard deviation）。"
+    }
+  },
+  "p05-walk-boundary": {
+    "correct": [
+      "D"
+    ],
+    "explanations": {
+      "C": "有限位置范围不允许方差无限增长。",
+      "D": "转移规则在边界处不同。",
+      "A": "图形设置不能替代机制。",
+      "B": "触边路径会被改变。"
+    }
+  },
+  "p05-walk-independence": {
+    "correct": [
+      "C"
+    ],
+    "explanations": {
+      "B": "下一位置含有上一位置。",
+      "C": "独立增量交叉协方差（covariance）为零。",
+      "D": "非零增量方差会累积。",
+      "A": "坐标累积过去的增量。"
+    }
+  },
+  "p05-information": {
+    "cases": [
+      {
+        "arguments": {
+          "counts": [
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        },
+        "expected": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "arguments": {
+          "counts": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "expected": [
+          1.0,
+          1.0,
+          0.0
+        ]
+      },
+      {
+        "arguments": {
+          "counts": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              4,
+              0
+            ]
+          ]
+        },
+        "expected": [
+          -0.0,
+          -0.0,
+          0.0
+        ]
+      },
+      {
+        "arguments": {
+          "counts": [
+            [
+              3,
+              1
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        },
+        "expected": [
+          0.9709505944546686,
+          1.0,
+          0.12451124978365302
+        ]
+      }
+    ],
+    "explanation": "跳过 p=0 的项；只在 p>0 的位置计算比值，那里两个边缘也必为正。"
+  },
+  "p05-entropy": {
+    "correct": [
+      "D"
+    ],
+    "explanations": {
+      "D": "精确复制消除 X 的全部不确定性；独立通道不减少它。",
+      "A": "Y 自己有熵（entropy）不代表包含 X 的信息。",
+      "B": "次序相反。",
+      "C": "精确复制有 1 bit。"
+    }
+  },
+  "p05-conditional-entropy": {
+    "correct": [
+      "A",
+      "B",
+      "C"
+    ],
+    "explanations": {
+      "C": "条件熵（conditional entropy）对 Y 的可能取值加权平均。",
+      "D": "Y 中可有与 X 无关的信息。",
+      "A": "联合分布（distribution）定义对交换变量对称。",
+      "B": "对数底改变单位和数值比例。"
+    }
+  },
+  "p05-channel-flip": {
+    "correct": [
+      "C"
+    ],
+    "explanations": {
+      "B": "一致率不等于信息量。",
+      "C": "确定的可逆编码保留全部信息。",
+      "D": "互信息非负。",
+      "A": "反向或非线性依赖也可携带信息。"
+    }
+  },
+  "p05-information-scope": {
+    "correct": [
+      "A",
+      "C"
+    ],
+    "explanations": {
+      "A": "共同环境可制造统计依赖。",
+      "B": "观察关联不足以证明因果效应。",
+      "C": "交换变量不改变互信息。",
+      "D": "这里是离散信息量，定义与物理熵并不自动等同。"
+    }
+  },
+  "p05-bin-pairs": {
+    "cases": [
+      {
+        "arguments": {
+          "xs": [
+            0,
+            0.5,
+            1
+          ],
+          "ys": [
+            1,
+            0.5,
+            0
+          ],
+          "edges": [
+            0,
+            0.5,
+            1
+          ]
+        },
+        "expected": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "xs": [
+            0,
+            0,
+            1
+          ],
+          "ys": [
+            0,
+            1,
+            1
+          ],
+          "edges": [
+            0,
+            1
+          ]
+        },
+        "expected": [
+          [
+            3
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "xs": [
+            -1,
+            0,
+            1
+          ],
+          "ys": [
+            -1,
+            0,
+            1
+          ],
+          "edges": [
+            -1,
+            0,
+            0.5,
+            1
+          ]
+        },
+        "expected": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      }
+    ],
+    "explanation": "必须保留样本配对关系，且明确最右端点的规则。"
+  },
+  "p05-finite-bias": {
+    "correct": [
+      "A",
+      "C"
+    ],
+    "explanations": {
+      "C": "独立真值为零，而有限样本依赖指标非负并常为正。",
+      "D": "一个数值没有说明其抽样背景。",
+      "A": "参照分布（distribution）可展示有限样本基线。",
+      "B": "稀疏表会加重估计问题。"
+    }
+  },
+  "p05-coarsening": {
+    "correct": [
+      "B",
+      "D"
+    ],
+    "explanations": {
+      "B": "这是对该经验分布应用数据处理不等式。",
+      "C": "有限样本偏差也可能变大。",
+      "D": "不同细状态（state）被并在一起。",
+      "A": "不嵌套划分没有这种简单排序关系。"
+    }
+  },
+  "p05-binning-units": {
+    "correct": [
+      "B"
+    ],
+    "explanations": {
+      "A": "连续微分熵是另一种定义。",
+      "B": "编码规则决定离散变量。",
+      "C": "单位转换也要作用于边界。",
+      "D": "箱数是分析者的选择。"
+    }
+  },
+  "p05-comparison-budget": {
+    "correct": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "D": "这些影响估计分布（distribution）。",
+      "A": "临时挑箱可人为提高结果。",
+      "B": "选择最大值会造成选择偏差。",
+      "C": "否则差异可能来自估计机制。"
+    }
+  },
+  "p05-cap-noise": {
+    "correct": [
+      "B",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "C": "它位于状态递推内。",
+      "D": "没有反馈（feedback）把该读数送入状态。",
+      "A": "平均后仍留下该组的 b。",
+      "B": "它在每个个体时间内固定。"
+    }
+  },
+  "p05-cap-repeat": {
+    "correct": [
+      "C"
+    ],
+    "explanations": {
+      "B": "复制没有增加信息。",
+      "C": "明确预算与重复单位。",
+      "D": "挑选轨迹（trajectory）扭曲机制比较。",
+      "A": "时间相关需要单独处理。"
+    }
+  },
+  "p05-cap-summary": {
+    "cases": [
+      {
+        "arguments": {
+          "groups": [
+            [
+              0,
+              2
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              4,
+              6
+            ]
+          ]
+        },
+        "expected": [
+          [
+            1.0,
+            3.0,
+            5.0
+          ],
+          3.0,
+          4.0
+        ]
+      },
+      {
+        "arguments": {
+          "groups": [
+            [
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "expected": [
+          [
+            1.0,
+            1.0
+          ],
+          1.0,
+          0.0
+        ]
+      },
+      {
+        "arguments": {
+          "groups": [
+            [
+              -1,
+              1
+            ],
+            [
+              4
+            ]
+          ]
+        },
+        "expected": [
+          [
+            0.0,
+            4.0
+          ],
+          2.0,
+          8.0
+        ]
+      }
+    ],
+    "explanation": "统计对象是每次实验的均值；区分组间方差与个体读数方差。"
+  },
+  "p05-cap-bayes": {
+    "cases": [
+      {
+        "arguments": {
+          "prior": [
+            0.2,
+            0.3,
+            0.5
+          ],
+          "likelihood": [
+            0.5,
+            1,
+            0
+          ]
+        },
+        "expected": [
+          0.25,
+          0.7499999999999999,
+          0.0
+        ]
+      },
+      {
+        "arguments": {
+          "prior": [
+            0.2,
+            0.8
+          ],
+          "likelihood": [
+            0.9,
+            0.1
+          ]
+        },
+        "expected": [
+          0.6923076923076924,
+          0.30769230769230776
+        ]
+      },
+      {
+        "arguments": {
+          "prior": [
+            1,
+            0
+          ],
+          "likelihood": [
+            0,
+            1
+          ]
+        },
+        "expected": null
+      },
+      {
+        "arguments": {
+          "prior": [
+            0.5,
+            0.5
+          ],
+          "likelihood": [
+            1,
+            1
+          ]
+        },
+        "expected": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "arguments": {
+          "prior": [
+            0,
+            0.2,
+            0.8
+          ],
+          "likelihood": [
+            1,
+            0,
+            0.5
+          ]
+        },
+        "expected": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    ],
+    "explanation": "归一化分母来自全部假设，不是只取最大似然。"
+  },
+  "p05-cap-propagation": {
+    "cases": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              0.5,
+              0.5,
+              0
+            ],
+            [
+              0,
+              0.5,
+              0.5
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "initial": [
+            1,
+            0,
+            0
+          ],
+          "steps": 2
+        },
+        "expected": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0.5,
+            0.5,
+            0.0
+          ],
+          [
+            0.25,
+            0.5,
+            0.25
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              0.8,
+              0.2
+            ],
+            [
+              0.1,
+              0.9
+            ]
+          ],
+          "initial": [
+            1,
+            0
+          ],
+          "steps": 2
+        },
+        "expected": [
+          [
+            1,
+            0
+          ],
+          [
+            0.8,
+            0.2
+          ],
+          [
+            0.6600000000000001,
+            0.3400000000000001
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "initial": [
+            1,
+            0
+          ],
+          "steps": 3
+        },
+        "expected": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              1,
+              0
+            ],
+            [
+              0.3,
+              0.7
+            ]
+          ],
+          "initial": [
+            0,
+            1
+          ],
+          "steps": 3
+        },
+        "expected": [
+          [
+            0,
+            1
+          ],
+          [
+            0.3,
+            0.7
+          ],
+          [
+            0.51,
+            0.48999999999999994
+          ],
+          [
+            0.657,
+            0.3429999999999999
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              0.8,
+              0.2
+            ],
+            [
+              0.1,
+              0.9
+            ]
+          ],
+          "initial": [
+            0.3333333333333333,
+            0.6666666666666666
+          ],
+          "steps": 4
+        },
+        "expected": [
+          [
+            0.3333333333333333,
+            0.6666666666666666
+          ],
+          [
+            0.3333333333333333,
+            0.6666666666666666
+          ],
+          [
+            0.3333333333333333,
+            0.6666666666666666
+          ],
+          [
+            0.3333333333333333,
+            0.6666666666666666
+          ],
+          [
+            0.3333333333333333,
+            0.6666666666666666
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              1
+            ]
+          ],
+          "initial": [
+            1
+          ],
+          "steps": 0
+        },
+        "expected": [
+          [
+            1
+          ]
+        ]
+      }
+    ],
+    "explanation": "不同机制可以改变长期分布；先检查每一步总概率。"
+  },
+  "p05-cap-variance": {
+    "cases": [
+      {
+        "arguments": {
+          "a": 0.8,
+          "process_variance": 0.04,
+          "initial_variance": 0,
+          "steps": 2,
+          "measurement_variance": 0.09
+        },
+        "expected": [
+          [
+            0,
+            0.04,
+            0.0656
+          ],
+          [
+            0.09,
+            0.13,
+            0.15560000000000002
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "a": 0,
+          "process_variance": 0.2,
+          "initial_variance": 1,
+          "steps": 3,
+          "measurement_variance": 0
+        },
+        "expected": [
+          [
+            1,
+            0.2,
+            0.2,
+            0.2
+          ],
+          [
+            1,
+            0.2,
+            0.2,
+            0.2
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "a": -0.5,
+          "process_variance": 0,
+          "initial_variance": 2,
+          "steps": 3,
+          "measurement_variance": 0.3
+        },
+        "expected": [
+          [
+            2,
+            0.5,
+            0.125,
+            0.03125
+          ],
+          [
+            2.3,
+            0.8,
+            0.425,
+            0.33125
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "a": 1,
+          "process_variance": 0.1,
+          "initial_variance": 0,
+          "steps": 0,
+          "measurement_variance": 1
+        },
+        "expected": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ]
+      }
+    ],
+    "explanation": "测量噪声不回流状态；不能在状态递推的每一步额外加 R。"
+  },
+  "p05-cap-bins": {
+    "cases": [
+      {
+        "arguments": {
+          "coarse_counts": [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          "fine_counts": [
+            [
+              1,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              1
+            ]
+          ]
+        },
+        "expected": [
+          [
+            1.0,
+            1.0,
+            0.0
+          ],
+          [
+            2.0,
+            2.0,
+            1.0
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "coarse_counts": [
+            [
+              4
+            ]
+          ],
+          "fine_counts": [
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        },
+        "expected": [
+          [
+            -0.0,
+            -0.0,
+            0.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "coarse_counts": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "fine_counts": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "expected": [
+          [
+            1.0,
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            1.0,
+            0.0
+          ]
+        ]
+      }
+    ],
+    "explanation": "先求各表边缘再计算；不能把细表更高的插件数值直接当作更可信的观测价值。"
+  },
+  "p05-cap-scope": {
+    "correct": [
+      "B",
+      "D"
+    ],
+    "explanations": {
+      "D": "比较需排除估计设计变化。",
+      "A": "选最大值与因果方向都超出证据。",
+      "B": "这些是与证据匹配的限定。",
+      "C": "更复杂的编码可能只制造稀疏表。"
+    }
+  }
+}

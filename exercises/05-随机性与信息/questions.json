@@ -1,0 +1,3506 @@
+[
+  {
+    "id": "p05-event-variable",
+    "slug": "p05-event-variable",
+    "version": "1",
+    "lesson_id": "P05-C01-S01",
+    "part": "5",
+    "chapter": "5.1",
+    "title": "事件、随机变量与一次观察",
+    "type": "choice",
+    "statement": "每次随机抽取一个理想细胞，X=1 表示当次处于活跃态，X=0 表示静息态。模型（model）规定 P(X=1)=0.3。哪些说法成立？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数10"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "X 是把结果映射为数的随机变量（random variable）。"
+      },
+      {
+        "id": "B",
+        "text": "某次观察到 1，所以模型概率（probability）必为 1。"
+      },
+      {
+        "id": "C",
+        "text": "{X=1} 是事件（event）。"
+      },
+      {
+        "id": "D",
+        "text": "十次观察一定恰好有三次为 1。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-uniform-area",
+    "slug": "p05-uniform-area",
+    "version": "1",
+    "lesson_id": "P05-C01-S01",
+    "part": "5",
+    "chapter": "5.1",
+    "title": "密度曲线下的概率",
+    "type": "python",
+    "statement": "测量误差在 [low,high] 上均匀分布（distribution）。求它落入闭区间 [left,right] 的概率（probability）；区间可以部分位于支持集之外。",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数10"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "low",
+        "type": "float",
+        "description": "均匀分布的左端点。",
+        "unit": "U"
+      },
+      {
+        "name": "high",
+        "type": "float",
+        "description": "均匀分布的右端点。",
+        "unit": "U"
+      },
+      {
+        "name": "left",
+        "type": "float",
+        "description": "查询区间左端点。",
+        "unit": "U"
+      },
+      {
+        "name": "right",
+        "type": "float",
+        "description": "查询区间右端点。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "probability",
+        "type": "float",
+        "description": "误差位于查询区间的概率。",
+        "unit": "1"
+      }
+    ],
+    "contract": "取两区间重叠长度，除以 high−low；没有重叠或 left=right 时返回 0。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "−10≤low<high≤10，high−low≥0.01；−20≤left≤right≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "概率是面积，不是一个点上的密度值。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    low: float,\n    high: float,\n    left: float,\n    right: float,\n) -> float:\n    # 依据题目规则计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "low": -0.2,
+          "high": 0.2,
+          "left": 0,
+          "right": 0.1
+        },
+        "expected": 0.25,
+        "explanation": "支持区间长 0.4 U，重叠长 0.1 U，概率为 0.25。密度为 2.5/U，其值大于 1 并不违反概率约束。"
+      }
+    ]
+  },
+  {
+    "id": "p05-density-point",
+    "slug": "p05-density-point",
+    "version": "1",
+    "lesson_id": "P05-C01-S01",
+    "part": "5",
+    "chapter": "5.1",
+    "title": "连续测量的一个精确点",
+    "type": "choice",
+    "statement": "误差 E 在 [−0.2,0.2] U 上连续均匀分布（distribution）。哪些正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数10"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "P(−0.1≤E≤0.1)=0.5。"
+      },
+      {
+        "id": "B",
+        "text": "连续模型（model）中精确点的概率（probability）为零，因此仪器绝不可能显示 0.0。"
+      },
+      {
+        "id": "C",
+        "text": "密度为 2.5/U。"
+      },
+      {
+        "id": "D",
+        "text": "P(E=0)=2.5。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-normalization",
+    "slug": "p05-normalization",
+    "version": "1",
+    "lesson_id": "P05-C01-S01",
+    "part": "5",
+    "chapter": "5.1",
+    "title": "补齐细胞状态的概率",
+    "type": "choice",
+    "statement": "静息、活跃、恢复三种状态（state）互斥且穷尽，前两者概率（probability）是 0.5、0.3。恢复态概率是多少？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数10"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "无法知道，因为所有概率都需模拟。"
+      },
+      {
+        "id": "B",
+        "text": "0.8。"
+      },
+      {
+        "id": "C",
+        "text": "0.2。"
+      },
+      {
+        "id": "D",
+        "text": "0.15。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-frequencies",
+    "slug": "p05-frequencies",
+    "version": "1",
+    "lesson_id": "P05-C01-S02",
+    "part": "5",
+    "chapter": "5.1",
+    "title": "不同大小实验组怎样汇总",
+    "type": "python",
+    "statement": "若干组独立细胞观察已给定，每个数是 0 或 1。计算各组成功频率、各组频率的等权平均，以及合并所有细胞的成功频率。",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数10"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "groups",
+        "type": "list[list[int]]",
+        "description": "外层为实验组；内层为该组二值观察。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "frequencies",
+        "type": "list[float]",
+        "description": "按组顺序排列的成功频率。",
+        "unit": "1"
+      },
+      {
+        "name": "group_mean",
+        "type": "float",
+        "description": "对各组频率等权平均。",
+        "unit": "1"
+      },
+      {
+        "name": "pooled_frequency",
+        "type": "float",
+        "description": "全部成功次数除以全部观察次数。",
+        "unit": "1"
+      }
+    ],
+    "contract": "每组频率=sum(group)/len(group)。后两项的权重不同，严格按各自定义计算。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "1—20 组，每组 1—100 个数，均为 0 或 1；无空组。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先明确观察单位是组还是细胞，不能混用分母。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    groups: list[list[int]],\n) -> tuple[list[float], float, float]:\n    # 依据题目规则计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "groups": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1,
+              0
+            ]
+          ]
+        },
+        "expected": [
+          [
+            0.5,
+            0.75
+          ],
+          0.625,
+          0.6666666666666666
+        ],
+        "explanation": "两组频率为 0.5、0.75；组平均 0.625，合并频率 4/6≈0.666667。较大组在合并统计中权重较大。"
+      }
+    ]
+  },
+  {
+    "id": "p05-seed-repeats",
+    "slug": "p05-seed-repeats",
+    "version": "1",
+    "lesson_id": "P05-C01-S02",
+    "part": "5",
+    "chapter": "5.1",
+    "title": "同一个种子不是新增证据",
+    "type": "choice",
+    "statement": "每次都重新创建相同种子的生成器，抽 50 个数，重复 200 次，发现每组均值完全相同。哪项正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数10"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "这只是同一伪随机序列的复现，不能当作 200 次独立重复。"
+      },
+      {
+        "id": "B",
+        "text": "增加到 2000 次就能修复独立性。"
+      },
+      {
+        "id": "C",
+        "text": "种子只影响画图，不影响样本。"
+      },
+      {
+        "id": "D",
+        "text": "证明抽样方差（variance）为零。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-repeat-band",
+    "slug": "p05-repeat-band",
+    "version": "1",
+    "lesson_id": "P05-C01-S02",
+    "part": "5",
+    "chapter": "5.1",
+    "title": "重复频率的范围说明什么",
+    "type": "choice",
+    "statement": "200 次重新抽样各 20 个细胞，展示各组频率的 5%—95% 经验分位范围。哪些正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数10"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "增大每组样本量通常缩小频率波动，但一次结果不保证更接近真值。"
+      },
+      {
+        "id": "B",
+        "text": "分位范围会受到有限重复次数影响。"
+      },
+      {
+        "id": "C",
+        "text": "这是该设计下有限重复的频率波动摘要。"
+      },
+      {
+        "id": "D",
+        "text": "无需进一步定义，就能称为未知概率（probability）的 90% 置信区间（confidence interval）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-shared-environment",
+    "slug": "p05-shared-environment",
+    "version": "1",
+    "lesson_id": "P05-C01-S02",
+    "part": "5",
+    "chapter": "5.1",
+    "title": "怎样更接近独立重复",
+    "type": "choice",
+    "statement": "目标是比较固定活跃概率（probability）下的独立二值观察。哪一设计最符合？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数10"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "每组先随机改变活跃概率却仍声称固定概率。"
+      },
+      {
+        "id": "B",
+        "text": "复制一个细胞的标签 100 次。"
+      },
+      {
+        "id": "C",
+        "text": "反复读取同一个已保存数组（array）。"
+      },
+      {
+        "id": "D",
+        "text": "各细胞按同一概率独立抽样，重复实验使用派生的不同随机流。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-moments",
+    "slug": "p05-moments",
+    "version": "1",
+    "lesson_id": "P05-C02-S01",
+    "part": "5",
+    "chapter": "5.2",
+    "title": "从概率表计算位置与散布",
+    "type": "python",
+    "statement": "理想细胞释放量只取给定离散值。计算其理论期望（expectation）和方差（variance），不把概率（probability）表当作等权样本。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "values",
+        "type": "list[float]",
+        "description": "可能的释放量。",
+        "unit": "U"
+      },
+      {
+        "name": "probabilities",
+        "type": "list[float]",
+        "description": "与释放量一一对应的概率。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "mean",
+        "type": "float",
+        "description": "理论期望。",
+        "unit": "U"
+      },
+      {
+        "name": "variance",
+        "type": "float",
+        "description": "理论方差。",
+        "unit": "U²"
+      }
+    ],
+    "contract": "mean=Σpᵢxᵢ；variance=Σpᵢ(xᵢ−mean)²。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "相同长度 1—30；−10≤values[i]≤10；概率非负且和为 1（浮点误差≤1e−12）。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先按概率求均值，再计算中心平方偏差。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    values: list[float],\n    probabilities: list[float],\n) -> tuple[float, float]:\n    # 依据题目规则计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "values": [
+            0,
+            2
+          ],
+          "probabilities": [
+            0.75,
+            0.25
+          ]
+        },
+        "expected": [
+          0.5,
+          0.75
+        ],
+        "explanation": "期望 0.5 U；方差为 0.75×0.5²+0.25×1.5²=0.75 U²。"
+      }
+    ]
+  },
+  {
+    "id": "p05-variance-units",
+    "slug": "p05-variance-units",
+    "version": "1",
+    "lesson_id": "P05-C02-S01",
+    "part": "5",
+    "chapter": "5.2",
+    "title": "换单位后哪些量会改变",
+    "type": "choice",
+    "statement": "X 的单位为 U，E[X]=2 U，Var(X)=3 U²。令 Y=10X+5，Y 的数值使用相应的新标度。哪些数值正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "Var(Y)=35。"
+      },
+      {
+        "id": "B",
+        "text": "Var(Y)=300。"
+      },
+      {
+        "id": "C",
+        "text": "标准差（standard deviation）变为原数值的 10 倍。"
+      },
+      {
+        "id": "D",
+        "text": "E[Y]=25。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-gaussian-domain",
+    "slug": "p05-gaussian-domain",
+    "version": "1",
+    "lesson_id": "P05-C02-S01",
+    "part": "5",
+    "chapter": "5.2",
+    "title": "高斯误差为什么能为负",
+    "type": "choice",
+    "statement": "测量值等于理想读数加零均值高斯误差。误差标准差（standard deviation）为 0.2 U。哪项正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "方差（variance）为 0.2 U。"
+      },
+      {
+        "id": "B",
+        "text": "零均值意味着每次误差都为零。"
+      },
+      {
+        "id": "C",
+        "text": "高斯误差绝不超出 ±0.6 U。"
+      },
+      {
+        "id": "D",
+        "text": "负误差表示读数低于理想值，并不意味着负物质量。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-sample-denominator",
+    "slug": "p05-sample-denominator",
+    "version": "1",
+    "lesson_id": "P05-C02-S01",
+    "part": "5",
+    "chapter": "5.2",
+    "title": "两个方差分母的区别",
+    "type": "choice",
+    "statement": "固定数组（array） [0,2] 的描述性中心平方偏差用分母 n；若作为独立同分布（independent and identically distributed）样本估计总体方差（variance），用分母 n−1。两者依次是多少？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "0 和 2。"
+      },
+      {
+        "id": "B",
+        "text": "1 和 2。"
+      },
+      {
+        "id": "C",
+        "text": "2 和 1。"
+      },
+      {
+        "id": "D",
+        "text": "1 和 1。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-covariance",
+    "slug": "p05-covariance",
+    "version": "1",
+    "lesson_id": "P05-C02-S02",
+    "part": "5",
+    "chapter": "5.2",
+    "title": "配对观察的协方差",
+    "type": "python",
+    "statement": "同一时刻有两通道读数 xs、ys。求各通道均值、描述性方差（variance）和配对协方差（covariance），所有中心矩都使用分母 n。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "xs",
+        "type": "list[float]",
+        "description": "第一通道读数，按配对顺序。",
+        "unit": "U"
+      },
+      {
+        "name": "ys",
+        "type": "list[float]",
+        "description": "第二通道读数，顺序不得打乱。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "mean_x",
+        "type": "float",
+        "description": "第一通道均值。",
+        "unit": "U"
+      },
+      {
+        "name": "mean_y",
+        "type": "float",
+        "description": "第二通道均值。",
+        "unit": "U"
+      },
+      {
+        "name": "variance_x",
+        "type": "float",
+        "description": "第一通道中心平方均值。",
+        "unit": "U²"
+      },
+      {
+        "name": "variance_y",
+        "type": "float",
+        "description": "第二通道中心平方均值。",
+        "unit": "U²"
+      },
+      {
+        "name": "covariance",
+        "type": "float",
+        "description": "配对中心乘积均值。",
+        "unit": "U²"
+      }
+    ],
+    "contract": "均值分别计算；方差为 Σ(x−mean_x)²/n 等；协方差为 Σ(x−mean_x)(y−mean_y)/n。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "两个列表等长，长度 1—100；数值绝对值≤100。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "单个样本在描述性 n 分母下返回零中心矩；不能据此断言总体无波动。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    xs: list[float],\n    ys: list[float],\n) -> tuple[float, float, float, float, float]:\n    # 依据题目规则计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "xs": [
+            0,
+            1,
+            2
+          ],
+          "ys": [
+            2,
+            1,
+            0
+          ]
+        },
+        "expected": [
+          1.0,
+          1.0,
+          0.6666666666666666,
+          0.6666666666666666,
+          -0.6666666666666666
+        ],
+        "explanation": "两均值均为 1，方差均为 2/3，协方差为 −2/3；反向变化给出负协方差。"
+      }
+    ]
+  },
+  {
+    "id": "p05-uncorrelated",
+    "slug": "p05-uncorrelated",
+    "version": "1",
+    "lesson_id": "P05-C02-S02",
+    "part": "5",
+    "chapter": "5.2",
+    "title": "协方差为零是否独立",
+    "type": "choice",
+    "statement": "X 等概率（probability）取 −1、0、1，Y=X²。哪些成立？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "X 与 Y 独立。"
+      },
+      {
+        "id": "B",
+        "text": "知道 Y=0 就能确定 X=0。"
+      },
+      {
+        "id": "C",
+        "text": "零协方差（covariance）只排除这个中心乘积指标上的线性关联。"
+      },
+      {
+        "id": "D",
+        "text": "Cov(X,Y)=0。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-sum-variance",
+    "slug": "p05-sum-variance",
+    "version": "1",
+    "lesson_id": "P05-C02-S02",
+    "part": "5",
+    "chapter": "5.2",
+    "title": "两个通道相加的波动",
+    "type": "choice",
+    "statement": "Var(X)=1，Var(Y)=4，Cov(X,Y)=1，单位均按相应平方量计。Var(X+Y) 是多少？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "6。"
+      },
+      {
+        "id": "B",
+        "text": "3。"
+      },
+      {
+        "id": "C",
+        "text": "5。"
+      },
+      {
+        "id": "D",
+        "text": "7。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-correlation-zero-var",
+    "slug": "p05-correlation-zero-var",
+    "version": "1",
+    "lesson_id": "P05-C02-S02",
+    "part": "5",
+    "chapter": "5.2",
+    "title": "恒定通道的相关系数",
+    "type": "choice",
+    "statement": "某通道所有读数相同，另一通道有变化。按标准相关系数（correlation coefficient） Cov(X,Y)/(sd(X)sd(Y))，正确做法是什么？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "把零标准差（standard deviation）改为任意小数后解释为精确结果。"
+      },
+      {
+        "id": "B",
+        "text": "返回 1，因为两者来自同一实验。"
+      },
+      {
+        "id": "C",
+        "text": "返回 0 并宣称独立。"
+      },
+      {
+        "id": "D",
+        "text": "标记未定义，因为分母为零。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-shared-offset",
+    "slug": "p05-shared-offset",
+    "version": "1",
+    "lesson_id": "P05-C02-S02",
+    "part": "5",
+    "chapter": "5.2",
+    "title": "多测几次能消除共同偏移吗",
+    "type": "choice",
+    "statement": "yᵢ=θ+b+vᵢ，b 在一组测量中固定，组间零均值、方差（variance） B；vᵢ 独立零均值、方差 R，且与 b 独立。n 次平均的误差方差为多少？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "(B+R)/n。"
+      },
+      {
+        "id": "B",
+        "text": "B+R/n。"
+      },
+      {
+        "id": "C",
+        "text": "B/n+R。"
+      },
+      {
+        "id": "D",
+        "text": "必为零。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-variance-path",
+    "slug": "p05-variance-path",
+    "version": "1",
+    "lesson_id": "P05-C02-S03",
+    "part": "5",
+    "chapter": "5.2",
+    "title": "过程扰动怎样逐步积累",
+    "type": "python",
+    "statement": "x[n+1]=a*x[n]+w[n]。w 与当前状态（state）独立、零均值，方差（variance）为 Q。计算状态方差，包含起点。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "float",
+        "description": "每步状态偏差的倍数。",
+        "unit": "1"
+      },
+      {
+        "name": "process_variance",
+        "type": "float",
+        "description": "独立过程扰动方差 Q。",
+        "unit": "U²"
+      },
+      {
+        "name": "initial_variance",
+        "type": "float",
+        "description": "起始状态偏差方差 P0。",
+        "unit": "U²"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "更新步数。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "variances",
+        "type": "list[float]",
+        "description": "长度 steps+1 的状态方差。",
+        "unit": "U²"
+      }
+    ],
+    "contract": "P[0]=initial_variance；P[n+1]=a²P[n]+process_variance。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "−1≤a≤1；0≤process_variance,initial_variance≤10；0≤steps≤100。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "独立性消除了交叉协方差（covariance）；一般相关扰动时不能直接用此递推。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    a: float,\n    process_variance: float,\n    initial_variance: float,\n    steps: int,\n) -> list[float]:\n    # 依据题目规则计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "a": 0.8,
+          "process_variance": 0.04,
+          "initial_variance": 0,
+          "steps": 2
+        },
+        "expected": [
+          0,
+          0.04,
+          0.0656
+        ],
+        "explanation": "依次为 [0,0.04,0.0656] U²；第二步保留 0.8²×0.04，再加入 0.04。"
+      }
+    ]
+  },
+  {
+    "id": "p05-noise-location",
+    "slug": "p05-noise-location",
+    "version": "1",
+    "lesson_id": "P05-C02-S03",
+    "part": "5",
+    "chapter": "5.2",
+    "title": "哪一种噪声会进入未来状态",
+    "type": "choice",
+    "statement": "x[n+1]=a*x[n]+w[n]，y[n]=x[n]+v[n]，无基于 y 的反馈（feedback）。哪些正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "给每个个体固定不同的 a，等同于每步重抽 w[n]。"
+      },
+      {
+        "id": "B",
+        "text": "若 v 与 x 独立，则 Var(y)=Var(x)+Var(v)。"
+      },
+      {
+        "id": "C",
+        "text": "w[n] 影响 x[n+1]，并可继续传播。"
+      },
+      {
+        "id": "D",
+        "text": "v[n] 改变本次观测（observation），但不直接进入下一状态（state）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-stationary-variance",
+    "slug": "p05-stationary-variance",
+    "version": "1",
+    "lesson_id": "P05-C02-S03",
+    "part": "5",
+    "chapter": "5.2",
+    "title": "方差极限的条件",
+    "type": "choice",
+    "statement": "零均值独立扰动方差（variance） Q>0，P[n+1]=a²P[n]+Q。哪些正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "方差存在有限极限（limit）就保证每条轨迹（trajectory）变成常数。"
+      },
+      {
+        "id": "B",
+        "text": "|a|<1 时极限为 Q/(1−a²)。"
+      },
+      {
+        "id": "C",
+        "text": "a=1 时方差每步增加 Q。"
+      },
+      {
+        "id": "D",
+        "text": "a=−2 因为 a<1，所以方差收敛。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-individual-fixed",
+    "slug": "p05-individual-fixed",
+    "version": "1",
+    "lesson_id": "P05-C02-S03",
+    "part": "5",
+    "chapter": "5.2",
+    "title": "固定个体差异与过程噪声",
+    "type": "choice",
+    "statement": "两群个体均从 x0=1 U 出发，各个体参数（parameter） a 在实验期间固定为 0.6 或 0.9，之后 x[n+1]=a*x[n]，没有 w 或 v。哪项正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "同群个体必定每步随机跳动。"
+      },
+      {
+        "id": "B",
+        "text": "不同轨迹（trajectory）可以完全来自固定个体参数差异。"
+      },
+      {
+        "id": "C",
+        "text": "观测（observation）差异证明存在过程噪声（process noise）。"
+      },
+      {
+        "id": "D",
+        "text": "每一步都重新抽 a 才是题设。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-quantiles",
+    "slug": "p05-quantiles",
+    "version": "1",
+    "lesson_id": "P05-C02-S03",
+    "part": "5",
+    "chapter": "5.2",
+    "title": "样本带与参数区间",
+    "type": "choice",
+    "statement": "展示 200 条状态（state）路径每个时刻的 5%—95% 经验分位带。哪项正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "它描述逐时刻状态的经验分布（distribution），不能自动解释成未知 a 的区间。"
+      },
+      {
+        "id": "B",
+        "text": "它保证每条路径全程有 90% 概率（probability）在带内。"
+      },
+      {
+        "id": "C",
+        "text": "它是数学证明，不受样本数影响。"
+      },
+      {
+        "id": "D",
+        "text": "带内包含全部路径。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-bayes",
+    "slug": "p05-bayes",
+    "version": "1",
+    "lesson_id": "P05-C03-S01",
+    "part": "5",
+    "chapter": "5.3",
+    "title": "按新观测更新细胞状态概率",
+    "type": "python",
+    "statement": "观测（observation）只报告标记是否出现。给定各状态（state）先验（prior）与此次观测的似然（likelihood），返回后验（posterior）。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "prior",
+        "type": "list[float]",
+        "description": "互斥且穷尽假设的先验概率（probability）。",
+        "unit": "1"
+      },
+      {
+        "name": "likelihood",
+        "type": "list[float]",
+        "description": "同一离散观测在各假设下出现的概率。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "posterior",
+        "type": "list[float] | None",
+        "description": "按原顺序返回后验；证据概率（evidence probability）为零时返回 None。",
+        "unit": "1"
+      }
+    ],
+    "contract": "weights[i]=prior[i]*likelihood[i]；分母为 weights 之和。分母>0 时逐项归一化；分母恰为 0 返回 None，不杜撰均匀后验。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "列表等长，长度 1—20；prior 非负且和为 1（误差≤1e−12）；likelihood 每项在 [0,1]。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "后验既取决于观测机制，也取决于先验；零分母表示这次观测被当前模型（model）排除。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    prior: list[float],\n    likelihood: list[float],\n) -> list[float] | None:\n    # 依据题目规则计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "prior": [
+            0.2,
+            0.8
+          ],
+          "likelihood": [
+            0.9,
+            0.1
+          ]
+        },
+        "expected": [
+          0.6923076923076924,
+          0.30769230769230776
+        ],
+        "explanation": "未归一化权重为 [0.18,0.08]，证据概率为 0.26；后验为 [9/13,4/13]。0.9 是似然，不是后验。"
+      }
+    ]
+  },
+  {
+    "id": "p05-base-rate",
+    "slug": "p05-base-rate",
+    "version": "1",
+    "lesson_id": "P05-C03-S01",
+    "part": "5",
+    "chapter": "5.3",
+    "title": "似然高为何后验仍未到九成",
+    "type": "choice",
+    "statement": "活跃态先验（prior） 0.2，静息态 0.8；标记出现概率（probability）分别为 0.9、0.1。出现标记后活跃态概率为多少？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "0.2。"
+      },
+      {
+        "id": "B",
+        "text": "0.9。"
+      },
+      {
+        "id": "C",
+        "text": "0.18。"
+      },
+      {
+        "id": "D",
+        "text": "9/13。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-duplicate-observation",
+    "slug": "p05-duplicate-observation",
+    "version": "1",
+    "lesson_id": "P05-C03-S01",
+    "part": "5",
+    "chapter": "5.3",
+    "title": "同一结果能更新两次吗",
+    "type": "choice",
+    "statement": "同一个传感器读数被复制为两条记录。若使用条件独立（conditional independence）观测（observation）公式更新两次，会怎样？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "正确，因为记录条数翻倍。"
+      },
+      {
+        "id": "B",
+        "text": "重复计入同一证据，通常使后验（posterior）过度集中。"
+      },
+      {
+        "id": "C",
+        "text": "等价于一次更新。"
+      },
+      {
+        "id": "D",
+        "text": "自动补足先验（prior）为零的状态（state）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-conditioning",
+    "slug": "p05-conditioning",
+    "version": "1",
+    "lesson_id": "P05-C03-S01",
+    "part": "5",
+    "chapter": "5.3",
+    "title": "联合表怎样变成条件表",
+    "type": "choice",
+    "statement": "联合表 p(X,Y) 非负且总和为 1。要求 p(X|Y=y)，哪些成立？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "列和为零时仍能任意设定为均匀分布（distribution）。"
+      },
+      {
+        "id": "B",
+        "text": "归一化后的各 X 概率（probability）之和为 1（分母>0）。"
+      },
+      {
+        "id": "C",
+        "text": "只要对整个表除以 1 就得到条件表。"
+      },
+      {
+        "id": "D",
+        "text": "先取 y 对应列，再除以该列和。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-normal-update",
+    "slug": "p05-normal-update",
+    "version": "1",
+    "lesson_id": "P05-C03-S02",
+    "part": "5",
+    "chapter": "5.3",
+    "title": "更新固定偏差的均值与方差",
+    "type": "python",
+    "statement": "固定未知 θ 有高斯先验（prior）；yᵢ=θ+vᵢ，给定 θ 后各误差独立、零均值高斯，方差（variance）已知。逐次更新 θ 的分布（distribution），不加入状态（state）预测。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "prior_mean",
+        "type": "float",
+        "description": "固定未知偏差的先验均值。",
+        "unit": "U"
+      },
+      {
+        "name": "prior_variance",
+        "type": "float",
+        "description": "先验方差，必须为正。",
+        "unit": "U²"
+      },
+      {
+        "name": "observations",
+        "type": "list[float]",
+        "description": "依次获得的测量值。",
+        "unit": "U"
+      },
+      {
+        "name": "noise_variances",
+        "type": "list[float]",
+        "description": "与观测（observation）一一对应的正噪声方差。",
+        "unit": "U²"
+      }
+    ],
+    "returns": [
+      {
+        "name": "means",
+        "type": "list[float]",
+        "description": "先验及每次更新后的均值。",
+        "unit": "U"
+      },
+      {
+        "name": "variances",
+        "type": "list[float]",
+        "description": "先验及每次更新后的方差。",
+        "unit": "U²"
+      }
+    ],
+    "contract": "每个观测 y、方差 R：K=P/(P+R)，m←m+K(y−m)，P←P*R/(P+R)。结果包含先验；空观测返回仅含先验的两个列表。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "|prior_mean|,|observations[i]|≤100；0.001≤prior_variance,noise_variances[i]≤100；两个观测列表等长，长度 0—30。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "这是固定量的条件更新；若 θ 随时间变化，需要额外状态模型（model）。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    prior_mean: float,\n    prior_variance: float,\n    observations: list[float],\n    noise_variances: list[float],\n) -> tuple[list[float], list[float]]:\n    # 依据题目规则计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "prior_mean": 0,
+          "prior_variance": 1,
+          "observations": [
+            1,
+            1
+          ],
+          "noise_variances": [
+            1,
+            1
+          ]
+        },
+        "expected": [
+          [
+            0,
+            0.5,
+            0.6666666666666666
+          ],
+          [
+            1,
+            0.5,
+            0.3333333333333333
+          ]
+        ],
+        "explanation": "均值 [0,0.5,2/3] U，方差 [1,0.5,1/3] U²；新观测精度与已有精度相加。"
+      }
+    ]
+  },
+  {
+    "id": "p05-prior-sensitivity",
+    "slug": "p05-prior-sensitivity",
+    "version": "1",
+    "lesson_id": "P05-C03-S02",
+    "part": "5",
+    "chapter": "5.3",
+    "title": "有限观测后还剩多少先验差异",
+    "type": "python",
+    "statement": "对同一固定未知偏差，采用不同的高斯先验（prior），但用相同独立观测（observation）更新。返回各方案的最终均值、方差（variance），以及最终均值的极差。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "prior_means",
+        "type": "list[float]",
+        "description": "各方案先验均值。",
+        "unit": "U"
+      },
+      {
+        "name": "prior_variances",
+        "type": "list[float]",
+        "description": "各方案正先验方差。",
+        "unit": "U²"
+      },
+      {
+        "name": "observations",
+        "type": "list[float]",
+        "description": "依次获得的测量值。",
+        "unit": "U"
+      },
+      {
+        "name": "noise_variances",
+        "type": "list[float]",
+        "description": "与观测一一对应的正噪声方差。",
+        "unit": "U²"
+      }
+    ],
+    "returns": [
+      {
+        "name": "final_means",
+        "type": "list[float]",
+        "description": "各方案最终均值。",
+        "unit": "U"
+      },
+      {
+        "name": "final_variances",
+        "type": "list[float]",
+        "description": "各方案最终方差。",
+        "unit": "U²"
+      },
+      {
+        "name": "mean_range",
+        "type": "float",
+        "description": "最终均值最大值减最小值。",
+        "unit": "U"
+      }
+    ],
+    "contract": "每个观测 y、方差 R：K=P/(P+R)，m←m+K(y−m)，P←P*R/(P+R)。结果包含先验；空观测返回仅含先验的两个列表。分别更新所有方案；这里只返回末值。极差不是置信区间（confidence interval）。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "先验列表等长，长度 1—10；|均值及观测|≤100；所有方差在 [0.001,100]；观测与误差方差列表等长，长度 0—30。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "比较先验敏感性时固定观测与噪声假设。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    prior_means: list[float],\n    prior_variances: list[float],\n    observations: list[float],\n    noise_variances: list[float],\n) -> tuple[list[float], list[float], float]:\n    # 依据题目规则计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "prior_means": [
+            0,
+            2
+          ],
+          "prior_variances": [
+            1,
+            1
+          ],
+          "observations": [
+            1
+          ],
+          "noise_variances": [
+            1
+          ]
+        },
+        "expected": [
+          [
+            0.5,
+            1.5
+          ],
+          [
+            0.5,
+            0.5
+          ],
+          1.0
+        ],
+        "explanation": "两方案最终均值为 [0.5,1.5]，方差均为 0.5，均值极差为 1 U；一次观测还没有消除先验差异。"
+      }
+    ]
+  },
+  {
+    "id": "p05-precision",
+    "slug": "p05-precision",
+    "version": "1",
+    "lesson_id": "P05-C03-S02",
+    "part": "5",
+    "chapter": "5.3",
+    "title": "哪一个读数权重更大",
+    "type": "choice",
+    "statement": "高斯更新先验（prior）方差（variance） P=1 U²，同一观测（observation）值分别配 R=0.1 或 R=10 U²。哪些正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "R=0.1 时 K 更大。"
+      },
+      {
+        "id": "B",
+        "text": "R=10 时观测更精确。"
+      },
+      {
+        "id": "C",
+        "text": "较小 R 给出较小后验（posterior）方差。"
+      },
+      {
+        "id": "D",
+        "text": "方差缩小本身证明模型（model）正确。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-fixed-quantity",
+    "slug": "p05-fixed-quantity",
+    "version": "1",
+    "lesson_id": "P05-C03-S02",
+    "part": "5",
+    "chapter": "5.3",
+    "title": "这一步是不是动态滤波",
+    "type": "choice",
+    "statement": "用条件高斯公式连续处理同一固定 θ 的多次测量。哪项正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "它是固定未知量的更新；动态状态（state）还需明确时间演化与预测。"
+      },
+      {
+        "id": "B",
+        "text": "数据多了就不需要观测（observation）模型（model）。"
+      },
+      {
+        "id": "C",
+        "text": "θ 在更新后物理上发生跳变。"
+      },
+      {
+        "id": "D",
+        "text": "每次必须加过程噪声（process noise），哪怕模型没有。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-order",
+    "slug": "p05-order",
+    "version": "1",
+    "lesson_id": "P05-C03-S02",
+    "part": "5",
+    "chapter": "5.3",
+    "title": "独立测量的顺序有什么影响",
+    "type": "choice",
+    "statement": "固定量高斯模型（model）的先验（prior）与各观测（observation）误差方差（variance）已知。观测及其方差成对重排。哪些成立？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "只重排 y 而不重排相应 R 也总是相同。"
+      },
+      {
+        "id": "B",
+        "text": "每一步中间后验（posterior）必须完全相同。"
+      },
+      {
+        "id": "C",
+        "text": "最终精度 1/P 等于先验精度加各 1/R。"
+      },
+      {
+        "id": "D",
+        "text": "最终后验在精确算术中与顺序无关。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-propagation",
+    "slug": "p05-propagation",
+    "version": "1",
+    "lesson_id": "P05-C04-S01",
+    "part": "5",
+    "chapter": "5.4",
+    "title": "从细胞切换规则传播概率",
+    "type": "python",
+    "statement": "细胞每周期按给定马尔可夫（Markov）转移矩阵（transition matrix）切换。计算整个群体的理论状态（state）分布（distribution），不能返回单条随机路径。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数13"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "行随机矩阵（matrix）；第 i 行给出从状态 i 到各状态的概率（probability）。",
+        "unit": "1"
+      },
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "时刻 0 的行概率向量（vector）。",
+        "unit": "1"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "传播步数。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "distributions",
+        "type": "list[list[float]]",
+        "description": "包含时刻 0，外层按时刻，内层按状态编号。",
+        "unit": "1"
+      }
+    ],
+    "contract": "p_next[j]=Σᵢp[i]*matrix[i][j]；同步更新所有分量；包含初始分布。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "方阵维数 1—5；非负且每行和为 1（误差≤1e−12）；initial 等维、非负、和为 1；0≤steps≤100。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "检查概率和为 1；行向量右乘矩阵，不把矩阵列当出发状态。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    matrix: list[list[float]],\n    initial: list[float],\n    steps: int,\n) -> list[list[float]]:\n    # 依据题目规则计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              0.8,
+              0.2
+            ],
+            [
+              0.1,
+              0.9
+            ]
+          ],
+          "initial": [
+            1,
+            0
+          ],
+          "steps": 2
+        },
+        "expected": [
+          [
+            1,
+            0
+          ],
+          [
+            0.8,
+            0.2
+          ],
+          [
+            0.6600000000000001,
+            0.3400000000000001
+          ]
+        ],
+        "explanation": "前两步为 [0.8,0.2]、[0.66,0.34]；初始 [1,0] 也保留在返回列表中。"
+      }
+    ]
+  },
+  {
+    "id": "p05-path",
+    "slug": "p05-path",
+    "version": "1",
+    "lesson_id": "P05-C04-S01",
+    "part": "5",
+    "chapter": "5.4",
+    "title": "由指定随机数生成一条路径",
+    "type": "python",
+    "statement": "给定每一步已抽出的均匀数，按当前状态（state）所在行做逆累计抽样。这样可逐步核对路径，而不依赖某一随机库版本。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数13"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "行随机矩阵（matrix）；第 i 行给出从状态 i 到各状态的概率（probability）。",
+        "unit": "1"
+      },
+      {
+        "name": "initial_state",
+        "type": "int",
+        "description": "起始状态的零起始下标。",
+        "unit": "1"
+      },
+      {
+        "name": "uniforms",
+        "type": "list[float]",
+        "description": "每步使用一个 [0,1) 内的数，按顺序使用。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "states",
+        "type": "list[int]",
+        "description": "起始状态及每步抽中的状态。",
+        "unit": "1"
+      }
+    ],
+    "contract": "扫描当前行，从第 0 列累计概率，选第一个 cumulative>u 的列；等于边界时进入右侧区间。若仅因浮点舍入没有命中，选最后一列。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "矩阵符合行随机矩阵条件，维数 1—5；initial_state 是合法下标；0—100 个均匀数，均在 [0,1)。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "每一步使用更新后的当前状态选择行。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    matrix: list[list[float]],\n    initial_state: int,\n    uniforms: list[float],\n) -> list[int]:\n    # 依据题目规则计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              0.8,
+              0.2
+            ],
+            [
+              0.1,
+              0.9
+            ]
+          ],
+          "initial_state": 0,
+          "uniforms": [
+            0.7,
+            0.8,
+            0.05
+          ]
+        },
+        "expected": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "explanation": "依次抽到 0、1、0，连同起点返回 [0,0,1,0]。u=0.8 位于右侧区间，不能仍选状态 0。"
+      }
+    ]
+  },
+  {
+    "id": "p05-markov-assumption",
+    "slug": "p05-markov-assumption",
+    "version": "1",
+    "lesson_id": "P05-C04-S01",
+    "part": "5",
+    "chapter": "5.4",
+    "title": "马尔可夫假设省略了什么",
+    "type": "choice",
+    "statement": "用当前细胞标签预测下一周期标签，采用时间齐次（time-homogeneous）马尔可夫（Markov）模型（model）。哪些正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数13"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "所有相邻时刻都独立。"
+      },
+      {
+        "id": "B",
+        "text": "所有时刻使用相同转移矩阵（transition matrix）。"
+      },
+      {
+        "id": "C",
+        "text": "即使遗漏持续作用的内部变量，该假设也必然成立。"
+      },
+      {
+        "id": "D",
+        "text": "给定当前状态（state）后，过去标签不再额外改变下一步分布（distribution）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-path-distribution",
+    "slug": "p05-path-distribution",
+    "version": "1",
+    "lesson_id": "P05-C04-S01",
+    "part": "5",
+    "chapter": "5.4",
+    "title": "概率为 0.34 的状态怎样出现",
+    "type": "choice",
+    "statement": "第二周期活跃态概率（probability）为 0.34。哪项解释正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数13"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "大量独立路径在该时刻的活跃频率可近似 0.34，仍有抽样波动。"
+      },
+      {
+        "id": "B",
+        "text": "观察到一个静息细胞即可否定模型（model）。"
+      },
+      {
+        "id": "C",
+        "text": "每个细胞处于 0.34 个活跃态。"
+      },
+      {
+        "id": "D",
+        "text": "一条路径一定在活跃态停留 34% 的时间。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-stochastic-matrix",
+    "slug": "p05-stochastic-matrix",
+    "version": "1",
+    "lesson_id": "P05-C04-S01",
+    "part": "5",
+    "chapter": "5.4",
+    "title": "如何检查一个转移矩阵",
+    "type": "choice",
+    "statement": "采用行随机矩阵（matrix）约定，以下哪些是必要检查？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数13"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "矩阵行数与状态（state）数相同。"
+      },
+      {
+        "id": "B",
+        "text": "各元素非负。"
+      },
+      {
+        "id": "C",
+        "text": "每行和为 1。"
+      },
+      {
+        "id": "D",
+        "text": "每列和必须也为 1。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-stationary",
+    "slug": "p05-stationary",
+    "version": "1",
+    "lesson_id": "P05-C04-S02",
+    "part": "5",
+    "chapter": "5.4",
+    "title": "解两态不变分布并保留退化情形",
+    "type": "python",
+    "statement": "转移矩阵（transition matrix）为 [[1−alpha,alpha],[beta,1−beta]]。返回唯一不变分布（invariant distribution）；若所有分布（distribution）都不变则返回 None。不在本题判断是否从任意初始分布收敛。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数13"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "alpha",
+        "type": "float",
+        "description": "状态（state） 0 转到 1 的概率（probability）。",
+        "unit": "1"
+      },
+      {
+        "name": "beta",
+        "type": "float",
+        "description": "状态 1 转到 0 的概率。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "stationary",
+        "type": "list[float] | None",
+        "description": "状态 0、1 的不变概率；不唯一时为 None。",
+        "unit": "1"
+      }
+    ],
+    "contract": "alpha+beta>0 时返回 [beta/(alpha+beta),alpha/(alpha+beta)]；两者都为 0 时返回 None。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "0≤alpha,beta≤1。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "唯一不变不等于所有起点逐时刻收敛；alpha=beta=1 是反例。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    alpha: float,\n    beta: float,\n) -> list[float] | None:\n    # 依据题目规则计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "alpha": 0.2,
+          "beta": 0.1
+        },
+        "expected": [
+          0.3333333333333333,
+          0.6666666666666666
+        ],
+        "explanation": "流量（flow）平衡（equilibrium） π0*0.2=π1*0.1 加上和为 1，得 [1/3,2/3]。"
+      }
+    ]
+  },
+  {
+    "id": "p05-periodic",
+    "slug": "p05-periodic",
+    "version": "1",
+    "lesson_id": "P05-C04-S02",
+    "part": "5",
+    "chapter": "5.4",
+    "title": "有不变分布为何仍不收敛",
+    "type": "choice",
+    "statement": "P=[[0,1],[1,0]]，从 [1,0] 出发。哪些成立？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数13"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "[0.5,0.5] 是不变分布（invariant distribution）。"
+      },
+      {
+        "id": "B",
+        "text": "任意初始分布（distribution）都逐时刻收敛到 [0.5,0.5]。"
+      },
+      {
+        "id": "C",
+        "text": "从 [0.5,0.5] 出发可始终保持不变。"
+      },
+      {
+        "id": "D",
+        "text": "分布在 [1,0] 与 [0,1] 之间交替。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-ergodic-conditions",
+    "slug": "p05-ergodic-conditions",
+    "version": "1",
+    "lesson_id": "P05-C04-S02",
+    "part": "5",
+    "chapter": "5.4",
+    "title": "哪组条件足以保证有限链收敛",
+    "type": "choice",
+    "statement": "对有限状态（state）、时间齐次（time-homogeneous）链，以下哪组条件保证唯一不变分布（invariant distribution）且从任意初始分布（distribution）收敛到它？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数13"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "不可约（irreducible）且非周期（aperiodic）。"
+      },
+      {
+        "id": "B",
+        "text": "只有样本曲线看起来平稳。"
+      },
+      {
+        "id": "C",
+        "text": "只要求元素非负。"
+      },
+      {
+        "id": "D",
+        "text": "只要求存在一个不变分布。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-absorbing",
+    "slug": "p05-absorbing",
+    "version": "1",
+    "lesson_id": "P05-C04-S02",
+    "part": "5",
+    "chapter": "5.4",
+    "title": "两个吸收态保留多少初始信息",
+    "type": "choice",
+    "statement": "P 为二阶单位矩阵（identity matrix）。哪项正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数13"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "多模拟几步便会混合。"
+      },
+      {
+        "id": "B",
+        "text": "所有初始分布（distribution）都收敛到 [0.5,0.5]。"
+      },
+      {
+        "id": "C",
+        "text": "每个初始分布都保持原样，不变分布（invariant distribution）不唯一。"
+      },
+      {
+        "id": "D",
+        "text": "该链没有不变分布。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-walk",
+    "slug": "p05-walk",
+    "version": "1",
+    "lesson_id": "P05-C04-S03",
+    "part": "5",
+    "chapter": "5.4",
+    "title": "随机游走的漂移与散布",
+    "type": "python",
+    "statement": "从位置 0 出发，每步独立以 probability 向右走 step_size，否则向左走同样距离。计算各时刻理论均值与方差（variance）。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数13"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "probability",
+        "type": "float",
+        "description": "向右概率（probability）。",
+        "unit": "1"
+      },
+      {
+        "name": "step_size",
+        "type": "float",
+        "description": "每步长度。",
+        "unit": "L"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "步数。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "means",
+        "type": "list[float]",
+        "description": "包含起点的理论位置均值。",
+        "unit": "L"
+      },
+      {
+        "name": "variances",
+        "type": "list[float]",
+        "description": "包含起点的理论位置方差。",
+        "unit": "L²"
+      }
+    ],
+    "contract": "独立增量每步均值 d(2p−1)，方差 4d²p(1−p)；第 n 步的均值和方差分别乘 n。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "0≤probability≤1；0<step_size≤10；0≤steps≤100。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "方差相加依赖独立增量；位置本身跨时刻相关。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    probability: float,\n    step_size: float,\n    steps: int,\n) -> tuple[list[float], list[float]]:\n    # 依据题目规则计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "probability": 0.5,
+          "step_size": 1,
+          "steps": 3
+        },
+        "expected": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        ],
+        "explanation": "公平游走均值 [0,0,0,0]，方差 [0,1,2,3]；平均不动不意味着每个个体不动。"
+      }
+    ]
+  },
+  {
+    "id": "p05-walk-path",
+    "slug": "p05-walk-path",
+    "version": "1",
+    "lesson_id": "P05-C04-S03",
+    "part": "5",
+    "chapter": "5.4",
+    "title": "均值为零的群体是否静止",
+    "type": "choice",
+    "statement": "公平独立随机游走（random walk）从 0 出发。哪些成立？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数13"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "理论平均位置始终为零。"
+      },
+      {
+        "id": "B",
+        "text": "位置方差（variance）随步数线性增加。"
+      },
+      {
+        "id": "C",
+        "text": "均方根位移与步数平方根成比例。"
+      },
+      {
+        "id": "D",
+        "text": "每条路径始终位于零。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-walk-boundary",
+    "slug": "p05-walk-boundary",
+    "version": "1",
+    "lesson_id": "P05-C04-S03",
+    "part": "5",
+    "chapter": "5.4",
+    "title": "加上反射边界还能照搬公式吗",
+    "type": "choice",
+    "statement": "原游走无边界；现在把位置限制在有限区间，触边时反射。哪项正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数13"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "仅改图的横轴就足够。"
+      },
+      {
+        "id": "B",
+        "text": "反射永远不影响任何路径。"
+      },
+      {
+        "id": "C",
+        "text": "无边界的方差（variance） n*d² 必定适用于任意长时间。"
+      },
+      {
+        "id": "D",
+        "text": "边界改变增量依赖和分布（distribution），需重新建模或用有限链传播。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-walk-independence",
+    "slug": "p05-walk-independence",
+    "version": "1",
+    "lesson_id": "P05-C04-S03",
+    "part": "5",
+    "chapter": "5.4",
+    "title": "相邻位置与增量的独立性",
+    "type": "choice",
+    "statement": "X[n+1]=X[n]+Z[n]，Z 是独立零均值增量。哪项正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数13"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "增量独立意味着每条路径没有记忆坐标。"
+      },
+      {
+        "id": "B",
+        "text": "X[n] 与 X[n+1] 一定独立。"
+      },
+      {
+        "id": "C",
+        "text": "Cov(X[n],X[n+1])=Var(X[n])。"
+      },
+      {
+        "id": "D",
+        "text": "所有位置方差（variance）相等。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-information",
+    "slug": "p05-information",
+    "version": "1",
+    "lesson_id": "P05-C05-S01",
+    "part": "5",
+    "chapter": "5.5",
+    "title": "联合计数包含多少信息",
+    "type": "python",
+    "statement": "给定细胞状态（state） X 与二值或多值读数 Y 的联合计数。用明确的以 2 为底的插件估计（plug-in estimator）计算边缘熵（entropy）和互信息（mutual information）。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数14"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "counts",
+        "type": "list[list[int]]",
+        "description": "行表示 X，列表示 Y 的联合频数表。",
+        "unit": "次"
+      }
+    ],
+    "returns": [
+      {
+        "name": "entropy_x",
+        "type": "float",
+        "description": "X 的离散插件熵。",
+        "unit": "bit"
+      },
+      {
+        "name": "entropy_y",
+        "type": "float",
+        "description": "Y 的离散插件熵。",
+        "unit": "bit"
+      },
+      {
+        "name": "mutual_information",
+        "type": "float",
+        "description": "X、Y 的插件互信息。",
+        "unit": "bit"
+      }
+    ],
+    "contract": "先除以总频数得到 p[i,j]，按行列求边缘概率（probability）；H(X)=−ΣpX log2(pX)，H(Y) 同理；I=Σp[i,j] log2(p[i,j]/(pX[i]*pY[j]))。零概率项贡献 0，不给零频数加伪计数。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "矩形表 1—8 行、1—8 列；每项整数 0—10000；总频数>0。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "跳过 p=0 的项；只在 p>0 的位置计算比值，那里两个边缘也必为正。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    counts: list[list[int]],\n) -> tuple[float, float, float]:\n    # 依据题目规则计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "counts": [
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        },
+        "expected": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "explanation": "X、Y 各一半，且标签完全一致：H(X)=H(Y)=I=1 bit。这不表示存在 1 bit 的因果作用。"
+      }
+    ]
+  },
+  {
+    "id": "p05-entropy",
+    "slug": "p05-entropy",
+    "version": "1",
+    "lesson_id": "P05-C05-S01",
+    "part": "5",
+    "chapter": "5.5",
+    "title": "公平二值状态的熵",
+    "type": "choice",
+    "statement": "X 为公平二值状态（state）。通道一精确复制 X，通道二输出（output）与 X 独立的公平二值 Y。互信息（mutual information）依次是多少？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数14"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "1 bit、1 bit。"
+      },
+      {
+        "id": "B",
+        "text": "0 bit、1 bit。"
+      },
+      {
+        "id": "C",
+        "text": "0 bit、0 bit。"
+      },
+      {
+        "id": "D",
+        "text": "1 bit、0 bit。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-conditional-entropy",
+    "slug": "p05-conditional-entropy",
+    "version": "1",
+    "lesson_id": "P05-C05-S01",
+    "part": "5",
+    "chapter": "5.5",
+    "title": "互信息减少的是什么",
+    "type": "choice",
+    "statement": "有限离散变量的 I(X;Y)=H(X)−H(X|Y)。哪些正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数14"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "I(X;Y)=I(Y;X)。"
+      },
+      {
+        "id": "B",
+        "text": "把对数底改为 e 后数值单位变为 nat。"
+      },
+      {
+        "id": "C",
+        "text": "它是观察 Y 后对 X 的平均不确定性减少量。"
+      },
+      {
+        "id": "D",
+        "text": "它一定等于 Y 的熵（entropy）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-channel-flip",
+    "slug": "p05-channel-flip",
+    "version": "1",
+    "lesson_id": "P05-C05-S01",
+    "part": "5",
+    "chapter": "5.5",
+    "title": "总是翻转标签会失去信息吗",
+    "type": "choice",
+    "statement": "X 公平二值，Y=1−X，映射规则已知。哪项正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数14"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "只有正相关才有互信息（mutual information）。"
+      },
+      {
+        "id": "B",
+        "text": "I=0，因为标签从不相等。"
+      },
+      {
+        "id": "C",
+        "text": "I=1 bit，因为由 Y 可唯一恢复 X。"
+      },
+      {
+        "id": "D",
+        "text": "I=−1 bit。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-information-scope",
+    "slug": "p05-information-scope",
+    "version": "1",
+    "lesson_id": "P05-C05-S01",
+    "part": "5",
+    "chapter": "5.5",
+    "title": "统计信息是否等于作用方向",
+    "type": "choice",
+    "statement": "细胞标记 X 与 Y 的互信息（mutual information）为正。哪些判断合适？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数14"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "可以由共同原因造成。"
+      },
+      {
+        "id": "B",
+        "text": "已证明 X 导致 Y。"
+      },
+      {
+        "id": "C",
+        "text": "指标对称，不能仅由其数值确定因果方向。"
+      },
+      {
+        "id": "D",
+        "text": "等同于热力学熵（entropy）增加。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-bin-pairs",
+    "slug": "p05-bin-pairs",
+    "version": "1",
+    "lesson_id": "P05-C05-S02",
+    "part": "5",
+    "chapter": "5.5",
+    "title": "按显式边界统计联合频数",
+    "type": "python",
+    "statement": "连续观测（observation）需要先分箱（binning）。本题两个变量使用相同 edges。返回行对应 xs、列对应 ys 的联合计数表。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数14"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "xs",
+        "type": "list[float]",
+        "description": "第一通道配对样本。",
+        "unit": "U"
+      },
+      {
+        "name": "ys",
+        "type": "list[float]",
+        "description": "第二通道配对样本。",
+        "unit": "U"
+      },
+      {
+        "name": "edges",
+        "type": "list[float]",
+        "description": "严格递增分箱边界。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "counts",
+        "type": "list[list[int]]",
+        "description": "(len(edges)−1) 阶联合频数表。",
+        "unit": "次"
+      }
+    ],
+    "contract": "除最后一箱外均为左闭右开 [eᵢ,eᵢ₊₁)；最后一箱包含最右端点。恰在内部边界上的数进入右侧箱。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "xs、ys 等长，长度 1—100；2—9 个边界；所有样本在 [edges[0],edges[-1]]；数值绝对值≤100。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "必须保留样本配对关系，且明确最右端点的规则。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    xs: list[float],\n    ys: list[float],\n    edges: list[float],\n) -> list[list[int]]:\n    # 依据题目规则计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "xs": [
+            0,
+            0.5,
+            1
+          ],
+          "ys": [
+            1,
+            0.5,
+            0
+          ],
+          "edges": [
+            0,
+            0.5,
+            1
+          ]
+        },
+        "expected": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "explanation": "0 进第 0 箱，0.5 和 1 都进第 1 箱，所以联合表为 [[0,1],[1,1]]。"
+      }
+    ]
+  },
+  {
+    "id": "p05-finite-bias",
+    "slug": "p05-finite-bias",
+    "version": "1",
+    "lesson_id": "P05-C05-S02",
+    "part": "5",
+    "chapter": "5.5",
+    "title": "独立通道为何估出正互信息",
+    "type": "choice",
+    "statement": "真实 X、Y 独立，但有限样本频数表算得互信息（mutual information） 0.08 bit。哪些正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数14"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "可用独立机制的多次重复作为参照，并比较样本量。"
+      },
+      {
+        "id": "B",
+        "text": "再细分更多箱必然更接近真实连续信息量。"
+      },
+      {
+        "id": "C",
+        "text": "有限表通常不能精确分解成边缘概率（probability）的乘积，插件互信息会有波动和向上偏差。"
+      },
+      {
+        "id": "D",
+        "text": "已推翻独立假设，无需不确定性分析。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-coarsening",
+    "slug": "p05-coarsening",
+    "version": "1",
+    "lesson_id": "P05-C05-S02",
+    "part": "5",
+    "chapter": "5.5",
+    "title": "同一张表合并箱会怎样",
+    "type": "choice",
+    "statement": "细分箱（binning）经确定规则合并为粗分箱，使用完全相同的配对样本。哪些正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数14"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "两个不嵌套分箱也必须按箱数严格排序。"
+      },
+      {
+        "id": "B",
+        "text": "经验分布（distribution）上的互信息（mutual information）不会因确定性合并增加（忽略舍入）。"
+      },
+      {
+        "id": "C",
+        "text": "细分后的更高互信息本身证明观测（observation）更有用。"
+      },
+      {
+        "id": "D",
+        "text": "粗化可能丢失区分信息。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-binning-units",
+    "slug": "p05-binning-units",
+    "version": "1",
+    "lesson_id": "P05-C05-S02",
+    "part": "5",
+    "chapter": "5.5",
+    "title": "分箱熵属于哪个变量",
+    "type": "choice",
+    "statement": "将连续读数 Y 按固定边界编码为箱号 B，计算 H(B)。哪项正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数14"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "它自动就是 Y 的微分熵（entropy）。"
+      },
+      {
+        "id": "B",
+        "text": "它是该分箱（binning）标签的离散熵，会随边界改变。"
+      },
+      {
+        "id": "C",
+        "text": "任何改变单位都不需同步改变边界。"
+      },
+      {
+        "id": "D",
+        "text": "箱数越多就证明物理机制越复杂。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-comparison-budget",
+    "slug": "p05-comparison-budget",
+    "version": "1",
+    "lesson_id": "P05-C05-S02",
+    "part": "5",
+    "chapter": "5.5",
+    "title": "怎样比较两个测量通道",
+    "type": "choice",
+    "statement": "要用经验互信息（mutual information）比较两传感器。哪些应固定或同时报告？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数14"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "预先定义的分箱（binning）规则。"
+      },
+      {
+        "id": "B",
+        "text": "只挑各通道最大的那次结果。"
+      },
+      {
+        "id": "C",
+        "text": "有限样本偏差参照与波动范围。"
+      },
+      {
+        "id": "D",
+        "text": "采样机制、样本量与重复次数。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-cap-noise",
+    "slug": "p05-cap-noise",
+    "version": "1",
+    "lesson_id": "P05-SUMMARY",
+    "part": "5",
+    "chapter": "5.summary",
+    "title": "噪声进入何处",
+    "type": "choice",
+    "statement": "固定 θ 的测量 yᵢ=θ+b+vᵢ，组内 b 固定；动态偏差 x[n+1]=a*x[n]+w[n]。哪些机制解释正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数14"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "同组固定 b 可通过无限次独立 v 测量完全平均掉。"
+      },
+      {
+        "id": "B",
+        "text": "不同个体固定 a 是个体差异。"
+      },
+      {
+        "id": "C",
+        "text": "w 改变后续状态（state）。"
+      },
+      {
+        "id": "D",
+        "text": "v 在该模型（model）中只改变读数。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-cap-repeat",
+    "slug": "p05-cap-repeat",
+    "version": "1",
+    "lesson_id": "P05-SUMMARY",
+    "part": "5",
+    "chapter": "5.summary",
+    "title": "重复实验的比较单位",
+    "type": "choice",
+    "statement": "比较噪声机制，哪项最合适？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数14"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "把每条时间相关路径中的点全部称为独立个体。"
+      },
+      {
+        "id": "B",
+        "text": "用同一数组（array）复制成 200 组，报告标准误（standard error）为零。"
+      },
+      {
+        "id": "C",
+        "text": "每个机制固定样本量，使用派生随机流做 200 次重复，报告统计量（statistic）的分布（distribution）。"
+      },
+      {
+        "id": "D",
+        "text": "每个机制挑最好的一条路径。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p05-cap-summary",
+    "slug": "p05-cap-summary",
+    "version": "1",
+    "lesson_id": "P05-SUMMARY",
+    "part": "5",
+    "chapter": "5.summary",
+    "title": "固定样本的重复间波动",
+    "type": "python",
+    "statement": "每组是一轮独立测量实验，组内给出实际读数。按组等权汇总均值，并用 B−1 分母计算这些组均值的样本方差（variance）。",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数14"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "groups",
+        "type": "list[list[float]]",
+        "description": "B 组测量，每组非空；数值单位 U。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "means",
+        "type": "list[float]",
+        "description": "各组均值。",
+        "unit": "U"
+      },
+      {
+        "name": "mean_of_means",
+        "type": "float",
+        "description": "组均值的等权平均。",
+        "unit": "U"
+      },
+      {
+        "name": "between_variance",
+        "type": "float",
+        "description": "组均值的样本方差，分母 B−1。",
+        "unit": "U²"
+      }
+    ],
+    "contract": "先算组内算术平均，再对 B 个均值求平均和平方偏差和/(B−1)。不改成合并全部读数的统计量（statistic）。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "2≤B≤20；每组 1—100 个读数，绝对值≤100。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "统计对象是每次实验的均值；区分组间方差与个体读数方差。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    groups: list[list[float]],\n) -> tuple[list[float], float, float]:\n    # 依据题目规则计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "groups": [
+            [
+              0,
+              2
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              4,
+              6
+            ]
+          ]
+        },
+        "expected": [
+          [
+            1.0,
+            3.0,
+            5.0
+          ],
+          3.0,
+          4.0
+        ],
+        "explanation": "组均值 [1,3,5]，组平均 3，组间方差 (4+0+4)/2=4 U²。"
+      }
+    ]
+  },
+  {
+    "id": "p05-cap-bayes",
+    "slug": "p05-cap-bayes",
+    "version": "1",
+    "lesson_id": "P05-SUMMARY",
+    "part": "5",
+    "chapter": "5.summary",
+    "title": "由新证据更新概率",
+    "type": "python",
+    "statement": "三个或更多候选细胞状态（state）中有些先验（prior）可能为零。依据一次离散观测（observation）更新分布（distribution），并显式保留零证据边界。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数14"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "prior",
+        "type": "list[float]",
+        "description": "互斥且穷尽假设的先验概率（probability）。",
+        "unit": "1"
+      },
+      {
+        "name": "likelihood",
+        "type": "list[float]",
+        "description": "同一离散观测在各假设下出现的概率。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "posterior",
+        "type": "list[float] | None",
+        "description": "按原顺序返回后验（posterior）；证据概率（evidence probability）为零时返回 None。",
+        "unit": "1"
+      }
+    ],
+    "contract": "weights[i]=prior[i]*likelihood[i]；分母为 weights 之和。分母>0 时逐项归一化；分母恰为 0 返回 None，不杜撰均匀后验。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "列表等长，长度 1—20；prior 非负且和为 1（误差≤1e−12）；likelihood 每项在 [0,1]。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "归一化分母来自全部假设，不是只取最大似然（likelihood）。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    prior: list[float],\n    likelihood: list[float],\n) -> list[float] | None:\n    # 依据题目规则计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "prior": [
+            0.2,
+            0.3,
+            0.5
+          ],
+          "likelihood": [
+            0.5,
+            1,
+            0
+          ]
+        },
+        "expected": [
+          0.25,
+          0.7499999999999999,
+          0.0
+        ],
+        "explanation": "权重 [0.1,0.3,0]，后验 [0.25,0.75,0]；此次观测排除第三态。"
+      }
+    ]
+  },
+  {
+    "id": "p05-cap-propagation",
+    "slug": "p05-cap-propagation",
+    "version": "1",
+    "lesson_id": "P05-SUMMARY",
+    "part": "5",
+    "chapter": "5.summary",
+    "title": "概率分布的多步传播",
+    "type": "python",
+    "statement": "理想细胞有三个标签，允许吸收标签。按完整转移矩阵（transition matrix）传播群体分布（distribution），保持行向量（vector）约定。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数14"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "行随机矩阵（matrix）；第 i 行给出从状态（state） i 到各状态的概率（probability）。",
+        "unit": "1"
+      },
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "时刻 0 的行概率向量。",
+        "unit": "1"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "传播步数。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "distributions",
+        "type": "list[list[float]]",
+        "description": "包含时刻 0，外层按时刻，内层按状态编号。",
+        "unit": "1"
+      }
+    ],
+    "contract": "p_next[j]=Σᵢp[i]*matrix[i][j]；同步更新所有分量；包含初始分布。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "方阵维数 1—5；非负且每行和为 1（误差≤1e−12）；initial 等维、非负、和为 1；0≤steps≤100。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "不同机制可以改变长期分布；先检查每一步总概率。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    matrix: list[list[float]],\n    initial: list[float],\n    steps: int,\n) -> list[list[float]]:\n    # 依据题目规则计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              0.5,
+              0.5,
+              0
+            ],
+            [
+              0,
+              0.5,
+              0.5
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "initial": [
+            1,
+            0,
+            0
+          ],
+          "steps": 2
+        },
+        "expected": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0.5,
+            0.5,
+            0.0
+          ],
+          [
+            0.25,
+            0.5,
+            0.25
+          ]
+        ],
+        "explanation": "从 [1,0,0] 到 [0.5,0.5,0]，再到 [0.25,0.5,0.25]；最后状态吸收进入的概率质量（probability mass）。"
+      }
+    ]
+  },
+  {
+    "id": "p05-cap-variance",
+    "slug": "p05-cap-variance",
+    "version": "1",
+    "lesson_id": "P05-SUMMARY",
+    "part": "5",
+    "chapter": "5.summary",
+    "title": "两种噪声的方差贡献",
+    "type": "python",
+    "statement": "动态偏差 x[n+1]=a*x[n]+w[n]，观测（observation） y[n]=x[n]+v[n]。过程与测量扰动相互独立，也与适当时刻状态（state）独立，方差（variance）固定。分别输出（output）状态与观测方差。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数14"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "float",
+        "description": "每步状态偏差的倍数。",
+        "unit": "1"
+      },
+      {
+        "name": "process_variance",
+        "type": "float",
+        "description": "独立过程扰动方差 Q。",
+        "unit": "U²"
+      },
+      {
+        "name": "measurement_variance",
+        "type": "float",
+        "description": "每次独立测量误差方差 R。",
+        "unit": "U²"
+      },
+      {
+        "name": "initial_variance",
+        "type": "float",
+        "description": "起始状态偏差方差 P0。",
+        "unit": "U²"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "更新步数。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "state_variances",
+        "type": "list[float]",
+        "description": "包含起点的状态方差。",
+        "unit": "U²"
+      },
+      {
+        "name": "observation_variances",
+        "type": "list[float]",
+        "description": "与时刻一一对应的观测方差。",
+        "unit": "U²"
+      }
+    ],
+    "contract": "P[0]=initial_variance，P[n+1]=a²P[n]+Q；每个时刻观测方差 S[n]=P[n]+R。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "−1≤a≤1；三种给定方差在 [0,10]；0≤steps≤100。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "测量噪声（measurement noise）不回流状态；不能在状态递推的每一步额外加 R。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    a: float,\n    process_variance: float,\n    measurement_variance: float,\n    initial_variance: float,\n    steps: int,\n) -> tuple[list[float], list[float]]:\n    # 依据题目规则计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "a": 0.8,
+          "process_variance": 0.04,
+          "initial_variance": 0,
+          "steps": 2,
+          "measurement_variance": 0.09
+        },
+        "expected": [
+          [
+            0,
+            0.04,
+            0.0656
+          ],
+          [
+            0.09,
+            0.13,
+            0.15560000000000002
+          ]
+        ],
+        "explanation": "Q=0.04，R=0.09，a=0.8 时：状态 [0,0.04,0.0656]；观测 [0.09,0.13,0.1556] U²。"
+      }
+    ]
+  },
+  {
+    "id": "p05-cap-bins",
+    "slug": "p05-cap-bins",
+    "version": "1",
+    "lesson_id": "P05-SUMMARY",
+    "part": "5",
+    "chapter": "5.summary",
+    "title": "更换分箱后的信息量",
+    "type": "python",
+    "statement": "同一批配对读数以两种嵌套分箱（binning）形成粗、细联合计数。分别计算信息指标，比较对象是两个离散编码。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数14"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "coarse_counts",
+        "type": "list[list[int]]",
+        "description": "粗分箱联合计数。",
+        "unit": "次"
+      },
+      {
+        "name": "fine_counts",
+        "type": "list[list[int]]",
+        "description": "细分箱联合计数；与粗表总数一致。",
+        "unit": "次"
+      }
+    ],
+    "returns": [
+      {
+        "name": "coarse_information",
+        "type": "list[float]",
+        "description": "依次为粗表的 H(X)、H(Y)、I(X;Y)。",
+        "unit": "bit"
+      },
+      {
+        "name": "fine_information",
+        "type": "list[float]",
+        "description": "依次为细表的 H(X)、H(Y)、I(X;Y)。",
+        "unit": "bit"
+      }
+    ],
+    "contract": "先除以总频数得到 p[i,j]，按行列求边缘概率（probability）；H(X)=−ΣpX log2(pX)，H(Y) 同理；I=Σp[i,j] log2(p[i,j]/(pX[i]*pY[j]))。零概率项贡献 0，不给零频数加伪计数。分别对两个表计算，返回两组三元结果；不报告因果效应。",
+    "constraints": [
+      "所有数值有限；不修改输入（input）列表。",
+      "两表各满足矩形非负整数、总频数>0；各边长 1—8，每项≤10000；粗表可由细表合并相邻行列得到。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先求各表边缘再计算；不能把细表更高的插件数值直接当作更可信的观测（observation）价值。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    coarse_counts: list[list[int]],\n    fine_counts: list[list[int]],\n) -> tuple[list[float], list[float]]:\n    # 依据题目规则计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "coarse_counts": [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          "fine_counts": [
+            [
+              1,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              1
+            ]
+          ]
+        },
+        "expected": [
+          [
+            1.0,
+            1.0,
+            0.0
+          ],
+          [
+            2.0,
+            2.0,
+            1.0
+          ]
+        ],
+        "explanation": "粗表独立，结果 [1,1,0]；细表各边缘熵（entropy） 2 bit，互信息（mutual information） 1 bit，结果 [2,2,1]。细分暴露关联，也可能更受有限样本偏差影响。"
+      }
+    ]
+  },
+  {
+    "id": "p05-cap-scope",
+    "slug": "p05-cap-scope",
+    "version": "1",
+    "lesson_id": "P05-SUMMARY",
+    "part": "5",
+    "chapter": "5.summary",
+    "title": "观测价值与因果范围",
+    "type": "choice",
+    "statement": "独立通道的小样本插件互信息（mutual information）偏正；细分后更大；重复实验显示相当波动。哪些结论可支持？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数14"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "最大一次互信息即可证明因果效应。"
+      },
+      {
+        "id": "B",
+        "text": "报告有限样本参照和波动，保留共同原因解释。"
+      },
+      {
+        "id": "C",
+        "text": "增加分箱（binning）必能提高真实测量质量。"
+      },
+      {
+        "id": "D",
+        "text": "固定样本量、分箱与重复设计后再比较通道。"
+      }
+    ],
+    "constraints": []
+  }
+]

@@ -190,7 +190,7 @@ async function select(id,push=true){
   const revision=++selection;
   const q=await api(`/api/v1/exercises/${id}`);
   if(revision!==selection)return;
-  question=q;lastRecord=null;$('result').hidden=true;$('attempt-message').textContent='';$('open-feedback').textContent='';
+  question=q;lastRecord=null;$('result').hidden=true;$('result-announcement').textContent='';$('attempt-message').textContent='';$('open-feedback').textContent='';
   const url=new URL(location.href);url.searchParams.delete('exercise');url.searchParams.set('question',q.slug);if(push)history.pushState({},'',url);else history.replaceState({},'',url);
   renderQuestions();rememberQuestion(q.slug);document.title=`${q.title} · ${chapter.title}`;
   document.querySelectorAll('#code-requirements details, .hint').forEach(d=>d.open=false);

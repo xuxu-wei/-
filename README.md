@@ -6,10 +6,10 @@
 
 ## 当前状态
 
-- 已完成十二篇、55 章的课程设计；第 1—4 篇提供 43 本正式 Notebook（含篇末综合）、12 张探索页与 204 道练习。
+- 已完成十二篇、55 章的课程设计；第 1—5 篇提供 56 本正式 Notebook（含篇末综合）、16 张探索页与 266 道练习。
 - 制作样章已在 M3 验收后清理，历史记录与正式学习进度分开保留；进展见 [ROADMAP](ROADMAP.md)。
 - 支持本机交互练习、Python 判题与学习记录，代码编辑器提供高亮、缩进和 traceback 调试。
-- 前四篇的篇末综合已提供难度递进、首次/练习成绩及分层复习入口；评价规则见[教材设计](docs/教材设计.md#capstone-assessment)。
+- 前五篇的篇末综合已提供难度递进、首次/练习成绩及分层复习入口；评价规则见[教材设计](docs/教材设计.md#capstone-assessment)。
 
 <a id="run-m1"></a>
 ## 开始使用
@@ -23,7 +23,7 @@ Invoke-Item .\notebooks\01-看见系统\01-从生理现象提出系统问题\01-
 .\.venv\Scripts\python.exe tools/serve.py
 ```
 
-在默认 IDE 中选择项目 `.venv` 作为 Notebook 内核，依次学习[第 1 篇：看见系统](notebooks/01-看见系统/README.md)、[第 2 篇：系统随时间演化](notebooks/02-系统随时间演化/README.md)、[第 3 篇：多变量相互作用](notebooks/03-多变量相互作用/README.md)、[第 4 篇：非线性动态行为](notebooks/04-非线性动态行为/README.md)。启动本机程序后可打开[网页目录](http://127.0.0.1:8000/)；环境、操作与故障处理见[学习指南](docs/学习指南.md)。
+在默认 IDE 中选择项目 `.venv` 作为 Notebook 内核，依次学习[第 1 篇：看见系统](notebooks/01-看见系统/README.md)、[第 2 篇：系统随时间演化](notebooks/02-系统随时间演化/README.md)、[第 3 篇：多变量相互作用](notebooks/03-多变量相互作用/README.md)、[第 4 篇：非线性动态行为](notebooks/04-非线性动态行为/README.md)、[第 5 篇：随机性与信息](notebooks/05-随机性与信息/README.md)。启动本机程序后可打开[网页目录](http://127.0.0.1:8000/)；环境、操作与故障处理见[学习指南](docs/学习指南.md)。
 
 项目面向 PC 本机学习，基础实验无需 GPU。教学运行独立于外部数据制备工具；模拟数据、本地环境、个人作答记录和临时文件不纳入 Git 同步。
 

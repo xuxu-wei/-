@@ -1,0 +1,78 @@
+{
+  "version": "1",
+  "part": "5",
+  "lesson_id": "P05-SUMMARY",
+  "title": "噪声、概率更新与信息",
+  "objectives": [
+    {
+      "id": "T1",
+      "title": "组织重复实验",
+      "review_url": "/chapters/05-01-从重复实验建立概率/"
+    },
+    {
+      "id": "T2",
+      "title": "区分噪声来源",
+      "review_url": "/chapters/05-02-期望、方差、协方差与噪声/"
+    },
+    {
+      "id": "T3",
+      "title": "更新不确定性",
+      "review_url": "/chapters/05-03-条件概率与贝叶斯更新/"
+    },
+    {
+      "id": "T4",
+      "title": "解释信息指标",
+      "review_url": "/chapters/05-05-熵、互信息与测量价值/"
+    }
+  ],
+  "items": [
+    {
+      "question_id": "p05-cap-noise",
+      "level": 1,
+      "points": 10,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p05-cap-repeat",
+      "level": 1,
+      "points": 10,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p05-cap-summary",
+      "level": 2,
+      "points": 15,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p05-cap-bayes",
+      "level": 2,
+      "points": 15,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p05-cap-propagation",
+      "level": 3,
+      "points": 15,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p05-cap-variance",
+      "level": 3,
+      "points": 15,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p05-cap-bins",
+      "level": 4,
+      "points": 10,
+      "objective": "T4"
+    },
+    {
+      "question_id": "p05-cap-scope",
+      "level": 4,
+      "points": 10,
+      "objective": "T4"
+    }
+  ]
+}

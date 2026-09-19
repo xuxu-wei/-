@@ -2090,7 +2090,7 @@
         "focus": "输入（input）与初值（initial condition）、暂态（transient）与采样、算术精度与初值敏感性（sensitivity to initial conditions）、有限扫描与解析证明分别核对。",
         "knowledge": [
           "平衡（equilibrium）与初值 → 多稳态与扫描",
-          "径向方程与事件 → 振幅（amplitude）、周期及相位（phase）",
+          "径向方程与事件（event） → 振幅（amplitude）、周期及相位（phase）",
           "轨迹（trajectory）分离与区域证书 → 预测和稳定性的条件"
         ],
         "lessons": [
@@ -2178,83 +2178,644 @@
           "id": "5.1",
           "title": "从重复实验建立概率",
           "url": "/chapters/05-01-从重复实验建立概率/",
-          "goals": "区分事件、随机变量、概率分布与一次实现，说明频率近似的波动。",
-          "prerequisites": "2.4、1.4；数学：极限（limit）直觉、导数（derivative）、积分、基本定理和简单链式法则（chain rule）、事件、随机变量、离散/连续分布、抽样和 Monte Carlo。",
+          "goals": "区分事件（event）、随机变量（random variable）、概率分布（probability distribution）与一次实现（realization），说明频率近似的波动。",
+          "prerequisites": "第 2.2—2.4 章的求和、函数、积分面积与计算验证；第 1.4 章的假设比较。事件、分布（distribution）和抽样在本章首次引入。",
           "knowledge": [
             "重复测量与事件",
-            "离散、连续分布及概率密度",
+            "离散、连续分布及概率密度（probability density）",
             "抽样、实验种子与 Monte Carlo 重复"
           ],
-          "focus": "频率落在 [0, 1]，分布总概率为 1；记录种子列表或确定的派生方式，不把重复使用同一随机序列称为独立重复。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "focus": "频率落在 [0, 1]，分布总概率（probability）为 1；记录种子列表或确定的派生方式，不把重复使用同一随机序列称为独立重复。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P05-C01-S01",
+              "chapter_id": "5.1",
+              "path": "notebooks/05-随机性与信息/01-从重复实验建立概率/01-事件分布与一次实现.ipynb",
+              "title": "事件分布与一次实现",
+              "outcome": "能区分事件、随机变量、分布和一次实现；用总概率与曲线下面积检查离散概率和连续密度，解释测量舍入。",
+              "number": "5.1.1",
+              "visualization": "web/probability/index.html",
+              "questions": [
+                {
+                  "id": "p05-event-variable",
+                  "slug": "p05-event-variable",
+                  "title": "事件、随机变量与一次观察",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-uniform-area",
+                  "slug": "p05-uniform-area",
+                  "title": "密度曲线下的概率",
+                  "type": "python"
+                },
+                {
+                  "id": "p05-density-point",
+                  "slug": "p05-density-point",
+                  "title": "连续测量的一个精确点",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-normalization",
+                  "slug": "p05-normalization",
+                  "title": "补齐细胞状态的概率",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-event-variable"
+            },
+            {
+              "id": "P05-C01-S02",
+              "chapter_id": "5.1",
+              "path": "notebooks/05-随机性与信息/01-从重复实验建立概率/02-把抽样变成可比较的重复实验.ipynb",
+              "title": "把抽样变成可比较的重复实验",
+              "outcome": "能区分一组样本、重复实验和随机种子；比较样本量改变后的频率波动，区分组平均与合并频率。",
+              "number": "5.1.2",
+              "visualization": "web/probability/index.html",
+              "questions": [
+                {
+                  "id": "p05-frequencies",
+                  "slug": "p05-frequencies",
+                  "title": "不同大小实验组怎样汇总",
+                  "type": "python"
+                },
+                {
+                  "id": "p05-seed-repeats",
+                  "slug": "p05-seed-repeats",
+                  "title": "同一个种子不是新增证据",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-repeat-band",
+                  "slug": "p05-repeat-band",
+                  "title": "重复频率的范围说明什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-shared-environment",
+                  "slug": "p05-shared-environment",
+                  "title": "怎样更接近独立重复",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/05-01-从重复实验建立概率/practice/?question=p05-frequencies"
+            }
+          ],
+          "visualization": "web/probability/index.html"
         },
         {
           "id": "5.2",
           "title": "期望、方差、协方差与噪声",
           "url": "/chapters/05-02-期望、方差、协方差与噪声/",
-          "goals": "计算与解释均值、方差、协方差及 Gaussian 分布，区分三类变异来源。",
-          "prerequisites": "5.1、3.1；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、事件、随机变量、离散/连续分布、抽样和 Monte Carlo、期望、方差、协方差、联合分布、Gaussian 分布。",
+          "goals": "计算与解释均值、方差（variance）、协方差（covariance）及高斯分布（Gaussian distribution），区分三类变异来源。",
+          "prerequisites": "5.1 的概率分布（probability distribution）与重复、第 3.1 章的向量（vector）矩阵（matrix）。期望（expectation）、方差、协方差与高斯分布在本章首次推导。",
           "knowledge": [
             "从样本摘要走向期望与方差",
             "联合分布、协方差及相关性",
             "状态（state）更新噪声、观测（observation）噪声和固定个体参数差异"
           ],
-          "focus": "对应练习 方差为 0.04、0.0656；重复样本误差需与理论量区分，经验分位带只是样本分布摘要，不能未经说明称为参数（parameter）置信区间。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "focus": "对应练习 方差为 0.04、0.0656；重复样本误差需与理论量区分，经验分位带只是样本分布（distribution）摘要，不能未经说明称为参数（parameter）置信区间（confidence interval）。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P05-C02-S01",
+              "chapter_id": "5.2",
+              "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/01-用期望与方差描述随机量.ipynb",
+              "title": "用期望与方差描述随机量",
+              "outcome": "能从离散分布推导期望与方差，区分描述性方差与总体估计；解释高斯误差、标准差和均值波动的单位。",
+              "number": "5.2.1",
+              "visualization": "web/probability/index.html",
+              "questions": [
+                {
+                  "id": "p05-moments",
+                  "slug": "p05-moments",
+                  "title": "从概率表计算位置与散布",
+                  "type": "python"
+                },
+                {
+                  "id": "p05-variance-units",
+                  "slug": "p05-variance-units",
+                  "title": "换单位后哪些量会改变",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-gaussian-domain",
+                  "slug": "p05-gaussian-domain",
+                  "title": "高斯误差为什么能为负",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-sample-denominator",
+                  "slug": "p05-sample-denominator",
+                  "title": "两个方差分母的区别",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-moments"
+            },
+            {
+              "id": "P05-C02-S02",
+              "chapter_id": "5.2",
+              "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/02-联合变化与协方差.ipynb",
+              "title": "联合变化与协方差",
+              "outcome": "能从联合分布得到边缘分布，展开和的方差并计算协方差；用反例区分不相关与独立，识别共享误差。",
+              "number": "5.2.2",
+              "visualization": "web/probability/index.html",
+              "questions": [
+                {
+                  "id": "p05-covariance",
+                  "slug": "p05-covariance",
+                  "title": "配对观察的协方差",
+                  "type": "python"
+                },
+                {
+                  "id": "p05-uncorrelated",
+                  "slug": "p05-uncorrelated",
+                  "title": "协方差为零是否独立",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-sum-variance",
+                  "slug": "p05-sum-variance",
+                  "title": "两个通道相加的波动",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-correlation-zero-var",
+                  "slug": "p05-correlation-zero-var",
+                  "title": "恒定通道的相关系数",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-shared-offset",
+                  "slug": "p05-shared-offset",
+                  "title": "多测几次能消除共同偏移吗",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-covariance"
+            },
+            {
+              "id": "P05-C02-S03",
+              "chapter_id": "5.2",
+              "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/03-过程测量与个体差异.ipynb",
+              "title": "过程测量与个体差异",
+              "outcome": "能辨认三类变异进入模型的位置；推导独立扰动下的状态与观测方差，限定方差极限和经验分位带的含义。",
+              "number": "5.2.3",
+              "visualization": "web/probability/index.html",
+              "questions": [
+                {
+                  "id": "p05-variance-path",
+                  "slug": "p05-variance-path",
+                  "title": "过程扰动怎样逐步积累",
+                  "type": "python"
+                },
+                {
+                  "id": "p05-noise-location",
+                  "slug": "p05-noise-location",
+                  "title": "哪一种噪声会进入未来状态",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-stationary-variance",
+                  "slug": "p05-stationary-variance",
+                  "title": "方差极限的条件",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-individual-fixed",
+                  "slug": "p05-individual-fixed",
+                  "title": "固定个体差异与过程噪声",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-quantiles",
+                  "slug": "p05-quantiles",
+                  "title": "样本带与参数区间",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/05-02-期望、方差、协方差与噪声/practice/?question=p05-variance-path"
+            }
+          ],
+          "visualization": "web/probability/index.html"
         },
         {
           "id": "5.3",
           "title": "条件概率与贝叶斯更新",
           "url": "/chapters/05-03-条件概率与贝叶斯更新/",
-          "goals": "区分先验、似然和后验，计算离散与简单 Gaussian 更新，并说明条件独立假设。",
-          "prerequisites": "5.2；数学：期望、方差、协方差、联合分布、Gaussian 分布、条件概率、Bayes 公式、似然、后验及条件 Gaussian。",
+          "goals": "区分先验（prior）、似然（likelihood）和后验（posterior），计算离散与简单高斯更新，并说明条件独立（conditional independence）假设。",
+          "prerequisites": "5.2 的联合表、期望（expectation）、方差（variance）与高斯密度。条件概率（conditional probability）、Bayes 公式与平方配方更新在本章引入。",
           "knowledge": [
             "二维概率表与条件概率",
             "Bayes 公式与归一化",
             "重复观测（observation）、Gaussian 均值和方差更新，衔接未来状态（state）估计"
           ],
-          "focus": "对应练习 后验为 9/13；概率归一，Gaussian 方差保持非负；“多次输入（input）同一数据”不等于增加独立信息。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "focus": "对应练习 后验为 9/13；概率（probability）归一，Gaussian 方差保持非负；“多次输入（input）同一数据”不等于增加独立信息。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P05-C03-S01",
+              "chapter_id": "5.3",
+              "path": "notebooks/05-随机性与信息/03-条件概率与贝叶斯更新/01-由条件概率推导贝叶斯更新.ipynb",
+              "title": "由条件概率推导贝叶斯更新",
+              "outcome": "能从联合表计算条件概率，区分先验、似然、证据概率与后验；处理零证据和反复使用同一份数据的条件独立边界。",
+              "number": "5.3.1",
+              "visualization": "web/probability/index.html",
+              "questions": [
+                {
+                  "id": "p05-bayes",
+                  "slug": "p05-bayes",
+                  "title": "按新观测更新细胞状态概率",
+                  "type": "python"
+                },
+                {
+                  "id": "p05-base-rate",
+                  "slug": "p05-base-rate",
+                  "title": "似然高为何后验仍未到九成",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-duplicate-observation",
+                  "slug": "p05-duplicate-observation",
+                  "title": "同一结果能更新两次吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-conditioning",
+                  "slug": "p05-conditioning",
+                  "title": "联合表怎样变成条件表",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-bayes"
+            },
+            {
+              "id": "P05-C03-S02",
+              "chapter_id": "5.3",
+              "path": "notebooks/05-随机性与信息/03-条件概率与贝叶斯更新/02-固定未知量的高斯更新.ipynb",
+              "title": "固定未知量的高斯更新",
+              "outcome": "能通过平方配方推导高斯均值与方差更新，解释精度相加、先验敏感性和独立性；区分知识更新与状态演化。",
+              "number": "5.3.2",
+              "visualization": "web/probability/index.html",
+              "questions": [
+                {
+                  "id": "p05-normal-update",
+                  "slug": "p05-normal-update",
+                  "title": "更新固定偏差的均值与方差",
+                  "type": "python"
+                },
+                {
+                  "id": "p05-prior-sensitivity",
+                  "slug": "p05-prior-sensitivity",
+                  "title": "有限观测后还剩多少先验差异",
+                  "type": "python"
+                },
+                {
+                  "id": "p05-precision",
+                  "slug": "p05-precision",
+                  "title": "哪一个读数权重更大",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-fixed-quantity",
+                  "slug": "p05-fixed-quantity",
+                  "title": "这一步是不是动态滤波",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-order",
+                  "slug": "p05-order",
+                  "title": "独立测量的顺序有什么影响",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/05-03-条件概率与贝叶斯更新/practice/?question=p05-normal-update"
+            }
+          ],
+          "visualization": "web/probability/index.html"
         },
         {
           "id": "5.4",
           "title": "随机过程与马尔可夫模型",
           "url": "/chapters/05-04-随机过程与马尔可夫模型/",
-          "goals": "写出转移约定，分别计算状态（state）分布和模拟单条路径，说明长期分布的条件。",
-          "prerequisites": "5.3、3.1；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、条件概率、Bayes 公式、似然、后验及条件 Gaussian、随机过程、有限马尔可夫链、转移矩阵与长期分布。",
+          "goals": "写出转移约定，分别计算状态（state）分布（distribution）和模拟单条路径，说明长期分布的条件。",
+          "prerequisites": "5.3 的条件概率（conditional probability）、第 3.1 章的矩阵乘法（matrix multiplication）；几何和与固定点（fixed point）。过程、马尔可夫（Markov）假设及长期分布条件在本章引入。",
           "knowledge": [
             "时间索引随机量和马尔可夫假设",
-            "转移矩阵及分布递推",
-            "长期分布、吸收状态与随机游走，给出不收敛反例"
+            "转移矩阵（transition matrix）及分布递推",
+            "长期分布、吸收状态与随机游走（random walk），给出不收敛反例"
           ],
-          "focus": "对应练习 不变分布为 (1/3, 2/3)，前两步为 (0.8, 0.2)、(0.66, 0.34)；矩阵行和、概率非负性（nonnegativity）与随机误差分别检查。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "focus": "对应练习 不变分布（invariant distribution）为 (1/3, 2/3)，前两步为 (0.8, 0.2)、(0.66, 0.34)；矩阵（matrix）行和、概率（probability）非负性（nonnegativity）与随机误差分别检查。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P05-C04-S01",
+              "chapter_id": "5.4",
+              "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/01-状态路径与概率分布的两种推进.ipynb",
+              "title": "状态路径与概率分布的两种推进",
+              "outcome": "能写出马尔可夫与时间齐次假设，按行向量传播分布，用指定均匀数抽取路径，并对照多路径频率的不确定性。",
+              "number": "5.4.1",
+              "visualization": "web/probability/index.html",
+              "questions": [
+                {
+                  "id": "p05-propagation",
+                  "slug": "p05-propagation",
+                  "title": "从细胞切换规则传播概率",
+                  "type": "python"
+                },
+                {
+                  "id": "p05-path",
+                  "slug": "p05-path",
+                  "title": "由指定随机数生成一条路径",
+                  "type": "python"
+                },
+                {
+                  "id": "p05-markov-assumption",
+                  "slug": "p05-markov-assumption",
+                  "title": "马尔可夫假设省略了什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-path-distribution",
+                  "slug": "p05-path-distribution",
+                  "title": "概率为 0.34 的状态怎样出现",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-stochastic-matrix",
+                  "slug": "p05-stochastic-matrix",
+                  "title": "如何检查一个转移矩阵",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-propagation"
+            },
+            {
+              "id": "P05-C04-S02",
+              "chapter_id": "5.4",
+              "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/02-不变分布与长期收敛的条件.ipynb",
+              "title": "不变分布与长期收敛的条件",
+              "outcome": "能求两态不变分布，区分存在、唯一与逐时刻收敛；用周期链和多吸收态解释不可约、非周期等条件。",
+              "number": "5.4.2",
+              "visualization": "web/probability/index.html",
+              "questions": [
+                {
+                  "id": "p05-stationary",
+                  "slug": "p05-stationary",
+                  "title": "解两态不变分布并保留退化情形",
+                  "type": "python"
+                },
+                {
+                  "id": "p05-periodic",
+                  "slug": "p05-periodic",
+                  "title": "有不变分布为何仍不收敛",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-ergodic-conditions",
+                  "slug": "p05-ergodic-conditions",
+                  "title": "哪组条件足以保证有限链收敛",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-absorbing",
+                  "slug": "p05-absorbing",
+                  "title": "两个吸收态保留多少初始信息",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-stationary"
+            },
+            {
+              "id": "P05-C04-S03",
+              "chapter_id": "5.4",
+              "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/03-随机游走中的漂移与扩散.ipynb",
+              "title": "随机游走中的漂移与扩散",
+              "outcome": "能推导独立二值步长的均值与方差，比较有偏与无偏游走，说明位置相关性、边界和连续极限的适用范围。",
+              "number": "5.4.3",
+              "visualization": "web/probability/index.html",
+              "questions": [
+                {
+                  "id": "p05-walk",
+                  "slug": "p05-walk",
+                  "title": "随机游走的漂移与散布",
+                  "type": "python"
+                },
+                {
+                  "id": "p05-walk-path",
+                  "slug": "p05-walk-path",
+                  "title": "均值为零的群体是否静止",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-walk-boundary",
+                  "slug": "p05-walk-boundary",
+                  "title": "加上反射边界还能照搬公式吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-walk-independence",
+                  "slug": "p05-walk-independence",
+                  "title": "相邻位置与增量的独立性",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/05-04-随机过程与马尔可夫模型/practice/?question=p05-walk"
+            }
+          ],
+          "visualization": "web/probability/index.html"
         },
         {
           "id": "5.5",
           "title": "熵、互信息与测量价值",
           "url": "/chapters/05-05-熵、互信息与测量价值/",
-          "goals": "从离散概率计算熵与互信息，说明单位、样本偏差及因果解释的边界。",
-          "prerequisites": "5.4；数学：条件概率、Bayes 公式、似然、后验及条件 Gaussian、信息熵、条件熵、互信息与有限样本估计。",
+          "goals": "从离散概率（probability）计算熵（entropy）与互信息（mutual information），说明单位、样本偏差及因果解释的边界。",
+          "prerequisites": "5.3—5.4 的联合/条件概率（conditional probability）与分布（distribution）、5.2 的期望（expectation），以及第 2 篇的对数。信息量、熵与互信息在本章引入。",
           "knowledge": [
             "信息量、熵与对数底",
-            "条件熵和互信息",
+            "条件熵（conditional entropy）和互信息",
             "分箱、有限样本和观测（observation）通道比较"
           ],
-          "focus": "对应练习 熵为 1 bit，互信息分别为 1、0 bit；处理零概率项，区分离散熵与连续变量分箱后的量。",
-          "available": false,
-          "lessons": [],
+          "focus": "对应练习 熵为 1 bit，互信息分别为 1、0 bit；处理零概率项，区分离散熵与连续变量分箱（binning）后的量。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P05-C05-S01",
+              "chapter_id": "5.5",
+              "path": "notebooks/05-随机性与信息/05-熵、互信息与测量价值/01-熵与互信息的离散定义.ipynb",
+              "title": "熵与互信息的离散定义",
+              "outcome": "能推导离散熵、条件熵与互信息，处理零概率和对数单位；用独立、复制、翻转通道检查信息含义及因果边界。",
+              "number": "5.5.1",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p05-information",
+                  "slug": "p05-information",
+                  "title": "联合计数包含多少信息",
+                  "type": "python"
+                },
+                {
+                  "id": "p05-entropy",
+                  "slug": "p05-entropy",
+                  "title": "公平二值状态的熵",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-conditional-entropy",
+                  "slug": "p05-conditional-entropy",
+                  "title": "互信息减少的是什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-channel-flip",
+                  "slug": "p05-channel-flip",
+                  "title": "总是翻转标签会失去信息吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-information-scope",
+                  "slug": "p05-information-scope",
+                  "title": "统计信息是否等于作用方向",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-information"
+            },
+            {
+              "id": "P05-C05-S02",
+              "chapter_id": "5.5",
+              "path": "notebooks/05-随机性与信息/05-熵、互信息与测量价值/02-有限样本分箱与信息偏差.ipynb",
+              "title": "有限样本分箱与信息偏差",
+              "outcome": "能按明确边界构造联合计数、比较嵌套分箱的离散信息量；用重复独立样本识别插件偏差，限定观测价值结论。",
+              "number": "5.5.2",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p05-bin-pairs",
+                  "slug": "p05-bin-pairs",
+                  "title": "按显式边界统计联合频数",
+                  "type": "python"
+                },
+                {
+                  "id": "p05-finite-bias",
+                  "slug": "p05-finite-bias",
+                  "title": "独立通道为何估出正互信息",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-coarsening",
+                  "slug": "p05-coarsening",
+                  "title": "同一张表合并箱会怎样",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-binning-units",
+                  "slug": "p05-binning-units",
+                  "title": "分箱熵属于哪个变量",
+                  "type": "choice"
+                },
+                {
+                  "id": "p05-comparison-budget",
+                  "slug": "p05-comparison-budget",
+                  "title": "怎样比较两个测量通道",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/05-05-熵、互信息与测量价值/practice/?question=p05-bin-pairs"
+            }
+          ],
           "visualization": null
         }
-      ]
+      ],
+      "assessment": {
+        "id": "5.summary",
+        "assessment": true,
+        "title": "噪声概率更新与信息的综合实验",
+        "url": "/parts/05-随机性与信息/综合练习/",
+        "goals": "围绕理想细胞观测（observation），综合检查重复、噪声位置、概率（probability）更新和信息解释。",
+        "prerequisites": "本篇五章。",
+        "focus": "分母与观察单位、条件独立（conditional independence）、分布（distribution）与路径、分箱（binning）与有限样本分别核对。",
+        "knowledge": [
+          "独立抽样 → 组间波动与解析矩",
+          "联合概率（joint probability） → 更新与状态（state）分布传播",
+          "经验联合表 → 信息量与解释范围"
+        ],
+        "lessons": [
+          {
+            "id": "P05-SUMMARY",
+            "chapter_id": "5.summary",
+            "path": "notebooks/05-随机性与信息/06-篇末综合/01-噪声概率更新与信息的综合实验.ipynb",
+            "title": "噪声概率更新与信息的综合实验",
+            "outcome": "能在统一细胞观测案例中组织重复、分开噪声贡献、更新概率与传播分布，并依据有限样本限制信息量结论。",
+            "number": "篇末综合",
+            "visualization": null,
+            "overview": {
+              "goals": "围绕理想细胞观测，综合检查重复、噪声位置、概率更新和信息解释。",
+              "prerequisites": "本篇五章。",
+              "focus": "分母与观察单位、条件独立、分布与路径、分箱与有限样本分别核对。",
+              "knowledge": [
+                "独立抽样 → 组间波动与解析矩",
+                "联合概率 → 更新与状态分布传播",
+                "经验联合表 → 信息量与解释范围"
+              ]
+            },
+            "questions": [
+              {
+                "id": "p05-cap-noise",
+                "slug": "p05-cap-noise",
+                "title": "噪声进入何处",
+                "type": "choice"
+              },
+              {
+                "id": "p05-cap-repeat",
+                "slug": "p05-cap-repeat",
+                "title": "重复实验的比较单位",
+                "type": "choice"
+              },
+              {
+                "id": "p05-cap-summary",
+                "slug": "p05-cap-summary",
+                "title": "固定样本的重复间波动",
+                "type": "python"
+              },
+              {
+                "id": "p05-cap-bayes",
+                "slug": "p05-cap-bayes",
+                "title": "由新证据更新概率",
+                "type": "python"
+              },
+              {
+                "id": "p05-cap-propagation",
+                "slug": "p05-cap-propagation",
+                "title": "概率分布的多步传播",
+                "type": "python"
+              },
+              {
+                "id": "p05-cap-variance",
+                "slug": "p05-cap-variance",
+                "title": "两种噪声的方差贡献",
+                "type": "python"
+              },
+              {
+                "id": "p05-cap-bins",
+                "slug": "p05-cap-bins",
+                "title": "更换分箱后的信息量",
+                "type": "python"
+              },
+              {
+                "id": "p05-cap-scope",
+                "slug": "p05-cap-scope",
+                "title": "观测价值与因果范围",
+                "type": "choice"
+              }
+            ],
+            "url": "/parts/05-随机性与信息/综合练习/practice/?question=p05-cap-noise"
+          }
+        ],
+        "available": true,
+        "visualization": null
+      }
     },
     {
       "id": "6",
@@ -2266,7 +2827,7 @@
           "title": "观测、采样与滤波",
           "url": "/chapters/06-01-观测、采样与滤波/",
           "goals": "区分模型（model）时间步长（time step）、采样间隔与滤波窗口，识别混叠和滤波延迟（delay）。",
-          "prerequisites": "5.2、2.4；数学：递推、有限求和和固定点（fixed point）代数、数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、期望、方差、协方差、联合分布、Gaussian 分布。",
+          "prerequisites": "5.2、2.4；数学：递推、有限求和和固定点（fixed point）代数、数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布。",
           "knowledge": [
             "状态（state）到观测（observation）及采样",
             "用正弦例子观察混叠",
@@ -2314,7 +2875,7 @@
           "title": "最小二乘与参数估计",
           "url": "/chapters/06-04-最小二乘与参数估计/",
           "goals": "定义残差（residual）和损失，说明最小二乘与 Gaussian 误差的关系，并为区间估计写明假设。",
-          "prerequisites": "5.3、3.4、6.1；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、期望、方差、协方差、联合分布、Gaussian 分布、条件概率、Bayes 公式、似然、后验及条件 Gaussian、最小二乘、Gaussian 似然、残差、估计区间及重采样入门。",
+          "prerequisites": "5.3、3.4、6.1；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验（posterior）及条件 Gaussian、最小二乘、Gaussian 似然、残差、估计区间及重采样入门。",
           "knowledge": [
             "线性回归、投影和秩",
             "理想清除参数的拟合与残差",
@@ -2330,7 +2891,7 @@
           "title": "动态辨识、实验设计与验证",
           "url": "/chapters/06-05-动态辨识、实验设计与验证/",
           "goals": "构建简单 ARX 模型（model），区分拟合、一步预测和自由运行，比较激励、结构与可辨识范围。",
-          "prerequisites": "6.3、6.4；数学：Laplace/Z 变换、收敛域的必要直觉、极点零点、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门。",
+          "prerequisites": "6.3、6.4；数学：Laplace/Z 变换、收敛域的必要直觉、极点零点、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样入门。",
           "knowledge": [
             "回归量、延迟（delay）与动态模型",
             "输入激励、结构选择和参数混淆",
@@ -2401,7 +2962,7 @@
           "title": "能观性与状态观测器",
           "url": "/chapters/07-04-能观性与状态观测器/",
           "goals": "判断已知模型（model）下哪些状态（state）可以从输出（output）恢复，推导观测（observation）器误差动态并分析收敛条件。",
-          "prerequisites": "7.3、6.5；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门。",
+          "prerequisites": "7.3、6.5；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样入门。",
           "knowledge": [
             "状态估计与参数（parameter）辨识的任务边界",
             "能观矩阵及传感器位置",
@@ -2416,8 +2977,8 @@
           "id": "7.5",
           "title": "Kalman 滤波与估计反馈",
           "url": "/chapters/07-05-Kalman 滤波与估计反馈/",
-          "goals": "由线性 Gaussian 条件更新推导均值和协方差递推，区别过程噪声与测量噪声的作用。",
-          "prerequisites": "7.4、5.3；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、期望、方差、协方差、联合分布、Gaussian 分布、条件概率、Bayes 公式、似然、后验及条件 Gaussian。",
+          "goals": "由线性 Gaussian 条件更新推导均值和协方差（covariance）递推，区别过程噪声（process noise）与测量噪声（measurement noise）的作用。",
+          "prerequisites": "7.4、5.3；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、期望（expectation）、方差（variance）、协方差、联合分布（distribution）、Gaussian 分布、条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验（posterior）及条件 Gaussian。",
           "knowledge": [
             "动态预测及协方差传播",
             "观测（observation）更新与 Kalman 增益（gain）",
@@ -2440,7 +3001,7 @@
           "title": "从目标函数进入优化",
           "url": "/chapters/08-01-从目标函数进入优化/",
           "goals": "定义目标、约束和决策变量，理解梯度（gradient）、Hessian、二次型、凸性与正则化，说明最优性结论的条件。",
-          "prerequisites": "3.4、6.4、7.3；数学：偏导（partial derivative）、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、目标函数、梯度、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化。",
+          "prerequisites": "3.4、6.4、7.3；数学：偏导（partial derivative）、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样入门、目标函数、梯度、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化。",
           "knowledge": [
             "跟踪误差与输入（input）代价的尺度",
             "梯度、曲率与凸优化直觉",
@@ -2488,7 +3049,7 @@
           "title": "估计、控制与模型误差的综合比较",
           "url": "/chapters/08-04-估计、控制与模型误差的综合比较/",
           "goals": "构造公平基线，区分调参条件和独立评估条件，综合解释性能、约束与计算代价。",
-          "prerequisites": "8.3、6.5；数学：期望、方差、协方差、联合分布、Gaussian 分布、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化。",
+          "prerequisites": "8.3、6.5；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化。",
           "knowledge": [
             "固定任务、信息和执行接口",
             "验证集调参、独立场景评估",
@@ -2510,8 +3071,8 @@
           "id": "9.1",
           "title": "从连接结构进入网络科学",
           "url": "/chapters/09-01-从连接结构进入网络科学/",
-          "goals": "构造并解释邻接矩阵（matrix）、度、路径、连通分量与社区，辨认随机网络、小世界和度分布的条件。",
-          "prerequisites": "3.2、5.4；数学：向量（vector）、矩阵、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、事件、随机变量、离散/连续分布、抽样和 Monte Carlo、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
+          "goals": "构造并解释邻接矩阵（matrix）、度、路径、连通分量与社区，辨认随机网络、小世界和度分布（distribution）的条件。",
+          "prerequisites": "3.2、5.4；数学：向量（vector）、矩阵、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、事件（event）、随机变量（random variable）、离散/连续分布、抽样和 Monte Carlo、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
           "knowledge": [
             "节点、边与有向/无向、加权/无权语义",
             "度、连通性、社区和图拉普拉斯的基础定义",
@@ -2543,7 +3104,7 @@
           "title": "接触结构与传播",
           "url": "/chapters/09-03-接触结构与传播/",
           "goals": "定义个体状态（state）和接触传播规则，比较平均混合与网络模型（model），说明初始位置及有限规模影响。",
-          "prerequisites": "9.2、5.4；数学：随机过程、有限马尔可夫链、转移矩阵（matrix）与长期分布、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
+          "prerequisites": "9.2、5.4；数学：随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布（distribution）、图、邻接矩阵（matrix）、图拉普拉斯、图谱与连通性。",
           "knowledge": [
             "状态转移和接触定义",
             "平均混合与固定网络",
@@ -2582,7 +3143,7 @@
           "title": "多主体模型与元胞自动机",
           "url": "/chapters/10-01-多主体模型与元胞自动机/",
           "goals": "把局部规则写成可复现程序，区分同步、随机顺序和异步更新。",
-          "prerequisites": "9.1、5.4；数学：递推、有限求和和固定点（fixed point）代数、事件、随机变量、离散/连续分布、抽样和 Monte Carlo、随机过程、有限马尔可夫链、转移矩阵（matrix）与长期分布。",
+          "prerequisites": "9.1、5.4；数学：递推、有限求和和固定点（fixed point）代数、事件（event）、随机变量（random variable）、离散/连续分布（distribution）、抽样和 Monte Carlo、随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布。",
           "knowledge": [
             "个体状态（state）、邻域和转移",
             "双缓冲同步更新与原地更新",
@@ -2614,13 +3175,13 @@
           "title": "选择、变异与适应",
           "url": "/chapters/10-03-选择、变异与适应/",
           "goals": "通过机制消融区分选择、随机漂变与变异，避免把适应叙述成预先设定的目标。",
-          "prerequisites": "10.2、5.4；数学：随机过程、有限马尔可夫链、转移矩阵（matrix）与长期分布、收益矩阵、频率依赖与复制动态。",
+          "prerequisites": "10.2、5.4；数学：随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布（distribution）、收益矩阵（matrix）、频率依赖与复制动态。",
           "knowledge": [
             "有限种群抽样与漂变",
             "加入选择及双向变异",
             "规模、固定/灭绝事件及确定性近似"
           ],
-          "focus": "对应练习 方差为 p(1 − p)/N；重复次数、事件定义和观察窗口明确；零变异时的吸收态不能直接类推到有变异模型（model）。",
+          "focus": "对应练习 方差（variance）为 p(1 − p)/N；重复次数、事件（event）定义和观察窗口明确；零变异时的吸收态（absorbing state）不能直接类推到有变异模型（model）。",
           "available": false,
           "lessons": [],
           "visualization": null
@@ -2646,7 +3207,7 @@
           "title": "从局部规则到宏观描述",
           "url": "/chapters/10-05-从局部规则到宏观描述/",
           "goals": "定义粗尺度变量，说明平均场忽略的相关性，比较哪些宏观量得到保留。",
-          "prerequisites": "10.4、5.5；数学：信息熵、条件熵、互信息与有限样本估计、收益矩阵（matrix）、频率依赖与复制动态、空间偏导（partial derivative）、PDE、有限差分（finite difference）、边界条件与网格稳定性。",
+          "prerequisites": "10.4、5.5；数学：信息熵（entropy）、条件熵（conditional entropy）、互信息（mutual information）与有限样本估计、收益矩阵（matrix）、频率依赖与复制动态、空间偏导（partial derivative）、PDE、有限差分（finite difference）、边界条件与网格稳定性。",
           "knowledge": [
             "从个体轨迹（trajectory）聚合频率、密度与相关量",
             "平均场闭合的假设",
@@ -2669,7 +3230,7 @@
           "title": "相变、临界性与有限规模",
           "url": "/chapters/11-01-相变、临界性与有限规模/",
           "goals": "选择可测量的序参量，对有限系统的变化给出规模与统计证据，不把一次突变当作相变证明。",
-          "prerequisites": "10.5、4.3、6.4；数学：期望、方差、协方差、联合分布、Gaussian 分布、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "prerequisites": "10.5、4.3、6.4；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、序参量、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
             "回顾分岔（bifurcation）与群体行为",
             "序参量、波动和尺度关系的含义",
@@ -2700,8 +3261,8 @@
           "id": "11.3",
           "title": "扰动、恢复与早期预警",
           "url": "/chapters/11-03-扰动、恢复与早期预警/",
-          "goals": "测量局部恢复率，区分恢复速度与吸引域（basin of attraction）大小，并评价方差、自相关等指标的条件和失败。",
-          "prerequisites": "11.2、4.5、6.5；数学：Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数（derivative）和局部适用区域、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "goals": "测量局部恢复率，区分恢复速度与吸引域（basin of attraction）大小，并评价方差（variance）、自相关等指标的条件和失败。",
+          "prerequisites": "11.2、4.5、6.5；数学：Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数（derivative）和局部适用区域、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样入门、序参量、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
             "小扰动响应、线性化（linearization）与恢复时间",
             "有限扰动和吸引域",
@@ -2717,7 +3278,7 @@
           "title": "多尺度、粗粒化与不确定性",
           "url": "/chapters/11-04-多尺度、粗粒化与不确定性/",
           "goals": "区分参数（parameter）、随机、观测（observation）和结构误差，比较个体、网络与平均模型（model）的结论是否一致。",
-          "prerequisites": "11.3、10.5；数学：期望、方差、协方差、联合分布、Gaussian 分布、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "prerequisites": "11.3、10.5；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样入门、序参量、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
             "选择时间、空间与个体层级",
             "参数敏感性与观测聚合",
@@ -2756,13 +3317,13 @@
           "title": "随机与分布式控制",
           "url": "/chapters/12-02-随机与分布式控制/",
           "goals": "解释 Brownian 增量和 Itô SDE 的基本含义，正确离散噪声，并区分随机扰动与局部通信的影响。",
-          "prerequisites": "12.1、5.4、9.4；数学：随机过程、有限马尔可夫链、转移矩阵（matrix）与长期分布、有限时域动态规划、Bellman 递推与离散 Riccati 递推、图、邻接矩阵、图拉普拉斯、图谱与连通性、Brownian 增量、Itô SDE、随机积分直觉与 Euler–Maruyama。",
+          "prerequisites": "12.1、5.4、9.4；数学：随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布（distribution）、有限时域动态规划、Bellman 递推与离散 Riccati 递推、图、邻接矩阵（matrix）、图拉普拉斯、图谱与连通性、Brownian 增量、Itô SDE、随机积分直觉与 Euler–Maruyama。",
           "knowledge": [
             "Brownian 增量、随机积分直觉",
             "Euler–Maruyama、强弱误差的入门区分",
             "网络局部反馈（feedback）与集中信息基线，先分别验证再组合"
           ],
-          "focus": "对应练习 均值为 X₀ + aT、方差为 σ²T；独立路径之间比较分布，同路径细化才用于路径误差；不把一种误差指标当作另一种收敛证据。",
+          "focus": "对应练习 均值为 X₀ + aT、方差（variance）为 σ²T；独立路径之间比较分布，同路径细化才用于路径误差；不把一种误差指标当作另一种收敛证据。",
           "available": false,
           "lessons": [],
           "visualization": null
@@ -2772,7 +3333,7 @@
           "title": "Koopman 与稀疏动力学辨识",
           "url": "/chapters/12-03-Koopman 与稀疏动力学辨识/",
           "goals": "解释函数观测（observation）与有限字典投影（projection），实现小型 EDMD 和稀疏方程辨识，评估字典与噪声的作用。",
-          "prerequisites": "12.2、6.5；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化、函数观测、线性算子、有限字典与投影。",
+          "prerequisites": "12.2、6.5；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化、函数观测、线性算子、有限字典与投影。",
           "knowledge": [
             "状态（state）、观测函数与算子，不默认泛函分析",
             "有限字典 EDMD 及数据矩阵",
@@ -2804,7 +3365,7 @@
           "title": "强化学习与模型决策",
           "url": "/chapters/12-05-强化学习与模型决策/",
           "goals": "定义状态（state）、动作、转移、回报和终止，连接随机 Bellman 方程、策略评估与改进，并设计公平决策比较。",
-          "prerequisites": "12.4、8.4；数学：条件概率、Bayes 公式、似然、后验及条件 Gaussian、随机过程、有限马尔可夫链、转移矩阵（matrix）与长期分布、有限时域动态规划、Bellman 递推与离散 Riccati 递推、MDP、条件期望形式的 Bellman 方程、策略评估与改进。",
+          "prerequisites": "12.4、8.4；数学：条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验（posterior）及条件 Gaussian、随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布（distribution）、有限时域动态规划、Bellman 递推与离散 Riccati 递推、MDP、条件期望（expectation）形式的 Bellman 方程、策略评估与改进。",
           "knowledge": [
             "MDP 与回报及折扣",
             "小型有限状态任务中的策略评估与简单表格学习",
@@ -2820,13 +3381,13 @@
           "title": "完整研究复现与综合项目",
           "url": "/chapters/12-06-完整研究复现与综合项目/",
           "goals": "把论文主张缩成一个可验证问题，形成从证据来源到实验、比较、失败与限制的完整记录。",
-          "prerequisites": "12.5；数学：最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "prerequisites": "12.5；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化、序参量、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
             "选择原始论文、具体版本与待复现结论",
             "建立最小基线、固定数据与评估协议",
             "执行复现、消融及失败分析，整理运行入口"
           ],
-          "focus": "未复现结果如实报告并检查实现、数据、指标和预算差异；不得为了与论文一致而只保留有利随机种子。",
+          "focus": "未复现结果如实报告并检查实现、数据、指标和预算差异；不得为了与论文一致而只保留有利随机种子（random seed）。",
           "available": false,
           "lessons": [],
           "visualization": null

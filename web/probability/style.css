@@ -1,0 +1,5 @@
+@import url('../shared/exploration.css');
+@import url('../multivariable/style.css');
+.explore-grid{grid-template-columns:minmax(280px,.46fr) minmax(700px,1.54fr)}
+#chart{width:100%;height:auto;min-height:280px}.chart-heading{flex-wrap:wrap;gap:8px}.model-panel .formula{font-size:1rem;overflow-wrap:anywhere}.chart-panel .readouts{min-height:70px}#value{font-variant-numeric:tabular-nums}
+@container content (max-width:1200px){.explore-grid{grid-template-columns:1fr}}

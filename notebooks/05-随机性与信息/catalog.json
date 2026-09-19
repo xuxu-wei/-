@@ -1,0 +1,129 @@
+[
+  {
+    "id": "P05-C01-S01",
+    "chapter_id": "5.1",
+    "path": "notebooks/05-随机性与信息/01-从重复实验建立概率/01-事件分布与一次实现.ipynb",
+    "title": "事件分布与一次实现",
+    "outcome": "能区分事件、随机变量、分布和一次实现；用总概率与曲线下面积检查离散概率和连续密度，解释测量舍入。",
+    "number": "5.1.1",
+    "visualization": "web/probability/index.html"
+  },
+  {
+    "id": "P05-C01-S02",
+    "chapter_id": "5.1",
+    "path": "notebooks/05-随机性与信息/01-从重复实验建立概率/02-把抽样变成可比较的重复实验.ipynb",
+    "title": "把抽样变成可比较的重复实验",
+    "outcome": "能区分一组样本、重复实验和随机种子；比较样本量改变后的频率波动，区分组平均与合并频率。",
+    "number": "5.1.2",
+    "visualization": "web/probability/index.html"
+  },
+  {
+    "id": "P05-C02-S01",
+    "chapter_id": "5.2",
+    "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/01-用期望与方差描述随机量.ipynb",
+    "title": "用期望与方差描述随机量",
+    "outcome": "能从离散分布推导期望与方差，区分描述性方差与总体估计；解释高斯误差、标准差和均值波动的单位。",
+    "number": "5.2.1",
+    "visualization": "web/probability/index.html"
+  },
+  {
+    "id": "P05-C02-S02",
+    "chapter_id": "5.2",
+    "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/02-联合变化与协方差.ipynb",
+    "title": "联合变化与协方差",
+    "outcome": "能从联合分布得到边缘分布，展开和的方差并计算协方差；用反例区分不相关与独立，识别共享误差。",
+    "number": "5.2.2",
+    "visualization": "web/probability/index.html"
+  },
+  {
+    "id": "P05-C02-S03",
+    "chapter_id": "5.2",
+    "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/03-过程测量与个体差异.ipynb",
+    "title": "过程测量与个体差异",
+    "outcome": "能辨认三类变异进入模型的位置；推导独立扰动下的状态与观测方差，限定方差极限和经验分位带的含义。",
+    "number": "5.2.3",
+    "visualization": "web/probability/index.html"
+  },
+  {
+    "id": "P05-C03-S01",
+    "chapter_id": "5.3",
+    "path": "notebooks/05-随机性与信息/03-条件概率与贝叶斯更新/01-由条件概率推导贝叶斯更新.ipynb",
+    "title": "由条件概率推导贝叶斯更新",
+    "outcome": "能从联合表计算条件概率，区分先验、似然、证据概率与后验；处理零证据和反复使用同一份数据的条件独立边界。",
+    "number": "5.3.1",
+    "visualization": "web/probability/index.html"
+  },
+  {
+    "id": "P05-C03-S02",
+    "chapter_id": "5.3",
+    "path": "notebooks/05-随机性与信息/03-条件概率与贝叶斯更新/02-固定未知量的高斯更新.ipynb",
+    "title": "固定未知量的高斯更新",
+    "outcome": "能通过平方配方推导高斯均值与方差更新，解释精度相加、先验敏感性和独立性；区分知识更新与状态演化。",
+    "number": "5.3.2",
+    "visualization": "web/probability/index.html"
+  },
+  {
+    "id": "P05-C04-S01",
+    "chapter_id": "5.4",
+    "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/01-状态路径与概率分布的两种推进.ipynb",
+    "title": "状态路径与概率分布的两种推进",
+    "outcome": "能写出马尔可夫与时间齐次假设，按行向量传播分布，用指定均匀数抽取路径，并对照多路径频率的不确定性。",
+    "number": "5.4.1",
+    "visualization": "web/probability/index.html"
+  },
+  {
+    "id": "P05-C04-S02",
+    "chapter_id": "5.4",
+    "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/02-不变分布与长期收敛的条件.ipynb",
+    "title": "不变分布与长期收敛的条件",
+    "outcome": "能求两态不变分布，区分存在、唯一与逐时刻收敛；用周期链和多吸收态解释不可约、非周期等条件。",
+    "number": "5.4.2",
+    "visualization": "web/probability/index.html"
+  },
+  {
+    "id": "P05-C04-S03",
+    "chapter_id": "5.4",
+    "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/03-随机游走中的漂移与扩散.ipynb",
+    "title": "随机游走中的漂移与扩散",
+    "outcome": "能推导独立二值步长的均值与方差，比较有偏与无偏游走，说明位置相关性、边界和连续极限的适用范围。",
+    "number": "5.4.3",
+    "visualization": "web/probability/index.html"
+  },
+  {
+    "id": "P05-C05-S01",
+    "chapter_id": "5.5",
+    "path": "notebooks/05-随机性与信息/05-熵、互信息与测量价值/01-熵与互信息的离散定义.ipynb",
+    "title": "熵与互信息的离散定义",
+    "outcome": "能推导离散熵、条件熵与互信息，处理零概率和对数单位；用独立、复制、翻转通道检查信息含义及因果边界。",
+    "number": "5.5.1",
+    "visualization": null
+  },
+  {
+    "id": "P05-C05-S02",
+    "chapter_id": "5.5",
+    "path": "notebooks/05-随机性与信息/05-熵、互信息与测量价值/02-有限样本分箱与信息偏差.ipynb",
+    "title": "有限样本分箱与信息偏差",
+    "outcome": "能按明确边界构造联合计数、比较嵌套分箱的离散信息量；用重复独立样本识别插件偏差，限定观测价值结论。",
+    "number": "5.5.2",
+    "visualization": null
+  },
+  {
+    "id": "P05-SUMMARY",
+    "chapter_id": "5.summary",
+    "path": "notebooks/05-随机性与信息/06-篇末综合/01-噪声概率更新与信息的综合实验.ipynb",
+    "title": "噪声概率更新与信息的综合实验",
+    "outcome": "能在统一细胞观测案例中组织重复、分开噪声贡献、更新概率与传播分布，并依据有限样本限制信息量结论。",
+    "number": "篇末综合",
+    "visualization": null,
+    "overview": {
+      "goals": "围绕理想细胞观测，综合检查重复、噪声位置、概率更新和信息解释。",
+      "prerequisites": "本篇五章。",
+      "focus": "分母与观察单位、条件独立、分布与路径、分箱与有限样本分别核对。",
+      "knowledge": [
+        "独立抽样 → 组间波动与解析矩",
+        "联合概率 → 更新与状态分布传播",
+        "经验联合表 → 信息量与解释范围"
+      ]
+    }
+  }
+]
