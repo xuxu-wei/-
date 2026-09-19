@@ -441,7 +441,7 @@
     "chapter": "11.2",
     "lesson_id": "P11-C02-S01",
     "title": "由交换边构造拉普拉斯",
-    "statement": "每项 [i,j,rate] 是无向边两端的对称交换率。构造 L，使等容积模型（model）的变化率为 −Lx；边贡献 L_ii+=rate、L_jj+=rate、L_ij−=rate、L_ji−=rate。",
+    "statement": "每项 [i,j,rate] 是归一化的对称交换率 k_ij（单位1/T）。构造 L_k，使等容积总量模型（model）的变化率为 −L_k m；边贡献 L_ii+=rate、L_jj+=rate、L_ij−=rate、L_ji−=rate。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -461,7 +461,7 @@
       {
         "name": "weighted_edges",
         "type": "list[list[float]]",
-        "description": "每条无向边的两端编号与非负交换率。",
+        "description": "每条无向边的两端编号与非负归一化交换率 k_ij。",
         "unit": "1/T"
       }
     ],
@@ -658,7 +658,7 @@
     "chapter": "11.2",
     "lesson_id": "P11-C02-S02",
     "title": "按容积交换物质总量",
-    "statement": "amount[i] 是第 i 室的所追踪物质总量（tracked amount），volume[i]>0；浓度（concentration） c_i=amount_i/volume_i。边流率（flow rate） rate·(c_i−c_j)，用题给固定步长显式 Euler 更新指定步数，返回包含初态的每步总量列表。",
+    "statement": "amount[i] 是第 i 室的所追踪物质总量（tracked amount），volume[i]>0；浓度（concentration） c_i=amount_i/volume_i。物理边系数 g_ij=rate，单位 V/T；边总量流率（flow rate） g_ij·(c_i−c_j)，用题给固定步长显式 Euler 更新指定步数，返回包含初态的每步总量列表。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -678,7 +678,7 @@
       {
         "name": "weighted_edges",
         "type": "list[list[float]]",
-        "description": "无向对称交换边 [i,j,rate]。",
+        "description": "无向对称物理交换边 [i,j,g_ij]。",
         "unit": "容积/T"
       },
       {
@@ -714,7 +714,7 @@
         "unit": "U"
       }
     ],
-    "contract": "每步同时用旧总量计算浓度，m_next=m−dt·L(m/V)；输入（input）保证 dt≤min_i(volume_i/∑_j rate_ij)，故轨迹非负。",
+    "contract": "每步同时用旧总量计算浓度，m_next=m−dt·L_g(m/V)。令 d_i=∑_j rate_ij；对 d_i>0 的节点，输入（input）保证 dt≤min_{i:d_i>0}(V_i/d_i)，故轨迹非负。孤立节点 d_i=0 不限制步长；全图无边时没有交换步长上界。",
     "constraints": [
       "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
     ],
@@ -976,7 +976,7 @@
         "unit": "步"
       }
     ],
-    "contract": "只用旧状态判定全部节点；恰好等于阈值不触发事件（event）。恢复的人不能在同一步用新状态再传播。随机表长度相同。",
+    "contract": "本步所有感染和恢复事件（event）都只读取旧状态。新感染者不能在同一步继续传播；本步将恢复的旧感染者仍按旧 I 状态参与本步感染判定。全部事件判定完成后同时写入新状态；恰好等于阈值不触发，随机表长度相同。",
     "constraints": [
       "只计算题定有限图和数值模型（model）；返回普通 Python 列表、数值或元组。"
     ],
@@ -1221,7 +1221,7 @@
     "chapter": "11.3",
     "lesson_id": "P11-C03-S02",
     "title": "分开网络与传播重复",
-    "statement": "replicates[g][r] 是第 g 张网络上第 r 次传播的最终感染人数。每张图先求均值；网络内方差（variance）为所有观测（observation）减去本图均值后的平方平均，网络间方差为各图均值围绕总均值的平方平均。返回各图均值、两种总体方差与总均值。",
+    "statement": "replicates[g][r] 是第 g 张网络上第 r 次传播的最终感染人数。每张图先求均值；网络内方差（variance）为所有观测（observation）减去本图均值后的平方平均，图均值间描述性方差为各图均值围绕总均值的平方平均，有限传播重复造成的均值抽样误差仍包含在内。返回各图均值、两种总体方差与总均值。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -1311,7 +1311,7 @@
           4.0,
           4.0
         ],
-        "explanation": "首例图均值为2和6，图内方差1，图间方差4，总均值4。"
+        "explanation": "首例图均值为2和6，图内方差1，图均值间描述性方差4，总均值4。"
       }
     ]
   },
@@ -1501,7 +1501,7 @@
           ]
         },
         "expected": 1.0,
-        "explanation": "两组反相各两个振子时复向量正负抵消，R 约为0；这不表示组内没有同步。"
+        "explanation": "三个相位完全相同，三个单位复向量方向一致，因此平均向量模长（modulus）为1。作为对照，两组等人数反相时向量可以相互抵消，使 R≈0。"
       }
     ]
   },
@@ -2404,7 +2404,7 @@
     "chapter": "11.summary",
     "lesson_id": "P11-SUMMARY",
     "title": "改变连接后的扩散尺度",
-    "statement": "对等容积无向加权图，返回拉普拉斯升序特征值（eigenvalue）和最小正特征值；若不连通，则零值不止一个，返回最小正值仍仅描述各连通分量（connected component）内部最慢的可衰减模态（mode）。",
+    "statement": "对等容积无向加权图，返回给定时刻的精确扩散状态（state）和拉普拉斯升序特征值（eigenvalue）。由完整谱判断零模态（mode）个数；若存在正特征值，其最小值只描述有交换的连通分量（connected component）中最慢的可衰减模态。全无边时没有最小正特征值，也无需额外返回此项。",
     "type": "python",
     "learning_targets": [
       "T2"

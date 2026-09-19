@@ -1297,7 +1297,7 @@
     "chapter": "13.4",
     "lesson_id": "P13-C04-S01",
     "title": "计算粗尺度与局部相关",
-    "statement": "一维周期二（period-two cycle）值环在下一步按左右旧邻居异或同步更新（synchronous update）。返回当前密度 p、左右邻居两点同为1的频率 c2，以及由二者精确得到的下一步密度。",
+    "statement": "采用周期边界（periodic boundary）的一维二值环在下一步按左右旧邻居异或同步更新（synchronous update）。返回当前密度 p、左右邻居两点同为1的频率 c2，以及由二者精确得到的下一步密度。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -1312,7 +1312,7 @@
       {
         "name": "state",
         "type": "list[int]",
-        "description": "至少4格的周期二值状态（state）。",
+        "description": "至少4格、采用周期边界的二值状态（state）。",
         "unit": "类别"
       }
     ],

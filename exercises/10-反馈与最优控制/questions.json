@@ -690,7 +690,7 @@
     "chapter": "10.2",
     "lesson_id": "P10-C02-S02",
     "title": "计算回路频率响应",
-    "statement": "开环 L(s)=K e^(−sd)/[(s+1)(τs+1)]。在题给正频率计算幅值及主值相角（度，范围(−180,180]；恰在分支端点按 atan2 结果）。",
+    "statement": "开环 L(s)=K e^(−sd)/[(s+1)(τs+1)]。在题给非负角频率计算幅值及主值相角（度，范围(−180,180]；恰在分支端点按 atan2 结果）。",
     "type": "python",
     "learning_targets": [
       "T1"
@@ -742,7 +742,7 @@
     ],
     "contract": "直接以复数（complex number） jω 代入，并乘 exp(−jωd)。不要把主值相角当成自动展开的连续相位（phase）。",
     "constraints": [
-      "输入（input）均为有限数；只需实现题定模型（model），不外推到真实病人或设备。"
+      "输入（input）均为有限实数，且 gain≥0、tau>0、omega≥0、delay≥0；只需实现题定模型（model），不外推到真实病人或设备。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -825,7 +825,7 @@
     "chapter": "10.2",
     "lesson_id": "P10-C02-S02",
     "title": "裕度能说明什么",
-    "statement": "给定线性开环模型（model）的 Bode 图和正相位（phase）裕度。哪项判断最谨慎？",
+    "statement": "给定线性开环模型（model）的 Bode 图和正相位裕度（phase margin）。哪项判断最谨慎？",
     "type": "choice",
     "learning_targets": [
       "T1"
@@ -839,7 +839,7 @@
     "options": [
       {
         "id": "A",
-        "text": "这在所用模型和交叉频率条件下提供局部线性稳定裕度信息，还需检查噪声、饱和与失配。"
+        "text": "这提供所声明线性回路及交叉频率条件下的频域稳定裕度与鲁棒性信息，还需检查噪声、饱和与失配。"
       },
       {
         "id": "B",
@@ -851,7 +851,7 @@
       },
       {
         "id": "D",
-        "text": "幅值和相位都不需注明单位或频率。"
+        "text": "幅值和相位（phase）都不需注明单位或频率。"
       }
     ],
     "constraints": []

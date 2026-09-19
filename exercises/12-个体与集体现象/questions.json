@@ -474,7 +474,7 @@
     "chapter": "12.2",
     "lesson_id": "P12-C02-S01",
     "title": "由收益计算复制动态",
-    "statement": "类型0频率 p，类型1频率1−p；matrix[row][column] 是行类型与列类型相遇的收益。分别计算 f0、f1、平均收益和连续时间 dp/dt=p(f0−平均收益)。收益可为负数，仍只是模型（model）收益。",
+    "statement": "类型0频率 p，类型1频率1−p；matrix[row][column] 是行类型与列类型相遇的收益。分别计算 f0、f1、平均收益和连续时间 dp/dt=p(f0−平均收益)。本题把收益数值解释为相对适合度率（fitness rate），单位1/T；它可为负数，但不是繁殖概率（probability）或任意效用分数。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -489,7 +489,7 @@
         "name": "matrix",
         "type": "list[list[float]]",
         "description": "2×2 行对列收益。",
-        "unit": "收益单位"
+        "unit": "1/T"
       },
       {
         "name": "p",
@@ -503,19 +503,19 @@
         "name": "f0",
         "type": "float",
         "description": "类型0平均收益。",
-        "unit": "收益单位"
+        "unit": "1/T"
       },
       {
         "name": "f1",
         "type": "float",
         "description": "类型1平均收益。",
-        "unit": "收益单位"
+        "unit": "1/T"
       },
       {
         "name": "mean",
         "type": "float",
         "description": "种群平均收益。",
-        "unit": "收益单位"
+        "unit": "1/T"
       },
       {
         "name": "dpdt",
@@ -696,7 +696,7 @@
     "chapter": "12.2",
     "lesson_id": "P12-C02-S02",
     "title": "计算局部相遇收益",
-    "statement": "一维策略排列中，每个个体与现存左右邻居各相遇一次，返回该个体收益的邻居平均。periodic 首尾相连；fixed 端点只有一位邻居。matrix 行为本体策略，列为邻居策略。",
+    "statement": "一维策略排列中，每个个体与现存左右邻居各相遇一次，返回该个体收益的邻居平均。periodic 首尾相连；fixed 端点只有一位邻居。matrix 行为本体策略，列为邻居策略。本题沿用适合度率（fitness rate）的单位1/T，只比较相遇结果，不据此直接决定后代状态（state）。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -717,7 +717,7 @@
         "name": "matrix",
         "type": "list[list[float]]",
         "description": "2×2 行对列收益。",
-        "unit": "收益单位"
+        "unit": "1/T"
       },
       {
         "name": "boundary",
@@ -731,7 +731,7 @@
         "name": "payoffs",
         "type": "list[float]",
         "description": "各位置局部平均收益。",
-        "unit": "收益单位"
+        "unit": "1/T"
       }
     ],
     "contract": "先找到真实邻居，再逐项取 M[state[i]][state[j]] 并除以本节点邻居数；不在此题实施选择更新。",
@@ -1339,7 +1339,7 @@
     "chapter": "12.4",
     "lesson_id": "P12-C04-S01",
     "title": "一维网格上的纯扩散",
-    "statement": "无反应一维等距网格，使用显式更新 x_i^+=x_i+D·dt/dx²·(x_left−2x_i+x_right)。periodic 两端相连；noflux 时越界邻居取该端点本身。返回含初态的所有网格行。",
+    "statement": "无反应一维等距网格，使用显式更新 x_i^+=x_i+D·dt/dx²·(x_left−2x_i+x_right)。periodic 两端相连；noflux 使用单元中心守恒离散，端点没有跨界通量；代码等价于越界邻居取端点自身。返回含初态的所有网格行。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -1465,7 +1465,7 @@
     "chapter": "12.4",
     "lesson_id": "P12-C04-S01",
     "title": "显式步长条件",
-    "statement": "本节一维纯扩散、均匀 dx、显式中心差分（central difference），令 α=D·dt/dx²。哪个条件保证系数非负并给出本格式的稳定范围？",
+    "statement": "本节一维纯扩散、均匀 dx、内点中心差分（central difference）、端点守恒无通量处理的显式格式，令 α=D·dt/dx²。哪个条件保证系数非负并给出本格式的稳定范围？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1505,7 +1505,7 @@
     "chapter": "12.4",
     "lesson_id": "P12-C04-S01",
     "title": "无通量端点",
-    "statement": "左端 noflux 条件在本节离散规则下如何处理越界左邻格？",
+    "statement": "左端 noflux 条件在本节单元中心守恒离散规则下如何处理越界左邻格？",
     "type": "choice",
     "learning_targets": [
       "T3"
@@ -1585,7 +1585,7 @@
     "chapter": "12.4",
     "lesson_id": "P12-C04-S02",
     "title": "双组分反应与扩散一步",
-    "statement": "Schnakenberg 教学模型（model）：u 反应项 a−u+u²v，v 反应项 b−u²v；两组分另按 D·离散二阶差分扩散。采用同步显式一步，边界 periodic 或 noflux。返回新 u 和新 v。",
+    "statement": "本题使用无量纲化（nondimensionalization）的 Schnakenberg 模型（model）：u、v、a、b 是按参考尺度表示的纯数；反应项 a−u+u²v、b−u²v 乘固定的 [γ]=1/T，在所选时间数值单位中 γ 取1。两组分另按 D·离散二阶差分扩散；同步显式一步，边界 periodic 或 noflux，返回新 u 和新 v。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -1601,25 +1601,25 @@
         "name": "u",
         "type": "list[float]",
         "description": "第一组分当前网格，至少3格。",
-        "unit": "浓度"
+        "unit": "1"
       },
       {
         "name": "v",
         "type": "list[float]",
         "description": "第二组分当前网格，同长度。",
-        "unit": "浓度"
+        "unit": "1"
       },
       {
         "name": "a",
         "type": "float",
         "description": "第一反应输入（input），非负。",
-        "unit": "浓度/T"
+        "unit": "1"
       },
       {
         "name": "b",
         "type": "float",
         "description": "第二反应输入，非负。",
-        "unit": "浓度/T"
+        "unit": "1"
       },
       {
         "name": "du",
@@ -1657,16 +1657,16 @@
         "name": "next_u",
         "type": "list[float]",
         "description": "一步后的 u。",
-        "unit": "浓度"
+        "unit": "1"
       },
       {
         "name": "next_v",
         "type": "list[float]",
         "description": "一步后的 v。",
-        "unit": "浓度"
+        "unit": "1"
       }
     ],
-    "contract": "每个反应项和扩散项均只读旧 u、v；无通量越界邻居取端点。",
+    "contract": "每个反应项和扩散项均只读旧 u、v；物理时间单位 T 下反应系数 [γ]=1/T，数值取1；noflux 端点采用单元中心守恒离散，越界邻居取端点。",
     "constraints": [
       "只使用题定的有限状态（state）、固定输入与明示更新规则；不从图形猜测答案。"
     ],
@@ -1853,7 +1853,7 @@
     "chapter": "12.5",
     "lesson_id": "P12-C05-S01",
     "title": "密度与隔一格两点相关",
-    "statement": "周期二（period-two cycle）值格状态（state） state。返回类型1密度 p 和距离2的一对位置同时为1的比例 c2=(1/n)Σ_i state[i−1]·state[i+1]；用周期下标。这个相关量决定异或规则下一步密度。",
+    "statement": "采用周期边界（periodic boundary）的二值格状态（state） state。返回类型1密度 p 和距离2的一对位置同时为1的比例 c2=(1/n)Σ_i state[i−1]·state[i+1]；用周期下标。这个相关量决定异或规则下一步密度。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -2054,7 +2054,7 @@
     "chapter": "12.5",
     "lesson_id": "P12-C05-S02",
     "title": "比较平均场与相关量预测",
-    "statement": "周期二（period-two cycle）值格按左右邻居异或同步更新（synchronous update）。仅假定两侧独立时，密度预测为 2p(1−p)；保留两侧同时为1的 c2 时，精确下一步密度为 2p−2c2。返回这两个预测。",
+    "statement": "采用周期边界（periodic boundary）的二值格按左右邻居异或同步更新（synchronous update）。仅假定两侧独立时，密度预测为 2p(1−p)；保留两侧同时为1的 c2 时，精确下一步密度为 2p−2c2。返回这两个预测。",
     "type": "python",
     "learning_targets": [
       "T4"
@@ -2483,7 +2483,7 @@
     "chapter": "12.summary",
     "lesson_id": "P12-SUMMARY",
     "title": "从收益到类型频率变化",
-    "statement": "类型0频率 p 与 2×2 行对列收益矩阵（payoff matrix）给定，返回两类收益、平均收益及连续复制动态（replicator dynamics）导数（derivative）。",
+    "statement": "类型0频率 p 与 2×2 行对列收益矩阵（payoff matrix）给定，返回两类收益、平均收益及连续复制动态（replicator dynamics）导数（derivative）。表中收益数值按相对适合度率（fitness rate）解释，单位1/T。",
     "type": "python",
     "learning_targets": [
       "T2"
@@ -2499,7 +2499,7 @@
         "name": "matrix",
         "type": "list[list[float]]",
         "description": "2×2 收益矩阵。",
-        "unit": "收益单位"
+        "unit": "1/T"
       },
       {
         "name": "p",
@@ -2513,19 +2513,19 @@
         "name": "f0",
         "type": "float",
         "description": "类型0收益。",
-        "unit": "收益单位"
+        "unit": "1/T"
       },
       {
         "name": "f1",
         "type": "float",
         "description": "类型1收益。",
-        "unit": "收益单位"
+        "unit": "1/T"
       },
       {
         "name": "mean",
         "type": "float",
         "description": "频率加权收益。",
-        "unit": "收益单位"
+        "unit": "1/T"
       },
       {
         "name": "dpdt",
@@ -2589,7 +2589,7 @@
     "chapter": "12.summary",
     "lesson_id": "P12-SUMMARY",
     "title": "反应与空间交换一起更新",
-    "statement": "在 noflux 或 periodic 边界下，用题定 Schnakenberg 双组分方程进行同步显式一步。每格反应与扩散都只读旧 u、v。",
+    "statement": "在 noflux 或 periodic 边界下，使用无量纲化（nondimensionalization）的 Schnakenberg 双组分模型（model）同步显式一步。u、v、a、b 为缩放后的纯数；反应时间系数 [γ]=1/T 在所选时间数值单位中取1。每格反应与扩散只读旧 u、v。",
     "type": "python",
     "learning_targets": [
       "T3"
@@ -2605,25 +2605,25 @@
         "name": "u",
         "type": "list[float]",
         "description": "旧 u 网格。",
-        "unit": "浓度"
+        "unit": "1"
       },
       {
         "name": "v",
         "type": "list[float]",
         "description": "旧 v 网格。",
-        "unit": "浓度"
+        "unit": "1"
       },
       {
         "name": "a",
         "type": "float",
         "description": "反应输入（input） a。",
-        "unit": "浓度/T"
+        "unit": "1"
       },
       {
         "name": "b",
         "type": "float",
         "description": "反应输入 b。",
-        "unit": "浓度/T"
+        "unit": "1"
       },
       {
         "name": "du",
@@ -2661,16 +2661,16 @@
         "name": "next_u",
         "type": "list[float]",
         "description": "u 下一行。",
-        "unit": "浓度"
+        "unit": "1"
       },
       {
         "name": "next_v",
         "type": "list[float]",
         "description": "v 下一行。",
-        "unit": "浓度"
+        "unit": "1"
       }
     ],
-    "contract": "反应 a−u+u²v、b−u²v；扩散为中心差分（central difference）。",
+    "contract": "反应为 γ(a−u+u²v)、γ(b−u²v)，[γ]=1/T 且数值取1；内点扩散采用中心差分（central difference），noflux 端点采用单元中心守恒离散，无跨界通量。",
     "constraints": [
       "只使用题定的有限状态（state）、固定输入与明示更新规则；不从图形猜测答案。"
     ],
@@ -2741,7 +2741,7 @@
     "chapter": "12.summary",
     "lesson_id": "P12-SUMMARY",
     "title": "聚合局部状态并保留相关",
-    "statement": "周期二（period-two cycle）值格给定。返回总体密度与左右邻格同时为1的比例，供独立模型（model）比较使用。",
+    "statement": "采用周期边界（periodic boundary）的二值格给定。返回总体密度与左右邻格同时为1的比例，供独立模型（model）比较使用。",
     "type": "python",
     "learning_targets": [
       "T4"

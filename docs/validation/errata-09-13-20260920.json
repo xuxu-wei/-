@@ -1,0 +1,35 @@
+{
+  "date": "2026-09-20",
+  "scope": "第 9—13 篇科学表述、题目契约与术语误注复核",
+  "status": "通过",
+  "verification": [
+    "157 本 Notebook、730 道题的同步、链接及术语首现检查通过。",
+    "两本仅改显示标签的 Notebook 从全新内核重运行通过；其他 Notebook 仅修改 Markdown 与练习正文。",
+    "Python 824 项和 JavaScript 90 项测试通过；新增术语正反例覆盖秩序、周期二值及其真实术语用法。",
+    "第 10—13 篇题目 ID、版本、函数签名、正确选项、样例输入输出与判定规则和 HEAD 一致；可执行代码只改两处图轴标签。",
+    "正文和题库已检索本轮已知错误短语；AGENTS.md 未修改。"
+  ],
+  "items": [
+    {"id": "09-01", "location": "P09-C04-S01", "original": "无限方差塌缩", "judgment": "成立；与本节方差趋零的推导矛盾。", "revision": "写为方差趋近 0 导致的退化高似然；题库答案保持不变。"},
+    {"id": "10-01", "location": "P10-C03-S01", "original": "结构能控性（controllability）", "judgment": "成立；本节检验给定数值矩阵的普通能控性。", "revision": "改为给定线性系统的能控性，避免误用 structural controllability。"},
+    {"id": "10-02", "location": "P10-C03-S02、P10-C04-S02", "original": "未正式点出 stabilizability / detectability", "judgment": "原秩与极点结论正确；补足条件层次有教学价值。", "revision": "分别说明连续时间不可控模态稳定仍可能可稳定、离散时间不可观模态稳定仍可能可检测；不引入 PBH 证明。"},
+    {"id": "10-03", "location": "P10-C05-S02", "original": "无限时域极限需要另外的条件，但未点名", "judgment": "原文没有错误推断；条件名称值得明确。", "revision": "点出 (A,B) 可稳定性与 (Q^(1/2),A) 可检测性等条件，强调有限时域加长不自动证明极限。"},
+    {"id": "10-04", "location": "P10-C02-S02、p10-bode-margin", "original": "出现相位/增益裕度而未定义交叉频率和裕度", "judgment": "成立；题目前缺必要定义。", "revision": "补两种交叉频率、PM/GM 定义与多重交叉限制；选项 A 说明所声明线性回路的频域信息。"},
+    {"id": "10-05", "location": "P10-C01-S02", "original": "只讨论误差微分的测量噪声", "judgment": "原实现正确；补设定值阶跃时的微分冲击边界。", "revision": "解释 derivative kick，以及测量微分或滤波属于不同的明确实现契约。"},
+    {"id": "10-06", "location": "p10-frequency-delay", "original": "正频率与公开样例 omega=0 冲突；约束只写有限", "judgment": "成立；题面与输入契约不一致。", "revision": "改为非负角频率，并在约束中写明 gain≥0、tau>0、omega≥0、delay≥0。"},
+    {"id": "11-01", "location": "P11-C02-S01、P11-C02-S02、p11-exchange-laplacian", "original": "浓度差作总量流率时边系数仍标 1/T", "judgment": "成立；需区分两种模型的量纲。", "revision": "等容积归一化总量模型用 k[1/T]；非等容积浓度流率用 g[V/T]；给出 k=g/V0 及分量平衡。"},
+    {"id": "11-02", "location": "P11-C02-S02、p11-amounts-with-volumes", "original": "Euler 上界对孤立节点出现 V_i/0", "judgment": "成立；允许孤立节点时式子未定义。", "revision": "最小值仅对加权度 d_i>0 的节点取；孤立节点总量不变、全图无边无交换步长上界。"},
+    {"id": "11-03", "location": "P11-C04-S01、tools/terminology.py", "original": "局部秩（rank）序", "judgment": "成立；自动子串匹配破坏普通词。", "revision": "改为组内相位一致性或局部同步结构；保护“秩序”并加入正反回归。"},
+    {"id": "11-04", "location": "p11-capstone-gap", "original": "题干称返回最小正特征值，接口实际仅返回 state 和 eigenvalues", "judgment": "成立；题干与判题契约不符。", "revision": "题干写明精确状态和完整升序谱；最小正值仅从谱解释，零边图不强求存在。"},
+    {"id": "11-05", "location": "P11-C03-S02、p11-nested-outbreak-variation", "original": "图均值间方差可能误读为纯网络间方差组分", "judgment": "原描述统计正确且有无偏性提醒；有限传播重复的 Monte Carlo 误差仍需点明。", "revision": "明确图均值的散布包含有限重复误差，本节仅给描述性分层统计。"},
+    {"id": "11-06", "location": "p11-synchronous-sir", "original": "恢复的人不能在同一步用新状态再传播", "judgment": "算法和样例正确；措辞没有清楚交代旧感染者的本步作用。", "revision": "逐项说明全部事件读取旧状态、新感染者本步不传播、将恢复者本步仍参与感染判定。"},
+    {"id": "11-07", "location": "p11-phase-order-parameter", "original": "样例 [0,0,0] 的解释讲另一组反相输入", "judgment": "成立；解释与当前样例脱节。", "revision": "先解释同相三振子 R=1，再把反相抵消作为对照。"},
+    {"id": "12-01", "location": "P12-C02-S01、P12-C02-S02、p12-payoff-replicator", "original": "收益单位与 dp/dt 的 1/T 不闭合", "judgment": "成立；公式须规定收益数值的时间量纲。", "revision": "把连续复制方程的收益解释为适合度率 1/T，相关题目参数与返回单位同步；不改数值和答案。"},
+    {"id": "12-02", "location": "P12-C04-S02、p12-reaction-diffusion-onestep、p12-capstone-spatial-step", "original": "u、v 为浓度且 a、b 为浓度/T，无法在 a−u+u²v 中相加", "judgment": "成立；是明确量纲冲突。", "revision": "规定 u、v、a、b 为无量纲缩放数值，[γ]=1/T 且本例数值为 1，扩散系数为格长²/T；题面、表格和输出标签同步。"},
+    {"id": "12-03", "location": "P12-C04-S01、p12-diffusion-grid、p12-noflux-end", "original": "越界邻居取端点自身却笼统称中心差分反射", "judgment": "算法守恒且自洽；边界格式名称需要精确。", "revision": "内点中心差分，无通量端点为单元中心守恒离散，无跨界通量；不改更新式。"},
+    {"id": "12-04", "location": "12.5 三道题及 Notebook、tools/terminology.py", "original": "周期二（period-two cycle）值格", "judgment": "成立；period-two cycle 与周期边界二值格无关。", "revision": "改为采用周期边界的二值格；保护“周期二值”并加入正反回归。"},
+    {"id": "13-01", "location": "P13-C04-S01、p13-coarse-xor", "original": "周期二（period-two cycle）值异或规则", "judgment": "成立；第 12 篇的误注传播到第 13 篇。", "revision": "改为采用周期边界的二值异或规则，并同步题面与参数说明。"},
+    {"id": "13-02", "location": "P13-C03-S01", "original": "正向吸引域写作 0<x0<B", "judgment": "限定正扰动时原说法成立；若称非负侧吸引域应计入平衡点。", "revision": "保留正扰动结论，补充计入平衡点时非负侧吸引域为 [0,B)。"}
+  ],
+  "scope_boundary": "题目 ID、版本、函数签名、正确选项、数值答案和判定用例不变；AGENTS.md 不修改。"
+}

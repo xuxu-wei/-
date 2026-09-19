@@ -13,7 +13,14 @@ ROOT = Path(__file__).resolve().parents[1]
 TERMS = json.loads((ROOT / 'docs/术语对照.json').read_text(encoding='utf-8'))
 
 # These are whole ordinary phrases, not occurrences of the contained term.
-PROTECTED_PHRASES = {'重复数': '复数', '系数组合': '数组', '常数组合': '数组', '参数组合': '数组'}
+PROTECTED_PHRASES = {
+    '重复数': '复数',
+    '系数组合': '数组',
+    '常数组合': '数组',
+    '参数组合': '数组',
+    '秩序': '秩',
+    '周期二值': '周期二',
+}
 # Keep literal code, equations, headings and link destinations byte-for-byte.
 LITERAL = re.compile(
     r'```[\s\S]*?```|~~~[\s\S]*?~~~|`+[^`\n]*`+'
