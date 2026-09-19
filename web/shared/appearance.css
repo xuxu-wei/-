@@ -1,0 +1,61 @@
+/* Shared interface appearance. Scientific plots retain the same paper and data colors. */
+:root[data-site-theme=light]{color-scheme:light}
+.site-theme-toggle{flex:none;font-size:.78rem;white-space:nowrap;padding:7px 12px;min-width:84px}
+:root[data-site-theme=dark]{
+  color-scheme:dark;
+  --ui-background:#0b1120;
+  --ui-tint:#405777;
+  --ui-soft:#7083a1;
+  --ui-border:#6f89b0;
+  --ui-muted:#afc0da;
+  --ui-primary:#a8cbff;
+  --ui-primary-hover:#d1e3ff;
+  --ui-text:#e7eefb;
+  --ui-error:#ff9aaa;
+  --ui-error-strong:#ffc0c9;
+  --line:rgba(152,178,216,.24);
+  --wash:rgba(140,170,218,.09);
+  --surface:#121c2e;
+  --surface-raised:#19263c;
+  --solid-primary:#91b8ed;
+  --solid-ink:#0b1b34;
+  background:var(--ui-background);color:var(--ui-text);
+}
+:root[data-site-theme=dark] body:not(.home-page){background:var(--ui-background);color:var(--ui-text)}
+:root[data-site-theme=dark] body:not(.home-page) .course-header{background:rgba(11,17,32,.96);border-color:var(--line)}
+:root[data-site-theme=dark] body:not(.home-page) :is(.course-sidebar,.chapter-toolbar){background:var(--ui-background)}
+:root[data-site-theme=dark] body:not(.home-page) :is(.catalog-card,.overview-card,.chapter-summary .overview-section,.model-panel,.chart-panel,.question-reading,.answer-area,.assessment-panel){background:var(--surface);color:var(--ui-text);border-color:var(--line)}
+:root[data-site-theme=dark] body:not(.home-page) :is(button,.button){background:var(--surface-raised);border-color:var(--ui-border);color:var(--ui-primary)}
+:root[data-site-theme=dark] body:not(.home-page) :is(button,.button):hover{background:#243852;border-color:var(--ui-primary)}
+:root[data-site-theme=dark] body:not(.home-page) :is(button.primary,.button.primary,.chapter-tab[aria-current]){background:var(--solid-primary);border-color:var(--solid-primary);color:var(--solid-ink)}
+:root[data-site-theme=dark] body:not(.home-page) :is(button.primary,.button.primary):hover{background:var(--ui-primary-hover)}
+:root[data-site-theme=dark] body:not(.home-page) .chapter-tab:hover:not([aria-current]){background:var(--surface-raised)}
+:root[data-site-theme=dark] body:not(.home-page) :is(input:not([type=range]):not([type=checkbox]):not([type=radio]),select){background:var(--surface-raised);color:var(--ui-text);border-color:var(--ui-border)}
+:root[data-site-theme=dark] body:not(.home-page) :is(input,select,textarea){accent-color:var(--ui-primary)}
+:root[data-site-theme=dark] body:not(.home-page) .option{background:var(--surface-raised);border-color:var(--line)}
+:root[data-site-theme=dark] body:not(.home-page) .option:hover{background:#253852;border-color:var(--ui-border)}
+:root[data-site-theme=dark] body:not(.home-page) .option:has(input:checked){background:#294463;border-color:var(--ui-primary)}
+:root[data-site-theme=dark] body:not(.home-page) :is(.function-signature,.example pre,.hint,.limits,.example){border-color:var(--line)}
+:root[data-site-theme=dark] body:not(.home-page) :is(.example table,.contract-table table,.values table,.assessment-breakdown table){background:var(--surface);color:var(--ui-text)}
+:root[data-site-theme=dark] body:not(.home-page) :is(.example th,.contract-table th,.values th){background:var(--surface-raised);color:var(--ui-muted)}
+:root[data-site-theme=dark] body:not(.home-page) .result{background:#18344a;border-color:#517a9f;color:var(--ui-text)}
+:root[data-site-theme=dark] body:not(.home-page) .result.neutral{background:var(--surface-raised);border-color:var(--line)}
+:root[data-site-theme=dark] body:not(.home-page) .result.incorrect{background:rgb(230 90 115 / 13%);border-color:rgb(255 154 170 / 42%);color:var(--ui-error-strong)}
+:root[data-site-theme=dark] body:not(.home-page) .result pre:not(.traceback){background:#0d1b2c;color:var(--ui-text)}
+:root[data-site-theme=dark] body:not(.home-page) .completion-notice{background:#18344a;border-color:#517a9f;color:var(--ui-text)}
+:root[data-site-theme=dark] body:not(.home-page) .result-heading button{background:transparent}
+:root[data-site-theme=dark] body:not(.home-page) .progress-badge.new{color:#bbc6d5;background:#253044}
+:root[data-site-theme=dark] body:not(.home-page) .progress-badge.active{color:#ffca8d;background:#62411d66}
+:root[data-site-theme=dark] body:not(.home-page) .progress-badge.complete{color:#c8e5ff;background:#2a4b67}
+:root[data-site-theme=dark] body:not(.home-page) .skip-link{background:var(--surface-raised);color:var(--ui-primary)}
+/* A bounded plotting paper preserves calibrated strokes, markers, axes and exports.
+   Do not invert/filter SVG or inherit dark UI text into the light plotting area. */
+:root[data-site-theme=dark] body:not(.home-page) .chart-panel :is(svg,canvas){
+  --ui-background:#ffffff;--ui-text:#081950;--ui-muted:#4078a0;--ui-primary:#2b5d8b;
+  --ui-tint:#b5c8e0;--ui-border:#6491b5;--line:rgba(100,145,181,.22);
+  background:#ffffff;color:#081950;color-scheme:light;border-radius:9px;
+}
+:root[data-site-theme=dark] body:not(.home-page) .chart-panel svg text{fill:#081950}
+/* CodeMirror and the fallback editor keep their own Monokai palette in both themes. */
+:root[data-site-theme=dark] body:not(.home-page) :is(.editor-surface,#source,.result .traceback){background:#272822;color:#f8f8f2}
+@media(max-width:1100px){.course-header:has(.site-theme-toggle) .brand-note{display:none}}

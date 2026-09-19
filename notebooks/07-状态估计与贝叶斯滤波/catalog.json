@@ -1,0 +1,139 @@
+[
+  {
+    "id": "P07-C01-S01",
+    "chapter_id": "7.1",
+    "path": "notebooks/07-状态估计与贝叶斯滤波/01-状态空间与能观性/01-从有噪读数建立状态模型.ipynb",
+    "title": "从有噪读数建立状态模型",
+    "outcome": "区分状态、过程噪声和测量噪声，明确估计器能使用的信息。",
+    "number": "7.1.1",
+    "visualization": "web/estimation/index.html"
+  },
+  {
+    "id": "P07-C01-S02",
+    "chapter_id": "7.1",
+    "path": "notebooks/07-状态估计与贝叶斯滤波/01-状态空间与能观性/02-传感器与可区分的状态.ipynb",
+    "title": "传感器与可区分的状态",
+    "outcome": "构造能观矩阵，解释秩、采样和噪声放大各自决定的问题。",
+    "number": "7.1.2",
+    "visualization": "web/estimation/index.html"
+  },
+  {
+    "id": "P07-C02-S01",
+    "chapter_id": "7.2",
+    "path": "notebooks/07-状态估计与贝叶斯滤波/02-贝叶斯递推与隐马尔可夫模型/01-从条件概率到预测与更新.ipynb",
+    "title": "从条件概率到预测与更新",
+    "outcome": "由边缘化和Bayes公式推导滤波，正确处理缺测和零证据。",
+    "number": "7.2.1",
+    "visualization": "web/estimation/index.html"
+  },
+  {
+    "id": "P07-C02-S02",
+    "chapter_id": "7.2",
+    "path": "notebooks/07-状态估计与贝叶斯滤波/02-贝叶斯递推与隐马尔可夫模型/02-隐状态序列与路径枚举.ipynb",
+    "title": "隐状态序列与路径枚举",
+    "outcome": "在隐马尔可夫模型中实现在线递推，并用全路径枚举核验。",
+    "number": "7.2.2",
+    "visualization": "web/estimation/index.html"
+  },
+  {
+    "id": "P07-C03-S01",
+    "chapter_id": "7.3",
+    "path": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/01-多元高斯与条件分布.ipynb",
+    "title": "多元高斯与条件分布",
+    "outcome": "解释协方差几何，从分块高斯推导条件均值和条件协方差。",
+    "number": "7.3.1",
+    "visualization": "web/estimation/index.html"
+  },
+  {
+    "id": "P07-C03-S02",
+    "chapter_id": "7.3",
+    "path": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/02-线性高斯预测与观测更新.ipynb",
+    "title": "线性高斯预测与观测更新",
+    "outcome": "从条件高斯推导Kalman递推，检验时刻约定与缺测分支。",
+    "number": "7.3.2",
+    "visualization": "web/estimation/index.html"
+  },
+  {
+    "id": "P07-C03-S03",
+    "chapter_id": "7.3",
+    "path": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/03-创新、误差与区间覆盖.ipynb",
+    "title": "创新、误差与区间覆盖",
+    "outcome": "用独立重复检验创新和区间覆盖，区分误差与不确定性校准。",
+    "number": "7.3.3",
+    "visualization": "web/estimation/index.html"
+  },
+  {
+    "id": "P07-C04-S01",
+    "chapter_id": "7.4",
+    "path": "notebooks/07-状态估计与贝叶斯滤波/04-非线性高斯滤波/01-局部线性化与扩展滤波.ipynb",
+    "title": "局部线性化与扩展滤波",
+    "outcome": "推导EKF并保留雅可比求值位置，解释局部近似失效。",
+    "number": "7.4.1",
+    "visualization": "web/estimation/index.html"
+  },
+  {
+    "id": "P07-C04-S02",
+    "chapter_id": "7.4",
+    "path": "notebooks/07-状态估计与贝叶斯滤波/04-非线性高斯滤波/02-无迹变换与后验形状.ipynb",
+    "title": "无迹变换与后验形状",
+    "outcome": "构造确定性采样点，比较UKF矩近似、EKF与低维积分后验。",
+    "number": "7.4.2",
+    "visualization": "web/estimation/index.html"
+  },
+  {
+    "id": "P07-C05-S01",
+    "chapter_id": "7.5",
+    "path": "notebooks/07-状态估计与贝叶斯滤波/05-粒子滤波/01-重要性采样与稳定权重.ipynb",
+    "title": "重要性采样与稳定权重",
+    "outcome": "从期望积分推导重要性权重，解释自归一化与提议支持条件。",
+    "number": "7.5.1",
+    "visualization": "web/estimation/index.html"
+  },
+  {
+    "id": "P07-C05-S02",
+    "chapter_id": "7.5",
+    "path": "notebooks/07-状态估计与贝叶斯滤波/05-粒子滤波/02-粒子传播、退化与重采样.ipynb",
+    "title": "粒子传播、退化与重采样",
+    "outcome": "实现自助粒子滤波，比较ESS、样本贫化及固定预算下的重复误差。",
+    "number": "7.5.2",
+    "visualization": "web/estimation/index.html"
+  },
+  {
+    "id": "P07-C06-S01",
+    "chapter_id": "7.6",
+    "path": "notebooks/07-状态估计与贝叶斯滤波/06-平滑与缺测处理/01-前向后向与未来信息.ipynb",
+    "title": "前向后向与未来信息",
+    "outcome": "从联合路径推导有限状态平滑，并保持在线和离线的信息边界。",
+    "number": "7.6.1",
+    "visualization": "web/estimation/index.html"
+  },
+  {
+    "id": "P07-C06-S02",
+    "chapter_id": "7.6",
+    "path": "notebooks/07-状态估计与贝叶斯滤波/06-平滑与缺测处理/02-RTS平滑与连续缺测.ipynb",
+    "title": "RTS平滑与连续缺测",
+    "outcome": "推导线性高斯后向平滑，检验末端一致性、缺测和联合条件参照。",
+    "number": "7.6.2",
+    "visualization": "web/estimation/index.html"
+  },
+  {
+    "id": "P07-SUMMARY",
+    "chapter_id": "7.summary",
+    "path": "notebooks/07-状态估计与贝叶斯滤波/07-篇末综合/01-部分观测下的状态恢复.ipynb",
+    "title": "部分观测下的状态恢复",
+    "outcome": "建立估计问题，计算滤波与平滑，诊断近似和观测失效。",
+    "number": "篇末综合",
+    "visualization": null,
+    "overview": {
+      "goals": "建立状态恢复问题，推导并计算滤波与平滑，解释近似和观测失效。",
+      "prerequisites": "本篇7.1—7.6。",
+      "focus": "信息边界、条件概率、协方差、近似形状与独立核验。",
+      "knowledge": [
+        "模型与传感器 → 可区分状态",
+        "预测与更新 → 离散及Gaussian递推",
+        "非线性与多峰 → 近似和粒子",
+        "未来信息与缺测 → 离线平滑及独立验证"
+      ]
+    }
+  }
+]

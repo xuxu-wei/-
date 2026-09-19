@@ -1,0 +1,78 @@
+{
+  "version": "1",
+  "part": "7",
+  "lesson_id": "P07-SUMMARY",
+  "title": "部分观测下的状态恢复",
+  "objectives": [
+    {
+      "id": "T1",
+      "title": "建立估计问题",
+      "review_url": "/chapters/07-01-状态空间与能观性/"
+    },
+    {
+      "id": "T2",
+      "title": "推导预测与更新",
+      "review_url": "/chapters/07-03-卡尔曼滤波/"
+    },
+    {
+      "id": "T3",
+      "title": "实现近似滤波",
+      "review_url": "/chapters/07-04-非线性高斯滤波/"
+    },
+    {
+      "id": "T4",
+      "title": "验证估计与平滑",
+      "review_url": "/chapters/07-06-平滑与缺测处理/"
+    }
+  ],
+  "items": [
+    {
+      "question_id": "p07-cap-state-task",
+      "level": 1,
+      "points": 10,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p07-cap-information",
+      "level": 1,
+      "points": 10,
+      "objective": "T4"
+    },
+    {
+      "question_id": "p07-cap-hidden-update",
+      "level": 2,
+      "points": 15,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p07-cap-gaussian-filter",
+      "level": 2,
+      "points": 15,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p07-cap-approximation",
+      "level": 3,
+      "points": 15,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p07-cap-particle",
+      "level": 3,
+      "points": 15,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p07-cap-smoothing",
+      "level": 4,
+      "points": 10,
+      "objective": "T4"
+    },
+    {
+      "question_id": "p07-cap-failure",
+      "level": 4,
+      "points": 10,
+      "objective": "T1"
+    }
+  ]
+}

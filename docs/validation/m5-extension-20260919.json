@@ -1,0 +1,456 @@
+{
+  "date": "2026-09-19",
+  "milestone": "M5 extension",
+  "scope": "第4篇六章扩展：4.1.3、4.6.1—4.6.4、4.2概念回扣、六章综合v2和Lorenz专属探索页；本记录汇总本地教学、数学、执行与文件证据，UI验收由主任务另行记录。",
+  "status": "本地内容、独立数学、判题和执行检查通过；UI及跨阶段综合结论引用主任务验收，不在此声称本人已实测。",
+  "delivery": {
+    "formal_notebooks": 17,
+    "new_notebooks": 5,
+    "executed_code_cells": 85,
+    "saved_figures": 17,
+    "questions": 81,
+    "choice_questions": 53,
+    "python_questions": 28,
+    "new_chapter_questions": 22,
+    "original_chapter_questions_preserved": 51,
+    "capstone_questions": 8,
+    "capstone_assessment_version": "2",
+    "exploration_pages": 5,
+    "new_exploration": "web/nonlinear/lorenz.html"
+  },
+  "preservation": {
+    "comparison_base_commit": "8ab79f69dd00e26203dfb39baa8ad6ffffabe8ef",
+    "original_chapter_questions": "读取基线questions.json并逐题比较完整JSON对象，原51题的内容、顺序身份、接口与version保持不变。",
+    "capstone_ids": "基线8道综合题ID及顺序全部保留；题面/接口version统一为2，assessment.version为2；旧版文件不迁移、不删除。",
+    "capstone_id_order": [
+      "p04-cap-equilibrium",
+      "p04-cap-source",
+      "p04-cap-basins",
+      "p04-cap-period",
+      "p04-cap-precision",
+      "p04-cap-irregular",
+      "p04-cap-region",
+      "p04-cap-scope"
+    ],
+    "version_isolation_test": "test_capstone_v1_history_does_not_complete_v2_and_retry_keeps_first_score：8条v1通过记录不产生v2得分；v2先WA后AC，首次分保持0而练习分增加15；传入旧记录逐字序列化不变。",
+    "personal_records": "此子任务的判题检查使用pytest隔离临时目录；没有改写既有个人作答文件。全局记录摘要由主任务验收。",
+    "summary_path_retained": "notebooks/04-非线性动态行为/06-篇末综合/01-非线性行为与证据边界.ipynb"
+  },
+  "execution": {
+    "command": ".venv/Scripts/python.exe -X utf8 tools/check_notebooks.py --part 04-非线性动态行为 --work m5-extension --write",
+    "environment": {
+      "python": "3.13.2",
+      "platform": "Windows",
+      "packages": {
+        "numpy": "2.5.3",
+        "matplotlib": "3.11.2",
+        "nbclient": "0.11.0",
+        "nbformat": "5.11.1",
+        "nbconvert": "7.17.1",
+        "ipykernel": "7.3.0"
+      }
+    },
+    "all_new_kernel_runs_passed": true,
+    "notebooks": [
+      {
+        "id": "P04-C01-S01",
+        "path": "notebooks/04-非线性动态行为/01-多稳态与吸引域/01-从三个平衡进入多稳态.ipynb",
+        "seconds": 3.75,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "4e601497226d61b311160c774d1dc539578044c744431c538c6d5cb522512189",
+        "passed": true
+      },
+      {
+        "id": "P04-C01-S02",
+        "path": "notebooks/04-非线性动态行为/01-多稳态与吸引域/02-吸引域扰动与有限时间扫描.ipynb",
+        "seconds": 3.22,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "53a25d9725b6c70d298ab8b50b2c9aee28a074a204ffad2e6e09a3edcff2ebcc",
+        "passed": true
+      },
+      {
+        "id": "P04-C01-S03",
+        "path": "notebooks/04-非线性动态行为/01-多稳态与吸引域/03-从吸引状态到吸引集合.ipynb",
+        "seconds": 3.18,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "b24819098fe5affbbe0d3d7432887fe1c58feda2eaeaa6e6c7f4eb75e4a9b603",
+        "passed": true
+      },
+      {
+        "id": "P04-C02-S01",
+        "path": "notebooks/04-非线性动态行为/02-自维持振荡与极限环/01-阻尼受迫与自维持振荡.ipynb",
+        "seconds": 3.35,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "607a58adc63ff2c9c719ec0d0ca2cf841ed2a690abe6b0d85605e8674dc58149",
+        "passed": true
+      },
+      {
+        "id": "P04-C02-S02",
+        "path": "notebooks/04-非线性动态行为/02-自维持振荡与极限环/02-周期振幅与相位的测量.ipynb",
+        "seconds": 3.35,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "be61b2161fbd91700e198a3536b434ae4886b8689be0eca7660818ffb435a52c",
+        "passed": true
+      },
+      {
+        "id": "P04-C03-S01",
+        "path": "notebooks/04-非线性动态行为/03-分岔与参数变化/01-平衡分支折叠与滞后.ipynb",
+        "seconds": 3.85,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "3eb131bcc4f68e5fa1f77ad3d6c2171d21cd8053222667e77475b4cc575d3c4f",
+        "passed": true
+      },
+      {
+        "id": "P04-C03-S02",
+        "path": "notebooks/04-非线性动态行为/03-分岔与参数变化/02-从平衡到周期的Hopf转变.ipynb",
+        "seconds": 2.79,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "6daf35dd5c76203e9bb2a1a3d71f5a250aab7846b8c9bee40a8c4079b12c2302",
+        "passed": true
+      },
+      {
+        "id": "P04-C04-S01",
+        "path": "notebooks/04-非线性动态行为/04-混沌与可预测范围/01-离散映射的不动点与周期.ipynb",
+        "seconds": 2.62,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "03c918fd84675d03dee165001c29f3ea1f73d2c8e33c9901b8f611913f2165a7",
+        "passed": true
+      },
+      {
+        "id": "P04-C04-S02",
+        "path": "notebooks/04-非线性动态行为/04-混沌与可预测范围/02-邻近轨迹与预测期限.ipynb",
+        "seconds": 2.61,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "6af28738c6bc4f181c810a3349b28a0a00ad827b1ce946cdb1fe3b97ec6dec89",
+        "passed": true
+      },
+      {
+        "id": "P04-C04-S03",
+        "path": "notebooks/04-非线性动态行为/04-混沌与可预测范围/03-有限时间增长率与算术精度.ipynb",
+        "seconds": 3.07,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "3fd13591dabbdb758c0cdb99d9b57fedc1e6d95a3d1e6d516c11d70a6624067d",
+        "passed": true
+      },
+      {
+        "id": "P04-C05-S01",
+        "path": "notebooks/04-非线性动态行为/05-用 Lyapunov 函数分析稳定性/01-候选函数与局部稳定性证明.ipynb",
+        "seconds": 2.75,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "28ec44681c7cb73820a35eeff8d2798a4980711398d94018b78e1d825d56cc98",
+        "passed": true
+      },
+      {
+        "id": "P04-C05-S02",
+        "path": "notebooks/04-非线性动态行为/05-用 Lyapunov 函数分析稳定性/02-非严格衰减与不能省略的条件.ipynb",
+        "seconds": 2.46,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "e925c780789e8fa7255b3d7f22f0c51242f5488f4f3ce82b026b379debe977c9",
+        "passed": true
+      },
+      {
+        "id": "P04-C06-S01",
+        "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/01-从平面流到Lorenz系统.ipynb",
+        "seconds": 3.24,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "ef646d5cc9295b73c210a36d11decdb89dc1e4d918643d6b8c3a5676add70dd7",
+        "passed": true
+      },
+      {
+        "id": "P04-C06-S02",
+        "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/02-有界耗散与可信积分.ipynb",
+        "seconds": 3.61,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "55add17ead43424a08d897f22c5facce42396da8829d6c5b57b300384c453092",
+        "passed": true
+      },
+      {
+        "id": "P04-C06-S03",
+        "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/03-截面与返回中的长期结构.ipynb",
+        "seconds": 3.71,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "3a4e7a828fc932941e7659a7595a499a60a96b46f3ea9cab4e02b25b2716f157",
+        "passed": true
+      },
+      {
+        "id": "P04-C06-S04",
+        "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/04-切向增长奇异几何与预测边界.ipynb",
+        "seconds": 5.37,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "592389ffb608fd7e88fe2936da269b0f647dc94d2f14942897109d381b31b636",
+        "passed": true
+      },
+      {
+        "id": "P04-SUMMARY",
+        "path": "notebooks/04-非线性动态行为/06-篇末综合/01-非线性行为与证据边界.ipynb",
+        "seconds": 2.83,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "de27c258e7bddb99bf23914e58baec5a51b6a011d868a378209cb72be11c8104",
+        "passed": true,
+        "executed_sha256": "bc82a0c4da8b19b198b397340f84d60c2ffc7690985cb61d453f8ef9efa18cfd",
+        "post_execution_change": "Only exercise links were updated to keep original question IDs at version 2; code cells and saved outputs unchanged. HTML preview refreshed."
+      }
+    ],
+    "final_execution_manifest_matches_current_files": true,
+    "post_execution_edit": "最后仅综合Notebook的练习链接按保留原题ID更新；代码单元及已保存输出未改，HTML预览重新生成。该本同时保留executed_sha256、最终sha256与说明，未将链接修订声称为再次执行。"
+  },
+  "checks": [
+    {
+      "command": ".venv/Scripts/python.exe -X utf8 -m pytest -q tools/tests/test_part04.py tools/tests/test_part04_extension.py",
+      "passed": 66,
+      "failed": 0,
+      "coverage": [
+        "28道Python题的全部样例与补充测试对照独立计算依据",
+        "本机真实子进程判题：样例与完整正确解通过；错误答案拒绝；样例不增加完成进度",
+        "Lorenz平衡、对称与独立差分Jacobian",
+        "W两种导数、有界性不等式、负散度但逃逸的反例",
+        "RK4短窗收敛与细网格显式中点独立参照",
+        "有理交点、端点不重复、暂态边界、空事件与解析周期",
+        "连续切向与中心差分、末段不足完整归一化间隔、零方向拒绝",
+        "综合v1/v2隔离及首次/练习分保护"
+      ]
+    },
+    {
+      "command": "node --test tools/tests/lorenz.test.mjs",
+      "passed": 4,
+      "failed": 0,
+      "coverage": [
+        "精确平衡、对称与Jacobian",
+        "解析线性问题上的RK4阶数",
+        "定向截面的有理交点/端点/空结果",
+        "切向实际总时间、末尾半段与零方向拒绝"
+      ]
+    },
+    {
+      "command": ".venv/Scripts/python.exe -X utf8 tools/check_teaching.py --part 4 --work m5-extension",
+      "notebooks": 17,
+      "questions": 81,
+      "question_links": 81,
+      "issues": [],
+      "coverage": "题库生成的Notebook题面、直接作答链接、目标区边界、每节题数、具名类型契约和术语首现英文。"
+    }
+  ],
+  "independent_reference_design": {
+    "algebra": "向量场Jacobian用Decimal中心差分独立构造；W导数以已展开多项式求值；RK4线性单步用四阶指数多项式代替阶段更新作为参考；距离用高精度平方与平方根。",
+    "events": "交点由Fraction有理数计算线段高度斜率和根，再重建同一时刻的状态；圆轨道返回间隔与2π比较。",
+    "growth": "给定伸长以高精度乘积的对数检验，不复制逐段对数求和；常系数特征方向解析指数、中心差分和实际时间归一分别核验。",
+    "tolerance_policy": "确定性短步骤按公开容差判题；未用长时混沌轨迹逐点重合或单次正增长阈值作为正确答案。"
+  },
+  "cross_implementation": {
+    "command": ".venv/Scripts/python.exe -X utf8 tools/check_nonlinear.py",
+    "original_five_chapters": {
+      "cases": 117,
+      "compared_values": 32659,
+      "maximum_absolute_difference": 4.163336342344337e-16,
+      "tolerance": "atol=rtol=1e-10",
+      "web": "web/nonlinear/model.mjs"
+    },
+    "lorenz_extension": {
+      "cases": 19,
+      "compared_values": 11317,
+      "maximum_absolute_difference": 2.2426505097428162e-14,
+      "tolerance": "atol=rtol=1e-9",
+      "web": "web/nonlinear/lorenz-model.mjs",
+      "protocol": "Short windows, exact equilibrium, positive crossing, tangent warmup inside segment and final partial interval"
+    },
+    "limitation": "Python/JavaScript相同模型的交叉一致性不等于独立数学证明；长窗不以逐点一致验收。"
+  },
+  "manual_mathematical_review": {
+    "attractor_definition": "4.1.3明确采用稳定吸引子的约定：非空、紧、不变、吸引某个邻域且作为集合Lyapunov稳定；吸引域是趋向该集合的初值集合。说明更弱的吸引定义属于拓展。",
+    "invariance_vs_attraction": "从集合出发保持其中给出正向不变直觉，并以Φ_t(A)=A说明完整不变性；纯旋转单位圆不变但不吸引半径1.1的邻近圆；稳定径向圆吸引所有非零半径，原点是例外。",
+    "set_vs_phase": "到单位圆距离为|r−1|；两轨迹固定相位差π/2时各自到圆距离趋零而相互距离趋于√2，未把集合吸引误写成同步到一点。",
+    "lorenz_assumptions": "σ、ρ、β严格为正；W约束位置(0,0,2ρ)附近的椭球范围，未称其中心为稳定平衡。",
+    "identity": "W=ρx²+σy²+σ(z−2ρ)²；W′=−2σ[ρx²+y²+β(z−ρ)²−βρ²]。链式法则和展开多项式均已核对。",
+    "square_inequality": "(z−ρ)²−[0.5(z−2ρ)²−ρ²]=0.5z²≥0；由此W′≤−cW+C，c=min(2σ,2,β)>0，C=4σβρ²。",
+    "comparison_bound": "积分因子给出W(t)≤W(0)e^(−ct)+(C/c)(1−e^(−ct))。任取K>C/c，子水平集W≤K边界严格向内，集合外初值最终进入；此为保守的有界约束，不是最小区域或平衡收敛证明。",
+    "volume_vs_boundedness": "diag(1,−2)提供负散度同时存在逃逸方向的反例；Lorenz负散度仅说明体积收缩，需要另外证明有界。",
+    "proof_boundary": "保留精确平衡；混沌、奇异几何、吸引性和有限方向增长分开解释，未将普通浮点实验等同Tucker的存在性证明。",
+    "result": "本次只读复核未发现需要修改上述教学表述的数学条件遗漏；按本记录列出的约定和适用范围冻结。"
+  },
+  "visual_review": {
+    "review_method": "本子任务用view_image实际打开新Notebook的五幅PNG输出，检查轴、线型、图例、数值方向与裁切。",
+    "inspected_figures": [
+      "P04-C01-S03-1.png",
+      "P04-C06-S01-1.png",
+      "P04-C06-S02-1.png",
+      "P04-C06-S03-1.png",
+      "P04-C06-S04-1.png"
+    ],
+    "findings": "五幅新图均有有效绘制，图例与坐标可读，未见缺图或标签裁切；三组Lorenz轨迹单独标注参数且说明坐标范围自动适配。",
+    "other_figures": "原12本的图随全篇执行重新生成；本子任务未将这12幅宣称为本轮逐幅重新人工检视。",
+    "html_previews": "17本均生成本地HTML预览，综合链接修订后刷新对应预览；本字段不宣称已逐页实测所有浏览器操作。"
+  },
+  "ui_acceptance": {
+    "performed_by_this_subtask": false,
+    "reference": "docs/validation/m5-m7-m8-20260919.json",
+    "status": "由主任务补充播放/暂停、预设往返、原点返回、时间联动、PC布局、Notebook默认IDE与练习交互的实测结果。"
+  },
+  "limitations": [
+    "未开展目标读者试学或独立外部同行评审。",
+    "连续时间实验为固定参数和有限观察窗，不构成一般混沌或奇异吸引子的严格存在性证明。",
+    "仅使用已有NumPy、Matplotlib、Jupyter与Python标准库，无新增运行依赖；模拟数据目录及外部数据生成器未纳入教材依赖或同步。"
+  ],
+  "final_file_hashes": [
+    {
+      "path": "docs/04-非线性动态行为.md",
+      "sha256": "187a42f6b47deb6aa10f23a440df5c75e9e668717e00b260bee5b8c03ec60c03"
+    },
+    {
+      "path": "exercises/04-非线性动态行为/assessment.json",
+      "sha256": "6c0e05e3b7cd494c5fc81ac9d70c5f20c2e0b3f361e38cf730dba317e5f37d18"
+    },
+    {
+      "path": "exercises/04-非线性动态行为/questions.json",
+      "sha256": "e9904b7046c36930c3e930411d5a41b93e06efa6a211d3fa4c8ee3b1c8acc1aa"
+    },
+    {
+      "path": "exercises/04-非线性动态行为/solutions.json",
+      "sha256": "ac88156538cfc9fe7b5c10c769e2fbd6574138bd1741881f1ccec3abdc3c0818"
+    },
+    {
+      "path": "exercises/04-非线性动态行为/verification.json",
+      "sha256": "3e20c67ce0af31695f008c5b02b1ff3cf4efb4d24edc6ed0716a81ccdc9cdb44"
+    },
+    {
+      "path": "notebooks/04-非线性动态行为/01-多稳态与吸引域/01-从三个平衡进入多稳态.ipynb",
+      "sha256": "4e601497226d61b311160c774d1dc539578044c744431c538c6d5cb522512189"
+    },
+    {
+      "path": "notebooks/04-非线性动态行为/01-多稳态与吸引域/02-吸引域扰动与有限时间扫描.ipynb",
+      "sha256": "53a25d9725b6c70d298ab8b50b2c9aee28a074a204ffad2e6e09a3edcff2ebcc"
+    },
+    {
+      "path": "notebooks/04-非线性动态行为/01-多稳态与吸引域/03-从吸引状态到吸引集合.ipynb",
+      "sha256": "b24819098fe5affbbe0d3d7432887fe1c58feda2eaeaa6e6c7f4eb75e4a9b603"
+    },
+    {
+      "path": "notebooks/04-非线性动态行为/02-自维持振荡与极限环/01-阻尼受迫与自维持振荡.ipynb",
+      "sha256": "607a58adc63ff2c9c719ec0d0ca2cf841ed2a690abe6b0d85605e8674dc58149"
+    },
+    {
+      "path": "notebooks/04-非线性动态行为/02-自维持振荡与极限环/02-周期振幅与相位的测量.ipynb",
+      "sha256": "be61b2161fbd91700e198a3536b434ae4886b8689be0eca7660818ffb435a52c"
+    },
+    {
+      "path": "notebooks/04-非线性动态行为/03-分岔与参数变化/01-平衡分支折叠与滞后.ipynb",
+      "sha256": "3eb131bcc4f68e5fa1f77ad3d6c2171d21cd8053222667e77475b4cc575d3c4f"
+    },
+    {
+      "path": "notebooks/04-非线性动态行为/03-分岔与参数变化/02-从平衡到周期的Hopf转变.ipynb",
+      "sha256": "6daf35dd5c76203e9bb2a1a3d71f5a250aab7846b8c9bee40a8c4079b12c2302"
+    },
+    {
+      "path": "notebooks/04-非线性动态行为/04-混沌与可预测范围/01-离散映射的不动点与周期.ipynb",
+      "sha256": "03c918fd84675d03dee165001c29f3ea1f73d2c8e33c9901b8f611913f2165a7"
+    },
+    {
+      "path": "notebooks/04-非线性动态行为/04-混沌与可预测范围/02-邻近轨迹与预测期限.ipynb",
+      "sha256": "6af28738c6bc4f181c810a3349b28a0a00ad827b1ce946cdb1fe3b97ec6dec89"
+    },
+    {
+      "path": "notebooks/04-非线性动态行为/04-混沌与可预测范围/03-有限时间增长率与算术精度.ipynb",
+      "sha256": "3fd13591dabbdb758c0cdb99d9b57fedc1e6d95a3d1e6d516c11d70a6624067d"
+    },
+    {
+      "path": "notebooks/04-非线性动态行为/05-用 Lyapunov 函数分析稳定性/01-候选函数与局部稳定性证明.ipynb",
+      "sha256": "28ec44681c7cb73820a35eeff8d2798a4980711398d94018b78e1d825d56cc98"
+    },
+    {
+      "path": "notebooks/04-非线性动态行为/05-用 Lyapunov 函数分析稳定性/02-非严格衰减与不能省略的条件.ipynb",
+      "sha256": "e925c780789e8fa7255b3d7f22f0c51242f5488f4f3ce82b026b379debe977c9"
+    },
+    {
+      "path": "notebooks/04-非线性动态行为/06-篇末综合/01-非线性行为与证据边界.ipynb",
+      "sha256": "de27c258e7bddb99bf23914e58baec5a51b6a011d868a378209cb72be11c8104"
+    },
+    {
+      "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/01-从平面流到Lorenz系统.ipynb",
+      "sha256": "ef646d5cc9295b73c210a36d11decdb89dc1e4d918643d6b8c3a5676add70dd7"
+    },
+    {
+      "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/02-有界耗散与可信积分.ipynb",
+      "sha256": "55add17ead43424a08d897f22c5facce42396da8829d6c5b57b300384c453092"
+    },
+    {
+      "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/03-截面与返回中的长期结构.ipynb",
+      "sha256": "3a4e7a828fc932941e7659a7595a499a60a96b46f3ea9cab4e02b25b2716f157"
+    },
+    {
+      "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/04-切向增长奇异几何与预测边界.ipynb",
+      "sha256": "592389ffb608fd7e88fe2936da269b0f647dc94d2f14942897109d381b31b636"
+    },
+    {
+      "path": "notebooks/04-非线性动态行为/README.md",
+      "sha256": "7776785796fab61ea0f86fd6ee9f4b87cdf5212d07ed5477c57ffe8f9eb2538e"
+    },
+    {
+      "path": "notebooks/04-非线性动态行为/catalog.json",
+      "sha256": "93d8b1f18d2fc9830604467c9ee7be17820e484c2a60a0b5843426ebf3b69a52"
+    },
+    {
+      "path": "tools/check_nonlinear.py",
+      "sha256": "374fd258b2874bff9a5dccd1ac6b86953e53d52e7be447c430bbb01e5e9f3f4d"
+    },
+    {
+      "path": "tools/tests/lorenz.test.mjs",
+      "sha256": "33042570c8fcf2a0246a3d62ba2c9cc40833ea20c52b1fd79eb489430a92f787"
+    },
+    {
+      "path": "tools/tests/test_part04.py",
+      "sha256": "74bdd653f7209518cd4d333beb5eff433804ac6243b7c2f62363ba92b3910730"
+    },
+    {
+      "path": "tools/tests/test_part04_extension.py",
+      "sha256": "0659c1955190cb043eae3fd6fad9eebbc9bc34cd17894fee7d1c8c0f45dedc02"
+    },
+    {
+      "path": "web/nonlinear/app.mjs",
+      "sha256": "cede72df977676b6bec62e5c6d33e2880fd18ac7e5ef9462a6fd639ea5cf5e55"
+    },
+    {
+      "path": "web/nonlinear/index.html",
+      "sha256": "32177188e6f36369fd4c449d29b24b8a1768a78807d0aa0be99edb3d4a17233f"
+    },
+    {
+      "path": "web/nonlinear/lorenz-app.mjs",
+      "sha256": "c751e45e95891038bf9bd6f49461c17aa9c348fbea0e3402e1423643747d1aae"
+    },
+    {
+      "path": "web/nonlinear/lorenz-model.mjs",
+      "sha256": "b0ef329c3990213f33ce6448b58f27184d7518c9bfe9c49ef25a963b22fce0b1"
+    },
+    {
+      "path": "web/nonlinear/lorenz.css",
+      "sha256": "8cba172b0d0d1e1b3b00f7bc8cd38c04b9530b6a0780a8daf343bb3819a317ee"
+    },
+    {
+      "path": "web/nonlinear/lorenz.html",
+      "sha256": "12bb8efe61ae2e86ba7bc0a966fca83ad67d8772c203074d69eeb7c2772195ef"
+    },
+    {
+      "path": "web/nonlinear/model.mjs",
+      "sha256": "8bda938b1fbe56dcbcfd0f00ec96c6e3de1d3dcd2e5b8c77a7e9e0efaee589ad"
+    },
+    {
+      "path": "web/nonlinear/style.css",
+      "sha256": "bbc0058b5f3ddbac3caaede47d7e20793cdba8e8f10e8157611242b6244abad9"
+    }
+  ]
+}

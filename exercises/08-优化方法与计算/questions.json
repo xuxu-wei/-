@@ -1,0 +1,3274 @@
+[
+  {
+    "id": "p08-quadratic",
+    "slug": "p08-quadratic",
+    "version": "1",
+    "lesson_id": "P08-C01-S01",
+    "part": "8",
+    "chapter": "8.1",
+    "title": "计算目标与导数",
+    "type": "python",
+    "statement": "将已经无量纲（dimensionless）化的收支（mass balance）误差写成二次目标。给定 H、b、x，求目标值、梯度（gradient）和Hessian；不要求目标凸。",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数19"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "对称目标矩阵（matrix） H，目标为 xᵀHx/2−bᵀx。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "linear",
+        "type": "list[float]",
+        "description": "线性项 b，符号按目标中的减号。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "point",
+        "type": "list[float]",
+        "description": "当前优化变量 x。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "value",
+        "type": "float",
+        "description": "目标值 f(x)。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "gradient",
+        "type": "list[float]",
+        "description": "梯度 Hx−b。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "hessian",
+        "type": "list[list[float]]",
+        "description": "Hessian，等于 H。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "按 f=xᵀHx/2−bᵀx 计算；不要漏掉 1/2，也不要把 b 的符号改为加号。",
+    "constraints": [
+      "1≤维数≤3；H对称，所有元素绝对值≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先算 Hx=[3,−2]，梯度=[2,−4]；目标值为4。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    matrix: list[list[float]],\n    linear: list[float],\n    point: list[float],\n) -> tuple[float, list[float], list[list[float]]]:\n    # 按题目说明计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              1.0
+            ],
+            [
+              1.0,
+              4.0
+            ]
+          ],
+          "linear": [
+            1.0,
+            2.0
+          ],
+          "point": [
+            2.0,
+            -1.0
+          ]
+        },
+        "expected": [
+          4.0,
+          [
+            2.0,
+            -4.0
+          ],
+          [
+            [
+              2.0,
+              1.0
+            ],
+            [
+              1.0,
+              4.0
+            ]
+          ]
+        ],
+        "explanation": "先算 Hx=[3,−2]，梯度=[2,−4]；目标值为4。"
+      }
+    ]
+  },
+  {
+    "id": "p08-loss-units",
+    "slug": "p08-loss-units",
+    "version": "1",
+    "lesson_id": "P08-C01-S01",
+    "part": "8",
+    "chapter": "8.1",
+    "title": "相加之前先比较单位",
+    "type": "choice",
+    "statement": "两个观测（observation）残差（residual）分别以U和U/min表示。怎样构造可解释的无量纲（dimensionless）拟合目标？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数19"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "分别除以预先给定的同单位参考尺度，再平方求和。"
+      },
+      {
+        "id": "B",
+        "text": "直接相加平方，因为平方会自动消除单位。"
+      },
+      {
+        "id": "C",
+        "text": "改变某项无量纲权重一般会改变所偏好的解。"
+      },
+      {
+        "id": "D",
+        "text": "把所有项同时乘同一正常数，最小点集合不变。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-gradient-direction",
+    "slug": "p08-gradient-direction",
+    "version": "1",
+    "lesson_id": "P08-C01-S01",
+    "part": "8",
+    "chapter": "8.1",
+    "title": "梯度指向哪里",
+    "type": "choice",
+    "statement": "光滑目标在 x 的梯度（gradient） g 非零。对很小的正数 t，沿哪个方向保证一阶变化为负？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数19"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "任意方向。"
+      },
+      {
+        "id": "B",
+        "text": "−g。"
+      },
+      {
+        "id": "C",
+        "text": "g。"
+      },
+      {
+        "id": "D",
+        "text": "与g垂直的方向必下降。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-change-coordinates",
+    "slug": "p08-change-coordinates",
+    "version": "1",
+    "lesson_id": "P08-C01-S01",
+    "part": "8",
+    "chapter": "8.1",
+    "title": "单位改变还是问题改变",
+    "type": "choice",
+    "statement": "令原变量 x=Dz，D为正的对角矩阵（matrix）。以下哪些转换保持同一个目标问题？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数19"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "只替换变量名称，保留原H、b。"
+      },
+      {
+        "id": "B",
+        "text": "H改为DᵀHD，b改为Dᵀb。"
+      },
+      {
+        "id": "C",
+        "text": "约束与初值（initial condition）也应按x=Dz转换。"
+      },
+      {
+        "id": "D",
+        "text": "可以随意改变其中一个残差（residual）权重而称为单位转换。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-linear-minimum",
+    "slug": "p08-linear-minimum",
+    "version": "1",
+    "lesson_id": "P08-C01-S02",
+    "part": "8",
+    "chapter": "8.1",
+    "title": "求严格凸二次目标的最小点",
+    "type": "python",
+    "statement": "给定二维正定（positive definite）对称矩阵（matrix）H和线性项b，求唯一最小点。",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数19"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "对称目标矩阵 H，目标为 xᵀHx/2−bᵀx。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "linear",
+        "type": "list[float]",
+        "description": "线性项 b，符号按目标中的减号。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "minimizer",
+        "type": "list[float]",
+        "description": "按原坐标顺序返回H⁻¹b。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "求解Hx=b，返回两个坐标，不返回矩阵的逆。",
+    "constraints": [
+      "H为2×2正定对称矩阵，最小特征值（eigenvalue）≥0.1，最大特征值≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "两个坐标分别为2/2和8/4，即[1,2]。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    matrix: list[list[float]],\n    linear: list[float],\n) -> list[float]:\n    # 按题目说明计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              4.0
+            ]
+          ],
+          "linear": [
+            2.0,
+            8.0
+          ]
+        },
+        "expected": [
+          1.0,
+          2.0
+        ],
+        "explanation": "两个坐标分别为2/2和8/4，即[1,2]。"
+      }
+    ]
+  },
+  {
+    "id": "p08-stationary-counterexample",
+    "slug": "p08-stationary-counterexample",
+    "version": "1",
+    "lesson_id": "P08-C01-S02",
+    "part": "8",
+    "chapter": "8.1",
+    "title": "驻点不一定最小",
+    "type": "choice",
+    "statement": "f(x)=x⁴/4−x²/2。在x=0及x=±1分别能得到哪些结论？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数19"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "x=0的梯度（gradient）为零，所以是全局最小。"
+      },
+      {
+        "id": "B",
+        "text": "x=0的二阶导数（derivative）为−1，是严格局部最大。"
+      },
+      {
+        "id": "C",
+        "text": "x=±1为全局最小，函数值都是−1/4。"
+      },
+      {
+        "id": "D",
+        "text": "三个驻点（stationary point）足以证明函数为凸。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-hessian-zero",
+    "slug": "p08-hessian-zero",
+    "version": "1",
+    "lesson_id": "P08-C01-S02",
+    "part": "8",
+    "chapter": "8.1",
+    "title": "零曲率没有给出结论",
+    "type": "choice",
+    "statement": "f₁(x)=x⁴和f₂(x)=−x⁴在0都有一阶、二阶导数（derivative）为0。哪些判断正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数19"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "二阶导数为0说明都不是极值。"
+      },
+      {
+        "id": "B",
+        "text": "f₁在0是严格最小。"
+      },
+      {
+        "id": "C",
+        "text": "f₂在0是严格最大。"
+      },
+      {
+        "id": "D",
+        "text": "Hessian半正定（positive semidefinite）在单个点不能保证该点最小。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-convex-domain",
+    "slug": "p08-convex-domain",
+    "version": "1",
+    "lesson_id": "P08-C01-S02",
+    "part": "8",
+    "chapter": "8.1",
+    "title": "凸性结论的范围",
+    "type": "choice",
+    "statement": "在开放凸域上，f二阶连续可微。下列哪些条件或结论正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数08",
+      "数17",
+      "数19"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "Hessian在全域半正定（positive semidefinite）等价于f凸。"
+      },
+      {
+        "id": "B",
+        "text": "只在初值（initial condition）处检查Hessian即可判定全域凸。"
+      },
+      {
+        "id": "C",
+        "text": "凸函数的任一驻点（stationary point）若位于域内，都是全局最小点。"
+      },
+      {
+        "id": "D",
+        "text": "严格凸且最小值能达到时，最小点唯一。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-gradient-steps",
+    "slug": "p08-gradient-steps",
+    "version": "1",
+    "lesson_id": "P08-C02-S01",
+    "part": "8",
+    "chapter": "8.2",
+    "title": "实现有预算的梯度下降",
+    "type": "python",
+    "statement": "用固定步长最小化严格凸二次目标，同时如实报告停止原因。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数19",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "对称目标矩阵（matrix） H，目标为 xᵀHx/2−bᵀx。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "linear",
+        "type": "list[float]",
+        "description": "线性项 b，符号按目标中的减号。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "初始点x₀，包含在轨迹（trajectory）首行。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "step",
+        "type": "float",
+        "description": "固定步长η。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "max_steps",
+        "type": "int",
+        "description": "最多执行的更新次数。",
+        "unit": "次"
+      },
+      {
+        "name": "tolerance",
+        "type": "float",
+        "description": "梯度（gradient）二范数（norm）停止阈值。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "trajectory",
+        "type": "list[list[float]]",
+        "description": "初值（initial condition）及每次更新后的点。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "residual",
+        "type": "float | None",
+        "description": "最后梯度二范数；非有限计算时为None。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "status",
+        "type": "str",
+        "description": "converged、max_steps或nonfinite。",
+        "unit": "不适用"
+      }
+    ],
+    "contract": "每次先检查当前梯度二范数≤tolerance，再检查是否已更新max_steps次；否则x←x−step(Hx−b)。初值已达标即返回一行轨迹。",
+    "constraints": [
+      "二维正定（positive definite）H，元素≤20；0<step≤1；0≤max_steps≤30；tolerance>0；测试均保持有限数值。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "三步后为[0.125,0]，梯度范数0.25仍大于0.01，应报告max_steps。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    matrix: list[list[float]],\n    linear: list[float],\n    initial: list[float],\n    step: float,\n    max_steps: int,\n    tolerance: float,\n) -> tuple[list[list[float]], float | None, str]:\n    # 按题目说明计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              4.0
+            ]
+          ],
+          "linear": [
+            0.0,
+            0.0
+          ],
+          "initial": [
+            1.0,
+            1.0
+          ],
+          "step": 0.25,
+          "max_steps": 3,
+          "tolerance": 0.01
+        },
+        "expected": [
+          [
+            [
+              1.0,
+              1.0
+            ],
+            [
+              0.5,
+              0.0
+            ],
+            [
+              0.25,
+              0.0
+            ],
+            [
+              0.125,
+              0.0
+            ]
+          ],
+          0.25,
+          "max_steps"
+        ],
+        "explanation": "三步后为[0.125,0]，梯度范数0.25仍大于0.01，应报告max_steps。"
+      }
+    ]
+  },
+  {
+    "id": "p08-step-limit",
+    "slug": "p08-step-limit",
+    "version": "1",
+    "lesson_id": "P08-C02-S01",
+    "part": "8",
+    "chapter": "8.2",
+    "title": "步长上界要严格",
+    "type": "choice",
+    "statement": "H=diag(1,10)。要使任意初值（initial condition）的误差都收敛到零，固定正步长η应满足什么？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数19",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "0<η<0.2。"
+      },
+      {
+        "id": "B",
+        "text": "0<η≤0.2。"
+      },
+      {
+        "id": "C",
+        "text": "0<η<2。"
+      },
+      {
+        "id": "D",
+        "text": "η越大越快且总会收敛。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-conditioning",
+    "slug": "p08-conditioning",
+    "version": "1",
+    "lesson_id": "P08-C02-S01",
+    "part": "8",
+    "chapter": "8.2",
+    "title": "两种慢的原因",
+    "type": "choice",
+    "statement": "同为正定（positive definite）二次目标，H₁=I，H₂=diag(1,100)。使用η=.01，第二个目标可能慢在哪里？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数19",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "较小曲率方向误差每步只乘0.99。"
+      },
+      {
+        "id": "B",
+        "text": "大曲率方向决定不失稳所需的步长上界。"
+      },
+      {
+        "id": "C",
+        "text": "条件数（condition number）只反映最大特征值（eigenvalue）的绝对大小。"
+      },
+      {
+        "id": "D",
+        "text": "等比例放大H与b并相应缩小η，轨迹（trajectory）可保持一致。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-small-gradient",
+    "slug": "p08-small-gradient",
+    "version": "1",
+    "lesson_id": "P08-C02-S01",
+    "part": "8",
+    "chapter": "8.2",
+    "title": "小梯度能说明多近",
+    "type": "choice",
+    "statement": "H=diag(0.001,1)，b=0，x=[1,0]。梯度（gradient）范数（norm）为0.001。哪些解释正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数19",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "离最小点的距离仍为1。"
+      },
+      {
+        "id": "B",
+        "text": "小梯度必说明每个坐标误差都很小。"
+      },
+      {
+        "id": "C",
+        "text": "若已知最小特征值（eigenvalue）μ>0，可用‖x−x*‖≤‖g‖/μ。"
+      },
+      {
+        "id": "D",
+        "text": "比较不同单位的梯度阈值时需要说明尺度。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-newton-direction",
+    "slug": "p08-newton-direction",
+    "version": "1",
+    "lesson_id": "P08-C02-S02",
+    "part": "8",
+    "chapter": "8.2",
+    "title": "检查牛顿方向是否下降",
+    "type": "python",
+    "statement": "对f(x)=x⁴/4−x²/2，根据当前曲率选择方向。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数19",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "point",
+        "type": "float",
+        "description": "当前标量坐标x。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "direction",
+        "type": "float",
+        "description": "选出的搜索方向p。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "kind",
+        "type": "str",
+        "description": "stationary、newton或gradient_fallback。",
+        "unit": "不适用"
+      }
+    ],
+    "contract": "g=x³−x，h=3x²−1。g=0返回(0,stationary)；否则h>0取−g/h并标newton，h≤0改取−g并标gradient_fallback。",
+    "constraints": [
+      "−3≤point≤3；比较按给定浮点数直接计算；stationary不等于最小。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "x=.2时g=−.192，h=−.88；原始牛顿方向会向上，改用−g=.192。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    point: float,\n) -> tuple[float, str]:\n    # 按题目说明计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "point": 0.2
+        },
+        "expected": [
+          0.192,
+          "gradient_fallback"
+        ],
+        "explanation": "x=.2时g=−.192，h=−.88；原始牛顿方向会向上，改用−g=.192。"
+      }
+    ]
+  },
+  {
+    "id": "p08-newton-taylor",
+    "slug": "p08-newton-taylor",
+    "version": "1",
+    "lesson_id": "P08-C02-S02",
+    "part": "8",
+    "chapter": "8.2",
+    "title": "牛顿步从哪里来",
+    "type": "choice",
+    "statement": "局部模型（model）m(p)=f(x)+gᵀp+pᵀHp/2，H正定（positive definite）。哪些陈述正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数19",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "最小化m给出Hp=−g。"
+      },
+      {
+        "id": "B",
+        "text": "可以把Hp=−g直接当作原非凸函数的全局最小。"
+      },
+      {
+        "id": "C",
+        "text": "g非零时gᵀp=−pᵀHp<0。"
+      },
+      {
+        "id": "D",
+        "text": "二次目标用精确牛顿全步可一步到唯一解。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-negative-curvature",
+    "slug": "p08-negative-curvature",
+    "version": "1",
+    "lesson_id": "P08-C02-S02",
+    "part": "8",
+    "chapter": "8.2",
+    "title": "回溯不能修好错误方向",
+    "type": "choice",
+    "statement": "在f(x)=x⁴/4−x²/2的x=.2处，原始牛顿方向与梯度（gradient）同号。应怎样处理？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数19",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "一直减小正步长，必定获得一阶下降。"
+      },
+      {
+        "id": "B",
+        "text": "先检查g·p；不是下降方向时换用−g。"
+      },
+      {
+        "id": "C",
+        "text": "只要能解出牛顿方程就接受全步。"
+      },
+      {
+        "id": "D",
+        "text": "宣称函数无最小值。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-stationary-stop",
+    "slug": "p08-stationary-stop",
+    "version": "1",
+    "lesson_id": "P08-C02-S02",
+    "part": "8",
+    "chapter": "8.2",
+    "title": "停在零处应如何报告",
+    "type": "choice",
+    "statement": "保护牛顿算法从x=0出发，梯度（gradient）检查立即停止。哪些表述诚实？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数19",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "一阶驻点（stationary point）条件满足。"
+      },
+      {
+        "id": "B",
+        "text": "已经证得全局最小。"
+      },
+      {
+        "id": "C",
+        "text": "还需看曲率，当前h=−1。"
+      },
+      {
+        "id": "D",
+        "text": "这一结果说明停止条件本身不能排除极大点。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-armijo",
+    "slug": "p08-armijo",
+    "version": "1",
+    "lesson_id": "P08-C02-S03",
+    "part": "8",
+    "chapter": "8.2",
+    "title": "返回真正被接受的步长",
+    "type": "python",
+    "statement": "沿给定方向对严格凸二次目标做有限次数Armijo回溯。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数19",
+      "数33"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "对称目标矩阵（matrix） H，目标为 xᵀHx/2−bᵀx。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "linear",
+        "type": "list[float]",
+        "description": "线性项 b，符号按目标中的减号。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "point",
+        "type": "list[float]",
+        "description": "当前优化变量 x。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "direction",
+        "type": "list[float]",
+        "description": "固定搜索方向p。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "initial_step",
+        "type": "float",
+        "description": "首先尝试的步长t₀。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "shrink",
+        "type": "float",
+        "description": "拒绝一次后步长乘β。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "slope",
+        "type": "float",
+        "description": "Armijo系数c。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "max_trials",
+        "type": "int",
+        "description": "最多尝试多少个步长，含t₀。",
+        "unit": "次"
+      }
+    ],
+    "returns": [
+      {
+        "name": "next_point",
+        "type": "list[float]",
+        "description": "接受的点；失败时原点。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "accepted_step",
+        "type": "float | None",
+        "description": "接受的t，失败时None。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "status",
+        "type": "str",
+        "description": "accepted、not_descent或line_search_failed。",
+        "unit": "不适用"
+      }
+    ],
+    "contract": "先算gᵀp。若≥0返回原点、None、not_descent。依次尝试t₀βʲ，j=0,…,max_trials−1；取第一个满足f(x+tp)≤f(x)+c t gᵀp的t。无接受值返回line_search_failed。",
+    "constraints": [
+      "维数1或2，H正定（positive definite）；0<shrink<1，0<slope<.5；0≤max_trials≤30；所有输入（input）绝对值≤20。",
+      "初始步长必须严格为正：0<initial_step≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "t=1和.5均不满足充分下降，t=.25首次满足，点为[.5,0]。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    matrix: list[list[float]],\n    linear: list[float],\n    point: list[float],\n    direction: list[float],\n    initial_step: float,\n    shrink: float,\n    slope: float,\n    max_trials: int,\n) -> tuple[list[float], float | None, str]:\n    # 按题目说明计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              4.0
+            ]
+          ],
+          "linear": [
+            0.0,
+            0.0
+          ],
+          "point": [
+            1.0,
+            1.0
+          ],
+          "direction": [
+            -2.0,
+            -4.0
+          ],
+          "initial_step": 1.0,
+          "shrink": 0.5,
+          "slope": 0.1,
+          "max_trials": 5
+        },
+        "expected": [
+          [
+            0.0,
+            -1.0
+          ],
+          0.5,
+          "accepted"
+        ],
+        "explanation": "t=1和.5均不满足充分下降，t=.25首次满足，点为[.5,0]。"
+      }
+    ]
+  },
+  {
+    "id": "p08-trial-budget",
+    "slug": "p08-trial-budget",
+    "version": "1",
+    "lesson_id": "P08-C02-S03",
+    "part": "8",
+    "chapter": "8.2",
+    "title": "零次尝试是什么",
+    "type": "choice",
+    "statement": "方向已经确认下降，但max_trials=0。应返回什么？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数19",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "默认接受初始步长。"
+      },
+      {
+        "id": "B",
+        "text": "无接受步长，保持原点并报告line_search_failed。"
+      },
+      {
+        "id": "C",
+        "text": "converged。"
+      },
+      {
+        "id": "D",
+        "text": "自动用零步长冒充accepted。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-line-search-status",
+    "slug": "p08-line-search-status",
+    "version": "1",
+    "lesson_id": "P08-C02-S03",
+    "part": "8",
+    "chapter": "8.2",
+    "title": "步长接受不等于收敛",
+    "type": "choice",
+    "statement": "一次Armijo检验通过，但新点的梯度（gradient）仍明显非零。哪些判断正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数19",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "足以宣布全局最优。"
+      },
+      {
+        "id": "B",
+        "text": "这只说明该次沿该方向满足充分下降。"
+      },
+      {
+        "id": "C",
+        "text": "应在下一迭代重新评估停止条件。"
+      },
+      {
+        "id": "D",
+        "text": "若总更新预算用完，应报告预算耗尽。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-objective-offset",
+    "slug": "p08-objective-offset",
+    "version": "1",
+    "lesson_id": "P08-C02-S03",
+    "part": "8",
+    "chapter": "8.2",
+    "title": "小目标值可信吗",
+    "type": "choice",
+    "statement": "把任意目标f替换为f−10⁶，梯度（gradient）与迭代轨迹（trajectory）保持不变。哪些停止规则仍有相同含义？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数19",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "f<0就停止。"
+      },
+      {
+        "id": "B",
+        "text": "在相同坐标尺度下检查梯度范数（norm）。"
+      },
+      {
+        "id": "C",
+        "text": "严格凸二次问题检查距解析解（analytical solution）的误差。"
+      },
+      {
+        "id": "D",
+        "text": "目标数值越负越接近最优。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-search-guarantee",
+    "slug": "p08-search-guarantee",
+    "version": "1",
+    "lesson_id": "P08-C02-S03",
+    "part": "8",
+    "chapter": "8.2",
+    "title": "什么时候小步会被接受",
+    "type": "choice",
+    "statement": "f在当前点附近连续可微，gᵀp<0，0<c<1。无限回溯不断乘0<β<1。哪些结论成立？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数19",
+      "数33"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "充分小的步长会满足Armijo条件。"
+      },
+      {
+        "id": "B",
+        "text": "固定有限max_trials必定足够。"
+      },
+      {
+        "id": "C",
+        "text": "该结论来自一阶余项相对t趋于0。"
+      },
+      {
+        "id": "D",
+        "text": "只要求p非零，不需要方向导数（derivative）为负。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-ridge",
+    "slug": "p08-ridge",
+    "version": "1",
+    "lesson_id": "P08-C03-S01",
+    "part": "8",
+    "chapter": "8.3",
+    "title": "计算岭回归解",
+    "type": "python",
+    "statement": "最小化 ‖Xβ−y‖²/(2n)+λ‖β‖²/2。不额外拟合截距，所有输入（input）已在同一无量纲（dimensionless）尺度。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数19",
+      "数33",
+      "数34"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "design",
+        "type": "list[list[float]]",
+        "description": "设计矩阵（design matrix）X，每行对应一次观测（observation）。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "observed",
+        "type": "list[float]",
+        "description": "同序目标y，已按参考量除去单位。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "penalty",
+        "type": "float",
+        "description": "惩罚强度λ，与平均平方损失的归一化配套。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "coefficients",
+        "type": "list[float] | None",
+        "description": "唯一系数；不唯一时None。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "status",
+        "type": "str",
+        "description": "unique或nonunique。",
+        "unit": "不适用"
+      }
+    ],
+    "contract": "求解(XᵀX/n+λI)β=Xᵀy/n。λ=0且列不满秩（rank）时返回None、nonunique。题目中的秩亏是精确共线，不把任意小特征值（eigenvalue）直接认作零。",
+    "constraints": [
+      "1≤n≤20，2列；0≤λ≤5；非零特征值≥0.01；秩亏时两列完全相同或零列。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "XᵀX/n=.5I，加.5I后得到I，右端为[1,−1]，所以系数[1,−1]。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    design: list[list[float]],\n    observed: list[float],\n    penalty: float,\n) -> tuple[list[float] | None, str]:\n    # 按题目说明计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "design": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          "observed": [
+            2.0,
+            -2.0
+          ],
+          "penalty": 0.5
+        },
+        "expected": [
+          [
+            1.0,
+            -1.0
+          ],
+          "unique"
+        ],
+        "explanation": "XᵀX/n=.5I，加.5I后得到I，右端为[1,−1]，所以系数[1,−1]。"
+      }
+    ]
+  },
+  {
+    "id": "p08-ridge-normalization",
+    "slug": "p08-ridge-normalization",
+    "version": "1",
+    "lesson_id": "P08-C03-S01",
+    "part": "8",
+    "chapter": "8.3",
+    "title": "多出一个n意味着什么",
+    "type": "choice",
+    "statement": "损失从‖Xβ−y‖²/(2n)+λ‖β‖²/2改为‖Xβ−y‖²/2+α‖β‖²/2。如何保持最小点相同？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数19",
+      "数33",
+      "数34"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "α=λ/n。"
+      },
+      {
+        "id": "B",
+        "text": "α=nλ。"
+      },
+      {
+        "id": "C",
+        "text": "α=λ，总是相同。"
+      },
+      {
+        "id": "D",
+        "text": "改成任何α都不影响解。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-rank-and-ridge",
+    "slug": "p08-rank-and-ridge",
+    "version": "1",
+    "lesson_id": "P08-C03-S01",
+    "part": "8",
+    "chapter": "8.3",
+    "title": "唯一解意味着识别了机制吗",
+    "type": "choice",
+    "statement": "设计矩阵（design matrix）两列完全相同，加λ>0的岭惩罚后解唯一。哪些判断正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数19",
+      "数33",
+      "数34"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "惩罚使二次矩阵（matrix）正定（positive definite）。"
+      },
+      {
+        "id": "B",
+        "text": "数据已能够区分两列对应的机制。"
+      },
+      {
+        "id": "C",
+        "text": "唯一性可能由惩罚提供，而非观测（observation）提供。"
+      },
+      {
+        "id": "D",
+        "text": "岭解一般不把小系数精确变成零。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-penalty-intercept",
+    "slug": "p08-penalty-intercept",
+    "version": "1",
+    "lesson_id": "P08-C03-S01",
+    "part": "8",
+    "chapter": "8.3",
+    "title": "截距是否一起惩罚",
+    "type": "choice",
+    "statement": "训练数据已中心化，y的训练均值作为截距单独保存。为什么截距通常不参与本节惩罚？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数19",
+      "数33",
+      "数34"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "截距代表基准水平，不能与中心化后的斜率（slope）机械混为一类。"
+      },
+      {
+        "id": "B",
+        "text": "所有应用都禁止惩罚截距。"
+      },
+      {
+        "id": "C",
+        "text": "本节目标只对机制斜率施加收缩，改变目标要另行声明。"
+      },
+      {
+        "id": "D",
+        "text": "只要没有惩罚截距，就不会有任何过拟合。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-threshold",
+    "slug": "p08-threshold",
+    "version": "1",
+    "lesson_id": "P08-C03-S02",
+    "part": "8",
+    "chapter": "8.3",
+    "title": "实现逐坐标软阈值",
+    "type": "python",
+    "statement": "求每个坐标上的最小点argmin_z (z−v)²/2+τ|z|。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数19",
+      "数33",
+      "数34"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "values",
+        "type": "list[float]",
+        "description": "给定坐标v，可为空。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "threshold",
+        "type": "float",
+        "description": "阈值τ。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "minimizers",
+        "type": "list[float]",
+        "description": "逐坐标最小点，顺序与values一致。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "v>τ时返回v−τ；v<−τ时返回v+τ；其余返回0。边界|v|=τ归零。",
+    "constraints": [
+      "0≤threshold≤10；values长度0—50；元素绝对值≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "两端各向零移动.5；刚好等于阈值的±.5也变为0。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    values: list[float],\n    threshold: float,\n) -> list[float]:\n    # 按题目说明计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "values": [
+            -2.0,
+            -0.5,
+            0.0,
+            0.5,
+            2.0
+          ],
+          "threshold": 0.5
+        },
+        "expected": [
+          -1.5,
+          0.0,
+          0.0,
+          0.0,
+          1.5
+        ],
+        "explanation": "两端各向零移动.5；刚好等于阈值的±.5也变为0。"
+      }
+    ]
+  },
+  {
+    "id": "p08-proximal",
+    "slug": "p08-proximal",
+    "version": "1",
+    "lesson_id": "P08-C03-S02",
+    "part": "8",
+    "chapter": "8.3",
+    "title": "计算一次近端更新",
+    "type": "python",
+    "statement": "对目标F(β)=‖Xβ−y‖²/(2n)+λ‖β‖₁，执行一次近端梯度（proximal gradient）并计算新点的完整目标。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数19",
+      "数33",
+      "数34"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "design",
+        "type": "list[list[float]]",
+        "description": "设计矩阵（design matrix）X，每行对应一次观测（observation）。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "observed",
+        "type": "list[float]",
+        "description": "同序目标y，已按参考量除去单位。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "coefficients",
+        "type": "list[float]",
+        "description": "当前系数β。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "step",
+        "type": "float",
+        "description": "近端梯度步长η。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "penalty",
+        "type": "float",
+        "description": "惩罚强度λ，与平均平方损失的归一化配套。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "updated",
+        "type": "list[float]",
+        "description": "更新后的β。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "objective",
+        "type": "float",
+        "description": "新点的F值，含L1惩罚。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "先算g=Xᵀ(Xβ−y)/n，再对β−ηg用阈值ηλ做软阈值（soft thresholding）。目标在新点计算。",
+    "constraints": [
+      "2列；1≤n≤20；0≤λ≤3；0<step≤2；本题只要求一步计算，不宣称任意步长都收敛。",
+      "设计矩阵、观测、初始或当前系数均为有限实数，元素绝对值≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "梯度为[−1,.2]，阈值.3，更新得[.7,0]；完整目标为.6725。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    design: list[list[float]],\n    observed: list[float],\n    coefficients: list[float],\n    step: float,\n    penalty: float,\n) -> tuple[list[float], float]:\n    # 按题目说明计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "design": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          "observed": [
+            2.0,
+            -0.4
+          ],
+          "coefficients": [
+            0.0,
+            0.0
+          ],
+          "step": 1.0,
+          "penalty": 0.3
+        },
+        "expected": [
+          [
+            0.7,
+            0.0
+          ],
+          0.6725
+        ],
+        "explanation": "梯度（gradient）为[−1,.2]，阈值.3，更新得[.7,0]；完整目标为.6725。"
+      }
+    ]
+  },
+  {
+    "id": "p08-subgradient-zero",
+    "slug": "p08-subgradient-zero",
+    "version": "1",
+    "lesson_id": "P08-C03-S02",
+    "part": "8",
+    "chapter": "8.3",
+    "title": "零处的斜率如何表达",
+    "type": "choice",
+    "statement": "最小化(z−v)²/2+τ|z|，τ>0。关于v的哪个条件与“z=0是最小点”等价？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数19",
+      "数33",
+      "数34"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "仅当v=0。"
+      },
+      {
+        "id": "B",
+        "text": "|v|≤τ。"
+      },
+      {
+        "id": "C",
+        "text": "|v|≥τ。"
+      },
+      {
+        "id": "D",
+        "text": "绝对值在0不可导，所以没有最小点。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-proximal-step-size",
+    "slug": "p08-proximal-step-size",
+    "version": "1",
+    "lesson_id": "P08-C03-S02",
+    "part": "8",
+    "chapter": "8.3",
+    "title": "近端步长和归一化",
+    "type": "choice",
+    "statement": "g(β)=‖Xβ−y‖²/(2n)，L为XᵀX/n的最大特征值（eigenvalue）且L>0。哪种选择保证标准上界模型（model）成立？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数19",
+      "数33",
+      "数34"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "0<η≤1/L。"
+      },
+      {
+        "id": "B",
+        "text": "η=1，与X无关。"
+      },
+      {
+        "id": "C",
+        "text": "阈值永远用λ，不乘η。"
+      },
+      {
+        "id": "D",
+        "text": "只要加入L1惩罚就不需要检查步长。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-sparse-evidence",
+    "slug": "p08-sparse-evidence",
+    "version": "1",
+    "lesson_id": "P08-C03-S02",
+    "part": "8",
+    "chapter": "8.3",
+    "title": "零系数不是机制证明",
+    "type": "choice",
+    "statement": "两个高度相关变量可相互替代，L1解仅保留其中一个。哪些结论合理？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数19",
+      "数33",
+      "数34"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "已证明被删变量没有任何生理作用。"
+      },
+      {
+        "id": "B",
+        "text": "这是当前目标和字典下的一种稀疏表示。"
+      },
+      {
+        "id": "C",
+        "text": "需要独立数据和机制证据检查解释。"
+      },
+      {
+        "id": "D",
+        "text": "改变变量尺度或轻微改变数据，入选集合可能变化。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-training-scale",
+    "slug": "p08-training-scale",
+    "version": "1",
+    "lesson_id": "P08-C03-S03",
+    "part": "8",
+    "chapter": "8.3",
+    "title": "固定训练尺度后变换新数据",
+    "type": "python",
+    "statement": "只使用training计算每列均值与总体标准差（standard deviation），然后变换later。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数19",
+      "数33",
+      "数34"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "training",
+        "type": "list[list[float]]",
+        "description": "训练行，每行2个变量。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "later",
+        "type": "list[list[float]]",
+        "description": "待变换的验证或未来行，可为空。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "means",
+        "type": "list[float]",
+        "description": "训练列均值。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "scales",
+        "type": "list[float]",
+        "description": "训练总体标准差，零值改为1。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "transformed",
+        "type": "list[list[float]]",
+        "description": "later按(x−mean)/scale变换后的行。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "标准差分母为训练行数n，不是n−1；later不能参与均值或尺度估计。常量训练列的尺度置1，未来偏离仍保留，不直接清零。",
+    "constraints": [
+      "training至少1行、至多30行；later长度0—30；每行2个数，绝对值≤100。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "训练均值[2,5]、尺度[1,1]，所以新行变为[3,2]。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    training: list[list[float]],\n    later: list[list[float]],\n) -> tuple[list[float], list[float], list[list[float]]]:\n    # 按题目说明计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "training": [
+            [
+              1.0,
+              5.0
+            ],
+            [
+              3.0,
+              5.0
+            ]
+          ],
+          "later": [
+            [
+              5.0,
+              7.0
+            ]
+          ]
+        },
+        "expected": [
+          [
+            2.0,
+            5.0
+          ],
+          [
+            1.0,
+            1.0
+          ],
+          [
+            [
+              3.0,
+              2.0
+            ]
+          ]
+        ],
+        "explanation": "训练均值[2,5]、尺度[1,1]，所以新行变为[3,2]。"
+      }
+    ]
+  },
+  {
+    "id": "p08-split-protocol",
+    "slug": "p08-split-protocol",
+    "version": "1",
+    "lesson_id": "P08-C03-S03",
+    "part": "8",
+    "chapter": "8.3",
+    "title": "哪一组数据选择λ",
+    "type": "choice",
+    "statement": "已经固定训练、验证和最终评估三段。以下哪些做法保持最终评估独立？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数19",
+      "数33",
+      "数34"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "训练集（training set）估计均值和尺度，应用到后两段。"
+      },
+      {
+        "id": "B",
+        "text": "在验证集（validation set）上选择候选λ，然后只报告一次最终评估。"
+      },
+      {
+        "id": "C",
+        "text": "查看最终误差后重选λ，但仍称该误差为未见成绩。"
+      },
+      {
+        "id": "D",
+        "text": "最终评估变差时如实报告，并另找新数据评估后续修改。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-constant-column",
+    "slug": "p08-constant-column",
+    "version": "1",
+    "lesson_id": "P08-C03-S03",
+    "part": "8",
+    "chapter": "8.3",
+    "title": "训练中恒定的变量",
+    "type": "choice",
+    "statement": "训练时某列始终为5，后续值为7。按本节标准化契约置尺度为1后，哪项正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数19",
+      "数33",
+      "数34"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "后续该坐标为2；这暴露训练中没见过的变化。"
+      },
+      {
+        "id": "B",
+        "text": "后续该坐标强制为0。"
+      },
+      {
+        "id": "C",
+        "text": "需要用后续值重新估计训练方差（variance）。"
+      },
+      {
+        "id": "D",
+        "text": "训练恒定足以证明该机制永远不变。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-prediction-and-truth",
+    "slug": "p08-prediction-and-truth",
+    "version": "1",
+    "lesson_id": "P08-C03-S03",
+    "part": "8",
+    "chapter": "8.3",
+    "title": "预测好不等于参数对",
+    "type": "choice",
+    "statement": "含相关机制字典的模型（model）预测误差很小。哪些解释仍需谨慎？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数19",
+      "数33",
+      "数34"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "可直接确认每个系数的生理含义。"
+      },
+      {
+        "id": "B",
+        "text": "多个系数组（array）合可能给出近似相同预测。"
+      },
+      {
+        "id": "C",
+        "text": "应另查激励与可辨识性（identifiability）。"
+      },
+      {
+        "id": "D",
+        "text": "留出情形超出训练范围时，预测可恶化。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-kkt",
+    "slug": "p08-kkt",
+    "version": "1",
+    "lesson_id": "P08-C04-S01",
+    "part": "8",
+    "chapter": "8.4",
+    "title": "核对四类最优性残差",
+    "type": "python",
+    "statement": "对严格凸二次目标与线性不等式，核对给定候选点及乘子，不运行优化器。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数19",
+      "数33",
+      "数35"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "对称目标矩阵（matrix） H，目标为 xᵀHx/2−bᵀx。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "linear",
+        "type": "list[float]",
+        "description": "线性项 b，符号按目标中的减号。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "constraints",
+        "type": "list[list[float]]",
+        "description": "不等式行A，规定Ax≤c。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "bounds",
+        "type": "list[float]",
+        "description": "右端c，与约束行同序。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "point",
+        "type": "list[float]",
+        "description": "当前优化变量 x。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "multipliers",
+        "type": "list[float]",
+        "description": "候选不等式乘子λ，与约束行同序。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "tolerance",
+        "type": "float",
+        "description": "四个残差（residual）统一的绝对阈值。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "residuals",
+        "type": "list[float]",
+        "description": "依次为原始可行、对偶可行、驻点（stationary point）和互补残差。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "status",
+        "type": "str",
+        "description": "全部残差≤tolerance为verified，否则rejected。",
+        "unit": "不适用"
+      }
+    ],
+    "contract": "记r=Ax−c，s=Hx−b+Aᵀλ。返回[max(0,max r), max(0,max −λ), max|s|, max|λᵢrᵢ|]；空约束的相应最大值取0。rejected仅说明候选不合格，不能判定问题不可行。",
+    "constraints": [
+      "维数1或2，H正定（positive definite）；0—5行线性约束；全部量已无量纲（dimensionless）化，tolerance>0。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "点[1,1]恰好用完预算2，乘子2抵消梯度[−2,−2]，四个残差为0。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    matrix: list[list[float]],\n    linear: list[float],\n    constraints: list[list[float]],\n    bounds: list[float],\n    point: list[float],\n    multipliers: list[float],\n    tolerance: float,\n) -> tuple[list[float], str]:\n    # 按题目说明计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              2.0
+            ]
+          ],
+          "linear": [
+            4.0,
+            4.0
+          ],
+          "constraints": [
+            [
+              1.0,
+              1.0
+            ],
+            [
+              -1.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0
+            ]
+          ],
+          "bounds": [
+            2.0,
+            0.0,
+            0.0
+          ],
+          "point": [
+            1.0,
+            1.0
+          ],
+          "multipliers": [
+            2.0,
+            0.0,
+            0.0
+          ],
+          "tolerance": 1e-08
+        },
+        "expected": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "verified"
+        ],
+        "explanation": "点[1,1]恰好用完预算2，乘子2抵消梯度（gradient）[−2,−2]，四个残差为0。"
+      }
+    ]
+  },
+  {
+    "id": "p08-necessity-sufficiency",
+    "slug": "p08-necessity-sufficiency",
+    "version": "1",
+    "lesson_id": "P08-C04-S01",
+    "part": "8",
+    "chapter": "8.4",
+    "title": "条件何时必要或充分",
+    "type": "choice",
+    "statement": "对可微凸目标、可微凸不等式和仿射（affine）等式，以下哪些表述正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数19",
+      "数33",
+      "数35"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "满足KKT的原始/对偶点可证明全局最优。"
+      },
+      {
+        "id": "B",
+        "text": "任意非凸问题中KKT都是全局充分条件。"
+      },
+      {
+        "id": "C",
+        "text": "适当约束资格用于保证最优点存在相应乘子。"
+      },
+      {
+        "id": "D",
+        "text": "只检查原始可行性就证明最优。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-constraint-qualification",
+    "slug": "p08-constraint-qualification",
+    "version": "1",
+    "lesson_id": "P08-C04-S01",
+    "part": "8",
+    "chapter": "8.4",
+    "title": "退化约束为什么重要",
+    "type": "choice",
+    "statement": "最小化f(x)=x，约束x²≤0，唯一可行点x=0。关于KKT有哪些正确判断？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数19",
+      "数33",
+      "数35"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "0必不是最优，因为找不到乘子。"
+      },
+      {
+        "id": "B",
+        "text": "0是唯一可行点，当然最优。"
+      },
+      {
+        "id": "C",
+        "text": "在0，驻点（stationary point）条件为1+λ·0=0，不可能满足。"
+      },
+      {
+        "id": "D",
+        "text": "这个例子说明必要性要检查约束资格。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-multiplier-sign",
+    "slug": "p08-multiplier-sign",
+    "version": "1",
+    "lesson_id": "P08-C04-S01",
+    "part": "8",
+    "chapter": "8.4",
+    "title": "乘子的符号从哪来",
+    "type": "choice",
+    "statement": "目标f，约束g(x)≤0，采用L=f+λg。哪些说法正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数19",
+      "数33",
+      "数35"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "不等式乘子应非负。"
+      },
+      {
+        "id": "B",
+        "text": "互补条件为λg(x)=0。"
+      },
+      {
+        "id": "C",
+        "text": "未活跃约束g(x)<0时，KKT要求λ=0。"
+      },
+      {
+        "id": "D",
+        "text": "等式约束的乘子也必须非负。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-budget-qp",
+    "slug": "p08-budget-qp",
+    "version": "1",
+    "lesson_id": "P08-C04-S02",
+    "part": "8",
+    "chapter": "8.4",
+    "title": "求解带上下界和预算的二次目标",
+    "type": "python",
+    "statement": "两个可调流量（flow）已除以共同参考流量，求满足上下界及总预算的唯一最优配置。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数19",
+      "数33",
+      "数35"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "对称目标矩阵（matrix） H，目标为 xᵀHx/2−bᵀx。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "linear",
+        "type": "list[float]",
+        "description": "线性项 b，符号按目标中的减号。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "lower",
+        "type": "list[float]",
+        "description": "两坐标的下界ℓ。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "upper",
+        "type": "list[float]",
+        "description": "两坐标的上界u。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "budget",
+        "type": "float",
+        "description": "总量上限B，要求x₁+x₂≤B。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "point",
+        "type": "list[float] | None",
+        "description": "最优坐标，未取得解时None。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "objective",
+        "type": "float | None",
+        "description": "该点目标值，无解时None。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "status",
+        "type": "str",
+        "description": "optimal、infeasible或numerical_failure。",
+        "unit": "不适用"
+      }
+    ],
+    "contract": "若任一下界大于上界，或下界和大于budget，返回None,None,infeasible。否则求严格凸二次目标的唯一最小点；允许枚举边、顶点或活跃集（active set）。numerical_failure只表示计算失败，不能替代不可行判定。",
+    "constraints": [
+      "二维H正定（positive definite），特征值（eigenvalue）在[0.1,20]；0≤下界、上界≤5；0≤budget≤10；线性项绝对值≤20；不得只把无约束解逐坐标截断。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "预算活跃，解为[2/3,4/3]，目标−28/3；截断[2,2]不能满足总预算。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    matrix: list[list[float]],\n    linear: list[float],\n    lower: list[float],\n    upper: list[float],\n    budget: float,\n) -> tuple[list[float] | None, float | None, str]:\n    # 按题目说明计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              4.0
+            ]
+          ],
+          "linear": [
+            4.0,
+            8.0
+          ],
+          "lower": [
+            0.0,
+            0.0
+          ],
+          "upper": [
+            3.0,
+            3.0
+          ],
+          "budget": 2.0
+        },
+        "expected": [
+          [
+            0.6666666666666667,
+            1.3333333333333335
+          ],
+          -9.333333333333334,
+          "optimal"
+        ],
+        "explanation": "预算活跃，解为[2/3,4/3]，目标−28/3；截断[2,2]不能满足总预算。"
+      }
+    ]
+  },
+  {
+    "id": "p08-feasible-or-failed",
+    "slug": "p08-feasible-or-failed",
+    "version": "1",
+    "lesson_id": "P08-C04-S02",
+    "part": "8",
+    "chapter": "8.4",
+    "title": "一次候选失败能证明什么",
+    "type": "choice",
+    "statement": "某求解器返回候选x，发现违反一条约束。此时最可靠的报告是？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数19",
+      "数33",
+      "数35"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "问题不可行。"
+      },
+      {
+        "id": "B",
+        "text": "当前候选不可行，问题是否可行仍需证据。"
+      },
+      {
+        "id": "C",
+        "text": "增加迭代必能修好。"
+      },
+      {
+        "id": "D",
+        "text": "删除该约束但继续报告原问题结果。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-clip-coupling",
+    "slug": "p08-clip-coupling",
+    "version": "1",
+    "lesson_id": "P08-C04-S02",
+    "part": "8",
+    "chapter": "8.4",
+    "title": "截断为什么不够",
+    "type": "choice",
+    "statement": "H=[[2,1],[1,2]]，两个坐标又受总预算约束。为什么不能默认逐坐标截断无约束解就是约束最优？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数19",
+      "数33",
+      "数35"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "交叉项使一个坐标影响另一个的代价。"
+      },
+      {
+        "id": "B",
+        "text": "总预算把两个坐标耦合。"
+      },
+      {
+        "id": "C",
+        "text": "任意正定（positive definite）H都能用普通欧氏截断得到约束解。"
+      },
+      {
+        "id": "D",
+        "text": "应在可行集合上比较完整目标或核验KKT。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-soft-hard",
+    "slug": "p08-soft-hard",
+    "version": "1",
+    "lesson_id": "P08-C04-S02",
+    "part": "8",
+    "chapter": "8.4",
+    "title": "放宽约束和多跑几步",
+    "type": "choice",
+    "statement": "原问题要求x₁+x₂≤B，改成超额惩罚ρmax(0,x₁+x₂−B)²。哪些判断正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数19",
+      "数33",
+      "数35"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "有限ρ一般允许一定违规。"
+      },
+      {
+        "id": "B",
+        "text": "这与原硬约束完全等价。"
+      },
+      {
+        "id": "C",
+        "text": "增加迭代预算只改变求解过程，放宽B则改变可行集合。"
+      },
+      {
+        "id": "D",
+        "text": "比较方案时应另报告实际违规量。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-cap-geometry",
+    "slug": "p08-cap-geometry",
+    "version": "1",
+    "lesson_id": "P08-SUMMARY",
+    "part": "8",
+    "chapter": "8.summary",
+    "title": "目标尺度与凸性",
+    "type": "choice",
+    "statement": "拟合目标f(x)=xᵀHx/2−bᵀx。H对称。哪些判断正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数19",
+      "数33",
+      "数34",
+      "数35"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "H正定（positive definite）时唯一驻点（stationary point）就是全局最小。"
+      },
+      {
+        "id": "B",
+        "text": "H只有在当前点半正定（positive semidefinite）就足以证明任意非线性目标凸。"
+      },
+      {
+        "id": "C",
+        "text": "统一正比例缩放目标不改变最小点。"
+      },
+      {
+        "id": "D",
+        "text": "梯度（gradient）为零对一般非凸目标仍需进一步检查。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-cap-regularization",
+    "slug": "p08-cap-regularization",
+    "version": "1",
+    "lesson_id": "P08-SUMMARY",
+    "part": "8",
+    "chapter": "8.summary",
+    "title": "正则化能保证什么",
+    "type": "choice",
+    "statement": "用相关机制字典拟合清除数据，验证集（validation set）选择λ。哪些结论合理？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数19",
+      "数33",
+      "数34",
+      "数35"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "稀疏选择可以代替独立机制证据。"
+      },
+      {
+        "id": "B",
+        "text": "λ>0的岭目标可在列相关时给出唯一解。"
+      },
+      {
+        "id": "C",
+        "text": "最终测试误差不是训练损失的必然单调函数。"
+      },
+      {
+        "id": "D",
+        "text": "列尺度改变会影响同一λ所代表的惩罚。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-cap-derivatives",
+    "slug": "p08-cap-derivatives",
+    "version": "1",
+    "lesson_id": "P08-SUMMARY",
+    "part": "8",
+    "chapter": "8.summary",
+    "title": "梯度与曲率核验",
+    "type": "python",
+    "statement": "对已经给定的无量纲（dimensionless）二次拟合目标，返回目标、梯度（gradient）及Hessian，供独立差分核对。",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数19",
+      "数33",
+      "数34",
+      "数35"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "对称目标矩阵（matrix） H，目标为 xᵀHx/2−bᵀx。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "linear",
+        "type": "list[float]",
+        "description": "线性项 b，符号按目标中的减号。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "point",
+        "type": "list[float]",
+        "description": "当前优化变量 x。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "value",
+        "type": "float",
+        "description": "目标值 f(x)。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "gradient",
+        "type": "list[float]",
+        "description": "梯度 Hx−b。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "hessian",
+        "type": "list[list[float]]",
+        "description": "Hessian，等于 H。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "按 f=xᵀHx/2−bᵀx 计算；不要漏掉 1/2，也不要把 b 的符号改为加号。",
+    "constraints": [
+      "1≤维数≤3；H对称，所有元素绝对值≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先算 Hx=[3,−2]，梯度=[2,−4]；目标值为4。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    matrix: list[list[float]],\n    linear: list[float],\n    point: list[float],\n) -> tuple[float, list[float], list[list[float]]]:\n    # 按题目说明计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              1.0
+            ],
+            [
+              1.0,
+              4.0
+            ]
+          ],
+          "linear": [
+            1.0,
+            2.0
+          ],
+          "point": [
+            2.0,
+            -1.0
+          ]
+        },
+        "expected": [
+          4.0,
+          [
+            2.0,
+            -4.0
+          ],
+          [
+            [
+              2.0,
+              1.0
+            ],
+            [
+              1.0,
+              4.0
+            ]
+          ]
+        ],
+        "explanation": "先算 Hx=[3,−2]，梯度=[2,−4]；目标值为4。"
+      }
+    ]
+  },
+  {
+    "id": "p08-cap-descent",
+    "slug": "p08-cap-descent",
+    "version": "1",
+    "lesson_id": "P08-SUMMARY",
+    "part": "8",
+    "chapter": "8.summary",
+    "title": "带回溯的一步下降",
+    "type": "python",
+    "statement": "给定同一拟合目标、起点和方向，按公开的有限回溯规则返回接受步长与新点。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数19",
+      "数33",
+      "数34",
+      "数35"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "对称目标矩阵（matrix） H，目标为 xᵀHx/2−bᵀx。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "linear",
+        "type": "list[float]",
+        "description": "线性项 b，符号按目标中的减号。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "point",
+        "type": "list[float]",
+        "description": "当前优化变量 x。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "direction",
+        "type": "list[float]",
+        "description": "固定搜索方向p。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "initial_step",
+        "type": "float",
+        "description": "首先尝试的步长t₀。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "shrink",
+        "type": "float",
+        "description": "拒绝一次后步长乘β。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "slope",
+        "type": "float",
+        "description": "Armijo系数c。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "max_trials",
+        "type": "int",
+        "description": "最多尝试多少个步长，含t₀。",
+        "unit": "次"
+      }
+    ],
+    "returns": [
+      {
+        "name": "next_point",
+        "type": "list[float]",
+        "description": "接受的点；失败时原点。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "accepted_step",
+        "type": "float | None",
+        "description": "接受的t，失败时None。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "status",
+        "type": "str",
+        "description": "accepted、not_descent或line_search_failed。",
+        "unit": "不适用"
+      }
+    ],
+    "contract": "先算gᵀp。若≥0返回原点、None、not_descent。依次尝试t₀βʲ，j=0,…,max_trials−1；取第一个满足f(x+tp)≤f(x)+c t gᵀp的t。无接受值返回line_search_failed。",
+    "constraints": [
+      "维数1或2，H正定（positive definite）；0<shrink<1，0<slope<.5；0≤max_trials≤30；所有输入（input）绝对值≤20。",
+      "初始步长必须严格为正：0<initial_step≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "t=1和.5均不满足充分下降，t=.25首次满足，点为[.5,0]。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    matrix: list[list[float]],\n    linear: list[float],\n    point: list[float],\n    direction: list[float],\n    initial_step: float,\n    shrink: float,\n    slope: float,\n    max_trials: int,\n) -> tuple[list[float], float | None, str]:\n    # 按题目说明计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              4.0
+            ]
+          ],
+          "linear": [
+            0.0,
+            0.0
+          ],
+          "point": [
+            1.0,
+            1.0
+          ],
+          "direction": [
+            -2.0,
+            -4.0
+          ],
+          "initial_step": 1.0,
+          "shrink": 0.5,
+          "slope": 0.1,
+          "max_trials": 5
+        },
+        "expected": [
+          [
+            0.0,
+            -1.0
+          ],
+          0.5,
+          "accepted"
+        ],
+        "explanation": "t=1和.5均不满足充分下降，t=.25首次满足，点为[.5,0]。"
+      }
+    ]
+  },
+  {
+    "id": "p08-cap-sparse",
+    "slug": "p08-cap-sparse",
+    "version": "1",
+    "lesson_id": "P08-SUMMARY",
+    "part": "8",
+    "chapter": "8.summary",
+    "title": "固定预算的近端稀疏拟合",
+    "type": "python",
+    "statement": "对同一损失归一化进行固定次数的近端梯度（proximal gradient），返回全部迭代与目标值；固定预算结束不自动意味着收敛。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数19",
+      "数33",
+      "数34",
+      "数35"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "design",
+        "type": "list[list[float]]",
+        "description": "设计矩阵（design matrix）X，每行对应一次观测（observation）。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "observed",
+        "type": "list[float]",
+        "description": "同序目标y，已按参考量除去单位。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "初始系数。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "step",
+        "type": "float",
+        "description": "每步步长η。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "penalty",
+        "type": "float",
+        "description": "惩罚强度λ，与平均平方损失的归一化配套。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "确切的更新次数。",
+        "unit": "次"
+      }
+    ],
+    "returns": [
+      {
+        "name": "trajectory",
+        "type": "list[list[float]]",
+        "description": "初值（initial condition）加steps个新点。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "objectives",
+        "type": "list[float]",
+        "description": "与每个点对应的完整L1目标。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "目标为‖Xβ−y‖²/(2n)+λ‖β‖₁；每次先梯度（gradient）步，再用阈值ηλ做软阈值（soft thresholding）。steps=0仅返回初值和初值目标。",
+    "constraints": [
+      "1≤n≤20；2列；0≤steps≤30；0<step≤1/L，L=λmax(XᵀX/n)>0；λ≥0。",
+      "设计矩阵、观测、初始或当前系数均为有限实数，元素绝对值≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "该正交设计XᵀX/n=I，第一步即为[.5,.5]，以后不变；目标从1降到.75。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    design: list[list[float]],\n    observed: list[float],\n    initial: list[float],\n    step: float,\n    penalty: float,\n    steps: int,\n) -> tuple[list[list[float]], list[float]]:\n    # 按题目说明计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "design": [
+            [
+              1.0,
+              1.0
+            ],
+            [
+              1.0,
+              -1.0
+            ]
+          ],
+          "observed": [
+            2.0,
+            0.0
+          ],
+          "initial": [
+            0.0,
+            0.0
+          ],
+          "step": 1.0,
+          "penalty": 0.5,
+          "steps": 2
+        },
+        "expected": [
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.5,
+              0.5
+            ],
+            [
+              0.5,
+              0.5
+            ]
+          ],
+          [
+            1.0,
+            0.75,
+            0.75
+          ]
+        ],
+        "explanation": "该正交（orthogonality）设计XᵀX/n=I，第一步即为[.5,.5]，以后不变；目标从1降到.75。"
+      }
+    ]
+  },
+  {
+    "id": "p08-cap-constrained",
+    "slug": "p08-cap-constrained",
+    "version": "1",
+    "lesson_id": "P08-SUMMARY",
+    "part": "8",
+    "chapter": "8.summary",
+    "title": "约束配置及最优性证据",
+    "type": "python",
+    "statement": "求两个无量纲（dimensionless）流量（flow）的最优配置，并重建非负乘子核对四个KKT残差（residual）。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数19",
+      "数33",
+      "数34",
+      "数35"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "对称目标矩阵（matrix） H，目标为 xᵀHx/2−bᵀx。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "linear",
+        "type": "list[float]",
+        "description": "线性项 b，符号按目标中的减号。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "lower",
+        "type": "list[float]",
+        "description": "两坐标的下界ℓ。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "upper",
+        "type": "list[float]",
+        "description": "两坐标的上界u。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "budget",
+        "type": "float",
+        "description": "总量上限B，要求x₁+x₂≤B。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "point",
+        "type": "list[float] | None",
+        "description": "最优点；不可行时None。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "objective",
+        "type": "float | None",
+        "description": "完整二次目标；不可行时None。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "residuals",
+        "type": "list[float] | None",
+        "description": "原始、对偶、驻点（stationary point）、互补残差；不可行时None。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "status",
+        "type": "str",
+        "description": "optimal、infeasible或numerical_failure。",
+        "unit": "不适用"
+      }
+    ],
+    "contract": "先按上下界和总预算检查可行性。最优解使用A=[[-1,0],[0,-1],[1,0],[0,1],[1,1]]及c=[−lower[0],−lower[1],upper[0],upper[1],budget]。找满足KKT的非负乘子，返回四残差；允许退化情况下不同的有效乘子，不要求返回乘子本身。不可行返回三个None及infeasible。",
+    "constraints": [
+      "二维正定（positive definite）H，特征值（eigenvalue）在[0.1,20]；其余范围同章节配置题；可行样例都存在数值稳定的有效证书。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "首例点[2/3,4/3]、值−28/3；总预算乘子8/3，其余乘子0，四个KKT残差在舍入误差内为0。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    matrix: list[list[float]],\n    linear: list[float],\n    lower: list[float],\n    upper: list[float],\n    budget: float,\n) -> tuple[list[float] | None, float | None, list[float] | None, str]:\n    # 按题目说明计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              4.0
+            ]
+          ],
+          "linear": [
+            4.0,
+            8.0
+          ],
+          "lower": [
+            0.0,
+            0.0
+          ],
+          "upper": [
+            3.0,
+            3.0
+          ],
+          "budget": 2.0
+        },
+        "expected": [
+          [
+            0.6666666666666667,
+            1.3333333333333335
+          ],
+          -9.333333333333334,
+          [
+            0.0,
+            0.0,
+            4.440892098500626e-16,
+            0.0
+          ],
+          "optimal"
+        ],
+        "explanation": "首例点[2/3,4/3]、值−28/3；总预算乘子8/3，其余乘子0，四个KKT残差在舍入误差（round-off error）内为0。"
+      }
+    ]
+  },
+  {
+    "id": "p08-cap-conditioning",
+    "slug": "p08-cap-conditioning",
+    "version": "1",
+    "lesson_id": "P08-SUMMARY",
+    "part": "8",
+    "chapter": "8.summary",
+    "title": "病态问题的收敛判断",
+    "type": "choice",
+    "statement": "优化日志显示目标改变量很小，但‖g‖仍大于声明阈值；达到最大步数后退出。哪些结论合理？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数19",
+      "数33",
+      "数34",
+      "数35"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "应记录预算耗尽而非converged。"
+      },
+      {
+        "id": "B",
+        "text": "目标改变量小可由步长很小造成。"
+      },
+      {
+        "id": "C",
+        "text": "应结合尺度、曲率及独立残差（residual）判断。"
+      },
+      {
+        "id": "D",
+        "text": "增加输出（output）小数位就能证明最优。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p08-cap-infeasible",
+    "slug": "p08-cap-infeasible",
+    "version": "1",
+    "lesson_id": "P08-SUMMARY",
+    "part": "8",
+    "chapter": "8.summary",
+    "title": "不可行与边界迁移",
+    "type": "choice",
+    "statement": "两流量（flow）下界分别为1和2，总预算从4降到2.5，上界都为5。哪些判断正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数19",
+      "数33",
+      "数34",
+      "数35"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "新问题不可行，因为最小可能总量3已超预算。"
+      },
+      {
+        "id": "B",
+        "text": "只要把迭代次数加倍就必有可行解。"
+      },
+      {
+        "id": "C",
+        "text": "降低某个下界可以改变可行性，但那是修改问题。"
+      },
+      {
+        "id": "D",
+        "text": "旧解不能未经检查直接用于新约束。"
+      }
+    ],
+    "constraints": []
+  }
+]

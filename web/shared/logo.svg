@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <title>系统科学：核心、轨道与联系</title>
+  <g stroke="#2b5d8b" stroke-width="2.4" stroke-linecap="round">
+    <ellipse cx="24" cy="24" rx="21" ry="9" transform="rotate(-35 24 24)"/>
+    <path d="M18 5.5a20 20 0 0 1 20.5 28M30 42.5a20 20 0 0 1-20.5-28"/>
+  </g>
+  <circle cx="24" cy="24" r="6.5" fill="#2b5d8b"/>
+  <circle cx="18" cy="5.5" r="3" fill="#2b5d8b"/>
+  <circle cx="30" cy="42.5" r="3" fill="#2b5d8b"/>
+</svg>

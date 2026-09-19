@@ -1,0 +1,366 @@
+{
+  "date": "2026-09-19",
+  "scope": "M8 第7篇状态估计与贝叶斯滤波：正式教学、题库、独立数学核验及网页模型数值对照；浏览器完整交互范围单独引用综合记录。",
+  "status": "content_and_targeted_validation_passed",
+  "counts": {
+    "notebooks": 14,
+    "code_cells": 70,
+    "figures": 14,
+    "questions": 63,
+    "python_tasks": 17,
+    "private_verification_cases": 70,
+    "dedicated_tests": 38,
+    "ordinary_lessons": 13,
+    "choice_questions": 46,
+    "capstone_questions": 8,
+    "capstone_points": 100,
+    "exploration_pages": 6
+  },
+  "notebook_execution": {
+    "python": "3.13.2",
+    "platform": "Windows",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "nbclient": "0.11.0",
+      "nbformat": "5.11.1",
+      "nbconvert": "7.17.1",
+      "ipykernel": "7.3.0"
+    },
+    "notebooks": [
+      {
+        "id": "P07-C01-S01",
+        "path": "notebooks/07-状态估计与贝叶斯滤波/01-状态空间与能观性/01-从有噪读数建立状态模型.ipynb",
+        "seconds": 3.29,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "7bedcda56ce177a64f466b59c92d2239ba083247620a5ebc8f136ecf80e4c32a",
+        "passed": true,
+        "executed_sha256": "115fa42725f0b0a56e85422b71e6d2080da49a203ad91d6977c8eee2800fc518",
+        "after_execution": "Only term annotations, question rendering and links changed; executed code and outputs retained.",
+        "final_sha256": "7bedcda56ce177a64f466b59c92d2239ba083247620a5ebc8f136ecf80e4c32a"
+      },
+      {
+        "id": "P07-C01-S02",
+        "path": "notebooks/07-状态估计与贝叶斯滤波/01-状态空间与能观性/02-传感器与可区分的状态.ipynb",
+        "seconds": 3.18,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "67bb1ea0b59c93309a73b23ddaee754afdba36535da7f33b20747cdb21cad39e",
+        "passed": true,
+        "executed_sha256": "04b48a469080873f2f16fc756beb36fc445e4d2c7574840f66b8a7b1e5e24f94",
+        "after_execution": "Only term annotations, question rendering and links changed; executed code and outputs retained.",
+        "final_sha256": "67bb1ea0b59c93309a73b23ddaee754afdba36535da7f33b20747cdb21cad39e"
+      },
+      {
+        "id": "P07-C02-S01",
+        "path": "notebooks/07-状态估计与贝叶斯滤波/02-贝叶斯递推与隐马尔可夫模型/01-从条件概率到预测与更新.ipynb",
+        "seconds": 4.36,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "d9e6bb1f6521676644bedf46ba81b7e8bebfa0406e59429bd59c3f5408002a73",
+        "passed": true,
+        "executed_sha256": "c14f694b4eaf32dc3a40db78074efee577ff73c3ef0aaed1ad5a0ffa85a0b841",
+        "after_execution": "Only term annotations, question rendering and links changed; executed code and outputs retained.",
+        "final_sha256": "d9e6bb1f6521676644bedf46ba81b7e8bebfa0406e59429bd59c3f5408002a73"
+      },
+      {
+        "id": "P07-C02-S02",
+        "path": "notebooks/07-状态估计与贝叶斯滤波/02-贝叶斯递推与隐马尔可夫模型/02-隐状态序列与路径枚举.ipynb",
+        "seconds": 2.73,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "25aa43ea4ff5e1d6b32e3be90fe7d2bff4a7dd7f1c08ba3ca143829d349545ef",
+        "passed": true,
+        "executed_sha256": "1ef5e53b4689922929c49addd86c656f4a24521a4e93d6babccba26401b7c0da",
+        "after_execution": "Only term annotations, question rendering and links changed; executed code and outputs retained.",
+        "final_sha256": "25aa43ea4ff5e1d6b32e3be90fe7d2bff4a7dd7f1c08ba3ca143829d349545ef"
+      },
+      {
+        "id": "P07-C03-S01",
+        "path": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/01-多元高斯与条件分布.ipynb",
+        "seconds": 3.04,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "6a63e799142d2b2eb6b85fa63216138e5442015386e88ebbc67c4a924e343b18",
+        "passed": true,
+        "executed_sha256": "fb292bd1e9cc32233651dd07c235c18c97aebf42dc0f9755a843de2de51fd0c3",
+        "after_execution": "Only term annotations, question rendering and links changed; executed code and outputs retained.",
+        "final_sha256": "6a63e799142d2b2eb6b85fa63216138e5442015386e88ebbc67c4a924e343b18"
+      },
+      {
+        "id": "P07-C03-S02",
+        "path": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/02-线性高斯预测与观测更新.ipynb",
+        "seconds": 2.74,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "7c16d2d60217ee3d98f09fe1f53bd8d123030201a37a29903b496ba82159721e",
+        "passed": true,
+        "executed_sha256": "7041e885e8752c70ff09d9b8962a104d2f2330459acc353dd165b7c75f9e1478",
+        "after_execution": "Only term annotations, question rendering and links changed; executed code and outputs retained.",
+        "final_sha256": "7c16d2d60217ee3d98f09fe1f53bd8d123030201a37a29903b496ba82159721e"
+      },
+      {
+        "id": "P07-C03-S03",
+        "path": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/03-创新、误差与区间覆盖.ipynb",
+        "seconds": 4.27,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "ff474846e0c2fcb88d52b8e1c1dff4950396a4e6653056c0c0a6a88ef199f835",
+        "passed": true,
+        "executed_sha256": "e65c37e78118628b5b0e0135c9d5d3c0640b549d3f0fd6888f9de9ab26674b19",
+        "after_execution": "Only term annotations, question rendering and links changed; executed code and outputs retained.",
+        "final_sha256": "ff474846e0c2fcb88d52b8e1c1dff4950396a4e6653056c0c0a6a88ef199f835"
+      },
+      {
+        "id": "P07-C04-S01",
+        "path": "notebooks/07-状态估计与贝叶斯滤波/04-非线性高斯滤波/01-局部线性化与扩展滤波.ipynb",
+        "seconds": 3.25,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "d3244195be1545aa3808c8bc83643a474c4258c2ff3757b17b7a28c84a065a8d",
+        "passed": true,
+        "executed_sha256": "ea057e9f78819d79b713ab00cd3e7b8fa8eafb5139114c564991de2793bde8b8",
+        "after_execution": "Only term annotations, question rendering and links changed; executed code and outputs retained.",
+        "final_sha256": "d3244195be1545aa3808c8bc83643a474c4258c2ff3757b17b7a28c84a065a8d"
+      },
+      {
+        "id": "P07-C04-S02",
+        "path": "notebooks/07-状态估计与贝叶斯滤波/04-非线性高斯滤波/02-无迹变换与后验形状.ipynb",
+        "seconds": 4.58,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "ccf506a60147776d2e307f480ce1feb88a86bc1e4f4cd44cc586b0e57408c81a",
+        "passed": true,
+        "executed_sha256": "df28c2764a6ee65e65aba67e8e71c62dc75373cc9f4367228fa4fb5ef577d0cc",
+        "after_execution": "Only term annotations, question rendering and links changed; executed code and outputs retained.",
+        "final_sha256": "ccf506a60147776d2e307f480ce1feb88a86bc1e4f4cd44cc586b0e57408c81a"
+      },
+      {
+        "id": "P07-C05-S01",
+        "path": "notebooks/07-状态估计与贝叶斯滤波/05-粒子滤波/01-重要性采样与稳定权重.ipynb",
+        "seconds": 3.13,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "25aadd18b582361ca4860ff252bc9cd43ee5d1c43133326a8cd6814724954023",
+        "passed": true,
+        "executed_sha256": "668c1431fa3ad4796c07eed1ab75a22e7d47ac5ceaa7a9ad93dcb984e081d634",
+        "after_execution": "Only term annotations, question rendering and links changed; executed code and outputs retained.",
+        "final_sha256": "25aadd18b582361ca4860ff252bc9cd43ee5d1c43133326a8cd6814724954023"
+      },
+      {
+        "id": "P07-C05-S02",
+        "path": "notebooks/07-状态估计与贝叶斯滤波/05-粒子滤波/02-粒子传播、退化与重采样.ipynb",
+        "seconds": 3.71,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "a55259285ffc7b49bc6efae2a170a057c7d831bc1d0e8d9eb5dd4ea8b7692139",
+        "passed": true,
+        "executed_sha256": "f104fa72eba5ec245f42ee106eb0fb83f253e2e98c758365464d25dab0b3a2b9",
+        "after_execution": "Only term annotations, question rendering and links changed; executed code and outputs retained.",
+        "final_sha256": "a55259285ffc7b49bc6efae2a170a057c7d831bc1d0e8d9eb5dd4ea8b7692139"
+      },
+      {
+        "id": "P07-C06-S01",
+        "path": "notebooks/07-状态估计与贝叶斯滤波/06-平滑与缺测处理/01-前向后向与未来信息.ipynb",
+        "seconds": 3.62,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "6de3c5e3a8a7dc7099375ca4e5f5af80b674cda9863bb9670ae650770abce5ec",
+        "passed": true,
+        "executed_sha256": "716ae6fa79f203727e0a2e4a5396291e2c65fd606f7fd08f91823ba9422cb9f3",
+        "after_execution": "Only term annotations, question rendering and links changed; executed code and outputs retained.",
+        "final_sha256": "6de3c5e3a8a7dc7099375ca4e5f5af80b674cda9863bb9670ae650770abce5ec"
+      },
+      {
+        "id": "P07-C06-S02",
+        "path": "notebooks/07-状态估计与贝叶斯滤波/06-平滑与缺测处理/02-RTS平滑与连续缺测.ipynb",
+        "seconds": 4.02,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "9ffad7328bcf194c9cad95b06906bb70bca009ae2f30937578fba7e40bb106d1",
+        "passed": true,
+        "executed_sha256": "6eb8266cf9801a2311e4445548a29d424cdfd633d295820b721372bfe7c602b4",
+        "after_execution": "Only term annotations, question rendering and links changed; executed code and outputs retained.",
+        "final_sha256": "9ffad7328bcf194c9cad95b06906bb70bca009ae2f30937578fba7e40bb106d1"
+      },
+      {
+        "id": "P07-SUMMARY",
+        "path": "notebooks/07-状态估计与贝叶斯滤波/07-篇末综合/01-部分观测下的状态恢复.ipynb",
+        "seconds": 2.89,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "6cf3f8e3a0d4a213f06672ed6d32daf491e09bde3c17319b8a5a99a610603a1e",
+        "passed": true,
+        "executed_sha256": "0ff8872ffe4e4972fc612308b7d06f63c823800ed33762bff441d28b28373cfb",
+        "after_execution": "Only term annotations, question rendering and links changed; executed code and outputs retained.",
+        "final_sha256": "6cf3f8e3a0d4a213f06672ed6d32daf491e09bde3c17319b8a5a99a610603a1e"
+      }
+    ]
+  },
+  "provenance": "executed_sha256 表示实际新内核运行后的文件；sha256 与 final_sha256 表示当前交付文件。存在 after_execution 时仅同步术语、题面或链接，已执行代码及输出保留。归档时逐个复核最终文件哈希一致。",
+  "notebook_command": ".venv/Scripts/python.exe -X utf8 tools/check_notebooks.py --part 07-状态估计与贝叶斯滤波 --work m8-teaching --write",
+  "targeted_tests": {
+    "command": ".venv/Scripts/python.exe -X utf8 -m pytest tools/tests/test_part07.py -q",
+    "passed": 38,
+    "failed": 0,
+    "scope": [
+      "17道计算题真实判题：公开试算、正确提交和有意义的错误解答",
+      "70个独立核验算例：路径枚举、联合高斯条件矩、平方观测矩及重采样边界",
+      "HMM单时刻退化支持、缺测、零证据、空序列与无未来泄漏",
+      "RTS终点一致性、联合条件对照与协方差关系",
+      "综合题四层计分、首答与重试行为"
+    ]
+  },
+  "independent_case_inventory": {
+    "total": 70,
+    "by_question": {
+      "p07-state-readings": 3,
+      "p07-observability": 4,
+      "p07-bayes-sequence": 5,
+      "p07-path-posterior": 3,
+      "p07-scalar-gaussian": 3,
+      "p07-kalman-sequence": 5,
+      "p07-coverage": 3,
+      "p07-extended-update": 3,
+      "p07-unscented-moments": 3,
+      "p07-importance-weights": 3,
+      "p07-particle-resampling": 5,
+      "p07-hmm-smoothing": 5,
+      "p07-rts-backward": 5,
+      "p07-cap-hidden-update": 5,
+      "p07-cap-gaussian-filter": 5,
+      "p07-cap-particle": 5,
+      "p07-cap-smoothing": 5
+    },
+    "meaning": "独立核验文件中的计算题算例数；不是浏览器交互次数，也不替代独立数学参照的设计说明。"
+  },
+  "teaching_consistency": {
+    "command": ".venv/Scripts/python.exe -X utf8 tools/check_teaching.py --part 7 --work m8-teaching",
+    "notebooks": 14,
+    "questions": 63,
+    "question_links": 63,
+    "first_use_annotations": "passed"
+  },
+  "authored_review": {
+    "date": "2026-09-19",
+    "status": "complete; stable for parent integration",
+    "counts": {
+      "notebooks": 14,
+      "code_cells": 70,
+      "figures": 14,
+      "questions": 63,
+      "python_tasks": 17,
+      "private_verification_cases": 70,
+      "dedicated_tests": 38
+    },
+    "checks": [
+      "14 notebooks executed in separate clean kernels; actual execution counts present and no saved stderr/error outputs.",
+      "38 dedicated tests passed, including real judge AC/WA, independent mathematical verification and assessment retry/score behavior.",
+      "check_teaching: 14 notebooks, 63 synchronized exercises and links; first-use term annotations consistent.",
+      "14 figures visually reviewed; final constrained-layout figures re-reviewed for nonlinear posterior, particle repeats and RTS intervals. No overlapping/clipped labels or missing Chinese glyphs.",
+      "Actual browser MathJax verified for Gaussian density/block covariance/conditioning and UT sigma weights/moments. Fractions, radicals, Greek notation and subscripts render correctly.",
+      "Final editorial fixes distinguish calculation solve contract from notebook dictionary and specify full-column-rank H in distractor. Saved code/output retained; execution.json records executed/current hashes."
+    ],
+    "independent_references": [
+      "finite HMM path enumeration with rational arithmetic",
+      "batch joint-Gaussian conditioning from independent initial/noise loads",
+      "closed-form Gaussian square moments",
+      "posterior integration with grid/tail refinement",
+      "seeded finite-sample repeated experiments"
+    ],
+    "review_fixes": [
+      "dimensional saturation scale and derivative",
+      "HMM backward recursion skips redundant t=0 calculation",
+      "Gaussian scalar conditioning and zero-mean independent noise assumptions",
+      "signed operating-point deviations",
+      "importance estimate distinguished from exact full-support mean",
+      "conditional Gaussian failure for bimodal posterior",
+      "chi-square ellipse threshold introduced",
+      "typed named solve contracts and choice explanations synchronized"
+    ],
+    "randomness": {
+      "kalman_calibration": "240 independent 30-step sequences; terminal coverage with standard error",
+      "particle_comparison": "fixed 12-step observation sequence; 100/500 particles, 20 algorithm repeats each",
+      "resampling_boundary": "strictly-greater CDF; exact dyadic tie fixture and other exercise fixtures away from floating ties"
+    },
+    "source": "Publisher second-edition contents for Bayesian Filtering and Smoothing checked 2026-09-19; author open PDF linked for reader. Course derives and independently checks formulas; no claim of reading the whole PDF.",
+    "limitations": [
+      "No target-reader pilot or external scientific peer review.",
+      "CPU-scale toy models; no clinical parameter validation.",
+      "Implemented smoothing is finite HMM and linear-Gaussian RTS; nonlinear and particle smoothing remain extensions."
+    ],
+    "ownership": "No edits to AGENTS, global README/ROADMAP, global tools/term table; no Git commit/push; no simulated dataset files added."
+  },
+  "web_model_comparison": {
+    "cases": 96,
+    "compared_values": 9074,
+    "maximum_absolute_difference": 1.7763568394002505e-14,
+    "tolerance": "atol=rtol=1e-10",
+    "notebook_sources": [
+      "notebooks/07-状态估计与贝叶斯滤波/01-状态空间与能观性/01-从有噪读数建立状态模型.ipynb",
+      "notebooks/07-状态估计与贝叶斯滤波/01-状态空间与能观性/02-传感器与可区分的状态.ipynb",
+      "notebooks/07-状态估计与贝叶斯滤波/02-贝叶斯递推与隐马尔可夫模型/01-从条件概率到预测与更新.ipynb",
+      "notebooks/07-状态估计与贝叶斯滤波/02-贝叶斯递推与隐马尔可夫模型/02-隐状态序列与路径枚举.ipynb",
+      "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/01-多元高斯与条件分布.ipynb",
+      "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/02-线性高斯预测与观测更新.ipynb",
+      "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/03-创新、误差与区间覆盖.ipynb",
+      "notebooks/07-状态估计与贝叶斯滤波/04-非线性高斯滤波/01-局部线性化与扩展滤波.ipynb",
+      "notebooks/07-状态估计与贝叶斯滤波/04-非线性高斯滤波/02-无迹变换与后验形状.ipynb",
+      "notebooks/07-状态估计与贝叶斯滤波/05-粒子滤波/01-重要性采样与稳定权重.ipynb",
+      "notebooks/07-状态估计与贝叶斯滤波/05-粒子滤波/02-粒子传播、退化与重采样.ipynb",
+      "notebooks/07-状态估计与贝叶斯滤波/06-平滑与缺测处理/01-前向后向与未来信息.ipynb",
+      "notebooks/07-状态估计与贝叶斯滤波/06-平滑与缺测处理/02-RTS平滑与连续缺测.ipynb",
+      "notebooks/07-状态估计与贝叶斯滤波/07-篇末综合/01-部分观测下的状态恢复.ipynb"
+    ],
+    "scope": "Actual delivered Notebook functions against six browser exploration models; independent mathematical tests are separate.",
+    "simplifications": [
+      "7.5 uses deterministic midpoint nodes and one importance update; not a dynamic particle filter.",
+      "7.6 is scalar random walk rather than the two-room Notebook case.",
+      "7.4 grid uses 601 points on [-6,6]; comparison uses identical numerical quadrature bounds."
+    ]
+  },
+  "web_exploration_scope": [
+    {
+      "chapter": "7.1",
+      "model": "封闭对称二室离散交换",
+      "simplification": "无输入、清除或噪声；比较已知模型下两个初态的无噪可区分性，不把能观性等同含噪估计精度。"
+    },
+    {
+      "chapter": "7.2",
+      "model": "三态 HMM 的逐次预测与似然更新",
+      "simplification": "固定转移与标记序列；调节标记翻转概率只改变测量模型。第0次直接更新初始分布。理想细胞状态命名不是实测机制。"
+    },
+    {
+      "chapter": "7.3",
+      "model": "二室线性高斯滤波与二维95%概率椭圆",
+      "simplification": "状态为工作点附近有符号偏差；固定参数、标量读数、独立高斯噪声。椭圆呈现模型内条件不确定性，不保证所有现实误差。"
+    },
+    {
+      "chapter": "7.4",
+      "model": "x²单步观测的 EKF、UKF 与网格后验比较",
+      "simplification": "从Notebook饱和过程序列中隔离单次观测；网格为[-6,6]上601点，跨语言对照使用相同积分界限。完整动态推导和加密/扩界核验见Notebook。"
+    },
+    {
+      "chapter": "7.5",
+      "model": "固定中点粒子的单次重要性更新和系统重采样",
+      "simplification": "均匀提议[-4,4]的确定性中点用于隔离抽样波动；乘先验密度与似然，未实现网页动态粒子滤波。完整序列与独立重复在Notebook。"
+    },
+    {
+      "chapter": "7.6",
+      "model": "标量随机游走的缺测 KF 和 RTS 平滑",
+      "simplification": "为突出时间信息，采用Notebook二室模型的标量简化；观测不含真值，滤波和平滑的差异不等同真实误差。"
+    }
+  ],
+  "floating_boundary_note": "系统重采样按CDF严格大于位置的最小下标选择。连续模型中权重约1e-16的跨语言舍入可能改变恰落CDF边界的位置：连续模型对照使用非边界偏移，另以二进制可精确表示的权重独立核验边界契约。",
+  "browser_interaction_evidence": {
+    "record": "m5-m7-m8-20260919.json",
+    "responsibility": "由主任务统一记录真实浏览器交互、导航、动画、练习与默认IDE相关核验。",
+    "scope_boundary": "本文件不重复声明六页全部控件或默认IDE实机验收；本教学侧实际审阅的公式渲染与图像范围仅见 authored_review。"
+  },
+  "limitations": [
+    "No target-reader pilot or external scientific peer review.",
+    "CPU-scale toy models; no clinical parameter validation.",
+    "Implemented smoothing is finite HMM and linear-Gaussian RTS; nonlinear and particle smoothing remain extensions."
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "date": "2026-09-19",
+  "status": "passed",
+  "scope": "M5 扩展、M7 扩展、M8 正式教学以及 5.4.2 标签勘误；不涵盖另一任务制作中的新首页验收。",
+  "current_delivery": {
+    "planned_parts": 17,
+    "planned_chapters": 85,
+    "delivered_parts": 7,
+    "delivered_chapters": 35,
+    "design_only_chapters": 50,
+    "notebooks": 91,
+    "questions": 430,
+    "exploration_pages": 26
+  },
+  "phase_evidence": [
+    "m5-extension-20260919.json",
+    "m7-extension-20260919.json",
+    "m8-20260919.json",
+    "part05-stationary-label-20260919.json"
+  ],
+  "checks": {
+    "global_teaching": {
+      "notebooks": 91,
+      "questions": 430,
+      "links": 430,
+      "issues": []
+    },
+    "python_full_run": {
+      "total": 535,
+      "passed": 534,
+      "failed": 1,
+      "failure": "test_local_open.py::test_http_practice_choice_code_and_progress：Windows 10053 在读取预期403时中止连接；日志确认服务已返回403。",
+      "targeted_retry": "同一测试随后单独运行通过（1 passed）。"
+    },
+    "python_phase_regression": {
+      "passed": 164,
+      "scope": "part04、part04_extension、part06、part06_extension、part07、lesson_exercise_links，最终显示转义回归新增后单独7项通过。"
+    },
+    "javascript_final_run": {
+      "passed": 82,
+      "failed": 0,
+      "note": "当时工作区全部 JavaScript 测试，包括并行任务已有的共享组件测试；不替代该任务的首页验收。"
+    },
+    "final_display_regression": {
+      "passed": 7,
+      "scope": "真实 nbconvert/mistune 渲染：编码深链接、联合类型列、Python ** 幂运算符。"
+    },
+    "web_notebook_m8": {
+      "cases": 96,
+      "compared_values": 9074,
+      "maximum_absolute_difference": 1.7763568394002505e-14,
+      "tolerance": "atol=rtol=1e-10",
+      "notebook_sources": [
+        "notebooks/07-状态估计与贝叶斯滤波/01-状态空间与能观性/01-从有噪读数建立状态模型.ipynb",
+        "notebooks/07-状态估计与贝叶斯滤波/01-状态空间与能观性/02-传感器与可区分的状态.ipynb",
+        "notebooks/07-状态估计与贝叶斯滤波/02-贝叶斯递推与隐马尔可夫模型/01-从条件概率到预测与更新.ipynb",
+        "notebooks/07-状态估计与贝叶斯滤波/02-贝叶斯递推与隐马尔可夫模型/02-隐状态序列与路径枚举.ipynb",
+        "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/01-多元高斯与条件分布.ipynb",
+        "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/02-线性高斯预测与观测更新.ipynb",
+        "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/03-创新、误差与区间覆盖.ipynb",
+        "notebooks/07-状态估计与贝叶斯滤波/04-非线性高斯滤波/01-局部线性化与扩展滤波.ipynb",
+        "notebooks/07-状态估计与贝叶斯滤波/04-非线性高斯滤波/02-无迹变换与后验形状.ipynb",
+        "notebooks/07-状态估计与贝叶斯滤波/05-粒子滤波/01-重要性采样与稳定权重.ipynb",
+        "notebooks/07-状态估计与贝叶斯滤波/05-粒子滤波/02-粒子传播、退化与重采样.ipynb",
+        "notebooks/07-状态估计与贝叶斯滤波/06-平滑与缺测处理/01-前向后向与未来信息.ipynb",
+        "notebooks/07-状态估计与贝叶斯滤波/06-平滑与缺测处理/02-RTS平滑与连续缺测.ipynb",
+        "notebooks/07-状态估计与贝叶斯滤波/07-篇末综合/01-部分观测下的状态恢复.ipynb"
+      ],
+      "scope": "Actual delivered Notebook functions against six browser exploration models; independent mathematical tests are separate.",
+      "simplifications": [
+        "7.5 uses deterministic midpoint nodes and one importance update; not a dynamic particle filter.",
+        "7.6 is scalar random walk rather than the two-room Notebook case.",
+        "7.4 grid uses 601 points on [-6,6]; comparison uses identical numerical quadrature bounds."
+      ]
+    },
+    "final_python_regression": {
+      "passed": 86,
+      "scope": "最终part05、part07、lesson_exercise_links；涵盖标签修订、M8审读修复以及最后显示转义。"
+    }
+  },
+  "browser": {
+    "environment": "Windows / Codex in-app browser；独立验收服务127.0.0.1:8018，测试作答只写 .work/m5-m7-m8/ui-learning。",
+    "lorenz": "实际播放推进、暂停、重播；原点与常规初值反复往返；h=.01到.005、初值/步长比较切换，页面读数与按钮同步。",
+    "estimation_pages": {
+      "7.1": "播放/暂停，第一室与总量传感器两轮往返；显示秩2/2与1/2。",
+      "7.2": "播放/暂停/重播，epsilon=.5无信息观测与原条件往返，概率总和1。",
+      "7.3": "重播推进到终点、重播后暂停；高/低测量噪声切换，增益和协方差随之更新；实际查看95%椭圆与均值图。",
+      "7.4": "对称/偏置初值往返，播放/暂停；查看网格后验和两种高斯近似，对称双峰与失效说明清楚。",
+      "7.5": "播放/重播/暂停；12与96粒子条件往返，查看ESS、重采样祖先数及条形图。",
+      "7.6": "连续缺测/完整观测两轮往返；播放/重播/暂停；查看滤波/平滑边际区间与方差、终点一致。"
+    },
+    "practice": "6.6.2具名 solve(count, forgetting)：输入/输出解释及代码均可展开；语法错误含answer.py行号与traceback，位于代码上方；正确示例1/1只算练习，完整提交4/4后计为1/10并在刷新后恢复。",
+    "assessment": "第7篇首道综合题先错误选B，再正确选A/C；错误卡片实见红字与浅红背景；首次0/100、练习10/100，刷新仍保持；导航进度正确。",
+    "pc_layout": "实测1024x768与1920x1080，无整页横向溢出；隐藏/展开目录，方向键调整目录及题目/代码分栏；宽屏代码区实际约749px，Monokai高亮可见。临时viewport已reset。",
+    "notebook_links": "实际点击渲染后的6.6.2计算题链接，8000旧服务初次404；核对确为本项目旧serve.py并按原配置重启后，重新点击直达正确题面。",
+    "default_ide": "实际POST /api/notebooks/open 返回202，操作系统接受Lorenz Notebook打开请求；受限进程最初权限失败，正常用户权限服务复验成功；未更改文件关联，也未检查IDE内部显示。",
+    "console": "实际检查新增估计页浏览器error日志为空。",
+    "not_claimed": "未逐页重做共享编辑器所有快捷键检查；现有相关自动测试保留。实际截图在工具交互中审阅，不另保存为仓库素材。",
+    "main_service": "8000正式服务重启后API现场返回91本Notebook、430题；新增渲染Notebook链接重新点击成功。原学习记录保留。"
+  },
+  "display_fixes": [
+    "联合类型如list[float | None]在Notebook表格保持单列，并保留原Python函数签名。",
+    "第2.2.1、6.6.2计算规则中Python幂运算符按字面显示；只更新生成的练习Markdown，不改题目契约、版本、算法或输出。",
+    "制作检查表补充正文/输出标签一致、存在/唯一/收敛区分、量纲和边界、实际公式渲染检查；AGENTS未修改。"
+  ],
+  "preservation": {
+    "existing_learning_records": 29,
+    "sha256_unchanged": true,
+    "agents_sha256_unchanged": true,
+    "new_runtime_dependencies": false,
+    "simulated_datasets_added": false,
+    "personal_records_or_venv_synchronized": false
+  },
+  "limitations": [
+    "未开展目标读者试学或外部同行评审。",
+    "计算验证针对声明的低维CPU课程模型；不代表临床有效性。",
+    "默认IDE仅确认系统接受打开请求。",
+    "同一工作区另有首页制作任务；其尚未验收的变更未纳入本阶段交付或提交。"
+  ],
+  "next": "M9 第8篇：目标函数与优化几何、梯度/曲率/迭代、正则化/稀疏优化、约束与最优性条件。"
+}

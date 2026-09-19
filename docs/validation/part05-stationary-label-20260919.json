@@ -1,0 +1,43 @@
+{
+  "date": "2026-09-19",
+  "status": "passed",
+  "scope": "5.4.2 不变分布输出标签勘误",
+  "correction": "三种案例的不变分布结果（None 表示不唯一）：",
+  "reason": "第三个案例 alpha=beta=0 时 P=I，每个概率分布都不变；None 表示不存在唯一不变分布，而非不存在不变分布。普通与交替链可有唯一不变分布，但长期收敛还需另查条件。",
+  "execution": {
+    "python": "3.13.2",
+    "platform": "Windows",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "nbclient": "0.11.0",
+      "nbformat": "5.11.1",
+      "nbconvert": "7.17.1",
+      "ipykernel": "7.3.0"
+    },
+    "notebooks": [
+      {
+        "id": "P05-C04-S02",
+        "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/02-不变分布与长期收敛的条件.ipynb",
+        "seconds": 6.73,
+        "code_cells": 5,
+        "figures": 1,
+        "sha256": "95d491b87e029c2ea218e7359b504d43e37ecbdc1420e1b0b97a5883f8d21f38",
+        "passed": true,
+        "executed_sha256": "f0780384c3938fd24a26b7ce2fe90bf577d15c87161414256f88f9a20d17ec5e",
+        "after_execution": "仅更新练习的联合类型表格显示；代码和保存输出保持执行时内容。"
+      }
+    ]
+  },
+  "saved_output": "交替链前三步： [1.0, 0.0] [0.0, 1.0] [1.0, 0.0]\n均匀分布一步后： [0.5, 0.5]\n三种案例的不变分布结果（None 表示不唯一）： [[0.3333333333333333, 0.6666666666666666], [0.5, 0.5], None]\n边界、不变方程、时间平均与逐时刻不收敛的反例一致。\n",
+  "validation": {
+    "part05_python_tests": 41,
+    "teaching_check": {
+      "notebooks": 13,
+      "questions": 62
+    },
+    "figure": "实际审阅该节一幅图；三案例结论与正文一致。"
+  },
+  "algorithm_change": false,
+  "question_versions_changed": false
+}

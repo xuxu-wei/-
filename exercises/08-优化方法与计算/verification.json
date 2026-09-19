@@ -1,0 +1,2478 @@
+{
+  "p08-quadratic": {
+    "cases": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              1.0
+            ],
+            [
+              1.0,
+              4.0
+            ]
+          ],
+          "linear": [
+            1.0,
+            2.0
+          ],
+          "point": [
+            2.0,
+            -1.0
+          ]
+        },
+        "expected": [
+          4.0,
+          [
+            2.0,
+            -4.0
+          ],
+          [
+            [
+              2.0,
+              1.0
+            ],
+            [
+              1.0,
+              4.0
+            ]
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "linear": [
+            1.0,
+            -2.0
+          ],
+          "point": [
+            0.0,
+            3.0
+          ]
+        },
+        "expected": [
+          6.0,
+          [
+            -1.0,
+            2.0
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              -2.0
+            ]
+          ],
+          "linear": [
+            0.0,
+            0.0
+          ],
+          "point": [
+            1.0,
+            1.0
+          ]
+        },
+        "expected": [
+          -0.5,
+          [
+            1.0,
+            -2.0
+          ],
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              -2.0
+            ]
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              3.0
+            ]
+          ],
+          "linear": [
+            6.0
+          ],
+          "point": [
+            2.0
+          ]
+        },
+        "expected": [
+          -6.0,
+          [
+            0.0
+          ],
+          [
+            [
+              3.0
+            ]
+          ]
+        ]
+      }
+    ],
+    "explanation": "先算 Hx=[3,−2]，梯度=[2,−4]；目标值为4。"
+  },
+  "p08-loss-units": {
+    "correct": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "A": "每个比值无量纲，尺度的来源须说明。",
+      "B": "平方仍保留单位的平方。",
+      "C": "相对权重改变目标的折中。",
+      "D": "正比例不改变目标值的次序。"
+    }
+  },
+  "p08-gradient-direction": {
+    "correct": [
+      "B"
+    ],
+    "explanations": {
+      "A": "方向导数（derivative）可能正、负或零。",
+      "B": "gᵀ(−g)=−‖g‖²<0。",
+      "C": "沿g一阶增加。",
+      "D": "一阶为零，需检查高阶项。"
+    }
+  },
+  "p08-change-coordinates": {
+    "correct": [
+      "B",
+      "C"
+    ],
+    "explanations": {
+      "A": "数值系数也须变换。",
+      "B": "代入原二次式即可得到。",
+      "C": "否则可行点或起点发生变化。",
+      "D": "单项权重改变通常是另一目标。"
+    }
+  },
+  "p08-linear-minimum": {
+    "cases": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              4.0
+            ]
+          ],
+          "linear": [
+            2.0,
+            8.0
+          ]
+        },
+        "expected": [
+          1.0,
+          2.0
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              1.0
+            ],
+            [
+              1.0,
+              2.0
+            ]
+          ],
+          "linear": [
+            3.0,
+            0.0
+          ]
+        },
+        "expected": [
+          2.0,
+          -1.0
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              0.2,
+              0.0
+            ],
+            [
+              0.0,
+              10.0
+            ]
+          ],
+          "linear": [
+            0.0,
+            -2.0
+          ]
+        },
+        "expected": [
+          0.0,
+          -0.2
+        ]
+      }
+    ],
+    "explanation": "两个坐标分别为2/2和8/4，即[1,2]。"
+  },
+  "p08-stationary-counterexample": {
+    "correct": [
+      "B",
+      "C"
+    ],
+    "explanations": {
+      "A": "这是一个反例。",
+      "B": "负曲率说明向两侧小幅移动都会下降。",
+      "C": "可写成(x²−1)²/4−1/4。",
+      "D": "凸函数不能有这样的中间严格局部最大。"
+    }
+  },
+  "p08-hessian-zero": {
+    "correct": [
+      "B",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "A": "此时二阶检验不决定结论。",
+      "B": "x⁴≥0且仅在0等号。",
+      "C": "−x⁴≤0且仅在0等号。",
+      "D": "f₂就是反例，须看邻域或更高阶。"
+    }
+  },
+  "p08-convex-domain": {
+    "correct": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "A": "沿每条线段的二阶导数（derivative）非负。",
+      "B": "局部曲率不能覆盖整个域。",
+      "C": "一阶支撑不等式给出全域下界。",
+      "D": "严格凸排除两个不同最小点；存在性另需条件。"
+    }
+  },
+  "p08-gradient-steps": {
+    "cases": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              4.0
+            ]
+          ],
+          "linear": [
+            0.0,
+            0.0
+          ],
+          "initial": [
+            1.0,
+            1.0
+          ],
+          "step": 0.25,
+          "max_steps": 3,
+          "tolerance": 0.01
+        },
+        "expected": [
+          [
+            [
+              1.0,
+              1.0
+            ],
+            [
+              0.5,
+              0.0
+            ],
+            [
+              0.25,
+              0.0
+            ],
+            [
+              0.125,
+              0.0
+            ]
+          ],
+          0.25,
+          "max_steps"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              4.0
+            ]
+          ],
+          "linear": [
+            2.0,
+            4.0
+          ],
+          "initial": [
+            1.0,
+            1.0
+          ],
+          "step": 0.1,
+          "max_steps": 0,
+          "tolerance": 1e-09
+        },
+        "expected": [
+          [
+            [
+              1.0,
+              1.0
+            ]
+          ],
+          0.0,
+          "converged"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              2.0
+            ]
+          ],
+          "linear": [
+            0.0,
+            0.0
+          ],
+          "initial": [
+            1.0,
+            1.0
+          ],
+          "step": 0.1,
+          "max_steps": 0,
+          "tolerance": 1e-09
+        },
+        "expected": [
+          [
+            [
+              1.0,
+              1.0
+            ]
+          ],
+          2.23606797749979,
+          "max_steps"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              2.0
+            ]
+          ],
+          "linear": [
+            0.0,
+            0.0
+          ],
+          "initial": [
+            1.0,
+            1.0
+          ],
+          "step": 1.0,
+          "max_steps": 4,
+          "tolerance": 1e-09
+        },
+        "expected": [
+          [
+            [
+              1.0,
+              1.0
+            ],
+            [
+              0.0,
+              -1.0
+            ],
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              -1.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          2.0,
+          "max_steps"
+        ]
+      }
+    ],
+    "explanation": "三步后为[0.125,0]，梯度范数0.25仍大于0.01，应报告max_steps。"
+  },
+  "p08-step-limit": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "误差因子为1−ηλ，两个绝对值都须小于1。",
+      "B": "η=.2时快方向因子−1，持续振荡。",
+      "C": "快方向限制更严格。",
+      "D": "过大步长会放大误差。"
+    }
+  },
+  "p08-conditioning": {
+    "correct": [
+      "A",
+      "B",
+      "D"
+    ],
+    "explanations": {
+      "A": "该方向衰减慢。",
+      "B": "η<2/λmax。",
+      "C": "条件数是λmax/λmin。",
+      "D": "ηH与ηb不变，递推相同。"
+    }
+  },
+  "p08-small-gradient": {
+    "correct": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "A": "最小点是0。",
+      "B": "平坦方向允许小梯度伴随明显坐标误差。",
+      "C": "g=H(x−x*)且‖He‖≥μ‖e‖。",
+      "D": "梯度依赖变量尺度。"
+    }
+  },
+  "p08-newton-direction": {
+    "cases": [
+      {
+        "arguments": {
+          "point": 0.2
+        },
+        "expected": [
+          0.192,
+          "gradient_fallback"
+        ]
+      },
+      {
+        "arguments": {
+          "point": 2.0
+        },
+        "expected": [
+          -0.5454545454545454,
+          "newton"
+        ]
+      },
+      {
+        "arguments": {
+          "point": 0.0
+        },
+        "expected": [
+          0.0,
+          "stationary"
+        ]
+      },
+      {
+        "arguments": {
+          "point": -1.0
+        },
+        "expected": [
+          0.0,
+          "stationary"
+        ]
+      },
+      {
+        "arguments": {
+          "point": -0.5
+        },
+        "expected": [
+          -0.375,
+          "gradient_fallback"
+        ]
+      }
+    ],
+    "explanation": "x=.2时g=−.192，h=−.88；原始牛顿方向会向上，改用−g=.192。"
+  },
+  "p08-newton-taylor": {
+    "correct": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "A": "对p求导并置零。",
+      "B": "只是局部模型，非凸时还需检查。",
+      "C": "正定性（positive definiteness）给出下降方向。",
+      "D": "二次展开无截断余项。"
+    }
+  },
+  "p08-negative-curvature": {
+    "correct": [
+      "B"
+    ],
+    "explanations": {
+      "A": "小步仍沿一阶上升方向。",
+      "B": "方向和步长是两个不同检查。",
+      "C": "方程可解不保证方向正确。",
+      "D": "函数有两个全局最小点。"
+    }
+  },
+  "p08-stationary-stop": {
+    "correct": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "A": "梯度确为0。",
+      "B": "负曲率反驳此结论。",
+      "C": "可据此判定局部最大。",
+      "D": "对非凸目标尤其重要。"
+    }
+  },
+  "p08-armijo": {
+    "cases": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              4.0
+            ]
+          ],
+          "linear": [
+            0.0,
+            0.0
+          ],
+          "point": [
+            1.0,
+            1.0
+          ],
+          "direction": [
+            -2.0,
+            -4.0
+          ],
+          "initial_step": 1.0,
+          "shrink": 0.5,
+          "slope": 0.1,
+          "max_trials": 5
+        },
+        "expected": [
+          [
+            0.0,
+            -1.0
+          ],
+          0.5,
+          "accepted"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              1.0
+            ]
+          ],
+          "linear": [
+            0.0
+          ],
+          "point": [
+            1.0
+          ],
+          "direction": [
+            1.0
+          ],
+          "initial_step": 1.0,
+          "shrink": 0.5,
+          "slope": 0.1,
+          "max_trials": 5
+        },
+        "expected": [
+          [
+            1.0
+          ],
+          null,
+          "not_descent"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0
+            ]
+          ],
+          "linear": [
+            0.0
+          ],
+          "point": [
+            1.0
+          ],
+          "direction": [
+            -2.0
+          ],
+          "initial_step": 2.0,
+          "shrink": 0.5,
+          "slope": 0.1,
+          "max_trials": 1
+        },
+        "expected": [
+          [
+            1.0
+          ],
+          null,
+          "line_search_failed"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0
+            ]
+          ],
+          "linear": [
+            0.0
+          ],
+          "point": [
+            1.0
+          ],
+          "direction": [
+            -2.0
+          ],
+          "initial_step": 1.0,
+          "shrink": 0.5,
+          "slope": 0.1,
+          "max_trials": 0
+        },
+        "expected": [
+          [
+            1.0
+          ],
+          null,
+          "line_search_failed"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              1.0
+            ]
+          ],
+          "linear": [
+            0.0
+          ],
+          "point": [
+            0.0
+          ],
+          "direction": [
+            0.0
+          ],
+          "initial_step": 1.0,
+          "shrink": 0.5,
+          "slope": 0.1,
+          "max_trials": 3
+        },
+        "expected": [
+          [
+            0.0
+          ],
+          null,
+          "not_descent"
+        ]
+      }
+    ],
+    "explanation": "t=1和.5均不满足充分下降，t=.25首次满足，点为[.5,0]。"
+  },
+  "p08-trial-budget": {
+    "correct": [
+      "B"
+    ],
+    "explanations": {
+      "A": "没有做过检查。",
+      "B": "预算为零不允许尝试。",
+      "C": "未检验收敛。",
+      "D": "零步长不提供预期下降。"
+    }
+  },
+  "p08-line-search-status": {
+    "correct": [
+      "B",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "A": "下降与最优是两件事。",
+      "B": "条件仅比较两个点。",
+      "C": "停止需要独立标准。",
+      "D": "不能把退出循环都写成converged。"
+    }
+  },
+  "p08-objective-offset": {
+    "correct": [
+      "B",
+      "C"
+    ],
+    "explanations": {
+      "A": "添加常数会使该判断失效。",
+      "B": "梯度不受常数影响。",
+      "C": "最小点不变。",
+      "D": "目标数值的基准由人为常数决定。"
+    }
+  },
+  "p08-search-guarantee": {
+    "correct": [
+      "A",
+      "C"
+    ],
+    "explanations": {
+      "A": "负方向导数提供严格余量。",
+      "B": "有限预算可能用完。",
+      "C": "f(x+tp)=f(x)+tgᵀp+o(t)。",
+      "D": "非零可能是上升或切向。"
+    }
+  },
+  "p08-ridge": {
+    "cases": [
+      {
+        "arguments": {
+          "design": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          "observed": [
+            2.0,
+            -2.0
+          ],
+          "penalty": 0.5
+        },
+        "expected": [
+          [
+            1.0,
+            -1.0
+          ],
+          "unique"
+        ]
+      },
+      {
+        "arguments": {
+          "design": [
+            [
+              1.0,
+              1.0
+            ],
+            [
+              2.0,
+              2.0
+            ]
+          ],
+          "observed": [
+            2.0,
+            4.0
+          ],
+          "penalty": 0.0
+        },
+        "expected": [
+          null,
+          "nonunique"
+        ]
+      },
+      {
+        "arguments": {
+          "design": [
+            [
+              1.0,
+              1.0
+            ],
+            [
+              2.0,
+              2.0
+            ]
+          ],
+          "observed": [
+            2.0,
+            4.0
+          ],
+          "penalty": 0.5
+        },
+        "expected": [
+          [
+            0.9090909090909093,
+            0.909090909090909
+          ],
+          "unique"
+        ]
+      },
+      {
+        "arguments": {
+          "design": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              2.0
+            ]
+          ],
+          "observed": [
+            2.0,
+            -2.0
+          ],
+          "penalty": 0.0
+        },
+        "expected": [
+          [
+            2.0,
+            -1.0
+          ],
+          "unique"
+        ]
+      }
+    ],
+    "explanation": "XᵀX/n=.5I，加.5I后得到I，右端为[1,−1]，所以系数[1,−1]。"
+  },
+  "p08-ridge-normalization": {
+    "correct": [
+      "B"
+    ],
+    "explanations": {
+      "A": "方向反了。",
+      "B": "新目标是原目标乘n。",
+      "C": "n不为1时相对权重改变。",
+      "D": "正则强度会影响解。"
+    }
+  },
+  "p08-rank-and-ridge": {
+    "correct": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "A": "XᵀX/n半正定（positive semidefinite），加λI后正定。",
+      "B": "同样的预测仍可由多个无惩罚系数组（array）成。",
+      "C": "不要把正则选择解释为可辨识性（identifiability）。",
+      "D": "二范数（norm）惩罚主要连续收缩。"
+    }
+  },
+  "p08-penalty-intercept": {
+    "correct": [
+      "A",
+      "C"
+    ],
+    "explanations": {
+      "A": "不同角色应在目标中说明。",
+      "B": "也可以设计含截距惩罚的不同目标。",
+      "C": "这是明确的建模选择。",
+      "D": "斜率和模型（model）选择仍可过拟合。"
+    }
+  },
+  "p08-threshold": {
+    "cases": [
+      {
+        "arguments": {
+          "values": [
+            -2.0,
+            -0.5,
+            0.0,
+            0.5,
+            2.0
+          ],
+          "threshold": 0.5
+        },
+        "expected": [
+          -1.5,
+          0.0,
+          0.0,
+          0.0,
+          1.5
+        ]
+      },
+      {
+        "arguments": {
+          "values": [],
+          "threshold": 1.0
+        },
+        "expected": []
+      },
+      {
+        "arguments": {
+          "values": [
+            -1.0,
+            0.0,
+            1.0
+          ],
+          "threshold": 0.0
+        },
+        "expected": [
+          -1.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "arguments": {
+          "values": [
+            -0.5,
+            0.5
+          ],
+          "threshold": 0.5
+        },
+        "expected": [
+          0.0,
+          0.0
+        ]
+      }
+    ],
+    "explanation": "两端各向零移动.5；刚好等于阈值的±.5也变为0。"
+  },
+  "p08-proximal": {
+    "cases": [
+      {
+        "arguments": {
+          "design": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          "observed": [
+            2.0,
+            -0.4
+          ],
+          "coefficients": [
+            0.0,
+            0.0
+          ],
+          "step": 1.0,
+          "penalty": 0.3
+        },
+        "expected": [
+          [
+            0.7,
+            0.0
+          ],
+          0.6725
+        ]
+      },
+      {
+        "arguments": {
+          "design": [
+            [
+              1.0,
+              1.0
+            ],
+            [
+              1.0,
+              -1.0
+            ]
+          ],
+          "observed": [
+            2.0,
+            0.0
+          ],
+          "coefficients": [
+            1.0,
+            -1.0
+          ],
+          "step": 0.5,
+          "penalty": 0.0
+        },
+        "expected": [
+          [
+            1.0,
+            0.0
+          ],
+          0.5
+        ]
+      },
+      {
+        "arguments": {
+          "design": [
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "observed": [
+            1.0
+          ],
+          "coefficients": [
+            2.0,
+            -1.0
+          ],
+          "step": 0.5,
+          "penalty": 1.0
+        },
+        "expected": [
+          [
+            1.5,
+            -0.5
+          ],
+          2.5
+        ]
+      },
+      {
+        "arguments": {
+          "design": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          "observed": [
+            1.0,
+            1.0
+          ],
+          "coefficients": [
+            0.0,
+            0.0
+          ],
+          "step": 1.0,
+          "penalty": 0.5
+        },
+        "expected": [
+          [
+            0.0,
+            0.0
+          ],
+          0.5
+        ]
+      }
+    ],
+    "explanation": "梯度为[−1,.2]，阈值.3，更新得[.7,0]；完整目标为.6725。"
+  },
+  "p08-subgradient-zero": {
+    "correct": [
+      "B"
+    ],
+    "explanations": {
+      "A": "条件比v=0更宽；非零但绝对值≤τ也可以。",
+      "B": "0∈−v+τ[−1,1]等价于此。",
+      "C": "不等号反了。",
+      "D": "次梯度（subgradient）允许处理折点。"
+    }
+  },
+  "p08-proximal-step-size": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "二次光滑部分的曲率由L控制。",
+      "B": "X可有很大曲率。",
+      "C": "近端惩罚乘η，阈值ηλ。",
+      "D": "光滑部分仍可能被大步长放大。"
+    }
+  },
+  "p08-sparse-evidence": {
+    "correct": [
+      "B",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "A": "统计选择不能直接推出不存在机制。",
+      "B": "表述应限定在目标与数据范围。",
+      "C": "需要额外证据。",
+      "D": "尤其在共线性下。"
+    }
+  },
+  "p08-training-scale": {
+    "cases": [
+      {
+        "arguments": {
+          "training": [
+            [
+              1.0,
+              5.0
+            ],
+            [
+              3.0,
+              5.0
+            ]
+          ],
+          "later": [
+            [
+              5.0,
+              7.0
+            ]
+          ]
+        },
+        "expected": [
+          [
+            2.0,
+            5.0
+          ],
+          [
+            1.0,
+            1.0
+          ],
+          [
+            [
+              3.0,
+              2.0
+            ]
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "training": [
+            [
+              2.0,
+              2.0
+            ]
+          ],
+          "later": [
+            [
+              2.0,
+              4.0
+            ]
+          ]
+        },
+        "expected": [
+          [
+            2.0,
+            2.0
+          ],
+          [
+            1.0,
+            1.0
+          ],
+          [
+            [
+              0.0,
+              2.0
+            ]
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "training": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              2.0,
+              2.0
+            ]
+          ],
+          "later": []
+        },
+        "expected": [
+          [
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0
+          ],
+          []
+        ]
+      },
+      {
+        "arguments": {
+          "training": [
+            [
+              -1.0,
+              2.0
+            ],
+            [
+              1.0,
+              4.0
+            ]
+          ],
+          "later": [
+            [
+              100.0,
+              -10.0
+            ]
+          ]
+        },
+        "expected": [
+          [
+            0.0,
+            3.0
+          ],
+          [
+            1.0,
+            1.0
+          ],
+          [
+            [
+              100.0,
+              -13.0
+            ]
+          ]
+        ]
+      }
+    ],
+    "explanation": "训练均值[2,5]、尺度[1,1]，所以新行变为[3,2]。"
+  },
+  "p08-split-protocol": {
+    "correct": [
+      "A",
+      "B",
+      "D"
+    ],
+    "explanations": {
+      "A": "符合预处理的信息边界。",
+      "B": "选择和最后检验分开。",
+      "C": "最终段已参与选择。",
+      "D": "不把失败擦除。"
+    }
+  },
+  "p08-constant-column": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "7−5=2，并提示外推边界。",
+      "B": "会掩盖变化。",
+      "C": "这改变既定预处理。",
+      "D": "只能描述已观测（observation）范围。"
+    }
+  },
+  "p08-prediction-and-truth": {
+    "correct": [
+      "B",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "A": "观测（observation）不能自动消除混淆。",
+      "B": "共线性给出此可能。",
+      "C": "它们决定参数（parameter）信息。",
+      "D": "独立外推比同分布（distribution）插值更严格。"
+    }
+  },
+  "p08-kkt": {
+    "cases": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              2.0
+            ]
+          ],
+          "linear": [
+            4.0,
+            4.0
+          ],
+          "constraints": [
+            [
+              1.0,
+              1.0
+            ],
+            [
+              -1.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0
+            ]
+          ],
+          "bounds": [
+            2.0,
+            0.0,
+            0.0
+          ],
+          "point": [
+            1.0,
+            1.0
+          ],
+          "multipliers": [
+            2.0,
+            0.0,
+            0.0
+          ],
+          "tolerance": 1e-08
+        },
+        "expected": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "verified"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0
+            ]
+          ],
+          "linear": [
+            4.0
+          ],
+          "constraints": [
+            [
+              1.0
+            ]
+          ],
+          "bounds": [
+            1.0
+          ],
+          "point": [
+            2.0
+          ],
+          "multipliers": [
+            0.0
+          ],
+          "tolerance": 1e-08
+        },
+        "expected": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rejected"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0
+            ]
+          ],
+          "linear": [
+            0.0
+          ],
+          "constraints": [
+            [
+              1.0
+            ]
+          ],
+          "bounds": [
+            2.0
+          ],
+          "point": [
+            0.0
+          ],
+          "multipliers": [
+            1.0
+          ],
+          "tolerance": 1e-08
+        },
+        "expected": [
+          [
+            0.0,
+            0.0,
+            1.0,
+            2.0
+          ],
+          "rejected"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0
+            ]
+          ],
+          "linear": [
+            -2.0
+          ],
+          "constraints": [
+            [
+              1.0
+            ]
+          ],
+          "bounds": [
+            0.0
+          ],
+          "point": [
+            0.0
+          ],
+          "multipliers": [
+            -2.0
+          ],
+          "tolerance": 1e-08
+        },
+        "expected": [
+          [
+            0.0,
+            2.0,
+            0.0,
+            0.0
+          ],
+          "rejected"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0
+            ]
+          ],
+          "linear": [
+            0.0
+          ],
+          "constraints": [],
+          "bounds": [],
+          "point": [
+            0.0
+          ],
+          "multipliers": [],
+          "tolerance": 1e-08
+        },
+        "expected": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "verified"
+        ]
+      }
+    ],
+    "explanation": "点[1,1]恰好用完预算2，乘子2抵消梯度[−2,−2]，四个残差为0。"
+  },
+  "p08-necessity-sufficiency": {
+    "correct": [
+      "A",
+      "C"
+    ],
+    "explanations": {
+      "A": "凸性（convexity）支持Lagrangian下界论证。",
+      "B": "非凸驻点（stationary point）也可能是极大或鞍点。",
+      "C": "必要性不能无条件省略资格。",
+      "D": "还有更优可行点的可能。"
+    }
+  },
+  "p08-constraint-qualification": {
+    "correct": [
+      "B",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "A": "不可用失效的必要性反推最优不存在。",
+      "B": "可行集合只有0。",
+      "C": "任意有限λ均不能满足。",
+      "D": "约束梯度（gradient）退化且没有严格可行点。"
+    }
+  },
+  "p08-multiplier-sign": {
+    "correct": [
+      "A",
+      "B",
+      "C"
+    ],
+    "explanations": {
+      "A": "这是使可行点上L≤f所需的方向。",
+      "B": "要求乘子与松弛量互补。",
+      "C": "由互补且严格小于0可知。",
+      "D": "等式始终为0，乘子符号自由。"
+    }
+  },
+  "p08-budget-qp": {
+    "cases": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              4.0
+            ]
+          ],
+          "linear": [
+            4.0,
+            8.0
+          ],
+          "lower": [
+            0.0,
+            0.0
+          ],
+          "upper": [
+            3.0,
+            3.0
+          ],
+          "budget": 2.0
+        },
+        "expected": [
+          [
+            0.6666666666666667,
+            1.3333333333333335
+          ],
+          -9.333333333333334,
+          "optimal"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.5
+            ],
+            [
+              0.5,
+              2.0
+            ]
+          ],
+          "linear": [
+            -1.0,
+            3.0
+          ],
+          "lower": [
+            0.0,
+            0.0
+          ],
+          "upper": [
+            1.0,
+            2.0
+          ],
+          "budget": 10.0
+        },
+        "expected": [
+          [
+            0.0,
+            1.5
+          ],
+          -2.25,
+          "optimal"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              2.0
+            ]
+          ],
+          "linear": [
+            2.0,
+            2.0
+          ],
+          "lower": [
+            1.0,
+            1.0
+          ],
+          "upper": [
+            3.0,
+            3.0
+          ],
+          "budget": 1.0
+        },
+        "expected": [
+          null,
+          null,
+          "infeasible"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              2.0
+            ]
+          ],
+          "linear": [
+            2.0,
+            2.0
+          ],
+          "lower": [
+            1.0,
+            1.0
+          ],
+          "upper": [
+            1.0,
+            1.0
+          ],
+          "budget": 2.0
+        },
+        "expected": [
+          [
+            1.0,
+            1.0
+          ],
+          -2.0,
+          "optimal"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              2.0
+            ]
+          ],
+          "linear": [
+            0.0,
+            0.0
+          ],
+          "lower": [
+            2.0,
+            0.0
+          ],
+          "upper": [
+            1.0,
+            1.0
+          ],
+          "budget": 4.0
+        },
+        "expected": [
+          null,
+          null,
+          "infeasible"
+        ]
+      }
+    ],
+    "explanation": "预算活跃，解为[2/3,4/3]，目标−28/3；截断[2,2]不能满足总预算。"
+  },
+  "p08-feasible-or-failed": {
+    "correct": [
+      "B"
+    ],
+    "explanations": {
+      "A": "候选失败不等于所有点失败。",
+      "B": "区分候选与可行集合。",
+      "C": "模型（model）也可能冲突。",
+      "D": "删除约束改变问题。"
+    }
+  },
+  "p08-clip-coupling": {
+    "correct": [
+      "A",
+      "B",
+      "D"
+    ],
+    "explanations": {
+      "A": "独立截断忽略此耦合。",
+      "B": "坐标各自可行仍可能总和超限。",
+      "C": "仅有特定可分结构才可这样做。",
+      "D": "需要对应原问题的证据。"
+    }
+  },
+  "p08-soft-hard": {
+    "correct": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "A": "更低其他代价可能抵消惩罚。",
+      "B": "有限惩罚不保证精确可行。",
+      "C": "两种操作作用不同。",
+      "D": "不能只报被惩罚后的单个数。"
+    }
+  },
+  "p08-cap-geometry": {
+    "correct": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "A": "配方后为正定误差二次型。",
+      "B": "非线性曲率随位置变化。",
+      "C": "目标次序不变。",
+      "D": "需看曲率与全局结构。"
+    }
+  },
+  "p08-cap-regularization": {
+    "correct": [
+      "B",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "A": "需额外验证。",
+      "B": "加λI后正定（positive definite）。",
+      "C": "泛化需独立测量。",
+      "D": "相对系数大小进入惩罚。"
+    }
+  },
+  "p08-cap-derivatives": {
+    "cases": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              1.0
+            ],
+            [
+              1.0,
+              4.0
+            ]
+          ],
+          "linear": [
+            1.0,
+            2.0
+          ],
+          "point": [
+            2.0,
+            -1.0
+          ]
+        },
+        "expected": [
+          4.0,
+          [
+            2.0,
+            -4.0
+          ],
+          [
+            [
+              2.0,
+              1.0
+            ],
+            [
+              1.0,
+              4.0
+            ]
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "linear": [
+            1.0,
+            -2.0
+          ],
+          "point": [
+            0.0,
+            3.0
+          ]
+        },
+        "expected": [
+          6.0,
+          [
+            -1.0,
+            2.0
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              -2.0
+            ]
+          ],
+          "linear": [
+            0.0,
+            0.0
+          ],
+          "point": [
+            1.0,
+            1.0
+          ]
+        },
+        "expected": [
+          -0.5,
+          [
+            1.0,
+            -2.0
+          ],
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              -2.0
+            ]
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              3.0
+            ]
+          ],
+          "linear": [
+            6.0
+          ],
+          "point": [
+            2.0
+          ]
+        },
+        "expected": [
+          -6.0,
+          [
+            0.0
+          ],
+          [
+            [
+              3.0
+            ]
+          ]
+        ]
+      }
+    ],
+    "explanation": "先算 Hx=[3,−2]，梯度=[2,−4]；目标值为4。"
+  },
+  "p08-cap-descent": {
+    "cases": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              4.0
+            ]
+          ],
+          "linear": [
+            0.0,
+            0.0
+          ],
+          "point": [
+            1.0,
+            1.0
+          ],
+          "direction": [
+            -2.0,
+            -4.0
+          ],
+          "initial_step": 1.0,
+          "shrink": 0.5,
+          "slope": 0.1,
+          "max_trials": 5
+        },
+        "expected": [
+          [
+            0.0,
+            -1.0
+          ],
+          0.5,
+          "accepted"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              1.0
+            ]
+          ],
+          "linear": [
+            0.0
+          ],
+          "point": [
+            1.0
+          ],
+          "direction": [
+            1.0
+          ],
+          "initial_step": 1.0,
+          "shrink": 0.5,
+          "slope": 0.1,
+          "max_trials": 5
+        },
+        "expected": [
+          [
+            1.0
+          ],
+          null,
+          "not_descent"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0
+            ]
+          ],
+          "linear": [
+            0.0
+          ],
+          "point": [
+            1.0
+          ],
+          "direction": [
+            -2.0
+          ],
+          "initial_step": 2.0,
+          "shrink": 0.5,
+          "slope": 0.1,
+          "max_trials": 1
+        },
+        "expected": [
+          [
+            1.0
+          ],
+          null,
+          "line_search_failed"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0
+            ]
+          ],
+          "linear": [
+            0.0
+          ],
+          "point": [
+            1.0
+          ],
+          "direction": [
+            -2.0
+          ],
+          "initial_step": 1.0,
+          "shrink": 0.5,
+          "slope": 0.1,
+          "max_trials": 0
+        },
+        "expected": [
+          [
+            1.0
+          ],
+          null,
+          "line_search_failed"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              1.0
+            ]
+          ],
+          "linear": [
+            0.0
+          ],
+          "point": [
+            0.0
+          ],
+          "direction": [
+            0.0
+          ],
+          "initial_step": 1.0,
+          "shrink": 0.5,
+          "slope": 0.1,
+          "max_trials": 3
+        },
+        "expected": [
+          [
+            0.0
+          ],
+          null,
+          "not_descent"
+        ]
+      }
+    ],
+    "explanation": "t=1和.5均不满足充分下降，t=.25首次满足，点为[.5,0]。"
+  },
+  "p08-cap-sparse": {
+    "cases": [
+      {
+        "arguments": {
+          "design": [
+            [
+              1.0,
+              1.0
+            ],
+            [
+              1.0,
+              -1.0
+            ]
+          ],
+          "observed": [
+            2.0,
+            0.0
+          ],
+          "initial": [
+            0.0,
+            0.0
+          ],
+          "step": 1.0,
+          "penalty": 0.5,
+          "steps": 2
+        },
+        "expected": [
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.5,
+              0.5
+            ],
+            [
+              0.5,
+              0.5
+            ]
+          ],
+          [
+            1.0,
+            0.75,
+            0.75
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "design": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          "observed": [
+            2.0,
+            -2.0
+          ],
+          "initial": [
+            1.0,
+            1.0
+          ],
+          "step": 1.0,
+          "penalty": 0.0,
+          "steps": 0
+        },
+        "expected": [
+          [
+            [
+              1.0,
+              1.0
+            ]
+          ],
+          [
+            2.5
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "design": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          "observed": [
+            2.0,
+            -0.4
+          ],
+          "initial": [
+            0.0,
+            0.0
+          ],
+          "step": 1.0,
+          "penalty": 0.3,
+          "steps": 5
+        },
+        "expected": [
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.7,
+              0.0
+            ],
+            [
+              1.05,
+              0.0
+            ],
+            [
+              1.2249999999999999,
+              0.0
+            ],
+            [
+              1.3124999999999998,
+              0.0
+            ],
+            [
+              1.35625,
+              0.0
+            ]
+          ],
+          [
+            1.04,
+            0.6725,
+            0.580625,
+            0.55765625,
+            0.5519140625000001,
+            0.550478515625
+          ]
+        ]
+      }
+    ],
+    "explanation": "该正交设计XᵀX/n=I，第一步即为[.5,.5]，以后不变；目标从1降到.75。"
+  },
+  "p08-cap-constrained": {
+    "cases": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              4.0
+            ]
+          ],
+          "linear": [
+            4.0,
+            8.0
+          ],
+          "lower": [
+            0.0,
+            0.0
+          ],
+          "upper": [
+            3.0,
+            3.0
+          ],
+          "budget": 2.0
+        },
+        "expected": [
+          [
+            0.6666666666666667,
+            1.3333333333333335
+          ],
+          -9.333333333333334,
+          [
+            0.0,
+            0.0,
+            4.440892098500626e-16,
+            0.0
+          ],
+          "optimal"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.5
+            ],
+            [
+              0.5,
+              2.0
+            ]
+          ],
+          "linear": [
+            -1.0,
+            3.0
+          ],
+          "lower": [
+            0.0,
+            0.0
+          ],
+          "upper": [
+            1.0,
+            2.0
+          ],
+          "budget": 10.0
+        },
+        "expected": [
+          [
+            0.0,
+            1.5
+          ],
+          -2.25,
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "optimal"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              2.0
+            ]
+          ],
+          "linear": [
+            2.0,
+            2.0
+          ],
+          "lower": [
+            1.0,
+            1.0
+          ],
+          "upper": [
+            3.0,
+            3.0
+          ],
+          "budget": 1.0
+        },
+        "expected": [
+          null,
+          null,
+          null,
+          "infeasible"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              2.0
+            ]
+          ],
+          "linear": [
+            2.0,
+            2.0
+          ],
+          "lower": [
+            1.0,
+            1.0
+          ],
+          "upper": [
+            1.0,
+            1.0
+          ],
+          "budget": 2.0
+        },
+        "expected": [
+          [
+            1.0,
+            1.0
+          ],
+          -2.0,
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "optimal"
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              2.0
+            ]
+          ],
+          "linear": [
+            0.0,
+            0.0
+          ],
+          "lower": [
+            2.0,
+            0.0
+          ],
+          "upper": [
+            1.0,
+            1.0
+          ],
+          "budget": 4.0
+        },
+        "expected": [
+          null,
+          null,
+          null,
+          "infeasible"
+        ]
+      }
+    ],
+    "explanation": "首例点[2/3,4/3]、值−28/3；总预算乘子8/3，其余乘子0，四个KKT残差在舍入误差内为0。"
+  },
+  "p08-cap-conditioning": {
+    "correct": [
+      "A",
+      "B",
+      "C"
+    ],
+    "explanations": {
+      "A": "退出原因与达标不同。",
+      "B": "小移动不等于小误差。",
+      "C": "诊断需对应目标。",
+      "D": "格式不提供最优性证据。"
+    }
+  },
+  "p08-cap-infeasible": {
+    "correct": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanations": {
+      "A": "给出所有可行候选都必须满足的下界证据。",
+      "B": "计算预算不消除逻辑冲突。",
+      "C": "需要如实记录模型（model）变化。",
+      "D": "可行集合已改变。"
+    }
+  }
+}

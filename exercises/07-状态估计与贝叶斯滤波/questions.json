@@ -1,0 +1,4307 @@
+[
+  {
+    "id": "p07-state-readings",
+    "slug": "p07-state-readings",
+    "version": "1",
+    "lesson_id": "P07-C01-S01",
+    "part": "7",
+    "chapter": "7.1",
+    "title": "从状态到有噪读数",
+    "type": "python",
+    "statement": "一个二维状态（state）由给定矩阵（matrix）逐步转移。过程增量改变系统状态，测量误差只改变读数。请按下列时刻约定返回完整状态轨迹（trajectory）与读数。",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数11"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "transition",
+        "type": "list[list[float]]",
+        "description": "2×2 已知状态转移矩阵（transition matrix）。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "sensor",
+        "type": "list[float]",
+        "description": "长为 2 的观测（observation）行。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "时刻 0 的两个状态。",
+        "unit": "U"
+      },
+      {
+        "name": "process_noise",
+        "type": "list[list[float]]",
+        "description": "第 i 项用于时刻 i 到 i+1 的过程增量。",
+        "unit": "U"
+      },
+      {
+        "name": "measurement_noise",
+        "type": "list[float]",
+        "description": "从时刻 0 开始的测量误差。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "states",
+        "type": "list[list[float]]",
+        "description": "包含初值（initial condition）的 T+1 个状态。",
+        "unit": "U"
+      },
+      {
+        "name": "observations",
+        "type": "list[float]",
+        "description": "H x 加测量误差。",
+        "unit": "U"
+      }
+    ],
+    "contract": "x[0]=initial；x[i+1]=F x[i]+process_noise[i]；y[i]=H x[i]+measurement_noise[i]。",
+    "constraints": [
+      "F 为 2×2，H 和 initial 长为 2；过程增量 0—20 项；测量误差恰好多 1 项。",
+      "数值有限，绝对值≤100。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "初次读数为8.2，第一次转移后第一室为6.8；测量误差不回写到状态。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    transition: list[list[float]],\n    sensor: list[float],\n    initial: list[float],\n    process_noise: list[list[float]],\n    measurement_noise: list[float],\n) -> tuple[list[list[float]], list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "transition": [
+            [
+              0.8,
+              0.2
+            ],
+            [
+              0.2,
+              0.8
+            ]
+          ],
+          "sensor": [
+            1.0,
+            0.0
+          ],
+          "initial": [
+            8.0,
+            2.0
+          ],
+          "process_noise": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.1,
+              -0.1
+            ]
+          ],
+          "measurement_noise": [
+            0.2,
+            0.0,
+            -0.2
+          ]
+        },
+        "expected": [
+          [
+            [
+              8.0,
+              2.0
+            ],
+            [
+              6.800000000000001,
+              3.2
+            ],
+            [
+              6.1800000000000015,
+              3.8200000000000007
+            ]
+          ],
+          [
+            8.2,
+            6.800000000000001,
+            5.980000000000001
+          ]
+        ],
+        "explanation": "初次读数为8.2，第一次转移后第一室为6.8；测量误差不回写到状态。"
+      }
+    ]
+  },
+  {
+    "id": "p07-noise-location",
+    "slug": "p07-noise-location",
+    "version": "1",
+    "lesson_id": "P07-C01-S01",
+    "part": "7",
+    "chapter": "7.1",
+    "title": "两种噪声加在哪里",
+    "type": "choice",
+    "statement": "两个组织室中，交换量每天有随机波动；传感器读数还叠加独立误差。哪些表述正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "过程噪声（process noise）改变后续状态（state）。"
+      },
+      {
+        "id": "B",
+        "text": "测量噪声（measurement noise）必然改变物质收支（mass balance）。"
+      },
+      {
+        "id": "C",
+        "text": "已知模型（model）下，滤波器只能使用给定读数和先验（prior）。"
+      },
+      {
+        "id": "D",
+        "text": "把核验真值作为输入（input）可以公平评价状态恢复。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-state-parameter",
+    "slug": "p07-state-parameter",
+    "version": "1",
+    "lesson_id": "P07-C01-S01",
+    "part": "7",
+    "chapter": "7.1",
+    "title": "未知的是哪一类量",
+    "type": "choice",
+    "statement": "已知交换系数与噪声模型（model），只知道两个室物质量的先验（prior）分布（distribution）。根据逐日读数估计两室当前物质量，属于哪项？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "参数（parameter）辨识。"
+      },
+      {
+        "id": "B",
+        "text": "状态（state）估计。"
+      },
+      {
+        "id": "C",
+        "text": "系统结构已经被证明正确。"
+      },
+      {
+        "id": "D",
+        "text": "无需观测（observation）的确定性求解。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-independence",
+    "slug": "p07-independence",
+    "version": "1",
+    "lesson_id": "P07-C01-S01",
+    "part": "7",
+    "chapter": "7.1",
+    "title": "条件独立的范围",
+    "type": "choice",
+    "statement": "假设 x[t+1]=F x[t]+w[t]，y[t]=H x[t]+v[t]，各时刻 w、v 和 x[0] 相互独立。哪些正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "给定当前状态（state）后，未来转移与更早状态条件独立（conditional independence）。"
+      },
+      {
+        "id": "B",
+        "text": "所有观测（observation）必然相互独立。"
+      },
+      {
+        "id": "C",
+        "text": "相邻状态一般仍相关。"
+      },
+      {
+        "id": "D",
+        "text": "不必声明噪声假设也可直接套高斯精确结论。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-observability",
+    "slug": "p07-observability",
+    "version": "1",
+    "lesson_id": "P07-C01-S02",
+    "part": "7",
+    "chapter": "7.1",
+    "title": "拼出能观矩阵",
+    "type": "python",
+    "statement": "无噪模型（model） x[t+1]=F x[t]，y[t]=H x[t]。计算前 horizon 个读数对应的能观矩阵（matrix）及输出（output），用公开数值规则返回秩（rank）。",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数11"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "transition",
+        "type": "list[list[float]]",
+        "description": "2×2 转移矩阵（transition matrix） F。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "sensor",
+        "type": "list[float]",
+        "description": "两个分量的观测（observation）行 H。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "horizon",
+        "type": "int",
+        "description": "观测时刻数，含时刻 0。",
+        "unit": "步"
+      },
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "初始状态（state）。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "按 H、HF、… 排列的行。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "outputs",
+        "type": "list[float]",
+        "description": "矩阵乘 initial 得到的序列。",
+        "unit": "U"
+      },
+      {
+        "name": "rank",
+        "type": "int",
+        "description": "0、1 或 2。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "逐次右乘 F。若所有元素绝对值≤1e-10，秩为0；否则若任意两行组成的2×2行列式（determinant）绝对值>1e-10，秩为2；否则秩为1。本题不把该固定尺度规则推广到任意矩阵。",
+    "constraints": [
+      "0≤horizon≤10；矩阵元素及状态绝对值≤10。",
+      "测试矩阵远离规定阈值，且状态量已采用相同单位尺度。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "两行是[1,0]与[0.8,0.2]，行列式0.2，输出[8,6.8]，因此秩为2。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    transition: list[list[float]],\n    sensor: list[float],\n    horizon: int,\n    initial: list[float],\n) -> tuple[list[list[float]], list[float], int]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "transition": [
+            [
+              0.8,
+              0.2
+            ],
+            [
+              0.2,
+              0.8
+            ]
+          ],
+          "sensor": [
+            1.0,
+            0.0
+          ],
+          "horizon": 2,
+          "initial": [
+            8.0,
+            2.0
+          ]
+        },
+        "expected": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.8,
+              0.2
+            ]
+          ],
+          [
+            8.0,
+            6.800000000000001
+          ],
+          2
+        ],
+        "explanation": "两行是[1,0]与[0.8,0.2]，行列式0.2，输出[8,6.8]，因此秩为2。"
+      }
+    ]
+  },
+  {
+    "id": "p07-sum-sensor",
+    "slug": "p07-sum-sensor",
+    "version": "1",
+    "lesson_id": "P07-C01-S02",
+    "part": "7",
+    "chapter": "7.1",
+    "title": "总量相同就能区分吗",
+    "type": "choice",
+    "statement": "F=[[0.8,0.2],[0.2,0.8]]，只测 H=[1,1]。初态[8,2]与[2,8]的每次总量读数均为10。哪项正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "多等几步必定能区分。"
+      },
+      {
+        "id": "B",
+        "text": "增加相同读数的小数位必定能区分。"
+      },
+      {
+        "id": "C",
+        "text": "两个初态之差落在不可观方向。"
+      },
+      {
+        "id": "D",
+        "text": "两条内部轨迹（trajectory）处处相同。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-conditioning",
+    "slug": "p07-conditioning",
+    "version": "1",
+    "lesson_id": "P07-C01-S02",
+    "part": "7",
+    "chapter": "7.1",
+    "title": "满秩之后还要检查什么",
+    "type": "choice",
+    "statement": "一个能观矩阵（matrix）满秩（rank），但最小奇异值（singular value）远小于最大奇异值。哪些正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "无噪模型（model）下初态唯一。"
+      },
+      {
+        "id": "B",
+        "text": "小测量误差可能被明显放大。"
+      },
+      {
+        "id": "C",
+        "text": "满秩保证所有含噪恢复都精确。"
+      },
+      {
+        "id": "D",
+        "text": "更改状态（state）单位可能影响未经尺度处理的数值诊断。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-sampling-observation",
+    "slug": "p07-sampling-observation",
+    "version": "1",
+    "lesson_id": "P07-C01-S02",
+    "part": "7",
+    "chapter": "7.1",
+    "title": "采样会丢失方向吗",
+    "type": "choice",
+    "statement": "一个二维连续旋转系统，每隔完整一周才观测（observation）第一坐标。采样（sampling）后的 F=I，H=[1,0]。哪项成立？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数06",
+      "数07",
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "连续旋转自动保证这个采样方案能观。"
+      },
+      {
+        "id": "B",
+        "text": "离散能观矩阵（matrix）每行都是[1,0]，第二坐标不可观。"
+      },
+      {
+        "id": "C",
+        "text": "增加同周期采样次数使秩（rank）达到2。"
+      },
+      {
+        "id": "D",
+        "text": "用滤波器即可凭空恢复未测方向。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-bayes-sequence",
+    "slug": "p07-bayes-sequence",
+    "version": "1",
+    "lesson_id": "P07-C02-S01",
+    "part": "7",
+    "chapter": "7.2",
+    "title": "逐次预测与更新",
+    "type": "python",
+    "statement": "在有限状态（state）模型（model）中递推观测（observation）后验（posterior）。第0时刻先验（prior）就是 initial，不先转移；后续先转移再使用当时似然（likelihood）。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数12",
+      "数13",
+      "数30"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "时刻 0 的观测前概率分布（probability distribution）。",
+        "unit": "概率"
+      },
+      {
+        "name": "transition",
+        "type": "list[list[float]]",
+        "description": "第 i 行第 j 列为从 i 转移到 j 的概率（probability）。",
+        "unit": "概率"
+      },
+      {
+        "name": "likelihoods",
+        "type": "list[list[float] | None]",
+        "description": "各时刻实际读数在各状态下的似然；None 表示缺测。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "predictions",
+        "type": "list[list[float]]",
+        "description": "每一步观测前分布（distribution）。",
+        "unit": "概率"
+      },
+      {
+        "name": "posteriors",
+        "type": "list[list[float]]",
+        "description": "成功归一化各步的滤波后验。",
+        "unit": "概率"
+      },
+      {
+        "name": "evidence",
+        "type": "list[float]",
+        "description": "各步似然加权和。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "status",
+        "type": "str",
+        "description": "成功为 ok；首个零证据为 impossible。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "prediction[0]=initial；prediction[t]=posterior[t−1]@transition。逐分量乘似然后除以和。None似然等价全1；零证据时保留该步prediction和0证据，停止且不新增该步后验。",
+    "constraints": [
+      "状态数2—3，序列长度0—20；初始和各转移行均非负且和为1。",
+      "似然在[0,1]；允许零证据，不擅自改为均匀分布。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "第一步质量[0.12,0.32]，证据0.44，后验约[0.272727,0.727273]；第二步必须先转移。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    initial: list[float],\n    transition: list[list[float]],\n    likelihoods: list[list[float] | None],\n) -> tuple[list[list[float]], list[list[float]], list[float], str]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "initial": [
+            0.6,
+            0.4
+          ],
+          "transition": [
+            [
+              0.8,
+              0.2
+            ],
+            [
+              0.1,
+              0.9
+            ]
+          ],
+          "likelihoods": [
+            [
+              0.2,
+              0.8
+            ],
+            [
+              0.7,
+              0.3
+            ]
+          ]
+        },
+        "expected": [
+          [
+            [
+              0.6,
+              0.4
+            ],
+            [
+              0.2909090909090909,
+              0.7090909090909091
+            ]
+          ],
+          [
+            [
+              0.2727272727272727,
+              0.7272727272727273
+            ],
+            [
+              0.48908296943231433,
+              0.5109170305676856
+            ]
+          ],
+          [
+            0.44000000000000006,
+            0.4163636363636364
+          ],
+          "ok"
+        ],
+        "explanation": "第一步质量[0.12,0.32]，证据0.44，后验约[0.272727,0.727273]；第二步必须先转移。"
+      }
+    ]
+  },
+  {
+    "id": "p07-evidence-normalization",
+    "slug": "p07-evidence-normalization",
+    "version": "1",
+    "lesson_id": "P07-C02-S01",
+    "part": "7",
+    "chapter": "7.2",
+    "title": "归一化的分母是什么",
+    "type": "choice",
+    "statement": "先验（prior）[0.6,0.4]，某观测（observation）在两个状态（state）下的似然（likelihood）[0.2,0.8]。哪项正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数12",
+      "数13",
+      "数30"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "后验（posterior）直接是[0.2,0.8]。"
+      },
+      {
+        "id": "B",
+        "text": "证据为0.44，后验为[3/11,8/11]。"
+      },
+      {
+        "id": "C",
+        "text": "证据为1。"
+      },
+      {
+        "id": "D",
+        "text": "先验与观测无关，因此可以忽略。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-missing-not-zero",
+    "slug": "p07-missing-not-zero",
+    "version": "1",
+    "lesson_id": "P07-C02-S01",
+    "part": "7",
+    "chapter": "7.2",
+    "title": "缺测等于观测零吗",
+    "type": "choice",
+    "statement": "当前没有读数。哪些处理成立？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数12",
+      "数13",
+      "数30"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "令似然（likelihood）为常数1，只做预测。"
+      },
+      {
+        "id": "B",
+        "text": "必须用观测（observation）值0更新。"
+      },
+      {
+        "id": "C",
+        "text": "用以后到达的读数填入后仍称实时滤波。"
+      },
+      {
+        "id": "D",
+        "text": "保留当前预测作为滤波结果。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-zero-evidence",
+    "slug": "p07-zero-evidence",
+    "version": "1",
+    "lesson_id": "P07-C02-S01",
+    "part": "7",
+    "chapter": "7.2",
+    "title": "不可能观测之后",
+    "type": "choice",
+    "statement": "先验（prior）只支持状态（state）0，似然（likelihood）在状态0严格为0。哪项恰当？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数12",
+      "数13",
+      "数30"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "后验（posterior）均匀。"
+      },
+      {
+        "id": "B",
+        "text": "把零分母改成极小数即可获得正确条件分布（distribution）。"
+      },
+      {
+        "id": "C",
+        "text": "该模型（model）把事件（event）赋予零概率（probability），后验未定义，应检查模型或数据。"
+      },
+      {
+        "id": "D",
+        "text": "选择似然最大的状态就是精确Bayes更新。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-path-posterior",
+    "slug": "p07-path-posterior",
+    "version": "1",
+    "lesson_id": "P07-C02-S02",
+    "part": "7",
+    "chapter": "7.2",
+    "title": "枚举路径恢复末态",
+    "type": "python",
+    "statement": "短序列有两个隐藏状态（state）。枚举所有状态路径的联合质量，返回最后时刻的后验（posterior）。第一时刻权重为initial[z0]*likelihoods[0][z0]。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数12",
+      "数13",
+      "数30"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "时刻0的两状态先验（prior）。",
+        "unit": "概率"
+      },
+      {
+        "name": "transition",
+        "type": "list[list[float]]",
+        "description": "2×2 行随机转移矩阵（transition matrix）。",
+        "unit": "概率"
+      },
+      {
+        "name": "likelihoods",
+        "type": "list[list[float]]",
+        "description": "每时刻的两状态似然（likelihood）。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "posterior",
+        "type": "list[float]",
+        "description": "末时刻的归一化概率（probability）。",
+        "unit": "概率"
+      }
+    ],
+    "contract": "路径质量为 initial[z0]×各时刻似然×相邻转移概率；按末态分别求和并归一化。空序列直接返回initial。",
+    "constraints": [
+      "2个状态，0—8个时刻；非空序列总证据>0。",
+      "所有概率在[0,1]，先验和转移行和为1。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "两步有4条路径；先累计末态联合质量，再除以全部路径质量，不能先对每条路径各自归一化。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    initial: list[float],\n    transition: list[list[float]],\n    likelihoods: list[list[float]],\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "initial": [
+            0.6,
+            0.4
+          ],
+          "transition": [
+            [
+              0.8,
+              0.2
+            ],
+            [
+              0.1,
+              0.9
+            ]
+          ],
+          "likelihoods": [
+            [
+              0.2,
+              0.8
+            ],
+            [
+              0.7,
+              0.3
+            ]
+          ]
+        },
+        "expected": [
+          0.48908296943231433,
+          0.5109170305676856
+        ],
+        "explanation": "两步有4条路径；先累计末态联合质量，再除以全部路径质量，不能先对每条路径各自归一化。"
+      }
+    ]
+  },
+  {
+    "id": "p07-row-transition",
+    "slug": "p07-row-transition",
+    "version": "1",
+    "lesson_id": "P07-C02-S02",
+    "part": "7",
+    "chapter": "7.2",
+    "title": "转移矩阵的方向",
+    "type": "choice",
+    "statement": "定义 T[i,j]=P(z[t+1]=j | z[t]=i)，分布（distribution）写成行向量（vector） p。哪些正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数12",
+      "数13",
+      "数30"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "预测为p@T。"
+      },
+      {
+        "id": "B",
+        "text": "预测为T@p且不必改变约定。"
+      },
+      {
+        "id": "C",
+        "text": "每一行的和应为1。"
+      },
+      {
+        "id": "D",
+        "text": "每一列的和必为1。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-path-budget",
+    "slug": "p07-path-budget",
+    "version": "1",
+    "lesson_id": "P07-C02-S02",
+    "part": "7",
+    "chapter": "7.2",
+    "title": "为什么还需要递推",
+    "type": "choice",
+    "statement": "隐藏状态（state）3种，时刻数T。比较路径枚举与前向算法。哪项正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数12",
+      "数13",
+      "数30"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "枚举只需3T条路径。"
+      },
+      {
+        "id": "B",
+        "text": "递推通过求和消去历史路径，避免显式列出3^T条路径。"
+      },
+      {
+        "id": "C",
+        "text": "递推只有在转移无噪时才正确。"
+      },
+      {
+        "id": "D",
+        "text": "递推会自动输出（output）最可能的整条路径。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-online-prefix",
+    "slug": "p07-online-prefix",
+    "version": "1",
+    "lesson_id": "P07-C02-S02",
+    "part": "7",
+    "chapter": "7.2",
+    "title": "如何检查未来信息泄漏",
+    "type": "choice",
+    "statement": "两条观测（observation）序列前3步相同，后面的读数不同。已知模型（model）和初始分布（distribution）相同。哪些应相同？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数12",
+      "数13",
+      "数30"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "前3步的滤波分布。"
+      },
+      {
+        "id": "B",
+        "text": "前3步的平滑分布必相同。"
+      },
+      {
+        "id": "C",
+        "text": "第2步只依据前三步中当时已到达的读数。"
+      },
+      {
+        "id": "D",
+        "text": "最后一步后验（posterior）必相同。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-scalar-gaussian",
+    "slug": "p07-scalar-gaussian",
+    "version": "1",
+    "lesson_id": "P07-C03-S01",
+    "part": "7",
+    "chapter": "7.3",
+    "title": "两个高斯信息如何合并",
+    "type": "python",
+    "statement": "状态（state） x 的先验（prior）为 N(prior_mean,prior_variance)，测量 y=x+v，v~N(0,noise_variance)，并与x独立。返回条件均值、方差（variance）和增益（gain）。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数11",
+      "数31"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "prior_mean",
+        "type": "float",
+        "description": "观测（observation）前的均值。",
+        "unit": "U"
+      },
+      {
+        "name": "prior_variance",
+        "type": "float",
+        "description": "观测前的方差。",
+        "unit": "U²"
+      },
+      {
+        "name": "observation",
+        "type": "float",
+        "description": "已到达的读数。",
+        "unit": "U"
+      },
+      {
+        "name": "noise_variance",
+        "type": "float",
+        "description": "独立测量噪声（measurement noise）方差。",
+        "unit": "U²"
+      }
+    ],
+    "returns": [
+      {
+        "name": "mean",
+        "type": "float",
+        "description": "观测后的均值。",
+        "unit": "U"
+      },
+      {
+        "name": "variance",
+        "type": "float",
+        "description": "观测后的方差。",
+        "unit": "U²"
+      },
+      {
+        "name": "gain",
+        "type": "float",
+        "description": "先验方差/(先验方差+噪声方差)。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "K=P/(P+R)，m_new=m+K(y−m)，P_new=(1−K)P。",
+    "constraints": [
+      "0≤prior_variance≤100；0<noise_variance≤100；其余数值有限且绝对值≤100。",
+      "零先验方差表示确定状态，不能被独立测量噪声改变。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "样例K=0.8，后验均值1.6、方差0.8；方差的单位是U²，不能当作标准差。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    prior_mean: float,\n    prior_variance: float,\n    observation: float,\n    noise_variance: float,\n) -> tuple[float, float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "prior_mean": 0.0,
+          "prior_variance": 4.0,
+          "observation": 2.0,
+          "noise_variance": 1.0
+        },
+        "expected": [
+          1.6,
+          0.7999999999999998,
+          0.8
+        ],
+        "explanation": "样例K=0.8，后验（posterior）均值1.6、方差0.8；方差的单位是U²，不能当作标准差（standard deviation）。"
+      }
+    ]
+  },
+  {
+    "id": "p07-covariance-geometry",
+    "slug": "p07-covariance-geometry",
+    "version": "1",
+    "lesson_id": "P07-C03-S01",
+    "part": "7",
+    "chapter": "7.3",
+    "title": "椭圆描述的是什么",
+    "type": "choice",
+    "statement": "二维高斯的协方差矩阵（covariance matrix）为[[4,1],[1,1]]。哪些正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数11",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "对角元素是两个状态（state）的方差（variance）。"
+      },
+      {
+        "id": "B",
+        "text": "非对角元素为1表示相关系数（correlation coefficient）必为1。"
+      },
+      {
+        "id": "C",
+        "text": "任意向量（vector）a的方差aᵀPa必须非负。"
+      },
+      {
+        "id": "D",
+        "text": "在二维中半径1.96的Mahalanobis椭圆恰好覆盖95%。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-conditional-cross",
+    "slug": "p07-conditional-cross",
+    "version": "1",
+    "lesson_id": "P07-C03-S01",
+    "part": "7",
+    "chapter": "7.3",
+    "title": "没有交叉协方差时",
+    "type": "choice",
+    "statement": "联合高斯变量x、y的交叉协方差（covariance）为0。哪项正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数11",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "知道y必定降低x的方差（variance）。"
+      },
+      {
+        "id": "B",
+        "text": "联合高斯条件下x与y独立，观测（observation）y不改变x分布（distribution）。"
+      },
+      {
+        "id": "C",
+        "text": "所有非高斯变量协方差0也必独立。"
+      },
+      {
+        "id": "D",
+        "text": "x与y必定都没有波动。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-factorization",
+    "slug": "p07-factorization",
+    "version": "1",
+    "lesson_id": "P07-C03-S01",
+    "part": "7",
+    "chapter": "7.3",
+    "title": "求逆还是解方程",
+    "type": "choice",
+    "statement": "条件均值涉及 C S⁻¹(y−μ)。S为对称正定（positive definite）矩阵（matrix）。哪些实践成立？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数11",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "解 S z=y−μ 再乘 C。"
+      },
+      {
+        "id": "B",
+        "text": "显式形成S⁻¹总是更稳定。"
+      },
+      {
+        "id": "C",
+        "text": "Cholesky 分解可以把求解变成三角方程。"
+      },
+      {
+        "id": "D",
+        "text": "若S奇异，仍无需改变契约直接除以0。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-kalman-sequence",
+    "slug": "p07-kalman-sequence",
+    "version": "1",
+    "lesson_id": "P07-C03-S02",
+    "part": "7",
+    "chapter": "7.3",
+    "title": "线性高斯递推",
+    "type": "python",
+    "statement": "已知一维或二维线性模型（model），传感器每次给出一个标量读数。返回滤波均值和协方差（covariance）；状态（state）真值不作为输入（input）。 初态为给定均值和协方差的高斯分布（Gaussian distribution）；过程噪声（process noise）w~N(0,Q)、测量噪声（measurement noise）v~N(0,R)，初态及各时刻两种噪声相互独立。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数11",
+      "数31"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "transition",
+        "type": "list[list[float]]",
+        "description": "已知状态转移矩阵（transition matrix） F。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "sensor",
+        "type": "list[float]",
+        "description": "标量读数的观测（observation）行 H。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "process_covariance",
+        "type": "list[list[float]]",
+        "description": "一步过程噪声协方差 Q。",
+        "unit": "U²"
+      },
+      {
+        "name": "measurement_variance",
+        "type": "float",
+        "description": "测量噪声方差（variance） R。",
+        "unit": "U²"
+      },
+      {
+        "name": "initial_mean",
+        "type": "list[float]",
+        "description": "时刻 0 观测前均值。",
+        "unit": "U"
+      },
+      {
+        "name": "initial_covariance",
+        "type": "list[list[float]]",
+        "description": "时刻 0 观测前协方差。",
+        "unit": "U²"
+      },
+      {
+        "name": "observations",
+        "type": "list[float | None]",
+        "description": "从时刻 0 开始的读数；None 为缺测。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "means",
+        "type": "list[list[float]]",
+        "description": "各时刻使用当时可用观测后的均值。",
+        "unit": "U"
+      },
+      {
+        "name": "covariances",
+        "type": "list[list[list[float]]]",
+        "description": "与 means 对应的协方差矩阵（covariance matrix）。",
+        "unit": "U²"
+      }
+    ],
+    "contract": "时刻0直接由initial_mean/initial_covariance进行观测更新；t>0先m=F m、P=F P Fᵀ+Q。非缺测时S=H P Hᵀ+R，K=P Hᵀ/S，m=m+K(y−H m)，P=P−K S Kᵀ。None只保留预测。",
+    "constraints": [
+      "状态维数1或2，观测长度0—20；R>0，Q半正定（positive semidefinite），初始P正定（positive definite）。",
+      "H是一维列表；全部数值有限，绝对值≤100；返回数组（array）不包含初值（initial condition）之外额外的时刻。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "第一步更新初始先验，均值1.6、方差0.8；第二步缺测，均值仍1.6但方差增加到0.9。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    transition: list[list[float]],\n    sensor: list[float],\n    process_covariance: list[list[float]],\n    measurement_variance: float,\n    initial_mean: list[float],\n    initial_covariance: list[list[float]],\n    observations: list[float | None],\n) -> tuple[list[list[float]], list[list[list[float]]]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "transition": [
+            [
+              1.0
+            ]
+          ],
+          "sensor": [
+            1.0
+          ],
+          "process_covariance": [
+            [
+              0.1
+            ]
+          ],
+          "measurement_variance": 1.0,
+          "initial_mean": [
+            0.0
+          ],
+          "initial_covariance": [
+            [
+              4.0
+            ]
+          ],
+          "observations": [
+            2.0,
+            null,
+            1.0
+          ]
+        },
+        "expected": [
+          [
+            [
+              1.6
+            ],
+            [
+              1.6
+            ],
+            [
+              1.3
+            ]
+          ],
+          [
+            [
+              [
+                0.7999999999999998
+              ]
+            ],
+            [
+              [
+                0.8999999999999998
+              ]
+            ],
+            [
+              [
+                0.49999999999999994
+              ]
+            ]
+          ]
+        ],
+        "explanation": "第一步更新初始先验（prior），均值1.6、方差0.8；第二步缺测，均值仍1.6但方差增加到0.9。"
+      }
+    ]
+  },
+  {
+    "id": "p07-kalman-timing",
+    "slug": "p07-kalman-timing",
+    "version": "1",
+    "lesson_id": "P07-C03-S02",
+    "part": "7",
+    "chapter": "7.3",
+    "title": "第一步之前要转移吗",
+    "type": "choice",
+    "statement": "本篇 initial_mean 表示时刻0观测（observation）前的均值，observations[0] 表示时刻0读数。哪项正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数11",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "先做一次F转移才开始处理第0个读数。"
+      },
+      {
+        "id": "B",
+        "text": "先直接观测更新；从第1个读数起先预测。"
+      },
+      {
+        "id": "C",
+        "text": "每一步都跳过过程噪声（process noise）。"
+      },
+      {
+        "id": "D",
+        "text": "初始均值等同于精确真实状态（state）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-joseph-noise",
+    "slug": "p07-joseph-noise",
+    "version": "1",
+    "lesson_id": "P07-C03-S02",
+    "part": "7",
+    "chapter": "7.3",
+    "title": "更新协方差丢了哪一项",
+    "type": "choice",
+    "statement": "将P更新写成(I−KH)P(I−KH)ᵀ，却遗漏K R Kᵀ。哪些正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数11",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "这个式子一般会低估测量带来的不确定性。"
+      },
+      {
+        "id": "B",
+        "text": "只要K非零，遗漏项在R>0时可能非零。"
+      },
+      {
+        "id": "C",
+        "text": "它始终等于P−K S Kᵀ。"
+      },
+      {
+        "id": "D",
+        "text": "补回K R Kᵀ得到Joseph形式。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-gaussian-exactness",
+    "slug": "p07-gaussian-exactness",
+    "version": "1",
+    "lesson_id": "P07-C03-S02",
+    "part": "7",
+    "chapter": "7.3",
+    "title": "什么时候是精确后验",
+    "type": "choice",
+    "statement": "关于Kalman滤波，哪项陈述最准确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数11",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "任何非线性模型（model）中都得到真实后验（posterior）。"
+      },
+      {
+        "id": "B",
+        "text": "线性模型、联合高斯初态和独立高斯噪声的假设成立时，它给出精确滤波分布（distribution）的矩。"
+      },
+      {
+        "id": "C",
+        "text": "协方差（covariance）为零说明现实中没有模型错误。"
+      },
+      {
+        "id": "D",
+        "text": "满列秩（rank）H是所有Kalman更新的必要条件。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-empty-observations",
+    "slug": "p07-empty-observations",
+    "version": "1",
+    "lesson_id": "P07-C03-S02",
+    "part": "7",
+    "chapter": "7.3",
+    "title": "无读数与连续缺测",
+    "type": "choice",
+    "statement": "本章计算题 solve 契约中，哪些正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数11",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "空observations返回两个空列表。"
+      },
+      {
+        "id": "B",
+        "text": "[None,None]仍产生两时刻的估计结果。"
+      },
+      {
+        "id": "C",
+        "text": "None等价于观测（observation）到零。"
+      },
+      {
+        "id": "D",
+        "text": "缺测时协方差（covariance）按动态预测变化。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-coverage",
+    "slug": "p07-coverage",
+    "version": "1",
+    "lesson_id": "P07-C03-S03",
+    "part": "7",
+    "chapter": "7.3",
+    "title": "误差与覆盖率分开算",
+    "type": "python",
+    "statement": "固定时刻进行了独立重复实验。给出核验状态（state）、估计均值和标准差（standard deviation），返回均方根误差（root mean squared error，RMSE）、区间覆盖率及覆盖率的二项标准误（standard error）估计。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数11",
+      "数31"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "truth",
+        "type": "list[float]",
+        "description": "每次独立实验的核验状态。",
+        "unit": "U"
+      },
+      {
+        "name": "means",
+        "type": "list[float]",
+        "description": "对应后验（posterior）均值。",
+        "unit": "U"
+      },
+      {
+        "name": "standard_deviations",
+        "type": "list[float]",
+        "description": "对应后验标准差，非方差（variance）。",
+        "unit": "U"
+      },
+      {
+        "name": "z",
+        "type": "float",
+        "description": "区间半宽的标准差倍数。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "rmse",
+        "type": "float",
+        "description": "sqrt(mean((truth−means)²))。",
+        "unit": "U"
+      },
+      {
+        "name": "coverage",
+        "type": "float",
+        "description": "落入闭区间mean±z*std的比例。",
+        "unit": "比例"
+      },
+      {
+        "name": "standard_error",
+        "type": "float",
+        "description": "sqrt(coverage*(1−coverage)/n)，仅为代入估计。",
+        "unit": "比例"
+      }
+    ],
+    "contract": "使用闭区间，即边界计覆盖。标准误以独立重复为单位，不把同一序列时刻当独立样本；覆盖率为0或1时标准误估计0不表示真实不确定性为0。",
+    "constraints": [
+      "三个列表等长，1—1000项；标准差≥0，z>0；所有数值有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "前3次误差不超过2U，覆盖率0.75；RMSE=sqrt(21/4)，代入标准误约0.2165。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    truth: list[float],\n    means: list[float],\n    standard_deviations: list[float],\n    z: float,\n) -> tuple[float, float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "truth": [
+            0.0,
+            1.0,
+            2.0,
+            4.0
+          ],
+          "means": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "standard_deviations": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "z": 2.0
+        },
+        "expected": [
+          2.29128784747792,
+          0.75,
+          0.21650635094610965
+        ],
+        "explanation": "前3次误差不超过2U，覆盖率0.75；RMSE=sqrt(21/4)，代入标准误约0.2165。"
+      }
+    ]
+  },
+  {
+    "id": "p07-coverage-unit",
+    "slug": "p07-coverage-unit",
+    "version": "1",
+    "lesson_id": "P07-C03-S03",
+    "part": "7",
+    "chapter": "7.3",
+    "title": "谁是独立重复",
+    "type": "choice",
+    "statement": "同一条轨迹（trajectory）有100个时刻，另有200条独立轨迹。要估计终点95%区间的覆盖率不确定性，哪项合适？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数11",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "把全部20000个时刻都当独立终点。"
+      },
+      {
+        "id": "B",
+        "text": "每条独立轨迹取终点覆盖指示，共200项。"
+      },
+      {
+        "id": "C",
+        "text": "只保留覆盖的轨迹。"
+      },
+      {
+        "id": "D",
+        "text": "使用平滑后的终点之前结果替代滤波却不改任务。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-innovation-whiteness",
+    "slug": "p07-innovation-whiteness",
+    "version": "1",
+    "lesson_id": "P07-C03-S03",
+    "part": "7",
+    "chapter": "7.3",
+    "title": "创新应该接近什么",
+    "type": "choice",
+    "statement": "模型（model）和噪声设定正确的线性高斯滤波，在正确初始化下，归一化创新的理论特征包括哪些？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数11",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "均值0。"
+      },
+      {
+        "id": "B",
+        "text": "方差（variance）1。"
+      },
+      {
+        "id": "C",
+        "text": "有限样本中每个数必须等于0。"
+      },
+      {
+        "id": "D",
+        "text": "不同时刻不相关。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-calibration-failure",
+    "slug": "p07-calibration-failure",
+    "version": "1",
+    "lesson_id": "P07-C03-S03",
+    "part": "7",
+    "chapter": "7.3",
+    "title": "误差小就校准好吗",
+    "type": "choice",
+    "statement": "方法甲RMSE=0.5、95%区间覆盖率70%；乙RMSE=0.6、覆盖率94%。均来自同样独立场景。哪项有依据？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数06",
+      "数11",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "甲的区间一定更可靠。"
+      },
+      {
+        "id": "B",
+        "text": "甲点估计误差较小，但区间在本实验中偏窄或模型（model）有失配。"
+      },
+      {
+        "id": "C",
+        "text": "乙必适用于所有生理系统。"
+      },
+      {
+        "id": "D",
+        "text": "只要把区间改宽，模型结构（model structure）就被验证了。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-extended-update",
+    "slug": "p07-extended-update",
+    "version": "1",
+    "lesson_id": "P07-C04-S01",
+    "part": "7",
+    "chapter": "7.4",
+    "title": "一次平方观测的扩展更新",
+    "type": "python",
+    "statement": "先验（prior）x~N(mean,variance)，读数y=x²+v，v是与x独立的零均值高斯噪声，方差（variance）为measurement_variance。在先验均值处线性化（linearization），返回EKF更新后的均值和方差。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08",
+      "数31"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "mean",
+        "type": "float",
+        "description": "先验均值。",
+        "unit": "U"
+      },
+      {
+        "name": "variance",
+        "type": "float",
+        "description": "先验方差。",
+        "unit": "U²"
+      },
+      {
+        "name": "observation",
+        "type": "float",
+        "description": "平方传感器的读数。",
+        "unit": "U²"
+      },
+      {
+        "name": "measurement_variance",
+        "type": "float",
+        "description": "读数噪声方差。",
+        "unit": "U⁴"
+      }
+    ],
+    "returns": [
+      {
+        "name": "updated_mean",
+        "type": "float",
+        "description": "EKF近似后验（posterior）均值。",
+        "unit": "U"
+      },
+      {
+        "name": "updated_variance",
+        "type": "float",
+        "description": "EKF近似后验方差。",
+        "unit": "U²"
+      }
+    ],
+    "contract": "h(mean)=mean²，H=2mean；S=H² variance+R，K=variance H/S；更新mean+K(observation−mean²)、variance−K S K。",
+    "constraints": [
+      "variance>0，measurement_variance>0；绝对值和方差≤100。",
+      "状态（state）代表相对基线的有符号偏差；允许mean=0，不能将导数（derivative）人为改为非零。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "样例导数为1.2，创新方差1.302；当mean=0时导数为0，EKF不更新，即使真实后验形状已改变。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    mean: float,\n    variance: float,\n    observation: float,\n    measurement_variance: float,\n) -> tuple[float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "mean": 0.6,
+          "variance": 0.8,
+          "observation": 1.4,
+          "measurement_variance": 0.15
+        },
+        "expected": [
+          1.366820276497696,
+          0.09216589861751168
+        ],
+        "explanation": "样例导数为1.2，创新方差1.302；当mean=0时导数为0，EKF不更新，即使真实后验形状已改变。"
+      }
+    ]
+  },
+  {
+    "id": "p07-jacobian-location",
+    "slug": "p07-jacobian-location",
+    "version": "1",
+    "lesson_id": "P07-C04-S01",
+    "part": "7",
+    "chapter": "7.4",
+    "title": "雅可比在哪求值",
+    "type": "choice",
+    "statement": "EKF对x[t+1]=f(x[t])+w和y[t]=h(x[t])+v作一阶近似。哪些正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "转移雅可比在上一时刻滤波均值处求值。"
+      },
+      {
+        "id": "B",
+        "text": "观测（observation）雅可比在当前预测均值处求值。"
+      },
+      {
+        "id": "C",
+        "text": "观测雅可比应固定在核验真值处。"
+      },
+      {
+        "id": "D",
+        "text": "预测协方差（covariance）忽略Q仍总正确。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-zero-gradient",
+    "slug": "p07-zero-gradient",
+    "version": "1",
+    "lesson_id": "P07-C04-S01",
+    "part": "7",
+    "chapter": "7.4",
+    "title": "导数为零意味着什么",
+    "type": "choice",
+    "statement": "x~N(0,1)，y=x²+v，v方差（variance）0.1，观测（observation）到y=4。EKF增益（gain）为0。哪项正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "观测在真实模型（model）中不包含任何信息。"
+      },
+      {
+        "id": "B",
+        "text": "EKF的一阶近似看不到曲率；真实后验（posterior）可能集中在正负两侧。"
+      },
+      {
+        "id": "C",
+        "text": "状态（state）必为0。"
+      },
+      {
+        "id": "D",
+        "text": "只要增加计算小数位，EKF一定给出双峰。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-linear-limit",
+    "slug": "p07-linear-limit",
+    "version": "1",
+    "lesson_id": "P07-C04-S01",
+    "part": "7",
+    "chapter": "7.4",
+    "title": "线性退化如何检验",
+    "type": "choice",
+    "statement": "将f、h都改成线性函数，并保持相同初值（initial condition）与噪声。哪些是合理回归检查？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "EKF应与KF一致。"
+      },
+      {
+        "id": "B",
+        "text": "UKF按同一加性噪声约定也应与KF一致。"
+      },
+      {
+        "id": "C",
+        "text": "为了显示区别应人为改其中一种噪声。"
+      },
+      {
+        "id": "D",
+        "text": "一致即证明非线性情况下也精确。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-unscented-moments",
+    "slug": "p07-unscented-moments",
+    "version": "1",
+    "lesson_id": "P07-C04-S02",
+    "part": "7",
+    "chapter": "7.4",
+    "title": "三个采样点传播平方观测",
+    "type": "python",
+    "statement": "使用n=1、alpha=1、beta=2、kappa=0的无迹变换。输入（input）先验（prior）均值方差（variance），返回平方观测（observation）的预测均值、含噪方差与状态（state）-观测交叉协方差（covariance）。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08",
+      "数31"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "mean",
+        "type": "float",
+        "description": "状态先验均值。",
+        "unit": "U"
+      },
+      {
+        "name": "variance",
+        "type": "float",
+        "description": "状态先验方差。",
+        "unit": "U²"
+      },
+      {
+        "name": "measurement_variance",
+        "type": "float",
+        "description": "与状态独立的零均值加性观测噪声方差。",
+        "unit": "U⁴"
+      }
+    ],
+    "returns": [
+      {
+        "name": "observation_mean",
+        "type": "float",
+        "description": "平方观测的预测均值。",
+        "unit": "U²"
+      },
+      {
+        "name": "innovation_variance",
+        "type": "float",
+        "description": "变换方差加噪声方差。",
+        "unit": "U⁴"
+      },
+      {
+        "name": "cross_covariance",
+        "type": "float",
+        "description": "状态与平方观测的交叉协方差。",
+        "unit": "U³"
+      }
+    ],
+    "contract": "点为m、m+sqrt(P)、m−sqrt(P)。均值权重[0,0.5,0.5]，协方差权重[2,0.5,0.5]。用平方后的点计算均值、方差及与原点的交叉协方差，最后给方差加R。",
+    "constraints": [
+      "variance>0，measurement_variance>0；|mean|≤10，方差≤100。",
+      "不能把均值权重直接替代协方差权重。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "样例预测观测均值1.16，方差2.582，交叉协方差0.96；中心点的协方差权重为2。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    mean: float,\n    variance: float,\n    measurement_variance: float,\n) -> tuple[float, float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "mean": 0.6,
+          "variance": 0.8,
+          "measurement_variance": 0.15
+        },
+        "expected": [
+          1.16,
+          2.5819999999999994,
+          0.96
+        ],
+        "explanation": "样例预测观测均值1.16，方差2.582，交叉协方差0.96；中心点的协方差权重为2。"
+      }
+    ]
+  },
+  {
+    "id": "p07-sigma-weights",
+    "slug": "p07-sigma-weights",
+    "version": "1",
+    "lesson_id": "P07-C04-S02",
+    "part": "7",
+    "chapter": "7.4",
+    "title": "均值权重与协方差权重",
+    "type": "choice",
+    "statement": "本节无迹变换参数（parameter）为n=1、alpha=1、beta=2、kappa=0。哪些正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "中心点均值权重为0。"
+      },
+      {
+        "id": "B",
+        "text": "中心点协方差（covariance）权重也为0。"
+      },
+      {
+        "id": "C",
+        "text": "两侧点均值权重各为0.5。"
+      },
+      {
+        "id": "D",
+        "text": "协方差权重必须加和为1才合法。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-moment-not-posterior",
+    "slug": "p07-moment-not-posterior",
+    "version": "1",
+    "lesson_id": "P07-C04-S02",
+    "part": "7",
+    "chapter": "7.4",
+    "title": "矩准确意味着后验准确吗",
+    "type": "choice",
+    "statement": "对高斯先验（prior）的平方观测（observation），本节UT可准确给出观测前均值、方差（variance）和交叉协方差（covariance）。哪项成立？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "更新得到的高斯一定等于真实后验（posterior）。"
+      },
+      {
+        "id": "B",
+        "text": "观测前矩准确仍不保证条件后验为高斯。"
+      },
+      {
+        "id": "C",
+        "text": "单高斯可精确表示任意双峰。"
+      },
+      {
+        "id": "D",
+        "text": "UKF对所有模型（model）都优于EKF。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-grid-validation",
+    "slug": "p07-grid-validation",
+    "version": "1",
+    "lesson_id": "P07-C04-S02",
+    "part": "7",
+    "chapter": "7.4",
+    "title": "网格参照也要核验",
+    "type": "choice",
+    "statement": "用[-6,6]上的6001点积分作为一维后验（posterior）参照。哪些检查必要？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "加密网格，比较均值和方差（variance）变化。"
+      },
+      {
+        "id": "B",
+        "text": "扩大边界，检查截断影响。"
+      },
+      {
+        "id": "C",
+        "text": "画出曲线就证明积分完全精确。"
+      },
+      {
+        "id": "D",
+        "text": "按概率密度（probability density）乘网格尺度后归一化。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-symmetric-posterior",
+    "slug": "p07-symmetric-posterior",
+    "version": "1",
+    "lesson_id": "P07-C04-S02",
+    "part": "7",
+    "chapter": "7.4",
+    "title": "后验均值零是否没有更新",
+    "type": "choice",
+    "statement": "对称先验（prior）和平方观测（observation）下，精确后验（posterior）均值仍为0，但密度从单峰变成双峰。哪项正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数08",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "分布（distribution）完全不变。"
+      },
+      {
+        "id": "B",
+        "text": "均值不足以描述变化，方差（variance）和形状仍可改变。"
+      },
+      {
+        "id": "C",
+        "text": "双峰证明采样（sampling）程序出错。"
+      },
+      {
+        "id": "D",
+        "text": "只需比较均值就能评判所有滤波器。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-importance-weights",
+    "slug": "p07-importance-weights",
+    "version": "1",
+    "lesson_id": "P07-C05-S01",
+    "part": "7",
+    "chapter": "7.5",
+    "title": "稳定计算重要性权重",
+    "type": "python",
+    "statement": "给定已由提议分布（distribution）q抽取的样本及其目标密度和提议密度的对数值。计算自归一化权重、状态（state）均值和有效样本量。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12",
+      "数30",
+      "数32"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "samples",
+        "type": "list[float]",
+        "description": "由q抽取的样本。",
+        "unit": "U"
+      },
+      {
+        "name": "log_target",
+        "type": "list[float]",
+        "description": "未归一化目标密度的对数值。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "log_proposal",
+        "type": "list[float]",
+        "description": "提议密度的对数值。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "weights",
+        "type": "list[float]",
+        "description": "归一化的重要性权重。",
+        "unit": "概率"
+      },
+      {
+        "name": "mean",
+        "type": "float",
+        "description": "按权重求得的状态均值。",
+        "unit": "U"
+      },
+      {
+        "name": "ess",
+        "type": "float",
+        "description": "1/sum(w²)。",
+        "unit": "个"
+      }
+    ],
+    "contract": "log_weight=log_target−log_proposal；先减去最大log_weight再取指数并归一化。不得只用目标密度作为权重。",
+    "constraints": [
+      "三个列表等长，1—100项；对数值有限，绝对值≤10000。",
+      "本题给定样本上q均非零；总体提议支持应覆盖目标支持。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "未归一化权重为[0.4,2,1.2]，总和3.6，状态均值约1.111111，ESS约2.314286。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    samples: list[float],\n    log_target: list[float],\n    log_proposal: list[float],\n) -> tuple[list[float], float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "samples": [
+            -1.0,
+            1.0,
+            2.0
+          ],
+          "log_target": [
+            -1.6094379124341003,
+            -0.6931471805599453,
+            -1.2039728043259361
+          ],
+          "log_proposal": [
+            -0.6931471805599453,
+            -1.3862943611198906,
+            -1.3862943611198906
+          ]
+        },
+        "expected": [
+          [
+            0.11111111111111113,
+            0.5555555555555556,
+            0.3333333333333333
+          ],
+          1.1111111111111112,
+          2.314285714285714
+        ],
+        "explanation": "未归一化权重为[0.4,2,1.2]，总和3.6，状态均值约1.111111，ESS约2.314286。"
+      }
+    ]
+  },
+  {
+    "id": "p07-proposal-support",
+    "slug": "p07-proposal-support",
+    "version": "1",
+    "lesson_id": "P07-C05-S01",
+    "part": "7",
+    "chapter": "7.5",
+    "title": "提议分布漏掉一侧",
+    "type": "choice",
+    "statement": "目标密度在x<0和x>0均非零，但提议分布（distribution）只在x>0生成样本。哪项正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12",
+      "数30",
+      "数32"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "增加权重可恢复所有负侧样本。"
+      },
+      {
+        "id": "B",
+        "text": "增加相同提议的样本数就消除支持遗漏。"
+      },
+      {
+        "id": "C",
+        "text": "目标支持未被覆盖，重要性近似不能恢复缺失区域。"
+      },
+      {
+        "id": "D",
+        "text": "权重均匀即可证明无偏。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-self-normalized",
+    "slug": "p07-self-normalized",
+    "version": "1",
+    "lesson_id": "P07-C05-S01",
+    "part": "7",
+    "chapter": "7.5",
+    "title": "自归一化为何实用",
+    "type": "choice",
+    "statement": "目标只知道未归一化密度p̃，常数未知。哪些正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12",
+      "数30",
+      "数32"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "权重归一化可抵消相同常数。"
+      },
+      {
+        "id": "B",
+        "text": "有限样本的自归一化均值一般有偏。"
+      },
+      {
+        "id": "C",
+        "text": "样本相关性或支持缺口不影响有效性。"
+      },
+      {
+        "id": "D",
+        "text": "不能把ESS当作后验（posterior）正确性的证明。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-log-shift",
+    "slug": "p07-log-shift",
+    "version": "1",
+    "lesson_id": "P07-C05-S01",
+    "part": "7",
+    "chapter": "7.5",
+    "title": "为什么减最大对数权重",
+    "type": "choice",
+    "statement": "所有对数权重都加上同一常数后，哪项不变？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12",
+      "数30",
+      "数32"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "未归一化指数值。"
+      },
+      {
+        "id": "B",
+        "text": "归一化权重和ESS。"
+      },
+      {
+        "id": "C",
+        "text": "浮点下溢风险必定不变。"
+      },
+      {
+        "id": "D",
+        "text": "每个对数权重本身。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-particle-resampling",
+    "slug": "p07-particle-resampling",
+    "version": "1",
+    "lesson_id": "P07-C05-S02",
+    "part": "7",
+    "chapter": "7.5",
+    "title": "观测加权与系统重采样",
+    "type": "python",
+    "statement": "粒子已完成动态传播。用当前观测（observation）的对数似然（likelihood）更新已有权重，再按固定起点进行一次系统重采样（resampling）；题目不调用随机数。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12",
+      "数30",
+      "数32"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "particles",
+        "type": "list[float]",
+        "description": "已传播到当前时刻的状态（state）样本。",
+        "unit": "U"
+      },
+      {
+        "name": "weights",
+        "type": "list[float]",
+        "description": "上一步归一化权重。",
+        "unit": "概率"
+      },
+      {
+        "name": "log_likelihoods",
+        "type": "list[float | None]",
+        "description": "当前观测的对数似然；None 表示零似然。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "offset",
+        "type": "float",
+        "description": "系统重采样的单位起点 u，0≤u<1。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "normalized",
+        "type": "list[float]",
+        "description": "观测加权后的权重，重采样前。",
+        "unit": "概率"
+      },
+      {
+        "name": "ess",
+        "type": "float",
+        "description": "1/sum(w²)。",
+        "unit": "个"
+      },
+      {
+        "name": "indices",
+        "type": "list[int]",
+        "description": "系统重采样选中的祖先下标，从 0 开始。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "resampled",
+        "type": "list[float]",
+        "description": "按祖先下标取得的粒子。",
+        "unit": "U"
+      },
+      {
+        "name": "status",
+        "type": "str",
+        "description": "ok 或 impossible。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "先稳定归一化 log(weights)+log_likelihoods。ESS=1/sum(w²)。N个采样（sampling）位置为(offset+i)/N，选择累积权重严格大于该位置的最小下标；恰好相等时进入下一段。零权重或None似然不贡献质量。全部无质量返回([],0,[],[],\"impossible\")。",
+    "constraints": [
+      "粒子数1—100，各列表等长；weights≥0且和为1；0≤offset<1。",
+      "非None对数值有限，绝对值≤10000；状态绝对值≤100。",
+      "返回的normalized是重采样前权重，重采样后各粒子权重另重置为1/N。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "样例权重[0.4,0.2,0.4]，ESS=25/9；位置1/6、1/2、5/6选中祖先[0,1,2]。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    particles: list[float],\n    weights: list[float],\n    log_likelihoods: list[float | None],\n    offset: float,\n) -> tuple[list[float], float, list[int], list[float], str]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "particles": [
+            -1.0,
+            0.0,
+            1.0
+          ],
+          "weights": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ],
+          "log_likelihoods": [
+            0.0,
+            -0.6931471805599453,
+            0.0
+          ],
+          "offset": 0.5
+        },
+        "expected": [
+          [
+            0.4,
+            0.20000000000000004,
+            0.4
+          ],
+          2.7777777777777772,
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            -1.0,
+            0.0,
+            1.0
+          ],
+          "ok"
+        ],
+        "explanation": "样例权重[0.4,0.2,0.4]，ESS=25/9；位置1/6、1/2、5/6选中祖先[0,1,2]。"
+      }
+    ]
+  },
+  {
+    "id": "p07-ess-threshold",
+    "slug": "p07-ess-threshold",
+    "version": "1",
+    "lesson_id": "P07-C05-S02",
+    "part": "7",
+    "chapter": "7.5",
+    "title": "有效样本量与阈值",
+    "type": "choice",
+    "statement": "权重[0.5,0.5,0,0]，规则为ESS<N/2才重采样（resampling）。哪项正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12",
+      "数30",
+      "数32"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "ESS=2，不触发严格小于条件。"
+      },
+      {
+        "id": "B",
+        "text": "ESS=4，所有粒子都有效。"
+      },
+      {
+        "id": "C",
+        "text": "ESS=0.5。"
+      },
+      {
+        "id": "D",
+        "text": "ESS=2，必触发小于条件。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-ancestry-poverty",
+    "slug": "p07-ancestry-poverty",
+    "version": "1",
+    "lesson_id": "P07-C05-S02",
+    "part": "7",
+    "chapter": "7.5",
+    "title": "权重均匀还会贫化吗",
+    "type": "choice",
+    "statement": "重采样（resampling）后100个粒子的权重都为0.01，但只有3个不同祖先。哪些正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12",
+      "数30",
+      "数32"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "ESS=100。"
+      },
+      {
+        "id": "B",
+        "text": "权重均匀不代表样本多样。"
+      },
+      {
+        "id": "C",
+        "text": "这证明后验（posterior）精确。"
+      },
+      {
+        "id": "D",
+        "text": "重复祖先在过程噪声（process noise）不足时可能持续。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-bootstrap-proposal",
+    "slug": "p07-bootstrap-proposal",
+    "version": "1",
+    "lesson_id": "P07-C05-S02",
+    "part": "7",
+    "chapter": "7.5",
+    "title": "自助滤波中为何只乘似然",
+    "type": "choice",
+    "statement": "自助粒子滤波（particle filtering，PF）用状态（state）转移分布（distribution）作提议。哪项解释正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12",
+      "数30",
+      "数32"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "转移密度从来不影响结果。"
+      },
+      {
+        "id": "B",
+        "text": "一般重要性比中的转移与提议相消，传播已使用转移。"
+      },
+      {
+        "id": "C",
+        "text": "无论用何种提议都只乘似然（likelihood）。"
+      },
+      {
+        "id": "D",
+        "text": "上一步非均匀权重必须忽略。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-particle-comparison",
+    "slug": "p07-particle-comparison",
+    "version": "1",
+    "lesson_id": "P07-C05-S02",
+    "part": "7",
+    "chapter": "7.5",
+    "title": "有限预算怎样比较",
+    "type": "choice",
+    "statement": "比较N=100和N=500的粒子滤波（particle filtering，PF）。哪些做法合理？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数12",
+      "数30",
+      "数32"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "共享同一观测（observation）序列，分别重复独立粒子随机数。"
+      },
+      {
+        "id": "B",
+        "text": "报告误差均值、波动和粒子步数预算。"
+      },
+      {
+        "id": "C",
+        "text": "只挑每个方法表现最好的一次。"
+      },
+      {
+        "id": "D",
+        "text": "据一次精确命中宣称普遍优于KF。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-hmm-smoothing",
+    "slug": "p07-hmm-smoothing",
+    "version": "1",
+    "lesson_id": "P07-C06-S01",
+    "part": "7",
+    "chapter": "7.6",
+    "title": "把未来读数传回过去",
+    "type": "python",
+    "statement": "已知有限状态（state）HMM，计算全部观测（observation）条件下每个时刻的平滑后验（posterior）。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数30",
+      "数31"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "时刻0先验（prior）。",
+        "unit": "概率"
+      },
+      {
+        "name": "transition",
+        "type": "list[list[float]]",
+        "description": "行随机转移矩阵（transition matrix）。",
+        "unit": "概率"
+      },
+      {
+        "name": "likelihoods",
+        "type": "list[list[float] | None]",
+        "description": "每时刻的似然（likelihood），None为缺测。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "smoothed",
+        "type": "list[list[float]]",
+        "description": "p(z[t] | y[0:T])，按时刻排列。",
+        "unit": "概率"
+      }
+    ],
+    "contract": "先做前向滤波，设末端beta=1。gamma[t]与alpha[t]*beta[t]成比例；beta[t]=T@(likelihood[t+1]*beta[t+1])，可每步缩放。缺测似然全1。空序列返回空列表。",
+    "constraints": [
+      "2—3状态，0—12时刻；所有观测前缀证据严格正。",
+      "初始及转移行归一化，似然在[0,1]。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "两步观测时，第一步平滑还利用第二个读数；最后一步平滑必须等于最后一步滤波。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    initial: list[float],\n    transition: list[list[float]],\n    likelihoods: list[list[float] | None],\n) -> list[list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "initial": [
+            0.6,
+            0.4
+          ],
+          "transition": [
+            [
+              0.8,
+              0.2
+            ],
+            [
+              0.1,
+              0.9
+            ]
+          ],
+          "likelihoods": [
+            [
+              0.2,
+              0.8
+            ],
+            [
+              0.7,
+              0.3
+            ]
+          ]
+        },
+        "expected": [
+          [
+            0.4061135371179039,
+            0.5938864628820961
+          ],
+          [
+            0.4890829694323144,
+            0.5109170305676857
+          ]
+        ],
+        "explanation": "两步观测时，第一步平滑还利用第二个读数；最后一步平滑必须等于最后一步滤波。"
+      }
+    ]
+  },
+  {
+    "id": "p07-three-information-sets",
+    "slug": "p07-three-information-sets",
+    "version": "1",
+    "lesson_id": "P07-C06-S01",
+    "part": "7",
+    "chapter": "7.6",
+    "title": "三种估计分别知道什么",
+    "type": "choice",
+    "statement": "在时刻t讨论状态（state）x[t]。哪些对应关系正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数30",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "预测只使用t之前的观测（observation）。"
+      },
+      {
+        "id": "B",
+        "text": "滤波使用截至t的观测。"
+      },
+      {
+        "id": "C",
+        "text": "平滑允许使用t之后的观测。"
+      },
+      {
+        "id": "D",
+        "text": "平滑后再删掉未来读数就恢复实时可用性。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-backward-index",
+    "slug": "p07-backward-index",
+    "version": "1",
+    "lesson_id": "P07-C06-S01",
+    "part": "7",
+    "chapter": "7.6",
+    "title": "后向信息从哪一步开始",
+    "type": "choice",
+    "statement": "beta[t]=p(y[t+1:T] | z[t])。哪项递推正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数30",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "beta[t]=T@(likelihood[t]*beta[t+1])。"
+      },
+      {
+        "id": "B",
+        "text": "beta[t]=T@(likelihood[t+1]*beta[t+1])。"
+      },
+      {
+        "id": "C",
+        "text": "beta[t]=alpha[t]。"
+      },
+      {
+        "id": "D",
+        "text": "beta[T]必须等于最后一个似然（likelihood）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-offline-online",
+    "slug": "p07-offline-online",
+    "version": "1",
+    "lesson_id": "P07-C06-S01",
+    "part": "7",
+    "chapter": "7.6",
+    "title": "平滑更好能推实时更好吗",
+    "type": "choice",
+    "statement": "离线平滑的过去状态（state）RMSE低于滤波。哪项有依据？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数30",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "可直接宣称在线控制会同样改善。"
+      },
+      {
+        "id": "B",
+        "text": "说明更多未来信息在该离线重建实验有帮助。"
+      },
+      {
+        "id": "C",
+        "text": "滤波算法必定实现错误。"
+      },
+      {
+        "id": "D",
+        "text": "未来信息已成为过去真实可获得的信息。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-rts-backward",
+    "slug": "p07-rts-backward",
+    "version": "1",
+    "lesson_id": "P07-C06-S02",
+    "part": "7",
+    "chapter": "7.6",
+    "title": "由已保存的滤波矩后向平滑",
+    "type": "python",
+    "statement": "给定每时刻预测和滤波矩，用固定区间RTS递推计算平滑均值和协方差（covariance）。末时刻保持滤波结果。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数30",
+      "数31"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "transition",
+        "type": "list[list[float]]",
+        "description": "已知状态（state）转移矩阵（transition matrix） F。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "predicted_means",
+        "type": "list[list[float]]",
+        "description": "每时刻观测（observation）前的均值，长度 T。",
+        "unit": "U"
+      },
+      {
+        "name": "predicted_covariances",
+        "type": "list[list[list[float]]]",
+        "description": "每时刻观测前协方差。",
+        "unit": "U²"
+      },
+      {
+        "name": "means",
+        "type": "list[list[float]]",
+        "description": "每时刻滤波后的均值。",
+        "unit": "U"
+      },
+      {
+        "name": "covariances",
+        "type": "list[list[list[float]]]",
+        "description": "每时刻滤波后的协方差。",
+        "unit": "U²"
+      }
+    ],
+    "returns": [
+      {
+        "name": "means",
+        "type": "list[list[float]]",
+        "description": "各时刻使用当时可用观测后的均值。",
+        "unit": "U"
+      },
+      {
+        "name": "covariances",
+        "type": "list[list[list[float]]]",
+        "description": "与 means 对应的协方差矩阵（covariance matrix）。",
+        "unit": "U²"
+      }
+    ],
+    "contract": "G[t]=P_f[t] Fᵀ inv(P_pred[t+1])；m_s[t]=m_f[t]+G[t] * (m_s[t+1]−m_pred[t+1])；P_s[t]=P_f[t]+G[t] * (P_s[t+1]−P_pred[t+1])G[t]ᵀ。从T−2向0递推；T=0返回两个空列表。",
+    "constraints": [
+      "状态维数1或2，T为0—20，所有数组（array）时刻数相同。",
+      "输入（input）来自同一合法线性高斯滤波；非空预测协方差正定（positive definite）；值有限。",
+      "不得用predicted[t]替代predicted[t+1]，不得在平滑中重新吸收观测。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "样例的中间时刻缺测，但后来的读数能回传信息；最后时刻均值和协方差与滤波完全一致。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    transition: list[list[float]],\n    predicted_means: list[list[float]],\n    predicted_covariances: list[list[list[float]]],\n    means: list[list[float]],\n    covariances: list[list[list[float]]],\n) -> tuple[list[list[float]], list[list[list[float]]]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "transition": [
+            [
+              1.0
+            ]
+          ],
+          "predicted_means": [
+            [
+              0.0
+            ],
+            [
+              1.6
+            ],
+            [
+              1.6
+            ]
+          ],
+          "predicted_covariances": [
+            [
+              [
+                4.0
+              ]
+            ],
+            [
+              [
+                0.9
+              ]
+            ],
+            [
+              [
+                1.0
+              ]
+            ]
+          ],
+          "means": [
+            [
+              1.6
+            ],
+            [
+              1.6
+            ],
+            [
+              1.3
+            ]
+          ],
+          "covariances": [
+            [
+              [
+                0.8
+              ]
+            ],
+            [
+              [
+                0.9
+              ]
+            ],
+            [
+              [
+                0.5
+              ]
+            ]
+          ]
+        },
+        "expected": [
+          [
+            [
+              1.36
+            ],
+            [
+              1.33
+            ],
+            [
+              1.3
+            ]
+          ],
+          [
+            [
+              [
+                0.48
+              ]
+            ],
+            [
+              [
+                0.495
+              ]
+            ],
+            [
+              [
+                0.5
+              ]
+            ]
+          ]
+        ],
+        "explanation": "样例的中间时刻缺测，但后来的读数能回传信息；最后时刻均值和协方差与滤波完全一致。"
+      }
+    ]
+  },
+  {
+    "id": "p07-terminal-equality",
+    "slug": "p07-terminal-equality",
+    "version": "1",
+    "lesson_id": "P07-C06-S02",
+    "part": "7",
+    "chapter": "7.6",
+    "title": "后向递推在哪里开始",
+    "type": "choice",
+    "statement": "关于固定区间RTS平滑，哪些正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数30",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "末时刻平滑等于滤波。"
+      },
+      {
+        "id": "B",
+        "text": "只有一个时刻时不做后向更新。"
+      },
+      {
+        "id": "C",
+        "text": "缺测时必须把状态（state）设为0。"
+      },
+      {
+        "id": "D",
+        "text": "后向增益（gain）用下一时刻预测协方差（covariance）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-covariance-order",
+    "slug": "p07-covariance-order",
+    "version": "1",
+    "lesson_id": "P07-C06-S02",
+    "part": "7",
+    "chapter": "7.6",
+    "title": "协方差变小的前提",
+    "type": "choice",
+    "statement": "相同正确线性高斯模型（model）、相同已知噪声和同一组观测（observation）下，哪项正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数30",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "平滑协方差（covariance）不大于滤波协方差，按半正定（positive semidefinite）顺序理解。"
+      },
+      {
+        "id": "B",
+        "text": "每次随机实验的实际误差必逐点更小。"
+      },
+      {
+        "id": "C",
+        "text": "两个不同错误模型的协方差也必须满足同样顺序。"
+      },
+      {
+        "id": "D",
+        "text": "更小模型协方差自动证明对现实更准确。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-missing-gap",
+    "slug": "p07-missing-gap",
+    "version": "1",
+    "lesson_id": "P07-C06-S02",
+    "part": "7",
+    "chapter": "7.6",
+    "title": "缺测区间里的误差",
+    "type": "choice",
+    "statement": "某段连续缺测，之后传感器恢复。哪些正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数30",
+      "数31"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "滤波在缺测段只做动态预测。"
+      },
+      {
+        "id": "B",
+        "text": "平滑可利用恢复后的读数修正缺测段。"
+      },
+      {
+        "id": "C",
+        "text": "把平滑估计写进实时评估会引入未来信息。"
+      },
+      {
+        "id": "D",
+        "text": "缺测意味着过程噪声（process noise）也停止。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-cap-state-task",
+    "slug": "p07-cap-state-task",
+    "version": "1",
+    "lesson_id": "P07-SUMMARY",
+    "part": "7",
+    "chapter": "7.summary",
+    "title": "辨认估计任务",
+    "type": "choice",
+    "statement": "二室模型（model）的F、Q、H、R已知，初始分布（distribution）已知，当前状态（state）未知。哪些判断正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数30",
+      "数31",
+      "数32"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "当前任务是状态估计。"
+      },
+      {
+        "id": "B",
+        "text": "状态可观与未知参数（parameter）可辨识是同一命题。"
+      },
+      {
+        "id": "C",
+        "text": "H=[1,1]且对称守恒交换时可能有不可观差量。"
+      },
+      {
+        "id": "D",
+        "text": "增加滤波器迭代可凭空补齐所有传感器信息。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-cap-information",
+    "slug": "p07-cap-information",
+    "version": "1",
+    "lesson_id": "P07-SUMMARY",
+    "part": "7",
+    "chapter": "7.summary",
+    "title": "保证在线信息边界",
+    "type": "choice",
+    "statement": "比较同一二室模型（model）的实时滤波和离线平滑。哪项设置公平且标注准确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数30",
+      "数31",
+      "数32"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "把全序列平滑估计用于时刻t的实时控制评分。"
+      },
+      {
+        "id": "B",
+        "text": "滤波仅用截至t的观测（observation）；平滑单独评价离线重建。"
+      },
+      {
+        "id": "C",
+        "text": "用核验真值选择每一步滤波增益（gain）。"
+      },
+      {
+        "id": "D",
+        "text": "缺測一律用后一个观测插值再称实时。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-cap-hidden-update",
+    "slug": "p07-cap-hidden-update",
+    "version": "1",
+    "lesson_id": "P07-SUMMARY",
+    "part": "7",
+    "chapter": "7.summary",
+    "title": "隐藏状态的精确递推",
+    "type": "python",
+    "statement": "一个细胞有静息、活跃、恢复三种隐藏状态（state）；给定先验（prior）、转移与实际标记的似然（likelihood），求预测与后验（posterior）。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数30",
+      "数31",
+      "数32"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "时刻 0 的观测（observation）前概率分布（probability distribution）。",
+        "unit": "概率"
+      },
+      {
+        "name": "transition",
+        "type": "list[list[float]]",
+        "description": "第 i 行第 j 列为从 i 转移到 j 的概率（probability）。",
+        "unit": "概率"
+      },
+      {
+        "name": "likelihoods",
+        "type": "list[list[float] | None]",
+        "description": "各时刻实际读数在各状态下的似然；None 表示缺测。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "predictions",
+        "type": "list[list[float]]",
+        "description": "每一步观测前分布（distribution）。",
+        "unit": "概率"
+      },
+      {
+        "name": "posteriors",
+        "type": "list[list[float]]",
+        "description": "成功归一化各步的滤波后验。",
+        "unit": "概率"
+      },
+      {
+        "name": "evidence",
+        "type": "list[float]",
+        "description": "各步似然加权和。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "status",
+        "type": "str",
+        "description": "成功为 ok；首个零证据为 impossible。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "时刻0直接更新initial；之后先按行随机矩阵（matrix）转移。缺测用全1似然；零证据停止，保留该步预测与证据，不生成该步后验。",
+    "constraints": [
+      "状态数2—3，0—20时刻；初始及转移行归一化，似然在[0,1]或None。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "第一步三种状态的质量为[0.48,0.12,0.01]，总和0.61；后验由这三项归一化。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    initial: list[float],\n    transition: list[list[float]],\n    likelihoods: list[list[float] | None],\n) -> tuple[list[list[float]], list[list[float]], list[float], str]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "initial": [
+            0.6,
+            0.3,
+            0.1
+          ],
+          "transition": [
+            [
+              0.8,
+              0.15,
+              0.05
+            ],
+            [
+              0.1,
+              0.8,
+              0.1
+            ],
+            [
+              0.05,
+              0.2,
+              0.75
+            ]
+          ],
+          "likelihoods": [
+            [
+              0.8,
+              0.4,
+              0.1
+            ],
+            null,
+            [
+              0.2,
+              0.6,
+              0.9
+            ]
+          ]
+        },
+        "expected": [
+          [
+            [
+              0.6,
+              0.3,
+              0.1
+            ],
+            [
+              0.65,
+              0.2786885245901639,
+              0.07131147540983607
+            ],
+            [
+              0.5514344262295082,
+              0.3347131147540984,
+              0.11385245901639345
+            ]
+          ],
+          [
+            [
+              0.7868852459016393,
+              0.19672131147540983,
+              0.016393442622950824
+            ],
+            [
+              0.65,
+              0.2786885245901639,
+              0.07131147540983607
+            ],
+            [
+              0.26666270289553484,
+              0.485581782507878,
+              0.2477555145965872
+            ]
+          ],
+          [
+            0.61,
+            1.0,
+            0.41358196721311474
+          ],
+          "ok"
+        ],
+        "explanation": "第一步三种状态的质量为[0.48,0.12,0.01]，总和0.61；后验由这三项归一化。"
+      }
+    ]
+  },
+  {
+    "id": "p07-cap-gaussian-filter",
+    "slug": "p07-cap-gaussian-filter",
+    "version": "1",
+    "lesson_id": "P07-SUMMARY",
+    "part": "7",
+    "chapter": "7.summary",
+    "title": "部分观测二室恢复",
+    "type": "python",
+    "statement": "已知二室动态，给定观测（observation）而不提供真实状态（state），计算线性高斯滤波。该题可退化为一维用于边界核验。 初态为给定均值和协方差（covariance）的高斯分布（Gaussian distribution）；过程噪声（process noise）w~N(0,Q)、测量噪声（measurement noise）v~N(0,R)，初态及各时刻两种噪声相互独立。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数30",
+      "数31",
+      "数32"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "transition",
+        "type": "list[list[float]]",
+        "description": "已知状态转移矩阵（transition matrix） F。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "sensor",
+        "type": "list[float]",
+        "description": "标量读数的观测行 H。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "process_covariance",
+        "type": "list[list[float]]",
+        "description": "一步过程噪声协方差 Q。",
+        "unit": "U²"
+      },
+      {
+        "name": "measurement_variance",
+        "type": "float",
+        "description": "测量噪声方差（variance） R。",
+        "unit": "U²"
+      },
+      {
+        "name": "initial_mean",
+        "type": "list[float]",
+        "description": "时刻 0 观测前均值。",
+        "unit": "U"
+      },
+      {
+        "name": "initial_covariance",
+        "type": "list[list[float]]",
+        "description": "时刻 0 观测前协方差。",
+        "unit": "U²"
+      },
+      {
+        "name": "observations",
+        "type": "list[float | None]",
+        "description": "从时刻 0 开始的读数；None 为缺测。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "means",
+        "type": "list[list[float]]",
+        "description": "各时刻使用当时可用观测后的均值。",
+        "unit": "U"
+      },
+      {
+        "name": "covariances",
+        "type": "list[list[list[float]]]",
+        "description": "与 means 对应的协方差矩阵（covariance matrix）。",
+        "unit": "U²"
+      }
+    ],
+    "contract": "初始矩为t=0观测前；之后先F预测并加Q。每个非None读数按标量创新进行更新；None只预测。返回每个请求时刻的滤波矩。",
+    "constraints": [
+      "维数1或2，0—20时刻；R>0，Q半正定（positive semidefinite），P0正定（positive definite）；输入（input）有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "首个读数1.8小于预测2，第一室均值向下调整；初始交叉协方差使第二室也获得信息。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    transition: list[list[float]],\n    sensor: list[float],\n    process_covariance: list[list[float]],\n    measurement_variance: float,\n    initial_mean: list[float],\n    initial_covariance: list[list[float]],\n    observations: list[float | None],\n) -> tuple[list[list[float]], list[list[list[float]]]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "transition": [
+            [
+              0.85,
+              0.1
+            ],
+            [
+              0.1,
+              0.8
+            ]
+          ],
+          "sensor": [
+            1.0,
+            0.0
+          ],
+          "process_covariance": [
+            [
+              0.02,
+              0.0
+            ],
+            [
+              0.0,
+              0.02
+            ]
+          ],
+          "measurement_variance": 0.16,
+          "initial_mean": [
+            2.0,
+            0.0
+          ],
+          "initial_covariance": [
+            [
+              1.0,
+              0.2
+            ],
+            [
+              0.2,
+              1.0
+            ]
+          ],
+          "observations": [
+            1.8,
+            null,
+            1.4,
+            0.8
+          ]
+        },
+        "expected": [
+          [
+            [
+              1.8275862068965518,
+              -0.03448275862068965
+            ],
+            [
+              1.55,
+              0.15517241379310348
+            ],
+            [
+              1.3644668222672294,
+              0.30965380875536136
+            ],
+            [
+              1.049540814225377,
+              0.24735658690180073
+            ]
+          ],
+          [
+            [
+              [
+                0.13793103448275856,
+                0.027586206896551724
+              ],
+              [
+                0.027586206896551724,
+                0.9655172413793104
+              ]
+            ],
+            [
+              [
+                0.13399999999999995,
+                0.10800000000000001
+              ],
+              [
+                0.10800000000000001,
+                0.6437241379310347
+              ]
+            ],
+            [
+              [
+                0.07512280840151575,
+                0.07289249555978192
+              ],
+              [
+                0.07289249555978192,
+                0.3880034045083007
+              ]
+            ],
+            [
+              [
+                0.057823964703489,
+                0.056018990332502044
+              ],
+              [
+                0.05601899033250203,
+                0.25002325807328124
+              ]
+            ]
+          ]
+        ],
+        "explanation": "首个读数1.8小于预测2，第一室均值向下调整；初始交叉协方差使第二室也获得信息。"
+      }
+    ]
+  },
+  {
+    "id": "p07-cap-approximation",
+    "slug": "p07-cap-approximation",
+    "version": "1",
+    "lesson_id": "P07-SUMMARY",
+    "part": "7",
+    "chapter": "7.summary",
+    "title": "比较近似与真实后验",
+    "type": "choice",
+    "statement": "相同平方观测（observation）模型（model）中，m=0，先验（prior）对称，读数提示|x|≈2。网格得到双峰，EKF和UKF都只保存一个高斯。哪些结论合理？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数30",
+      "数31",
+      "数32"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "均值都接近0足以说明两种高斯表示完整正确。"
+      },
+      {
+        "id": "B",
+        "text": "应比较密度形状和方差（variance），不能只看均值。"
+      },
+      {
+        "id": "C",
+        "text": "UKF的观测前矩准确就保证后验（posterior）高斯准确。"
+      },
+      {
+        "id": "D",
+        "text": "粒子法可表示多峰，但须检查支持和退化。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p07-cap-particle",
+    "slug": "p07-cap-particle",
+    "version": "1",
+    "lesson_id": "P07-SUMMARY",
+    "part": "7",
+    "chapter": "7.summary",
+    "title": "固定随机输入的粒子更新",
+    "type": "python",
+    "statement": "相同非线性观测（observation）下，给定已经传播的粒子及其观测对数似然（likelihood），执行确定的权重更新和系统重采样（resampling）。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数30",
+      "数31",
+      "数32"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "particles",
+        "type": "list[float]",
+        "description": "已传播到当前时刻的状态（state）样本。",
+        "unit": "U"
+      },
+      {
+        "name": "weights",
+        "type": "list[float]",
+        "description": "上一步归一化权重。",
+        "unit": "概率"
+      },
+      {
+        "name": "log_likelihoods",
+        "type": "list[float | None]",
+        "description": "当前观测的对数似然；None 表示零似然。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "offset",
+        "type": "float",
+        "description": "系统重采样的单位起点 u，0≤u<1。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "normalized",
+        "type": "list[float]",
+        "description": "观测加权后的权重，重采样前。",
+        "unit": "概率"
+      },
+      {
+        "name": "ess",
+        "type": "float",
+        "description": "1/sum(w²)。",
+        "unit": "个"
+      },
+      {
+        "name": "indices",
+        "type": "list[int]",
+        "description": "系统重采样选中的祖先下标，从 0 开始。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "resampled",
+        "type": "list[float]",
+        "description": "按祖先下标取得的粒子。",
+        "unit": "U"
+      },
+      {
+        "name": "status",
+        "type": "str",
+        "description": "ok 或 impossible。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "位置为(offset+i)/N，选择累积质量严格大于位置的最小下标；稳定归一化已有权重乘似然。全部无质量返回([],0,[],[],\"impossible\")。返回重采样前权重。",
+    "constraints": [
+      "1—100粒子；权重非负且和为1；对数似然有限或None；0≤offset<1。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "减去最大对数权重避免-1000附近指数下溢；所得概率不受共同平移影响。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    particles: list[float],\n    weights: list[float],\n    log_likelihoods: list[float | None],\n    offset: float,\n) -> tuple[list[float], float, list[int], list[float], str]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "particles": [
+            -2.0,
+            -1.0,
+            1.0,
+            2.0
+          ],
+          "weights": [
+            0.1,
+            0.2,
+            0.3,
+            0.4
+          ],
+          "log_likelihoods": [
+            -1000.0,
+            -1001.0,
+            -1002.0,
+            -1003.0
+          ],
+          "offset": 0.0
+        },
+        "expected": [
+          [
+            0.42718375165595135,
+            0.31430423967340587,
+            0.17343910207330068,
+            0.08507290659734217
+          ],
+          3.1388143701042233,
+          [
+            0,
+            0,
+            1,
+            2
+          ],
+          [
+            -2.0,
+            -2.0,
+            -1.0,
+            1.0
+          ],
+          "ok"
+        ],
+        "explanation": "减去最大对数权重避免-1000附近指数下溢；所得概率（probability）不受共同平移影响。"
+      }
+    ]
+  },
+  {
+    "id": "p07-cap-smoothing",
+    "slug": "p07-cap-smoothing",
+    "version": "1",
+    "lesson_id": "P07-SUMMARY",
+    "part": "7",
+    "chapter": "7.summary",
+    "title": "缺测记录的后向重建",
+    "type": "python",
+    "statement": "给定同一次部分观测（observation）滤波保存的矩，计算RTS平滑，核对未来信息如何修正历史。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数30",
+      "数31",
+      "数32"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "transition",
+        "type": "list[list[float]]",
+        "description": "已知状态（state）转移矩阵（transition matrix） F。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "predicted_means",
+        "type": "list[list[float]]",
+        "description": "每时刻观测前的均值，长度 T。",
+        "unit": "U"
+      },
+      {
+        "name": "predicted_covariances",
+        "type": "list[list[list[float]]]",
+        "description": "每时刻观测前协方差（covariance）。",
+        "unit": "U²"
+      },
+      {
+        "name": "means",
+        "type": "list[list[float]]",
+        "description": "每时刻滤波后的均值。",
+        "unit": "U"
+      },
+      {
+        "name": "covariances",
+        "type": "list[list[list[float]]]",
+        "description": "每时刻滤波后的协方差。",
+        "unit": "U²"
+      }
+    ],
+    "returns": [
+      {
+        "name": "means",
+        "type": "list[list[float]]",
+        "description": "各时刻使用当时可用观测后的均值。",
+        "unit": "U"
+      },
+      {
+        "name": "covariances",
+        "type": "list[list[list[float]]]",
+        "description": "与 means 对应的协方差矩阵（covariance matrix）。",
+        "unit": "U²"
+      }
+    ],
+    "contract": "末端等于滤波；后向增益（gain）用P_f[t] Fᵀ inv(P_pred[t+1])。更新均值与协方差均使用下一时刻的平滑量减预测量。空输入（input）返回两个空列表。",
+    "constraints": [
+      "维数1或2、0—20时刻；各数组（array）等长、来自同一合法滤波，预测协方差正定（positive definite）。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "二室中第二时刻缺测，之后读数通过后向相关修正该时刻；最终时刻保持滤波矩。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    transition: list[list[float]],\n    predicted_means: list[list[float]],\n    predicted_covariances: list[list[list[float]]],\n    means: list[list[float]],\n    covariances: list[list[list[float]]],\n) -> tuple[list[list[float]], list[list[list[float]]]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "transition": [
+            [
+              0.85,
+              0.1
+            ],
+            [
+              0.1,
+              0.8
+            ]
+          ],
+          "predicted_means": [
+            [
+              2.0,
+              0.0
+            ],
+            [
+              1.55,
+              0.15517241379310348
+            ],
+            [
+              1.3330172413793104,
+              0.2791379310344828
+            ],
+            [
+              1.190762179802681,
+              0.38416972923101195
+            ]
+          ],
+          "predicted_covariances": [
+            [
+              [
+                1.0,
+                0.2
+              ],
+              [
+                0.2,
+                1.0
+              ]
+            ],
+            [
+              [
+                0.13399999999999998,
+                0.10800000000000001
+              ],
+              [
+                0.10800000000000001,
+                0.6437241379310346
+              ]
+            ],
+            [
+              [
+                0.14161224137931033,
+                0.13740793103448276
+              ],
+              [
+                0.1374079310344828,
+                0.45060344827586224
+              ]
+            ],
+            [
+              [
+                0.09054798736034109,
+                0.0877215330110424
+              ],
+              [
+                0.0877215330110424,
+                0.28073620625889273
+              ]
+            ]
+          ],
+          "means": [
+            [
+              1.8275862068965518,
+              -0.03448275862068965
+            ],
+            [
+              1.55,
+              0.15517241379310348
+            ],
+            [
+              1.3644668222672294,
+              0.30965380875536125
+            ],
+            [
+              1.049540814225377,
+              0.2473565869018007
+            ]
+          ],
+          "covariances": [
+            [
+              [
+                0.13793103448275862,
+                0.027586206896551727
+              ],
+              [
+                0.027586206896551727,
+                0.9655172413793104
+              ]
+            ],
+            [
+              [
+                0.13399999999999998,
+                0.10800000000000001
+              ],
+              [
+                0.10800000000000001,
+                0.6437241379310346
+              ]
+            ],
+            [
+              [
+                0.07512280840151578,
+                0.07289249555978189
+              ],
+              [
+                0.07289249555978189,
+                0.3880034045083006
+              ]
+            ],
+            [
+              [
+                0.05782396470348902,
+                0.05601899033250202
+              ],
+              [
+                0.05601899033250202,
+                0.25002325807328124
+              ]
+            ]
+          ]
+        },
+        "expected": [
+          [
+            [
+              1.7779374023999095,
+              -0.2066960074199618
+            ],
+            [
+              1.4832932722499381,
+              0.009121291687625738
+            ],
+            [
+              1.25350906583979,
+              0.15250710039727716
+            ],
+            [
+              1.049540814225377,
+              0.2473565869018007
+            ]
+          ],
+          [
+            [
+              [
+                0.0922007524035971,
+                -0.06069515722851421
+              ],
+              [
+                -0.060695157228514277,
+                0.7848678681076177
+              ]
+            ],
+            [
+              [
+                0.06782121168719134,
+                0.015436352827362013
+              ],
+              [
+                0.015436352827361957,
+                0.5092615220392628
+              ]
+            ],
+            [
+              [
+                0.054921420652057365,
+                0.04428177296312662
+              ],
+              [
+                0.04428177296312661,
+                0.3474827503010318
+              ]
+            ],
+            [
+              [
+                0.05782396470348902,
+                0.05601899033250202
+              ],
+              [
+                0.05601899033250202,
+                0.25002325807328124
+              ]
+            ]
+          ]
+        ],
+        "explanation": "二室中第二时刻缺测，之后读数通过后向相关修正该时刻；最终时刻保持滤波矩。"
+      }
+    ]
+  },
+  {
+    "id": "p07-cap-failure",
+    "slug": "p07-cap-failure",
+    "version": "1",
+    "lesson_id": "P07-SUMMARY",
+    "part": "7",
+    "chapter": "7.summary",
+    "title": "传感器改变后的诊断",
+    "type": "choice",
+    "statement": "对称守恒二室把传感器从第一室改成两室总量，差量方向的估计仍接近先验（prior）；算法输出（output）协方差（covariance）却被手动缩小十倍。哪些判断有依据？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数30",
+      "数31",
+      "数32"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "总量传感器不能区分差量方向。"
+      },
+      {
+        "id": "B",
+        "text": "手动缩小协方差不会产生新观测（observation）信息。"
+      },
+      {
+        "id": "C",
+        "text": "RMSE不变而覆盖变差只证明随机种子（random seed）不好。"
+      },
+      {
+        "id": "D",
+        "text": "增加未来总量观测必定完全恢复差量。"
+      }
+    ],
+    "constraints": []
+  }
+]

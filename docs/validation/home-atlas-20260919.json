@@ -1,0 +1,112 @@
+{
+  "date": "2026-09-19",
+  "scope": "开始首页、知识星图、共享主题和本轮视觉反馈；不替代M5/M7/M8教材内容验收。",
+  "status": "implemented_and_targeted_checks_passed",
+  "catalog": {
+    "parts": 17,
+    "chapters": 85,
+    "nodes": 554,
+    "edges": 843,
+    "source": {
+      "catalogPath": "web/course/catalog.json",
+      "catalogSha256": "56703ddce8b99c81779165ffc8e01c3632cb8e3e7a097029fb61e6628be0e1cb",
+      "title": "郭雷：系统学是什么",
+      "journal": "系统科学与数学",
+      "year": 2016,
+      "volume": "36(3)",
+      "pages": "291–301",
+      "taxonomyPage": 293,
+      "note": "五论名称参考原文；课程归类、配色与图形布局由本站设计。连线表达课程先修或同节关联，不表示自然因果或物理引力。"
+    }
+  },
+  "implementation": {
+    "hierarchy": "全景选择篇，篇选择章，章选择概念；概念经既有本机接口请求默认IDE。",
+    "distant_galaxies": "17篇使用5类按稳定种子区分的远景形态，无清晰旋臂或同图克隆，沿扁椭圆公转；五论分类控制主体色相。",
+    "near_galaxy": "进入篇才展示旋臂明暗结构与较小卫星；卫星亮面朝向中心并使用统一色温。",
+    "motion": "黑洞视界与轮廓固定，盘面气体纹理连续平流；星系自转、星尘变化与公转由可暂停时钟驱动。",
+    "background": "连续解析雾光渐变加显示色域像素抖动，移除可见低频噪声格。",
+    "typography": "操作/面包屑/进度/说明14px，节点编号/图例13px，目录15—16px，帮助正文16px；扩展卡片与底栏，中央标签移出节点轨道。"
+  },
+  "automated": {
+    "javascript": {
+      "passed": 32,
+      "suites": [
+        "home-graph",
+        "home-physics",
+        "home-zoom",
+        "home-renderer",
+        "appearance"
+      ]
+    },
+    "python": {
+      "passed": 19,
+      "files": [
+        "tools/tests/test_home_graph.py",
+        "tools/tests/test_home_routes.py"
+      ]
+    },
+    "javascript_syntax": [
+      "web/home/app.mjs",
+      "web/home/gpu-renderer.mjs",
+      "web/home/gpu-materials.mjs"
+    ]
+  },
+  "browser": {
+    "surfaces": [
+      "Windows Codex in-app browser",
+      "Windows Chrome"
+    ],
+    "observed_viewports": [
+      "1069×1278 (final typography and background)",
+      "1707×898 (earlier GPU hierarchy review)"
+    ],
+    "final_url": "http://127.0.0.1:8000/",
+    "renderer": "webgl",
+    "checks": [
+      "最终深色总览加载成功，控制台无error；小星系、黑洞、五论颜色与放大字号可见。",
+      "深色背景最终截图未见此前矩形网格；节点/标题/底栏调整后无此前中央标签重叠。",
+      "深浅主题均查看全景/篇视图；章内真实球面与概念光点可辨，中心主体随层级改变。",
+      "悬停第1篇时显示2个直接邻居及信息，间隔读取节点位置完全相同；移开后继续。",
+      "空白拖动55×30像素，中央标签left/top对应变化55×30；重置恢复。",
+      "拖动概念节点后位置改变，隔离打开记录仍只有一次明确点击，无拖动误点。",
+      "鼠标滚轮从第1篇进入1.1章，并向外缩小返回第1篇；纯函数检查章内不会自动打开课程。",
+      "首次进入正式8000首页后开场自动结束，停在第1篇并显示继续学习卡片。",
+      "浅色从首页进入篇目录保持；共享主题专项涵盖首页/普通页偏好迁移和跨标签广播。"
+    ],
+    "computed_font_sizes_px": {
+      "controls": 14,
+      "progress": 14,
+      "node_number": 13,
+      "footer": 14
+    },
+    "notebook_open": {
+      "method": "隔离8008预览的recording opener",
+      "request_count": 1,
+      "lesson": "1.1.1 边界、状态与观测",
+      "result": "请求路径正确、页面未跳到ipynb源码；本轮未以此声明实际IDE窗口打开。正式8000保持既有系统opener。"
+    }
+  },
+  "preservation": {
+    "personal_record_files_hash_verified": 29,
+    "personal_records_changed": 0,
+    "AGENTS_modified": false,
+    "simulated_data_added": false,
+    "git_commit_or_push_performed": false
+  },
+  "limitations": [
+    "未开展跨显卡、长期帧率或不同浏览器版本性能基准；帧调度上限不是测量帧率。",
+    "Canvas兼容路径通过单元检查，未在本轮真实禁用WebGL硬件环境中验收。",
+    "课程星图与生成素材均为视觉隐喻，不构成天文数据、物理仿真或游戏级制作质量认证。"
+  ],
+  "file_sha256": {
+    "web/home/app.mjs": "61ed713af238beff8e6eea3a5e681d67fe80d0949964b3ced5d56f3357d72cb4",
+    "web/home/style.css": "0e2c8afa77db6adc37764bf6d9c8ce2ee9d0c991b67ab3b1120394a34dcc0c36",
+    "web/home/gpu-renderer.mjs": "1a7cfa3f74d936715968cfd4f165e1f8cbf72b858c4b007814e4e5fd2f27fa26",
+    "web/home/gpu-materials.mjs": "60ca9d2c2fe74e3efaaceb92cf3ddd0ec657d01e5525cc3c0f4e63897f76eef8",
+    "web/home/physics.mjs": "0ddf48e78a3985372693349ede9c4f23025b2d6c7c72c7147a93451119a96251",
+    "web/home/graph.json": "bf04d7e725b1e619dcfb8b57a35cf60ab25d021da5edc79051c3e027516ebb44",
+    "web/shared/appearance.mjs": "62827fc6e44c25a3f83b6a2879b1c0d223ddd4a06802e255505eac4af98c863e",
+    "web/shared/appearance.css": "6d2e0f2d8b4ba6c5d3941fee54bcf51665691773893662ebc919cba313913e1d",
+    "web/shared/boot.js": "176306c2c4b91a5c43bff0a1a4dfaa54bb401ad2e69b569545ef2c5769e383fa"
+  }
+}

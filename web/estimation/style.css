@@ -1,0 +1,5 @@
+@import url('../shared/exploration.css');
+.explore-grid{grid-template-columns:minmax(280px,.38fr) minmax(650px,1.62fr);gap:18px}
+.model-panel,.chart-panel{padding:20px}.model-panel p{line-height:1.75}.formula{overflow-wrap:anywhere}.model-panel .slider{margin-bottom:12px}.chart-panel{container:chart / inline-size}.chart-heading{flex-wrap:wrap;gap:8px}.readouts{flex-wrap:wrap;gap:12px 24px;min-height:68px}.readouts strong{font-size:1.55rem}.readouts p{flex:1;min-width:210px}.plots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.plots svg{width:100%;height:auto;margin:8px 0}.reading-links{display:flex;gap:10px;flex-wrap:wrap}.chart-legend{gap:10px 18px}#value{font-variant-numeric:tabular-nums}.chart-note{min-height:4em}
+@container content (max-width:1200px){.explore-grid{grid-template-columns:1fr}.model-panel{display:grid;grid-template-columns:minmax(230px,.9fr) minmax(280px,1.1fr);gap:0 24px}.model-panel h2,.model-panel #explanation,.model-panel #formula,.model-panel .caption{grid-column:1}.model-panel fieldset{grid-column:2;grid-row:1/7}}
+@container chart (max-width:850px){.plots{grid-template-columns:1fr}}

@@ -1,0 +1,489 @@
+{
+  "date": "2026-09-19",
+  "scope": "M9：第8篇优化方法与计算，8.1—8.4及篇末综合；正式教学、题库、探索网页与集成验收。",
+  "status": "implemented_and_technical_acceptance_passed",
+  "counts": {
+    "notebooks": 11,
+    "ordinary_lessons": 10,
+    "code_cells": 55,
+    "figures": 11,
+    "questions": 50,
+    "choice_questions": 35,
+    "python_tasks": 15,
+    "private_verification_cases": 64,
+    "ordinary_questions_per_lesson": [
+      4,
+      4,
+      4,
+      4,
+      5,
+      4,
+      5,
+      4,
+      4,
+      4
+    ],
+    "capstone_questions": 8,
+    "capstone_points": 100,
+    "capstone_level_points": [
+      20,
+      30,
+      30,
+      20
+    ],
+    "exploration_pages": 4
+  },
+  "notebook_execution": {
+    "python": "3.13.2",
+    "platform": "Windows",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "nbclient": "0.11.0",
+      "nbformat": "5.11.1",
+      "nbconvert": "7.17.1",
+      "ipykernel": "7.3.0"
+    },
+    "method": "每本使用独立新内核顺序执行；图形与输出保存在Notebook中。",
+    "after_execution": "最终文案、术语、练习说明与单元标识整理未改执行代码和输出；执行时与最终文件哈希分开记录。涉及图形或实验代码的3本已重新执行。",
+    "rerun_lessons": [
+      "P08-C03-S01",
+      "P08-C04-S01",
+      "P08-C04-S02"
+    ],
+    "notebooks": [
+      {
+        "id": "P08-C01-S01",
+        "path": "notebooks/08-优化方法与计算/01-目标函数与优化几何/01-从拟合误差到二次目标.ipynb",
+        "executed_sha256": "fee0288091d52c858061d78912e8bf50eb0d74a782f413c337d580d28f3f6c4f",
+        "final_sha256": "d28ce14b3a5cb69d86ae6be0ffd8e4e07839c5764adae00b5159a7f2e046e29a",
+        "code_cells": 5,
+        "figures": 1,
+        "seconds": 2.26
+      },
+      {
+        "id": "P08-C01-S02",
+        "path": "notebooks/08-优化方法与计算/01-目标函数与优化几何/02-曲率凸性与局部极值.ipynb",
+        "executed_sha256": "45e8c93781b781c51b2e1b1757479c2bde2cc724f697615b9485c16fc52a12a3",
+        "final_sha256": "6916941b390e6f587f5d6c916812322e552c42d86424896023085cb94a01f139",
+        "code_cells": 5,
+        "figures": 1,
+        "seconds": 2.09
+      },
+      {
+        "id": "P08-C02-S01",
+        "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/01-梯度下降的步长与条件数.ipynb",
+        "executed_sha256": "f37bda5026ce7baae46f673ada53295a90bd768a6044ca8e44134ab7ee3586fe",
+        "final_sha256": "33575a7b0c891a158906e57969e0b816b84816a1cb0dc7e8240eba4f8f0f8e0e",
+        "code_cells": 5,
+        "figures": 1,
+        "seconds": 2.46
+      },
+      {
+        "id": "P08-C02-S02",
+        "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/02-牛顿方向与非凸曲率.ipynb",
+        "executed_sha256": "f7cdf79c7b9abc8b67f040077a05ac2ef5acce25294670be43eada4987a4103b",
+        "final_sha256": "fbee3ec8ee5773f6b0581a7471782fdfa0be5635eea136d36a10d3c87f342dc5",
+        "code_cells": 5,
+        "figures": 1,
+        "seconds": 2.38
+      },
+      {
+        "id": "P08-C02-S03",
+        "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/03-回溯与可信的停止条件.ipynb",
+        "executed_sha256": "d9301173e81c48c5f704efa08d7d12827922019766ae27ce330fba3056050ab4",
+        "final_sha256": "ccd3ea8394b2b6558111a2a712c54d074e913ae41e68816cd8a7cf72cd366545",
+        "code_cells": 5,
+        "figures": 1,
+        "seconds": 2.31
+      },
+      {
+        "id": "P08-C03-S01",
+        "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/01-岭回归与参数收缩.ipynb",
+        "executed_sha256": "6f9b6ad3e060fec502d69079008013b97e17872ca1c3511471c92e53b79a1a30",
+        "final_sha256": "84176275f0e1ee4c55205aa5511094aae49cbaf86337315c22daa42256eaa8fd",
+        "code_cells": 5,
+        "figures": 1,
+        "seconds": 2.92
+      },
+      {
+        "id": "P08-C03-S02",
+        "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/02-软阈值与近端梯度.ipynb",
+        "executed_sha256": "5092ba210605109f4844126a4e380b344fce1e30ee0c41478b380d367668f4ed",
+        "final_sha256": "bfa40bdc6987796a4427b0ece4b172b0b4846e5ce3a175c6a8f901567a48db21",
+        "code_cells": 5,
+        "figures": 1,
+        "seconds": 2.36
+      },
+      {
+        "id": "P08-C03-S03",
+        "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/03-缩放选参与独立预测.ipynb",
+        "executed_sha256": "f0ab359d53fa72fcf4e52e828f59404cdf35a1fb880762ef1bba9fc1af8b778f",
+        "final_sha256": "4f7624af99a18dd588ff5cfe0db208fbda5407d4d6cce1b619e759b8f2aae890",
+        "code_cells": 5,
+        "figures": 1,
+        "seconds": 3.32
+      },
+      {
+        "id": "P08-C04-S01",
+        "path": "notebooks/08-优化方法与计算/04-约束与最优性条件/01-约束乘子与最优性条件.ipynb",
+        "executed_sha256": "44cfc01a8d15fbdf6ac74b3650fadcc4136b1d48a04b9ac5c890a745200af8b6",
+        "final_sha256": "100f3924bcb797ba9556824d33fafb62c01386400213cfcabcdf3b35cc6e94d2",
+        "code_cells": 5,
+        "figures": 1,
+        "seconds": 2.13
+      },
+      {
+        "id": "P08-C04-S02",
+        "path": "notebooks/08-优化方法与计算/04-约束与最优性条件/02-活跃集与可行性核验.ipynb",
+        "executed_sha256": "684803ae5288f70cefa76f6707a7d76b40bbe6772ab626bb7b08193dc629c654",
+        "final_sha256": "1b971fcc418e697d12927b8c44a04b3ba04cc79de1ae45d227fd88ea7ed43cfd",
+        "code_cells": 5,
+        "figures": 1,
+        "seconds": 2.62
+      },
+      {
+        "id": "P08-SUMMARY",
+        "path": "notebooks/08-优化方法与计算/05-篇末综合/01-拟合稀疏与约束优化.ipynb",
+        "executed_sha256": "3d52d45221a4e6b3fff41836c19c0464e14e40a53068a687387ae05b0ff936a2",
+        "final_sha256": "7df6cb08522ffcd12e8bd8e01f46e7c532dfa9b5020724d7111343b1e268458f",
+        "code_cells": 5,
+        "figures": 1,
+        "seconds": 2.86
+      }
+    ],
+    "figure_review": "逐一查看11幅实际输出图；约束图坐标下标缺字已改为普通x1/x2并重新执行。"
+  },
+  "scientific_checks": {
+    "independent_references": [
+      "二次目标的中心差分、解析梯度与Hessian；驻点、零曲率、非凸反例。",
+      "逐步梯度下降与对称矩阵特征分解后的谱幂传播；严格步长界及临界振荡。",
+      "四次非凸目标的下降方向符号、二阶模型与有限Armijo检查；stationary不冒充全局最优。",
+      "岭正规方程与独立增广最小二乘；零惩罚秩亏返回不唯一，不伪造唯一参数。",
+      "软阈值与标量各分段极小值比较；阈值相等、零惩罚、零设计矩阵和近端残差。",
+      "训练统计量只由训练数据计算，验证选参及最终测试分开。",
+      "二维活跃集求解与边界线段极小独立对照；100个固定种子随机正定问题及点/线退化、不可行情形。",
+      "KKT四残差、乘子符号、约束资格失效反例及有限平方惩罚违反硬约束的解析例子。"
+    ],
+    "random_qp_cases": 100,
+    "random_qp_seed": 903,
+    "web_notebook_cases": {
+      "quadratic": 4,
+      "descent": 15,
+      "shrinkage": 5,
+      "allocation": 91
+    },
+    "web_notebook_comparison": "提取实际Notebook中标记model的函数，与JavaScript模型逐项比较；下降路径31点，提前精确收敛后网页重复最终点。91组预算覆盖不可行边界、活跃集切换与内点。",
+    "primary_sources_checked": [
+      {
+        "reference": "R11",
+        "title": "Boyd and Vandenberghe, Convex Optimization",
+        "url": "https://web.stanford.edu/~boyd/cvxbook/",
+        "sections": "第2—6、9章"
+      },
+      {
+        "reference": "R34",
+        "title": "Parikh and Boyd, Proximal Algorithms",
+        "url": "https://web.stanford.edu/~boyd/papers/prox_algs.html",
+        "sections": "§4.2、§6.5.2：前向后向步长、最小点条件、软阈值"
+      }
+    ]
+  },
+  "automated_validation": {
+    "full_python": {
+      "command": ".venv/Scripts/python.exe -m pytest tools/tests -q",
+      "passed": 585,
+      "failed": 0,
+      "seconds": 91.09
+    },
+    "full_javascript": {
+      "command": "node --test tools/tests/*.test.mjs web/optimization/model.test.mjs",
+      "passed": 90,
+      "failed": 0
+    },
+    "m9_python_after_final_wording": {
+      "command": ".venv/Scripts/python.exe -m pytest tools/tests/test_part08.py -q",
+      "passed": 34,
+      "failed": 0
+    },
+    "m9_javascript_model_tests": 6,
+    "timing": "全量回归后仅整理文案、术语、题目边界与目录；随后重跑M9定向测试、教学同步和网页/Notebook数值对照。",
+    "judge": "15道计算题全部通过真实子进程的样例、完整用例及典型错误解拒绝检查；首次/练习成绩版本与复习映射经测试。",
+    "teaching": {
+      "notebooks": 11,
+      "questions": 50,
+      "question_links": 50,
+      "issues": []
+    },
+    "web_first_use": [
+      {
+        "chapter": "8.1",
+        "first_use_terms": [
+          "凸性",
+          "无量纲",
+          "梯度",
+          "模型",
+          "正定",
+          "海森矩阵"
+        ],
+        "missing": []
+      },
+      {
+        "chapter": "8.2",
+        "first_use_terms": [
+          "初值",
+          "条件数",
+          "梯度",
+          "模型",
+          "正定",
+          "残差",
+          "范数",
+          "轨迹"
+        ],
+        "missing": []
+      },
+      {
+        "chapter": "8.3",
+        "first_use_terms": [
+          "岭回归",
+          "无量纲",
+          "模型",
+          "正交",
+          "软阈值"
+        ],
+        "missing": []
+      },
+      {
+        "chapter": "8.4",
+        "first_use_terms": [
+          "可行域",
+          "模型",
+          "正定",
+          "残差",
+          "活跃集",
+          "流量",
+          "输入"
+        ],
+        "missing": []
+      }
+    ]
+  },
+  "browser_acceptance": {
+    "surface": "Codex in-app PC browser，通过真实按钮、链接及键盘操作验收。",
+    "records": "试算与提交使用8019隔离服务和.work/m9/ui-learning；正式8000仅查看和导航，未提交作答。",
+    "playback": [
+      {
+        "chapter": "8.1",
+        "observed_progress": [
+          "2.6%",
+          "3.1%"
+        ],
+        "preset_round_trip": "正定/负曲率"
+      },
+      {
+        "chapter": "8.2",
+        "observed_progress": [
+          "2.5%",
+          "4.0%"
+        ],
+        "preset_round_trip": "稳定/失稳步长"
+      },
+      {
+        "chapter": "8.3",
+        "observed_progress": [
+          "2.5%",
+          "4.0%"
+        ],
+        "preset_round_trip": "弱惩罚/全部归零"
+      },
+      {
+        "chapter": "8.4",
+        "observed_progress": [
+          "2.6%",
+          "4.0%"
+        ],
+        "preset_round_trip": "可行/不可行预算"
+      }
+    ],
+    "controls": "四页实点播放、暂停、恢复及双向示例；参数改变即时显示指定条件，播放从起点展开。",
+    "navigation": "当前章自动展开，篇章编号可见；实点8.4.1渲染Notebook的作答链接进入指定题，探索链接打开正常网页，未展示HTML源码。",
+    "python_workflow": {
+      "question": "p08-threshold",
+      "syntax_error": "漏冒号后返回CE，answer.py第1行、定位箭头及SyntaxError traceback显示在代码区上方。",
+      "sample": "修正为具名solve(values, threshold)后样例1/1通过，不计完成。",
+      "submission": "完整4/4通过，章进度增加为1/13，小节1/5。",
+      "examples": "输入样例含参数含义和赋值/调用代码，输出样例含结果解释和expected_output代码；可展开阅读。",
+      "editor": "实际输入、替换与提交；Monokai高亮、自动换行及宽面板可见。既有编辑器基础操作由共享回归测试覆盖。"
+    },
+    "choice_workflow": {
+      "question": "p08-subgradient-zero",
+      "incorrect": "错误选项返回WA和逐项解释；字体rgb(125,43,49)，背景rgba(179,58,74,0.08)。",
+      "correct": "正确选项返回AC。",
+      "wording_followup": "审读发现“只要v=0”也可作充分条件，发布前改为明确询问等价条件，错误项改为“仅当v=0”；题库、Notebook和正式服务已同步复核。"
+    },
+    "layout": "默认PC窗口及1440×1000查看；宽窗口无水平溢出，题目和代码并列、结果在上方。左栏隐藏/展开；分隔条键盘调整284→300，回车恢复284。验收后恢复原窗口设置。",
+    "notebook_previews": [
+      {
+        "id": "P08-C01-S01",
+        "images": 1,
+        "rendered_math": 10,
+        "math_errors": []
+      },
+      {
+        "id": "P08-C01-S02",
+        "images": 1,
+        "rendered_math": 12,
+        "math_errors": []
+      },
+      {
+        "id": "P08-C02-S01",
+        "images": 1,
+        "rendered_math": 14,
+        "math_errors": []
+      },
+      {
+        "id": "P08-C02-S02",
+        "images": 1,
+        "rendered_math": 8,
+        "math_errors": []
+      },
+      {
+        "id": "P08-C02-S03",
+        "images": 1,
+        "rendered_math": 13,
+        "math_errors": []
+      },
+      {
+        "id": "P08-C03-S01",
+        "images": 1,
+        "rendered_math": 18,
+        "math_errors": []
+      },
+      {
+        "id": "P08-C03-S02",
+        "images": 1,
+        "rendered_math": 30,
+        "math_errors": []
+      },
+      {
+        "id": "P08-C03-S03",
+        "images": 1,
+        "rendered_math": 10,
+        "math_errors": []
+      },
+      {
+        "id": "P08-C04-S01",
+        "images": 1,
+        "rendered_math": 23,
+        "math_errors": []
+      },
+      {
+        "id": "P08-C04-S02",
+        "images": 1,
+        "rendered_math": 13,
+        "math_errors": []
+      },
+      {
+        "id": "P08-SUMMARY",
+        "images": 1,
+        "rendered_math": 6,
+        "math_errors": []
+      }
+    ],
+    "preview_note": "HTML仅作公式排版验收；11本共157处MathJax表达式，无渲染错误。学生完整教学仍在IDE中的Notebook。",
+    "default_ide": {
+      "result": "点击真实按钮后系统接受打开请求，页面显示“已请求系统默认 IDE 打开，请切换到 IDE 继续学习。”",
+      "resolved_issue": "受限验收进程起初返回WinError5；以正常桌面权限重启本项目服务后按钮复验通过，没有修改系统文件关联。",
+      "limit": "未读取或检查IDE内部渲染，不能据此声称IDE画面已验收。"
+    },
+    "service_final": {
+      "port": 8000,
+      "http_checks": [
+        {
+          "path": "/parts/08-%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95%E4%B8%8E%E8%AE%A1%E7%AE%97/",
+          "status": 200
+        },
+        {
+          "path": "/web/course/catalog.json",
+          "status": 200
+        },
+        {
+          "path": "/web/home/graph.json",
+          "status": 200
+        },
+        {
+          "path": "/api/v1/catalog",
+          "status": 200
+        }
+      ],
+      "latest_question_verified": "最终等价条件题面在正式服务实际可见；隔离8019服务已关闭。"
+    }
+  },
+  "preservation": {
+    "records": {
+      "count": 29,
+      "changed": []
+    },
+    "agents_sha256": true,
+    "existing_notebooks": {
+      "count": 91,
+      "changed": []
+    }
+  },
+  "integration": {
+    "planned_parts": 17,
+    "planned_chapters": 85,
+    "delivered_chapters": 39,
+    "delivered_notebooks": 102,
+    "delivered_questions": 480,
+    "exploration_pages": 30,
+    "homepage_graph": {
+      "nodes": 568,
+      "edges": 855
+    },
+    "new_runtime_dependencies": [],
+    "external_data_files_added": [],
+    "scope_note": "使用Notebook内可复现实验，没有新增模拟数据文件、数据生成器依赖或个人记录。保留进入M9前已有未提交工作。",
+    "next": "M10 第9篇概率建模与近似推断；后验近似→采样诊断→变分→隐变量学习→后验预测检验。"
+  },
+  "reproduce": [
+    ".venv/Scripts/python.exe tools/build_course.py",
+    ".venv/Scripts/python.exe tools/build_home_graph.py",
+    ".venv/Scripts/python.exe tools/check_notebooks.py --part 08-优化方法与计算 --work m9-recheck",
+    ".venv/Scripts/python.exe tools/check_teaching.py --part 8 --work m9-recheck",
+    ".venv/Scripts/python.exe -m pytest tools/tests/test_part08.py -q",
+    "node --test tools/tests/*.test.mjs web/optimization/model.test.mjs"
+  ],
+  "limitations": [
+    "未开展目标读者试学或独立同行评审，技术验收不等于学习效果验证。",
+    "数值与界面验收范围为普通PC、Windows、Python3.13；未承诺移动端。",
+    "网页均为明确简化的小规模模型；二维活跃集教学实现不是通用高维求解器。",
+    "非凸方向保护和驻点退出不保证全局最优；岭与稀疏解不自动证明生理机制。"
+  ],
+  "artifact_sha256": {
+    "docs/08-优化方法与计算.md": "1ada86b35572ed0dd8a315735d40bf175bf2d7dbb03fe78fc90767030cbeabb6",
+    "exercises/08-优化方法与计算/assessment.json": "14b59cfd5ae797167a7e9ef33078acf2c577eb2c5f2134a91d04ae1053c2ef6c",
+    "exercises/08-优化方法与计算/questions.json": "718e98f0aa30994c4f582b75d1ae7da5405c61fea359fee78b7a47df01d1f7d5",
+    "exercises/08-优化方法与计算/solutions.json": "6367e5f3f48a35dc514613757f1e61f6ed2cd5e5d1d79a66df3d625d05383c33",
+    "exercises/08-优化方法与计算/verification.json": "f4b16bdb15121923da7c4a328e4d43acb3ed08540e539d42f6d362fb3c20501a",
+    "notebooks/08-优化方法与计算/01-目标函数与优化几何/01-从拟合误差到二次目标.ipynb": "d28ce14b3a5cb69d86ae6be0ffd8e4e07839c5764adae00b5159a7f2e046e29a",
+    "notebooks/08-优化方法与计算/01-目标函数与优化几何/02-曲率凸性与局部极值.ipynb": "6916941b390e6f587f5d6c916812322e552c42d86424896023085cb94a01f139",
+    "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/01-梯度下降的步长与条件数.ipynb": "33575a7b0c891a158906e57969e0b816b84816a1cb0dc7e8240eba4f8f0f8e0e",
+    "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/02-牛顿方向与非凸曲率.ipynb": "fbee3ec8ee5773f6b0581a7471782fdfa0be5635eea136d36a10d3c87f342dc5",
+    "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/03-回溯与可信的停止条件.ipynb": "ccd3ea8394b2b6558111a2a712c54d074e913ae41e68816cd8a7cf72cd366545",
+    "notebooks/08-优化方法与计算/03-正则化与稀疏优化/01-岭回归与参数收缩.ipynb": "84176275f0e1ee4c55205aa5511094aae49cbaf86337315c22daa42256eaa8fd",
+    "notebooks/08-优化方法与计算/03-正则化与稀疏优化/02-软阈值与近端梯度.ipynb": "bfa40bdc6987796a4427b0ece4b172b0b4846e5ce3a175c6a8f901567a48db21",
+    "notebooks/08-优化方法与计算/03-正则化与稀疏优化/03-缩放选参与独立预测.ipynb": "4f7624af99a18dd588ff5cfe0db208fbda5407d4d6cce1b619e759b8f2aae890",
+    "notebooks/08-优化方法与计算/04-约束与最优性条件/01-约束乘子与最优性条件.ipynb": "100f3924bcb797ba9556824d33fafb62c01386400213cfcabcdf3b35cc6e94d2",
+    "notebooks/08-优化方法与计算/04-约束与最优性条件/02-活跃集与可行性核验.ipynb": "1b971fcc418e697d12927b8c44a04b3ba04cc79de1ae45d227fd88ea7ed43cfd",
+    "notebooks/08-优化方法与计算/05-篇末综合/01-拟合稀疏与约束优化.ipynb": "7df6cb08522ffcd12e8bd8e01f46e7c532dfa9b5020724d7111343b1e268458f",
+    "notebooks/08-优化方法与计算/catalog.json": "2829d65da0dfc9a8505254c8a77c331b7eeb3b0d666a5726e307cd5d3e03fb38",
+    "notebooks/08-优化方法与计算/README.md": "07e9f20c861a11fc75581016dfa66ec2b63e208d9cc9de1c9f60e9c9de9ff0b4",
+    "tools/tests/test_part08.py": "ac8396f34d7c118f4668bd9fa07842db089fa5ffa182c198ea93502183988aed",
+    "web/optimization/app.mjs": "dbafac1b927719a9a2f796afebbbefd6babbe30935c39fdf4cf9ab2b6e919ae4",
+    "web/optimization/index.html": "562b6b15ec9584193c69bdbf6a5e1af3ee7c44719d24be5808c5f59ee7796b27",
+    "web/optimization/model.mjs": "f20525d7b8ce077cd6bea3461e5d5962a875245016aa7add82ab27125397ea25",
+    "web/optimization/model.test.mjs": "70129443f8159a5600aad2d1ef40642148661504589d548f591f6611a5d67e0f",
+    "web/optimization/style.css": "a6b8e4557c270e95eb88592c461e0e7ba84c8cb2d99d0b94bcd6782850fe871e"
+  }
+}

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#070b17"><title>开始 · 动手学系统科学</title><link rel="icon" type="image/svg+xml" href="/web/shared/logo.svg"><link rel="stylesheet" href="/web/shared/theme.css"><link rel="stylesheet" href="/web/shared/course-shell.css"><link rel="stylesheet" href="/web/home/style.css"></head>
+<body class="home-page" data-sky-theme="dark">
+<main id="main">
+  <section id="universe" aria-label="系统科学知识星图，拖动空白平移，滚轮缩放" tabindex="0">
+    <canvas id="cosmos" aria-hidden="true"></canvas>
+    <div class="sky-vignette" aria-hidden="true"></div>
+    <header class="sky-heading"><h1>动手学系统科学</h1></header>
+    <div class="sky-controls"><button id="theme-toggle" type="button" aria-label="切换到浅色主题">☼ <span>浅色</span></button><button id="motion-toggle" type="button" aria-pressed="false">Ⅱ 暂停星空</button><button id="replay" type="button">↻ 重播开场</button><button id="help-toggle" type="button" aria-expanded="false" aria-controls="sky-help">? 探索指南</button></div>
+    <nav id="sky-breadcrumb" aria-label="星图层级"></nav>
+    <div id="node-layer" role="group" aria-label="可探索的知识节点"></div>
+    <div id="core-label" aria-hidden="true"><span>SYSTEMS SCIENCE</span><strong>系统科学</strong></div>
+    <div class="sky-zoom" aria-label="星图缩放"><button id="zoom-out" type="button" aria-label="缩小星图">−</button><span id="zoom-value">100%</span><button id="zoom-in" type="button" aria-label="放大星图">＋</button><button id="zoom-reset" type="button">重置视角</button></div>
+    <aside id="focus-card" class="glass-card" aria-label="当前星系信息"><span class="card-kicker" id="focus-kicker"></span><h2 id="focus-title"></h2><p id="focus-description"></p><div id="focus-tags"></div><div id="focus-progress"></div><div id="focus-actions"></div></aside>
+    <div id="hover-card" class="glass-card" role="tooltip" hidden></div>
+    <aside id="sky-help" class="glass-card" hidden><h2>如何探索这片星空</h2><p>篇是星系，章是行星系统，知识点是概念星点。悬停查看直接关联，轻拖节点观察邻居跟随；点击篇、章逐层靠近，点击已发布知识点在默认 IDE 中打开对应小节。</p><p>拖动空白平移视图。滚轮向前拉近，达到阈值进入鼠标附近的下一层；向后拉远可返回上层。章内缩放只观察知识点，不自动打开课程。右下角可缩放或重置视角。</p><p>光辉记录已通过的练习。篇末综合成绩越高，光晕越明亮；悬停的描边只是当前高亮。</p><p>颜色参考郭雷《系统学是什么》的“五论”；混色表示跨领域。连线表示课程先修或小节关联，距离是关系的视觉布局，并非真实引力。</p><p>Tab 选择节点，Enter 进入，Esc 返回；聚焦星图时，方向键平移。主题在全站保持一致，可随时暂停星空或重播开场。</p><button id="help-close" type="button">明白了</button></aside>
+    <div id="intro-banner" hidden><span id="intro-caption">从万千现象，走向共同的原理</span><button id="skip-intro" type="button">跳过开场 →</button><div class="intro-track"><i id="intro-progress"></i></div></div>
+    <footer class="sky-footer"><div><span id="map-scale">17 篇 · 85 章</span><p id="interaction-hint">悬停，发现连接 · 拖动，感受关联 · 点击，向内探索</p></div><div id="taxonomy" aria-label="五论配色"></div><a href="/catalog/" class="catalog-shortcut">展开全书目录 ↗</a></footer>
+    <p id="sky-status" role="status" aria-live="polite"></p>
+    <div id="loading-note" role="status" class="glass-card">正在展开知识星图…</div>
+    <noscript><p class="glass-card">星图需要 JavaScript。你仍可阅读 <a href="/README.md">项目说明</a> 并在本机 IDE 打开教材。</p></noscript>
+  </section>
+</main><script src="/web/shared/boot.js"></script><script type="module" src="/web/home/app.mjs" data-main></script></body></html>

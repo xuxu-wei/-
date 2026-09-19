@@ -1,0 +1,416 @@
+{
+  "date": "2026-09-19",
+  "scope": "吸引子与连续时间混沌的大纲、总纲、数学依赖、评价设计和网页设计导览扩展",
+  "status": {
+    "planning": "completed",
+    "new_teaching": "pending M5 extension",
+    "original_M5_delivery": "preserved: 4.1–4.5, 12 notebooks, 59 questions, 4 exploration pages"
+  },
+  "organization": {
+    "parts": 17,
+    "chapters": 85,
+    "first_five_chapters": 23,
+    "new_chapter": "4.6 连续时间混沌与奇异吸引子",
+    "new_lessons_planned": [
+      "4.1.3",
+      "4.6.1",
+      "4.6.2",
+      "4.6.3",
+      "4.6.4"
+    ],
+    "existing_chapter_ids_unchanged": true,
+    "downstream_connections": [
+      "13.3",
+      "14.4",
+      "17.1"
+    ]
+  },
+  "design_audit": {
+    "parts": 17,
+    "chapters": 85,
+    "dependency_edges": 172,
+    "math_entries": 45,
+    "capstones": {
+      "1": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "2": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "3": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "4": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "5": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "6": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "7": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "8": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "9": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "10": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "11": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "12": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "13": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "14": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "15": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "16": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "17": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      }
+    },
+    "local_document_links": 383,
+    "published_lessons_preserved": 70,
+    "protected_files": 147,
+    "protected_changes": [],
+    "errors": []
+  },
+  "capstone_design": {
+    "items": 8,
+    "level_points": [
+      20,
+      30,
+      30,
+      20
+    ],
+    "goal_points": {
+      "T1": 25,
+      "T2": 25,
+      "T3": 30,
+      "T4": 20
+    },
+    "chapters_covered": [
+      "4.1",
+      "4.2",
+      "4.3",
+      "4.4",
+      "4.5",
+      "4.6"
+    ],
+    "independent_inputs": true,
+    "forms": [
+      "choice",
+      "python"
+    ],
+    "published_bank_changed": false,
+    "old_grades_reinterpreted": false
+  },
+  "mathematical_review": {
+    "Lorenz_derivative": "dW/dt = -2 sigma [rho x^2 + y^2 + beta (z-rho)^2 - beta rho^2]",
+    "bound": "dW/dt <= -c W+C, c=min(2 sigma,2,beta)>0, C=4 sigma beta rho^2; W(t)<=W(0) exp(-ct)+(C/c)(1-exp(-ct))",
+    "checks": [
+      "人工按链式法则展开、消去交叉项并配方，核对积分因子推导",
+      "256 组有理数参数/状态的梯度内积与配方式精确对照及不等式检查",
+      "注明数值抽查本身不证明处处成立，不将设计检算称为新增课程实验验收",
+      "检查平面自治定理适用条件、给定方向有限时增长与渐近最大指数区别",
+      "确定性代码题判公式、单步/短窗、给定交点和伸长序列，避免长时混沌轨迹逐点判分"
+    ]
+  },
+  "regression": {
+    "python": {
+      "command": ".venv/Scripts/python.exe -m pytest -q tools/tests/test_local_open.py tools/tests/test_assessment.py tools/tests/test_lesson_exercise_links.py tools/tests/test_part04.py",
+      "passed": 81,
+      "seconds": 23.23
+    },
+    "javascript": {
+      "command": "node --test tools/tests/seeing-systems.test.mjs tools/tests/assessment.test.mjs tools/tests/editor-progress.test.mjs",
+      "passed": 13
+    },
+    "teaching_check": {
+      "notebooks": 70,
+      "synchronized_questions": 335,
+      "first_use_annotations": "passed"
+    },
+    "diff_whitespace": "passed",
+    "after_regression_edits": "只补充准周期反例及术语括注；重新生成目录并通过结构、依赖、链接与全部已发布题面检查。"
+  },
+  "browser": {
+    "environment": "Chrome, isolated local TeachingServer and learning directory",
+    "checks": [
+      "全书目录实际显示 17 篇、85 章",
+      "点击第 4 篇，显示 5/6 章可学习；4.1 概念扩展标为待交付",
+      "原篇末题组分数面板仍显示首次/练习分及 8 题范围，未提交答案",
+      "点击 4.6，正确显示目标、先修、六步内容与正式 Notebook/可视化/练习尚待编写提示"
+    ],
+    "cleanup": "核查页面关闭；只停止本轮预览进程，不操作用户默认教材服务"
+  },
+  "preservation": {
+    "protected_files": 147,
+    "changed": [],
+    "personal_record_json_files": 29,
+    "excluded": "正在使用的 .local/learning/.lock 无法读取且未操作；它不是作答记录。",
+    "notebooks_executed": false,
+    "existing_questions_or_assessments_edited": false,
+    "AGENTS_modified": false,
+    "scoped_glossary_entries_added": 12
+  },
+  "sources": {
+    "R31": "Lorenz 1963 出版社元信息；MIT Rothman 2022 第 20–21 讲开放正文，特殊 beta=1 与经典 beta=8/3 区分",
+    "R32": "MIT 2022 第 15–16、19、24 讲及 Rosales 2020 习题第 5 节；教学定义与拓展范围逐项标注",
+    "R33": "Tucker 1999 作者机构论文记录，严格存在性证明只列拓展；未声称完成证明复现"
+  },
+  "limitations": [
+    "本轮未新增或重排正式 Notebook，未发布新题库或新探索页",
+    "新增章节实验、独立新内核执行、读者试学与学习效果仍待 M5 扩展验收",
+    "外部 Lorenz 原论文页直接访问受限，出版信息通过出版社检索记录核对，推导结合开放讲义检算"
+  ],
+  "delivered_file_sha256": {
+    "README.md": "b350db64b6f8817abf0bdc4e6fc0e017fca967579a4eee9569fba2f60d1553a5",
+    "ROADMAP.md": "a71b662fcd496c4a7fa7bc3d3234afa011be7894c6f4321f84a8f262cce848e1",
+    "docs/04-非线性动态行为.md": "c8c68e99850b2e029287a1e9f8b9c2bb6aef00680f67b42bea96d76d136560c1",
+    "docs/13-临界变化与韧性.md": "1dc2ac99e9257e64c6739920cd66bd8bf4afca9c5445a48d40954868561a3ea2",
+    "docs/14-数据驱动动力学与模型降阶.md": "0f6f5fdff587f7f9a07aa0e96412894f8a3722f357d803270aa73ae2b16adccb",
+    "docs/17-研究复现与综合实践.md": "cfd09913fa154c15ba56e82e3ef501b1499e1bff64d107a8b8c2a18729556292",
+    "docs/学习指南.md": "9829085b94fa52fd2d520006975802b8d6a1c3199fb09c318445990c9b0f9c2f",
+    "docs/教材制作检查表.md": "e98a5768d79b98334fa93a465462cfa74228a3f0bd678c0a82a8e3c2ce422dec",
+    "docs/教材设计.md": "d1bc99dc1d738512138f5252f2684009a693d3d5371f8b5692e65bbe04541e3e",
+    "docs/术语对照.json": "113b103321a42fd42597aaa4f5882aa09ee19dbf611239610f867d539552090b",
+    "docs/网页设计规范.md": "522a85a6e0e686e123ea5799e7e637268d1226b33754c1c7a1824b656b6dba51",
+    "web/course/catalog.json": "eae491572eef17f677d5ac2efbee2c4a8d762f490dd722937e5f21d55718df17"
+  }
+}

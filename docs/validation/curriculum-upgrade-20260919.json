@@ -1,0 +1,408 @@
+{
+  "date": "2026-09-19",
+  "scope": "新版教材规划、篇章大纲、里程碑和网页设计导览；不包含新增正式课程交付",
+  "design": {
+    "parts": 17,
+    "chapters": 84,
+    "dependency_edges": 168,
+    "math_entries": 42,
+    "capstones": {
+      "1": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "2": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "3": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "4": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "5": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "6": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "7": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "8": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "9": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "10": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "11": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "12": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "13": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "14": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "15": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "16": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      },
+      "17": {
+        "items": 8,
+        "points": 100,
+        "level_points": [
+          20,
+          30,
+          30,
+          20
+        ],
+        "targets": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ]
+      }
+    }
+  },
+  "structural_checks": {
+    "missing_dependencies": 0,
+    "cycles": 0,
+    "forward_dependencies": 0,
+    "math_bridge_gaps": 0,
+    "outline_table_catalog_consistent": true,
+    "current_outlines_unique": true,
+    "capstones_cover_all_four_objectives": true,
+    "chapter_exercises_keep_published_content": true,
+    "references_mapped_by_chapter": true
+  },
+  "navigation": {
+    "standard_planned_pages": 119,
+    "generated_available_chapters": 27,
+    "new_design_only_chapters": 57,
+    "published_lessons_preserved": 70,
+    "published_questions_preserved": 335,
+    "local_document_links_checked": 378,
+    "missing_local_files_or_anchors": 0,
+    "counts_derived_from_outlines": true
+  },
+  "regression": {
+    "python": {
+      "command": ".venv/Scripts/python.exe -X utf8 -m pytest tools/tests -q",
+      "passed": 402,
+      "failed": 0,
+      "duration_seconds": 80.14
+    },
+    "javascript": {
+      "command": "node --test tools/tests/*.test.mjs",
+      "passed": 42,
+      "failed": 0
+    },
+    "teaching": {
+      "command": ".venv/Scripts/python.exe -X utf8 tools/check_teaching.py",
+      "notebooks": 70,
+      "synchronized_questions": 335,
+      "first_use_and_links": "passed"
+    },
+    "git_diff_check": "passed",
+    "intermediate_observations": [
+      {
+        "command": ".venv/Scripts/python.exe -X utf8 -m pytest tools/tests/test_local_open.py tools/tests/test_assessment.py -q",
+        "runs": 2,
+        "each_run": "36 passed / 1 client connection error",
+        "cases": [
+          "test_cross_site_or_unconfirmed_requests_cannot_launch_apps[headers1]",
+          "test_cross_site_or_unconfirmed_requests_cannot_launch_apps[headers0]"
+        ],
+        "error": "ConnectionAbortedError / WinError 10053",
+        "server_observation": "Both requests logged the expected HTTP 403; no IDE was opened.",
+        "resolution": "No authorization or judging code changed. Final full suite passed all 402 tests. The transport errors did not reproduce in that run."
+      }
+    ]
+  },
+  "browser": {
+    "environment": "Windows / Codex in-app browser / isolated local learning directory",
+    "checks": [
+      "主页显示 17 篇、84 章，1—5 篇完整，6 篇显示 5/6 章可学习",
+      "第 6 篇导览保留六个章入口及原综合题组，提示原成绩范围",
+      "6.6 仅显示设计导览、目标、先修、核验和知识顺序，无练习或可视化入口；白底布局可读",
+      "9.3 显示显式变分更新、精确后验核验及自动微分延后说明，状态为未开始",
+      "原第 6 篇综合显示先修 6.1—6.5，八题及四层 20/30/30/20 不变",
+      "隔离目录中提交 p06-cap-sampling 的 A/C/D：回答正确，逐项解释显示，首次与练习均为 10/100，进度 1/8；不生成完成等级",
+      "展开原题组成绩：四层分值及目标分值可读取；点击“复习 判断可辨识范围”到达原 6.5 导览、三本 Notebook 与章内练习入口。"
+    ],
+    "cleanup": "本次创建的浏览器页面和独立预览服务已关闭；默认教材服务未操作。"
+  },
+  "preservation": {
+    "protected_files_compared": 130,
+    "changed_files": [],
+    "personal_attempt_files": 29,
+    "lesson_ids_paths_questions_versions_and_urls_unchanged": true,
+    "central_scoring_policy_unchanged": true,
+    "central_terminology_policy_unchanged": true,
+    "AGENTS_unchanged": true,
+    "scoped_glossary_entries_added": 44
+  },
+  "status": {
+    "planning_delivery": "completed",
+    "M0_M6": "既有验收保留",
+    "M7": "原五章已验收，新增 6.6 和新版综合待交付",
+    "M8_M18": "正式教学未开始"
+  },
+  "limitations": [
+    "本次不新增或重新运行正式 Notebook；既有数学实验验收仍以各里程碑原证据为准",
+    "自动检查证明目录、先修索引、入口和评分回归一致，不等于新增课程教学效果已验收",
+    "未开展新增章节的读者试学、独立同行评审或现代方法复现实验",
+    "外部参考入口可用性不保证长期稳定，研究复现须在正式实施时锁定具体实验和代码版本"
+  ],
+  "refinements_after_initial_full_suite": [
+    "为 15.3 建立前向/伴随灵敏度桥接（数42），17.2 显式引用后再复现原方法",
+    "补齐 6.6 有遗忘/正则时的协方差解释边界，并将综合第八题设计为漂移场景下的独立调参/评估",
+    "目录英文括注匹配忽略大小写，同时不把纯中文括号当作已有英文注释；新增针对性检查并纳入最终 402 项完整复验"
+  ],
+  "delivered_file_sha256": {
+    "README.md": "f77be2de437b7c96245b3dfc0745a47e2c5f5d3b8c1562c6f8bbd786854b006e",
+    "ROADMAP.md": "86a93f02edd2e941324729acaa0f591b332ced53e5f0d9c99d5c0c010fdffdea",
+    "docs/教材设计.md": "ea8a5ea9148134ad522085a0a1e255eb9eb4436facbd35351d0b0bebb0d9697e",
+    "docs/01-看见系统.md": "1203d6db464297497fbbea2e7dc87f9b36f77068d1f4247a5073b69397d6a0cf",
+    "docs/02-系统随时间演化.md": "df4b44211ccd1edcb0619b95c177cdb8eb6a4b926ffb7af122b3ad7ec976b952",
+    "docs/03-多变量相互作用.md": "f241307c8ab8542ea876b8064c4d97fd4ed42ff46e2999b715c954cefe4f413f",
+    "docs/04-非线性动态行为.md": "ea3c9bd2df70cdbb841a102897ef522d92ef244faceb53d80a18e0942887aac2",
+    "docs/05-随机性与信息.md": "c335fbee2aeb458365b9b24e5ec40f3352a1b9a138fd63d25689bb4baf9fd87e",
+    "docs/06-从测量走向模型.md": "5d1379ae16dbb2fb61df1832176101106b353825368d5e63d254abad665c0a07",
+    "docs/07-状态估计与贝叶斯滤波.md": "5fb9b5a250e51ebb2cb0870fe7a1b10ccb0347ad673d6f4d4327a7c87147ba7c",
+    "docs/08-优化方法与计算.md": "0f05c04fb7053c356b3ad1990a6a7e95d18c50503bf466fb4d30b4bd29d6a8f7",
+    "docs/09-概率建模与近似推断.md": "e05647d74ea6ff444e88619371161a30fbb44fe8a64f76782d8a4aa3ca8bd4ee",
+    "docs/10-反馈与最优控制.md": "e8a12edda6ac8c6c5a48f16263669f048ba763a717e429abf906c252dcb35880",
+    "docs/11-网络上的系统.md": "0cbb5264a6c9e0b82bf50788321761cc36a18e68cec63171e33ae208c0115e14",
+    "docs/12-个体与集体现象.md": "8aa666e2b4d9173f2a8e307a16877359b29b83d565ad145990f757989c994d0b",
+    "docs/13-临界变化与韧性.md": "a051084cdda5eec65ab27e45800ed10e61658abdfa43935a36e3a2c53dcd1c51",
+    "docs/14-数据驱动动力学与模型降阶.md": "c709cdf0c9bb471b667dba7319e21b2370da1f93660656136439ae6db07c91b6",
+    "docs/15-可微分建模与机制融合.md": "ff8db6b67fa8a21af1550e0da5a76743adad4940723cff3b1ec8a2678771ef97",
+    "docs/16-自适应、鲁棒与学习控制.md": "ccff13feb9dd113a27ae738c09b988ece00cc37a74743d527cd959f3bb2c9de6",
+    "docs/17-研究复现与综合实践.md": "d2e4410723ee31727f77b04acf6888d69077bf85a0ab921e1405a6cb091d0724",
+    "docs/术语对照.json": "7e0d0961aab0d34d0810f4b1efcfca173b42b31ded08ac755fb03124204827cd",
+    "docs/网页设计规范.md": "e7a8da99320b22e44abfcef683011cc32385f5079e0f66f1d69ea3d0cb675567",
+    "docs/学习指南.md": "300e60720d6f0b99fbee24308196d436b0d04f753b3ee73d71ade7ef1315e2fe",
+    "docs/教材制作检查表.md": "93fa5bb96660cda25c68f0d9ef5b1a1cdc9194d129c6e76127ba85113cc08639",
+    "tools/build_course.py": "8be9abcf926ca00bb942087b6679ae892047e64572397dec261d17c3bc2b8a5e",
+    "web/course/app.mjs": "0a19e8cd53f2487d212b59355263a3e4263b0c88d4d4f1909867177980842c4d",
+    "web/course/catalog.json": "8a4e1a4fa32359c2a9158439e9241668ffa8efc9c454799e6ef1673536559594"
+  }
+}

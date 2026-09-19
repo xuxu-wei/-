@@ -1,0 +1,112 @@
+[
+  {
+    "id": "P08-C01-S01",
+    "chapter_id": "8.1",
+    "path": "notebooks/08-优化方法与计算/01-目标函数与优化几何/01-从拟合误差到二次目标.ipynb",
+    "title": "从拟合误差到二次目标",
+    "outcome": "把物质收支拟合写成有尺度的目标，推导值、梯度与Hessian。",
+    "number": "8.1.1",
+    "visualization": "web/optimization/index.html"
+  },
+  {
+    "id": "P08-C01-S02",
+    "chapter_id": "8.1",
+    "path": "notebooks/08-优化方法与计算/01-目标函数与优化几何/02-曲率凸性与局部极值.ipynb",
+    "title": "曲率凸性与局部极值",
+    "outcome": "用方向曲率区分凸性、严格极小与驻点，解释非凸反例。",
+    "number": "8.1.2",
+    "visualization": "web/optimization/index.html"
+  },
+  {
+    "id": "P08-C02-S01",
+    "chapter_id": "8.2",
+    "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/01-梯度下降的步长与条件数.ipynb",
+    "title": "梯度下降的步长与条件数",
+    "outcome": "推导二次目标上的步长范围，解释振荡、病态与变量缩放。",
+    "number": "8.2.1",
+    "visualization": "web/optimization/index.html"
+  },
+  {
+    "id": "P08-C02-S02",
+    "chapter_id": "8.2",
+    "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/02-牛顿方向与非凸曲率.ipynb",
+    "title": "牛顿方向与非凸曲率",
+    "outcome": "从二阶近似推导牛顿方向，用反例判断方向是否下降。",
+    "number": "8.2.2",
+    "visualization": "web/optimization/index.html"
+  },
+  {
+    "id": "P08-C02-S03",
+    "chapter_id": "8.2",
+    "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/03-回溯与可信的停止条件.ipynb",
+    "title": "回溯与可信的停止条件",
+    "outcome": "实现Armijo回溯，区分步长接受、残差达标与预算耗尽。",
+    "number": "8.2.3",
+    "visualization": "web/optimization/index.html"
+  },
+  {
+    "id": "P08-C03-S01",
+    "chapter_id": "8.3",
+    "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/01-岭回归与参数收缩.ipynb",
+    "title": "岭回归与参数收缩",
+    "outcome": "推导二范数惩罚解，解释共线性、正则强度与不唯一。",
+    "number": "8.3.1",
+    "visualization": "web/optimization/index.html"
+  },
+  {
+    "id": "P08-C03-S02",
+    "chapter_id": "8.3",
+    "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/02-软阈值与近端梯度.ipynb",
+    "title": "软阈值与近端梯度",
+    "outcome": "由绝对值惩罚推导软阈值，显式实现近端梯度并核验边界。",
+    "number": "8.3.2",
+    "visualization": "web/optimization/index.html"
+  },
+  {
+    "id": "P08-C03-S03",
+    "chapter_id": "8.3",
+    "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/03-缩放选参与独立预测.ipynb",
+    "title": "缩放选参与独立预测",
+    "outcome": "只从训练集估计预处理量，只用验证集选参并保留最终评估。",
+    "number": "8.3.3",
+    "visualization": "web/optimization/index.html"
+  },
+  {
+    "id": "P08-C04-S01",
+    "chapter_id": "8.4",
+    "path": "notebooks/08-优化方法与计算/04-约束与最优性条件/01-约束乘子与最优性条件.ipynb",
+    "title": "约束乘子与最优性条件",
+    "outcome": "推导等式及不等式的乘子条件，区分必要性、充分性与残差。",
+    "number": "8.4.1",
+    "visualization": "web/optimization/index.html"
+  },
+  {
+    "id": "P08-C04-S02",
+    "chapter_id": "8.4",
+    "path": "notebooks/08-优化方法与计算/04-约束与最优性条件/02-活跃集与可行性核验.ipynb",
+    "title": "活跃集与可行性核验",
+    "outcome": "枚举小型二次规划的活跃集，区分可行最优、不可行与数值失败。",
+    "number": "8.4.2",
+    "visualization": "web/optimization/index.html"
+  },
+  {
+    "id": "P08-SUMMARY",
+    "chapter_id": "8.summary",
+    "path": "notebooks/08-优化方法与计算/05-篇末综合/01-拟合稀疏与约束优化.ipynb",
+    "title": "拟合、稀疏与约束优化",
+    "outcome": "在统一尺度与信息边界下构造目标、实现下降与稀疏拟合，并核验约束解。",
+    "number": "篇末综合",
+    "visualization": null,
+    "overview": {
+      "goals": "构造目标并核验梯度、下降、稀疏性和约束解。",
+      "prerequisites": "本篇8.1—8.4。",
+      "focus": "尺度与条件、迭代预算、独立预测、可行性及最优性证据。",
+      "knowledge": [
+        "目标与曲率 → 凸性和反例",
+        "下降方向与回溯 → 有限预算",
+        "正则与近端 → 独立选参",
+        "约束与活跃集 → 可行性和残差"
+      ]
+    }
+  }
+]

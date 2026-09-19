@@ -1,0 +1,240 @@
+{
+  "date": "2026-09-19",
+  "scope": "M7 第6篇6.6扩展及新版篇末综合；不替代全项目浏览器与默认IDE验收。",
+  "status": "content_and_targeted_validation_passed",
+  "counts": {
+    "formal_notebooks": 16,
+    "ordinary_lessons": 15,
+    "questions": 79,
+    "choice": 57,
+    "python": 22,
+    "exploration_pages": 3,
+    "new_notebooks": 2,
+    "new_ordinary_questions": 10,
+    "new_or_revised_python_cases": 16
+  },
+  "preservation": {
+    "unchanged_original_question_contracts": 68,
+    "original_chapter_questions_unchanged": true,
+    "original_capstone_notebook_path_preserved": true,
+    "revised_question": "p06-cap-validation",
+    "revised_question_version": "2",
+    "assessment_version": "2",
+    "history": "旧末题v1保留历史，不计v2通过；未改前7综合题仍保留同版本成绩。",
+    "checked_against": "Git HEAD 原69题逐项比较，排除实质改题的最后一题。"
+  },
+  "notebook_execution": {
+    "python": "3.13.2",
+    "platform": "Windows",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "nbclient": "0.11.0",
+      "nbformat": "5.11.1",
+      "nbconvert": "7.17.1",
+      "ipykernel": "7.3.0"
+    },
+    "notebooks": [
+      {
+        "id": "P06-C06-S01",
+        "path": "notebooks/06-从测量走向模型/06-递推辨识与时变参数跟踪/01-从批量最小二乘到递推更新.ipynb",
+        "seconds": 4.48,
+        "code_cells": 8,
+        "figures": 2,
+        "sha256": "20109758ee0d9e41b57ccde8f191f15bbc61ba5821d1fcc8d79f4c7ea2dfc0a8",
+        "passed": true
+      },
+      {
+        "id": "P06-C06-S02",
+        "path": "notebooks/06-从测量走向模型/06-递推辨识与时变参数跟踪/02-遗忘、漂移与在线验证.ipynb",
+        "seconds": 4.84,
+        "code_cells": 7,
+        "figures": 2,
+        "sha256": "745040df0a6351bae57b1efea929f51673651c8698c038746d96959952ee4855",
+        "passed": true,
+        "executed_sha256": "1a62ae821ee3510590fc8997220f00da7dec817a17fa285d8415290a4aec6304",
+        "after_execution": "最后仅转义练习计算规则中的 Python **，避免被 Markdown 解释为粗体；实际 HTML 查看确认星号可见，代码及输出不变。"
+      },
+      {
+        "id": "P06-SUMMARY",
+        "path": "notebooks/06-从测量走向模型/06-篇末综合/01-测量辨识与验证的综合实验.ipynb",
+        "seconds": 3.18,
+        "code_cells": 7,
+        "figures": 1,
+        "sha256": "7096bb9e5bc0f53054242584189d944ecaa306fa0d4b7f2703c8595572333341",
+        "passed": true
+      }
+    ]
+  },
+  "targeted_tests": {
+    "command": ".venv/Scripts/python.exe -X utf8 -m pytest tools/tests/test_part06.py tools/tests/test_part06_extension.py -q --tb=short",
+    "passed": 54,
+    "failed": 0,
+    "seconds": 10.37,
+    "independent_oracles": [
+      "每个前缀重建增广加权设计，用lstsq核对递推参数；分别核对lambda=1与lambda<1以及lambda**n初始正则",
+      "标量正则抽样方差用有理数公式核对",
+      "所有22道Python题真实本地子进程：样例AC、全量AC、典型错误WA",
+      "弱激励/零回归/空序列；当前目标不改当前预测；最终目标不改候选选择",
+      "旧综合最后一题版本隔离，未改题目成绩继续有效",
+      "新增Notebook的LaTeX命令完整性与控制字符检查"
+    ]
+  },
+  "teaching_check": {
+    "command": ".venv/Scripts/python.exe -X utf8 tools/check_teaching.py --part 6 --work m7-extension",
+    "notebooks": 16,
+    "questions": 79,
+    "links": 79,
+    "issues": 0
+  },
+  "observed_results": {
+    "lambda_1_max_parameter_difference": 2.3314683517128287e-15,
+    "weighted_batch_max_parameter_difference_by_lambda_09_097_1": [
+      1.7208456881689926e-15,
+      2.4980018054066022e-15,
+      2.3314683517128287e-15
+    ],
+    "ridge_sampling_variance_2000_replicates": 0.562549,
+    "ridge_theoretical_variance": 0.5555555555555556,
+    "incorrect_sigma2_P": 0.6666666666666666,
+    "online_selected_lambda": {
+      "fixed": 0.97,
+      "drifting": 0.9,
+      "louder_noise": 0.97
+    }
+  },
+  "visual_review": {
+    "method": "查看4张新Notebook输出图；使用CUA打开本机8018端口的HTML预览并截图检查两节关键公式。",
+    "reviewed": [
+      "参数轨迹/逐前缀差异",
+      "固定正则中心抽样分布",
+      "固定/漂移/噪声配对实验",
+      "弱激励参数与逆信息变化",
+      "6.6.1秩一恒等式、增益、更新前预测和抽样协方差公式",
+      "6.6.2初始正则lambda**n、指数遗忘、在线时钟",
+      "题面包含def solve具名参数、输入/输出解释与Python代码样例"
+    ],
+    "fixed_during_review": [
+      "长图标题与布局警告",
+      "多层字符串转义造成的LaTeX命令丢失/控制字符"
+    ],
+    "browser_entry_and_submission": "全局页面交互及默认IDE打开由根代理的统一验收覆盖，本证据不冒称完成。"
+  },
+  "resources": {
+    "external_data_files": false,
+    "external_generator_dependency": false,
+    "new_runtime_dependencies": false,
+    "new_exploration_page": false,
+    "reason": "6.6图示与可修改实验在Notebook中充分呈现；网页保留正式章导览和练习入口。"
+  },
+  "file_manifest": [
+    {
+      "path": "notebooks/06-从测量走向模型/01-观测、采样与滤波/01-采样间隔与混叠.ipynb",
+      "final_sha256": "33a2caf181e43b3a76691c86e2cf66184e7e8effd79e864156f328e12ce532ef"
+    },
+    {
+      "path": "notebooks/06-从测量走向模型/01-观测、采样与滤波/02-因果滤波与时间延迟.ipynb",
+      "final_sha256": "7eb47a0b613fe401ae505b1993962817272ebe28421c7904171e57681aedf84c"
+    },
+    {
+      "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/01-从脉冲响应到线性卷积.ipynb",
+      "final_sha256": "d1df0c93ab3c91e3c7d05d7ad4741aa1fe2ab160ce88155d67bf8c34ecb0b760"
+    },
+    {
+      "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/02-复指数与离散频谱.ipynb",
+      "final_sha256": "35122b90d752d8e0eb909f2bfc78c5350ab36f58a7e94e43650420619cd55927"
+    },
+    {
+      "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/03-有限记录与滤波频率响应.ipynb",
+      "final_sha256": "59c3c82b14ddb5ce44c3a403313db21f4e9c096f1a04bd1e5484071d834b1d8e"
+    },
+    {
+      "path": "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/01-LTI假设与Laplace表示.ipynb",
+      "final_sha256": "6a00b2f913e60c89c732f497c42c4dd6a1556c7f5ea56db0382c3bbbde5f669a"
+    },
+    {
+      "path": "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/02-Z变换与精确采样.ipynb",
+      "final_sha256": "a81c58815b67bb8daf5a41e41a326a3915e52a5b753532d4abc06b469dcddf65"
+    },
+    {
+      "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/01-最小二乘与误差假设.ipynb",
+      "final_sha256": "24ecbe5b03dd448e8f47cc14a2c4a3854d915b5c5948a5c67afef18ccb3ef30f"
+    },
+    {
+      "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/02-清除曲线的网格估计.ipynb",
+      "final_sha256": "f9c4a1aefe179d9c8021823d6915f843fd2590dce61d9b2f319e4918df690510"
+    },
+    {
+      "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/03-参数区间与重复观测.ipynb",
+      "final_sha256": "7beb300d7d6b4212c2c153d5279e93000f88f4e859336ccebeda9a1d790ba926"
+    },
+    {
+      "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/01-ARX回归与两种预测.ipynb",
+      "final_sha256": "1ec9018ae7c7828c65e458bf83202eed3ad36ebe202f3fbbded87bcbfdabfc53"
+    },
+    {
+      "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/02-激励与可辨识范围.ipynb",
+      "final_sha256": "c128943a4fba93c8a274875c0c20c8cdf9b2bf63768cd2935abb9c8f72d13b6b"
+    },
+    {
+      "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/03-数据划分与独立验证.ipynb",
+      "final_sha256": "edc38e9ba48260c31a478aa6d8ba64c7a01d19419a7300f2ef535a5087d9c764"
+    },
+    {
+      "path": "notebooks/06-从测量走向模型/06-递推辨识与时变参数跟踪/01-从批量最小二乘到递推更新.ipynb",
+      "final_sha256": "20109758ee0d9e41b57ccde8f191f15bbc61ba5821d1fcc8d79f4c7ea2dfc0a8",
+      "executed_sha256": "20109758ee0d9e41b57ccde8f191f15bbc61ba5821d1fcc8d79f4c7ea2dfc0a8",
+      "final_matches_execution": true
+    },
+    {
+      "path": "notebooks/06-从测量走向模型/06-递推辨识与时变参数跟踪/02-遗忘、漂移与在线验证.ipynb",
+      "final_sha256": "745040df0a6351bae57b1efea929f51673651c8698c038746d96959952ee4855",
+      "executed_sha256": "1a62ae821ee3510590fc8997220f00da7dec817a17fa285d8415290a4aec6304",
+      "final_matches_execution": true
+    },
+    {
+      "path": "notebooks/06-从测量走向模型/06-篇末综合/01-测量辨识与验证的综合实验.ipynb",
+      "final_sha256": "bef8253e81b37a550a8b77e5f14a4d840098fb24b66a1c62f517a91d0fb34b87",
+      "executed_sha256": "7096bb9e5bc0f53054242584189d944ecaa306fa0d4b7f2703c8595572333341",
+      "final_matches_execution": false,
+      "post_execution_change": "练习Markdown表格转义同步；代码与既有输出未改。"
+    },
+    {
+      "path": "notebooks/06-从测量走向模型/catalog.json",
+      "final_sha256": "aa580cd1d6fd983aebecb3893f367d21f3b35cbab0a23cff542ea80a403e1f62"
+    },
+    {
+      "path": "notebooks/06-从测量走向模型/README.md",
+      "final_sha256": "6543f3899a54e70f9d22c598e126513be2bbf1f38c8cfce1d44d5cda6206b9c9"
+    },
+    {
+      "path": "exercises/06-从测量走向模型/assessment.json",
+      "final_sha256": "dedf66ffb947e4bca99182c67376c2427c6daad08a874d09754286680aad2303"
+    },
+    {
+      "path": "exercises/06-从测量走向模型/questions.json",
+      "final_sha256": "e68eb82d81ee53118c0bfef83f53f865d65610d6b11ae0b114d6bfa8179e9d22"
+    },
+    {
+      "path": "exercises/06-从测量走向模型/solutions.json",
+      "final_sha256": "fae9dd4f1c8e71c7be47e2f8a7e8942b2fceb53c4379637f5d2cf459f34def07"
+    },
+    {
+      "path": "exercises/06-从测量走向模型/verification.json",
+      "final_sha256": "004619c68d6295f84b1d8394dfdd03029cb15f76fa7aeafa8d0b49a9b5c4fac7"
+    },
+    {
+      "path": "docs/06-从测量走向模型.md",
+      "final_sha256": "e6bdce5c98d416211fe0362abd70f19fc38c4c949d178f3f8dc1ccbe5efd2014"
+    },
+    {
+      "path": "tools/tests/test_part06.py",
+      "final_sha256": "524d61456224e7c9ca732db758acafb85d9fc71fe1e38799117ca866b2a939f6"
+    },
+    {
+      "path": "tools/tests/test_part06_extension.py",
+      "final_sha256": "22e5ba6f8d55f32284e08c34007dd9af67b0cb978ed376f350a9bdee69e12cc7"
+    }
+  ],
+  "integration_evidence": "m5-m7-m8-20260919.json"
+}
