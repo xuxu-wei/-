@@ -160,7 +160,7 @@ class TeachingHandler(SimpleHTTPRequestHandler):
             return None
         parts = resolved.relative_to(ROOT).parts
         allowed = parts and (parts[0] in {'web', 'notebooks', 'docs'} or requested in {'README.md', 'LICENSE'})
-        if self.server.previews and len(parts)>=3 and parts[0]=='.work' and parts[1] in {'m1','m2','m3','m3-part01','m4','m5','m6'} and parts[2]=='previews':
+        if self.server.previews and len(parts)>=3 and parts[0]=='.work' and parts[1] in {'m1','m2','m3','m3-part01','m4','m5','m6','m7'} and parts[2]=='previews':
             allowed = True
         if not allowed:
             self.send_error(404)

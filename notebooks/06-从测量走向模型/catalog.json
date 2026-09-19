@@ -1,0 +1,138 @@
+[
+  {
+    "id": "P06-C01-S01",
+    "chapter_id": "6.1",
+    "path": "notebooks/06-从测量走向模型/01-观测、采样与滤波/01-采样间隔与混叠.ipynb",
+    "title": "采样间隔与混叠",
+    "outcome": "能区分状态、观测与采样，推导余弦的混叠等价关系，解释采样率、求解步长及带限假设的不同职责。",
+    "number": "6.1.1",
+    "visualization": "web/measurement/index.html"
+  },
+  {
+    "id": "P06-C01-S02",
+    "chapter_id": "6.1",
+    "path": "notebooks/06-从测量走向模型/01-观测、采样与滤波/02-因果滤波与时间延迟.ipynb",
+    "title": "因果滤波与时间延迟",
+    "outcome": "能实现明确起始边界的因果移动平均，推导噪声方差与缓变信号延迟，识别居中滤波使用未来数据。",
+    "number": "6.1.2",
+    "visualization": "web/measurement/index.html"
+  },
+  {
+    "id": "P06-C02-S01",
+    "chapter_id": "6.2",
+    "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/01-从脉冲响应到线性卷积.ipynb",
+    "title": "从脉冲响应到线性卷积",
+    "outcome": "能从线性叠加与时间平移推导完整离散卷积，检查长度、零延拓、初值及循环卷积的差别。",
+    "number": "6.2.1",
+    "visualization": "web/measurement/index.html"
+  },
+  {
+    "id": "P06-C02-S02",
+    "chapter_id": "6.2",
+    "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/02-复指数与离散频谱.ipynb",
+    "title": "复指数与离散频谱",
+    "outcome": "能从复数与旋转解释 DFT，正确计算频率坐标、单边幅值及相位，处理直流、奇偶长度、奈奎斯特和零幅边界。",
+    "number": "6.2.2",
+    "visualization": "web/measurement/index.html"
+  },
+  {
+    "id": "P06-C02-S03",
+    "chapter_id": "6.2",
+    "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/03-有限记录与滤波频率响应.ipynb",
+    "title": "有限记录与滤波频率响应",
+    "outcome": "能区分记录长度、泄漏、窗函数与零填充，推导有限核的频率响应并用时域卷积核验幅值和相位变化。",
+    "number": "6.2.3",
+    "visualization": "web/measurement/index.html"
+  },
+  {
+    "id": "P06-C03-S01",
+    "chapter_id": "6.3",
+    "path": "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/01-LTI假设与Laplace表示.ipynb",
+    "title": "LTI假设与Laplace表示",
+    "outcome": "能检验线性时不变（linear time-invariant，LTI）假设，区分零输入与零状态响应；从一侧 Laplace 变换（unilateral Laplace transform）的初值项推导传递函数（transfer function），解释收敛域（region of convergence，ROC）和极点（pole）的含义。",
+    "number": "6.3.1",
+    "visualization": "web/measurement/index.html"
+  },
+  {
+    "id": "P06-C03-S02",
+    "chapter_id": "6.3",
+    "path": "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/02-Z变换与精确采样.ipynb",
+    "title": "Z变换与精确采样",
+    "outcome": "能从区间积分推导零阶保持（zero-order hold，ZOH）下的精确采样模型；写出单侧 Z 变换（unilateral Z-transform）的初值项和因果脉冲索引，区分采样周期与 Euler 求解步长。",
+    "number": "6.3.2",
+    "visualization": "web/measurement/index.html"
+  },
+  {
+    "id": "P06-C04-S01",
+    "chapter_id": "6.4",
+    "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/01-最小二乘与误差假设.ipynb",
+    "title": "最小二乘与误差假设",
+    "outcome": "能从平方残差（residual）推导普通最小二乘（ordinary least squares，OLS），把正交条件与矩阵满列秩相连；说明同方差（homoscedasticity）高斯误差下的似然（likelihood）关系，并辨认解释变量有误差的限制。",
+    "number": "6.4.1",
+    "visualization": null
+  },
+  {
+    "id": "P06-C04-S02",
+    "chapter_id": "6.4",
+    "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/02-清除曲线的网格估计.ipynb",
+    "title": "清除曲线的网格估计",
+    "outcome": "能在声明的有限候选集合中估计清除系数，区分网格最优与连续最优；由误差尺度设计加权最小二乘（weighted least squares，WLS），解释对数变换改变了误差模型。",
+    "number": "6.4.2",
+    "visualization": null
+  },
+  {
+    "id": "P06-C04-S03",
+    "chapter_id": "6.4",
+    "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/03-参数区间与重复观测.ipynb",
+    "title": "参数区间与重复观测",
+    "outcome": "能从估计量方差推导已知误差尺度的斜率置信区间（confidence interval），区分均值区间与未来观测预测区间（prediction interval）；解释自由度（degrees of freedom）和成对自助法（pairs bootstrap）的抽样前提。",
+    "number": "6.4.3",
+    "visualization": null
+  },
+  {
+    "id": "P06-C05-S01",
+    "chapter_id": "6.5",
+    "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/01-ARX回归与两种预测.ipynb",
+    "title": "ARX回归与两种预测",
+    "outcome": "能构造 ARX 回归量，区分一步预测和自由运行的信息条件，推导测量误差与回归量相关造成的估计偏差。",
+    "number": "6.5.1",
+    "visualization": null
+  },
+  {
+    "id": "P06-C05-S02",
+    "chapter_id": "6.5",
+    "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/02-激励与可辨识范围.ipynb",
+    "title": "激励与可辨识范围",
+    "outcome": "能区分秩亏、病态与噪声偏差，解释稳态和瞬态的信息差别，并依据已知物理参数限定可辨识结论。",
+    "number": "6.5.2",
+    "visualization": null
+  },
+  {
+    "id": "P06-C05-S03",
+    "chapter_id": "6.5",
+    "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/03-数据划分与独立验证.ipynb",
+    "title": "数据划分与独立验证",
+    "outcome": "能按时间或个体划分数据，隔离训练预处理，保留缺测原时钟，并用固定验证流程选择模型和完成一次最终评估。",
+    "number": "6.5.3",
+    "visualization": null
+  },
+  {
+    "id": "P06-SUMMARY",
+    "chapter_id": "6.summary",
+    "path": "notebooks/06-从测量走向模型/06-篇末综合/01-测量辨识与验证的综合实验.ipynb",
+    "title": "测量辨识与验证的综合实验",
+    "number": "篇末综合",
+    "outcome": "能组织观测、表示、参数估计与独立验证，解释有限数据与模型假设限制。",
+    "visualization": null,
+    "overview": {
+      "goals": "综合判断采样、动态表示、参数估计与预测验证。",
+      "prerequisites": "本篇第 6.1—6.5 章。",
+      "focus": "信息边界、误差假设、激励范围和参数可辨识性。",
+      "knowledge": [
+        "测量协议 → 采样与表示",
+        "候选与观测 → 参数及残差",
+        "数据划分 → 预测与范围验证"
+      ]
+    }
+  }
+]

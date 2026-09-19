@@ -1995,7 +1995,7 @@
             "多变量链式法则计算沿轨迹导数",
             "检查条件和区域，区分 Lyapunov 函数（Lyapunov function）与 Lyapunov 指数（Lyapunov exponent）"
           ],
-          "focus": "对应练习 的严格负导数区域为 0 < |x| < 1；区分解析符号判断与网格采样，后者不能证明区域内处处成立。",
+          "focus": "对应练习 的严格负导数区域为 0 < |x| < 1；区分解析符号判断与网格采样（sampling），后者不能证明区域内处处成立。",
           "available": true,
           "lessons": [
             {
@@ -2087,7 +2087,7 @@
         "url": "/parts/04-非线性动态行为/综合练习/",
         "goals": "在固定案例中连接多稳态（multistability）、振荡、预测期限与区域稳定性，说明数值证据的边界。",
         "prerequisites": "本篇五章。",
-        "focus": "输入（input）与初值（initial condition）、暂态（transient）与采样、算术精度与初值敏感性（sensitivity to initial conditions）、有限扫描与解析证明分别核对。",
+        "focus": "输入（input）与初值（initial condition）、暂态（transient）与采样（sampling）、算术精度与初值敏感性（sensitivity to initial conditions）、有限扫描与解析证明分别核对。",
         "knowledge": [
           "平衡（equilibrium）与初值 → 多稳态与扫描",
           "径向方程与事件（event） → 振幅（amplitude）、周期及相位（phase）",
@@ -2826,83 +2826,698 @@
           "id": "6.1",
           "title": "观测、采样与滤波",
           "url": "/chapters/06-01-观测、采样与滤波/",
-          "goals": "区分模型（model）时间步长（time step）、采样间隔与滤波窗口，识别混叠和滤波延迟（delay）。",
+          "goals": "区分模型（model）时间步长（time step）、采样（sampling）间隔与滤波窗口，识别混叠（aliasing）和滤波延迟（delay）。",
           "prerequisites": "5.2、2.4；数学：递推、有限求和和固定点（fixed point）代数、数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布。",
           "knowledge": [
             "状态（state）到观测（observation）及采样",
             "用正弦例子观察混叠",
-            "移动平均、窗口边界和在线/离线差别"
+            "移动平均（moving average）、窗口边界和在线/离线差别"
           ],
           "focus": "对应练习 在给定采样时刻无法区分；滤波效果同时报告噪声变化与时间偏移，禁止在在线任务中悄悄使用未来值。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P06-C01-S01",
+              "chapter_id": "6.1",
+              "path": "notebooks/06-从测量走向模型/01-观测、采样与滤波/01-采样间隔与混叠.ipynb",
+              "title": "采样间隔与混叠",
+              "outcome": "能区分状态、观测与采样，推导余弦的混叠等价关系，解释采样率、求解步长及带限假设的不同职责。",
+              "number": "6.1.1",
+              "visualization": "web/measurement/index.html",
+              "questions": [
+                {
+                  "id": "p06-cosine-samples",
+                  "slug": "p06-cosine-samples",
+                  "title": "在指定时刻读取节律",
+                  "type": "python"
+                },
+                {
+                  "id": "p06-three-clocks",
+                  "slug": "p06-three-clocks",
+                  "title": "细化哪一个时钟",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-alias-equivalence",
+                  "slug": "p06-alias-equivalence",
+                  "title": "相同样本能证明什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-nyquist-conditions",
+                  "slug": "p06-nyquist-conditions",
+                  "title": "采样定理的适用前提",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-cosine-samples"
+            },
+            {
+              "id": "P06-C01-S02",
+              "chapter_id": "6.1",
+              "path": "notebooks/06-从测量走向模型/01-观测、采样与滤波/02-因果滤波与时间延迟.ipynb",
+              "title": "因果滤波与时间延迟",
+              "outcome": "能实现明确起始边界的因果移动平均，推导噪声方差与缓变信号延迟，识别居中滤波使用未来数据。",
+              "number": "6.1.2",
+              "visualization": "web/measurement/index.html",
+              "questions": [
+                {
+                  "id": "p06-causal-average",
+                  "slug": "p06-causal-average",
+                  "title": "只用已经到达的读数",
+                  "type": "python"
+                },
+                {
+                  "id": "p06-centered-lookahead",
+                  "slug": "p06-centered-lookahead",
+                  "title": "居中均值是否适合实时报警",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-filter-delay",
+                  "slug": "p06-filter-delay",
+                  "title": "平滑与延迟如何一起解释",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-startup-filter",
+                  "slug": "p06-startup-filter",
+                  "title": "前缀平均与固定FIR相同吗",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/06-01-观测、采样与滤波/practice/?question=p06-causal-average"
+            }
+          ],
+          "visualization": "web/measurement/index.html"
         },
         {
           "id": "6.2",
           "title": "卷积、频谱与频率响应",
           "url": "/chapters/06-02-卷积、频谱与频率响应/",
           "goals": "从叠加解释卷积，理解复指数、频率坐标、幅度和相位（phase），并辨认有限记录的影响。",
-          "prerequisites": "6.1、3.2；数学：极限（limit）直觉、导数（derivative）、积分、基本定理和简单链式法则（chain rule）、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、复指数、卷积、Fourier 表示、频谱与相位。",
+          "prerequisites": "6.1、3.2；数学：函数、求和与向量（vector）。复数（complex number）、复指数、卷积及 Fourier 表示在本章首次引入。",
           "knowledge": [
-            "脉冲响应与离散卷积",
+            "脉冲响应（impulse response）与离散卷积",
             "正弦、复指数与 Fourier 表示",
-            "频谱、窗长、泄漏及滤波频率响应"
+            "频谱、窗长、泄漏及滤波频率响应（frequency response）"
           ],
-          "focus": "对应练习 结果为 [0.5, 1.5, 1, 0]；避免把循环卷积与线性卷积混用，不把补零解释为增加独立观测（observation）信息。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "focus": "对应练习 结果为 [0.5, 1.5, 1, 0]；避免把循环卷积（circular convolution）与线性卷积（linear convolution）混用，不把补零解释为增加独立观测（observation）信息。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P06-C02-S01",
+              "chapter_id": "6.2",
+              "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/01-从脉冲响应到线性卷积.ipynb",
+              "title": "从脉冲响应到线性卷积",
+              "outcome": "能从线性叠加与时间平移推导完整离散卷积，检查长度、零延拓、初值及循环卷积的差别。",
+              "number": "6.2.1",
+              "visualization": "web/measurement/index.html",
+              "questions": [
+                {
+                  "id": "p06-linear-convolution",
+                  "slug": "p06-linear-convolution",
+                  "title": "把各次输入的响应叠加",
+                  "type": "python"
+                },
+                {
+                  "id": "p06-lti-superposition",
+                  "slug": "p06-lti-superposition",
+                  "title": "卷积表达依靠哪些假设",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-circular-wrap",
+                  "slug": "p06-circular-wrap",
+                  "title": "为什么尾部绕回了开头",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-impulse-meaning",
+                  "slug": "p06-impulse-meaning",
+                  "title": "单位脉冲与初始状态",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-linear-convolution"
+            },
+            {
+              "id": "P06-C02-S02",
+              "chapter_id": "6.2",
+              "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/02-复指数与离散频谱.ipynb",
+              "title": "复指数与离散频谱",
+              "outcome": "能从复数与旋转解释 DFT，正确计算频率坐标、单边幅值及相位，处理直流、奇偶长度、奈奎斯特和零幅边界。",
+              "number": "6.2.2",
+              "visualization": "web/measurement/index.html",
+              "questions": [
+                {
+                  "id": "p06-one-sided-spectrum",
+                  "slug": "p06-one-sided-spectrum",
+                  "title": "给有限记录标上正确频率",
+                  "type": "python"
+                },
+                {
+                  "id": "p06-complex-rotation",
+                  "slug": "p06-complex-rotation",
+                  "title": "复指数怎样表示相位",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-nyquist-amplitude",
+                  "slug": "p06-nyquist-amplitude",
+                  "title": "Nyquist点为什么不乘二",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-phase-zero",
+                  "slug": "p06-phase-zero",
+                  "title": "零幅频点的相位表示什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-frequency-units",
+                  "slug": "p06-frequency-units",
+                  "title": "频点间隔由什么决定",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-one-sided-spectrum"
+            },
+            {
+              "id": "P06-C02-S03",
+              "chapter_id": "6.2",
+              "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/03-有限记录与滤波频率响应.ipynb",
+              "title": "有限记录与滤波频率响应",
+              "outcome": "能区分记录长度、泄漏、窗函数与零填充，推导有限核的频率响应并用时域卷积核验幅值和相位变化。",
+              "number": "6.2.3",
+              "visualization": "web/measurement/index.html",
+              "questions": [
+                {
+                  "id": "p06-fir-response",
+                  "slug": "p06-fir-response",
+                  "title": "不同频率通过滤波器后怎样变化",
+                  "type": "python"
+                },
+                {
+                  "id": "p06-finite-leakage",
+                  "slug": "p06-finite-leakage",
+                  "title": "频谱泄漏来自哪里",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-zero-padding",
+                  "slug": "p06-zero-padding",
+                  "title": "补零能增加什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-fir-delay-band",
+                  "slug": "p06-fir-delay-band",
+                  "title": "均值滤波器的延迟在哪成立",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-amplitude-calibration",
+                  "slug": "p06-amplitude-calibration",
+                  "title": "给频谱乘窗后怎样报幅值",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/06-02-卷积、频谱与频率响应/practice/?question=p06-fir-response"
+            }
+          ],
+          "visualization": "web/measurement/index.html"
         },
         {
           "id": "6.3",
           "title": "LTI 系统、Laplace 与 Z 变换",
           "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/",
-          "goals": "在明确初值（initial condition）和线性时不变假设下连接微分/差分方程（difference equation）、传递函数、极点与响应。",
-          "prerequisites": "6.2；数学：一阶 ODE、初值、分离变量和指数解、复指数、卷积、Fourier 表示、频谱与相位（phase）、Laplace/Z 变换、收敛域的必要直觉、极点零点。",
+          "goals": "在明确初值（initial condition）和线性时不变（linear time-invariant，LTI）假设下连接微分/差分方程（difference equation）、传递函数（transfer function）、极点（pole）与响应。",
+          "prerequisites": "6.2；数学：微积分与复指数。Laplace/Z 变换、收敛域（region of convergence，ROC）和极点在本章首次引入。",
           "knowledge": [
             "线性与时不变的检验",
             "Laplace 变换、必要收敛域直觉及初值项",
             "Z 变换和离散表示，与状态空间（state space）对照"
           ],
-          "focus": "对应练习 因子分别为 exp(−kh) 与 1 − kh；不同离散化不能因使用相同采样间隔就被当作同一模型（model）。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "focus": "对应练习 因子分别为 exp(−kh) 与 1 − kh；不同离散化不能因使用相同采样（sampling）间隔就被当作同一模型（model）。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P06-C03-S01",
+              "chapter_id": "6.3",
+              "path": "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/01-LTI假设与Laplace表示.ipynb",
+              "title": "LTI假设与Laplace表示",
+              "outcome": "能检验线性时不变（linear time-invariant，LTI）假设，区分零输入与零状态响应；从一侧 Laplace 变换（unilateral Laplace transform）的初值项推导传递函数（transfer function），解释收敛域（region of convergence，ROC）和极点（pole）的含义。",
+              "number": "6.3.1",
+              "visualization": "web/measurement/index.html",
+              "questions": [
+                {
+                  "id": "p06-response-components",
+                  "slug": "p06-response-components",
+                  "title": "将初态与输入的作用分开",
+                  "type": "python"
+                },
+                {
+                  "id": "p06-laplace-initial",
+                  "slug": "p06-laplace-initial",
+                  "title": "导数变换遗漏了哪一项",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-linear-map-initial",
+                  "slug": "p06-linear-map-initial",
+                  "title": "固定非零初态的映射是否线性",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-roc-causal",
+                  "slug": "p06-roc-causal",
+                  "title": "极点与收敛域说明什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-lti-failure",
+                  "slug": "p06-lti-failure",
+                  "title": "线性与时不变哪个失效",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-response-components"
+            },
+            {
+              "id": "P06-C03-S02",
+              "chapter_id": "6.3",
+              "path": "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/02-Z变换与精确采样.ipynb",
+              "title": "Z变换与精确采样",
+              "outcome": "能从区间积分推导零阶保持（zero-order hold，ZOH）下的精确采样模型；写出单侧 Z 变换（unilateral Z-transform）的初值项和因果脉冲索引，区分采样周期与 Euler 求解步长。",
+              "number": "6.3.2",
+              "visualization": "web/measurement/index.html",
+              "questions": [
+                {
+                  "id": "p06-sampled-response",
+                  "slug": "p06-sampled-response",
+                  "title": "相同采样间隔不等于相同离散模型",
+                  "type": "python"
+                },
+                {
+                  "id": "p06-z-index",
+                  "slug": "p06-z-index",
+                  "title": "Z变换中的一拍延迟",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-discrete-poles",
+                  "slug": "p06-discrete-poles",
+                  "title": "离散极点与物理合理性",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-zero-clearance",
+                  "slug": "p06-zero-clearance",
+                  "title": "零清除系数如何取极限",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-sampling-pole-map",
+                  "slug": "p06-sampling-pole-map",
+                  "title": "改变采样周期后系数怎样变化",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/practice/?question=p06-sampled-response"
+            }
+          ],
+          "visualization": "web/measurement/index.html"
         },
         {
           "id": "6.4",
           "title": "最小二乘与参数估计",
           "url": "/chapters/06-04-最小二乘与参数估计/",
           "goals": "定义残差（residual）和损失，说明最小二乘与 Gaussian 误差的关系，并为区间估计写明假设。",
-          "prerequisites": "5.3、3.4、6.1；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验（posterior）及条件 Gaussian、最小二乘、Gaussian 似然、残差、估计区间及重采样入门。",
+          "prerequisites": "5.3、3.4、6.1；数学：矩阵（matrix）、偏导（partial derivative）、概率（probability）与似然（likelihood）。最小二乘、估计区间及重采样（sampling）在本章首次引入。",
           "knowledge": [
-            "线性回归、投影和秩",
+            "线性回归、投影（projection）和秩（rank）",
             "理想清除参数的拟合与残差",
             "重复观测（observation）、参数区间和重采样入门，区分参数不确定性与预测误差"
           ],
           "focus": "简单线性例子用已知参数（parameter）和代数参考核验；报告区间方法、假设和重复次数，不把区间宽度当作所有模型（model）误差的总和。",
-          "available": false,
-          "lessons": [],
+          "available": true,
+          "lessons": [
+            {
+              "id": "P06-C04-S01",
+              "chapter_id": "6.4",
+              "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/01-最小二乘与误差假设.ipynb",
+              "title": "最小二乘与误差假设",
+              "outcome": "能从平方残差（residual）推导普通最小二乘（ordinary least squares，OLS），把正交条件与矩阵满列秩相连；说明同方差（homoscedasticity）高斯误差下的似然（likelihood）关系，并辨认解释变量有误差的限制。",
+              "number": "6.4.1",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p06-line-fit",
+                  "slug": "p06-line-fit",
+                  "title": "用残差定义直线拟合",
+                  "type": "python"
+                },
+                {
+                  "id": "p06-least-squares-gaussian",
+                  "slug": "p06-least-squares-gaussian",
+                  "title": "平方残差何时对应似然",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-rank-deficiency",
+                  "slug": "p06-rank-deficiency",
+                  "title": "输入恒定时哪些系数可确定",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-orthogonal-residual",
+                  "slug": "p06-orthogonal-residual",
+                  "title": "最小二乘残差的代数检查",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-weighted-errors",
+                  "slug": "p06-weighted-errors",
+                  "title": "不同测量精度如何进入损失",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-line-fit"
+            },
+            {
+              "id": "P06-C04-S02",
+              "chapter_id": "6.4",
+              "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/02-清除曲线的网格估计.ipynb",
+              "title": "清除曲线的网格估计",
+              "outcome": "能在声明的有限候选集合中估计清除系数，区分网格最优与连续最优；由误差尺度设计加权最小二乘（weighted least squares，WLS），解释对数变换改变了误差模型。",
+              "number": "6.4.2",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p06-clearance-grid",
+                  "slug": "p06-clearance-grid",
+                  "title": "在给定参数集合中拟合清除",
+                  "type": "python"
+                },
+                {
+                  "id": "p06-log-error-model",
+                  "slug": "p06-log-error-model",
+                  "title": "取对数只是换一种写法吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-grid-resolution",
+                  "slug": "p06-grid-resolution",
+                  "title": "网格最优意味着什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-noisy-differences",
+                  "slug": "p06-noisy-differences",
+                  "title": "带噪差分为何不能当无误差导数",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-residual-validation",
+                  "slug": "p06-residual-validation",
+                  "title": "拟合残差小还需检查什么",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-clearance-grid"
+            },
+            {
+              "id": "P06-C04-S03",
+              "chapter_id": "6.4",
+              "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/03-参数区间与重复观测.ipynb",
+              "title": "参数区间与重复观测",
+              "outcome": "能从估计量方差推导已知误差尺度的斜率置信区间（confidence interval），区分均值区间与未来观测预测区间（prediction interval）；解释自由度（degrees of freedom）和成对自助法（pairs bootstrap）的抽样前提。",
+              "number": "6.4.3",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p06-slope-interval",
+                  "slug": "p06-slope-interval",
+                  "title": "已知测量噪声下的斜率区间",
+                  "type": "python"
+                },
+                {
+                  "id": "p06-interval-meaning",
+                  "slug": "p06-interval-meaning",
+                  "title": "95%覆盖率指谁变化",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-unknown-variance",
+                  "slug": "p06-unknown-variance",
+                  "title": "未知方差时为什么需要额外条件",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-bootstrap-unit",
+                  "slug": "p06-bootstrap-unit",
+                  "title": "应该重采样什么单位",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/06-04-最小二乘与参数估计/practice/?question=p06-slope-interval"
+            }
+          ],
           "visualization": null
         },
         {
           "id": "6.5",
           "title": "动态辨识、实验设计与验证",
           "url": "/chapters/06-05-动态辨识、实验设计与验证/",
-          "goals": "构建简单 ARX 模型（model），区分拟合、一步预测和自由运行，比较激励、结构与可辨识范围。",
-          "prerequisites": "6.3、6.4；数学：Laplace/Z 变换、收敛域的必要直觉、极点零点、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样入门。",
+          "goals": "构建简单外源输入自回归模型（autoregressive with exogenous input，ARX），区分拟合、一步预测（one-step-ahead prediction）和自由运行（free-run simulation），比较激励、结构与可辨识范围。",
+          "prerequisites": "6.3、6.4；数学：Laplace/Z 变换、收敛域（region of convergence，ROC）的必要直觉、极点（pole）零点（zero）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（sampling）入门。",
           "knowledge": [
-            "回归量、延迟（delay）与动态模型",
+            "回归量、延迟（delay）与动态模型（model）",
             "输入激励、结构选择和参数混淆",
             "时间/个体划分、验证残差、外推与缺失观测（observation）"
           ],
-          "focus": "提交数据划分清单和回归矩阵（matrix）的秩（rank）检查；已知核验参数（parameter）与状态（state）只能在评估时读取，不能作为拟合输入（input）或调参答案。",
-          "available": false,
-          "lessons": [],
+          "focus": "返回数据划分索引并检查回归矩阵（matrix）的秩（rank）；已知核验参数（parameter）与状态（state）只能在评估时读取，不能作为拟合输入（input）或调参答案。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P06-C05-S01",
+              "chapter_id": "6.5",
+              "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/01-ARX回归与两种预测.ipynb",
+              "title": "ARX回归与两种预测",
+              "outcome": "能构造 ARX 回归量，区分一步预测和自由运行的信息条件，推导测量误差与回归量相关造成的估计偏差。",
+              "number": "6.5.1",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p06-arx-predictions",
+                  "slug": "p06-arx-predictions",
+                  "title": "一步预测与自由运行",
+                  "type": "python"
+                },
+                {
+                  "id": "p06-arx-regressors",
+                  "slug": "p06-arx-regressors",
+                  "title": "ARX回归的一行由什么组成",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-prediction-information",
+                  "slug": "p06-prediction-information",
+                  "title": "两种预测用了同样信息吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-arx-noise-assumption",
+                  "slug": "p06-arx-noise-assumption",
+                  "title": "最小二乘怎样受到观测噪声影响",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-delay-structure",
+                  "slug": "p06-delay-structure",
+                  "title": "输入延迟选错会怎样",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-arx-predictions"
+            },
+            {
+              "id": "P06-C05-S02",
+              "chapter_id": "6.5",
+              "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/02-激励与可辨识范围.ipynb",
+              "title": "激励与可辨识范围",
+              "outcome": "能区分秩亏、病态与噪声偏差，解释稳态和瞬态的信息差别，并依据已知物理参数限定可辨识结论。",
+              "number": "6.5.2",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p06-excitation-rank",
+                  "slug": "p06-excitation-rank",
+                  "title": "给定实验能区分几个回归方向",
+                  "type": "python"
+                },
+                {
+                  "id": "p06-steady-confounding",
+                  "slug": "p06-steady-confounding",
+                  "title": "只在稳态能确定什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-constant-transient",
+                  "slug": "p06-constant-transient",
+                  "title": "常量输入一定无法辨识吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-conditioning",
+                  "slug": "p06-conditioning",
+                  "title": "满秩为什么仍可能很难估计",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-mechanistic-parameters",
+                  "slug": "p06-mechanistic-parameters",
+                  "title": "同一稳态结论依赖哪些未知量",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-excitation-rank"
+            },
+            {
+              "id": "P06-C05-S03",
+              "chapter_id": "6.5",
+              "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/03-数据划分与独立验证.ipynb",
+              "title": "数据划分与独立验证",
+              "outcome": "能按时间或个体划分数据，隔离训练预处理，保留缺测原时钟，并用固定验证流程选择模型和完成一次最终评估。",
+              "number": "6.5.3",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p06-time-partition",
+                  "slug": "p06-time-partition",
+                  "title": "保留原时钟的数据划分",
+                  "type": "python"
+                },
+                {
+                  "id": "p06-group-partition",
+                  "slug": "p06-group-partition",
+                  "title": "让同一个体留在同一数据集合",
+                  "type": "python"
+                },
+                {
+                  "id": "p06-train-only-transform",
+                  "slug": "p06-train-only-transform",
+                  "title": "标准化参数从哪里估计",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-missing-lags",
+                  "slug": "p06-missing-lags",
+                  "title": "缺测点能直接拼接吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-held-out-purpose",
+                  "slug": "p06-held-out-purpose",
+                  "title": "验证与最终评估分别做什么",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/06-05-动态辨识、实验设计与验证/practice/?question=p06-time-partition"
+            }
+          ],
           "visualization": null
         }
-      ]
+      ],
+      "assessment": {
+        "id": "6.summary",
+        "assessment": true,
+        "title": "测量辨识与验证的综合实验",
+        "url": "/parts/06-从测量走向模型/综合练习/",
+        "goals": "综合判断采样（sampling）、动态表示、参数（parameter）估计与预测验证。",
+        "prerequisites": "本篇第 6.1—6.5 章。",
+        "focus": "信息边界、误差假设、激励范围和参数可辨识性（identifiability）。",
+        "knowledge": [
+          "测量协议 → 采样与表示",
+          "候选与观测（observation） → 参数及残差（residual）",
+          "数据划分 → 预测与范围验证"
+        ],
+        "lessons": [
+          {
+            "id": "P06-SUMMARY",
+            "chapter_id": "6.summary",
+            "path": "notebooks/06-从测量走向模型/06-篇末综合/01-测量辨识与验证的综合实验.ipynb",
+            "title": "测量辨识与验证的综合实验",
+            "number": "篇末综合",
+            "outcome": "能组织观测、表示、参数估计与独立验证，解释有限数据与模型假设限制。",
+            "visualization": null,
+            "overview": {
+              "goals": "综合判断采样、动态表示、参数估计与预测验证。",
+              "prerequisites": "本篇第 6.1—6.5 章。",
+              "focus": "信息边界、误差假设、激励范围和参数可辨识性。",
+              "knowledge": [
+                "测量协议 → 采样与表示",
+                "候选与观测 → 参数及残差",
+                "数据划分 → 预测与范围验证"
+              ]
+            },
+            "questions": [
+              {
+                "id": "p06-cap-sampling",
+                "slug": "p06-cap-sampling",
+                "title": "采样改变了什么",
+                "type": "choice"
+              },
+              {
+                "id": "p06-cap-excitation",
+                "slug": "p06-cap-excitation",
+                "title": "哪些激励有助于辨识",
+                "type": "choice"
+              },
+              {
+                "id": "p06-cap-discrete",
+                "slug": "p06-cap-discrete",
+                "title": "连接区间输入与离散响应",
+                "type": "python"
+              },
+              {
+                "id": "p06-cap-fit",
+                "slug": "p06-cap-fit",
+                "title": "参数估计与残差",
+                "type": "python"
+              },
+              {
+                "id": "p06-cap-preprocess",
+                "slug": "p06-cap-preprocess",
+                "title": "划分数据并隔离标准化",
+                "type": "python"
+              },
+              {
+                "id": "p06-cap-prediction",
+                "slug": "p06-cap-prediction",
+                "title": "两种预测的误差分别是多少",
+                "type": "python"
+              },
+              {
+                "id": "p06-cap-resampling",
+                "slug": "p06-cap-resampling",
+                "title": "更换采样率后的响应",
+                "type": "choice"
+              },
+              {
+                "id": "p06-cap-validation",
+                "slug": "p06-cap-validation",
+                "title": "换激励后的验证能支持什么",
+                "type": "choice"
+              }
+            ],
+            "url": "/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-sampling"
+          }
+        ],
+        "available": true,
+        "visualization": null
+      }
     },
     {
       "id": "7",
@@ -2914,7 +3529,7 @@
           "title": "开闭环与 PID",
           "url": "/chapters/07-01-开闭环与 PID/",
           "goals": "从误差构造 P、PI、PID，解释积分累积、微分对噪声的敏感性及执行饱和。",
-          "prerequisites": "6.3、4.5；数学：极限（limit）直觉、导数（derivative）、积分、基本定理和简单链式法则（chain rule）、Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数和局部适用区域、Laplace/Z 变换、收敛域的必要直觉、极点零点。",
+          "prerequisites": "6.3、4.5；数学：极限（limit）直觉、导数（derivative）、积分、基本定理和简单链式法则（chain rule）、Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数和局部适用区域、Laplace/Z 变换、收敛域（region of convergence，ROC）的必要直觉、极点（pole）零点（zero）。",
           "knowledge": [
             "设定值、测量、误差和执行输入",
             "三个控制项及离散实现",
@@ -2929,8 +3544,8 @@
           "id": "7.2",
           "title": "频域稳定性与设计",
           "url": "/chapters/07-02-频域稳定性与设计/",
-          "goals": "连接闭环极点、根轨迹（trajectory）、Bode、Nyquist 与稳定裕度，说明判据条件及符号约定。",
-          "prerequisites": "7.1；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、Laplace/Z 变换、收敛域的必要直觉、极点零点、复平面曲线、相位（phase）变化与绕数的几何解释。",
+          "goals": "连接闭环极点（pole）、根轨迹（trajectory）、Bode、Nyquist 与稳定裕度，说明判据条件及符号约定。",
+          "prerequisites": "7.1；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、Laplace/Z 变换、收敛域（region of convergence，ROC）的必要直觉、极点零点（zero）、复平面曲线、相位（phase）变化与绕数的几何解释。",
           "knowledge": [
             "从闭环特征方程到根轨迹",
             "幅相与裕度",
@@ -2945,7 +3560,7 @@
           "id": "7.3",
           "title": "能控性与状态反馈",
           "url": "/chapters/07-03-能控性与状态反馈/",
-          "goals": "解释输入（input）位置决定的可达方向，在能控条件下设计状态（state）反馈（feedback）并检验闭环极点。",
+          "goals": "解释输入（input）位置决定的可达方向，在能控条件下设计状态（state）反馈（feedback）并检验闭环极点（pole）。",
           "prerequisites": "7.2、3.2；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵幂和矩阵指数（matrix exponential）。",
           "knowledge": [
             "输入经动态传播到其他状态",
@@ -2962,7 +3577,7 @@
           "title": "能观性与状态观测器",
           "url": "/chapters/07-04-能观性与状态观测器/",
           "goals": "判断已知模型（model）下哪些状态（state）可以从输出（output）恢复，推导观测（observation）器误差动态并分析收敛条件。",
-          "prerequisites": "7.3、6.5；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样入门。",
+          "prerequisites": "7.3、6.5；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（sampling）入门。",
           "knowledge": [
             "状态估计与参数（parameter）辨识的任务边界",
             "能观矩阵及传感器位置",
@@ -3001,7 +3616,7 @@
           "title": "从目标函数进入优化",
           "url": "/chapters/08-01-从目标函数进入优化/",
           "goals": "定义目标、约束和决策变量，理解梯度（gradient）、Hessian、二次型、凸性与正则化，说明最优性结论的条件。",
-          "prerequisites": "3.4、6.4、7.3；数学：偏导（partial derivative）、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样入门、目标函数、梯度、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化。",
+          "prerequisites": "3.4、6.4、7.3；数学：偏导（partial derivative）、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（sampling）入门、目标函数、梯度、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化。",
           "knowledge": [
             "跟踪误差与输入（input）代价的尺度",
             "梯度、曲率与凸优化直觉",
@@ -3049,10 +3664,10 @@
           "title": "估计、控制与模型误差的综合比较",
           "url": "/chapters/08-04-估计、控制与模型误差的综合比较/",
           "goals": "构造公平基线，区分调参条件和独立评估条件，综合解释性能、约束与计算代价。",
-          "prerequisites": "8.3、6.5；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化。",
+          "prerequisites": "8.3、6.5；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（sampling）入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化。",
           "knowledge": [
             "固定任务、信息和执行接口",
-            "验证集调参、独立场景评估",
+            "验证集（validation set）调参、独立场景评估",
             "成本、约束、稳健性和运行预算的联合报告"
           ],
           "focus": "计划以不少于 30 组独立随机场景估计波动，实施时按不确定性和预算调整并记录；方法间共享场景不等于场景之间重复使用同一序列。",
@@ -3262,7 +3877,7 @@
           "title": "扰动、恢复与早期预警",
           "url": "/chapters/11-03-扰动、恢复与早期预警/",
           "goals": "测量局部恢复率，区分恢复速度与吸引域（basin of attraction）大小，并评价方差（variance）、自相关等指标的条件和失败。",
-          "prerequisites": "11.2、4.5、6.5；数学：Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数（derivative）和局部适用区域、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样入门、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "prerequisites": "11.2、4.5、6.5；数学：Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数（derivative）和局部适用区域、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（sampling）入门、序参量、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
             "小扰动响应、线性化（linearization）与恢复时间",
             "有限扰动和吸引域",
@@ -3278,7 +3893,7 @@
           "title": "多尺度、粗粒化与不确定性",
           "url": "/chapters/11-04-多尺度、粗粒化与不确定性/",
           "goals": "区分参数（parameter）、随机、观测（observation）和结构误差，比较个体、网络与平均模型（model）的结论是否一致。",
-          "prerequisites": "11.3、10.5；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样入门、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "prerequisites": "11.3、10.5；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（sampling）入门、序参量、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
             "选择时间、空间与个体层级",
             "参数敏感性与观测聚合",
@@ -3333,7 +3948,7 @@
           "title": "Koopman 与稀疏动力学辨识",
           "url": "/chapters/12-03-Koopman 与稀疏动力学辨识/",
           "goals": "解释函数观测（observation）与有限字典投影（projection），实现小型 EDMD 和稀疏方程辨识，评估字典与噪声的作用。",
-          "prerequisites": "12.2、6.5；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化、函数观测、线性算子、有限字典与投影。",
+          "prerequisites": "12.2、6.5；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（sampling）入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化、函数观测、线性算子、有限字典与投影。",
           "knowledge": [
             "状态（state）、观测函数与算子，不默认泛函分析",
             "有限字典 EDMD 及数据矩阵",
@@ -3381,7 +3996,7 @@
           "title": "完整研究复现与综合项目",
           "url": "/chapters/12-06-完整研究复现与综合项目/",
           "goals": "把论文主张缩成一个可验证问题，形成从证据来源到实验、比较、失败与限制的完整记录。",
-          "prerequisites": "12.5；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "prerequisites": "12.5；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（sampling）入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化、序参量、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
             "选择原始论文、具体版本与待复现结论",
             "建立最小基线、固定数据与评估协议",

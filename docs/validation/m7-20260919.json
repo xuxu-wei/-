@@ -1,0 +1,947 @@
+{
+  "date": "2026-09-19",
+  "stage": "M7",
+  "status": "passed",
+  "scope": {
+    "part": 6,
+    "chapters": [
+      "6.1",
+      "6.2",
+      "6.3",
+      "6.4",
+      "6.5"
+    ],
+    "notebooks": 14,
+    "ordinary_lessons": 13,
+    "questions": 69,
+    "ordinary_questions": 61,
+    "capstone_questions": 8,
+    "choice": 51,
+    "python": 18,
+    "exploration_pages": 3,
+    "new_environment_dependencies": []
+  },
+  "notebook_execution": {
+    "python": "3.13.2",
+    "platform": "Windows",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "nbclient": "0.11.0",
+      "nbformat": "5.11.1",
+      "nbconvert": "7.17.1",
+      "ipykernel": "7.3.0"
+    },
+    "notebooks": [
+      {
+        "id": "P06-C01-S01",
+        "path": "notebooks/06-从测量走向模型/01-观测、采样与滤波/01-采样间隔与混叠.ipynb",
+        "seconds": 6.83,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "execution_file_sha256": "db2f5f3fb4ece449015acfb2ca28d7b930c4e652371e75d041708c5f67ae81ef",
+        "final_file_sha256": "33a2caf181e43b3a76691c86e2cf66184e7e8effd79e864156f328e12ce532ef",
+        "git_file_sha256": "f59f66c3bd6a831675070768867f47d8aa1726025aca9ea5e660b4b84c21af6f"
+      },
+      {
+        "id": "P06-C01-S02",
+        "path": "notebooks/06-从测量走向模型/01-观测、采样与滤波/02-因果滤波与时间延迟.ipynb",
+        "seconds": 4.48,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "execution_file_sha256": "b1c5871ad6c74bf99667baf842fcab339014d377797ee8b1094e9f2550212892",
+        "final_file_sha256": "7eb47a0b613fe401ae505b1993962817272ebe28421c7904171e57681aedf84c",
+        "git_file_sha256": "23b9fcb3fd164aeaacbf4c241ef75d988991c690254dc91f80aef64307387f21"
+      },
+      {
+        "id": "P06-C02-S01",
+        "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/01-从脉冲响应到线性卷积.ipynb",
+        "seconds": 4.13,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "execution_file_sha256": "f054ed6d49630b1704e59774737d5d1ac034afc7b4e0af8d5eaf7616fffa3cbb",
+        "final_file_sha256": "d1df0c93ab3c91e3c7d05d7ad4741aa1fe2ab160ce88155d67bf8c34ecb0b760",
+        "git_file_sha256": "9d49eb70351d5eca3313d52d08d7fd1ce43b4b5ee19300988470d0a3de8ae621"
+      },
+      {
+        "id": "P06-C02-S02",
+        "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/02-复指数与离散频谱.ipynb",
+        "seconds": 4.72,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "execution_file_sha256": "f333e8b04c5d6321f4c16e823793a0349819e9872afd11450aeee9ff5d0e8a1d",
+        "final_file_sha256": "35122b90d752d8e0eb909f2bfc78c5350ab36f58a7e94e43650420619cd55927",
+        "git_file_sha256": "d7ad0831caf05587a2e154621ab00aa9cb9b6f9898f825b958c2ba365c858ac2"
+      },
+      {
+        "id": "P06-C02-S03",
+        "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/03-有限记录与滤波频率响应.ipynb",
+        "seconds": 5.58,
+        "code_cells": 5,
+        "figures": 2,
+        "passed": true,
+        "execution_file_sha256": "7aa718347d0d9461ff581d8b885371ca03072537a7885b2e185d6971ecc07bb7",
+        "final_file_sha256": "59c3c82b14ddb5ce44c3a403313db21f4e9c096f1a04bd1e5484071d834b1d8e",
+        "git_file_sha256": "471f19c9d96ec32e35d89dbea83011c28b692a3e37ac70820242149e48bce07d"
+      },
+      {
+        "id": "P06-C03-S01",
+        "path": "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/01-LTI假设与Laplace表示.ipynb",
+        "seconds": 4.13,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "execution_file_sha256": "42318288a1cf3ecd7b584a703685e6a98d831b8b11cfc8a3460a5f69643310d9",
+        "final_file_sha256": "6a00b2f913e60c89c732f497c42c4dd6a1556c7f5ea56db0382c3bbbde5f669a",
+        "git_file_sha256": "1dd3f3dadafb6b01a15af9b38f01c1d209ac370f14ec2af10e5447437310f4d9"
+      },
+      {
+        "id": "P06-C03-S02",
+        "path": "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/02-Z变换与精确采样.ipynb",
+        "seconds": 4.21,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "execution_file_sha256": "3d4e251bcdf82c94065490c02b6fbc6acb1d170fbbf8b84be7cbbeb5ad887fb8",
+        "final_file_sha256": "a81c58815b67bb8daf5a41e41a326a3915e52a5b753532d4abc06b469dcddf65",
+        "git_file_sha256": "79502b452b3b957c23e30affcb86b927475e4bdea792da99349718311ede5b56"
+      },
+      {
+        "id": "P06-C04-S01",
+        "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/01-最小二乘与误差假设.ipynb",
+        "seconds": 4.13,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "execution_file_sha256": "8136196d29adad1ec0363fcc3e095e847efed60a79b6696ab421b9cceb4ac05c",
+        "final_file_sha256": "24ecbe5b03dd448e8f47cc14a2c4a3854d915b5c5948a5c67afef18ccb3ef30f",
+        "git_file_sha256": "f8dafee5aa188173c563d564eb0d9d550505ae4afdac23063be6bba2c2598946"
+      },
+      {
+        "id": "P06-C04-S02",
+        "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/02-清除曲线的网格估计.ipynb",
+        "seconds": 4.33,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "execution_file_sha256": "c219d932dcdc5b0570dd341b06698fd9702ddaba0a3dd8e26fb360bc4b927736",
+        "final_file_sha256": "f9c4a1aefe179d9c8021823d6915f843fd2590dce61d9b2f319e4918df690510",
+        "git_file_sha256": "6fe6b98b7d6eab70bb84e2a92d956d03606a4165dc81a1bf806d5bcfdd404b00"
+      },
+      {
+        "id": "P06-C04-S03",
+        "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/03-参数区间与重复观测.ipynb",
+        "seconds": 4.45,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "execution_file_sha256": "546850afc49ed81f2e24df216f86aa5a27cf5a296b1109df69ac0c4a6e389f4e",
+        "final_file_sha256": "7beb300d7d6b4212c2c153d5279e93000f88f4e859336ccebeda9a1d790ba926",
+        "git_file_sha256": "bb841980a2fbdcfd6090dc01a9c7d52394fec84c51f69dae73d301d80fda11d8"
+      },
+      {
+        "id": "P06-C05-S01",
+        "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/01-ARX回归与两种预测.ipynb",
+        "seconds": 4.93,
+        "code_cells": 6,
+        "figures": 2,
+        "passed": true,
+        "execution_file_sha256": "8134bc578513c4970badfb09f7633987b964509610471d55e0ad3bf98496dbac",
+        "final_file_sha256": "1ec9018ae7c7828c65e458bf83202eed3ad36ebe202f3fbbded87bcbfdabfc53",
+        "git_file_sha256": "e62faa9c7fec082ddb0c1cbc2511facccbf6dca153f067a6353decf5f3ff09c2"
+      },
+      {
+        "id": "P06-C05-S02",
+        "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/02-激励与可辨识范围.ipynb",
+        "seconds": 4.29,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "execution_file_sha256": "1205b309070f74c2c7cdb9ee3e405dc0ec0f52aaefcd54ed56e1d436d21c45ad",
+        "final_file_sha256": "c128943a4fba93c8a274875c0c20c8cdf9b2bf63768cd2935abb9c8f72d13b6b",
+        "git_file_sha256": "d78623a506d51395f22825c3a4d945aedf6f1fa8024b51eede001b7efd23f8ad"
+      },
+      {
+        "id": "P06-C05-S03",
+        "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/03-数据划分与独立验证.ipynb",
+        "seconds": 4.57,
+        "code_cells": 6,
+        "figures": 1,
+        "passed": true,
+        "execution_file_sha256": "403005276b313c89e5843522ca4bd2b8ca5b801645fad406264dc7e0b3f6c33c",
+        "final_file_sha256": "026953be6ba2b7b8918ca2464cea1944e8345fc03eef91d5cbbe8cef5a95d1e0",
+        "git_file_sha256": "cb869a80b179d0c4e77cdc6b3349491484c69cdfefdce0fbfb477b15ec6f154f"
+      },
+      {
+        "id": "P06-SUMMARY",
+        "path": "notebooks/06-从测量走向模型/06-篇末综合/01-测量辨识与验证的综合实验.ipynb",
+        "seconds": 4.61,
+        "code_cells": 5,
+        "figures": 1,
+        "passed": true,
+        "execution_file_sha256": "a757e7c98436248be79bcb2684448f164ee87d2c19fa4c00f1f454906e09acbc",
+        "final_file_sha256": "3fb5e0463d83f81914c3d7c9f2b7c761d0b344953db5b9a1bb12b88cd5850d93",
+        "git_file_sha256": "8f55155779ee75024b7c52600171f0646291435ad8d8d0c38b55354e8486796b"
+      }
+    ]
+  },
+  "execution_notes": [
+    "14 本从全新内核运行，72 个代码单元、16 幅图；没有执行错误或图形警告。",
+    "执行后只进行了术语文案修订和统一练习 URL 编码，代码、执行计数和输出保持不变；同时记录执行文件和最终文件哈希，未把文案修订称为重新执行。",
+    "Jupyter 内核在本机回环地址运行；启动日志包含运行时 TCP 明文提示，与教材执行结果分开记录。",
+    "Windows工作区和Git索引换行可能不同；final_file_sha256记录工作区字节，git_file_sha256记录Git规范化字节，已核对解析后的Notebook完全一致。"
+  ],
+  "scientific_review": {
+    "mathematical_review": [
+      "6.1 sampling alias identities, Nyquist boundary counterexample, integration step distinct from sampling interval, causal filter startup and full-window delay.",
+      "6.2 full convolution and output indexing; real-spectrum DC/Nyquist scaling; leakage/zero-padding limits; Hann amplitude normalization excludes all-zero N=2 window.",
+      "6.3 zero-state linear mapping versus fixed-initial affine mapping; unilateral Laplace initial term and ROC; X(s) U*T, U(s) U, H(s) T; saturated Vmax and K units; unilateral Z indexing and ZOH k=0 limit; Euler positivity and stability.",
+      "6.4 full-column-rank OLS projection, fixed-design Gaussian assumptions; finite-grid versus continuous optimum; zero initial amount nonidentifiability; relative versus inverse-variance loss units; known-sigma confidence versus future prediction; n-2 residual degrees of freedom; iid random-pair bootstrap and finite Monte Carlo precision.",
+      "6.5 conditional-mean-zero innovation and errors-in-variables covariance; 200 independent stationary experiments; full singular-value rank/condition calculation; excitation and known physical gain units; chronological split and training-only transforms; common validation rows and single frozen test; missing timestamps preserved.",
+      "Capstone inverse-variance loss dimensionless, exact ZOH/manual indices and prediction targets; observation blue, one-step prediction pink, free-run green."
+    ],
+    "blocking_findings": [],
+    "questions": "51 个选择题及18个计算契约逐题审读，18公开样例与74补充用例实例独立数值核对。",
+    "corrected_conditions": [
+      "未知正方差的有限联合最大似然解要求最小SSE>0。",
+      "已知非零输入可由稳态识别单一清除参数；未知输入或未知增益不能混同。",
+      "条件数使用全部列方向的最小奇异值，秩亏记无穷大；增益g保留U/(V·T)单位。",
+      "允许零初态、相同观测时刻等无信息退化，返回候选数不代表可辨识。",
+      "前缀重归一与固定FIR区分；DFT奇偶点幅值、零增益相位与Hann退化明示。"
+    ],
+    "sources": [
+      "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/pages/lecture-notes/",
+      "https://ocw.mit.edu/courses/6-435-system-identification-spring-2005/pages/lecture-notes/",
+      "https://sysidentpy.org/book/9-Validation/",
+      "https://scikit-learn.org/stable/modules/cross_validation.html"
+    ]
+  },
+  "visual_review": {
+    "figures": [
+      {
+        "path": ".work/m7/figures/P06-C01-S01-1.png",
+        "sha256": "c0b8ec48bf5f081d2e2813e45f830977be6bd6f2699e5b78cf5af12835393597",
+        "viewed_individually": true,
+        "finding": "Readable axes, units and legends; no clipping or missing glyphs. Series meaning matches experiment prose."
+      },
+      {
+        "path": ".work/m7/figures/P06-C01-S02-1.png",
+        "sha256": "4ef6ea484e48031e7ed7e3fff6ff0169e61b20df709099328b7eca6db4ebe1d5",
+        "viewed_individually": true,
+        "finding": "Readable axes, units and legends; no clipping or missing glyphs. Series meaning matches experiment prose."
+      },
+      {
+        "path": ".work/m7/figures/P06-C02-S01-1.png",
+        "sha256": "f186783c84a4acd07647c68a7f341b246f912ac1f6c9dc942df2e81ec3b5ce78",
+        "viewed_individually": true,
+        "finding": "Readable axes, units and legends; no clipping or missing glyphs. Series meaning matches experiment prose."
+      },
+      {
+        "path": ".work/m7/figures/P06-C02-S02-1.png",
+        "sha256": "84bee98096e92433498fe88b3c449421c0ee850569685159b424bf4a93cf73fe",
+        "viewed_individually": true,
+        "finding": "Readable axes, units and legends; no clipping or missing glyphs. Series meaning matches experiment prose."
+      },
+      {
+        "path": ".work/m7/figures/P06-C02-S03-1.png",
+        "sha256": "171796c31188379ce7b6855fed2644edd8a411a3dbd2369de070b0a8afa71531",
+        "viewed_individually": true,
+        "finding": "Readable axes, units and legends; no clipping or missing glyphs. Series meaning matches experiment prose."
+      },
+      {
+        "path": ".work/m7/figures/P06-C02-S03-2.png",
+        "sha256": "9e560b79b9feff23e341ca44f37c60fcee9680fccfa839552b6dd429688a0fe6",
+        "viewed_individually": true,
+        "finding": "Readable axes, units and legends; no clipping or missing glyphs. Series meaning matches experiment prose."
+      },
+      {
+        "path": ".work/m7/figures/P06-C03-S01-1.png",
+        "sha256": "6bd8e120685363c26cf99ef4c08969865c32f8ec13a685ae404d1c45e2711a9c",
+        "viewed_individually": true,
+        "finding": "Readable axes, units and legends; no clipping or missing glyphs. Series meaning matches experiment prose."
+      },
+      {
+        "path": ".work/m7/figures/P06-C03-S02-1.png",
+        "sha256": "e45b0ef305d8ad54cc983f8aa6db55940e831648d575865b221543ef448f8dd1",
+        "viewed_individually": true,
+        "finding": "Readable axes, units and legends; no clipping or missing glyphs. Series meaning matches experiment prose."
+      },
+      {
+        "path": ".work/m7/figures/P06-C04-S01-1.png",
+        "sha256": "c365fb5250b3f8bccd22aad71453fca78321d6c093f25d9d95fe33f5c4ffe0e9",
+        "viewed_individually": true,
+        "finding": "Readable axes, units and legends; no clipping or missing glyphs. Series meaning matches experiment prose."
+      },
+      {
+        "path": ".work/m7/figures/P06-C04-S02-1.png",
+        "sha256": "c0639766edf789acbf09cb3838f591812ed5e2c85fca40c6cc26868c539fc52e",
+        "viewed_individually": true,
+        "finding": "Readable axes, units and legends; no clipping or missing glyphs. Series meaning matches experiment prose."
+      },
+      {
+        "path": ".work/m7/figures/P06-C04-S03-1.png",
+        "sha256": "ba20d07bd7ff9cc7cf0e6850cc0ececb281b6ca0b347c4cfadce4cb7d9a084be",
+        "viewed_individually": true,
+        "finding": "Readable axes, units and legends; no clipping or missing glyphs. Series meaning matches experiment prose."
+      },
+      {
+        "path": ".work/m7/figures/P06-C05-S01-1.png",
+        "sha256": "bf114fdce05c2a90637c50e2f1e0339ebe6c8fa39340082a36ad1edd5aa23b04",
+        "viewed_individually": true,
+        "finding": "Readable axes, units and legends; no clipping or missing glyphs. Series meaning matches experiment prose."
+      },
+      {
+        "path": ".work/m7/figures/P06-C05-S01-2.png",
+        "sha256": "646cd44572ae95900cadb36d3aa5cbbf4b8520434fd757653d2d9aab8ec0f58b",
+        "viewed_individually": true,
+        "finding": "Readable axes, units and legends; no clipping or missing glyphs. Series meaning matches experiment prose."
+      },
+      {
+        "path": ".work/m7/figures/P06-C05-S02-1.png",
+        "sha256": "f83ed0e989e1bc1d4bd811a89bf82e22115408835bff7bf9c96a1d14a71cbe39",
+        "viewed_individually": true,
+        "finding": "Readable axes, units and legends; no clipping or missing glyphs. Series meaning matches experiment prose."
+      },
+      {
+        "path": ".work/m7/figures/P06-C05-S03-1.png",
+        "sha256": "3b6f9749aeb773cf75a2d3b72c66df4d0e24d4d0fac4f760da2daf99d8496b51",
+        "viewed_individually": true,
+        "finding": "Readable axes, units and legends; no clipping or missing glyphs. Series meaning matches experiment prose."
+      },
+      {
+        "path": ".work/m7/figures/P06-SUMMARY-1.png",
+        "sha256": "180350aaeb0d86c8aec8fa183cce03fd0e58a728f597cb19608c9d0d88bfff96",
+        "viewed_individually": true,
+        "finding": "Readable axes, units and legends; no clipping or missing glyphs. Series meaning matches experiment prose."
+      }
+    ],
+    "scope": "16 幅最终图逐张检查坐标、单位、图例、显示范围与颜色；6.1.1 原节律蓝、低频候选灰、读数玫红与网页一致。"
+  },
+  "random_experiments": {
+    "6.4.3": {
+      "root_seed": 6403,
+      "fixed_design_experiments": 200,
+      "observations_per_experiment": 9,
+      "random_design_individuals": 40,
+      "pairs_bootstrap_replicates": 300,
+      "reported": "已知σ覆盖、Monte Carlo标准误、成对重采样区间与秩亏次数，明确不同设计和重复对象。"
+    },
+    "6.5.1": {
+      "root_seed": 6501,
+      "independent_repeats": 200,
+      "reported": "测量误差导致的总体衰减参照0.4、无误差参照0.8；均值及Monte Carlo标准误。单轨迹预测只作信息条件示例。"
+    },
+    "6.5.3": "无随机的饱和机制示例；固定候选与时间边界，训练43行/共同验证23行选延迟0，锁定后最终24行RMSE约0.175431，23行输入超出训练范围。"
+  },
+  "web_model_comparison": {
+    "cases": 96,
+    "compared_values": 37686,
+    "maximum_absolute_difference": 1.4210854715202004e-14,
+    "tolerance": "atol=rtol=1e-12; nonzero phase modulo 2π",
+    "phase_comparisons": 21,
+    "notebook_sources": [
+      "notebooks/06-从测量走向模型/01-观测、采样与滤波/01-采样间隔与混叠.ipynb",
+      "notebooks/06-从测量走向模型/01-观测、采样与滤波/02-因果滤波与时间延迟.ipynb",
+      "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/01-从脉冲响应到线性卷积.ipynb",
+      "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/02-复指数与离散频谱.ipynb",
+      "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/03-有限记录与滤波频率响应.ipynb",
+      "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/01-LTI假设与Laplace表示.ipynb",
+      "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/02-Z变换与精确采样.ipynb"
+    ],
+    "contracts": [
+      "6.1 前缀按已有样本数归一；6.2/网页 FIR 零延拓并固定除 W，数值不同且已分别核对。",
+      "零响应：Notebook 习题以相位 0 作返回约定；网页用 null 显示未定义，不比较该处物理相位。",
+      "采样时刻独立于绘图网格；连续参照不是数值 ODE 求解。",
+      "精确 ZOH 与 Euler 分别核对；包含 k=0、小 k、负 Euler、大间隔及非整段末端。"
+    ],
+    "scope": "核对 JavaScript 与实际交付 Notebook 的相同模型；独立数学参照和实际判题见 test_part06。"
+  },
+  "automated_checks": {
+    "full_python_suite": {
+      "passed": 395,
+      "seconds": 130.21,
+      "when": "统一链接编码修复前，已包含M7的38项检查"
+    },
+    "after_link_fix": {
+      "focused_python_passed": 150,
+      "seconds": 20.41,
+      "scope": "新增5项真实Markdown渲染回归、教学样例及M7全38项；其他未受影响测试沿用完整运行"
+    },
+    "distinct_python_tests_passed": 400,
+    "javascript_tests_passed": 41,
+    "teaching": {
+      "notebooks": 70,
+      "questions": 335,
+      "question_links": 335,
+      "issues": []
+    },
+    "rendered_links": {
+      "notebooks": 70,
+      "question_links": 335,
+      "entries": [
+        {
+          "id": "P01-C01-S01",
+          "links": 4,
+          "path": "notebooks/01-看见系统/01-从生理现象提出系统问题/01-边界状态与观测.ipynb"
+        },
+        {
+          "id": "P01-C01-S02",
+          "links": 4,
+          "path": "notebooks/01-看见系统/01-从生理现象提出系统问题/02-单位量纲与时间序列.ipynb"
+        },
+        {
+          "id": "P01-C02-S01",
+          "links": 4,
+          "path": "notebooks/01-看见系统/02-存量流量与守恒/01-一段时间的物质收支.ipynb"
+        },
+        {
+          "id": "P01-C02-S02",
+          "links": 4,
+          "path": "notebooks/01-看见系统/02-存量流量与守恒/02-内部交换与整体守恒.ipynb"
+        },
+        {
+          "id": "P01-C03-S01",
+          "links": 4,
+          "path": "notebooks/01-看见系统/03-反馈延迟与层级/01-作用方向与反馈回路.ipynb"
+        },
+        {
+          "id": "P01-C03-S02",
+          "links": 5,
+          "path": "notebooks/01-看见系统/03-反馈延迟与层级/02-延迟怎样改变调节.ipynb"
+        },
+        {
+          "id": "P01-C04-S01",
+          "links": 4,
+          "path": "notebooks/01-看见系统/04-模型假设与计算实验/01-规则参数与初值.ipynb"
+        },
+        {
+          "id": "P01-C04-S02",
+          "links": 4,
+          "path": "notebooks/01-看见系统/04-模型假设与计算实验/02-设计可以区分解释的实验.ipynb"
+        },
+        {
+          "id": "P01-SUMMARY",
+          "links": 8,
+          "path": "notebooks/01-看见系统/05-篇末综合/01-系统边界与实验设计.ipynb"
+        },
+        {
+          "id": "P02-C01-S01",
+          "links": 4,
+          "path": "notebooks/02-系统随时间演化/01-用递推描述增长与清除/01-从逐步变化到递推规则.ipynb"
+        },
+        {
+          "id": "P02-C01-S02",
+          "links": 4,
+          "path": "notebooks/02-系统随时间演化/01-用递推描述增长与清除/02-让时间进入收支更新.ipynb"
+        },
+        {
+          "id": "P02-C02-S01",
+          "links": 4,
+          "path": "notebooks/02-系统随时间演化/02-变化率与累积微积分入口/01-从平均变化到导数.ipynb"
+        },
+        {
+          "id": "P02-C02-S02",
+          "links": 4,
+          "path": "notebooks/02-系统随时间演化/02-变化率与累积微积分入口/02-从矩形累积到定积分.ipynb"
+        },
+        {
+          "id": "P02-C02-S03",
+          "links": 4,
+          "path": "notebooks/02-系统随时间演化/02-变化率与累积微积分入口/03-指数对数与链式法则.ipynb"
+        },
+        {
+          "id": "P02-C03-S01",
+          "links": 4,
+          "path": "notebooks/02-系统随时间演化/03-连续时间与一阶微分方程/01-从收支率到一阶初值问题.ipynb"
+        },
+        {
+          "id": "P02-C03-S02",
+          "links": 4,
+          "path": "notebooks/02-系统随时间演化/03-连续时间与一阶微分方程/02-平衡位置与靠近速度.ipynb"
+        },
+        {
+          "id": "P02-C04-S01",
+          "links": 5,
+          "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/01-误差与网格细化.ipynb"
+        },
+        {
+          "id": "P02-C04-S02",
+          "links": 5,
+          "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/02-稳定性与非负性不是一回事.ipynb"
+        },
+        {
+          "id": "P02-C04-S03",
+          "links": 5,
+          "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/03-在输入跳变处分段计算.ipynb"
+        },
+        {
+          "id": "P02-SUMMARY",
+          "links": 8,
+          "path": "notebooks/02-系统随时间演化/05-篇末综合/01-等总量输入的不同过程.ipynb"
+        },
+        {
+          "id": "P03-C01-S01",
+          "links": 4,
+          "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/01-两室交换与矩阵收支.ipynb"
+        },
+        {
+          "id": "P03-C01-S02",
+          "links": 4,
+          "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/02-内积范数与投影.ipynb"
+        },
+        {
+          "id": "P03-C01-S03",
+          "links": 5,
+          "path": "notebooks/03-多变量相互作用/01-从多个室进入线性代数/03-平衡方程秩与唯一性.ipynb"
+        },
+        {
+          "id": "P03-C02-S01",
+          "links": 4,
+          "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/01-状态输入与观测映射.ipynb"
+        },
+        {
+          "id": "P03-C02-S02",
+          "links": 5,
+          "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/02-特征值模态与矩阵传播.ipynb"
+        },
+        {
+          "id": "P03-C02-S03",
+          "links": 5,
+          "path": "notebooks/03-多变量相互作用/02-线性状态空间与动态模态/03-复数模态与阻尼旋转.ipynb"
+        },
+        {
+          "id": "P03-C03-S01",
+          "links": 4,
+          "path": "notebooks/03-多变量相互作用/03-耦合、相平面与平衡/01-向量场相轨迹与时间.ipynb"
+        },
+        {
+          "id": "P03-C03-S02",
+          "links": 4,
+          "path": "notebooks/03-多变量相互作用/03-耦合、相平面与平衡/02-通道改变与平衡集合.ipynb"
+        },
+        {
+          "id": "P03-C04-S01",
+          "links": 5,
+          "path": "notebooks/03-多变量相互作用/04-多变量变化与局部线性化/01-偏导梯度与局部变化.ipynb"
+        },
+        {
+          "id": "P03-C04-S02",
+          "links": 5,
+          "path": "notebooks/03-多变量相互作用/04-多变量变化与局部线性化/02-线性化能够走多远.ipynb"
+        },
+        {
+          "id": "P03-SUMMARY",
+          "links": 8,
+          "path": "notebooks/03-多变量相互作用/05-篇末综合/01-二室交换与局部近似综合实验.ipynb"
+        },
+        {
+          "id": "P04-C01-S01",
+          "links": 4,
+          "path": "notebooks/04-非线性动态行为/01-多稳态与吸引域/01-从三个平衡进入多稳态.ipynb"
+        },
+        {
+          "id": "P04-C01-S02",
+          "links": 5,
+          "path": "notebooks/04-非线性动态行为/01-多稳态与吸引域/02-吸引域扰动与有限时间扫描.ipynb"
+        },
+        {
+          "id": "P04-C02-S01",
+          "links": 5,
+          "path": "notebooks/04-非线性动态行为/02-自维持振荡与极限环/01-阻尼受迫与自维持振荡.ipynb"
+        },
+        {
+          "id": "P04-C02-S02",
+          "links": 4,
+          "path": "notebooks/04-非线性动态行为/02-自维持振荡与极限环/02-周期振幅与相位的测量.ipynb"
+        },
+        {
+          "id": "P04-C03-S01",
+          "links": 5,
+          "path": "notebooks/04-非线性动态行为/03-分岔与参数变化/01-平衡分支折叠与滞后.ipynb"
+        },
+        {
+          "id": "P04-C03-S02",
+          "links": 5,
+          "path": "notebooks/04-非线性动态行为/03-分岔与参数变化/02-从平衡到周期的Hopf转变.ipynb"
+        },
+        {
+          "id": "P04-C04-S01",
+          "links": 4,
+          "path": "notebooks/04-非线性动态行为/04-混沌与可预测范围/01-离散映射的不动点与周期.ipynb"
+        },
+        {
+          "id": "P04-C04-S02",
+          "links": 5,
+          "path": "notebooks/04-非线性动态行为/04-混沌与可预测范围/02-邻近轨迹与预测期限.ipynb"
+        },
+        {
+          "id": "P04-C04-S03",
+          "links": 5,
+          "path": "notebooks/04-非线性动态行为/04-混沌与可预测范围/03-有限时间增长率与算术精度.ipynb"
+        },
+        {
+          "id": "P04-C05-S01",
+          "links": 5,
+          "path": "notebooks/04-非线性动态行为/05-用 Lyapunov 函数分析稳定性/01-候选函数与局部稳定性证明.ipynb"
+        },
+        {
+          "id": "P04-C05-S02",
+          "links": 4,
+          "path": "notebooks/04-非线性动态行为/05-用 Lyapunov 函数分析稳定性/02-非严格衰减与不能省略的条件.ipynb"
+        },
+        {
+          "id": "P04-SUMMARY",
+          "links": 8,
+          "path": "notebooks/04-非线性动态行为/06-篇末综合/01-非线性行为与证据边界.ipynb"
+        },
+        {
+          "id": "P05-C01-S01",
+          "links": 4,
+          "path": "notebooks/05-随机性与信息/01-从重复实验建立概率/01-事件分布与一次实现.ipynb"
+        },
+        {
+          "id": "P05-C01-S02",
+          "links": 4,
+          "path": "notebooks/05-随机性与信息/01-从重复实验建立概率/02-把抽样变成可比较的重复实验.ipynb"
+        },
+        {
+          "id": "P05-C02-S01",
+          "links": 4,
+          "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/01-用期望与方差描述随机量.ipynb"
+        },
+        {
+          "id": "P05-C02-S02",
+          "links": 5,
+          "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/02-联合变化与协方差.ipynb"
+        },
+        {
+          "id": "P05-C02-S03",
+          "links": 5,
+          "path": "notebooks/05-随机性与信息/02-期望、方差、协方差与噪声/03-过程测量与个体差异.ipynb"
+        },
+        {
+          "id": "P05-C03-S01",
+          "links": 4,
+          "path": "notebooks/05-随机性与信息/03-条件概率与贝叶斯更新/01-由条件概率推导贝叶斯更新.ipynb"
+        },
+        {
+          "id": "P05-C03-S02",
+          "links": 5,
+          "path": "notebooks/05-随机性与信息/03-条件概率与贝叶斯更新/02-固定未知量的高斯更新.ipynb"
+        },
+        {
+          "id": "P05-C04-S01",
+          "links": 5,
+          "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/01-状态路径与概率分布的两种推进.ipynb"
+        },
+        {
+          "id": "P05-C04-S02",
+          "links": 4,
+          "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/02-不变分布与长期收敛的条件.ipynb"
+        },
+        {
+          "id": "P05-C04-S03",
+          "links": 4,
+          "path": "notebooks/05-随机性与信息/04-随机过程与马尔可夫模型/03-随机游走中的漂移与扩散.ipynb"
+        },
+        {
+          "id": "P05-C05-S01",
+          "links": 5,
+          "path": "notebooks/05-随机性与信息/05-熵、互信息与测量价值/01-熵与互信息的离散定义.ipynb"
+        },
+        {
+          "id": "P05-C05-S02",
+          "links": 5,
+          "path": "notebooks/05-随机性与信息/05-熵、互信息与测量价值/02-有限样本分箱与信息偏差.ipynb"
+        },
+        {
+          "id": "P05-SUMMARY",
+          "links": 8,
+          "path": "notebooks/05-随机性与信息/06-篇末综合/01-噪声概率更新与信息的综合实验.ipynb"
+        },
+        {
+          "id": "P06-C01-S01",
+          "links": 4,
+          "path": "notebooks/06-从测量走向模型/01-观测、采样与滤波/01-采样间隔与混叠.ipynb"
+        },
+        {
+          "id": "P06-C01-S02",
+          "links": 4,
+          "path": "notebooks/06-从测量走向模型/01-观测、采样与滤波/02-因果滤波与时间延迟.ipynb"
+        },
+        {
+          "id": "P06-C02-S01",
+          "links": 4,
+          "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/01-从脉冲响应到线性卷积.ipynb"
+        },
+        {
+          "id": "P06-C02-S02",
+          "links": 5,
+          "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/02-复指数与离散频谱.ipynb"
+        },
+        {
+          "id": "P06-C02-S03",
+          "links": 5,
+          "path": "notebooks/06-从测量走向模型/02-卷积、频谱与频率响应/03-有限记录与滤波频率响应.ipynb"
+        },
+        {
+          "id": "P06-C03-S01",
+          "links": 5,
+          "path": "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/01-LTI假设与Laplace表示.ipynb"
+        },
+        {
+          "id": "P06-C03-S02",
+          "links": 5,
+          "path": "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/02-Z变换与精确采样.ipynb"
+        },
+        {
+          "id": "P06-C04-S01",
+          "links": 5,
+          "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/01-最小二乘与误差假设.ipynb"
+        },
+        {
+          "id": "P06-C04-S02",
+          "links": 5,
+          "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/02-清除曲线的网格估计.ipynb"
+        },
+        {
+          "id": "P06-C04-S03",
+          "links": 4,
+          "path": "notebooks/06-从测量走向模型/04-最小二乘与参数估计/03-参数区间与重复观测.ipynb"
+        },
+        {
+          "id": "P06-C05-S01",
+          "links": 5,
+          "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/01-ARX回归与两种预测.ipynb"
+        },
+        {
+          "id": "P06-C05-S02",
+          "links": 5,
+          "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/02-激励与可辨识范围.ipynb"
+        },
+        {
+          "id": "P06-C05-S03",
+          "links": 5,
+          "path": "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/03-数据划分与独立验证.ipynb"
+        },
+        {
+          "id": "P06-SUMMARY",
+          "links": 8,
+          "path": "notebooks/06-从测量走向模型/06-篇末综合/01-测量辨识与验证的综合实验.ipynb"
+        }
+      ],
+      "passed": true
+    },
+    "parameter_sweep": "网页模型1497组滑块范围检查有限；独立数学边界见Node及Python测试。",
+    "documents": {
+      "links": 375,
+      "issues": []
+    }
+  },
+  "actual_browser_checks": [
+    {
+      "page": "6.1 exploration",
+      "actions": "点击播放，读数从0.20s推进到9.00s；重播后暂停0.24s保持；采样率1↔4两次，键盘改到1.75。",
+      "result": "曲线、时间、读数同步，预设可往返。"
+    },
+    {
+      "page": "6.2 exploration",
+      "actions": "窗口5↔1两次，频率改0.2，播放到n=60，重播/暂停/滑至终点。",
+      "result": "W=5、f=0.2时增益0、相位显示未定义，启动边界单独说明。"
+    },
+    {
+      "page": "6.3 exploration",
+      "actions": "h=1↔12两次，播放/重播/暂停，k改0。",
+      "result": "默认大步长Euler10,-14,19.6,…保留；终点-53.7824，精确量约0.00006；k=0显示极点1/1和非负说明。实际PC截图及无控制台error/warn检查。"
+    },
+    {
+      "page": "rendered Notebook",
+      "actions": "从6.3.2渲染HTML点击探索及具名练习，49个MathJax容器、无merror。",
+      "result": "正式8000页面正常显示；含空格路径修复后完整进入p06-sampled-response。旧4.5渲染练习入口同步复验。"
+    },
+    {
+      "page": "default IDE",
+      "actions": "6.3探索页点击Z变换与精确采样原文件按钮。",
+      "result": "系统默认打开请求成功，路径记录见ide_open；未声称检查IDE内部渲染。"
+    },
+    {
+      "page": "6.4 practice on isolated8007",
+      "actions": "line-fit输入缺冒号代码、读取traceback；Tab缩进/Backspace；具名正确解先样例再完整；rank-deficiency先错后对。",
+      "result": "SyntaxError定位answer.py:1；示例不记完成，完整通过更新进度；反馈位于编辑器上方，错误字rgb(125,43,49)、背景rgba(179,58,74,0.08)，逐项解析可见。输入/输出分别有说明与代码。"
+    },
+    {
+      "page": "capstone on isolated8007",
+      "actions": "首题先错误再AC，读取分层与目标成绩；重启服务后复查。",
+      "result": "首次0/100，练习10/100，首轮1/8未完成；数据与重启前完全一致。"
+    },
+    {
+      "page": "PC workspace",
+      "actions": "实际1265px内容宽与1440×900视口，隐藏/展开目录、方向键调整至300px、Enter恢复。",
+      "result": "无水平溢出；目录隐藏后主区从约1127px扩到1425px，代码区Monokai/自动换行可见。"
+    }
+  ],
+  "ide_open": [
+    "E:\\remote-claude-code\\动手学系统科学\\notebooks\\06-从测量走向模型\\03-LTI系统、Laplace与Z变换\\02-Z变换与精确采样.ipynb"
+  ],
+  "maintenance": {
+    "existing_notebook_markdown_only": [
+      "P01-C01-S01",
+      "P01-C01-S02",
+      "P01-C02-S01",
+      "P01-C02-S02",
+      "P01-C03-S01",
+      "P01-C03-S02",
+      "P01-C04-S01",
+      "P01-C04-S02",
+      "P01-SUMMARY",
+      "P02-C01-S01",
+      "P02-C01-S02",
+      "P02-C02-S01",
+      "P02-C02-S02",
+      "P02-C02-S03",
+      "P02-C03-S01",
+      "P02-C03-S02",
+      "P02-C04-S01",
+      "P02-C04-S02",
+      "P02-C04-S03",
+      "P02-SUMMARY",
+      "P03-C01-S01",
+      "P03-C01-S02",
+      "P03-C01-S03",
+      "P03-C02-S01",
+      "P03-C02-S02",
+      "P03-C02-S03",
+      "P03-C03-S01",
+      "P03-C03-S02",
+      "P03-C04-S01",
+      "P03-C04-S02",
+      "P03-SUMMARY",
+      "P04-C01-S01",
+      "P04-C01-S02",
+      "P04-C02-S01",
+      "P04-C02-S02",
+      "P04-C03-S01",
+      "P04-C03-S02",
+      "P04-C04-S01",
+      "P04-C04-S02",
+      "P04-C04-S03",
+      "P04-C05-S01",
+      "P04-C05-S02",
+      "P04-SUMMARY",
+      "P05-C01-S01",
+      "P05-C01-S02",
+      "P05-C02-S01",
+      "P05-C02-S02",
+      "P05-C02-S03",
+      "P05-C03-S01",
+      "P05-C03-S02",
+      "P05-C04-S01",
+      "P05-C04-S02",
+      "P05-C04-S03",
+      "P05-C05-S01",
+      "P05-C05-S02",
+      "P05-SUMMARY"
+    ],
+    "existing_lessons_code_outputs_unchanged": true,
+    "link_sync": {
+      "updated": [
+        "P01-C01-S01",
+        "P01-C01-S02",
+        "P01-C02-S01",
+        "P01-C02-S02",
+        "P01-C03-S01",
+        "P01-C03-S02",
+        "P01-C04-S01",
+        "P01-C04-S02",
+        "P01-SUMMARY",
+        "P02-C01-S01",
+        "P02-C01-S02",
+        "P02-C02-S01",
+        "P02-C02-S02",
+        "P02-C02-S03",
+        "P02-C03-S01",
+        "P02-C03-S02",
+        "P02-C04-S01",
+        "P02-C04-S02",
+        "P02-C04-S03",
+        "P02-SUMMARY",
+        "P03-C01-S01",
+        "P03-C01-S02",
+        "P03-C01-S03",
+        "P03-C02-S01",
+        "P03-C02-S02",
+        "P03-C02-S03",
+        "P03-C03-S01",
+        "P03-C03-S02",
+        "P03-C04-S01",
+        "P03-C04-S02",
+        "P03-SUMMARY",
+        "P04-C01-S01",
+        "P04-C01-S02",
+        "P04-C02-S01",
+        "P04-C02-S02",
+        "P04-C03-S01",
+        "P04-C03-S02",
+        "P04-C04-S01",
+        "P04-C04-S02",
+        "P04-C04-S03",
+        "P04-C05-S01",
+        "P04-C05-S02",
+        "P04-SUMMARY",
+        "P05-C01-S01",
+        "P05-C01-S02",
+        "P05-C02-S01",
+        "P05-C02-S02",
+        "P05-C02-S03",
+        "P05-C03-S01",
+        "P05-C03-S02",
+        "P05-C04-S01",
+        "P05-C04-S02",
+        "P05-C04-S03",
+        "P05-C05-S01",
+        "P05-C05-S02",
+        "P05-SUMMARY",
+        "P06-C01-S01",
+        "P06-C01-S02",
+        "P06-C02-S01",
+        "P06-C02-S02",
+        "P06-C02-S03",
+        "P06-C03-S01",
+        "P06-C03-S02",
+        "P06-C04-S01",
+        "P06-C04-S02",
+        "P06-C04-S03",
+        "P06-C05-S01",
+        "P06-C05-S02",
+        "P06-C05-S03",
+        "P06-SUMMARY"
+      ],
+      "code_and_output_unchanged": true,
+      "reason": "Markdown URLs percent encoded; fixes space paths in Part4.5 and Part6.3. Only generated exercise text replaced."
+    },
+    "personal_files_unchanged": 29,
+    "personal_records_in_commits": false,
+    "simulated_data_files_in_commits": false,
+    "agents_md_unchanged": true,
+    "scope_change": "修复实际点击暴露的通用Markdown空格路径截断；教材内容范围仍为第6篇，前56本仅更新生成练习链接。",
+    "roadmap_report_lines": {
+      "M0": 9,
+      "M1": 11,
+      "M2": 12,
+      "M3": 14,
+      "M4": 12,
+      "M5": 11,
+      "M6": 12,
+      "M7": 14
+    }
+  },
+  "limitations": [
+    "验证Windows/Python3.13与PC本机浏览器；未开展目标读者试学或独立同行评审。",
+    "未验证默认IDE内部显示；已经调用系统默认打开原文件并记录成功返回。",
+    "本机Python子进程不称安全沙箱；没有新增远程服务、数据库或数据生成器依赖。"
+  ]
+}

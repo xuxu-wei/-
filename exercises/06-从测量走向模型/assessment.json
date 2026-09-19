@@ -1,0 +1,78 @@
+{
+  "version": "1",
+  "part": "6",
+  "lesson_id": "P06-SUMMARY",
+  "title": "测量、辨识与验证",
+  "objectives": [
+    {
+      "id": "T1",
+      "title": "分析测量影响",
+      "review_url": "/chapters/06-01-观测、采样与滤波/"
+    },
+    {
+      "id": "T2",
+      "title": "转换系统表示",
+      "review_url": "/chapters/06-03-LTI 系统、Laplace 与 Z 变换/"
+    },
+    {
+      "id": "T3",
+      "title": "估计并验证参数",
+      "review_url": "/chapters/06-04-最小二乘与参数估计/"
+    },
+    {
+      "id": "T4",
+      "title": "判断可辨识范围",
+      "review_url": "/chapters/06-05-动态辨识、实验设计与验证/"
+    }
+  ],
+  "items": [
+    {
+      "question_id": "p06-cap-sampling",
+      "level": 1,
+      "points": 10,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p06-cap-excitation",
+      "level": 1,
+      "points": 10,
+      "objective": "T4"
+    },
+    {
+      "question_id": "p06-cap-discrete",
+      "level": 2,
+      "points": 15,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p06-cap-fit",
+      "level": 2,
+      "points": 15,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p06-cap-preprocess",
+      "level": 3,
+      "points": 15,
+      "objective": "T4"
+    },
+    {
+      "question_id": "p06-cap-prediction",
+      "level": 3,
+      "points": 15,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p06-cap-resampling",
+      "level": 4,
+      "points": 10,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p06-cap-validation",
+      "level": 4,
+      "points": 10,
+      "objective": "T4"
+    }
+  ]
+}

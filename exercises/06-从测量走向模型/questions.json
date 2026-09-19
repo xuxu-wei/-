@@ -1,0 +1,3928 @@
+[
+  {
+    "id": "p06-cosine-samples",
+    "slug": "p06-cosine-samples",
+    "version": "1",
+    "lesson_id": "P06-C01-S01",
+    "part": "6",
+    "chapter": "6.1",
+    "title": "在指定时刻读取节律",
+    "type": "python",
+    "statement": "理想节律 x(t)=amplitude*cos(2π*frequency*t+phase)。按给定时刻返回采样（sampling）值，保留原有顺序，不自行插入新的时刻。",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "实际观察时刻，可不等间隔。",
+        "unit": "s"
+      },
+      {
+        "name": "frequency",
+        "type": "float",
+        "description": "连续节律频率。",
+        "unit": "Hz"
+      },
+      {
+        "name": "amplitude",
+        "type": "float",
+        "description": "节律幅度。",
+        "unit": "U"
+      },
+      {
+        "name": "phase",
+        "type": "float",
+        "description": "初相位（phase）。",
+        "unit": "rad"
+      }
+    ],
+    "returns": [
+      {
+        "name": "samples",
+        "type": "list[float]",
+        "description": "与 times 一一对应的读数。",
+        "unit": "U"
+      }
+    ],
+    "contract": "逐个代入给定余弦函数；空时间列表返回空列表；频率不能在代入前被改成混叠（aliasing）频率。",
+    "constraints": [
+      "所有非缺测数值有限；不修改输入（input）列表。",
+      "0—100 个时刻，0≤t≤100；0≤frequency≤10；0≤amplitude≤10；−π≤phase≤π。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "采样时刻来自观测（observation）协议，不能用绘图网格替换。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    times: list[float],\n    frequency: float,\n    amplitude: float,\n    phase: float,\n) -> list[float]:\n    # 按题目定义返回计算结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "times": [
+            0,
+            1,
+            2
+          ],
+          "frequency": 0.2,
+          "amplitude": 1.0,
+          "phase": 0.0
+        },
+        "expected": [
+          1.0,
+          0.30901699437494745,
+          -0.8090169943749473
+        ],
+        "explanation": "整数时刻得到约 [1,0.309017,−0.809017] U；0.8 Hz 在这些时刻给出同一组样本，但两条连续曲线不同。"
+      }
+    ]
+  },
+  {
+    "id": "p06-three-clocks",
+    "slug": "p06-three-clocks",
+    "version": "1",
+    "lesson_id": "P06-C01-S01",
+    "part": "6",
+    "chapter": "6.1",
+    "title": "细化哪一个时钟",
+    "type": "choice",
+    "statement": "连续模型（model）用 h=0.01 s 求解，每隔 Δ=1 s 读取一次，滤波用最近 5 个读数。哪些正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "将 h 减半必定消除观测（observation）混叠（aliasing）。"
+      },
+      {
+        "id": "B",
+        "text": "窗口覆盖最近 5 次观察，等间隔时首尾相距 4 s。"
+      },
+      {
+        "id": "C",
+        "text": "用更密的线连采样（sampling）点就获得新的观测信息。"
+      },
+      {
+        "id": "D",
+        "text": "数值步长、采样间隔和窗口长度是三个不同选择。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-alias-equivalence",
+    "slug": "p06-alias-equivalence",
+    "version": "1",
+    "lesson_id": "P06-C01-S01",
+    "part": "6",
+    "chapter": "6.1",
+    "title": "相同样本能证明什么",
+    "type": "choice",
+    "statement": "只知道 x[n]=cos(2π*0.2*n)，采样率（sampling rate） 1 Hz；没有给出连续信号带宽限制。哪项成立？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "增加同一采样率下的点数必能区分 0.2 Hz 与 0.8 Hz 的零相位（phase）理想余弦。"
+      },
+      {
+        "id": "B",
+        "text": "0.2 Hz 与 0.8 Hz 表示连续曲线处处相同。"
+      },
+      {
+        "id": "C",
+        "text": "真实连续频率必为 0.2 Hz。"
+      },
+      {
+        "id": "D",
+        "text": "0.8 Hz 的零相位余弦也能产生这些样本。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-nyquist-conditions",
+    "slug": "p06-nyquist-conditions",
+    "version": "1",
+    "lesson_id": "P06-C01-S01",
+    "part": "6",
+    "chapter": "6.1",
+    "title": "采样定理的适用前提",
+    "type": "choice",
+    "statement": "讨论用均匀采样（sampling）恢复连续信号。哪些说法恰当？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "先混叠（aliasing）后仅凭这些样本，总能确定原高频。"
+      },
+      {
+        "id": "B",
+        "text": "理想带限（band-limited）信号最高频率为 fmax 时，fs>2fmax 是常用无混叠条件。"
+      },
+      {
+        "id": "C",
+        "text": "有限而带噪的记录自动满足无限精确恢复。"
+      },
+      {
+        "id": "D",
+        "text": "实际降采样前应考虑模拟或合适的数字抗混叠滤波（anti-aliasing filter）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-causal-average",
+    "slug": "p06-causal-average",
+    "version": "1",
+    "lesson_id": "P06-C01-S02",
+    "part": "6",
+    "chapter": "6.1",
+    "title": "只用已经到达的读数",
+    "type": "python",
+    "statement": "在线传感器每收到一个读数就返回过去 window 个读数的平均。记录开始时只对已经到达的点取平均。",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "values",
+        "type": "list[float]",
+        "description": "按时刻顺序排列的完整读数。",
+        "unit": "U"
+      },
+      {
+        "name": "window",
+        "type": "int",
+        "description": "最多使用的最近读数个数。",
+        "unit": "点"
+      }
+    ],
+    "returns": [
+      {
+        "name": "smoothed",
+        "type": "list[float]",
+        "description": "与输入（input）等长的因果均值。",
+        "unit": "U"
+      }
+    ],
+    "contract": "第 n 项平均 values[max(0,n-window+1):n+1]；分母是该片段实际长度；不补零，不读取未来值。",
+    "constraints": [
+      "所有非缺测数值有限；不修改输入列表。",
+      "0—100 个读数，各项绝对值≤100；1≤window≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "启动端点的归一化是算法的一部分；不可默认为固定分母零填充（zero padding）。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    values: list[float],\n    window: int,\n) -> list[float]:\n    # 按题目定义返回计算结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "values": [
+            2.0,
+            4.0,
+            8.0,
+            10.0
+          ],
+          "window": 3
+        },
+        "expected": [
+          2.0,
+          3.0,
+          4.666666666666667,
+          7.333333333333333
+        ],
+        "explanation": "结果 [2,3,14/3,22/3] U。第三项开始使用满窗口，第四项只使用 [4,8,10]。"
+      }
+    ]
+  },
+  {
+    "id": "p06-centered-lookahead",
+    "slug": "p06-centered-lookahead",
+    "version": "1",
+    "lesson_id": "P06-C01-S02",
+    "part": "6",
+    "chapter": "6.1",
+    "title": "居中均值是否适合实时报警",
+    "type": "choice",
+    "statement": "对当前索引 n 使用 (x[n−1]+x[n]+x[n+1])/3。哪项正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "使用了一个未来读数，实时实现需要等待或改变算法。"
+      },
+      {
+        "id": "B",
+        "text": "公式短，所以不会引入数据泄漏（data leakage）。"
+      },
+      {
+        "id": "C",
+        "text": "与过去三点均值逐时刻完全相同。"
+      },
+      {
+        "id": "D",
+        "text": "不等到下一次读数就能在线得到精确结果。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-filter-delay",
+    "slug": "p06-filter-delay",
+    "version": "1",
+    "lesson_id": "P06-C01-S02",
+    "part": "6",
+    "chapter": "6.1",
+    "title": "平滑与延迟如何一起解释",
+    "type": "choice",
+    "statement": "等间隔采样（sampling）、固定长度 W 的均值核，在满窗口且低频通带内讨论响应。哪些正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "该对称因果核在非零通带内有约 (W−1)/2 个采样间隔的延迟（delay）。"
+      },
+      {
+        "id": "B",
+        "text": "相关噪声也一定满足1/W方差（variance）公式。"
+      },
+      {
+        "id": "C",
+        "text": "独立零均值同方差（homoscedasticity）噪声平均后的方差为原来的1/W。"
+      },
+      {
+        "id": "D",
+        "text": "所有信号成分都只变平滑，不改变幅度或相位（phase）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-startup-filter",
+    "slug": "p06-startup-filter",
+    "version": "1",
+    "lesson_id": "P06-C01-S02",
+    "part": "6",
+    "chapter": "6.1",
+    "title": "前缀平均与固定FIR相同吗",
+    "type": "choice",
+    "statement": "对常数输入（input） [3,3,3]、W=3，比较本节前缀重归一均值与零延拓（zero extension）、始终除以3的有限脉冲响应（finite impulse response，FIR）滤波。哪些正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "因为稳态相同，所以启动段也可以混用。"
+      },
+      {
+        "id": "B",
+        "text": "前者返回 [3,3,3]。"
+      },
+      {
+        "id": "C",
+        "text": "后者返回前3项 [1,2,3]。"
+      },
+      {
+        "id": "D",
+        "text": "它们启动段不同，边界规则必须声明。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-linear-convolution",
+    "slug": "p06-linear-convolution",
+    "version": "1",
+    "lesson_id": "P06-C02-S01",
+    "part": "6",
+    "chapter": "6.2",
+    "title": "把各次输入的响应叠加",
+    "type": "python",
+    "statement": "一个零初态离散线性时不变（linear time-invariant，LTI）系统的有限脉冲响应（finite impulse response，FIR）已给定。返回输入（input）与核的完整线性卷积（linear convolution）。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数15"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "signal",
+        "type": "list[float]",
+        "description": "有限输入 x[0]…x[N−1]；区间外为0。",
+        "unit": "U"
+      },
+      {
+        "name": "kernel",
+        "type": "list[float]",
+        "description": "脉冲响应（impulse response） h[0]…h[M−1]；区间外为0。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "response",
+        "type": "list[float]",
+        "description": "索引0至N+M−2，包含尾部衰减。",
+        "unit": "U"
+      }
+    ],
+    "contract": "y[n]=Σ_j signal[j]*kernel[n−j]，只加有效索引；返回长度 N+M−1，不作循环回绕。",
+    "constraints": [
+      "所有非缺测数值有限；不修改输入列表。",
+      "1≤N,M≤30；每项绝对值≤10。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "每个输入脉冲产生一份平移缩放后的核，再在同一输出（output）时刻相加。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    signal: list[float],\n    kernel: list[float],\n) -> list[float]:\n    # 按题目定义返回计算结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "signal": [
+            1.0,
+            2.0,
+            0.0
+          ],
+          "kernel": [
+            0.5,
+            0.5
+          ]
+        },
+        "expected": [
+          0.5,
+          1.5,
+          1.0,
+          0.0
+        ],
+        "explanation": "结果 [0.5,1.5,1,0] U；最后一项来自零延拓（zero extension）后的完整尾部，不能把它绕回开头。"
+      }
+    ]
+  },
+  {
+    "id": "p06-lti-superposition",
+    "slug": "p06-lti-superposition",
+    "version": "1",
+    "lesson_id": "P06-C02-S01",
+    "part": "6",
+    "chapter": "6.2",
+    "title": "卷积表达依靠哪些假设",
+    "type": "choice",
+    "statement": "用一个固定 h[n] 表示零初态系统任意输入（input）的输出（output）。哪些条件支持这一表达？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数15"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "输入平移后响应相应平移。"
+      },
+      {
+        "id": "B",
+        "text": "饱和器对所有幅值仍满足这一表达。"
+      },
+      {
+        "id": "C",
+        "text": "非零初态响应应另行考虑。"
+      },
+      {
+        "id": "D",
+        "text": "各输入分量的响应可线性叠加。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-circular-wrap",
+    "slug": "p06-circular-wrap",
+    "version": "1",
+    "lesson_id": "P06-C02-S01",
+    "part": "6",
+    "chapter": "6.2",
+    "title": "为什么尾部绕回了开头",
+    "type": "choice",
+    "statement": "长度 N、M 的序列直接用长度 L 的 DFT 相乘再逆变换。为了无需额外拆分就得到完整线性卷积（linear convolution），哪项正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数15"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "循环回绕是新的生理反馈（feedback）。"
+      },
+      {
+        "id": "B",
+        "text": "补零改变了系统的脉冲响应（impulse response）。"
+      },
+      {
+        "id": "C",
+        "text": "L≥N+M−1 并补零到L，前N+M−1项对应完整线性卷积。"
+      },
+      {
+        "id": "D",
+        "text": "只要L=max(N,M)总是足够。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-impulse-meaning",
+    "slug": "p06-impulse-meaning",
+    "version": "1",
+    "lesson_id": "P06-C02-S01",
+    "part": "6",
+    "chapter": "6.2",
+    "title": "单位脉冲与初始状态",
+    "type": "choice",
+    "statement": "离散系统初始静止，输入（input） x[0]=1、其他时刻0。哪些正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数15"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "单位脉冲表示单个离散时刻的输入，不等于随意宽度的连续方波。"
+      },
+      {
+        "id": "B",
+        "text": "输出（output）就是该系统脉冲响应（impulse response）。"
+      },
+      {
+        "id": "C",
+        "text": "x[n−j] 的延迟（delay）必须与 h[j] 的索引约定一致。"
+      },
+      {
+        "id": "D",
+        "text": "任意非零初态都不会改变测得的输出。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-one-sided-spectrum",
+    "slug": "p06-one-sided-spectrum",
+    "version": "1",
+    "lesson_id": "P06-C02-S02",
+    "part": "6",
+    "chapter": "6.2",
+    "title": "给有限记录标上正确频率",
+    "type": "python",
+    "statement": "给定实值等间隔记录，显式计算离散傅里叶变换（discrete Fourier transform，DFT）的单边频率、幅值和相位（phase），不使用连续曲线的已知参数（parameter）代替计算。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数15"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "values",
+        "type": "list[float]",
+        "description": "等间隔实值样本，首个样本时刻定义为0。",
+        "unit": "U"
+      },
+      {
+        "name": "sample_rate",
+        "type": "float",
+        "description": "每秒观察次数。",
+        "unit": "Hz"
+      }
+    ],
+    "returns": [
+      {
+        "name": "frequencies",
+        "type": "list[float]",
+        "description": "k*fs/N，k=0…floor(N/2)。",
+        "unit": "Hz"
+      },
+      {
+        "name": "amplitudes",
+        "type": "list[float]",
+        "description": "下述规则定义的单边幅值。",
+        "unit": "U"
+      },
+      {
+        "name": "phases",
+        "type": "list[float]",
+        "description": "对应DFT系数相位，零幅处按约定返回0。",
+        "unit": "rad"
+      }
+    ],
+    "contract": "X[k]=Σ_n values[n]*exp(−2πikn/N)。双边幅值 r=abs(X[k])/N；r≤1e−12*max(1,max(abs(values))) 时该幅值和相位都返回0。其他点：DC及偶数N的Nyquist不加倍，其余幅值乘2。相位取 atan2(Im,Re) 的主值，距离−π≤1e−12时统一为+π，即使用(−π,π]端点约定。",
+    "constraints": [
+      "所有非缺测数值有限；不修改输入（input）列表。",
+      "1≤N≤32；0<sample_rate≤100，sample_rate≥0.01；每项绝对值≤100。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "偶数N的Nyquist只有一个独立实系数；奇数N的最后频点仍需要加倍。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    values: list[float],\n    sample_rate: float,\n) -> tuple[list[float], list[float], list[float]]:\n    # 按题目定义返回计算结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "values": [
+            1.0,
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "sample_rate": 4.0
+        },
+        "expected": [
+          [
+            0.0,
+            1.0,
+            2.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            6.123233995736766e-17,
+            0.0
+          ]
+        ],
+        "explanation": "输入是一个周期的1 Hz余弦，返回频率 [0,1,2] Hz，幅值 [0,1,0] U，相位 [0,0,0] rad。无幅值的频点相位0仅是题定标记。"
+      }
+    ]
+  },
+  {
+    "id": "p06-complex-rotation",
+    "slug": "p06-complex-rotation",
+    "version": "1",
+    "lesson_id": "P06-C02-S02",
+    "part": "6",
+    "chapter": "6.2",
+    "title": "复指数怎样表示相位",
+    "type": "choice",
+    "statement": "采用 exp(iθ)=cosθ+i sinθ。哪些正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数15"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "复数（complex number）模长（modulus）与相角分别可表示幅度和相位（phase）。"
+      },
+      {
+        "id": "B",
+        "text": "DFT的正负频率对实信号没有任何关系。"
+      },
+      {
+        "id": "C",
+        "text": "cosθ=(exp(iθ)+exp(−iθ))/2。"
+      },
+      {
+        "id": "D",
+        "text": "乘 exp(iφ) 会把复平面向量（vector）旋转 φ。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-nyquist-amplitude",
+    "slug": "p06-nyquist-amplitude",
+    "version": "1",
+    "lesson_id": "P06-C02-S02",
+    "part": "6",
+    "chapter": "6.2",
+    "title": "Nyquist点为什么不乘二",
+    "type": "choice",
+    "statement": "记录 [1,−1,1,−1] U，fs=4 Hz，N=4。单边幅度谱（one-sided amplitude spectrum）中哪项正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数15"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "频率坐标最后一项为4 Hz。"
+      },
+      {
+        "id": "B",
+        "text": "该记录只有DC成分。"
+      },
+      {
+        "id": "C",
+        "text": "2 Hz处幅值为1 U，不再乘二。"
+      },
+      {
+        "id": "D",
+        "text": "2 Hz处幅值为2 U，因为所有正频率均加倍。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-phase-zero",
+    "slug": "p06-phase-zero",
+    "version": "1",
+    "lesson_id": "P06-C02-S02",
+    "part": "6",
+    "chapter": "6.2",
+    "title": "零幅频点的相位表示什么",
+    "type": "choice",
+    "statement": "某DFT系数理论上为0，数值误差（numerical error）给出极小非零复数（complex number）。哪些解释适当？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数15"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "题面返回0相位（phase）不意味着存在零相位振荡。"
+      },
+      {
+        "id": "B",
+        "text": "零向量（vector）没有确定相角。"
+      },
+      {
+        "id": "C",
+        "text": "可以用阈值标记未定义相位，但必须声明约定。"
+      },
+      {
+        "id": "D",
+        "text": "数值atan2输出（output）可以稳定地揭示该分量的真实相位。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-frequency-units",
+    "slug": "p06-frequency-units",
+    "version": "1",
+    "lesson_id": "P06-C02-S02",
+    "part": "6",
+    "chapter": "6.2",
+    "title": "频点间隔由什么决定",
+    "type": "choice",
+    "statement": "N=100 个样本，fs=20 Hz，记录的DFT频点间隔是多少？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数15"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "0.2 Hz。"
+      },
+      {
+        "id": "B",
+        "text": "5 Hz。"
+      },
+      {
+        "id": "C",
+        "text": "20 Hz。"
+      },
+      {
+        "id": "D",
+        "text": "0.2 rad/s。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-fir-response",
+    "slug": "p06-fir-response",
+    "version": "1",
+    "lesson_id": "P06-C02-S03",
+    "part": "6",
+    "chapter": "6.2",
+    "title": "不同频率通过滤波器后怎样变化",
+    "type": "python",
+    "statement": "离散滤波核 h[m] 已给定。计算稳态复频率响应（frequency response）的模和相位（phase）；相位约定与频谱题一致。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数15"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "kernel",
+        "type": "list[float]",
+        "description": "零延拓（zero extension）的因果FIR系数 h[0]…h[M−1]。",
+        "unit": "1"
+      },
+      {
+        "name": "frequencies",
+        "type": "list[float]",
+        "description": "待检查的频率。",
+        "unit": "Hz"
+      },
+      {
+        "name": "sample_rate",
+        "type": "float",
+        "description": "采样率（sampling rate）。",
+        "unit": "Hz"
+      }
+    ],
+    "returns": [
+      {
+        "name": "gains",
+        "type": "list[float]",
+        "description": "abs(H)；不是平方功率增益（gain）。",
+        "unit": "1"
+      },
+      {
+        "name": "phases",
+        "type": "list[float]",
+        "description": "主值相位；零增益时题定返回0。",
+        "unit": "rad"
+      }
+    ],
+    "contract": "H(f)=Σ_m kernel[m]*exp(−2πifm/sample_rate)。阈值1e−12*max(1,Σabs(kernel))以内的模与相位均返回0；其他相位 atan2(Im,Re)，距离−π≤1e−12映射为+π。",
+    "constraints": [
+      "所有非缺测数值有限；不修改输入（input）列表。",
+      "1≤M≤20，系数绝对值≤10；0—40个频率，0≤f≤sample_rate/2；0.01≤sample_rate≤100。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先计算复响应，再分别取模和相角；窗口边界和稳态频率响应不要混为一谈。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    kernel: list[float],\n    frequencies: list[float],\n    sample_rate: float,\n) -> tuple[list[float], list[float]]:\n    # 按题目定义返回计算结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "kernel": [
+            0.5,
+            0.5
+          ],
+          "frequencies": [
+            0.0,
+            0.25,
+            0.5
+          ],
+          "sample_rate": 1.0
+        },
+        "expected": [
+          [
+            1.0,
+            0.7071067811865476,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.7853981633974483,
+            0.0
+          ]
+        ],
+        "explanation": "两点均值核的增益约 [1,0.707107,0]，相位 [0,−π/4,0]。最后的相位0是零增益标记，不可解释为该频率无延迟（delay）。"
+      }
+    ]
+  },
+  {
+    "id": "p06-finite-leakage",
+    "slug": "p06-finite-leakage",
+    "version": "1",
+    "lesson_id": "P06-C02-S03",
+    "part": "6",
+    "chapter": "6.2",
+    "title": "频谱泄漏来自哪里",
+    "type": "choice",
+    "statement": "有限矩形记录内的余弦没有恰好包含整数周期。哪些正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数15"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "窗函数（window function）可降低远处旁瓣，但会改变主瓣宽度和幅值标定。"
+      },
+      {
+        "id": "B",
+        "text": "泄漏与混叠（aliasing）是同一个概念。"
+      },
+      {
+        "id": "C",
+        "text": "DFT周期延拓的边界通常不连续，会把能量分散到多个频点。"
+      },
+      {
+        "id": "D",
+        "text": "看到多个频点就能断定生理机制包含同样多振荡源。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-zero-padding",
+    "slug": "p06-zero-padding",
+    "version": "1",
+    "lesson_id": "P06-C02-S03",
+    "part": "6",
+    "chapter": "6.2",
+    "title": "补零能增加什么",
+    "type": "choice",
+    "statement": "对已采到的N点记录补零到4N点，再计算DFT。哪项正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数15"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "原样本的噪声方差（variance）自动降为1/4。"
+      },
+      {
+        "id": "B",
+        "text": "增加了独立观测（observation）长度。"
+      },
+      {
+        "id": "C",
+        "text": "频谱显示更密，但没有新增原始观察信息。"
+      },
+      {
+        "id": "D",
+        "text": "一定能分开任意接近的两种频率。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-fir-delay-band",
+    "slug": "p06-fir-delay-band",
+    "version": "1",
+    "lesson_id": "P06-C02-S03",
+    "part": "6",
+    "chapter": "6.2",
+    "title": "均值滤波器的延迟在哪成立",
+    "type": "choice",
+    "statement": "固定W=5的因果均值核，采样率（sampling rate）1 Hz。哪些正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数15"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "在第一非零通带内，相位（phase）斜率（slope）对应2 s延迟（delay）。"
+      },
+      {
+        "id": "B",
+        "text": "所有频率增益（gain）均为1。"
+      },
+      {
+        "id": "C",
+        "text": "零增益频点不能用相位计算有意义的延迟。"
+      },
+      {
+        "id": "D",
+        "text": "启动前按0延拓时，常数输入（input）最初几步可能被压低。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-amplitude-calibration",
+    "slug": "p06-amplitude-calibration",
+    "version": "1",
+    "lesson_id": "P06-C02-S03",
+    "part": "6",
+    "chapter": "6.2",
+    "title": "给频谱乘窗后怎样报幅值",
+    "type": "choice",
+    "statement": "在同一记录上使用矩形窗（rectangular window）与Hann窗。哪项最可靠？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数15"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "声明窗与归一化；整频点孤立正弦的幅值校正常用窗系数和，但离频点/多分量仍有偏差。"
+      },
+      {
+        "id": "B",
+        "text": "任何窗都能消除泄漏并保留无限分辨率。"
+      },
+      {
+        "id": "C",
+        "text": "窗函数（window function）可以恢复采样（sampling）前已丢失的高频。"
+      },
+      {
+        "id": "D",
+        "text": "直接比较未标定峰高，较低者意味着真实振幅（amplitude）下降。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-response-components",
+    "slug": "p06-response-components",
+    "version": "1",
+    "lesson_id": "P06-C03-S01",
+    "part": "6",
+    "chapter": "6.3",
+    "title": "将初态与输入的作用分开",
+    "type": "python",
+    "statement": "系统 dA/dt=input_rate−k*A。分别返回零输入响应（zero-input response）与零状态响应（zero-state response）；两者相加得到完整响应。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数16"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除系数（elimination rate constant）。",
+        "unit": "1/T"
+      },
+      {
+        "name": "input_rate",
+        "type": "float",
+        "description": "t≥0的恒定输入（input）流率（flow rate）。",
+        "unit": "U/T"
+      },
+      {
+        "name": "initial",
+        "type": "float",
+        "description": "t=0初始物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "求值时刻。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "zero_input",
+        "type": "list[float]",
+        "description": "由初态产生、无输入时的响应。",
+        "unit": "U"
+      },
+      {
+        "name": "zero_state",
+        "type": "list[float]",
+        "description": "从零初态由恒定输入产生的响应。",
+        "unit": "U"
+      }
+    ],
+    "contract": "零输入=initial*exp(−kt)；k>0时零状态（state）=input_rate*(1−exp(−kt))/k，k=0时为input_rate*t。推荐expm1处理很小kt。",
+    "constraints": [
+      "所有非缺测数值有限；不修改输入列表。",
+      "0≤k≤2；0≤input_rate,initial≤20；0—50个时刻，各0≤t≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "传递函数描述输入与零状态输出（output）的关系；初态单独产生额外项。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    k: float,\n    input_rate: float,\n    initial: float,\n    times: list[float],\n) -> tuple[list[float], list[float]]:\n    # 按题目定义返回计算结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "k": 0.5,
+          "input_rate": 2.0,
+          "initial": 3.0,
+          "times": [
+            0.0,
+            2.0,
+            4.0
+          ]
+        },
+        "expected": [
+          [
+            3.0,
+            1.103638323514327,
+            0.4060058497098381
+          ],
+          [
+            0.0,
+            2.5284822353142307,
+            3.458658867053549
+          ]
+        ],
+        "explanation": "t=0时两部分为3和0 U；t=2时为3e⁻¹和4(1−e⁻¹) U。非零初态不能藏进只描述零状态响应的传递函数（transfer function）。"
+      }
+    ]
+  },
+  {
+    "id": "p06-laplace-initial",
+    "slug": "p06-laplace-initial",
+    "version": "1",
+    "lesson_id": "P06-C03-S01",
+    "part": "6",
+    "chapter": "6.3",
+    "title": "导数变换遗漏了哪一项",
+    "type": "choice",
+    "statement": "对t≥0的一侧Laplace变换，A(0)=A0，dA/dt=u−kA。哪项正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数16"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "所有非线性模型（model）都能用同一固定G(s)描述。"
+      },
+      {
+        "id": "B",
+        "text": "(s+k)A(s)=U(s)+A0。"
+      },
+      {
+        "id": "C",
+        "text": "(s+k)A(s)=U(s)，任何初态都成立。"
+      },
+      {
+        "id": "D",
+        "text": "A0只会改变极点（pole）位置。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-linear-map-initial",
+    "slug": "p06-linear-map-initial",
+    "version": "1",
+    "lesson_id": "P06-C03-S01",
+    "part": "6",
+    "chapter": "6.3",
+    "title": "固定非零初态的映射是否线性",
+    "type": "choice",
+    "statement": "系统动力学 dA/dt=u−kA 为线性方程，但把固定A0=3的u→A映射称为线性输入（input）输出（output）算子。哪些正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数16"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "固定非零初态时，零输入通常仍有非零输出。"
+      },
+      {
+        "id": "B",
+        "text": "该映射一般是仿射（affine）的，零状态（state）部分才满足输入叠加。"
+      },
+      {
+        "id": "C",
+        "text": "把初态也作为可缩放输入的一部分可以恢复联合线性描述。"
+      },
+      {
+        "id": "D",
+        "text": "方程线性就允许忽略一切初态。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-roc-causal",
+    "slug": "p06-roc-causal",
+    "version": "1",
+    "lesson_id": "P06-C03-S01",
+    "part": "6",
+    "chapter": "6.3",
+    "title": "极点与收敛域说明什么",
+    "type": "choice",
+    "statement": "因果核 h(t)=exp(−kt)，t≥0，k>0。哪些正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数16"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "同一有理式无需收敛域（region of convergence，ROC）就唯一决定所有双侧时间信号。"
+      },
+      {
+        "id": "B",
+        "text": "在该因果模型（model）中极点（pole）−k位于左半平面，核绝对可积。"
+      },
+      {
+        "id": "C",
+        "text": "k=0时仍具有相同的有界输入（input）有界输出（output）稳定性。"
+      },
+      {
+        "id": "D",
+        "text": "其Laplace变换为1/(s+k)，收敛域Re(s)>−k。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-lti-failure",
+    "slug": "p06-lti-failure",
+    "version": "1",
+    "lesson_id": "P06-C03-S01",
+    "part": "6",
+    "chapter": "6.3",
+    "title": "线性与时不变哪个失效",
+    "type": "choice",
+    "statement": "考虑清除模型（model） dA/dt=u−k(t)A 与 dA/dt=u−Vmax*A/(K+A)。其中k(t)单位1/T，Vmax>0单位U/T，K>0单位U，A≥0。哪项正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数16"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "只要有清除就必是LTI。"
+      },
+      {
+        "id": "B",
+        "text": "在某一点线性化（linearization）即可保证所有初态都用同一模型。"
+      },
+      {
+        "id": "C",
+        "text": "前者一般线性但时变，后者一般非线性。"
+      },
+      {
+        "id": "D",
+        "text": "前者一定非线性，后者一定线性。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-sampled-response",
+    "slug": "p06-sampled-response",
+    "version": "1",
+    "lesson_id": "P06-C03-S02",
+    "part": "6",
+    "chapter": "6.3",
+    "title": "相同采样间隔不等于相同离散模型",
+    "type": "python",
+    "statement": "每段输入（input）在整个采样（sampling）区间保持常数。返回同一单室模型（one-compartment model）的精确采样轨迹（trajectory）与显式Euler近似。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数16"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除系数（elimination rate constant）。",
+        "unit": "1/T"
+      },
+      {
+        "name": "step",
+        "type": "float",
+        "description": "每段输入保持的时长/采样间隔。",
+        "unit": "T"
+      },
+      {
+        "name": "initial",
+        "type": "float",
+        "description": "起点物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "inputs",
+        "type": "list[float]",
+        "description": "每个区间内保持不变的输入流率（flow rate）。",
+        "unit": "U/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "exact",
+        "type": "list[float]",
+        "description": "精确零阶保持（zero-order hold，ZOH）轨迹，含初态。",
+        "unit": "U"
+      },
+      {
+        "name": "euler",
+        "type": "list[float]",
+        "description": "显式Euler轨迹，含初态且保留负值。",
+        "unit": "U"
+      }
+    ],
+    "contract": "a=exp(−k*step)，b=(1−a)/k；k=0时b=step。精确更新A_next=a*A+b*u。Euler更新A_next=(1−k*step)*A+step*u。各自递推，均含初态，不裁剪负值。",
+    "constraints": [
+      "所有非缺测数值有限；不修改输入列表。",
+      "0≤k≤1；0.01≤step≤4；0≤initial≤20；0—12段输入，各0≤u≤5。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "零阶保持假设产生精确系数；Euler只是数值近似，不能互换。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    k: float,\n    step: float,\n    initial: float,\n    inputs: list[float],\n) -> tuple[list[float], list[float]]:\n    # 按题目定义返回计算结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "k": 0.5,
+          "step": 1.0,
+          "initial": 4.0,
+          "inputs": [
+            0.0,
+            2.0
+          ]
+        },
+        "expected": [
+          [
+            4.0,
+            2.4261226388505337,
+            3.0453951258352356
+          ],
+          [
+            4.0,
+            2.0,
+            3.0
+          ]
+        ],
+        "explanation": "第一步无输入时精确值4e⁻⁰·⁵≈2.42612 U，Euler为2 U；第二步再分别使用各自的前一步状态（state）。"
+      }
+    ]
+  },
+  {
+    "id": "p06-z-index",
+    "slug": "p06-z-index",
+    "version": "1",
+    "lesson_id": "P06-C03-S02",
+    "part": "6",
+    "chapter": "6.3",
+    "title": "Z变换中的一拍延迟",
+    "type": "choice",
+    "statement": "零初态差分模型（model） x[n+1]=a*x[n]+b*u[n]，n≥0。采用X(z)=Σ_{n≥0}x[n]z⁻ⁿ，哪项正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数16"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "G(z)=b*z⁻¹/(1−a*z⁻¹)，因为u[0]最早影响x[1]。"
+      },
+      {
+        "id": "B",
+        "text": "G(z)=b/(1−a*z⁻¹)，而无需调整输出（output）索引。"
+      },
+      {
+        "id": "C",
+        "text": "非零x[0]也可直接删去。"
+      },
+      {
+        "id": "D",
+        "text": "z只等于实时间n。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-discrete-poles",
+    "slug": "p06-discrete-poles",
+    "version": "1",
+    "lesson_id": "P06-C03-S02",
+    "part": "6",
+    "chapter": "6.3",
+    "title": "离散极点与物理合理性",
+    "type": "choice",
+    "statement": "k>0、h>0，无输入（input）时精确因子exp(−kh)，Euler因子1−kh。哪些正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数16"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "Euler幅度衰减要求0<kh<2。"
+      },
+      {
+        "id": "B",
+        "text": "Euler对所有非负初态保持非负要求kh≤1。"
+      },
+      {
+        "id": "C",
+        "text": "只要1−kh<1就保证幅度衰减。"
+      },
+      {
+        "id": "D",
+        "text": "精确因子总在(0,1)。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-zero-clearance",
+    "slug": "p06-zero-clearance",
+    "version": "1",
+    "lesson_id": "P06-C03-S02",
+    "part": "6",
+    "chapter": "6.3",
+    "title": "零清除系数如何取极限",
+    "type": "choice",
+    "statement": "k趋向0、保持h固定，精确区间系数b=(1−exp(−kh))/k满足什么？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数16"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "必须抛弃k=0情形，因为分母为0。"
+      },
+      {
+        "id": "B",
+        "text": "极限（limit）系数仍具有1/T单位。"
+      },
+      {
+        "id": "C",
+        "text": "b趋向h，得到按流量（flow）累积的积分器。"
+      },
+      {
+        "id": "D",
+        "text": "b趋向0。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-sampling-pole-map",
+    "slug": "p06-sampling-pole-map",
+    "version": "1",
+    "lesson_id": "P06-C03-S02",
+    "part": "6",
+    "chapter": "6.3",
+    "title": "改变采样周期后系数怎样变化",
+    "type": "choice",
+    "statement": "同一k>0连续系统，两次实验都满足区间恒定输入（input）。将采样（sampling）周期h改为2h。哪些正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数16"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "仅改变观察时刻、保持同一连续方程和实际输入轨迹（trajectory）时，真实动态不变。"
+      },
+      {
+        "id": "B",
+        "text": "精确状态（state）系数从a变成a²。"
+      },
+      {
+        "id": "C",
+        "text": "输入系数也必须重新按2h计算。"
+      },
+      {
+        "id": "D",
+        "text": "直接把Euler系数平方一定等于连续模型（model）的精确采样系数。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-line-fit",
+    "slug": "p06-line-fit",
+    "version": "1",
+    "lesson_id": "P06-C04-S01",
+    "part": "6",
+    "chapter": "6.4",
+    "title": "用残差定义直线拟合",
+    "type": "python",
+    "statement": "拟合 y=β0+β1*x，以未加权平方残差和（sum of squared errors，SSE）最小为目标，返回截距、斜率（slope）与每个残差（residual）。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "xs",
+        "type": "list[float]",
+        "description": "已知且本题不含误差的实验输入（input）。",
+        "unit": "U"
+      },
+      {
+        "name": "ys",
+        "type": "list[float]",
+        "description": "与xs对应的观测（observation）输出（output）。",
+        "unit": "V"
+      }
+    ],
+    "returns": [
+      {
+        "name": "intercept",
+        "type": "float",
+        "description": "截距β0。",
+        "unit": "V"
+      },
+      {
+        "name": "slope",
+        "type": "float",
+        "description": "斜率β1。",
+        "unit": "V/U"
+      },
+      {
+        "name": "residuals",
+        "type": "list[float]",
+        "description": "观测减拟合，顺序与输入一致。",
+        "unit": "V"
+      }
+    ],
+    "contract": "xbar、ybar为样本均值；Sxx=Σ(x−xbar)²；β1=Σ(x−xbar)(y−ybar)/Sxx，β0=ybar−β1*xbar；残差=y−β0−β1*x。",
+    "constraints": [
+      "所有非缺测数值有限；不修改输入列表。",
+      "等长2—50点；绝对值≤100；Sxx≥1e−6。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "残差符号必须统一；不要以强制过原点替代含截距拟合。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    xs: list[float],\n    ys: list[float],\n) -> tuple[float, float, list[float]]:\n    # 按题目定义返回计算结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "xs": [
+            0.0,
+            1.0,
+            2.0
+          ],
+          "ys": [
+            1.0,
+            3.0,
+            5.0
+          ]
+        },
+        "expected": [
+          1.0,
+          2.0,
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "explanation": "三个点恰好在 y=1+2x 上，返回截距1 V、斜率2 V/U和三个零残差。"
+      }
+    ]
+  },
+  {
+    "id": "p06-least-squares-gaussian",
+    "slug": "p06-least-squares-gaussian",
+    "version": "1",
+    "lesson_id": "P06-C04-S01",
+    "part": "6",
+    "chapter": "6.4",
+    "title": "平方残差何时对应似然",
+    "type": "choice",
+    "statement": "固定设计（fixed design）矩阵（matrix）X，y=Xβ+ε，共同误差方差（variance）σ²>0，且最小平方残差和（sum of squared errors，SSE）严格大于0。哪些前提支持普通最小二乘（ordinary least squares，OLS）与最大似然（likelihood）的对应？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "任意异方差误差仍应无条件使用同样权重。"
+      },
+      {
+        "id": "B",
+        "text": "共同方差（homoscedasticity）已知或未知时，β的最大似然点估计都可由最小SSE给出。"
+      },
+      {
+        "id": "C",
+        "text": "平方残差（residual）最小就说明模型（model）机制正确。"
+      },
+      {
+        "id": "D",
+        "text": "ε各项独立、均值0，服从共同方差的高斯分布（Gaussian distribution）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-rank-deficiency",
+    "slug": "p06-rank-deficiency",
+    "version": "1",
+    "lesson_id": "P06-C04-S01",
+    "part": "6",
+    "chapter": "6.4",
+    "title": "输入恒定时哪些系数可确定",
+    "type": "choice",
+    "statement": "所有x都等于2，拟合y=β0+β1*x。哪项正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "增加同样x的重复就一定恢复满列秩（rank）。"
+      },
+      {
+        "id": "B",
+        "text": "直接求逆可以创造缺少的信息。"
+      },
+      {
+        "id": "C",
+        "text": "两个系数分别唯一可定。"
+      },
+      {
+        "id": "D",
+        "text": "只有组合β0+2β1能由这些观测（observation）约束，设计矩阵（design matrix）列相关。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-orthogonal-residual",
+    "slug": "p06-orthogonal-residual",
+    "version": "1",
+    "lesson_id": "P06-C04-S01",
+    "part": "6",
+    "chapter": "6.4",
+    "title": "最小二乘残差的代数检查",
+    "type": "choice",
+    "statement": "设计矩阵（design matrix）满列秩（rank）、包含截距，使用无约束普通最小二乘（ordinary least squares，OLS）。哪些成立？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "残差（residual）与所有未观测（observation）的真实机制都独立。"
+      },
+      {
+        "id": "B",
+        "text": "Xᵀr=0到数值误差（numerical error）范围内。"
+      },
+      {
+        "id": "C",
+        "text": "残差和为0到数值误差范围内。"
+      },
+      {
+        "id": "D",
+        "text": "每个残差都必须为0。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-weighted-errors",
+    "slug": "p06-weighted-errors",
+    "version": "1",
+    "lesson_id": "P06-C04-S01",
+    "part": "6",
+    "chapter": "6.4",
+    "title": "不同测量精度如何进入损失",
+    "type": "choice",
+    "statement": "独立高斯误差（Gaussian error）标准差（standard deviation）为σᵢ，且均已知。哪项正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "用Σrᵢ²/σᵢ²作为与似然（likelihood）相关的损失。"
+      },
+      {
+        "id": "B",
+        "text": "标准差越大，权重应越大。"
+      },
+      {
+        "id": "C",
+        "text": "所有残差（residual）先取绝对值再平方会改成不同损失。"
+      },
+      {
+        "id": "D",
+        "text": "误差分布（distribution）和测量精度与估计无关。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-clearance-grid",
+    "slug": "p06-clearance-grid",
+    "version": "1",
+    "lesson_id": "P06-C04-S02",
+    "part": "6",
+    "chapter": "6.4",
+    "title": "在给定参数集合中拟合清除",
+    "type": "python",
+    "statement": "模型（model）A(t)=initial*exp(−kt)，初值（initial condition）已知。比较全部候选清除系数（elimination rate constant），返回最佳参数（parameter）、拟合值、残差（residual）和损失。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "无输入（input）清除开始后的观察时刻。",
+        "unit": "T"
+      },
+      {
+        "name": "observed",
+        "type": "list[float]",
+        "description": "对应读数，可含测量误差。",
+        "unit": "U"
+      },
+      {
+        "name": "initial",
+        "type": "float",
+        "description": "独立给定的初始物质量，本题不拟合。",
+        "unit": "U"
+      },
+      {
+        "name": "candidates",
+        "type": "list[float]",
+        "description": "待比较的清除系数有限集合，可以未排序或重复。",
+        "unit": "1/T"
+      },
+      {
+        "name": "weights",
+        "type": "list[float]",
+        "description": "每个读数平方残差的正权重。",
+        "unit": "1/U²"
+      }
+    ],
+    "returns": [
+      {
+        "name": "best_k",
+        "type": "float",
+        "description": "有限候选中目标最小者，完全并列选较小k。",
+        "unit": "1/T"
+      },
+      {
+        "name": "predicted",
+        "type": "list[float]",
+        "description": "在观测（observation）时刻的拟合值。",
+        "unit": "U"
+      },
+      {
+        "name": "residuals",
+        "type": "list[float]",
+        "description": "observed−predicted。",
+        "unit": "U"
+      },
+      {
+        "name": "weighted_sse",
+        "type": "float",
+        "description": "Σweights[i]*residuals[i]²。",
+        "unit": "1"
+      }
+    ],
+    "contract": "每个k的预测为initial*exp(−k*t)。比较给定加权平方误差和；候选去重后升序扫描，只有严格更小的损失才更新。返回的最优仅限此候选集合。",
+    "constraints": [
+      "所有非缺测数值有限；不修改输入列表。",
+      "等长1—30个times/observed/weights；0≤t≤20，|observed|≤30，0<weights≤100；0≤initial≤20；1—30个候选，0≤k≤2。测试非完全并列时目标差>1e−8。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "不通过对数变换偷偷改变误差假设；并列规则也必须按题面执行。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    times: list[float],\n    observed: list[float],\n    initial: float,\n    candidates: list[float],\n    weights: list[float],\n) -> tuple[float, list[float], list[float], float]:\n    # 按题目定义返回计算结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "times": [
+            0.0,
+            1.0,
+            2.0
+          ],
+          "observed": [
+            4.0,
+            2.0,
+            1.0
+          ],
+          "initial": 4.0,
+          "candidates": [
+            0.0,
+            0.6931471805599453,
+            1.0
+          ],
+          "weights": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "expected": [
+          0.6931471805599453,
+          [
+            4.0,
+            2.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          0.0
+        ],
+        "explanation": "k=ln2 时每个时间单位减半，预测 [4,2,1] U，残差全0，损失0。这不意味着任意网格总会包含真实k。"
+      }
+    ]
+  },
+  {
+    "id": "p06-log-error-model",
+    "slug": "p06-log-error-model",
+    "version": "1",
+    "lesson_id": "P06-C04-S02",
+    "part": "6",
+    "chapter": "6.4",
+    "title": "取对数只是换一种写法吗",
+    "type": "choice",
+    "statement": "原测量模型（model）Y=A0*exp(−kt)+ε，其中ε是固定方差（variance）的加性高斯误差（Gaussian error）。哪些正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "Y≤0时对数甚至无定义，不能静默删点而不说明。"
+      },
+      {
+        "id": "B",
+        "text": "若误差原本是乘性对数正态，另一个对数模型可能合理。"
+      },
+      {
+        "id": "C",
+        "text": "直接拟合原单位平方残差（residual）符合这个误差设定。"
+      },
+      {
+        "id": "D",
+        "text": "对所有Y取对数再做等权直线拟合，必与原问题等价。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-grid-resolution",
+    "slug": "p06-grid-resolution",
+    "version": "1",
+    "lesson_id": "P06-C04-S02",
+    "part": "6",
+    "chapter": "6.4",
+    "title": "网格最优意味着什么",
+    "type": "choice",
+    "statement": "在k∈{0.1,0.2,0.3}中k=0.2的损失最小。哪项结论成立？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "若最优在边界，无须考虑边界之外。"
+      },
+      {
+        "id": "B",
+        "text": "0.2是所有实数k中的精确最优。"
+      },
+      {
+        "id": "C",
+        "text": "0.2是已比较集合中的最优，需检查网格范围和分辨率。"
+      },
+      {
+        "id": "D",
+        "text": "网格越密就必定证明机制真实。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-noisy-differences",
+    "slug": "p06-noisy-differences",
+    "version": "1",
+    "lesson_id": "P06-C04-S02",
+    "part": "6",
+    "chapter": "6.4",
+    "title": "带噪差分为何不能当无误差导数",
+    "type": "choice",
+    "statement": "观测（observation）Y[n]=A[n]+ε[n]，ε独立同方差（homoscedasticity）σ²。采用(Y[n+1]−Y[n])/h近似变化率。哪些正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "差分噪声方差（variance）为2σ²/h²。"
+      },
+      {
+        "id": "B",
+        "text": "h变小同时可能放大差分噪声。"
+      },
+      {
+        "id": "C",
+        "text": "差分中的−ε[n]与回归量Y[n]共享误差，可能使普通回归有偏。"
+      },
+      {
+        "id": "D",
+        "text": "差分近似误差变小就代表总误差必变小。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-residual-validation",
+    "slug": "p06-residual-validation",
+    "version": "1",
+    "lesson_id": "P06-C04-S02",
+    "part": "6",
+    "chapter": "6.4",
+    "title": "拟合残差小还需检查什么",
+    "type": "choice",
+    "statement": "一个清除模型（model）在用于拟合的三次观测（observation）上误差很小。哪些后续检查合理？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "检查残差（residual）随时间的结构与测量假设。"
+      },
+      {
+        "id": "B",
+        "text": "用核验真值挑参数（parameter），然后声称只用观测拟合。"
+      },
+      {
+        "id": "C",
+        "text": "报告参数搜索范围和可能的参数混淆。"
+      },
+      {
+        "id": "D",
+        "text": "在预先保留的其他时刻/个体上验证。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-slope-interval",
+    "slug": "p06-slope-interval",
+    "version": "1",
+    "lesson_id": "P06-C04-S03",
+    "part": "6",
+    "chapter": "6.4",
+    "title": "已知测量噪声下的斜率区间",
+    "type": "python",
+    "statement": "固定无误差xs，ys=β0+β1*xs+ε，ε独立N(0,sigma²)，sigma已知。给定正态临界值z，返回斜率（slope）估计和对称区间端点。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "xs",
+        "type": "list[float]",
+        "description": "已知且本题不含误差的实验输入（input）。",
+        "unit": "U"
+      },
+      {
+        "name": "ys",
+        "type": "list[float]",
+        "description": "与xs对应的观测（observation）输出（output）。",
+        "unit": "V"
+      },
+      {
+        "name": "sigma",
+        "type": "float",
+        "description": "已知观测噪声标准差（standard deviation）。",
+        "unit": "V"
+      },
+      {
+        "name": "z",
+        "type": "float",
+        "description": "给定正态临界值，例如1.96约对应95%覆盖。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "slope",
+        "type": "float",
+        "description": "含截距OLS斜率。",
+        "unit": "V/U"
+      },
+      {
+        "name": "lower",
+        "type": "float",
+        "description": "斜率区间下界。",
+        "unit": "V/U"
+      },
+      {
+        "name": "upper",
+        "type": "float",
+        "description": "斜率区间上界。",
+        "unit": "V/U"
+      }
+    ],
+    "contract": "Sxx=Σ(xs−mean(xs))²；先求含截距OLS斜率β1，再返回β1±z*sigma/sqrt(Sxx)。这是参数（parameter）区间，不是未来个体读数的预测区间（prediction interval）。",
+    "constraints": [
+      "所有非缺测数值有限；不修改输入列表。",
+      "等长2—50点，绝对值≤100，Sxx≥1e−6；0<sigma≤10；0<z≤4。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先说明随机性来自重复测量；不能把已知sigma公式套到未经校正的小样本未知方差（variance）。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    xs: list[float],\n    ys: list[float],\n    sigma: float,\n    z: float,\n) -> tuple[float, float, float]:\n    # 按题目定义返回计算结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "xs": [
+            0.0,
+            1.0,
+            2.0
+          ],
+          "ys": [
+            1.0,
+            3.0,
+            5.0
+          ],
+          "sigma": 0.2,
+          "z": 1.96
+        },
+        "expected": [
+          2.0,
+          1.7228141417748732,
+          2.2771858582251268
+        ],
+        "explanation": "Sxx=2 U²，斜率2 V/U，区间约 [1.722814,2.277186] V/U；输入范围拉大时Sxx变大，在同一误差假设下区间可缩小。"
+      }
+    ]
+  },
+  {
+    "id": "p06-interval-meaning",
+    "slug": "p06-interval-meaning",
+    "version": "1",
+    "lesson_id": "P06-C04-S03",
+    "part": "6",
+    "chapter": "6.4",
+    "title": "95%覆盖率指谁变化",
+    "type": "choice",
+    "statement": "固定真实参数（parameter）与设计，重复生成独立观测（observation）并每次构造同一种95%置信区间（confidence interval）。哪项正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "参数区间直接就是下一次读数区间。"
+      },
+      {
+        "id": "B",
+        "text": "在所列模型（model）条件下，这个构造长期约95%覆盖固定参数。"
+      },
+      {
+        "id": "C",
+        "text": "真实参数每次以95%概率（probability）重新抽入一个固定区间。"
+      },
+      {
+        "id": "D",
+        "text": "只要区间窄就涵盖所有结构误差。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-unknown-variance",
+    "slug": "p06-unknown-variance",
+    "version": "1",
+    "lesson_id": "P06-C04-S03",
+    "part": "6",
+    "chapter": "6.4",
+    "title": "未知方差时为什么需要额外条件",
+    "type": "choice",
+    "statement": "固定设计（fixed design）、独立同方差（homoscedasticity）高斯误差（Gaussian error），含p个可识别系数，N>p。哪些正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "常用残差（residual）方差（variance）估计为SSE/(N−p)。"
+      },
+      {
+        "id": "B",
+        "text": "把估计标准差（standard deviation）直接代入1.96即可保证任何小样本精确95%覆盖。"
+      },
+      {
+        "id": "C",
+        "text": "精确高斯线性模型（model）下，使用t分布（distribution）临界值反映方差估计的不确定性。"
+      },
+      {
+        "id": "D",
+        "text": "N=p且恰好插值时仍可由0/0可靠估计方差。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-bootstrap-unit",
+    "slug": "p06-bootstrap-unit",
+    "version": "1",
+    "lesson_id": "P06-C04-S03",
+    "part": "6",
+    "chapter": "6.4",
+    "title": "应该重采样什么单位",
+    "type": "choice",
+    "statement": "计划用自助法评估估计波动。哪些设计和解释合理？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "时间相关的一条轨迹（trajectory）可任意打散为独立点而不改变目标。"
+      },
+      {
+        "id": "B",
+        "text": "固定设计（fixed design）回归的残差（residual）自助法须说明误差模型（model），不能与随机设计（random design）对自助法混用。"
+      },
+      {
+        "id": "C",
+        "text": "自助区间没有自动囊括未建模机制偏差。"
+      },
+      {
+        "id": "D",
+        "text": "独立随机设计观测（observation）对可成对重采样（sampling），声明重复数（complex number）和区间方法。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-arx-predictions",
+    "slug": "p06-arx-predictions",
+    "version": "1",
+    "lesson_id": "P06-C05-S01",
+    "part": "6",
+    "chapter": "6.5",
+    "title": "一步预测与自由运行",
+    "type": "python",
+    "statement": "参数（parameter）a、b已经由其他训练数据固定。对当前输入（input）与观测（observation）比较y[n+1]=a*y[n]+b*u[n]的一步预测（one-step-ahead prediction）和自由运行（free-run simulation），不能重新拟合。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "float",
+        "description": "输出（output）的一拍反馈（feedback）系数。",
+        "unit": "1"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "输入到下一拍输出的增益（gain）。",
+        "unit": "U/V"
+      },
+      {
+        "name": "observed",
+        "type": "list[float]",
+        "description": "y[0]…y[N]，首项是两种预测共同初态。",
+        "unit": "U"
+      },
+      {
+        "name": "inputs",
+        "type": "list[float]",
+        "description": "u[0]…u[N−1]，u[n]作用于y[n+1]。",
+        "unit": "V"
+      }
+    ],
+    "returns": [
+      {
+        "name": "one_step",
+        "type": "list[float]",
+        "description": "预测y[1]…y[N]，每步使用上一拍实际观测。",
+        "unit": "U"
+      },
+      {
+        "name": "free_run",
+        "type": "list[float]",
+        "description": "预测同样N个时刻，只使用初态和先前预测。",
+        "unit": "U"
+      }
+    ],
+    "contract": "一步：one_step[n]=a*observed[n]+b*inputs[n]；自由运行从current=observed[0]开始，每步current=a*current+b*u，再加入结果。两个结果都不含初态。",
+    "constraints": [
+      "所有非缺测数值有限；不修改输入列表。",
+      "0≤N≤30；observed长度为N+1，inputs长度为N；每项绝对值≤10；|a|≤1.2，|b|≤3。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "只把前一拍观测用于一步预测；自由运行除初态外不能读取observed。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    a: float,\n    b: float,\n    observed: list[float],\n    inputs: list[float],\n) -> tuple[list[float], list[float]]:\n    # 按题目定义返回计算结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "a": 0.5,
+          "b": 1.0,
+          "observed": [
+            0.0,
+            1.0,
+            2.0,
+            2.0
+          ],
+          "inputs": [
+            1.0,
+            1.0,
+            0.0
+          ]
+        },
+        "expected": [
+          [
+            1.0,
+            1.5,
+            1.0
+          ],
+          [
+            1.0,
+            1.5,
+            0.75
+          ]
+        ],
+        "explanation": "一步预测 [1,1.5,1] U；自由运行 [1,1.5,0.75] U。第三步前者用实际y[2]=2，后者用自己的1.5。"
+      }
+    ]
+  },
+  {
+    "id": "p06-arx-regressors",
+    "slug": "p06-arx-regressors",
+    "version": "1",
+    "lesson_id": "P06-C05-S01",
+    "part": "6",
+    "chapter": "6.5",
+    "title": "ARX回归的一行由什么组成",
+    "type": "choice",
+    "statement": "模型（model）y[n+1]=a*y[n]+b*u[n]+e[n+1]。拟合a、b时哪一行对应目标y[n+1]？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "只取y[n+1]作为自己的解释变量。"
+      },
+      {
+        "id": "B",
+        "text": "[y[n],u[n]]。"
+      },
+      {
+        "id": "C",
+        "text": "[y[n+1],u[n+1]]。"
+      },
+      {
+        "id": "D",
+        "text": "[a,b]。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-prediction-information",
+    "slug": "p06-prediction-information",
+    "version": "1",
+    "lesson_id": "P06-C05-S01",
+    "part": "6",
+    "chapter": "6.5",
+    "title": "两种预测用了同样信息吗",
+    "type": "choice",
+    "statement": "同一参数（parameter）、同一评估区间的一步RMSE很小，自由运行（free-run simulation）RMSE较大。哪些正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "一步预测（one-step-ahead prediction）每拍可用新的观测（observation）校正，因此任务不同。"
+      },
+      {
+        "id": "B",
+        "text": "必须同时说明两种模式、初始化与指标时段。"
+      },
+      {
+        "id": "C",
+        "text": "一步好就必然证明长期自主模拟准确。"
+      },
+      {
+        "id": "D",
+        "text": "自由运行的误差可以随着递推积累。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-arx-noise-assumption",
+    "slug": "p06-arx-noise-assumption",
+    "version": "1",
+    "lesson_id": "P06-C05-S01",
+    "part": "6",
+    "chapter": "6.5",
+    "title": "最小二乘怎样受到观测噪声影响",
+    "type": "choice",
+    "statement": "真实x[n+1]=a*x[n]+b*u[n]，仪器只给y[n]=x[n]+v[n]，v为独立测量误差。哪些正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "等效误差v[n+1]−a*v[n]与回归量y[n]共享v[n]。"
+      },
+      {
+        "id": "B",
+        "text": "所有叫ARX的拟合都自动一致。"
+      },
+      {
+        "id": "C",
+        "text": "独立创新进入状态（state）的模型（model）与此测量噪声（measurement noise）模型有不同假设。"
+      },
+      {
+        "id": "D",
+        "text": "直接回归y[n+1]对y[n]可能有误差变量偏差。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-delay-structure",
+    "slug": "p06-delay-structure",
+    "version": "1",
+    "lesson_id": "P06-C05-S01",
+    "part": "6",
+    "chapter": "6.5",
+    "title": "输入延迟选错会怎样",
+    "type": "choice",
+    "statement": "真实输入（input）u[n−1]影响y[n+1]，却拟合成u[n]即时作用。哪项正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "增加小数位可以把延迟（delay）变成增益（gain）。"
+      },
+      {
+        "id": "B",
+        "text": "训练误差最小足以消除结构选择风险。"
+      },
+      {
+        "id": "C",
+        "text": "只要求解器精度高，就自动修复延迟错误。"
+      },
+      {
+        "id": "D",
+        "text": "残差（residual）与滞后（hysteresis）输入可能相关，需要比较有明确索引的候选结构。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-excitation-rank",
+    "slug": "p06-excitation-rank",
+    "version": "1",
+    "lesson_id": "P06-C05-S02",
+    "part": "6",
+    "chapter": "6.5",
+    "title": "给定实验能区分几个回归方向",
+    "type": "python",
+    "statement": "ARX回归矩阵（matrix）的两列分别是给定states与inputs。输入（input）为小整数，请用精确算术求矩阵秩（rank）。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "states",
+        "type": "list[int]",
+        "description": "每行的上一拍状态（state）或输出（output）。",
+        "unit": "U"
+      },
+      {
+        "name": "inputs",
+        "type": "list[int]",
+        "description": "同一行的当前输入。",
+        "unit": "V"
+      }
+    ],
+    "returns": [
+      {
+        "name": "rank",
+        "type": "int",
+        "description": "两列矩阵的秩，只能是0、1或2。",
+        "unit": "1"
+      }
+    ],
+    "contract": "令Y=Σstates²、U=Σinputs²、C=Σstates*inputs。两列全零时rank=0；Y*U−C²>0时rank=2；其他情况rank=1。本题全为整数，可精确判断，不设置浮点秩阈值。",
+    "constraints": [
+      "所有非缺测数值有限；不修改输入列表。",
+      "两列表等长1—50，各项整数绝对值≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "满列秩针对这一参数化与这组回归量；它本身不证明真实机制。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    states: list[int],\n    inputs: list[int],\n) -> int:\n    # 按题目定义返回计算结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "states": [
+            2,
+            2,
+            2
+          ],
+          "inputs": [
+            1,
+            1,
+            1
+          ]
+        },
+        "expected": 1,
+        "explanation": "恒定稳态列 [2,2,2] 是输入列的2倍，秩为1，只约束参数（parameter）组合，不能独立确定两个自由系数。"
+      }
+    ]
+  },
+  {
+    "id": "p06-steady-confounding",
+    "slug": "p06-steady-confounding",
+    "version": "1",
+    "lesson_id": "P06-C05-S02",
+    "part": "6",
+    "chapter": "6.5",
+    "title": "只在稳态能确定什么",
+    "type": "choice",
+    "statement": "ARX中a、b是两个独立未知参数（parameter），|a|<1；只测到非零恒定输入（input）u*=1 V下稳态y*=2 U。哪些正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "只能约束b/(1−a)=2 U/V。"
+      },
+      {
+        "id": "B",
+        "text": "(a,b)=(0.5,1)和(0.8,0.4)都符合这条关系。"
+      },
+      {
+        "id": "C",
+        "text": "已知输入值就必能独立确定a、b。"
+      },
+      {
+        "id": "D",
+        "text": "动态过渡或新的激励可能增加可辨识信息。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-constant-transient",
+    "slug": "p06-constant-transient",
+    "version": "1",
+    "lesson_id": "P06-C05-S02",
+    "part": "6",
+    "chapter": "6.5",
+    "title": "常量输入一定无法辨识吗",
+    "type": "choice",
+    "statement": "输入（input）恒定，但从非平衡（equilibrium）初态出发并记录了完整过渡。哪项正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "变化中的输出（output）列可能不与常量输入列成比例，有限样本回归矩阵（matrix）可能满秩（rank）。"
+      },
+      {
+        "id": "B",
+        "text": "所有瞬态都必然提供高精度参数（parameter）估计。"
+      },
+      {
+        "id": "C",
+        "text": "只需数值矩阵满秩就不必检查噪声模型（model）。"
+      },
+      {
+        "id": "D",
+        "text": "常量输入在任何情况下都只能得到秩1。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-conditioning",
+    "slug": "p06-conditioning",
+    "version": "1",
+    "lesson_id": "P06-C05-S02",
+    "part": "6",
+    "chapter": "6.5",
+    "title": "满秩为什么仍可能很难估计",
+    "type": "choice",
+    "statement": "两个回归列几乎成比例，矩阵（matrix）仍数学满秩（rank）。哪些正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "秩为2就意味着参数（parameter）误差为0。"
+      },
+      {
+        "id": "B",
+        "text": "用数值稳定的最小二乘可以缓解算术误差，却不能创造信息。"
+      },
+      {
+        "id": "C",
+        "text": "微小观测（observation）扰动可能造成很大的参数变化。"
+      },
+      {
+        "id": "D",
+        "text": "应检查奇异值（singular value）比例或条件数（condition number），并考虑新的实验设计。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-mechanistic-parameters",
+    "slug": "p06-mechanistic-parameters",
+    "version": "1",
+    "lesson_id": "P06-C05-S02",
+    "part": "6",
+    "chapter": "6.5",
+    "title": "同一稳态结论依赖哪些未知量",
+    "type": "choice",
+    "statement": "连续单室稳态A*=u/k、k>0。哪些判断正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "不论参数（parameter）哪些已知，稳态永远不能提供k信息。"
+      },
+      {
+        "id": "B",
+        "text": "若u与k都未知，只观测（observation）A*一般不能分别确定二者。"
+      },
+      {
+        "id": "C",
+        "text": "若u已独立校准且A*>0，则理想模型（model）内k=u/A*可确定。"
+      },
+      {
+        "id": "D",
+        "text": "若u已知且非零，输入（input）通道还有未知增益（gain）g，A*=g*u/k只约束g/k。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-time-partition",
+    "slug": "p06-time-partition",
+    "version": "1",
+    "lesson_id": "P06-C05-S03",
+    "part": "6",
+    "chapter": "6.5",
+    "title": "保留原时钟的数据划分",
+    "type": "python",
+    "statement": "观察时刻和缺测标记已给定。按固定边界返回训练、验证和最终评估三个集合的有效原始索引。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "严格递增的观察时刻。",
+        "unit": "T"
+      },
+      {
+        "name": "values",
+        "type": "list[float | None]",
+        "description": "同长度读数；None明确表示缺测。",
+        "unit": "U"
+      },
+      {
+        "name": "train_end",
+        "type": "float",
+        "description": "训练区间右边界，不包含该时刻。",
+        "unit": "T"
+      },
+      {
+        "name": "validation_end",
+        "type": "float",
+        "description": "验证区间右边界，不包含该时刻。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "train_indices",
+        "type": "list[int]",
+        "description": "有效且t<train_end的原始索引。",
+        "unit": "索引"
+      },
+      {
+        "name": "validation_indices",
+        "type": "list[int]",
+        "description": "有效且train_end≤t<validation_end的原始索引。",
+        "unit": "索引"
+      },
+      {
+        "name": "test_indices",
+        "type": "list[int]",
+        "description": "有效且t≥validation_end的原始索引。",
+        "unit": "索引"
+      }
+    ],
+    "contract": "先按原时间边界分组，缺测值不加入任何索引；保留原始索引，不把缺测删除后的相邻项当成相邻时间步。",
+    "constraints": [
+      "所有非缺测数值有限；不修改输入（input）列表。",
+      "0—100 个严格递增时刻，与values等长；绝对值≤1000；train_end<validation_end；非缺测读数绝对值≤100。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先确定索引语义，不能因缺测而偷偷压缩时间。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    times: list[float],\n    values: list[float | None],\n    train_end: float,\n    validation_end: float,\n) -> tuple[list[int], list[int], list[int]]:\n    # 按题目定义返回计算结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "times": [
+            0.0,
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0
+          ],
+          "values": [
+            1.0,
+            null,
+            3.0,
+            4.0,
+            null,
+            6.0
+          ],
+          "train_end": 2.0,
+          "validation_end": 4.0
+        },
+        "expected": [
+          [
+            0
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            5
+          ]
+        ],
+        "explanation": "结果为([0],[2,3],[5])；时刻2归验证，时刻4虽然归最终时段却缺测，不进入任何集合。"
+      }
+    ]
+  },
+  {
+    "id": "p06-group-partition",
+    "slug": "p06-group-partition",
+    "version": "1",
+    "lesson_id": "P06-C05-S03",
+    "part": "6",
+    "chapter": "6.5",
+    "title": "让同一个体留在同一数据集合",
+    "type": "python",
+    "statement": "目标是评估对新个体的推广。给出每条记录的个体标签和预先固定的训练/验证个体名单，未在两名单内者进入最终评估。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "individuals",
+        "type": "list[str]",
+        "description": "按原记录顺序排列的个体标签。",
+        "unit": "1"
+      },
+      {
+        "name": "training_groups",
+        "type": "list[str]",
+        "description": "预先指定的训练个体名单。",
+        "unit": "1"
+      },
+      {
+        "name": "validation_groups",
+        "type": "list[str]",
+        "description": "预先指定的验证个体名单。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "train_indices",
+        "type": "list[int]",
+        "description": "属于 training_groups 的原始记录索引。",
+        "unit": "索引"
+      },
+      {
+        "name": "validation_indices",
+        "type": "list[int]",
+        "description": "属于 validation_groups 的原始记录索引。",
+        "unit": "索引"
+      },
+      {
+        "name": "test_indices",
+        "type": "list[int]",
+        "description": "不属于两个名单的原始记录索引。",
+        "unit": "索引"
+      }
+    ],
+    "contract": "逐个原记录索引按个体所属名单划分；两名单无重叠，标签可重复出现。最终集合为未列入前两者的个体；不用每条记录单独随机分组。",
+    "constraints": [
+      "所有非缺测数值有限；不修改输入（input）列表。",
+      "0—100条记录；标签长度1—12；两名单各不重复且互不重叠，可为空；允许名单中的个体暂未出现在记录里。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "时间推广与新个体推广是不同任务；应预先选择符合目标的划分单位。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    individuals: list[str],\n    training_groups: list[str],\n    validation_groups: list[str],\n) -> tuple[list[int], list[int], list[int]]:\n    # 按题目定义返回计算结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "individuals": [
+            "甲",
+            "乙",
+            "甲",
+            "丙",
+            "乙"
+          ],
+          "training_groups": [
+            "甲"
+          ],
+          "validation_groups": [
+            "乙"
+          ]
+        },
+        "expected": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            3
+          ]
+        ],
+        "explanation": "结果([0,2],[1,4],[3])；甲的两条记录同属训练，不能一条训练一条评估新个体。"
+      }
+    ]
+  },
+  {
+    "id": "p06-train-only-transform",
+    "slug": "p06-train-only-transform",
+    "version": "1",
+    "lesson_id": "P06-C05-S03",
+    "part": "6",
+    "chapter": "6.5",
+    "title": "标准化参数从哪里估计",
+    "type": "choice",
+    "statement": "按时间划定训练、验证和最终评估后，需要减均值除标准差（standard deviation）。哪项正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "每个最终评估点都用它未来邻点更新变换，仍声称离线固定模型（model）。"
+      },
+      {
+        "id": "B",
+        "text": "先按最终评估误差挑变换，再报告同一最终误差为未见表现。"
+      },
+      {
+        "id": "C",
+        "text": "用全记录估计均值方差（variance），因为没有用到标签就不算泄漏。"
+      },
+      {
+        "id": "D",
+        "text": "只用训练段拟合变换，再原样用于验证和最终评估。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-missing-lags",
+    "slug": "p06-missing-lags",
+    "version": "1",
+    "lesson_id": "P06-C05-S03",
+    "part": "6",
+    "chapter": "6.5",
+    "title": "缺测点能直接拼接吗",
+    "type": "choice",
+    "statement": "等间隔记录y[0],y[1],None,y[3]，建立一阶ARX回归时哪项恰当？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "借助验证段未来值填补训练缺测而无需记录。"
+      },
+      {
+        "id": "B",
+        "text": "删除None后把y[1]直接当y[3]的一拍前值。"
+      },
+      {
+        "id": "C",
+        "text": "保留原索引；含缺测目标或所需滞后（hysteresis）项的回归行不直接用于拟合。"
+      },
+      {
+        "id": "D",
+        "text": "把None当0不会改变模型（model）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-held-out-purpose",
+    "slug": "p06-held-out-purpose",
+    "version": "1",
+    "lesson_id": "P06-C05-S03",
+    "part": "6",
+    "chapter": "6.5",
+    "title": "验证与最终评估分别做什么",
+    "type": "choice",
+    "statement": "比较两个候选动态结构后准备报告性能。哪些正确？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "训练拟合参数（parameter），验证用于预定候选选择，最终评估留待方案固定后。"
+      },
+      {
+        "id": "B",
+        "text": "同一个体记录跨训练/测试时可以无条件声称泛化到新个体。"
+      },
+      {
+        "id": "C",
+        "text": "范围外输入（input）表现差，应报告适用范围而不是删去这些点。"
+      },
+      {
+        "id": "D",
+        "text": "可报告残差（residual）时间相关，但单个统计量（statistic）不能证明机制唯一。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-cap-sampling",
+    "slug": "p06-cap-sampling",
+    "version": "1",
+    "lesson_id": "P06-SUMMARY",
+    "part": "6",
+    "chapter": "6.summary",
+    "title": "采样改变了什么",
+    "type": "choice",
+    "statement": "理想节律含0.2 Hz和0.8 Hz，fs=1 Hz；算法另用0.001 s数值步长。哪些正确？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "使用未来点的居中滤波应标为离线或注明等待延迟（delay）。"
+      },
+      {
+        "id": "B",
+        "text": "给1秒采样（sampling）记录补零即可恢复两个连续成分。"
+      },
+      {
+        "id": "C",
+        "text": "提高观察采样率（sampling rate）并满足带宽条件可以减少这种歧义。"
+      },
+      {
+        "id": "D",
+        "text": "更细数值步长不改变每秒一次读数的混叠（aliasing）歧义。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-cap-excitation",
+    "slug": "p06-cap-excitation",
+    "version": "1",
+    "lesson_id": "P06-SUMMARY",
+    "part": "6",
+    "chapter": "6.summary",
+    "title": "哪些激励有助于辨识",
+    "type": "choice",
+    "statement": "a、b独立未知的ARX只在一个非零稳态取了1000次相同条件读数。哪些解释合理？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "1000点一定比10点任何动态设计更可辨识。"
+      },
+      {
+        "id": "B",
+        "text": "满列秩（rank）之后仍需检查误差假设与独立验证。"
+      },
+      {
+        "id": "C",
+        "text": "重复可以减少某些随机误差，却不能自动打破稳态参数（parameter）组合的混淆。"
+      },
+      {
+        "id": "D",
+        "text": "设计过渡或变化输入（input），再检查回归列是否提供独立方向。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-cap-discrete",
+    "slug": "p06-cap-discrete",
+    "version": "1",
+    "lesson_id": "P06-SUMMARY",
+    "part": "6",
+    "chapter": "6.summary",
+    "title": "连接区间输入与离散响应",
+    "type": "python",
+    "statement": "给定独立的输入（input）片段，计算单室模型（one-compartment model）的精确零阶保持（zero-order hold，ZOH）与Euler轨迹（trajectory），作为后续评估之外的独立表示检查。",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "k",
+        "type": "float",
+        "description": "清除系数（elimination rate constant）。",
+        "unit": "1/T"
+      },
+      {
+        "name": "step",
+        "type": "float",
+        "description": "每段输入保持的时长/采样（sampling）间隔。",
+        "unit": "T"
+      },
+      {
+        "name": "initial",
+        "type": "float",
+        "description": "起点物质量。",
+        "unit": "U"
+      },
+      {
+        "name": "inputs",
+        "type": "list[float]",
+        "description": "每个区间内保持不变的输入流率（flow rate）。",
+        "unit": "U/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "exact",
+        "type": "list[float]",
+        "description": "精确零阶保持轨迹，含初态。",
+        "unit": "U"
+      },
+      {
+        "name": "euler",
+        "type": "list[float]",
+        "description": "显式Euler轨迹，含初态且保留负值。",
+        "unit": "U"
+      }
+    ],
+    "contract": "a=exp(−k*step)，b=(1−a)/k；k=0时b=step。精确更新A_next=a*A+b*u。Euler更新A_next=(1−k*step)*A+step*u。各自递推，均含初态，不裁剪负值。",
+    "constraints": [
+      "所有非缺测数值有限；不修改输入列表。",
+      "0≤k≤1；0.01≤step≤4；0≤initial≤20；0—12段输入，各0≤u≤5。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "保持流率与区间积分对应，不能漏乘时间。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    k: float,\n    step: float,\n    initial: float,\n    inputs: list[float],\n) -> tuple[list[float], list[float]]:\n    # 按题目定义返回计算结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "k": 0.25,
+          "step": 2.0,
+          "initial": 2.0,
+          "inputs": [
+            1.0,
+            0.0,
+            2.0
+          ]
+        },
+        "expected": [
+          [
+            2.0,
+            2.7869386805747336,
+            1.6903637565076493,
+            4.173012166687843
+          ],
+          [
+            2.0,
+            3.0,
+            1.5,
+            4.75
+          ]
+        ],
+        "explanation": "第一段精确值为2e⁻⁰·⁵+4(1−e⁻⁰·⁵)≈2.78694 U；Euler为3 U。两条轨迹随后各自递推。"
+      }
+    ]
+  },
+  {
+    "id": "p06-cap-fit",
+    "slug": "p06-cap-fit",
+    "version": "1",
+    "lesson_id": "P06-SUMMARY",
+    "part": "6",
+    "chapter": "6.summary",
+    "title": "参数估计与残差",
+    "type": "python",
+    "statement": "只用给定拟合观测（observation）比较候选清除参数（parameter）。核验真值不作为函数参数，初始量由独立测量协议给定。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "无输入（input）清除开始后的观察时刻。",
+        "unit": "T"
+      },
+      {
+        "name": "observed",
+        "type": "list[float]",
+        "description": "对应读数，可含测量误差。",
+        "unit": "U"
+      },
+      {
+        "name": "initial",
+        "type": "float",
+        "description": "独立给定的初始物质量，本题不拟合。",
+        "unit": "U"
+      },
+      {
+        "name": "candidates",
+        "type": "list[float]",
+        "description": "待比较的清除系数（elimination rate constant）有限集合，可以未排序或重复。",
+        "unit": "1/T"
+      },
+      {
+        "name": "weights",
+        "type": "list[float]",
+        "description": "每个读数平方残差（residual）的正权重。",
+        "unit": "1/U²"
+      }
+    ],
+    "returns": [
+      {
+        "name": "best_k",
+        "type": "float",
+        "description": "有限候选中目标最小者，完全并列选较小k。",
+        "unit": "1/T"
+      },
+      {
+        "name": "predicted",
+        "type": "list[float]",
+        "description": "在观测时刻的拟合值。",
+        "unit": "U"
+      },
+      {
+        "name": "residuals",
+        "type": "list[float]",
+        "description": "observed−predicted。",
+        "unit": "U"
+      },
+      {
+        "name": "weighted_sse",
+        "type": "float",
+        "description": "Σweights[i]*residuals[i]²。",
+        "unit": "1"
+      }
+    ],
+    "contract": "每个k的预测为initial*exp(−k*t)。比较给定加权平方误差和；候选去重后升序扫描，只有严格更小的损失才更新。返回的最优仅限此候选集合。",
+    "constraints": [
+      "所有非缺测数值有限；不修改输入列表。",
+      "等长1—30个times/observed/weights；0≤t≤20，|observed|≤30，0<weights≤100；0≤initial≤20；1—30个候选，0≤k≤2。测试非完全并列时目标差>1e−8。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "最优只相对于候选与误差权重；结果不自动证明真实清除机制。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    times: list[float],\n    observed: list[float],\n    initial: float,\n    candidates: list[float],\n    weights: list[float],\n) -> tuple[float, list[float], list[float], float]:\n    # 按题目定义返回计算结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "times": [
+            0.0,
+            1.0,
+            2.0
+          ],
+          "observed": [
+            5.0,
+            3.0,
+            2.0
+          ],
+          "initial": 5.0,
+          "candidates": [
+            0.0,
+            0.5,
+            1.0
+          ],
+          "weights": [
+            1.0,
+            2.0,
+            1.0
+          ]
+        },
+        "expected": [
+          0.5,
+          [
+            5.0,
+            3.032653298563167,
+            1.8393972058572117
+          ],
+          [
+            0.0,
+            -0.0326532985631669,
+            0.16060279414278833
+          ],
+          0.02792573330058148
+        ],
+        "explanation": "候选0.5/T的加权损失约0.0279257，比0及1/T小；保留原单位残差，不把它们对数化。"
+      }
+    ]
+  },
+  {
+    "id": "p06-cap-preprocess",
+    "slug": "p06-cap-preprocess",
+    "version": "1",
+    "lesson_id": "P06-SUMMARY",
+    "part": "6",
+    "chapter": "6.summary",
+    "title": "划分数据并隔离标准化",
+    "type": "python",
+    "statement": "给定三段固定时间边界。先排除缺测并划分索引，再仅从训练段有效读数求均值和总体标准差（standard deviation），把固定变换应用于所有非缺测值。",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "严格递增的观察时刻。",
+        "unit": "T"
+      },
+      {
+        "name": "values",
+        "type": "list[float | None]",
+        "description": "同长度读数；None明确表示缺测。",
+        "unit": "U"
+      },
+      {
+        "name": "train_end",
+        "type": "float",
+        "description": "训练区间右边界，不包含该时刻。",
+        "unit": "T"
+      },
+      {
+        "name": "validation_end",
+        "type": "float",
+        "description": "验证区间右边界，不包含该时刻。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "train_indices",
+        "type": "list[int]",
+        "description": "有效且t<train_end的原始索引。",
+        "unit": "索引"
+      },
+      {
+        "name": "validation_indices",
+        "type": "list[int]",
+        "description": "有效且train_end≤t<validation_end的原始索引。",
+        "unit": "索引"
+      },
+      {
+        "name": "test_indices",
+        "type": "list[int]",
+        "description": "有效且t≥validation_end的原始索引。",
+        "unit": "索引"
+      },
+      {
+        "name": "training_mean",
+        "type": "float",
+        "description": "训练有效读数均值。",
+        "unit": "U"
+      },
+      {
+        "name": "training_scale",
+        "type": "float",
+        "description": "训练总体标准差；全相同则取1 U作为约定。",
+        "unit": "U"
+      },
+      {
+        "name": "standardized",
+        "type": "list[float | None]",
+        "description": "与values等长，缺测仍为None，其余按训练变换处理。",
+        "unit": "1"
+      }
+    ],
+    "contract": "先按原时间边界分组，缺测值不加入任何索引；保留原始索引，不把缺测删除后的相邻项当成相邻时间步。均值与标准差都只由train_indices中的读数计算，方差（variance）分母为有效训练点数。标准差为0时将scale设为1，再输出（output）(x−mean)/scale。",
+    "constraints": [
+      "所有非缺测数值有限；不修改输入（input）列表。",
+      "0—100 个严格递增时刻，与values等长；绝对值≤1000；train_end<validation_end；非缺测读数绝对值≤100。",
+      "至少一个有效训练点；训练标准差非零时≥1e−6。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "验证与最终时段只接受已拟合变换，不能反向改变训练统计量（statistic）。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    times: list[float],\n    values: list[float | None],\n    train_end: float,\n    validation_end: float,\n) -> tuple[list[int], list[int], list[int], float, float, list[float | None]]:\n    # 按题目定义返回计算结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "times": [
+            0.0,
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0
+          ],
+          "values": [
+            1.0,
+            3.0,
+            null,
+            5.0,
+            7.0,
+            9.0
+          ],
+          "train_end": 2.0,
+          "validation_end": 4.0
+        },
+        "expected": [
+          [
+            0,
+            1
+          ],
+          [
+            3
+          ],
+          [
+            4,
+            5
+          ],
+          2.0,
+          1.0,
+          [
+            -1.0,
+            1.0,
+            null,
+            3.0,
+            5.0,
+            7.0
+          ]
+        ],
+        "explanation": "训练索引[0,1]，验证[3]，最终[4,5]；训练均值2 U、scale=1 U；标准化为[−1,1,None,3,5,7]，后段的大读数不改变训练变换。"
+      }
+    ]
+  },
+  {
+    "id": "p06-cap-prediction",
+    "slug": "p06-cap-prediction",
+    "version": "1",
+    "lesson_id": "P06-SUMMARY",
+    "part": "6",
+    "chapter": "6.summary",
+    "title": "两种预测的误差分别是多少",
+    "type": "python",
+    "statement": "参数（parameter）已固定，已知评估段起点和整段输入（input）。分别返回一步预测（one-step-ahead prediction）、自由运行（free-run simulation）及相对y[1:]的均方根误差（root mean squared error，RMSE）。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "float",
+        "description": "输出（output）的一拍反馈（feedback）系数。",
+        "unit": "1"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "输入到下一拍输出的增益（gain）。",
+        "unit": "U/V"
+      },
+      {
+        "name": "observed",
+        "type": "list[float]",
+        "description": "y[0]…y[N]，首项是两种预测共同初态。",
+        "unit": "U"
+      },
+      {
+        "name": "inputs",
+        "type": "list[float]",
+        "description": "u[0]…u[N−1]，u[n]作用于y[n+1]。",
+        "unit": "V"
+      }
+    ],
+    "returns": [
+      {
+        "name": "one_step",
+        "type": "list[float]",
+        "description": "预测y[1]…y[N]，每步使用上一拍实际观测（observation）。",
+        "unit": "U"
+      },
+      {
+        "name": "free_run",
+        "type": "list[float]",
+        "description": "预测同样N个时刻，只使用初态和先前预测。",
+        "unit": "U"
+      },
+      {
+        "name": "one_step_rmse",
+        "type": "float",
+        "description": "一步预测相对observed[1:]的RMSE。",
+        "unit": "U"
+      },
+      {
+        "name": "free_run_rmse",
+        "type": "float",
+        "description": "自由运行相对相同目标的RMSE。",
+        "unit": "U"
+      }
+    ],
+    "contract": "一步：one_step[n]=a*observed[n]+b*inputs[n]；自由运行从current=observed[0]开始，每步current=a*current+b*u，再加入结果。两个结果都不含初态。RMSE=sqrt(Σ(pred−observed[n+1])²/N)，不把共同初态纳入分母。",
+    "constraints": [
+      "所有非缺测数值有限；不修改输入列表。",
+      "0≤N≤30；observed长度为N+1，inputs长度为N；每项绝对值≤10；|a|≤1.2，|b|≤3。",
+      "本题N至少为1。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "同一目标时段、不同可用信息；任何一项指标都不能代替完整验证。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    a: float,\n    b: float,\n    observed: list[float],\n    inputs: list[float],\n) -> tuple[list[float], list[float], float, float]:\n    # 按题目定义返回计算结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "a": 0.5,
+          "b": 1.0,
+          "observed": [
+            0.0,
+            1.0,
+            2.0,
+            2.0
+          ],
+          "inputs": [
+            1.0,
+            1.0,
+            0.0
+          ]
+        },
+        "expected": [
+          [
+            1.0,
+            1.5,
+            1.0
+          ],
+          [
+            1.0,
+            1.5,
+            0.75
+          ],
+          0.6454972243679028,
+          0.7772815877574012
+        ],
+        "explanation": "样例两种预测仍为[1,1.5,1]和[1,1.5,0.75]；对应RMSE约0.645497和0.777282 U，分母均为3。"
+      }
+    ]
+  },
+  {
+    "id": "p06-cap-resampling",
+    "slug": "p06-cap-resampling",
+    "version": "1",
+    "lesson_id": "P06-SUMMARY",
+    "part": "6",
+    "chapter": "6.summary",
+    "title": "更换采样率后的响应",
+    "type": "choice",
+    "statement": "同一连续单室清除系数（elimination rate constant）k=0.4/T、每个区间内输入（input）恒定。将采样（sampling）间隔从1T改为2T。哪项正确？",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "稀疏观察能够自动增加高速动态信息。"
+      },
+      {
+        "id": "B",
+        "text": "新精确状态（state）系数exp(−0.8)，输入系数(1−exp(−0.8))/0.4。"
+      },
+      {
+        "id": "C",
+        "text": "沿用所有旧离散系数即可，因为连续系统没变。"
+      },
+      {
+        "id": "D",
+        "text": "新系数必等于1−0.8且这没有近似误差。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-cap-validation",
+    "slug": "p06-cap-validation",
+    "version": "1",
+    "lesson_id": "P06-SUMMARY",
+    "part": "6",
+    "chapter": "6.summary",
+    "title": "换激励后的验证能支持什么",
+    "type": "choice",
+    "statement": "训练和验证均只用温和输入（input）；固定方案在预留较强输入下出现持续偏差。哪些结论恰当？",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "报告范围外偏差，考虑饱和等候选机制但不直接断言原因。"
+      },
+      {
+        "id": "B",
+        "text": "删除这些点即可宣称完整评估通过。"
+      },
+      {
+        "id": "C",
+        "text": "若用该评估集进一步选结构，应另保留新的最终评估。"
+      },
+      {
+        "id": "D",
+        "text": "训练残差（residual）小并没有保证所有输入范围可用。"
+      }
+    ],
+    "constraints": []
+  }
+]

@@ -1,9 +1,13 @@
 """从题目契约生成完整练习正文；不包含答案，入口由正式课节指定。"""
+from urllib.parse import quote
 from teaching_examples import example_markdown
 from question_contracts import contract_markdown
 
 
 def render_exercises(lesson_id, questions, practice_url, assessment=None):
+    # Markdown destinations cannot contain raw spaces or closing parentheses.
+    # Keep existing percent escapes intact when a caller already encoded its path.
+    practice_path = quote(practice_url, safe='/%')
     parts = ['## 练习与参考资料', '先独立作答，再提交核对。']
     items = {i['question_id']: i for i in assessment['items']} if assessment else {}
     if assessment:
@@ -22,5 +26,6 @@ def render_exercises(lesson_id, questions, practice_url, assessment=None):
         else:
             parts += [contract_markdown(q), example_markdown(q),
                       f'允许 Python 标准库；绝对误差 {q["tolerance"]["atol"]} 或相对误差 {q["tolerance"]["rtol"]}。']
-        parts.append(f'[作答：{q["title"]}](http://127.0.0.1:8000{practice_url}?question={q["slug"]})')
+        slug = quote(q['slug'], safe='%')
+        parts.append(f'[作答：{q["title"]}](http://127.0.0.1:8000{practice_path}?question={slug})')
     return '\n\n'.join(parts)
