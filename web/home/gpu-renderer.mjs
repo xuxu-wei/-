@@ -100,8 +100,11 @@ export class GPURenderer {
       entry.moon = new THREE.Mesh(this.moonSphere, new THREE.MeshStandardMaterial({color: 0x7e91a8, roughness: .91, metalness: 0})); entry.moon.renderOrder = 5; group.add(entry.moon); entry.materials.push(entry.moon.material);
     } else {
       const geometry = new THREE.BufferGeometry(); geometry.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0], 3)); geometry.setAttribute('aSize', new THREE.Float32BufferAttribute([1], 1)); geometry.setAttribute('aAlpha', new THREE.Float32BufferAttribute([1], 1)); geometry.setAttribute('aWarm', new THREE.Float32BufferAttribute([.16], 1));
-      entry.body = new THREE.Points(geometry, this.pointsMaterial('#94b7cf', 15 + seed % 4 * 1.7, .95)); entry.body.renderOrder = 7; group.add(entry.body); entry.materials.push(entry.body.material); entry.ownGeometry.push(geometry);
+      entry.body = new THREE.Points(geometry, this.pointsMaterial('#94b7cf', 15 + seed % 4 * 1.7, .95, true)); entry.body.renderOrder = 7; group.add(entry.body); entry.materials.push(entry.body.material); entry.ownGeometry.push(geometry);
     }
+    // Classification colours are display-referred; filmic exposure remains for
+    // the black hole, not for data-bearing category materials.
+    for (const material of entry.materials) material.toneMapped = false;
     this.scene.add(group); return entry;
   }
 
@@ -155,6 +158,8 @@ export class GPURenderer {
 
   setTheme(dark) {this.dark = Boolean(dark); this.background.material.uniforms.uDark.value = this.dark ? 1 : 0; this.starfield.material.uniforms.uDark.value = this.dark ? 1 : 0; this.renderer.setClearColor(this.dark ? 0x040814 : 0xe5effb, 1);}
 
+  getDiameter(id = null) {const entry=id?this.entries.get(id):this.centerEntry;return entry?(entry.kind==='chapter'?entry.body.scale.x*2:entry.kind==='part'?entry.body.scale.x:18):1;}
+
   updateEdges(nodes, edges, hovered, reveal) {
     const lookup = new Map(nodes.map(node => [node.id, node])), segments = 12, count = edges.length * segments * 2;
     if (count > this.edgeCapacity) {
@@ -176,7 +181,7 @@ export class GPURenderer {
     this.edgeGeometry.setDrawRange(0, cursor); for (const attribute of Object.values(this.edgeGeometry.attributes)) attribute.needsUpdate = true;
   }
 
-  draw({nodes = [], edges = [], center, radius = 48, time = 0, hovered = null, neighbors = new Set(), intro = 0, introProgress = null, velocity = 0, centerKind = 'universe', centerColor = '#94b7cf', centerId = 'core'}) {
+  draw({nodes = [], edges = [], center, radius = 48, time = 0, hovered = null, selected = null, neighbors = new Set(), intro = 0, introProgress = null, velocity = 0, centerKind = 'universe', centerColor = '#94b7cf', centerId = 'core'}) {
     if (this.disposed) return; if (this.renderer.getContext().isContextLost()) throw new Error('WebGL 上下文已丢失。');
     const opening = introProgress !== null, progress = opening ? clamp(introProgress) : 1;
     const reveal = new Map(nodes.map((node, index) => [node.id, opening ? smooth(.15 + index / Math.max(1, nodes.length) * .30, .32 + index / Math.max(1, nodes.length) * .30, progress) : 1]));
@@ -186,7 +191,7 @@ export class GPURenderer {
       let entry = this.entries.get(node.id); if (!entry || entry.kind !== node.kind) {if (entry) this.removeEntry(entry); entry = this.makeEntry(node.kind, node.id); this.entries.set(node.id, entry);}
       const focus = node.id === hovered, neighbor = neighbors.has(node.id), fade = hovered && !focus && !neighbor ? .27 : 1;
       const opacity = reveal.get(node.id) * fade; entry.group.visible = opacity > .008;
-      this.updateEntry(entry, node, time, opacity, focus, neighbor, false, 37, centerKind === 'part' ? centerColor : node.color, centerKind === 'part' ? center : null);
+      this.updateEntry(entry, node, time, opacity, focus || node.id === selected, neighbor, false, 37, centerKind === 'part' ? centerColor : node.color, centerKind === 'part' ? center : null);
     }
     this.updateEdges(nodes, edges, hovered, reveal);
     const opacity = opening ? smooth(0, .23, progress) : 1;

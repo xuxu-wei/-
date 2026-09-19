@@ -1146,7 +1146,7 @@
       {
         "name": "initial",
         "type": "float",
-        "description": "t=0初始物质量。",
+        "description": "t=0初始所追踪物质总量（tracked amount）。",
         "unit": "U"
       },
       {
@@ -1405,7 +1405,7 @@
       {
         "name": "initial",
         "type": "float",
-        "description": "起点物质量。",
+        "description": "起点所追踪物质总量（tracked amount）。",
         "unit": "U"
       },
       {
@@ -1915,7 +1915,7 @@
       {
         "name": "initial",
         "type": "float",
-        "description": "独立给定的初始物质量，本题不拟合。",
+        "description": "独立给定的初始所追踪物质总量（tracked amount），本题不拟合。",
         "unit": "U"
       },
       {
@@ -2393,7 +2393,7 @@
       },
       {
         "id": "D",
-        "text": "独立随机设计观测（observation）对可成对重采样（sampling），声明重复数（complex number）和区间方法。"
+        "text": "独立随机设计观测（observation）对可成对重采样（resampling），声明重采样次数和区间方法。"
       }
     ],
     "constraints": []
@@ -2657,7 +2657,7 @@
       },
       {
         "id": "D",
-        "text": "残差（residual）与滞后（hysteresis）输入可能相关，需要比较有明确索引的候选结构。"
+        "text": "残差（residual）与滞后输入（lagged input）可能相关，需要比较有明确索引的候选结构。"
       }
     ],
     "constraints": []
@@ -3197,7 +3197,7 @@
       },
       {
         "id": "C",
-        "text": "保留原索引；含缺测目标或所需滞后（hysteresis）项的回归行不直接用于拟合。"
+        "text": "保留原索引；含缺测目标或所需滞后项（lagged term）的回归行不直接用于拟合。"
       },
       {
         "id": "D",
@@ -3949,7 +3949,7 @@
       {
         "name": "initial",
         "type": "float",
-        "description": "起点物质量。",
+        "description": "起点所追踪物质总量（tracked amount）。",
         "unit": "U"
       },
       {
@@ -4058,7 +4058,7 @@
       {
         "name": "initial",
         "type": "float",
-        "description": "独立给定的初始物质量，本题不拟合。",
+        "description": "独立给定的初始所追踪物质总量（tracked amount），本题不拟合。",
         "unit": "U"
       },
       {

@@ -197,7 +197,7 @@
     "chapter": "7.1",
     "title": "未知的是哪一类量",
     "type": "choice",
-    "statement": "已知交换系数与噪声模型（model），只知道两个室物质量的先验（prior）分布（distribution）。根据逐日读数估计两室当前物质量，属于哪项？",
+    "statement": "已知交换系数与噪声模型（model），只知道两个室所追踪物质总量（tracked amount）的先验（prior）分布（distribution）。根据逐日读数估计两室当前总量，属于哪项？",
     "learning_targets": [
       "T1"
     ],
@@ -2726,7 +2726,7 @@
     "chapter": "7.5",
     "title": "自助滤波中为何只乘似然",
     "type": "choice",
-    "statement": "自助粒子滤波（particle filtering，PF）用状态（state）转移分布（distribution）作提议。哪项解释正确？",
+    "statement": "自助粒子滤波（bootstrap particle filter）用状态（state）转移分布（distribution）作提议。哪项解释正确？",
     "learning_targets": [
       "T3"
     ],
@@ -3078,13 +3078,13 @@
       {
         "name": "means",
         "type": "list[list[float]]",
-        "description": "各时刻使用当时可用观测后的均值。",
+        "description": "各时刻在给定整段观测后的固定区间平滑均值，可利用该时刻之后的观测。",
         "unit": "U"
       },
       {
         "name": "covariances",
         "type": "list[list[list[float]]]",
-        "description": "与 means 对应的协方差矩阵（covariance matrix）。",
+        "description": "与 means 对应的固定区间平滑协方差矩阵（covariance matrix）。",
         "unit": "U²"
       }
     ],

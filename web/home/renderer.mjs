@@ -13,7 +13,7 @@ function surface(width, height) {const canvas = document.createElement('canvas')
 function galaxySprite(color, seed, dark) {
   const canvas = surface(320, 320), c = canvas.getContext('2d'), random = rng(seed);
   const arms = 2 + (seed % 3), inclination = .42 + random() * .25, winding = .043 + random() * .015;
-  const ink = dark ? color : blend(color, '#153453', .37);
+  const ink = color;
   c.translate(160, 160); c.scale(1, inclination); c.globalCompositeOperation = dark ? 'screen' : 'source-over';
   const mist = c.createRadialGradient(0, 0, 0, 0, 0, 151);
   mist.addColorStop(0, tint(ink, dark ? .30 : .26)); mist.addColorStop(.26, tint(ink, dark ? .16 : .12)); mist.addColorStop(1, tint(ink, 0));
@@ -28,21 +28,21 @@ function galaxySprite(color, seed, dark) {
     c.beginPath(); c.arc(x, y, size, 0, TAU); c.fill();
   }
   const core = c.createRadialGradient(0, 0, 0, 0, 0, 28);
-  core.addColorStop(0, dark ? '#fff8e5f0' : tint(ink, .98)); core.addColorStop(.07, dark ? '#ffffffd9' : tint(ink, .9)); core.addColorStop(.24, tint(ink, .65)); core.addColorStop(1, tint(ink, 0));
+  core.addColorStop(0, tint(ink, .98)); core.addColorStop(.07, tint(ink, .9)); core.addColorStop(.24, tint(ink, .65)); core.addColorStop(1, tint(ink, 0));
   c.fillStyle = core; c.fillRect(-29, -29, 58, 58);
   return canvas;
 }
 
 function planetSprite(color, seed, dark) {
   const canvas = surface(256, 256), c = canvas.getContext('2d'), random = rng(seed), radius = 88;
-  const ink = blend(color, '#16314f', dark ? .08 : .24);
+  const ink = color;
   c.translate(128, 128);
   const atmosphere = c.createRadialGradient(0, 0, radius * .96, 0, 0, radius * 1.16);
   atmosphere.addColorStop(0, tint(color, dark ? .35 : .18)); atmosphere.addColorStop(1, tint(color, 0));
   c.fillStyle = atmosphere; c.beginPath(); c.arc(0, 0, radius * 1.16, 0, TAU); c.fill();
   c.save(); c.beginPath(); c.arc(0, 0, radius, 0, TAU); c.clip();
   const sphere = c.createRadialGradient(-radius * .38, -radius * .43, 1, radius * .16, radius * .19, radius * 1.19);
-  sphere.addColorStop(0, blend(ink, '#f2f8ff', dark ? .66 : .77)); sphere.addColorStop(.36, blend(ink, '#f2f8ff', .20)); sphere.addColorStop(.68, ink); sphere.addColorStop(1, blend(ink, '#071221', dark ? .89 : .74));
+  sphere.addColorStop(0, blend(ink, '#ffffff', dark ? .66 : .77)); sphere.addColorStop(.36, blend(ink, '#ffffff', .20)); sphere.addColorStop(.68, ink); sphere.addColorStop(1, blend(ink, '#000000', dark ? .89 : .74));
   c.fillStyle = sphere; c.fillRect(-radius, -radius, radius * 2, radius * 2);
   // Seeded curved cloud belts: texture is unique to the chapter, while a stable
   // key light makes a recognisable sphere in either palette.
@@ -50,7 +50,7 @@ function planetSprite(color, seed, dark) {
   c.rotate(tilt);
   for (let i = 0; i < 19; i++) {
     const y = -radius + i * radius * 2 / 18 + (random() - .5) * 8;
-    c.strokeStyle = i % 3 ? tint(blend(ink, '#f2f8ff', .64), .10 + random() * .18) : tint(blend(ink, '#081a30', .55), .11 + random() * .17);
+    c.strokeStyle = i % 3 ? tint(blend(ink, '#ffffff', .64), .10 + random() * .18) : tint(blend(ink, '#000000', .55), .11 + random() * .17);
     c.lineWidth = 2 + random() * 8; c.beginPath(); c.moveTo(-radius * 1.2, y);
     c.bezierCurveTo(-radius * .43, y - 15 - random() * 7, radius * .4, y + 16 + random() * 8, radius * 1.2, y + 4); c.stroke();
   }
@@ -62,29 +62,29 @@ function planetSprite(color, seed, dark) {
   const shadow = c.createLinearGradient(-radius, -radius * .45, radius, radius * .35);
   shadow.addColorStop(0, '#02091300'); shadow.addColorStop(.5, '#02091300'); shadow.addColorStop(1, dark ? '#010611ce' : '#0613298f');
   c.fillStyle = shadow; c.beginPath(); c.arc(0, 0, radius, 0, TAU); c.fill();
-  c.strokeStyle = tint(dark ? blend(color, '#eaf7ff', .62) : blend(color, '#173453', .46), dark ? .34 : .68);
+  c.strokeStyle = tint(dark ? blend(color, '#ffffff', .62) : blend(color, '#000000', .12), dark ? .34 : .68);
   c.lineWidth = dark ? 1.1 : 1.5; c.beginPath(); c.arc(0, 0, radius, 0, TAU); c.stroke();
   return canvas;
 }
 
 function conceptSprite(color, seed, dark) {
-  const canvas = surface(160, 160), c = canvas.getContext('2d'), ink = dark ? color : blend(color, '#15304d', .38);
+  const canvas = surface(160, 160), c = canvas.getContext('2d'), ink = color;
   const asteroid = seed % 6 === 0, radius = asteroid ? 21 : 10 + seed % 4;
   c.translate(80, 80);
   const halo = c.createRadialGradient(0, 0, 0, 0, 0, 68);
   halo.addColorStop(0, tint(ink, dark ? .32 : .14)); halo.addColorStop(.36, tint(ink, dark ? .09 : .05)); halo.addColorStop(1, tint(ink, 0));
   c.fillStyle = halo; c.fillRect(-70, -70, 140, 140);
   const body = c.createRadialGradient(-radius * .32, -radius * .35, 0, radius * .12, radius * .12, radius * 1.12);
-  body.addColorStop(0, dark ? blend(ink, '#ffffff', asteroid ? .64 : .97) : blend(ink, '#f2f7fd', asteroid ? .62 : .12));
-  body.addColorStop(.34, dark ? blend(ink, '#f0f8ff', asteroid ? .28 : .68) : ink);
-  body.addColorStop(1, asteroid ? blend(ink, '#0c1d30', .72) : tint(ink, dark ? .18 : .85));
+  body.addColorStop(0, dark ? blend(ink, '#ffffff', asteroid ? .64 : .97) : blend(ink, '#ffffff', asteroid ? .62 : .12));
+  body.addColorStop(.34, dark ? blend(ink, '#ffffff', asteroid ? .28 : .68) : ink);
+  body.addColorStop(1, asteroid ? blend(ink, '#000000', .72) : tint(ink, dark ? .18 : .85));
   c.fillStyle = body; c.beginPath(); c.ellipse(0, 0, radius, radius * (asteroid ? .86 : 1), asteroid ? (seed % 10) * .16 : 0, 0, TAU); c.fill();
   if (asteroid) {
     // A few quiet, rounded minor bodies add variety without polygonal jewellery.
-    c.fillStyle = tint(blend(ink, '#091a2c', .63), .23);
+    c.fillStyle = tint(blend(ink, '#000000', .63), .23);
     for (const [x, y, r] of [[-6, 3, 4.5], [7, -3, 3], [3, 10, 2]]) {c.beginPath(); c.arc(x, y, r, 0, TAU); c.fill();}
   } else {
-    c.strokeStyle = tint(dark ? blend(ink, '#eaf6ff', .60) : ink, dark ? .32 : .26); c.lineWidth = .7;
+    c.strokeStyle = tint(dark ? blend(ink, '#ffffff', .60) : ink, dark ? .32 : .26); c.lineWidth = .7;
     c.beginPath(); c.moveTo(-27, 0); c.lineTo(27, 0); c.moveTo(0, -27); c.lineTo(0, 27); c.stroke();
   }
   return canvas;
@@ -112,6 +112,7 @@ export class CosmosRenderer {
   }
 
   setTheme(dark) {this.dark = dark; this.background();}
+  getDiameter(id = null) {return id?this.diameters?.get(id)||1:this.centralDiameter||1;}
 
   spriteFor(kind, id, color) {
     const material = kind === 'chapter' || kind === 'concept' ? kind : 'part';
@@ -127,7 +128,7 @@ export class CosmosRenderer {
   }
 
   material({kind, id, color, x, y, size, time, spin = 0, opacity = 1, emphasis = 1}) {
-    const c = this.ctx, seed = seedOf(id), ink = this.dark ? colorHex(color) : blend(color, '#173651', .38);
+    const c = this.ctx, seed = seedOf(id), ink = colorHex(color);
     const sprite = this.spriteFor(kind, id, color);
     c.save(); c.translate(x, y); c.globalAlpha = clamp(opacity);
     if (kind === 'chapter') {
@@ -138,7 +139,7 @@ export class CosmosRenderer {
       });
       const moon = ({x: mx, y: my, radius: moonRadius}) => {
         const shade = c.createRadialGradient(mx - moonRadius * .35, my - moonRadius * .35, 0, mx, my, moonRadius);
-        shade.addColorStop(0, blend(ink, '#f2f8ff', .85)); shade.addColorStop(1, blend(ink, '#071528', .55));
+        shade.addColorStop(0, blend(ink, '#ffffff', .85)); shade.addColorStop(1, blend(ink, '#000000', .55));
         c.fillStyle = shade; c.beginPath(); c.arc(mx, my, moonRadius, 0, TAU); c.fill();
       };
       c.save(); c.rotate(tilt);
@@ -223,9 +224,10 @@ export class CosmosRenderer {
     c.restore();
   }
 
-  draw({nodes, edges, center, radius, time, hovered, neighbors = new Set(), intro = 0, introProgress = null, velocity = 0, centerKind = 'universe', centerColor = '#9cbbdd', centerId = 'core'}) {
+  draw({nodes, edges, center, radius, time, hovered, selected = null, neighbors = new Set(), intro = 0, introProgress = null, velocity = 0, centerKind = 'universe', centerColor = '#9cbbdd', centerId = 'core'}) {
     const c = this.ctx, w = this.width, h = this.height;
     if (!w || !h) return;
+    this.diameters=new Map();this.centralDiameter=radius*(centerKind==='part'?9.8:4.14);
     c.setTransform(this.dpr, 0, 0, this.dpr, 0, 0); c.globalAlpha = 1; c.globalCompositeOperation = 'source-over';
     const opening = introProgress !== null, progress = opening ? clamp(introProgress) : 1;
     const offsetX = center.x - w * .48, offsetY = center.y - h * .52;
@@ -255,7 +257,7 @@ export class CosmosRenderer {
       const opacity = Math.min(reveal.get(a.id), reveal.get(b.id)) * (opening ? smooth(.30, .64, progress) : 1);
       if (opacity < .005) continue;
       const alpha = (direct ? .65 : hovered ? (this.dark ? .032 : .07) : (this.dark ? .15 : .25)) * opacity, gradient = c.createLinearGradient(a.sx, a.sy, b.sx, b.sy);
-      gradient.addColorStop(0, tint(this.dark ? a.color : blend(a.color, '#193957', .35), alpha)); gradient.addColorStop(1, tint(this.dark ? b.color : blend(b.color, '#193957', .35), alpha));
+      gradient.addColorStop(0, tint(a.color, alpha)); gradient.addColorStop(1, tint(b.color, alpha));
       const cx = (a.sx + b.sx) * .5 + (b.sy - a.sy) * .045, cy = (a.sy + b.sy) * .5 - (b.sx - a.sx) * .045;
       c.strokeStyle = gradient; c.lineWidth = direct ? 1.3 : .45 + Math.min(4, edge.weight || 1) * .08;
       c.beginPath(); c.moveTo(a.sx, a.sy); c.quadraticCurveTo(cx, cy, b.sx, b.sy); c.stroke();
@@ -276,6 +278,7 @@ export class CosmosRenderer {
       const glow = clamp(node.glow || 0), seed = seedOf(node.id);
       const baseSize = node.kind === 'chapter' ? 24 : node.kind === 'concept' ? 26 : 73;
       const size = baseSize * (node.scale || 1) * (.94 + (seed % 13) / 100);
+      this.diameters.set(node.id,size*2);
       const baseOpacity = node.kind === 'chapter' ? (this.dark ? .81 : .94) : node.kind === 'concept' ? (this.dark ? .65 : .91) : (this.dark ? .42 : .91);
       this.material({kind: node.kind, id: node.id, color: node.color, x: node.sx, y: node.sy, size, time, spin: node.spin || 0, opacity: clamp(baseOpacity + glow * .42 + (isHover ? .22 : neighbor ? .09 : 0)) * opacity});
       if (glow > 0) {
@@ -293,10 +296,10 @@ export class CosmosRenderer {
       // Solid planets and small concept stars already have a meaningful centre.
       // Only spiral galaxies need a bright stellar nucleus over the texture.
       if (node.kind === 'part') {
-        c.fillStyle = this.dark ? tint('#eff4ff', (.34 + glow * .66 + (isHover ? .28 : 0)) * opacity) : tint(blend(node.color, '#102944', .48), .88 * opacity);
+        c.fillStyle = tint(node.color, (.88 + glow * .12) * opacity);
         c.beginPath(); c.arc(node.sx, node.sy, 1.35 + glow * 1.6, 0, TAU); c.fill();
       }
-      if (isHover || neighbor) {
+      if (isHover || neighbor || node.id === selected) {
         c.strokeStyle = this.dark ? `rgba(214,233,255,${isHover ? .8 : .30})` : `rgba(42,75,123,${isHover ? .8 : .35})`;
         const hoverRadius = node.kind === 'chapter' ? Math.max(17, size * .86) : node.kind === 'concept' ? Math.max(12, size * .54) : 17;
         c.lineWidth = isHover ? 1 : .7; c.beginPath(); c.arc(node.sx, node.sy, isHover ? hoverRadius : hoverRadius * .90, 0, TAU); c.stroke();

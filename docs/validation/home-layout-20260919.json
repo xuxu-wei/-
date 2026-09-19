@@ -1,0 +1,105 @@
+{
+  "date": "2026-09-19",
+  "scope": "首页布局、两套五论色板、卡片选择及短层级过渡；教材内容和后端契约不变。",
+  "status": "implemented_and_targeted_checks_passed",
+  "graph": {
+    "parts": 17,
+    "chapters": 85,
+    "nodes": 568,
+    "edges": 855
+  },
+  "palette_order": [
+    "方法论",
+    "演化论",
+    "认知论",
+    "调控论",
+    "实践论"
+  ],
+  "palettes": {
+    "dark": [
+      "#d1e4e6",
+      "#f4e1c1",
+      "#2B4A8C",
+      "#4f7c8c",
+      "#fbc9b4"
+    ],
+    "light": [
+      "#2c2f4b",
+      "#ffb300",
+      "#2B4A8C",
+      "#4f7c8c",
+      "#fbc9b4"
+    ]
+  },
+  "implementation": [
+    "标题、层级导航、560 px 上限卡片在侧栏之外居中；卡片含第 x / xx 计数及两侧循环按钮，篇章卡片取消进入按钮与总章数。",
+    "目录链接位于工具栏探索指南之后；中央标签下方固定五论图例；删除旧底栏提示、分隔线和脚本引用。",
+    "单击/Tab/Space 选择、双击/Enter 进入；滚轮拉近进入、拉远返回。知识点保留默认 IDE 和练习入口，章内滚轮不打开 IDE。",
+    "图例、悬浮色点、WebGL 与 Canvas 使用同一主题分类色及线性 RGB 调和；材质亮暗不另混蓝，成就光辉独立于类别和选择。",
+    "过渡按实际时间推进，进入 850 ms、返回 700 ms；缩放与材质连续渐变，独立合成与结束定时器避免低帧率累计慢放。开场末尾复用进入过渡。",
+    "初始化期间操作区 inert，绑定完成后开放；失败时保留加载错误与目录入口。"
+  ],
+  "automated": {
+    "javascript": {
+      "command": "node --test tools/tests/home-graph.test.mjs tools/tests/home-layout.test.mjs tools/tests/home-transition.test.mjs tools/tests/home-physics.test.mjs tools/tests/home-renderer.test.mjs tools/tests/home-zoom.test.mjs tools/tests/appearance.test.mjs",
+      "passed": 38
+    },
+    "python": {
+      "command": "python -m pytest tools/tests/test_home_graph.py tools/tests/test_home_routes.py -q",
+      "passed": 19
+    },
+    "syntax": "node --check web/home/app.mjs",
+    "graph_refresh": "工作期间术语源有并行更新；重新从当前课程源生成图谱后，生成一致性检查通过。未修改其他任务的术语实现。"
+  },
+  "browser": {
+    "environment": "Windows Chrome，通过隔离的本机 8009 测试服务；独立学习目录和模拟 IDE 打开器，未提交练习。",
+    "viewports": [
+      [
+        1280,
+        800
+      ],
+      [
+        1440,
+        900
+      ],
+      [
+        1920,
+        1080
+      ],
+      [
+        2226,
+        1185
+      ]
+    ],
+    "layout": "四种宽高下无横向溢出，17 个篇节点可见；标题/卡片围绕有效区域居中。侧栏隐藏、展开、从 284 拖至 464 px 后同步重排；长标题 LTI 系统、Laplace 与 Z 变换保持可读。较短窗口按既有规范纵向滚动，不以截断或缩字容纳。",
+    "selection": "全景单击第 1 篇不改层级；上一篇从 1 循环到 17，下一篇返回 1；Tab 从 1 选择到 2，卡片及 selected 同步。双击进入篇/章，返回保持退出的节点选中。",
+    "wheel": "实际滚轮从篇拉近进入 1.1 章，拉远返回第 1 篇；卡片上滚动 5 单位前后均为同一层级、100% 缩放。",
+    "entry": "系统边界卡片学习按钮经现有 API 请求 1.1.1 Notebook；隔离打开器收到原文件路径，练习链接指向相应小节。此轮不重复认证实际 OS/IDE 启动。",
+    "motion": "重播显示开场并完成至第 1 篇；暂停正常；探索指南包含最新操作。层级进入实测 865.1 ms，返回 730.8 ms，结束后恢复操作。",
+    "colors": "5 个单分类和方法论+演化论组合，在深浅主题、WebGL/Canvas 和远近景均对照检查；近景纹理加载完成，主体色相可对应图例。",
+    "errors": "最终浏览器 error 日志为空。期间自动化 CDP 有输入/截图超时及一次未释放测试拖动；刷新测试页后用实际 UI 滚轮完成复验。未将工具中断计作通过。"
+  },
+  "protection": {
+    "AGENTS": "unchanged",
+    "personal_record_count": 29,
+    "personal_record_hashes": "all_unchanged",
+    "backend_and_record_format": "unchanged",
+    "simulated_data_added": false,
+    "git_commit_or_push": false
+  },
+  "evidence": [
+    "home-layout-20260919/layout-metrics.json",
+    "home-layout-20260919/transition-timing.json",
+    "home-layout-20260919/overview-dark.png",
+    "home-layout-20260919/overview-light.png",
+    "home-layout-20260919/chapter-dark.png",
+    "home-layout-20260919/part-light-long-title.png",
+    "home-layout-20260919/colors-dark.png",
+    "home-layout-20260919/colors-light.png"
+  ],
+  "limits": [
+    "Canvas 兼容路径细节低于 WebGL，不宣称画面完全相同。",
+    "未做跨显卡和跨浏览器性能基准；测试浏览器后台/低帧率不代表正常前台帧率。",
+    "本轮未重做整个站点的历史验收，主题共享和进度逻辑以针对性回归及既有验收为边界。"
+  ]
+}

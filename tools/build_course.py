@@ -4,27 +4,16 @@ from pathlib import Path
 import re
 from course_content import notebooks, question_banks
 from assessment import load_assessments
+from terminology import annotate_text
 
 ROOT = Path(__file__).resolve().parents[1]
-TERMS = json.loads((ROOT / 'docs/术语对照.json').read_text(encoding='utf-8'))
-TERM_MAP = {term['zh']: term for term in TERMS}
-TERM_PATTERN = re.compile('|'.join(re.escape(t['zh']) for t in sorted(TERMS, key=lambda t: -len(t['zh']))))
 
 
 def annotate_overview(chapter):
     """导览是独立阅读单元；标题不加长括注，正文首次注明词表中的英文。"""
     seen = set()
     def annotate(text):
-        def replace(match):
-            zh = match.group()
-            if zh in seen:
-                return zh
-            seen.add(zh)
-            term = TERM_MAP[zh]
-            suffix = '（' + term['en'] + ('，' + term['abbr'] if 'abbr' in term else '') + '）'
-            # Some new outlines already supply the English name with a different case.
-            return zh if text[match.end():].lower().startswith(suffix.lower()) else zh + suffix
-        return TERM_PATTERN.sub(replace, text)
+        return annotate_text(text, seen=seen)
     for key in ['goals', 'prerequisites', 'focus']:
         assert chapter[key], f'Missing {key}: {chapter["title"]}'
         chapter[key] = annotate(chapter[key])

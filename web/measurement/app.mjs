@@ -11,13 +11,13 @@ let chapter,mode,p={},playback,data,end;
 const definitions={
  '6.1':{title:'相同读数，可能来自不同节律',question:'先预测：频率（frequency）为 0.8 Hz 的节律每秒测一次，会留下怎样的读数？改变采样率（sampling rate），比较连续参照与采样（sampling）点。',explanation:'把生理节律的偏差（deviation）简化为振幅（amplitude）等于 1 U 的余弦。混叠（aliasing）意味着不同连续信号在给定采样点无法区分；它并不告诉我们真实节律一定是哪一个。'},
  '6.2':{title:'一个平均窗口，怎样改变不同频率',question:'先预测：平均五个读数，会把节律压低多少、推迟多少？改变窗口长度和输入频率（frequency），连接因果卷积（causal convolution）与频率响应（frequency response）。',explanation:'有限脉冲响应（finite impulse response, FIR）滤波器只使用当前与过去读数。输入在 n<0 时为零，始终除以窗口长度 W；这与起始段按已有样本数重归一的平均不同。'},
- '6.3':{title:'精确采样，与数值近似是两件事',question:'先预测：把采样（sampling）间隔变大，会让真实清除过程变成负值吗？对照零阶保持（zero-order hold, ZOH）下的精确离散模型与显式 Euler 方法（explicit Euler method）的近似。',explanation:'单室物质量满足 dA/dt=u−kA。参数（parameter）k 是清除系数（clearance coefficient），u 是输入流量（input flow rate），二者恒定且非负；状态（state）A 的初值也非负。线性时不变（linear time-invariant, LTI）模型的精确采样与 Euler 使用不同的离散极点（discrete pole）。'}
+ '6.3':{title:'精确采样，与数值近似是两件事',question:'先预测：把采样（sampling）间隔变大，会让真实清除过程变成负值吗？对照零阶保持（zero-order hold, ZOH）下的精确离散模型与显式 Euler 方法（explicit Euler method）的近似。',explanation:'单室总量满足 dA/dt=u−kA。参数（parameter）k 是清除系数（clearance coefficient），u 是输入流量（input flow rate），二者恒定且非负；状态（state）A 的初值也非负。线性时不变（linear time-invariant, LTI）模型的精确采样与 Euler 使用不同的离散极点（discrete pole）。'}
 };
 function slider(key,label,min,max,step,value){p[key]=value;const group=el('div',undefined,'slider'),lab=el('label',label),out=el('output',value),input=el('input');Object.assign(input,{id:key,type:'range',min,max,step,value});lab.htmlFor=key;out.id=key+'-value';out.htmlFor=key;input.addEventListener('input',()=>{p[key]=Number(input.value);out.value=input.value;guard(recompute);});group.append(lab,out,input);$('sliders').append(group);}
 function controls(){p={};$('sliders').replaceChildren();
  if(mode==='6.1'){slider('frequency','节律频率 f / Hz',.1,1.8,.1,.8);slider('sample-rate','采样率 fₛ / Hz',.5,4,.25,1);}
  if(mode==='6.2'){slider('frequency','输入频率 f /（周期/样本）',0,.5,.01,.1);slider('window','窗口长度 W / 样本',1,9,1,5);}
- if(mode==='6.3'){slider('k','清除系数 k / T⁻¹',0,.3,.02,.2);slider('u','恒定输入 u /（U/T）',0,1,.1,0);slider('initial','初始物质量 A₀ / U',0,10,1,10);slider('step','采样间隔 h / T',1,12,1,1);}
+ if(mode==='6.3'){slider('k','清除系数 k / T⁻¹',0,.3,.02,.2);slider('u','恒定输入 u /（U/T）',0,1,.1,0);slider('initial','初始总量 A₀ / U',0,10,1,10);slider('step','采样间隔 h / T',1,12,1,1);}
 }
 function set(values){for(const [key,value] of Object.entries(values)){p[key]=value;$(key).value=value;$(key+'-value').value=value;}guard(recompute);}
 function legend(entries){$('legend').replaceChildren();for(const [label,color,dashed] of entries){const item=el('span',label,dashed?'dashed':'');item.style.setProperty('--line-color',color);$('legend').append(item);}}
@@ -50,7 +50,7 @@ function recompute(){
   $('formula').textContent='A[n+1]=aA[n]+bu[n]；a=exp(−kh)，b=(1−exp(−kh))/k；k=0 时 b=h';
   $('alternate').textContent=`切换到${next===1?'小':'大'}间隔 h=${next}`;
   $('preset-note').textContent=`当前 kh=${fmt(kh)}，Euler 因子=${fmt(data.eulerPole)}。${kh>1?'此因子为负；无输入且 A₀>0 时将出现符号交替。':'此因子非负；非负初值和输入不会产生负值。'}按钮只改变 h。`;
-  $('assumptions').textContent='U 是物质量单位，T 是时间单位。ZOH 假定每个采样区间输入保持不变；此页 u 在整段记录恒定。连续线按解析解绘制；Euler 每一步恰为 h，不代表精确采样。';
+  $('assumptions').textContent='U 是所追踪物质总量（tracked amount）的教学单位，T 是时间单位。ZOH 假定每个采样区间输入保持不变；此页 u 在整段记录恒定。连续线按解析解绘制；Euler 每一步恰为 h，不代表精确采样。';
   $('chart-heading').textContent='连续轨迹、离散点与实极点';$('chart-note').textContent='本页极点均为实数。−1<p<1 是单位圆（unit circle）与实轴的交集，表示任意无输入初态均趋于零；|p|=1 是边界。k=0 时精确模型是积分器（integrator）；非零输入下要另外分析受迫响应（forced response）。Euler 的负值与发散作为数值反例保留显示。';
   $('value-label').textContent='精确 / Euler 极点';$('value').textContent=fmt(data.coefficients.a)+' / '+fmt(data.eulerPole);
   legend([['解析轨迹 / 精确采样',blue,false],['Euler 近似',pink,true],['实极点的衰减区间',gray,true]]);
@@ -88,7 +88,7 @@ function draw(progress){
   $('time-readout').textContent=`当前样本 n=${n}`;$('observation-value').textContent=`输入 ${fmt(data.input[n][1])} U → 输出 ${fmt(data.output[n][1])} U；相位 ${data.selected.phase===null?'未定义（零增益）':fmt(data.selected.phase)+' rad'}；${n<p.window-1?'当前仍在启动段。':'当前已越过启动边界。'}`;
  }
  if(mode==='6.3'){
-  const values=[...data.continuous,...data.euler].map(row=>row[1]),low=Math.min(0,...values),high=Math.max(1,...values),padding=(high-low)*.1,a=axes(left,{xmax:end,ymin:low-padding,ymax:high+padding,xlabel:'时间 t / T',ylabel:'物质量 A / U'});
+  const values=[...data.continuous,...data.euler].map(row=>row[1]),low=Math.min(0,...values),high=Math.max(1,...values),padding=(high-low)*.1,a=axes(left,{xmax:end,ymin:low-padding,ymax:high+padding,xlabel:'时间 t / T',ylabel:'总量 A / U'});
   curve(left,[[0,0],[end,0]],a,gray,true);curve(left,data.continuous.filter(r=>r[0]<=t+1e-10),a,blue);const exact=data.exact.filter(r=>r[0]<=t+1e-10),euler=data.euler.filter(r=>r[0]<=t+1e-10);curve(left,euler,a,pink,true);exact.forEach(row=>marker(left,row,a,blue,3));euler.forEach(row=>marker(left,row,a,pink,3));poles(right);
   const current=exact.at(-1),approx=euler.at(-1);$('time-readout').textContent=`观察时间 ${t.toFixed(2)} T`;$('observation-value').textContent=`最近采样 t=${fmt(current[0])} T：精确 ${fmt(current[1])} U，Euler ${fmt(approx[1])} U。${Math.abs(data.eulerPole)>=1?'Euler 无输入偏差不渐近衰减。':''}`;
  }

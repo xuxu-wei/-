@@ -10,28 +10,14 @@ from course_content import notebooks, question_banks
 from lesson_exercises import render_exercises
 from question_contracts import validate_contract
 from assessment import load_assessments
+from terminology import check_text
 
 ROOT = Path(__file__).resolve().parents[1]
-TERMS = json.loads((ROOT / 'docs/术语对照.json').read_text(encoding='utf-8'))
 
 
-def check_terms(text, part):
-    text = re.sub(r'```.*?```|\$\$.*?\$\$|\$[^$\n]+\$', '', text, flags=re.S)
-    text = re.sub(r'^#{1,6}.*$', '', text, flags=re.M)
-    text = re.sub(r'\[[^\]]*\]\([^)]*\)|`[^`]+`', '', text)
-    entries = {t['zh']: t for t in TERMS if int(t.get('scope', 'part00')[4:]) <= part}
-    pattern = re.compile('|'.join(re.escape(t) for t in sorted(entries, key=len, reverse=True)))
-    seen, issues = set(), []
-    for match in pattern.finditer(text):
-        term = match.group()
-        if term in seen:
-            continue
-        seen.add(term)
-        entry = entries[term]
-        suffix = '（' + entry['en'] + ('，' + entry['abbr'] if 'abbr' in entry else '') + '）'
-        if not text[match.end():].startswith(suffix):
-            issues.append(term)
-    return issues, sorted(seen)
+def check_terms(text, part, **options):
+    issues, terms = check_text(text, part, **options)
+    return [issue.message for issue in issues], terms
 
 
 def main():
@@ -41,7 +27,7 @@ def main():
     args = parser.parse_args()
     catalog = [l for l in notebooks() if l.get('chapter_id') and (args.part is None or int(l['chapter_id'].split('.')[0]) == args.part)]
     ids = {l['id'] for l in catalog}
-    questions, _ = question_banks()
+    questions, verification = question_banks()
     assessments = load_assessments(questions)
     questions = [q for q in questions if q['lesson_id'] in ids]
     course = json.loads((ROOT / 'web/course/catalog.json').read_text(encoding='utf-8'))
@@ -61,8 +47,10 @@ def main():
                 validate_contract(q)
                 assert 'payload' not in q['starter_code']
             strings = [q['statement'], *(p['description'] for p in q.get('parameters', []) + q.get('returns', [])), q.get('contract', ''), *q.get('constraints', []), *(s['explanation'] for s in q.get('samples', [])), *(o['text'] for o in q.get('options', [])), q.get('hint', '')]
+            strings += list(verification[q['id']].get('explanations', {}).values())
+            strings.append(verification[q['id']].get('explanation', ''))
             missing, terms = check_terms('\n'.join(strings), part)
-            issues.extend(f'{q["id"]}: 首现缺少英文：{t}' for t in missing)
+            issues.extend(f'{q["id"]}: {t}' for t in missing)
             evidence.append({'unit': q['id'], 'terms': terms})
         path = ROOT / lesson['path']
         nb = nbformat.read(path, as_version=4)
@@ -91,8 +79,15 @@ def main():
                         links += 1
         core = '\n'.join(c.source for c in nb.cells[:-1] if c.cell_type == 'markdown')
         missing, terms = check_terms(core, part)
-        issues.extend(f'{lesson["id"]}: 首现缺少英文：{t}' for t in missing)
+        issues.extend(f'{lesson["id"]}: {t}' for t in missing)
         evidence.append({'unit': lesson['id'], 'terms': terms})
+    for chapter in chapters.values():
+        if args.part is not None and int(chapter['id'].split('.')[0]) != args.part:
+            continue
+        prose = '\n'.join([chapter.get('goals', ''), chapter.get('prerequisites', ''), chapter.get('focus', ''), *chapter.get('knowledge', [])])
+        missing, terms = check_terms(prose, 99)
+        issues.extend(f'导览 {chapter["id"]}: {t}' for t in missing)
+        evidence.append({'unit': 'overview:' + chapter['id'], 'terms': terms})
     assert links == len(questions)
     report = {'notebooks': len(catalog), 'questions': len(questions), 'question_links': links, 'first_use': evidence, 'issues': issues}
     target = ROOT / '.work' / args.work / 'teaching-check.json'

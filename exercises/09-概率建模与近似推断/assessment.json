@@ -1,0 +1,78 @@
+{
+  "version": "1",
+  "part": "9",
+  "lesson_id": "P09-SUMMARY",
+  "title": "同一观测下的后验与预测比较",
+  "objectives": [
+    {
+      "id": "T1",
+      "title": "建立后验问题",
+      "review_url": "/chapters/09-01-贝叶斯建模与后验近似/"
+    },
+    {
+      "id": "T2",
+      "title": "实现采样并诊断",
+      "review_url": "/chapters/09-02-马尔可夫链采样与诊断/"
+    },
+    {
+      "id": "T3",
+      "title": "近似与隐变量学习",
+      "review_url": "/chapters/09-03-变分推断/"
+    },
+    {
+      "id": "T4",
+      "title": "检验模型和不确定性",
+      "review_url": "/chapters/09-05-后验预测与模型检验/"
+    }
+  ],
+  "items": [
+    {
+      "question_id": "p09-cap-prior",
+      "level": 1,
+      "points": 10,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p09-cap-diagnostic",
+      "level": 1,
+      "points": 10,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p09-cap-local",
+      "level": 2,
+      "points": 15,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p09-cap-mh",
+      "level": 2,
+      "points": 15,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p09-cap-variational",
+      "level": 3,
+      "points": 15,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p09-cap-predictive",
+      "level": 3,
+      "points": 15,
+      "objective": "T4"
+    },
+    {
+      "question_id": "p09-cap-em",
+      "level": 4,
+      "points": 10,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p09-cap-misspecification",
+      "level": 4,
+      "points": 10,
+      "objective": "T4"
+    }
+  ]
+}

@@ -48,8 +48,12 @@ export function chooseResumePart(nodes, progress = {}) {
     || pending[0] || available.at(-1);
 }
 
-export function mixColors(categories, taxonomy) {
-  const colorById = new Map(taxonomy.map(t => [t.id, t.color]));
+export function categoryColor(category, theme = 'dark') {
+  return theme === 'light' ? category.lightColor || category.color : category.color;
+}
+
+export function mixColors(categories, taxonomy, theme = 'dark') {
+  const colorById = new Map(taxonomy.map(t => [t.id, categoryColor(t, theme)]));
   const colors = [...new Set(values(categories))].map(id => colorById.get(id))
     .filter(color => /^#[0-9a-f]{6}$/i.test(color || ''));
   if (!colors.length) return '#9cbbdd';

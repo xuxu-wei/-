@@ -14,11 +14,11 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 TAXONOMY = [
-    {'id': 'method', 'label': '系统方法论', 'color': '#b99bff', 'description': '组织问题、假设、方法与证据。'},
-    {'id': 'evolution', 'label': '系统演化论', 'color': '#68d9ef', 'description': '理解状态、结构与功能在时空中的变化。'},
-    {'id': 'cognition', 'label': '系统认知论', 'color': '#59dcb3', 'description': '从观测进行表征、建模、估计与学习。'},
-    {'id': 'regulation', 'label': '系统调控论', 'color': '#ffad77', 'description': '通过优化、反馈与协同改变系统行为。'},
-    {'id': 'practice', 'label': '系统实践论', 'color': '#f28cb9', 'description': '在具体问题中实施、核验并解释方法。'},
+    {'id': 'method', 'label': '系统方法论', 'color': '#d1e4e6', 'lightColor': '#2c2f4b', 'description': '组织问题、假设、方法与证据。'},
+    {'id': 'evolution', 'label': '系统演化论', 'color': '#f4e1c1', 'lightColor': '#ffb300', 'description': '理解状态、结构与功能在时空中的变化。'},
+    {'id': 'cognition', 'label': '系统认知论', 'color': '#2B4A8C', 'lightColor': '#2B4A8C', 'description': '从观测进行表征、建模、估计与学习。'},
+    {'id': 'regulation', 'label': '系统调控论', 'color': '#4f7c8c', 'lightColor': '#4f7c8c', 'description': '通过优化、反馈与协同改变系统行为。'},
+    {'id': 'practice', 'label': '系统实践论', 'color': '#fbc9b4', 'lightColor': '#fbc9b4', 'description': '在具体问题中实施、核验并解释方法。'},
 ]
 
 # These are visual lenses, not a replacement for the authoritative course tree.
@@ -46,6 +46,16 @@ PART_LENSES = {
 # Short, reviewed concept labels belong to their actual Notebook lesson.
 # Identity, titles, URLs, availability and progress always come from catalog.json.
 LESSON_CONCEPTS = {
+    'P09-C01-S01': ['先验与似然', '共轭更新', '参数与预测'],
+    'P09-C01-S02': ['后验曲率', '参数边界', '变量变换与雅可比'],
+    'P09-C02-S01': ['Metropolis–Hastings', '提议比', '详细平衡'],
+    'P09-C02-S02': ['多链初始化', '自相关', '有效样本量', '有限预算'],
+    'P09-C03-S01': ['证据下界', 'KL方向', '均值场近似', '坐标更新'],
+    'P09-C03-S02': ['近似族', '多峰与局部解', '枚举参照'],
+    'P09-C04-S01': ['责任度', 'EM更新', '标签交换与退化'],
+    'P09-C04-S02': ['平滑交叉矩', '动态参数学习', '条件期望'],
+    'P09-C05-S01': ['总方差', '混合预测', '可信与预测区间'],
+    'P09-C05-S02': ['独立预测', '对数分数', '覆盖与模型失配'],
     'P08-C01-S01': ['目标尺度', '二次型', '梯度与海森矩阵'],
     'P08-C01-S02': ['方向曲率', '凸性', '驻点与最小值'],
     'P08-C02-S01': ['步长谱条件', '条件数', '变量缩放'],
@@ -57,7 +67,7 @@ LESSON_CONCEPTS = {
     'P08-C04-S01': ['拉格朗日乘子', 'KKT条件', '互补松弛'],
     'P08-C04-S02': ['活跃集', '可行性证据', '约束残差'],
     'P01-C01-S01': ['系统边界', '状态与观测', '可检验的问题'],
-    'P01-C01-S02': ['单位与量纲', '时间序列', '物质量与浓度'],
+    'P01-C01-S02': ['单位与量纲', '时间序列', '总量与浓度'],
     'P01-C02-S01': ['存量与流率', '分段物质收支', '非负状态'],
     'P01-C02-S02': ['内部交换', '整体守恒'],
     'P01-C03-S01': ['作用方向', '反馈回路', '正反馈与负反馈'],
@@ -89,7 +99,7 @@ LESSON_CONCEPTS = {
     'P04-C01-S03': ['不变集合', '点到集合的距离', '吸引子', '中心与吸引'],
     'P04-C02-S01': ['阻尼振荡', '受迫振荡', '自维持振荡'],
     'P04-C02-S02': ['周期', '振幅', '相位'],
-    'P04-C03-S01': ['平衡分支', '折叠分岔', '滞后'],
+    'P04-C03-S01': ['平衡分支', '折叠分岔', '滞回'],
     'P04-C03-S02': ['Hopf 分岔', '周期轨道', '振荡起始'],
     'P04-C04-S01': ['离散映射', '不动点', '周期点'],
     'P04-C04-S02': ['邻近轨迹', '初值敏感性', '预测期限'],

@@ -10,7 +10,7 @@ let chapter,mode,p={},playback,rows=[],theory=[],extra=[],end=40;
 const markers=[1,1,0,1,0,1,1,0];
 const definitions={
  '5.1':{title:'一批细胞的频率，能有多稳定',question:'固定成功概率（probability），逐个观察二值实现（realization）。在相同随机流下切换样本量，比较频率（relative frequency）与模型（model）概率。',explanation:'每个标签由一次 Bernoulli 试验（Bernoulli trial）产生。左图是累计成功频率，右图是已经观察的成功和失败数；一次频率不等于未知概率的精确答案。'},
- '5.2':{title:'扰动进入状态，还是只进入读数',question:'过程噪声（process noise）与测量噪声（measurement noise）进入不同位置。关掉过程扰动，观察状态（state）与观测（observation）怎样变化。',explanation:'x 是可为负的偏差（deviation），不是物质量。左图显示一条路径（sample path），右图显示独立假设下的理论方差（variance）。固定个体参数（parameter）差异的完整对照见本章第三节。'},
+ '5.2':{title:'扰动进入状态，还是只进入读数',question:'过程噪声（process noise）与测量噪声（measurement noise）进入不同位置。关掉过程扰动，观察状态（state）与观测（observation）怎样变化。',explanation:'x 是可为负的偏差（deviation），不是总量。左图显示一条路径（sample path），右图显示独立假设下的理论方差（variance）。固定个体参数（parameter）差异的完整对照见本章第三节。'},
  '5.3':{title:'同一证据，为什么得到不同后验',question:'固定标记序列，只改变先验（prior），观察贝叶斯更新（Bayesian update）怎样重分配概率（probability）。',explanation:'蓝线是活跃态的后验（posterior）概率，右图显示当前两状态（state）的后验概率。似然（likelihood）给出特定状态下出现当前标记的概率；给定状态后，各次标记条件独立（conditional independence）。'},
  '5.4':{title:'一个细胞的路径，与一群细胞的分布',question:'马尔可夫链（Markov chain）按当前状态（state）选择下一步。先看路径（sample path）与群体频率，再切换到交替链检查长期收敛（convergence）的条件。',explanation:'采用行概率向量与行随机矩阵（row-stochastic matrix）：p_next=pP。蓝实线为 200 条演示路径的活跃频率（relative frequency），玫红虚线为精确分布（distribution）；右图只展示其中一条路径。'}
 };

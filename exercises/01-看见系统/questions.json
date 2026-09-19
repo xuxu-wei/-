@@ -197,8 +197,8 @@
     "lesson_id": "P01-C01-S02",
     "type": "python",
     "slug": "p01-time-units",
-    "title": "换时间单位，不换物质量",
-    "statement": "同一组时间序列（time series）原来以分钟记录。将时间数字乘以 factor，物质量数字保持不变，返回两个新列表。",
+    "title": "换时间单位，不换总量",
+    "statement": "同一组时间序列（time series）原来以分钟记录。将时间数字乘以 factor，所追踪物质总量（tracked amount）数字保持不变，返回两个新列表。",
     "parameters": [
       {
         "name": "times",
@@ -209,7 +209,7 @@
       {
         "name": "amounts",
         "type": "list[float]",
-        "description": "与每个时刻一一对应的物质量。",
+        "description": "与每个时刻一一对应的总量。",
         "unit": "U"
       },
       {
@@ -229,7 +229,7 @@
       {
         "name": "same_amounts",
         "type": "list[float]",
-        "description": "原顺序的物质量。",
+        "description": "原顺序的总量。",
         "unit": "U"
       }
     ],
@@ -237,7 +237,7 @@
     "constraints": [
       "所有数值均为有限数。",
       "0 ≤ len(times) = len(amounts) ≤ 1000；非空时 times 严格递增。",
-      "0 < factor ≤ 3600；时间、物质量都在 0 到 10000 之间。"
+      "0 < factor ≤ 3600；时间、总量都在 0 到 10000 之间。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
@@ -272,7 +272,7 @@
             5
           ]
         ],
-        "explanation": "1 分钟和 60 秒是同一时刻；该时刻的物质量仍为 8 U。3 分钟对应 180 秒，仍为 5 U。"
+        "explanation": "1 分钟和 60 秒是同一时刻；该时刻的总量仍为 8 U。3 分钟对应 180 秒，仍为 5 U。"
       }
     ],
     "limits": {
@@ -303,7 +303,7 @@
     "type": "choice",
     "slug": "p01-dimension",
     "title": "相加之前先检查单位",
-    "statement": "物质量（amount of substance）记为 A，浓度（concentration）c = A/V，体积 V。单位分别为 U、U/L、L。以下哪个表达式的单位可以是物质量？",
+    "statement": "所追踪物质总量（tracked amount）记为 A，浓度（concentration）c = A/V，体积 V。单位分别为 U、U/L、L。以下哪个表达式的单位可以是总量？",
     "multiple": false,
     "options": [
       {
@@ -341,12 +341,12 @@
     "type": "choice",
     "slug": "p01-curve-cause",
     "title": "一条下降曲线说明什么",
-    "statement": "人工物质量序列（time series）在 0、1、2 T 为 10、8、6 U。我们尚未测量输入（input）和输出。以下哪些判断成立？",
+    "statement": "人工所追踪物质总量（tracked amount）序列（time series）在 0、1、2 T 为 10、8、6 U。我们尚未测量输入（input）和输出。以下哪些判断成立？",
     "multiple": true,
     "options": [
       {
         "id": "A",
-        "text": "这些记录支持所观察时刻的物质量下降。"
+        "text": "这些记录支持所观察时刻的总量下降。"
       },
       {
         "id": "B",
@@ -379,18 +379,18 @@
     "type": "python",
     "slug": "p01-concentration",
     "title": "总量与浓度要分别计算",
-    "statement": "给定同一时刻几个培养孔的物质量 A 和体积 V。按浓度（concentration）c = A/V 返回各孔浓度。不要先合并培养孔。",
+    "statement": "给定同一时刻几个培养孔的所追踪物质总量（tracked amount） A 和体积 V。按浓度（concentration）c = A/V 返回各孔浓度。不要先合并培养孔。",
     "parameters": [
       {
         "name": "amounts",
         "type": "list[float]",
-        "description": "各孔的物质量。",
+        "description": "各孔的总量。",
         "unit": "U"
       },
       {
         "name": "volumes",
         "type": "list[float]",
-        "description": "与物质量对应的体积。",
+        "description": "与总量对应的体积。",
         "unit": "L"
       }
     ],
@@ -398,7 +398,7 @@
       {
         "name": "concentrations",
         "type": "list[float]",
-        "description": "每孔的物质量除以自身的体积。",
+        "description": "每孔的总量除以自身的体积。",
         "unit": "U/L"
       }
     ],
@@ -433,7 +433,7 @@
           2,
           2
         ],
-        "explanation": "前两个孔物质量都为 6 U，但体积不同，浓度分别为 3、2 U/L；总量相同不代表浓度相同。"
+        "explanation": "前两个孔总量都为 6 U，但体积不同，浓度分别为 3、2 U/L；总量相同不代表浓度相同。"
       }
     ],
     "limits": {
@@ -502,12 +502,12 @@
     "type": "python",
     "slug": "p01-balance",
     "title": "逐段计算物质收支",
-    "statement": "边界内初始存量（stock）为 initial。每段的流入和流出速率恒定，但各段时长可以不同。返回起点及每段末的物质量。",
+    "statement": "边界内初始存量（stock）为 initial。每段的流入和流出速率恒定，但各段时长可以不同。返回起点及每段末的所追踪物质总量（tracked amount）。",
     "parameters": [
       {
         "name": "initial",
         "type": "float",
-        "description": "起点物质量。",
+        "description": "起点总量。",
         "unit": "U"
       },
       {
@@ -548,7 +548,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "每段使用自己的时长；负值表明这些流出假设在该条件下不能描述真实非负物质量。",
+    "hint": "每段使用自己的时长；负值表明这些流出假设在该条件下不能描述真实非负总量。",
     "samples": [
       {
         "arguments": {
@@ -615,7 +615,7 @@
       },
       {
         "id": "C",
-        "text": "把 −1 U 解释为真实的负物质量。"
+        "text": "把 −1 U 解释为真实的负所追踪物质总量（tracked amount）。"
       },
       {
         "id": "D",
@@ -645,13 +645,13 @@
       {
         "name": "initial",
         "type": "float",
-        "description": "起点物质量。",
+        "description": "起点所追踪物质总量（tracked amount）。",
         "unit": "U"
       },
       {
         "name": "final",
         "type": "float",
-        "description": "终点物质量。",
+        "description": "终点总量。",
         "unit": "U"
       },
       {
@@ -770,13 +770,13 @@
       {
         "name": "first",
         "type": "float",
-        "description": "B 区初始物质量。",
+        "description": "B 区初始所追踪物质总量（tracked amount）。",
         "unit": "U"
       },
       {
         "name": "second",
         "type": "float",
-        "description": "C 区初始物质量。",
+        "description": "C 区初始总量。",
         "unit": "U"
       },
       {
@@ -1455,12 +1455,12 @@
     "type": "choice",
     "slug": "p01-change-class",
     "title": "改变的是哪一层假设",
-    "statement": "对“每段移除当前物质量的 10%”这一模型（model），以下哪些分类正确？",
+    "statement": "对“每段移除当前所追踪物质总量（tracked amount）的 10%”这一模型（model），以下哪些分类正确？",
     "multiple": true,
     "options": [
       {
         "id": "A",
-        "text": "把初始物质量从 10 改成 20，是改变初值（initial condition）。"
+        "text": "把初始总量从 10 改成 20，是改变初值（initial condition）。"
       },
       {
         "id": "B",
@@ -1493,12 +1493,12 @@
     "type": "python",
     "slug": "p01-compare-rules",
     "title": "固定量与固定比例",
-    "statement": "比较两种没有外部输入（input）的清除模型（model）：每段移除 fixed U，或移除当前物质量的 fraction。给定相同初值（initial condition）和步数，返回两条轨迹（trajectory）。",
+    "statement": "比较两种没有外部输入（input）的清除模型（model）：每段移除 fixed U，或移除当前所追踪物质总量（tracked amount）的 fraction。给定相同初值（initial condition）和步数，返回两条轨迹（trajectory）。",
     "parameters": [
       {
         "name": "initial",
         "type": "float",
-        "description": "两组共同的起点物质量。",
+        "description": "两组共同的起点总量。",
         "unit": "U"
       },
       {
@@ -1637,12 +1637,12 @@
     "type": "python",
     "slug": "p01-first-failure",
     "title": "第一次越过零发生在哪段",
-    "statement": "在固定移除规则中，起点为 initial，每段减去 fixed。只检查前 steps 段，返回第一次得到严格负物质量的段号，从 1 开始；若没有则返回 −1。",
+    "statement": "在固定移除规则中，起点为 initial，每段减去 fixed。只检查前 steps 段，返回第一次得到严格负所追踪物质总量（tracked amount）的段号，从 1 开始；若没有则返回 −1。",
     "parameters": [
       {
         "name": "initial",
         "type": "int",
-        "description": "初始物质量。",
+        "description": "初始总量。",
         "unit": "U"
       },
       {
@@ -1676,7 +1676,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "返回第一次失败的位置，不返回负物质量本身。",
+    "hint": "返回第一次失败的位置，不返回负总量本身。",
     "samples": [
       {
         "arguments": {
@@ -1759,7 +1759,7 @@
       {
         "name": "initials",
         "type": "list[float]",
-        "description": "候选起点物质量，保留原顺序。",
+        "description": "候选起点所追踪物质总量（tracked amount），保留原顺序。",
         "unit": "U"
       },
       {
@@ -1896,7 +1896,7 @@
       },
       {
         "id": "B",
-        "text": "17 比 18 小，所以物质量不可能守恒。"
+        "text": "17 比 18 小，所以所追踪物质总量（tracked amount）不可能守恒。"
       },
       {
         "id": "C",
@@ -2144,7 +2144,7 @@
       {
         "name": "initials",
         "type": "list[float]",
-        "description": "各独立实验的起点物质量。",
+        "description": "各独立实验的起点所追踪物质总量（tracked amount）。",
         "unit": "U"
       },
       {

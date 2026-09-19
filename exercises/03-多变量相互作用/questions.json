@@ -8,7 +8,7 @@
     "chapter": "3.1",
     "title": "交换发生在哪一列",
     "type": "choice",
-    "statement": "用物质量列向量（vector） x=[A1,A2] 表示两个充分混合的室。a 表示 1→2，b 表示 2→1，均为每单位时间系数。封闭模型（model） x′=Mx 中，哪些说法正确？",
+    "statement": "用所追踪物质总量（tracked amount）列向量（vector） x=[A1,A2] 表示两个充分混合的室。a 表示 1→2，b 表示 2→1，均为每单位时间系数。封闭模型（model） x′=Mx 中，哪些说法正确？",
     "learning_targets": [
       "T1"
     ],
@@ -24,7 +24,7 @@
       },
       {
         "id": "B",
-        "text": "每一列的和为零，内部交换不改变总物质量。"
+        "text": "每一列的和为零，内部交换不改变总量。"
       },
       {
         "id": "C",
@@ -46,7 +46,7 @@
     "chapter": "3.1",
     "title": "把两室收支写成矩阵",
     "type": "python",
-    "statement": "两个室双向交换，恒定输入（input）进入室 1，线性清除也只在室 1。给定当前物质量，返回系统矩阵（matrix）、两个室的变化率和总变化率。",
+    "statement": "两个室双向交换，恒定输入（input）进入室 1，线性清除也只在室 1。给定当前所追踪物质总量（tracked amount），返回系统矩阵（matrix）、两个室的变化率和总变化率。",
     "learning_targets": [
       "T1"
     ],
@@ -82,7 +82,7 @@
       {
         "name": "amounts",
         "type": "list[float]",
-        "description": "按 [A1,A2] 排列的当前物质量。",
+        "description": "按 [A1,A2] 排列的当前总量。",
         "unit": "U"
       }
     ],
@@ -90,7 +90,7 @@
       {
         "name": "matrix",
         "type": "list[list[float]]",
-        "description": "2×2 矩阵，行对应接收方程，列对应被乘的物质量。",
+        "description": "2×2 矩阵，行对应接收方程，列对应被乘的总量。",
         "unit": "1/T"
       },
       {
@@ -170,7 +170,7 @@
     "chapter": "3.1",
     "title": "改用浓度时遗漏了什么",
     "type": "choice",
-    "statement": "室 1 和室 2 的容积分别为 2 L 和 1 L，物质量为 A1=4 U、A2=2 U。交换项是 aA1 与 bA2。哪些说法正确？",
+    "statement": "室 1 和室 2 的容积分别为 2 L 和 1 L，所追踪物质总量（tracked amount）为 A1=4 U、A2=2 U。交换项是 aA1 与 bA2。哪些说法正确？",
     "learning_targets": [
       "T1"
     ],
@@ -208,7 +208,7 @@
     "chapter": "3.1",
     "title": "增加第三室后怎样检查守恒",
     "type": "choice",
-    "statement": "三个室仅沿 1→2→3 单向交换，两个系数都为 r>0。状态（state）为物质量列向量（vector）。正确矩阵（matrix）是哪一个？",
+    "statement": "三个室仅沿 1→2→3 单向交换，两个系数都为 r>0。状态（state）为所追踪物质总量（tracked amount）列向量（vector）。正确矩阵（matrix）是哪一个？",
     "learning_targets": [
       "T1"
     ],
@@ -353,7 +353,7 @@
     "chapter": "3.1",
     "title": "长度依赖怎样的坐标",
     "type": "choice",
-    "statement": "状态（state）由物质量 A /U 和温度 θ /℃ 组成。直接计算 sqrt(A²+θ²) 并称为系统总量，哪里有问题？",
+    "statement": "状态（state）由所追踪物质总量（tracked amount） A /U 和温度 θ /℃ 组成。直接计算 sqrt(A²+θ²) 并称为系统总量，哪里有问题？",
     "learning_targets": [
       "T1"
     ],
@@ -377,7 +377,7 @@
       },
       {
         "id": "D",
-        "text": "任何范数（norm）都等于守恒物质量。"
+        "text": "任何范数（norm）都等于守恒总量。"
       }
     ],
     "constraints": []
@@ -467,7 +467,7 @@
     "chapter": "3.1",
     "title": "求开放两室的平衡",
     "type": "python",
-    "statement": "室 1 接受恒定输入（input） u，并以 cA1 清除；室间交换为 aA1 与 bA2。求非负平衡（equilibrium）物质量。",
+    "statement": "室 1 接受恒定输入（input） u，并以 cA1 清除；室间交换为 aA1 与 bA2。求非负平衡（equilibrium）所追踪物质总量（tracked amount）。",
     "learning_targets": [
       "T1"
     ],
@@ -632,7 +632,7 @@
     "chapter": "3.1",
     "title": "封闭交换加输入能达到定常吗",
     "type": "choice",
-    "statement": "a,b>0，c=0，u=1 U/T 持续进入室 1。有没有有限的定常总物质量？",
+    "statement": "a,b>0，c=0，u=1 U/T 持续进入室 1。有没有有限的定常所追踪物质总量（tracked amount）？",
     "learning_targets": [
       "T1"
     ],
@@ -708,7 +708,7 @@
     "chapter": "3.2",
     "title": "同一状态，不同测量",
     "type": "python",
-    "statement": "二维线性状态空间（state space）模型（model）为 x′=Mx+Bu、y=Cx+Du。状态（state）分量均为物质量 U，u 为流入速率 U/T，y 为物质量 U。计算瞬时变化率和标量观测（observation）。",
+    "statement": "二维线性状态空间（state space）模型（model）为 x′=Mx+Bu、y=Cx+Du。状态（state）分量均为所追踪物质总量（tracked amount） U，u 为流入速率 U/T，y 为总量 U。计算瞬时变化率和标量观测（observation）。",
     "learning_targets": [
       "T2"
     ],
@@ -860,7 +860,7 @@
       },
       {
         "id": "C",
-        "text": "测量只给出两分量之和，不能直接读出各室物质量。"
+        "text": "测量只给出两分量之和，不能直接读出各室所追踪物质总量（tracked amount）。"
       },
       {
         "id": "D",
@@ -1218,7 +1218,7 @@
       },
       {
         "id": "C",
-        "text": "特征值为负说明物质量必须负。"
+        "text": "特征值为负说明所追踪物质总量（tracked amount）必须负。"
       },
       {
         "id": "D",
@@ -1236,7 +1236,7 @@
     "chapter": "3.2",
     "title": "把复共轭模态还原成实轨迹",
     "type": "python",
-    "statement": "人工偏差模型（model） x′=[[-alpha,−omega],[omega,−alpha]]x，两个分量为相同单位 U 的偏离量，可为负，不是非负物质量。返回特征值（eigenvalue）的实虚部与实数轨迹（trajectory）。",
+    "statement": "人工偏差模型（model） x′=[[-alpha,−omega],[omega,−alpha]]x，两个分量为相同单位 U 的偏离量，可为负，不是非负所追踪物质总量（tracked amount）。返回特征值（eigenvalue）的实虚部与实数轨迹（trajectory）。",
     "learning_targets": [
       "T2"
     ],
@@ -1522,7 +1522,7 @@
       },
       {
         "id": "D",
-        "text": "人工旋转模型（model）的负偏差不能解释成负物质量。"
+        "text": "人工旋转模型（model）的负偏差不能解释成负所追踪物质总量（tracked amount）。"
       }
     ],
     "constraints": []
@@ -1827,7 +1827,7 @@
     "chapter": "3.3",
     "title": "关闭通道后物质流向哪里",
     "type": "python",
-    "statement": "无输入（input）、无清除的封闭两室，a 表示 1→2，b 表示 2→1。给定初值（initial condition），在各时刻返回物质量。允许关闭一个或两个交换通道。",
+    "statement": "无输入（input）、无清除的封闭两室，a 表示 1→2，b 表示 2→1。给定初值（initial condition），在各时刻返回所追踪物质总量（tracked amount）。允许关闭一个或两个交换通道。",
     "learning_targets": [
       "T3"
     ],
@@ -1946,7 +1946,7 @@
       },
       {
         "id": "B",
-        "text": "总物质量仍守恒。"
+        "text": "所追踪物质总量（tracked amount）仍守恒。"
       },
       {
         "id": "C",
@@ -2090,13 +2090,13 @@
       {
         "name": "K",
         "type": "float",
-        "description": "清除速率达到 v/2 时的物质量。",
+        "description": "清除速率达到 v/2 时的所追踪物质总量（tracked amount）。",
         "unit": "U"
       },
       {
         "name": "epsilon",
         "type": "float",
-        "description": "每次只扰动一个物质量分量的幅度。",
+        "description": "每次只扰动一个总量分量的幅度。",
         "unit": "U"
       }
     ],
@@ -2402,7 +2402,7 @@
       {
         "name": "initial",
         "type": "list[float]",
-        "description": "两条轨迹（trajectory）共同的非负初始物质量。",
+        "description": "两条轨迹（trajectory）共同的非负初始所追踪物质总量（tracked amount）。",
         "unit": "U"
       },
       {
@@ -2432,7 +2432,7 @@
       {
         "name": "K",
         "type": "float",
-        "description": "清除速率达到 v/2 时的物质量。",
+        "description": "清除速率达到 v/2 时的总量。",
         "unit": "U"
       },
       {
@@ -2709,7 +2709,7 @@
     "chapter": "3.summary",
     "title": "两室状态与浓度观测",
     "type": "choice",
-    "statement": "两个固定容积的室 V1=2 L、V2=1 L，物质量状态（state）为 [2,4] U。哪一项正确？",
+    "statement": "两个固定容积的室 V1=2 L、V2=1 L，所追踪物质总量（tracked amount）状态（state）为 [2,4] U。哪一项正确？",
     "learning_targets": [
       "T1"
     ],
@@ -2749,7 +2749,7 @@
     "chapter": "3.summary",
     "title": "交换与外部损失的区别",
     "type": "choice",
-    "statement": "M=[[-a-c,b],[a,−b]]，输入（input）为 [u,0] U/T，状态（state）为两室物质量。哪些正确？",
+    "statement": "M=[[-a-c,b],[a,−b]]，输入（input）为 [u,0] U/T，状态（state）为两室所追踪物质总量（tracked amount）。哪些正确？",
     "learning_targets": [
       "T1"
     ],
@@ -2789,7 +2789,7 @@
     "chapter": "3.summary",
     "title": "用收支、矩阵和观测互相核对",
     "type": "python",
-    "statement": "比较两个固定容积的组织室。室 1 有输入（input） u 和线性清除 cA1，室间交换为 aA1、bA2。返回系统矩阵（matrix）、平衡（equilibrium）物质量与平衡浓度（concentration）；体积只用于观测（observation），不改变题设按物质量定义的交换系数。",
+    "statement": "比较两个固定容积的组织室。室 1 有输入（input） u 和线性清除 cA1，室间交换为 aA1、bA2。返回系统矩阵（matrix）、平衡（equilibrium）所追踪物质总量（tracked amount）与平衡浓度（concentration）；体积只用于观测（observation），不改变题设按总量定义的交换系数。",
     "learning_targets": [
       "T1"
     ],
@@ -2841,13 +2841,13 @@
       {
         "name": "matrix",
         "type": "list[list[float]]",
-        "description": "物质量状态（state）的 2×2 矩阵。",
+        "description": "总量状态（state）的 2×2 矩阵。",
         "unit": "1/T"
       },
       {
         "name": "equilibrium",
         "type": "list[float]",
-        "description": "两个室的平衡物质量。",
+        "description": "两个室的平衡总量。",
         "unit": "U"
       },
       {
@@ -2867,7 +2867,7 @@
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "相加两条方程检查 u=cA1*；再检查 aA1*=bA2*；容积不应擅自乘进物质量交换矩阵。",
+    "hint": "相加两条方程检查 u=cA1*；再检查 aA1*=bA2*；容积不应擅自乘进总量交换矩阵。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -2909,7 +2909,7 @@
             4.0
           ]
         ],
-        "explanation": "平衡物质量 [2,4] U；除以 [2,1] L 后浓度为 [1,4] U/L。"
+        "explanation": "平衡总量 [2,4] U；除以 [2,1] L 后浓度为 [1,4] U/L。"
       }
     ]
   },
@@ -2948,7 +2948,7 @@
       {
         "name": "initial",
         "type": "list[float]",
-        "description": "起始两室物质量。",
+        "description": "起始两室所追踪物质总量（tracked amount）。",
         "unit": "U"
       },
       {
@@ -3245,7 +3245,7 @@
     "chapter": "3.summary",
     "title": "分开模型差与步长差",
     "type": "python",
-    "statement": "饱和两室 f1=u−aA1+bA2−vA1/(K+A1)，f2=aA1−bA2。给定若干初始物质量，用平衡（equilibrium）处同一 雅可比矩阵（Jacobian matrix） 比较原模型（model）和局部模型，并分别用半步长复算。",
+    "statement": "饱和两室 f1=u−aA1+bA2−vA1/(K+A1)，f2=aA1−bA2。给定若干初始所追踪物质总量（tracked amount），用平衡（equilibrium）处同一 雅可比矩阵（Jacobian matrix） 比较原模型（model）和局部模型，并分别用半步长复算。",
     "learning_targets": [
       "T4"
     ],
@@ -3289,7 +3289,7 @@
       {
         "name": "K",
         "type": "float",
-        "description": "清除速率达到 v/2 时的物质量。",
+        "description": "清除速率达到 v/2 时的总量。",
         "unit": "U"
       },
       {

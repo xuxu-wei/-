@@ -48,7 +48,7 @@
     "id": "P04-C03-S01",
     "chapter_id": "4.3",
     "path": "notebooks/04-非线性动态行为/03-分岔与参数变化/01-平衡分支折叠与滞后.ipynb",
-    "title": "平衡分支折叠与滞后",
+    "title": "平衡分支折叠与滞回",
     "outcome": "能从平衡方程和零导数求折叠点，区分解析分支与有限扫描，比较接续/重启及正反方向，并保留转变区间的分辨率。",
     "number": "4.3.1",
     "visualization": "web/nonlinear/index.html"

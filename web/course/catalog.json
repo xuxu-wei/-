@@ -16,7 +16,7 @@
             "建立变量、单位、输入（input）、参数（parameter）与观测表",
             "读取短序列，绘图并解释坐标、尺度和缺失的机制信息"
           ],
-          "focus": "变量不能只写符号而不写含义与单位；换单位后的同一时刻必须对应同一物质量；问题卡应包含一个能由观测反驳的预期。",
+          "focus": "变量不能只写符号而不写含义与单位；换单位后的同一时刻必须对应同一总量；问题卡应包含一个能由观测反驳的预期。",
           "available": true,
           "lessons": [
             {
@@ -67,7 +67,7 @@
                 {
                   "id": "p01-time-units",
                   "slug": "p01-time-units",
-                  "title": "换时间单位，不换物质量",
+                  "title": "换时间单位，不换总量",
                   "type": "python"
                 },
                 {
@@ -680,7 +680,7 @@
           "id": "2.3",
           "title": "连续时间与一阶微分方程",
           "url": "/chapters/02-03-连续时间与一阶微分方程/",
-          "goals": "推导 dA/dt=u−kA 的恒定输入（input）解，检查初值（initial condition）、方程与边界；区分平衡（equilibrium）位置、特征时间（characteristic time）、偏离半衰时间与无输入时的物质量半衰期（half-life）。",
+          "goals": "推导 dA/dt=u−kA 的恒定输入（input）解，检查初值（initial condition）、方程与边界；区分平衡（equilibrium）位置、特征时间（characteristic time）、偏离半衰时间与无输入时的总量半衰期（half-life）。",
           "prerequisites": "2.2；导数（derivative）、定积分（definite integral）、指数/对数和链式法则（chain rule）。分离变量与初值问题（initial value problem）在本章引入。",
           "knowledge": [
             "从收支（mass balance）率到初值问题",
@@ -1145,7 +1145,7 @@
             "特征向量（eigenvector）、矩阵（matrix）幂与矩阵指数",
             "快慢模态、复数（complex number）与阻尼振荡（damped oscillation），说明不可对角化情况的处理边界"
           ],
-          "focus": "对应练习 特征值为 −1 ± 2i；模态重建与矩阵指数（matrix exponential）参考一致；状态负值在偏差模型（model）与物质量模型中含义不同。",
+          "focus": "对应练习 特征值为 −1 ± 2i；模态重建与矩阵指数（matrix exponential）参考一致；状态负值在偏差模型（model）与总量模型中含义不同。",
           "available": true,
           "lessons": [
             {
@@ -1801,7 +1801,7 @@
               "id": "P04-C03-S01",
               "chapter_id": "4.3",
               "path": "notebooks/04-非线性动态行为/03-分岔与参数变化/01-平衡分支折叠与滞后.ipynb",
-              "title": "平衡分支折叠与滞后",
+              "title": "平衡分支折叠与滞回",
               "outcome": "能从平衡方程和零导数求折叠点，区分解析分支与有限扫描，比较接续/重启及正反方向，并保留转变区间的分辨率。",
               "number": "4.3.1",
               "visualization": "web/nonlinear/index.html",
@@ -2843,12 +2843,12 @@
           "id": "5.5",
           "title": "熵、互信息与测量价值",
           "url": "/chapters/05-05-熵、互信息与测量价值/",
-          "goals": "从离散概率（probability）计算熵（entropy）与互信息（mutual information），说明单位、样本偏差及因果解释的边界。",
+          "goals": "明确本章“测量价值”仅指给定概率（probability）模型（model）与观测（observation）编码下的信息量，不等同于临床、决策或经济效用，也不等同于因果作用或干预收益；从离散概率计算熵（entropy）与互信息（mutual information），说明单位、样本偏差及因果解释的边界。",
           "prerequisites": "5.3—5.4 的联合/条件概率（conditional probability）与分布（distribution）、5.2 的期望（expectation），以及第 2 篇的对数。信息量、熵与互信息在本章引入。",
           "knowledge": [
             "信息量、熵与对数底",
             "条件熵（conditional entropy）和互信息",
-            "分箱、有限样本和观测（observation）通道比较"
+            "分箱、有限样本和观测通道比较"
           ],
           "focus": "对应练习 熵为 1 bit，互信息分别为 1、0 bit；处理零概率项，区分离散熵与连续变量分箱（binning）后的量。",
           "available": true,
@@ -4022,7 +4022,7 @@
           "id": "7.3",
           "title": "卡尔曼滤波",
           "url": "/chapters/07-03-卡尔曼滤波/",
-          "goals": "由多元高斯条件分布（distribution）推导卡尔曼滤波（Kalman filtering，KF）（Kalman filter，KF），计算均值、协方差（covariance）与创新。",
+          "goals": "由多元高斯条件分布（distribution）推导卡尔曼滤波（Kalman filter，KF），计算均值、协方差（covariance）与创新。",
           "prerequisites": "7.2、3.1；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、期望（expectation）、方差（variance）、协方差、联合分布、Gaussian 分布、条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验（posterior）及标量高斯条件更新、多元高斯条件分布、块协方差与矩阵分解。",
           "knowledge": [
             "先讲多元高斯密度、分块协方差、正定性（positive definiteness）与条件分布，补齐所需矩阵因式分解",
@@ -4156,7 +4156,7 @@
           "goals": "实现扩展与无迹卡尔曼滤波（unscented Kalman filtering，UKF），解释局部线性化（linearization）和矩近似的不同误差来源。",
           "prerequisites": "7.3、3.4；数学：偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、多元高斯条件分布（distribution）、块协方差（covariance）与矩阵（matrix）分解。",
           "knowledge": [
-            "由一阶线性化得到扩展卡尔曼滤波（extended Kalman filtering，EKF）（extended Kalman filter，EKF），保留雅可比求值位置",
+            "由一阶线性化得到扩展卡尔曼滤波（extended Kalman filter，EKF），保留雅可比求值位置",
             "由确定性采样（sampling）点传播均值与协方差，建立无迹卡尔曼滤波（unscented Kalman filter，UKF）及权重约定",
             "在同一非线性观测（observation）模型比较近似误差、初值（initial condition）与噪声；用线性退化情形回归检查"
           ],
@@ -4252,7 +4252,7 @@
           "prerequisites": "7.2、5.1、7.4；数学：事件（event）、随机变量（random variable）、离散/连续分布（distribution）、抽样和 Monte Carlo、条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验及标量高斯条件更新、状态空间（state space）的条件独立（conditional independence）、概率（probability）分解与边缘化、重要性采样（importance sampling，IS）、自归一化权重、重采样与权重有效样本量。",
           "knowledge": [
             "从期望（expectation）积分引入重要性采样（importance sampling）与自归一化权重",
-            "建立自助粒子滤波（particle filtering，PF）（bootstrap particle filter）的传播、观测（observation）加权和重采样步骤",
+            "建立自助粒子滤波（bootstrap particle filter）的传播、观测（observation）加权和重采样步骤",
             "计算有效样本量（effective sample size，ESS），区分权重退化、样本贫化和模型（model）错误"
           ],
           "focus": "手算权重与累积概率索引；一维网格和线性高斯极限（limit）提供参照。极小似然用稳定归一化，全部不可能权重按公开契约返回失败状态（state）；不按单次随机准确率判分。",
@@ -5074,25 +5074,195 @@
             "在模态（mode）附近用曲率构造 Laplace 近似（Laplace approximation），说明多峰和边界的限制"
           ],
           "focus": "共轭模型（model）使用闭式结果，非共轭一维模型使用收敛网格积分；局部曲率须正定（positive definite），点估计不等于后验均值，近似不声称消除模型偏差。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P09-C01-S01",
+              "chapter_id": "9.1",
+              "number": "9.1.1",
+              "title": "从先验与观测到参数后验",
+              "outcome": "区分先验、似然与预测，推导高斯共轭更新并核对归一化。",
+              "path": "notebooks/09-概率建模与近似推断/01-贝叶斯建模与后验近似/01-从先验与观测到参数后验.ipynb",
+              "visualization": "web/inference/index.html",
+              "questions": [
+                {
+                  "id": "p09-normal-update",
+                  "slug": "p09-normal-update",
+                  "title": "把读数变成参数后验",
+                  "type": "python"
+                },
+                {
+                  "id": "p09-likelihood-object",
+                  "slug": "p09-likelihood-object",
+                  "title": "似然是在比较什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-posterior-predictive",
+                  "slug": "p09-posterior-predictive",
+                  "title": "参数知道得更准以后",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-prior-vs-data",
+                  "slug": "p09-prior-vs-data",
+                  "title": "先验强度怎样起作用",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-normalizer-zero",
+                  "slug": "p09-normalizer-zero",
+                  "title": "后验什么时候存在",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-normal-update"
+            },
+            {
+              "id": "P09-C01-S02",
+              "chapter_id": "9.1",
+              "number": "9.1.2",
+              "title": "后验曲率边界与参数变换",
+              "outcome": "用积分核对清除率的局部近似，解释边界、多峰与参数变换。",
+              "path": "notebooks/09-概率建模与近似推断/01-贝叶斯建模与后验近似/02-后验曲率边界与参数变换.ipynb",
+              "visualization": "web/inference/index.html",
+              "questions": [
+                {
+                  "id": "p09-gamma-local",
+                  "slug": "p09-gamma-local",
+                  "title": "检查局部近似能否成立",
+                  "type": "python"
+                },
+                {
+                  "id": "p09-grid-masses",
+                  "slug": "p09-grid-masses",
+                  "title": "积分节点不等于等权样本",
+                  "type": "python"
+                },
+                {
+                  "id": "p09-coordinate-map",
+                  "slug": "p09-coordinate-map",
+                  "title": "模态会随参数化改变吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-single-mode",
+                  "slug": "p09-single-mode",
+                  "title": "一个漂亮的局部高斯",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-grid-domain",
+                  "slug": "p09-grid-domain",
+                  "title": "网格变密但区间未扩大",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-gamma-local"
+            }
+          ],
+          "visualization": "web/inference/index.html"
         },
         {
           "id": "9.2",
           "title": "马尔可夫链采样与诊断",
           "url": "/chapters/09-02-马尔可夫链采样与诊断/",
           "goals": "实现马尔可夫链（Markov chain）蒙特卡洛（Markov chain Monte Carlo，MCMC）采样（sampling），检查平稳目标与混合质量。",
-          "prerequisites": "9.1、5.4；数学：条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验（posterior）及标量高斯条件更新、随机过程（stochastic process）、有限马尔可夫链、转移矩阵（transition matrix）与长期分布（distribution）、后验归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分、Metropolis–Hastings、详细平衡（equilibrium）、链相关与采样诊断。",
+          "prerequisites": "9.1、5.4；数学：条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验（posterior）及标量高斯条件更新、随机过程（stochastic process）、有限马尔可夫链、转移矩阵（transition matrix）与长期分布（distribution）、后验归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分、Metropolis–Hastings、详细平衡（detailed balance）、链相关与采样诊断。",
           "knowledge": [
             "从难积分的后验进入构造具有目标平稳分布的转移",
             "推导 Metropolis–Hastings 接受率与提议比，给出满足条件的详细平衡核验",
             "比较多链、预热、自相关与有效样本量，区分接受率、混合和有限样本误差"
           ],
           "focus": "有限状态（state）小例子核验转移矩阵的平稳分布；连续例子与解析/网格矩比较。有效样本量的相关性修正与粒子权重的定义分别说明，有限诊断不能证明遍历性。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P09-C02-S01",
+              "chapter_id": "9.2",
+              "number": "9.2.1",
+              "title": "构造保持目标分布的采样链",
+              "outcome": "推导接受比与提议修正，实现可重放的链并核对详细平衡。",
+              "path": "notebooks/09-概率建模与近似推断/02-马尔可夫链采样与诊断/01-构造保持目标分布的采样链.ipynb",
+              "visualization": "web/inference/index.html",
+              "questions": [
+                {
+                  "id": "p09-mh-replay",
+                  "slug": "p09-mh-replay",
+                  "title": "重放一次次接受与拒绝",
+                  "type": "python"
+                },
+                {
+                  "id": "p09-finite-kernel",
+                  "slug": "p09-finite-kernel",
+                  "title": "构造有限状态转移核",
+                  "type": "python"
+                },
+                {
+                  "id": "p09-proposal-ratio",
+                  "slug": "p09-proposal-ratio",
+                  "title": "提议方向不要写反",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-stationary-vs-convergence",
+                  "slug": "p09-stationary-vs-convergence",
+                  "title": "保持目标就一定收敛吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-rejections",
+                  "slug": "p09-rejections",
+                  "title": "拒绝时要不要记录",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-mh-replay"
+            },
+            {
+              "id": "P09-C02-S02",
+              "chapter_id": "9.2",
+              "number": "9.2.2",
+              "title": "多链相关性与有限计算预算",
+              "outcome": "比较初始化、步幅与模态覆盖，计算基本诊断并解释其限度。",
+              "path": "notebooks/09-概率建模与近似推断/02-马尔可夫链采样与诊断/02-多链相关性与有限计算预算.ipynb",
+              "visualization": "web/inference/index.html",
+              "questions": [
+                {
+                  "id": "p09-basic-diagnostics",
+                  "slug": "p09-basic-diagnostics",
+                  "title": "计算基本多链与相关性指标",
+                  "type": "python"
+                },
+                {
+                  "id": "p09-high-acceptance",
+                  "slug": "p09-high-acceptance",
+                  "title": "接受率99%是好消息吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-same-mode",
+                  "slug": "p09-same-mode",
+                  "title": "多条链看起来一致",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-ess-not-particles",
+                  "slug": "p09-ess-not-particles",
+                  "title": "两个ESS名字相同",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-budget-repeat",
+                  "slug": "p09-budget-repeat",
+                  "title": "怎样报告随机计算误差",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-basic-diagnostics"
+            }
+          ],
+          "visualization": "web/inference/index.html"
         },
         {
           "id": "9.3",
@@ -5106,25 +5276,195 @@
             "用显式公式或解析梯度优化小模型，比较近似族、初值（initial condition）和优化误差；自动微分（automatic differentiation，AD）留到 15.1"
           ],
           "focus": "二维高斯后验用闭式均值、协方差（covariance）和相对熵核验；小模型（model）枚举或网格作另一参照。比较方差（variance）和相关结构，不把任何变分近似概括为必然低估所有不确定性。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P09-C03-S01",
+              "chapter_id": "9.3",
+              "number": "9.3.1",
+              "title": "从相对熵到均值场更新",
+              "outcome": "推导证据下界与高斯因子更新，分离优化误差和近似误差。",
+              "path": "notebooks/09-概率建模与近似推断/03-变分推断/01-从相对熵到均值场更新.ipynb",
+              "visualization": "web/inference/index.html",
+              "questions": [
+                {
+                  "id": "p09-gaussian-coordinate",
+                  "slug": "p09-gaussian-coordinate",
+                  "title": "完成一轮均值场坐标更新",
+                  "type": "python"
+                },
+                {
+                  "id": "p09-finite-bound",
+                  "slug": "p09-finite-bound",
+                  "title": "直接枚举证据下界",
+                  "type": "python"
+                },
+                {
+                  "id": "p09-kl-direction",
+                  "slug": "p09-kl-direction",
+                  "title": "下界中的距离方向",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-gaussian-variance",
+                  "slug": "p09-gaussian-variance",
+                  "title": "独立近似丢掉了什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-optimization-error",
+                  "slug": "p09-optimization-error",
+                  "title": "下界停止上升",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/09-03-变分推断/practice/?question=p09-gaussian-coordinate"
+            },
+            {
+              "id": "P09-C03-S02",
+              "chapter_id": "9.3",
+              "number": "9.3.2",
+              "title": "近似族与多峰中的初始化",
+              "outcome": "用四状态混合结构核对下界，比较局部解与完整联合后验。",
+              "path": "notebooks/09-概率建模与近似推断/03-变分推断/02-近似族与多峰中的初始化.ipynb",
+              "visualization": "web/inference/index.html",
+              "questions": [
+                {
+                  "id": "p09-discrete-coordinate",
+                  "slug": "p09-discrete-coordinate",
+                  "title": "在四个状态上检查近似",
+                  "type": "python"
+                },
+                {
+                  "id": "p09-two-modes-family",
+                  "slug": "p09-two-modes-family",
+                  "title": "两个因子能表示相关双峰吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-vi-initialization",
+                  "slug": "p09-vi-initialization",
+                  "title": "从两侧开始的优化",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-elbo-monotone",
+                  "slug": "p09-elbo-monotone",
+                  "title": "坐标更新为什么不下降",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-jensen-support",
+                  "slug": "p09-jensen-support",
+                  "title": "Jensen等号在哪里",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/09-03-变分推断/practice/?question=p09-discrete-coordinate"
+            }
+          ],
+          "visualization": "web/inference/index.html"
         },
         {
           "id": "9.4",
           "title": "隐变量与参数学习",
           "url": "/chapters/09-04-隐变量与参数学习/",
           "goals": "用隐变量（latent variable）分解参数（parameter）学习问题，推导期望最大化（expectation-maximization，EM）并区分状态（state）推断与参数更新。",
-          "prerequisites": "9.3、7.6；数学：条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验（posterior）及标量高斯条件更新、多元高斯条件分布（distribution）、块协方差（covariance）与矩阵（matrix）分解、相对熵（relative entropy）、Jensen 不等式、变分下界与均值场（mean-field approximation）更新、隐变量条件期望（expectation）、责任度与期望最大化。",
+          "prerequisites": "9.3、7.6；数学：条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验（posterior）及标量高斯条件更新、多元高斯条件分布（distribution）、块协方差（covariance）与矩阵（matrix）分解、相对熵（relative entropy）、Jensen 不等式、变分下界与均值场（mean-field approximation）更新、隐变量条件期望（expectation）、责任度（responsibility）与期望最大化。",
           "knowledge": [
             "从混合观测（observation）与未知状态建立完整数据和观测数据似然",
             "推导期望最大化（expectation–maximization，EM）的条件期望步骤与最大化步骤",
             "用已学平滑连接状态空间（state space）模型（model）的参数学习，说明局部最优、退化解及近似步骤的限制"
           ],
           "focus": "小样本责任度与直接密度计算对照；固定方差（variance）避免无限似然退化。精确 E/M 步的单调性与近似变体分开，测试标签置换等价。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P09-C04-S01",
+              "chapter_id": "9.4",
+              "number": "9.4.1",
+              "title": "责任度与混合模型参数学习",
+              "outcome": "推导双高斯混合的精确EM步骤，检查似然、标签交换和退化。",
+              "path": "notebooks/09-概率建模与近似推断/04-隐变量与参数学习/01-责任度与混合模型参数学习.ipynb",
+              "visualization": "web/inference/index.html",
+              "questions": [
+                {
+                  "id": "p09-mixture-update",
+                  "slug": "p09-mixture-update",
+                  "title": "更新混合权重和分量均值",
+                  "type": "python"
+                },
+                {
+                  "id": "p09-em-two-targets",
+                  "slug": "p09-em-two-targets",
+                  "title": "EM是在做哪种推断",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-zero-component",
+                  "slug": "p09-zero-component",
+                  "title": "权重为零的分量",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-variance-collapse",
+                  "slug": "p09-variance-collapse",
+                  "title": "自由方差的危险",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-labels",
+                  "slug": "p09-labels",
+                  "title": "把两分量标签对换",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-mixture-update"
+            },
+            {
+              "id": "P09-C04-S02",
+              "chapter_id": "9.4",
+              "number": "9.4.2",
+              "title": "从平滑矩到动态参数更新",
+              "outcome": "由平滑的二阶矩推导转移系数更新，避免把估计状态当真值。",
+              "path": "notebooks/09-概率建模与近似推断/04-隐变量与参数学习/02-从平滑矩到动态参数更新.ipynb",
+              "visualization": "web/inference/index.html",
+              "questions": [
+                {
+                  "id": "p09-state-moments",
+                  "slug": "p09-state-moments",
+                  "title": "用平滑矩更新转移系数",
+                  "type": "python"
+                },
+                {
+                  "id": "p09-smoothing-products",
+                  "slug": "p09-smoothing-products",
+                  "title": "为什么不能只回归平滑均值",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-initial-parameter",
+                  "slug": "p09-initial-parameter",
+                  "title": "初始分布也依赖a",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-approximate-e-step",
+                  "slug": "p09-approximate-e-step",
+                  "title": "近似平滑代替精确E步",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-unstable-estimate",
+                  "slug": "p09-unstable-estimate",
+                  "title": "更新得到a大于1",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-state-moments"
+            }
+          ],
+          "visualization": "web/inference/index.html"
         },
         {
           "id": "9.5",
@@ -5138,11 +5478,186 @@
             "对齐留出数据、信息和预算，比较预测误差、对数预测分数和覆盖；保留错误机制与范围外条件"
           ],
           "focus": "总方差公式与共轭预测闭式核验；独立评估集不用于选择检查阈值或调参。有限覆盖率带抽样不确定性，缺失或失败样本不静默剔除。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P09-C05-S01",
+              "chapter_id": "9.5",
+              "number": "9.5.1",
+              "title": "把参数不确定性带入预测",
+              "outcome": "推导预测的总方差并构造混合分布，区分可信区间和预测区间。",
+              "path": "notebooks/09-概率建模与近似推断/05-后验预测与模型检验/01-把参数不确定性带入预测.ipynb",
+              "visualization": "web/inference/index.html",
+              "questions": [
+                {
+                  "id": "p09-predictive-moments",
+                  "slug": "p09-predictive-moments",
+                  "title": "分解预测方差",
+                  "type": "python"
+                },
+                {
+                  "id": "p09-interval-meaning",
+                  "slug": "p09-interval-meaning",
+                  "title": "同样是95%区间",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-nonlinear-expectation",
+                  "slug": "p09-nonlinear-expectation",
+                  "title": "把平均参数代入就行吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-mixture-not-normal",
+                  "slug": "p09-mixture-not-normal",
+                  "title": "只有均值和方差还不够",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-conditional-variance",
+                  "slug": "p09-conditional-variance",
+                  "title": "为什么还要条件方差",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-moments"
+            },
+            {
+              "id": "P09-C05-S02",
+              "chapter_id": "9.5",
+              "number": "9.5.2",
+              "title": "留出预测覆盖与模型失配",
+              "outcome": "比较预测分数与覆盖的抽样波动，识别近似失误和机制失配。",
+              "path": "notebooks/09-概率建模与近似推断/05-后验预测与模型检验/02-留出预测覆盖与模型失配.ipynb",
+              "visualization": "web/inference/index.html",
+              "questions": [
+                {
+                  "id": "p09-predictive-score",
+                  "slug": "p09-predictive-score",
+                  "title": "在留出观测上比较预测",
+                  "type": "python"
+                },
+                {
+                  "id": "p09-posterior-check-reuse",
+                  "slug": "p09-posterior-check-reuse",
+                  "title": "后验预测检验是否独立验证",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-coverage-uncertainty",
+                  "slug": "p09-coverage-uncertainty",
+                  "title": "18次覆盖足够下结论吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-fair-prediction",
+                  "slug": "p09-fair-prediction",
+                  "title": "怎样比较两种推断方法",
+                  "type": "choice"
+                },
+                {
+                  "id": "p09-noise-misspecification",
+                  "slug": "p09-noise-misspecification",
+                  "title": "所有推断方法都漏覆盖",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-score"
+            }
+          ],
+          "visualization": "web/inference/index.html"
         }
-      ]
+      ],
+      "assessment": {
+        "id": "9.summary",
+        "assessment": true,
+        "title": "同一观测下的后验与预测比较",
+        "url": "/parts/09-概率建模与近似推断/综合练习/",
+        "goals": "区分建模、后验（posterior）计算和预测检验，核对可解参照及失效条件。",
+        "prerequisites": "本篇9.1—9.5；第8篇优化和第7篇平滑。",
+        "focus": "后验质量、计算预算、独立信息、退化与模型（model）失配。",
+        "knowledge": [
+          "归一化和局部近似",
+          "接受比、多链和预算",
+          "均值场（mean-field approximation）、下界和EM",
+          "预测矩、评分和覆盖"
+        ],
+        "lessons": [
+          {
+            "id": "P09-SUMMARY",
+            "chapter_id": "9.summary",
+            "number": "篇末综合",
+            "title": "同一观测下的后验与预测比较",
+            "outcome": "在相同信息与预算下比较局部近似、采样、变分和独立预测，解释模型错误。",
+            "path": "notebooks/09-概率建模与近似推断/06-篇末综合/01-同一观测下的后验与预测比较.ipynb",
+            "visualization": null,
+            "overview": {
+              "goals": "区分建模、后验计算和预测检验，核对可解参照及失效条件。",
+              "prerequisites": "本篇9.1—9.5；第8篇优化和第7篇平滑。",
+              "focus": "后验质量、计算预算、独立信息、退化与模型失配。",
+              "knowledge": [
+                "归一化和局部近似",
+                "接受比、多链和预算",
+                "均值场、下界和EM",
+                "预测矩、评分和覆盖"
+              ]
+            },
+            "questions": [
+              {
+                "id": "p09-cap-prior",
+                "slug": "p09-cap-prior",
+                "title": "先明确预测对象",
+                "type": "choice"
+              },
+              {
+                "id": "p09-cap-diagnostic",
+                "slug": "p09-cap-diagnostic",
+                "title": "收敛声明需要哪些证据",
+                "type": "choice"
+              },
+              {
+                "id": "p09-cap-local",
+                "slug": "p09-cap-local",
+                "title": "后验局部近似与边界",
+                "type": "python"
+              },
+              {
+                "id": "p09-cap-mh",
+                "slug": "p09-cap-mh",
+                "title": "固定提议下的接受与拒绝",
+                "type": "python"
+              },
+              {
+                "id": "p09-cap-variational",
+                "slug": "p09-cap-variational",
+                "title": "均值场更新与证据差距",
+                "type": "python"
+              },
+              {
+                "id": "p09-cap-predictive",
+                "slug": "p09-cap-predictive",
+                "title": "同一留出条件下的评分与预算",
+                "type": "python"
+              },
+              {
+                "id": "p09-cap-em",
+                "slug": "p09-cap-em",
+                "title": "似然变大是否代表机制成立",
+                "type": "choice"
+              },
+              {
+                "id": "p09-cap-misspecification",
+                "slug": "p09-cap-misspecification",
+                "title": "新条件下的校准失败",
+                "type": "choice"
+              }
+            ],
+            "url": "/parts/09-概率建模与近似推断/综合练习/practice/?question=p09-cap-prior"
+          }
+        ],
+        "available": true,
+        "visualization": null
+      }
     },
     {
       "id": "10",
@@ -5295,7 +5810,7 @@
             "拉普拉斯零模态与连通性",
             "非零模态和趋近速度，限定等容积及对称交换假设"
           ],
-          "focus": "无外部输入（input）输出（output）时检查物质量守恒；谱关系只用于满足假设的算子，不能把有向或非对称网络未经说明套入同一结论。",
+          "focus": "无外部输入（input）输出（output）时检查总量守恒；谱关系只用于满足假设的算子，不能把有向或非对称网络未经说明套入同一结论。",
           "available": false,
           "lessons": [],
           "visualization": null
@@ -5469,7 +5984,7 @@
             "有限扰动、吸引子与吸引域，区分回到长期集合和回到原时间相位（phase）",
             "滑动窗口预警、趋势与观测影响、误报及漏报"
           ],
-          "focus": "预测时刻不能使用未来数据；采样（sampling）变化时“滞后（hysteresis）一步”不等于相同物理滞后；预警指标变化只支持所声明模型（model）与观测（observation）条件。",
+          "focus": "预测时刻不能使用未来数据；采样（sampling）变化时“滞后（lag）一步”不等于相同物理滞后；预警指标变化只支持所声明模型（model）与观测（observation）条件。",
           "available": false,
           "lessons": [],
           "visualization": null
@@ -5537,7 +6052,7 @@
           "prerequisites": "14.2；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、函数观测、线性算子、有限字典与投影（projection）、奇异值分解（singular value decomposition，SVD）、截断、伪逆与低秩（rank）投影。",
           "knowledge": [
             "从非线性状态（state）更新引入 Koopman 算子（Koopman operator），先讲函数与算子的必要定义",
-            "构造扩展动态模态分解（dynamic mode decomposition，DMD）（extended dynamic mode decomposition，EDMD）的字典与数据矩阵",
+            "构造扩展动态模态分解（extended dynamic mode decomposition，EDMD）的字典与数据矩阵",
             "比较字典、投影、正则化（regularization）与状态重建，限定有限字典的闭合条件"
           ],
           "focus": "精确闭合系统用代数递推核验；一般系统报告投影与重建误差，真值方程不用于选择最终字典。",
@@ -5623,7 +6138,7 @@
           "goals": "以网络表示连续动力学右端，推导前向和伴随灵敏度（adjoint sensitivity），核验两种求导路线并区分求解误差和模型（model）误差。",
           "prerequisites": "15.2、2.4；数学：一阶 ODE、初值（initial condition）、分离变量和指数解、数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、神经网络、计算图、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、ODE 参数（parameter）前向灵敏度、分部积分、伴随终值方程、参数梯度（gradient）积分与观测（observation）时刻跳跃。",
           "knowledge": [
-            "建立神经常微分方程（ordinary differential equation，ODE）（neural ordinary differential equation，Neural ODE）的右端与观测损失",
+            "建立神经常微分方程（neural ordinary differential equation，Neural ODE）的右端与观测损失",
             "先对固定步长求解程序显式求导，用链式法则（chain rule）推导连续前向灵敏度方程",
             "引入分部积分与伴随灵敏度（adjoint sensitivity），完整推导低维伴随终值方程、参数梯度积分及固定观测时刻的跳跃条件",
             "声明固定初态、可微右端与固定观测时刻，比较离散求导与连续伴随后数值离散的误差",

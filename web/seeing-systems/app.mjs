@@ -22,7 +22,7 @@ function table(){
 }
 function recompute(){
   if(isStock){
-    series=[{label:'物质量 A',color:theme.data['1'],values:Array.from({length:limit+1},(_,t)=>stock(params.initial,params.inflow,params.outflow,t))}];
+    series=[{label:'总量 A',color:theme.data['1'],values:Array.from({length:limit+1},(_,t)=>stock(params.initial,params.inflow,params.outflow,t))}];
     $('alternate').textContent=params.inflow>params.outflow?'切换到净流出示例':'切换到净流入示例';
     $('preset-note').textContent=`当前：${params.inflow>params.outflow?'净流入':params.inflow<params.outflow?'净流出':'流入流出相等'}。切换示例把流入/流出改为 3/1 或 1/3，初始量保持不变。`;
     const incoming=el('span',`流入 ${params.inflow} U/T`),arrow=el('span','→','direction'),box=el('span','边界内 A','system'),arrow2=el('span','→','direction'),outgoing=el('span',`流出 ${params.outflow} U/T`);
@@ -45,7 +45,7 @@ function draw(time){
   $('value').textContent=fmt(value)+(isStock?' U':' °C');
   $('play-counter').textContent=$('time-readout').textContent+' · '+$('value').textContent;
   $('observation').textContent=isStock?`累计流入 ${fmt(params.inflow*time)} U，累计流出 ${fmt(params.outflow*time)} U。`: `截至此步最大绝对偏差 ${fmt(describe(path.slice(0,index+1)).maxAbs)} °C；转向 ${describe(path.slice(0,index+1)).turns} 次。`;
-  $('model-warning').hidden=!(isStock&&value<0);$('model-warning').textContent='原规则出现负物质量：固定流出无法按该假设持续。曲线保留失败值；不能裁剪为零后仍声称原账目守恒。';
+  $('model-warning').hidden=!(isStock&&value<0);$('model-warning').textContent='原规则出现负总量：固定流出无法按该假设持续。曲线保留失败值；不能裁剪为零后仍声称原账目守恒。';
   const low=Math.min(0,...series.flatMap(s=>s.values)),high=Math.max(1,...series.flatMap(s=>s.values));
   const pad=(high-low)*.12,yMin=low-pad,yMax=high+pad;
   const x=t=>70+t/limit*690,y=v=>315-(v-yMin)/(yMax-yMin)*270;
@@ -53,7 +53,7 @@ function draw(time){
   for(let i=0;i<=4;i++){const v=low+(high-low)*i/4;chart.append(svg('line',{x1:70,x2:760,y1:y(v),y2:y(v),stroke:theme.ui.tint,'stroke-opacity':.5}),svg('text',{x:59,y:y(v)+5,'text-anchor':'end',fill:theme.ui.text,'font-size':14},fmt(v)));}
   chart.append(svg('line',{x1:70,x2:760,y1:y(0),y2:y(0),stroke:theme.data.reference,'stroke-dasharray':'3 5'}));
   for(let t=0;t<=limit;t+=isStock?1:2)chart.append(svg('text',{x:x(t),y:341,'text-anchor':'middle',fill:theme.ui.text,'font-size':14},t));
-  chart.append(svg('text',{x:415,y:372,'text-anchor':'middle',fill:theme.ui.text,'font-size':15},isStock?'时间 / T':'更新步数'),svg('text',{x:70,y:22,fill:theme.ui.text,'font-size':15},isStock?'物质量 / U':'温度偏差 / °C'));
+  chart.append(svg('text',{x:415,y:372,'text-anchor':'middle',fill:theme.ui.text,'font-size':15},isStock?'时间 / T':'更新步数'),svg('text',{x:70,y:22,fill:theme.ui.text,'font-size':15},isStock?'总量 / U':'温度偏差 / °C'));
   for(const s of series){
     let points=s.values.slice(0,index+1).map((v,i)=>[i,v]);
     if(isStock&&time>index)points.push([time,stock(params.initial,params.inflow,params.outflow,time)]);
@@ -68,12 +68,12 @@ async function start(){
   $('eyebrow').textContent=`${current.id} 章 · 可视化与探索`;
   $('title').textContent=isStock?'流过多少，才积累多少':'同一个调节方向，不同的信息年龄';
   $('question').textContent=isStock?'流率（flow rate）相同，时间加倍后会积累多少？先预测终点，再播放并对照账目。':'先预测：一直读取过去的偏差（deviation），会不会在到达目标之后继续向同一方向修正？';
-  $('explanation').textContent=isStock?'存量（stock）是边界内已经拥有的物质量；流量（flow）在此指每单位时间通过的流率。每段流率恒定时，累计量等于流率乘持续时间。':'负反馈（negative feedback）让修正方向抵消所读取的偏差；延迟（delay）决定读取的是多早以前的信息。gain 是每次修正的比例，delay 是读取信息的滞后步数；偏差为负表示低于目标。';
+  $('explanation').textContent=isStock?'存量（stock）是边界内已经拥有的所追踪物质总量（tracked amount），后文简称总量；流量（flow）在此指每单位时间通过的流率。每段流率恒定时，累计量等于流率乘持续时间。':'负反馈（negative feedback）让修正方向抵消所读取的偏差；延迟（delay）决定读取的是多早以前的信息。gain 是每次修正的比例，delay 是读取信息的滞后步数；偏差为负表示低于目标。';
   $('formula').textContent=isStock?'末量 = 初量 + 持续时间 ×（流入速率 − 流出速率）':'新偏差 = 当前偏差 − gain × delay 步以前的偏差';
   $('assumptions').textContent=isStock?'假设：无内部生成或转化，流入与流出恒定。第 1 段为 0—1 T，第 2 段为 1—3 T；图中按恒定流率计算时刻内的累计量，未使用数值积分。所有数值均为教学选值。':'假设：人工温度规则，初始历史恒定，忽略噪声、外部扰动和执行限幅。蓝线始终即时读取，玫红线使用所选延迟；点之间的连线仅引导阅读。动画速度不改变计算规则，有限轨迹不证明任意长时间行为。';
-  $('value-label').textContent=isStock?'边界内的物质量':'所选延迟的偏差';
+  $('value-label').textContent=isStock?'边界内的总量':'所选延迟的偏差';
   $('reading-prompt').textContent=isStock?'在 Notebook 中逐段推导账目，再比较内部交换为什么在总账中抵消。':'在 Notebook 中核对历史索引、手算前几步，再检查转向次数与结论范围。';
-  if(isStock){slider('initial','初始物质量 / U',0,10,.5,5);slider('inflow','流入速率 / (U/T)',0,6,.5,3);slider('outflow','流出速率 / (U/T)',0,6,.5,1);}
+  if(isStock){slider('initial','初始总量 / U',0,10,.5,5);slider('inflow','流入速率 / (U/T)',0,6,.5,3);slider('outflow','流出速率 / (U/T)',0,6,.5,1);}
   else{slider('initial','初始历史偏差 / °C',-3,3,.5,2);slider('gain','调节比例 gain',0,1,.05,.5);slider('delay','信息延迟 / 步',0,2,1,2);}
   recompute();
   playback=createPlayback({duration:limit,speed:isStock?0.5:1.5,update:draw,failed,changed:(reason)=>{$('play').textContent=reason==='playing'?'暂停':reason==='ended'?'再次播放':'播放';$('play-status').textContent=reason==='playing'?'正在播放：观察时间、数值与曲线。':reason==='ended'?'已到终点，可重播或改变条件。':'已暂停，可拖动观察位置；调参后从起点重新比较。';}});

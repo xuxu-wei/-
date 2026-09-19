@@ -23,7 +23,7 @@ function controls(){
     slider('a','1 → 2 交换系数 a / (1/T)',0,.6,.05,.2);
     if(mode==='phase'){slider('b','2 → 1 交换系数 b / (1/T)',0,.6,.05,.1);slider('speed','整个向量场的倍率',.5,3,.5,1);}
     else slider('c','每室清除系数 c / (1/T)',0,.5,.05,.1);
-    slider('x1','第一室初始物质量 / U',0,6,.5,6);slider('x2','第二室初始物质量 / U',0,6,.5,0);
+    slider('x1','第一室初始总量 / U',0,6,.5,6);slider('x2','第二室初始总量 / U',0,6,.5,0);
   }
 }
 function set(values){for(const [key,value] of Object.entries(values)){params[key]=value;$(key).value=value;$(key+'-value').value=value;}recompute();}
@@ -41,7 +41,7 @@ function recompute(){
     field=x=>matvec([[-p.a*p.speed,p.b*p.speed],[p.a*p.speed,-p.b*p.speed]],x);
     $('formula').textContent='A1′ = s(−aA1 + bA2)，A2′ = s(aA1 − bA2)';
     $('alternate').textContent=p.b>0?'关闭回流通道':'恢复回流通道';
-    $('preset-note').textContent=`当前回流 ${p.b>0?'开启':'关闭'}，b=${p.b}/T。按钮只切换 b=0 ↔ 0.1/T；总物质量 ${fmt(p.x1+p.x2)} U。`;
+    $('preset-note').textContent=`当前回流 ${p.b>0?'开启':'关闭'}，b=${p.b}/T。按钮只切换 b=0 ↔ 0.1/T；总量 ${fmt(p.x1+p.x2)} U。`;
   }else if($('model').value==='rotation'){
     at=t=>rotation(p.alpha,p.omega,[p.x1,p.x2],t);field=x=>matvec([[-p.alpha,-p.omega],[p.omega,-p.alpha]],x);
     $('formula').textContent=`特征值 −${p.alpha} ± ${p.omega}i /T；半径按 exp(−αt) 缩放`;
@@ -80,7 +80,7 @@ function draw(time){
     chart.append(svg('line',{x1:635,x2:905,y1:py(phase),y2:py(phase),stroke:theme.ui.tint,'stroke-opacity':.5}),label(625,py(phase)+5,Number(phase.toPrecision(3)),'end'),label(px(phase),348,Number(phase.toPrecision(3))));
   }
   for(let t=0;t<=12;t+=3)chart.append(label(tx(t),348,t));
-  chart.append(label(280,382,'时间 / T'),label(65,24,'物质量或偏差 / U','start'),label(770,382,'第一分量 / U'),label(635,24,'第二分量 / U','start'));
+  chart.append(label(280,382,'时间 / T'),label(65,24,'总量或偏差 / U','start'),label(770,382,'第一分量 / U'),label(635,24,'第二分量 / U','start'));
   if(field){
     for(let i=0;i<=6;i++)for(let j=0;j<=6;j++){
       const x=min+span*i/6,y=min+span*j/6,rate=field([x,y]),norm=Math.hypot(...rate);if(norm<1e-10)continue;
@@ -112,7 +112,7 @@ async function start(){
   $('title').textContent={modes:'什么在变化，什么被看见',phase:'同一路径，不同的时钟',local:'一张局部矩阵，能够预测多远'}[mode];
   $('question').textContent={modes:'先改变初值（initial condition），再改变观测（observation）：模态（mode）没有被激发，与它在观测中被抵消，如何区分？也可切换到人工偏差的阻尼旋转，连接实数轨迹（trajectory）与复数（complex number）表示。',phase:'两个室的状态（state）在相平面（phase plane）中怎样移动？改变整个向量场（vector field）的倍率，或关闭回流通道，观察路径、方向和时间各发生什么变化。',local:'以同一平衡（equilibrium）为起点，只改变初始扰动幅度，线性化（linearization）与原模型（model）的轨迹（trajectory）会相差多少？先预测，再往返比较。'}[mode];
   $('explanation').textContent={modes:'交换模型（model）以矩阵（matrix）组织两室状态（state）。特征向量（eigenvector）[1,1] 与 [1,−1] 对应共同和差异变化，特征值（eigenvalue）决定各自的时间尺度（time scale）。改为观察和，可能看不见内部重新分配；旋转示例则使用可正可负的偏差。',phase:'相轨迹（phase trajectory）连接经过的状态点。正倍率只改变同一路径上的速度，平衡（equilibrium）保持不变；关闭一个通道会改变平衡分配。箭头归一化后只表示方向，不表示速度。',local:'雅可比矩阵（Jacobian matrix）由偏导数（partial derivative）组成。本例输入（input）u=.5 U/T，交换 a=.2/T、b=.1/T，饱和清除 vA1/(K+A1) 中 v=1 U/T、K=2 U；平衡为 [2,4] U。近似必须推进偏差 δ=x−x*。'}[mode];
-  $('assumptions').textContent={local:'假设：固定容积、充分混合、非负物质量；参数（parameter）均为教学选值。状态（state）按两室物质量排列。原模型与局部模型都用显式欧拉法（forward Euler method），时间步长（time step）固定 .005 T；Notebook 另以半步长检查数值误差（numerical error）。',phase:'假设：两个室充分混合、容积与参数（parameter）固定，没有外部输入或清除。直接计算解析解（analytical solution），改变倍率同时缩放两条交换通道。播放速度仅控制展示。',modes:'假设：固定参数（parameter）、同单位二维状态。交换例充分混合，旋转例是人工偏差系统；二者不可混作同一个物质机制。这里直接计算解析解（analytical solution）；播放速度仅控制展示。'}[mode];
+  $('assumptions').textContent={local:'假设：固定容积、充分混合、非负总量；参数（parameter）均为教学选值。状态（state）按两室总量排列。原模型与局部模型都用显式欧拉法（forward Euler method），时间步长（time step）固定 .005 T；Notebook 另以半步长检查数值误差（numerical error）。',phase:'假设：两个室充分混合、容积与参数（parameter）固定，没有外部输入或清除。直接计算解析解（analytical solution），改变倍率同时缩放两条交换通道。播放速度仅控制展示。',modes:'假设：固定参数（parameter）、同单位二维状态。交换例充分混合，旋转例是人工偏差系统；二者不可混作同一个物质机制。这里直接计算解析解（analytical solution）；播放速度仅控制展示。'}[mode];
   $('model-select').hidden=mode!=='modes';controls();recompute();
   playback=createPlayback({duration:end,speed:1.5,update:draw,failed,changed:reason=>{$('play').textContent=reason==='playing'?'暂停':reason==='ended'?'再次播放':'播放';$('play-status').textContent=reason==='playing'?'正在播放：时间、曲线与状态点同步变化。':reason==='ended'?'已到终点，可切换示例或重播。':'已暂停；调参、切换模型或观测会回到起点。';}});
   $('play').addEventListener('click',()=>playback.running?playback.pause():playback.play());$('replay').addEventListener('click',()=>{playback.seek(0);playback.play();});$('timeline').addEventListener('input',()=>playback.seek(Number($('timeline').value)));

@@ -1,0 +1,234 @@
+[
+  {
+    "card": {
+      "bottom": 329.28125,
+      "height": 132.28125,
+      "right": 1054.5,
+      "width": 560,
+      "x": 494.5,
+      "y": 197
+    },
+    "counter": "第 1 / 17 篇",
+    "legend": {
+      "bottom": 935,
+      "height": 92.796875,
+      "right": 1134.5,
+      "width": 720,
+      "x": 414.5,
+      "y": 842.203125
+    },
+    "level": "universe",
+    "pageWidth": 1265,
+    "stage": {
+      "bottom": 959,
+      "height": 891,
+      "right": 1265,
+      "width": 981,
+      "x": 284,
+      "y": 68
+    },
+    "title": {
+      "bottom": 139,
+      "height": 51,
+      "right": 1247,
+      "width": 945,
+      "x": 302,
+      "y": 88
+    },
+    "toolbar": {
+      "bottom": 379.28125,
+      "height": 42,
+      "right": 1247,
+      "width": 461.796875,
+      "x": 785.203125,
+      "y": 337.28125
+    },
+    "viewport": [
+      1280,
+      800
+    ],
+    "visibleNodes": 17,
+    "zoom": {
+      "bottom": 826.203125,
+      "height": 52,
+      "right": 1241,
+      "width": 211.484375,
+      "x": 1029.515625,
+      "y": 774.203125
+    }
+  },
+  {
+    "card": {
+      "bottom": 329.28125,
+      "height": 132.28125,
+      "right": 1134.5,
+      "width": 560,
+      "x": 574.5,
+      "y": 197
+    },
+    "counter": "第 1 / 17 篇",
+    "legend": {
+      "bottom": 935,
+      "height": 92.796875,
+      "right": 1214.5,
+      "width": 720,
+      "x": 494.5,
+      "y": 842.203125
+    },
+    "level": "universe",
+    "pageWidth": 1425,
+    "stage": {
+      "bottom": 959,
+      "height": 891,
+      "right": 1425,
+      "width": 1141,
+      "x": 284,
+      "y": 68
+    },
+    "title": {
+      "bottom": 139,
+      "height": 51,
+      "right": 1407,
+      "width": 1105,
+      "x": 302,
+      "y": 88
+    },
+    "toolbar": {
+      "bottom": 379.28125,
+      "height": 42,
+      "right": 1407,
+      "width": 461.796875,
+      "x": 945.203125,
+      "y": 337.28125
+    },
+    "viewport": [
+      1440,
+      900
+    ],
+    "visibleNodes": 17,
+    "zoom": {
+      "bottom": 826.203125,
+      "height": 52,
+      "right": 1401,
+      "width": 211.484375,
+      "x": 1189.515625,
+      "y": 774.203125
+    }
+  },
+  {
+    "card": {
+      "bottom": 347.28125,
+      "height": 132.28125,
+      "right": 1382,
+      "width": 560,
+      "x": 822,
+      "y": 215
+    },
+    "counter": "第 1 / 17 篇",
+    "legend": {
+      "bottom": 1056,
+      "height": 92.796875,
+      "right": 1462,
+      "width": 720,
+      "x": 742,
+      "y": 963.203125
+    },
+    "level": "universe",
+    "pageWidth": 1920,
+    "stage": {
+      "bottom": 1080,
+      "height": 1012,
+      "right": 1920,
+      "width": 1636,
+      "x": 284,
+      "y": 68
+    },
+    "title": {
+      "bottom": 149,
+      "height": 57,
+      "right": 1896,
+      "width": 1588,
+      "x": 308,
+      "y": 92
+    },
+    "toolbar": {
+      "bottom": 401.28125,
+      "height": 42,
+      "right": 1896,
+      "width": 485.796875,
+      "x": 1410.203125,
+      "y": 359.28125
+    },
+    "viewport": [
+      1920,
+      1080
+    ],
+    "visibleNodes": 17,
+    "zoom": {
+      "bottom": 1056,
+      "height": 52,
+      "right": 1896,
+      "width": 211.484375,
+      "x": 1684.515625,
+      "y": 1004
+    }
+  },
+  {
+    "card": {
+      "bottom": 359.28125,
+      "height": 132.28125,
+      "right": 1535,
+      "width": 560,
+      "x": 975,
+      "y": 227
+    },
+    "counter": "第 1 / 17 篇",
+    "legend": {
+      "bottom": 1161,
+      "height": 92.796875,
+      "right": 1615,
+      "width": 720,
+      "x": 895,
+      "y": 1068.203125
+    },
+    "level": "universe",
+    "pageWidth": 2226,
+    "stage": {
+      "bottom": 1185,
+      "height": 1117,
+      "right": 2226,
+      "width": 1942,
+      "x": 284,
+      "y": 68
+    },
+    "title": {
+      "bottom": 161,
+      "height": 69,
+      "right": 2202,
+      "width": 1894,
+      "x": 308,
+      "y": 92
+    },
+    "toolbar": {
+      "bottom": 269,
+      "height": 42,
+      "right": 2202,
+      "width": 485.796875,
+      "x": 1716.203125,
+      "y": 227
+    },
+    "viewport": [
+      2226,
+      1185
+    ],
+    "visibleNodes": 17,
+    "zoom": {
+      "bottom": 1161,
+      "height": 52,
+      "right": 2202,
+      "width": 211.484375,
+      "x": 1990.515625,
+      "y": 1109
+    }
+  }
+]

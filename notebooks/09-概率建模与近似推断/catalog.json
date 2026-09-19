@@ -1,0 +1,112 @@
+[
+  {
+    "id": "P09-C01-S01",
+    "chapter_id": "9.1",
+    "number": "9.1.1",
+    "title": "从先验与观测到参数后验",
+    "outcome": "区分先验、似然与预测，推导高斯共轭更新并核对归一化。",
+    "path": "notebooks/09-概率建模与近似推断/01-贝叶斯建模与后验近似/01-从先验与观测到参数后验.ipynb",
+    "visualization": "web/inference/index.html"
+  },
+  {
+    "id": "P09-C01-S02",
+    "chapter_id": "9.1",
+    "number": "9.1.2",
+    "title": "后验曲率边界与参数变换",
+    "outcome": "用积分核对清除率的局部近似，解释边界、多峰与参数变换。",
+    "path": "notebooks/09-概率建模与近似推断/01-贝叶斯建模与后验近似/02-后验曲率边界与参数变换.ipynb",
+    "visualization": "web/inference/index.html"
+  },
+  {
+    "id": "P09-C02-S01",
+    "chapter_id": "9.2",
+    "number": "9.2.1",
+    "title": "构造保持目标分布的采样链",
+    "outcome": "推导接受比与提议修正，实现可重放的链并核对详细平衡。",
+    "path": "notebooks/09-概率建模与近似推断/02-马尔可夫链采样与诊断/01-构造保持目标分布的采样链.ipynb",
+    "visualization": "web/inference/index.html"
+  },
+  {
+    "id": "P09-C02-S02",
+    "chapter_id": "9.2",
+    "number": "9.2.2",
+    "title": "多链相关性与有限计算预算",
+    "outcome": "比较初始化、步幅与模态覆盖，计算基本诊断并解释其限度。",
+    "path": "notebooks/09-概率建模与近似推断/02-马尔可夫链采样与诊断/02-多链相关性与有限计算预算.ipynb",
+    "visualization": "web/inference/index.html"
+  },
+  {
+    "id": "P09-C03-S01",
+    "chapter_id": "9.3",
+    "number": "9.3.1",
+    "title": "从相对熵到均值场更新",
+    "outcome": "推导证据下界与高斯因子更新，分离优化误差和近似误差。",
+    "path": "notebooks/09-概率建模与近似推断/03-变分推断/01-从相对熵到均值场更新.ipynb",
+    "visualization": "web/inference/index.html"
+  },
+  {
+    "id": "P09-C03-S02",
+    "chapter_id": "9.3",
+    "number": "9.3.2",
+    "title": "近似族与多峰中的初始化",
+    "outcome": "用四状态混合结构核对下界，比较局部解与完整联合后验。",
+    "path": "notebooks/09-概率建模与近似推断/03-变分推断/02-近似族与多峰中的初始化.ipynb",
+    "visualization": "web/inference/index.html"
+  },
+  {
+    "id": "P09-C04-S01",
+    "chapter_id": "9.4",
+    "number": "9.4.1",
+    "title": "责任度与混合模型参数学习",
+    "outcome": "推导双高斯混合的精确EM步骤，检查似然、标签交换和退化。",
+    "path": "notebooks/09-概率建模与近似推断/04-隐变量与参数学习/01-责任度与混合模型参数学习.ipynb",
+    "visualization": "web/inference/index.html"
+  },
+  {
+    "id": "P09-C04-S02",
+    "chapter_id": "9.4",
+    "number": "9.4.2",
+    "title": "从平滑矩到动态参数更新",
+    "outcome": "由平滑的二阶矩推导转移系数更新，避免把估计状态当真值。",
+    "path": "notebooks/09-概率建模与近似推断/04-隐变量与参数学习/02-从平滑矩到动态参数更新.ipynb",
+    "visualization": "web/inference/index.html"
+  },
+  {
+    "id": "P09-C05-S01",
+    "chapter_id": "9.5",
+    "number": "9.5.1",
+    "title": "把参数不确定性带入预测",
+    "outcome": "推导预测的总方差并构造混合分布，区分可信区间和预测区间。",
+    "path": "notebooks/09-概率建模与近似推断/05-后验预测与模型检验/01-把参数不确定性带入预测.ipynb",
+    "visualization": "web/inference/index.html"
+  },
+  {
+    "id": "P09-C05-S02",
+    "chapter_id": "9.5",
+    "number": "9.5.2",
+    "title": "留出预测覆盖与模型失配",
+    "outcome": "比较预测分数与覆盖的抽样波动，识别近似失误和机制失配。",
+    "path": "notebooks/09-概率建模与近似推断/05-后验预测与模型检验/02-留出预测覆盖与模型失配.ipynb",
+    "visualization": "web/inference/index.html"
+  },
+  {
+    "id": "P09-SUMMARY",
+    "chapter_id": "9.summary",
+    "number": "篇末综合",
+    "title": "同一观测下的后验与预测比较",
+    "outcome": "在相同信息与预算下比较局部近似、采样、变分和独立预测，解释模型错误。",
+    "path": "notebooks/09-概率建模与近似推断/06-篇末综合/01-同一观测下的后验与预测比较.ipynb",
+    "visualization": null,
+    "overview": {
+      "goals": "区分建模、后验计算和预测检验，核对可解参照及失效条件。",
+      "prerequisites": "本篇9.1—9.5；第8篇优化和第7篇平滑。",
+      "focus": "后验质量、计算预算、独立信息、退化与模型失配。",
+      "knowledge": [
+        "归一化和局部近似",
+        "接受比、多链和预算",
+        "均值场、下界和EM",
+        "预测矩、评分和覆盖"
+      ]
+    }
+  }
+]

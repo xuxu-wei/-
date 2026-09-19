@@ -1,0 +1,289 @@
+{
+  "stage": "M10：第9篇概率建模与近似推断",
+  "date": "2026-09-19",
+  "status": "passed",
+  "scope": {
+    "part": "9",
+    "chapters": [
+      "9.1",
+      "9.2",
+      "9.3",
+      "9.4",
+      "9.5"
+    ],
+    "body_notebooks": 10,
+    "capstone_notebooks": 1,
+    "questions": 58,
+    "choice": 41,
+    "python": 17,
+    "exploration_views": 5,
+    "shared_exploration_path": "web/inference/index.html",
+    "capstone_points": 100,
+    "capstone_levels": [
+      20,
+      30,
+      30,
+      20
+    ]
+  },
+  "environment": {
+    "python": "3.13.2",
+    "platform": "Windows",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "nbclient": "0.11.0",
+      "nbformat": "5.11.1",
+      "nbconvert": "7.17.1",
+      "ipykernel": "7.3.0"
+    }
+  },
+  "notebooks": [
+    {
+      "id": "P09-C01-S01",
+      "path": "notebooks/09-概率建模与近似推断/01-贝叶斯建模与后验近似/01-从先验与观测到参数后验.ipynb",
+      "seconds": 9.28,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "fa05c46afd0450ade22a0ddee89675f2d3420484dd1e081d687dc338a7922de0",
+      "passed": true
+    },
+    {
+      "id": "P09-C01-S02",
+      "path": "notebooks/09-概率建模与近似推断/01-贝叶斯建模与后验近似/02-后验曲率边界与参数变换.ipynb",
+      "seconds": 3.17,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "cf0273ccc10268583101475c1616852c32f7838eb36b7e36a95896c06955f944",
+      "passed": true
+    },
+    {
+      "id": "P09-C02-S01",
+      "path": "notebooks/09-概率建模与近似推断/02-马尔可夫链采样与诊断/01-构造保持目标分布的采样链.ipynb",
+      "seconds": 3.19,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "244158daa786982e264dbf6fb0cdd0e5221fc7a06d1cb7cfc62b6539296f5940",
+      "passed": true
+    },
+    {
+      "id": "P09-C02-S02",
+      "path": "notebooks/09-概率建模与近似推断/02-马尔可夫链采样与诊断/02-多链相关性与有限计算预算.ipynb",
+      "seconds": 3.97,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "0d064c709a23ec012b5fff47f11bc5d2d88f2e5016d5f765ab220635925819a1",
+      "passed": true
+    },
+    {
+      "id": "P09-C03-S01",
+      "path": "notebooks/09-概率建模与近似推断/03-变分推断/01-从相对熵到均值场更新.ipynb",
+      "seconds": 2.57,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "eb3ceda931ce273fb564c7eab6aba61cf7ec16d1e0e990a1f9dae9688e610ca7",
+      "passed": true
+    },
+    {
+      "id": "P09-C03-S02",
+      "path": "notebooks/09-概率建模与近似推断/03-变分推断/02-近似族与多峰中的初始化.ipynb",
+      "seconds": 2.48,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "22d24b9f9ea2d2bab565e4217f7ddad88ad0f897b7a4d411eba9229080c96284",
+      "passed": true
+    },
+    {
+      "id": "P09-C04-S01",
+      "path": "notebooks/09-概率建模与近似推断/04-隐变量与参数学习/01-责任度与混合模型参数学习.ipynb",
+      "seconds": 2.96,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "2a28331e87b918fa9238cd36c97e9644dbd0c70de8a22d589e6f89ece302f293",
+      "passed": true
+    },
+    {
+      "id": "P09-C04-S02",
+      "path": "notebooks/09-概率建模与近似推断/04-隐变量与参数学习/02-从平滑矩到动态参数更新.ipynb",
+      "seconds": 2.91,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "e17677f89b4a44d2d7d05525d76d1c25c82f5dea93cb811810dd44ef2166f85d",
+      "passed": true
+    },
+    {
+      "id": "P09-C05-S01",
+      "path": "notebooks/09-概率建模与近似推断/05-后验预测与模型检验/01-把参数不确定性带入预测.ipynb",
+      "seconds": 2.92,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "07341df73554030f2cb9629f736f392cad5ab02ffbfdeee63bbffb7b58f23147",
+      "passed": true
+    },
+    {
+      "id": "P09-C05-S02",
+      "path": "notebooks/09-概率建模与近似推断/05-后验预测与模型检验/02-留出预测覆盖与模型失配.ipynb",
+      "seconds": 5.67,
+      "code_cells": 5,
+      "figures": 2,
+      "sha256": "d70a5c37b42106887fdf035847101b6cd91968a6700e126aec7bea7304867d1a",
+      "passed": true
+    },
+    {
+      "id": "P09-SUMMARY",
+      "path": "notebooks/09-概率建模与近似推断/06-篇末综合/01-同一观测下的后验与预测比较.ipynb",
+      "seconds": 2.51,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "5135fcb31d2f26e91f0477dcee2d5182c0bc7ac8c43e6777c0c1d1be27311e10",
+      "passed": true
+    }
+  ],
+  "execution_note": "11本分别使用新内核。9.5.2新增后验复制数据检查后再次从新内核执行；最后仅更新题面链接/边界说明和ELBO等价公式排版，输出未伪称重新计算。全部最终文件校验和已复核。",
+  "science": [
+    "高斯共轭配方与密度乘积积分；正参数清除率网格扩区间/细化，有限差分曲率与含雅可比的参数变换互验。",
+    "MH固定随机输入与拒绝保留；30组非对称有限提议的概率流、详细平衡和平稳分布独立核验。",
+    "单峰/双峰多链和30次重复均值实验；基本R̂和固定截断ESS不声称是现代秩归一化诊断或收敛证明。",
+    "高斯KL以矩阵公式核对，四状态联合分布完全枚举；优化误差与近似族偏差分开。",
+    "混合EM使用直接密度比核对责任度、标签置换、零权重与单调性；状态EM以完整联合高斯条件分布核对相邻平滑协方差。",
+    "预测总方差以原点矩及积分核对；混合分位数核对模型内质量，区分参数区间与未来观测区间。",
+    "同一清除训练观测下对齐MAP、网格、MH、VI并报告评估预算；40点变分求积以80点复核。",
+    "200个固定条件独立未来读数与2000个独立共轭场景分开报告；遗漏输入与错设噪声保留为反例。500次后验复制检查明确重用训练信息。"
+  ],
+  "automated": {
+    "python_passed": 667,
+    "javascript_passed": 104,
+    "new_part_python_tests": 38,
+    "new_exploration_js_tests": 8,
+    "python_questions_real_samples_full_and_semantic_wrong": 17,
+    "independently_verified_judge_vectors": 60,
+    "cross_language_numeric_cases": 13,
+    "all_notebooks": 113,
+    "all_questions_and_links": 538,
+    "all_teaching_issues": [],
+    "commands": [
+      "python tools/check_notebooks.py --part 09-概率建模与近似推断 --work m10 --write",
+      "python tools/check_notebooks.py --part 09-概率建模与近似推断 --work m10-predictive --lesson P09-C05-S02 --write",
+      "python tools/check_teaching.py --work m10",
+      "python -m pytest -q",
+      "node --test <全部受维护的 .test.mjs 文件>"
+    ],
+    "local_document_links_checked": 99,
+    "git_diff_check": "passed (CRLF-normalized; no whitespace errors)"
+  },
+  "browser": {
+    "engine": "Codex In-app Browser；独立8019服务及测试记录目录；8000仅用于最后的真实练习链接读取",
+    "playback": [
+      {
+        "chapter": "9.1",
+        "replay_progress_percent": 4.7,
+        "pause_held": true,
+        "keyboard_end_percent": 100,
+        "reversible_preset": true
+      },
+      {
+        "chapter": "9.2",
+        "replay_progress_percent": 4.5,
+        "pause_held": true,
+        "keyboard_end_percent": 100,
+        "reversible_preset": true
+      },
+      {
+        "chapter": "9.3",
+        "replay_progress_percent": 4.4,
+        "pause_held": true,
+        "keyboard_end_percent": 100,
+        "reversible_preset": true
+      },
+      {
+        "chapter": "9.4",
+        "replay_progress_percent": 4.7,
+        "pause_held": true,
+        "keyboard_end_percent": 100,
+        "reversible_preset": true
+      },
+      {
+        "chapter": "9.5",
+        "replay_progress_percent": 4.9,
+        "pause_held": true,
+        "keyboard_end_percent": 100,
+        "reversible_preset": true
+      }
+    ],
+    "correlation_roundtrip": {
+      "before": 0.5108,
+      "independent_target": 0,
+      "restored": 0.5108
+    },
+    "prediction_default_animation": {
+      "progress_percent": 4.5,
+      "noise_multiplier": 0.284,
+      "coverage_percent": 98.8
+    },
+    "pc_widths": [
+      1024,
+      1366,
+      1440,
+      1920,
+      2560
+    ],
+    "viewport_height": 800,
+    "horizontal_page_overflow": false,
+    "viewport_override_reset": true,
+    "exercise_ui": [
+      "具名solve签名和单位",
+      "分别展开输入/输出说明及可复制Python代码",
+      "语法错误显示answer.py第1行、箭头与SyntaxError",
+      "示例通过1/1且不计完整进度",
+      "正式提交通过3/3，刷新后1/10保留",
+      "综合首题先错后对：首次0/100，练习10/100；重启后保持",
+      "选择题逐项解析与复习入口"
+    ],
+    "notebook_to_practice": {
+      "source": "P09-C03-S01的实际HTML渲染预览",
+      "target": "http://127.0.0.1:8000/chapters/09-03-变分推断/practice/?question=p09-gaussian-coordinate",
+      "title": "完成一轮均值场坐标更新",
+      "passed": true
+    },
+    "ide_open": {
+      "request_status": 202,
+      "file": "notebooks/09-概率建模与近似推断/01-贝叶斯建模与后验近似/01-从先验与观测到参数后验.ipynb",
+      "verified": "注入opener记录到项目原文件，页面反馈明确；未启动额外IDE窗口或检查IDE内部渲染"
+    },
+    "rendering": [
+      "逐张查看12张Notebook输出图",
+      "实际查看RTS交叉矩与EM公式",
+      "ELBO长下括号显示方框后改为两行等价公式并截图复验"
+    ],
+    "resolved_during_review": [
+      "修复Notebook题目链接重复HTTP前缀",
+      "相关性对照恢复到原.8默认值",
+      "预测页目标倍率为1时由.25倍对照展开，避免播放无可见变化",
+      "隔离服务重启遇记录锁，关闭仍运行的旧测试会话后重启成功"
+    ]
+  },
+  "preservation": {
+    "hash_compared_files": 164,
+    "unchanged_old_notebooks": 102,
+    "unchanged_old_bank_json_files": 32,
+    "unchanged_personal_record_files": 29,
+    "AGENTS_unchanged": true,
+    "new_runtime_dependencies": [],
+    "simulation_data_added": false,
+    "git_commit_or_push_performed": false
+  },
+  "navigation": {
+    "planned_parts": 17,
+    "planned_chapters": 85,
+    "published_chapters": 44,
+    "graph_nodes": 581,
+    "graph_edges": 869,
+    "notebook_entry": "notebooks/09-概率建模与近似推断/README.md"
+  },
+  "limits": [
+    "仅覆盖声明的PC本机与Windows/Python3.13环境；没有跨浏览器/显卡性能认证。",
+    "未开展目标读者试学、独立同行评审或默认IDE内部公式检查。",
+    "本篇为可解释的低维教学模型；有限链诊断与有限VI搜索不构成一般收敛保证，模型内覆盖不等于现实效用。"
+  ],
+  "next_stage": "M11：第10篇反馈与最优控制"
+}

@@ -47,8 +47,7 @@ void main(){
   float kernel=exp(-d*38.)+.19*exp(-d*9.);float a=clamp(kernel*vAlpha,0.,1.);
   if(a<.012)discard;
   vec3 cold=mix(uTint,vec3(.72,.86,1.),.73),warm=vec3(1.,.82,.58);
-  vec3 hue=uTint/max(max(uTint.r,uTint.g),max(uTint.b,.001));
-  vec3 night=mix(mix(cold,warm,vWarm*.52),hue*.80,uTaxonomy),day=mix(mix(vec3(.04,.105,.19),uTint,.36),hue*.075,uTaxonomy);
+  vec3 night=mix(mix(cold,warm,vWarm*.52),uTint*1.12,uTaxonomy),day=mix(mix(vec3(.04,.105,.19),uTint,.36),uTint*.90,uTaxonomy);
   gl_FragColor=vec4(mix(day,night,uDark),a);
   #include <colorspace_fragment>
 }
@@ -59,7 +58,6 @@ varying vec2 vUv;uniform sampler2D uMap;uniform float uReady;uniform float uDark
 ${noise}
 void main(){
   vec2 p=vUv-.5;float r=length(p);float mask=1.-smoothstep(.37,.50,r);
-  vec3 hue=uTint/max(max(uTint.r,uTint.g),max(uTint.b,.001));
   float density=0.,lum=0.;
   if(uCentral<.5){
     // Distant galaxies are unresolved populations, not miniature copies of a
@@ -97,9 +95,11 @@ void main(){
   }
   // Premium texture supplies luminance only. No inherited blue arms, cream core
   // or white dust can override the course taxonomy's mixed colour.
-  vec3 night=hue*(uCentral>.5?(.13+lum*1.14):(.24+lum*.76));
-  vec3 day=hue*(.015+sqrt(clamp(lum,0.,1.))*.10);
-  float a=density*mask*uOpacity;
+  // uTint is the active legend colour in linear sRGB. Shade by a scalar only;
+  // normalising channels or applying filmic grading would change its identity.
+  vec3 night=uTint*(.65+clamp(lum*1.8,0.,1.)*.65);
+  vec3 day=uTint*(.74+sqrt(clamp(lum,0.,1.))*.26);
+  float a=pow(max(density,0.),mix(.55,.78,uDark))*mask*uOpacity;
   if(a<.009)discard;
   gl_FragColor=vec4(mix(day,night,uDark),a*mix(.94,1.,uDark));
   #include <tonemapping_fragment>
@@ -124,30 +124,19 @@ void main(){
   float land=smoothstep(.45,.62,continent);
   float belts=.5+.5*sin(p.y*23.+turbulent*7.+uSeed);
   float gas=step(.48,fract(uSeed*.713));
-  vec3 ocean=mix(vec3(.018,.057,.098),uTint*.21,.45);
-  vec3 ground=mix(vec3(.20,.15,.095),uTint*.59+vec3(.065),.52);
-  vec3 rocky=mix(ocean,ground,land)*( .78+detail*.38);
-  vec3 gaseous=mix(uTint*.31+vec3(.045,.028,.018),uTint*.62+vec3(.23,.20,.14),smoothstep(.15,.85,belts))*(.84+detail*.30);
-  vec3 albedo=mix(rocky,gaseous,gas);
   float clouds=smoothstep(.59,.77,fbm3(p*6.7+vec3(uTime*.008,uSeed*2.,2.)))*(.68-gas*.30);
-  albedo=mix(albedo,vec3(.76,.81,.85),clouds);
-  float ice=smoothstep(.83,.97,abs(p.y))*(1.-gas)*.60;
-  albedo=mix(albedo,vec3(.63,.73,.78),ice);
-  if(uCentral<.5){
-    vec3 family=mix(uTint,uParentTint,.72);family/=max(max(family.r,family.g),max(family.b,.001));
-    // Small satellites share the parent galaxy's light and colour temperature.
-    // Cloud belts remain relief; they do not become bright Earth-like patches.
-    float relief=.12+land*.10+belts*gas*.055+detail*.07+clouds*.05;
-    albedo=family*relief;
-  }
+  // Terrain changes luminance, never the node's category hue. The parent still
+  // determines light direction, but cannot recolour a different category.
+  float relief=.34+land*.30+belts*gas*.12+detail*.20+clouds*.12;
+  vec3 albedo=uTint*relief;
   vec3 light=normalize(uLightDirection);float sunlight=max(dot(n,light),0.);
   float terminator=smoothstep(-.08,.10,dot(n,light));
   float ambient=mix(.105,.045,uDark);vec3 color=albedo*(ambient+sunlight*.96)*mix(.46,1.,terminator);
   float spec=pow(max(dot(reflect(-light,n),normalize(vView)),0.),45.)*(1.-land)*(1.-gas)*.20;
-  vec3 familyLight=mix(uTint,uParentTint,.72);familyLight/=max(max(familyLight.r,familyLight.g),max(familyLight.b,.001));
-  color+=mix(familyLight*.30,vec3(.70,.86,1.),uCentral)*spec*sunlight;
+  vec3 familyLight=uTint;
+  color+=familyLight*spec*sunlight;
   float rim=pow(1.-max(dot(n,normalize(vView)),0.),3.6);
-  color+=mix(familyLight*.50,mix(vec3(.20,.40,.68),uTint,.30),uCentral)*rim*sunlight*.34;
+  color+=familyLight*.50*rim*sunlight*.34;
   color+=uTint*uLearned*.018;
   gl_FragColor=vec4(color,uOpacity);
   #include <tonemapping_fragment>
@@ -157,14 +146,14 @@ void main(){
 
 export const atmosphereFragment = `
 varying vec3 vNormal;varying vec3 vLocal;varying vec3 vView;uniform vec3 uTint;uniform vec3 uParentTint;uniform vec3 uLightDirection;uniform float uCentral;uniform float uOpacity;uniform float uDark;
-void main(){vec3 n=normalize(vNormal),v=normalize(vView);float rim=pow(1.-abs(dot(n,v)),4.8);float lit=.28+.72*max(dot(n,normalize(uLightDirection)),0.);vec3 family=mix(uTint,uParentTint,.72);family/=max(max(family.r,family.g),max(family.b,.001));vec3 night=mix(family*.45,mix(vec3(.23,.53,.88),uTint,.25),uCentral),day=mix(family*.11,mix(vec3(.10,.23,.40),uTint,.22),uCentral);gl_FragColor=vec4(mix(day,night,uDark),rim*lit*uOpacity*.29);
+void main(){vec3 n=normalize(vNormal),v=normalize(vView);float rim=pow(1.-abs(dot(n,v)),4.8);float lit=.28+.72*max(dot(n,normalize(uLightDirection)),0.);gl_FragColor=vec4(uTint,rim*lit*uOpacity*.29);
   #include <colorspace_fragment>
 }
 `;
 
 export const haloFragment = `
 varying vec2 vUv;uniform vec3 uTint;uniform float uDark;uniform float uGlow;uniform float uHover;uniform float uOpacity;
-void main(){vec2 p=vUv-.5;float r=length(p);float achievement=exp(-r*r*24.)*uGlow*.25;float hover=exp(-pow((r-.35)/.012,2.))*uHover;float a=(achievement+hover*.78)*uOpacity;if(a<.005)discard;vec3 base=mix(uTint*.45+vec3(.02,.04,.07),uTint,uDark);vec3 attention=mix(vec3(.045,.16,.31),vec3(.70,.87,1.),uDark);gl_FragColor=vec4(mix(base,attention,clamp(hover*2.,0.,1.)),a);
+void main(){vec2 p=vUv-.5;float r=length(p);float achievement=exp(-r*r*24.)*uGlow*.25;float hover=exp(-pow((r-.35)/.012,2.))*uHover;float a=(achievement+hover*.78)*uOpacity;if(a<.005)discard;vec3 attention=mix(vec3(.045,.16,.31),vec3(.70,.87,1.),uDark);gl_FragColor=vec4(mix(uTint,attention,clamp(hover*2.,0.,1.)),a);
   #include <colorspace_fragment>
 }
 `;

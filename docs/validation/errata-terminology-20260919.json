@@ -1,0 +1,576 @@
+{
+  "date": "2026-09-19",
+  "scope": "前八篇科学表述与术语生成机制修订",
+  "status": "通过",
+  "items": [
+    {
+      "number": "01",
+      "location": "notebooks/01-看见系统/04-模型假设与计算实验/02-设计可以区分解释的实验.ipynb",
+      "original": "一个可复核的实验应保留问题、允许变化的条件、事前预测、实际结果、核验方法与限制。重新估计参数可以是后续工作，但必须明确它是新实验，不能悄悄改写原预测。",
+      "judgment": "成立；同批数据重新拟合并不是新实验。",
+      "revision": "一个可复核的实验应保留问题、允许变化的条件、事前预测、实际结果、核验方法与限制。可以根据当前结果重新估计参数，但这得到的是利用了当前数据的更新模型，并不自动构成新实验。不能再把同一数据上的拟合表现当作独立验证；应使用未参与更新的预留数据、独立数据，或在新实验条件下另行获取的观测检验更新后的预测。原先记录的预测及其检验结果应保留，不能事后改写。",
+      "change_summary": "明确模型更新和独立验证，要求新条件配有未参与更新的观测；保留原先预测。",
+      "evidence": [
+        "Notebook 正文核对；全书教学同步检查通过"
+      ]
+    },
+    {
+      "number": "02",
+      "location": "notebooks/01-看见系统/01-从生理现象提出系统问题/01-边界状态与观测.ipynb",
+      "original": "模型（model）是为某个问题保留必要关系的表示。这里把 x 看成所关注系统的状态，用 y 表示实际可见的观测。状态是模型中描述内部情况的变量，不要求都能直接测量。",
+      "judgment": "成立；原定义过宽。",
+      "revision": "模型（model）是为某个问题保留必要关系的表示。这里把 x 看成所关注系统的状态，用 y 表示实际可见的观测。状态是模型为概括系统当前情况、描述后续演化而保留的一组变量，并非所有内部量都是状态。在已给定演化规则的确定性模型中，当前状态与未来输入一起决定后续演化；状态不一定能直接测量。本节只建立测量关系，尚未指定演化规则。",
+      "change_summary": "状态概括演化所需当前信息，确定性演化还需给定规则和未来输入；不必可直接测量。",
+      "evidence": [
+        "Notebook 正文核对；全书教学同步检查通过"
+      ]
+    },
+    {
+      "number": "03",
+      "location": [
+        "notebooks/01-看见系统",
+        "exercises",
+        "web",
+        "docs/教材设计.md"
+      ],
+      "original": "普通教学量使用“物质量”，其中一份题面及其 Notebook 副本注为“物质量（amount of substance）”。",
+      "judgment": "命名问题成立；SI amount of substance 专指物质的量，单位 mol。",
+      "revision": "普通教学量使用“所追踪物质总量（tracked amount）”，定义后简称“总量”；在 1.1.2 说明与 SI 物质的量的区别。",
+      "evidence": [
+        "教学正文、题面、解析和必要网页显示已同步；notebooks/exercises/web 中旧“物质量”零匹配。",
+        "6 本输出标签发生变化的 Notebook 重新执行；模型代码 AST 除显示字符串外一致。"
+      ],
+      "reference": "https://www.bipm.org/en/si-base-units/mole"
+    },
+    {
+      "number": "04",
+      "location": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/01-误差与网格细化.ipynb",
+      "original": "为什么通常是一阶？精确衰减因子在小 h 下满足 $e^{-kh}=1-kh+(kh)^2/2+\\cdots$，欧拉只保留前两项，因此从精确起点出发的一步差异为 $O(h^2)$。这里 O(h²) 表示足够小时误差可被常数乘 h² 控制；不是宣称误差恰好等于 h²。",
+      "judgment": "结论正确；恒定输入项展示不足。",
+      "revision": "为什么通常是一阶？当 $k>0$，从精确起点 $A=A(t)$ 出发的完整精确一步为\n$$A(t+h)=Ae^{-kh}+\\frac{u}{k}(1-e^{-kh}).$$\n小 $h$ 下，衰减因子为 $e^{-kh}=1-kh+k^2h^2/2+O(h^3)$；恒定输入项也要展开：\n$$\\frac{u}{k}(1-e^{-kh})=uh-\\frac{uk}{2}h^2+O(h^3).$$\n合并后，精确一步减去 Euler 一步 $A+h(u-kA)$ 得到\n$$A(t+h)-[A+h(u-kA)]=\\frac{k^2A-ku}{2}h^2+O(h^3),$$\n因此从精确起点出发的一步差异为 $O(h^2)$。当 $k=0$，模型为 $A'=u$，完整一步恰是 $A+uh$，本节 Euler 更新精确；不能把含 $1/k$ 的式子直接代入 $k=0$。这里 O(h²) 表示足够小时误差可被常数乘 h² 控制；不是宣称误差恰好等于 h²。",
+      "change_summary": "补完整一步、输入项展开、精确步减去 Euler 步的主项；单独说明 k=0。",
+      "evidence": [
+        "3 组 60 位 Decimal 计算验证 (k²A−ku)/2 系数与步长减半比；另核对 k=0 和平衡边界。",
+        "实际查看 MathJax 渲染，无源码外露、分式缺项或溢出。"
+      ]
+    },
+    {
+      "number": "05",
+      "location": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/03-在输入跳变处分段计算.ipynb",
+      "original": "如采用其他求解器，也应明确已知的不连续点并分段，不能仅凭绘图采样时刻推断内部求解步长。",
+      "judgment": "成立；推广措辞过强。",
+      "revision": "对本节固定步长方法，应让步骤在已知跳变处结束。使用其他求解器时，也应显式处理已知不连续点并检查跳变附近的误差；具体是否需要手工分段或重启，取决于算法和实现。不能仅凭绘图采样时刻推断内部求解步长。",
+      "change_summary": "固定步长在跳变处结束；一般求解器显式处理不连续，是否手工分段取决于算法和实现。",
+      "evidence": [
+        "Notebook 正文核对；全书教学同步检查通过"
+      ]
+    },
+    {
+      "number": "06",
+      "location": "notebooks/03-多变量相互作用/04-多变量变化与局部线性化/02-线性化能够走多远.ipynb",
+      "original": "为何大扰动更不准？在本例只改 A1 为 2+ε 时，原向量场与一阶项在第一分量的差恰为\n$$R_1(\\epsilon)=\\frac{\\epsilon^2}{8(4+\\epsilon)},\\qquad R_2=0,$$\n这里 ε 是以 U 为单位的数值，R 以 U/T 表示。可把 g(2+ε) 与 g(2)+g′(2)ε 通分直接得到；因此小 ε 减半，余项约缩成四分之一。大扰动时局部斜率（slope）不再能代表整段函数。",
+      "judgment": "原公式正确，原文已说明 ε 是以 U 为单位的数值；不属于直接量纲错误。",
+      "revision": "为何大扰动更不准？先保留物理单位。设第一室从平衡 $A_1^*$ 改变有量纲（dimension）的 $\\Delta A$，第二室不变；$g(A_1)=vA_1/(K+A_1)$，原向量场减去一阶近似的精确余项为\n$$R_1=\\frac{vK(\\Delta A)^2}{(K+A_1^*)^2(K+A_1^*+\\Delta A)},\\qquad R_2=0.$$\n这里 $K+A_1^*+\\Delta A>0$，余项的单位为 U/T。以 U、T 为数值单位，代入 $v=1\\,\\mathrm{U/T}$、$K=A_1^*=2\\,\\mathrm U$，并令 $\\epsilon=\\Delta A/(1\\,\\mathrm U)$。此时第一室的数值为 $2+\\epsilon$，余项以 U/T 表示的数值式为\n$$R_1(\\epsilon)=\\frac{\\epsilon^2}{8(4+\\epsilon)},\\qquad R_2=0,$$\n式中的 4 是 $K+A_1^*$ 以 U 表示的数值，ε 是扰动以 U 表示的数值；不是把无单位常数与有量纲的量直接相加。可把 g(2+ε) 与 g(2)+g′(2)ε 通分直接得到；因此小 ε 减半，余项约缩成四分之一。大扰动时局部斜率（slope）不再能代表整段函数。",
+      "change_summary": "新增有量纲通式并将数值化声明提前；保留原数值式。",
+      "evidence": [
+        "9 组有理数精确相减核对一般余项，3 组核对 v=1、K=A*=2 后的原数值式。",
+        "实际查看通式、单位声明和原数值式的渲染。"
+      ]
+    },
+    {
+      "number": "07",
+      "location": "notebooks/04-非线性动态行为/03-分岔与参数变化/02-从平衡到周期的Hopf转变.ipynb",
+      "original": "径向方程 R′=μR−R³ 给出 R=0 及 μ>0 时的 R*=sqrt(μ)。在非零径向平衡，导数（derivative） μ−3R*²=−2μ<0，半径吸引；ω>0 保证沿轨道运动。因此稳定周期分支随 μ 从零正侧连续出现，这是本例的**超临界 Hopf 分岔（Hopf bifurcation）**。若把三次项的符号或更高阶结构改变，仅凭同一线性化（linearization）不能照搬此结论。",
+      "judgment": "原节结论正确，已有线性化不充分与 ω≠0 限定；仅作教学澄清。",
+      "revision": "径向方程 R′=μR−R³ 给出 R=0 及 μ>0 时的 R*=sqrt(μ)。在非零径向平衡，导数（derivative） μ−3R*²=−2μ<0，半径吸引；ω>0 保证沿轨道运动。因此稳定周期分支随 μ 从零正侧连续出现，这是本例的**超临界 Hopf 分岔（Hopf bifurcation）**。若把三次项的符号或更高阶结构改变，仅凭同一线性化（linearization）不能照搬此结论。\n\n扩展提示：本节正规形中所需条件已由方程显式满足；一般非退化 Hopf 定理还需检查特征值横截虚轴以及相应非退化条件，不能只看到复特征值实部变号就套用本例的周期分支。",
+      "change_summary": "新增一般非退化 Hopf 定理需横截与非退化条件的提示。",
+      "evidence": [
+        "Notebook 正文核对；全书教学同步检查通过"
+      ]
+    },
+    {
+      "number": "08",
+      "location": [
+        "notebooks/05-随机性与信息/05-熵、互信息与测量价值/01-熵与互信息的离散定义.ipynb",
+        "docs/05-随机性与信息.md",
+        "web/course/catalog.json"
+      ],
+      "original": "5.5“熵、互信息与测量价值”已有因果限制，但章节入口没有明确区分信息量和临床、决策或经济效用。",
+      "judgment": "补边界提醒有必要；保留章节名。",
+      "revision": "本章的“测量价值”仅指在给定概率模型（model）和观测（observation）编码下提供的信息量，不等同于临床效用、决策效用、经济价值、因果作用或干预收益。",
+      "evidence": [
+        "章节导览“本章学会什么”与首节问题引入均已同步；浏览器实际查看导览。"
+      ]
+    },
+    {
+      "number": "09",
+      "location": [
+        "exercises/06-从测量走向模型/questions.json",
+        "notebooks/06-从测量走向模型/04-最小二乘与参数估计/03-参数区间与重复观测.ipynb"
+      ],
+      "question_id": "p06-bootstrap-unit",
+      "original": [
+        {
+          "id": "A",
+          "text": "时间相关的一条轨迹（trajectory）可任意打散为独立点而不改变目标。"
+        },
+        {
+          "id": "B",
+          "text": "固定设计（fixed design）回归的残差（residual）自助法须说明误差模型（model），不能与随机设计（random design）对自助法混用。"
+        },
+        {
+          "id": "C",
+          "text": "自助区间没有自动囊括未建模机制偏差。"
+        },
+        {
+          "id": "D",
+          "text": "独立随机设计观测（observation）对可成对重采样（sampling），声明重复数（complex number）和区间方法。"
+        }
+      ],
+      "judgment": "成立；子串误识别和 resampling 译名均有误。",
+      "revision": [
+        {
+          "id": "A",
+          "text": "时间相关的一条轨迹（trajectory）可任意打散为独立点而不改变目标。"
+        },
+        {
+          "id": "B",
+          "text": "固定设计（fixed design）回归的残差（residual）自助法须说明误差模型（model），不能与随机设计（random design）对自助法混用。"
+        },
+        {
+          "id": "C",
+          "text": "自助区间没有自动囊括未建模机制偏差。"
+        },
+        {
+          "id": "D",
+          "text": "独立随机设计观测（observation）对可成对重采样（resampling），声明重采样次数和区间方法。"
+        }
+      ],
+      "change_summary": "改为重采样次数；成对重采样注为 resampling。",
+      "evidence": [
+        "公开题库与 Notebook 题面同步检查；独立术语反例测试通过。"
+      ]
+    },
+    {
+      "number": "10",
+      "location": [
+        "exercises/06-从测量走向模型/questions.json",
+        "notebooks/06-从测量走向模型/05-动态辨识、实验设计与验证/01-ARX回归与两种预测.ipynb"
+      ],
+      "question_id": "p06-delay-structure",
+      "original": [
+        {
+          "id": "A",
+          "text": "增加小数位可以把延迟（delay）变成增益（gain）。"
+        },
+        {
+          "id": "B",
+          "text": "训练误差最小足以消除结构选择风险。"
+        },
+        {
+          "id": "C",
+          "text": "只要求解器精度高，就自动修复延迟错误。"
+        },
+        {
+          "id": "D",
+          "text": "残差（residual）与滞后（hysteresis）输入可能相关，需要比较有明确索引的候选结构。"
+        }
+      ],
+      "judgment": "成立；ARX 时间滞后不是 hysteresis。",
+      "revision": [
+        {
+          "id": "A",
+          "text": "增加小数位可以把延迟（delay）变成增益（gain）。"
+        },
+        {
+          "id": "B",
+          "text": "训练误差最小足以消除结构选择风险。"
+        },
+        {
+          "id": "C",
+          "text": "只要求解器精度高，就自动修复延迟错误。"
+        },
+        {
+          "id": "D",
+          "text": "残差（residual）与滞后输入（lagged input）可能相关，需要比较有明确索引的候选结构。"
+        }
+      ],
+      "change_summary": "ARX 使用 lagged input/lagged term；第 4 篇显示用滞回，第 13 篇导览用 lag，路径身份不变。",
+      "evidence": [
+        "公开题库与 Notebook 题面同步检查；独立术语反例测试通过。"
+      ],
+      "additional_question": {
+        "id": "p06-missing-lags",
+        "original": [
+          {
+            "id": "A",
+            "text": "借助验证段未来值填补训练缺测而无需记录。"
+          },
+          {
+            "id": "B",
+            "text": "删除None后把y[1]直接当y[3]的一拍前值。"
+          },
+          {
+            "id": "C",
+            "text": "保留原索引；含缺测目标或所需滞后（hysteresis）项的回归行不直接用于拟合。"
+          },
+          {
+            "id": "D",
+            "text": "把None当0不会改变模型（model）。"
+          }
+        ],
+        "revision": [
+          {
+            "id": "A",
+            "text": "借助验证段未来值填补训练缺测而无需记录。"
+          },
+          {
+            "id": "B",
+            "text": "删除None后把y[1]直接当y[3]的一拍前值。"
+          },
+          {
+            "id": "C",
+            "text": "保留原索引；含缺测目标或所需滞后项（lagged term）的回归行不直接用于拟合。"
+          },
+          {
+            "id": "D",
+            "text": "把None当0不会改变模型（model）。"
+          }
+        ]
+      }
+    },
+    {
+      "number": "11",
+      "location": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/02-线性高斯预测与观测更新.ipynb",
+      "original": "F、H、Q、R已知；初态高斯，过程和测量噪声（measurement noise）相互独立、跨时刻独立。单位与7.1相同，状态是有符号偏差。R严格正，创新的方差（variance）S在本节是正标量，更新所需除法因此有定义。缺测机制外生；模型参数（parameter）误差不由公式自动吸收。",
+      "judgment": "成立；初态与噪声的独立性需要明确。",
+      "revision": "F、H、Q、R已知。初态 $x_0$ 服从高斯分布（Gaussian distribution），并与所有过程噪声（process noise）$w_t$ 和测量噪声（measurement noise）$v_t$ 独立；两类噪声均为零均值高斯，协方差（covariance）分别为 Q、R，不同时刻及不同类别的噪声彼此独立。单位与7.1相同，状态是有符号偏差。R严格正，创新的方差（variance）S在本节是正标量，更新所需除法因此有定义。缺测机制外生；模型参数（parameter）误差不由公式自动吸收。",
+      "change_summary": "补初态高斯、初态与所有噪声独立、两类噪声零均值高斯及跨时刻/跨类别独立。",
+      "evidence": [
+        "Notebook 正文核对；全书教学同步检查通过"
+      ]
+    },
+    {
+      "number": "12",
+      "question_id": "p07-rts-backward",
+      "location": [
+        "notebooks/07-状态估计与贝叶斯滤波/06-平滑与缺测处理/02-RTS平滑与连续缺测.ipynb",
+        "exercises/07-状态估计与贝叶斯滤波/questions.json"
+      ],
+      "original": [
+        {
+          "name": "means",
+          "type": "list[list[float]]",
+          "description": "各时刻使用当时可用观测后的均值。",
+          "unit": "U"
+        },
+        {
+          "name": "covariances",
+          "type": "list[list[list[float]]]",
+          "description": "与 means 对应的协方差矩阵（covariance matrix）。",
+          "unit": "U²"
+        }
+      ],
+      "judgment": "成立；原返回值说明描述的是 filtering 而非 smoothing。",
+      "revision": [
+        {
+          "name": "means",
+          "type": "list[list[float]]",
+          "description": "各时刻在给定整段观测后的固定区间平滑均值，可利用该时刻之后的观测。",
+          "unit": "U"
+        },
+        {
+          "name": "covariances",
+          "type": "list[list[list[float]]]",
+          "description": "与 means 对应的固定区间平滑协方差矩阵（covariance matrix）。",
+          "unit": "U²"
+        }
+      ],
+      "evidence": [
+        "输入参数仍是滤波均值和协方差；返回结果基于整段观测。",
+        "实际展开输入、输出样例：表格与代码保留，含义分别为滤波和固定区间平滑。"
+      ],
+      "reference": {
+        "url": "https://users.aalto.fi/~ssarkka/pub/cup_book_online_20131111.pdf",
+        "section": "8.2，RTS smoother"
+      }
+    },
+    {
+      "number": "13",
+      "question_id": "p07-sum-sensor",
+      "location": "exercises/07-状态估计与贝叶斯滤波/verification.json",
+      "original": "[6,-6]被每行HFᵗ消去。",
+      "judgment": "数学含义正确；上标 t 容易被误读为转置。",
+      "revision": "所有时刻的读数都对两个初态的差量方向 [6,-6] 不敏感。",
+      "evidence": [
+        "在隔离学习记录的网页实际选择 C 并提交，通过后显示修订解析及题目版本 1。"
+      ]
+    },
+    {
+      "number": "14",
+      "location": [
+        "exercises/08-优化方法与计算/questions.json",
+        "notebooks/08-优化方法与计算/03-正则化与稀疏优化/03-缩放选参与独立预测.ipynb"
+      ],
+      "question_id": "p08-prediction-and-truth",
+      "original": [
+        {
+          "id": "A",
+          "text": "可直接确认每个系数的生理含义。"
+        },
+        {
+          "id": "B",
+          "text": "多个系数组（array）合可能给出近似相同预测。"
+        },
+        {
+          "id": "C",
+          "text": "应另查激励与可辨识性（identifiability）。"
+        },
+        {
+          "id": "D",
+          "text": "留出情形超出训练范围时，预测可恶化。"
+        }
+      ],
+      "judgment": "成立；“系数组合”被短词匹配拆开。",
+      "revision": [
+        {
+          "id": "A",
+          "text": "可直接确认每个系数的生理含义。"
+        },
+        {
+          "id": "B",
+          "text": "多个系数组合可能给出近似相同预测。"
+        },
+        {
+          "id": "C",
+          "text": "应另查激励与可辨识性（identifiability）。"
+        },
+        {
+          "id": "D",
+          "text": "留出情形超出训练范围时，预测可恶化。"
+        }
+      ],
+      "change_summary": "恢复“系数组合”，同时修正文与题面副本。",
+      "evidence": [
+        "公开题库与 Notebook 题面同步检查；独立术语反例测试通过。"
+      ],
+      "additional_notebook": {
+        "location": "notebooks/08-优化方法与计算/01-目标函数与优化几何/01-从拟合误差到二次目标.ipynb",
+        "original": "等高线显示同一目标在不同系数组（array）合下的数值。负梯度箭头只给出局部下降方向；它本身没有决定步长，也没有施加生理非负限制。解析解（analytical solution）在当前人工观测（observation）下最小化声明的损失，不代表已经识别真实机制。下一节要说明，什么曲率条件支持“唯一、全局”这些更强的词。",
+        "revision": "等高线显示同一目标在不同系数组合下的数值。负梯度箭头只给出局部下降方向；它本身没有决定步长，也没有施加生理非负限制。解析解（analytical solution）在当前人工观测（observation）下最小化声明的损失，不代表已经识别真实机制。下一节要说明，什么曲率条件支持“唯一、全局”这些更强的词。"
+      }
+    },
+    {
+      "number": "15",
+      "location": [
+        "tools/terminology.py",
+        "tools/build_course.py",
+        "tools/check_teaching.py",
+        "tools/tests/test_terminology.py",
+        "docs/术语对照.json"
+      ],
+      "original": "目录生成使用 TERM_PATTERN.sub；教学检查仅检验首次括注是否等于词表，不能发现后续冲突或保护普通复合词。",
+      "judgment": "成立；这是生成层系统性缺陷。",
+      "revision": "共用术语模块，长词优先、复合词保护、显式语义选择、正确括注保留；报告冲突、嵌套和重复括注。代码、公式与链接目标不注入。扩大到解析、参数/返回值、样例、Notebook 和所有生成导览。",
+      "evidence": [
+        "27 项人工预期的专项测试；含误匹配、合法短词、长词作用域、lag/hysteresis、手工括注、幂等性、嵌套括注、代码/公式/链接保护。",
+        "102 本 Notebook、480 题/题链与 17 篇生成导览均通过共享规则检查。"
+      ],
+      "limitation": "这是人工维护词表与保护词的保守匹配器，不是通用中文语义理解器；新术语、新复合词和未录入的多义用法仍需人工审阅。"
+    }
+  ],
+  "validation": {
+    "teaching": {
+      "notebooks": 102,
+      "questions": 480,
+      "question_links": 480,
+      "issues": []
+    },
+    "python_tests": {
+      "command": ".venv/Scripts/python.exe -X utf8 -m pytest tools/tests -q",
+      "passed": 612
+    },
+    "javascript_tests": {
+      "command": "node --test tools/tests/*.test.mjs web/optimization/model.test.mjs",
+      "passed": 96
+    },
+    "independent_term_tests": 27,
+    "execution": [
+      {
+        "python": "3.13.2",
+        "platform": "Windows",
+        "packages": {
+          "numpy": "2.5.3",
+          "matplotlib": "3.11.2",
+          "nbclient": "0.11.0",
+          "nbformat": "5.11.1",
+          "nbconvert": "7.17.1",
+          "ipykernel": "7.3.0"
+        },
+        "notebooks": [
+          {
+            "id": "P01-C01-S02",
+            "path": "notebooks/01-看见系统/01-从生理现象提出系统问题/02-单位量纲与时间序列.ipynb",
+            "seconds": 4.27,
+            "code_cells": 3,
+            "figures": 1,
+            "sha256": "23644f9e5e31deab38f017b81aa338720c9dda768bfedbaef5bd41cebca96a1e",
+            "passed": true
+          }
+        ]
+      },
+      {
+        "python": "3.13.2",
+        "platform": "Windows",
+        "packages": {
+          "numpy": "2.5.3",
+          "matplotlib": "3.11.2",
+          "nbclient": "0.11.0",
+          "nbformat": "5.11.1",
+          "nbconvert": "7.17.1",
+          "ipykernel": "7.3.0"
+        },
+        "notebooks": [
+          {
+            "id": "P02-C01-S02",
+            "path": "notebooks/02-系统随时间演化/01-用递推描述增长与清除/02-让时间进入收支更新.ipynb",
+            "seconds": 3.29,
+            "code_cells": 5,
+            "figures": 1,
+            "sha256": "1d6893e4998e9476133fe858c466e5c74edea744029271d5d3e77e64a6687c5f",
+            "passed": true
+          },
+          {
+            "id": "P02-C04-S02",
+            "path": "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/02-稳定性与非负性不是一回事.ipynb",
+            "seconds": 2.48,
+            "code_cells": 5,
+            "figures": 1,
+            "sha256": "c281b14455f3af02b21c7308a36f00709f980810b6d2a3b668f28236f43ed839",
+            "passed": true
+          }
+        ]
+      },
+      {
+        "python": "3.13.2",
+        "platform": "Windows",
+        "packages": {
+          "numpy": "2.5.3",
+          "matplotlib": "3.11.2",
+          "nbclient": "0.11.0",
+          "nbformat": "5.11.1",
+          "nbconvert": "7.17.1",
+          "ipykernel": "7.3.0"
+        },
+        "notebooks": [
+          {
+            "id": "P03-SUMMARY",
+            "path": "notebooks/03-多变量相互作用/05-篇末综合/01-二室交换与局部近似综合实验.ipynb",
+            "seconds": 4.06,
+            "code_cells": 5,
+            "figures": 1,
+            "sha256": "a851f627f34c068b0c7d9d707954d6a1fd3df0e9e68d8dd38a088f5c3f264165",
+            "passed": true
+          }
+        ]
+      },
+      {
+        "python": "3.13.2",
+        "platform": "Windows",
+        "packages": {
+          "numpy": "2.5.3",
+          "matplotlib": "3.11.2",
+          "nbclient": "0.11.0",
+          "nbformat": "5.11.1",
+          "nbconvert": "7.17.1",
+          "ipykernel": "7.3.0"
+        },
+        "notebooks": [
+          {
+            "id": "P06-C03-S02",
+            "path": "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/02-Z变换与精确采样.ipynb",
+            "seconds": 3.48,
+            "code_cells": 5,
+            "figures": 1,
+            "sha256": "72f5bd03d6bd29615f56e819efd49d641d85a37adefdc998dd555052c7be575e",
+            "passed": true
+          }
+        ]
+      },
+      {
+        "python": "3.13.2",
+        "platform": "Windows",
+        "packages": {
+          "numpy": "2.5.3",
+          "matplotlib": "3.11.2",
+          "nbclient": "0.11.0",
+          "nbformat": "5.11.1",
+          "nbconvert": "7.17.1",
+          "ipykernel": "7.3.0"
+        },
+        "notebooks": [
+          {
+            "id": "P07-C01-S01",
+            "path": "notebooks/07-状态估计与贝叶斯滤波/01-状态空间与能观性/01-从有噪读数建立状态模型.ipynb",
+            "seconds": 3.17,
+            "code_cells": 5,
+            "figures": 1,
+            "sha256": "624826e09d4161b32e9b17ebaca9a9a4b91f7a9202d7d0b570705b7c6c2f8933",
+            "passed": true
+          }
+        ]
+      }
+    ],
+    "invariants": {
+      "questions": 480,
+      "notebooks": 102,
+      "fresh_kernel_notebooks": [
+        "notebooks/01-看见系统/01-从生理现象提出系统问题/02-单位量纲与时间序列.ipynb",
+        "notebooks/02-系统随时间演化/01-用递推描述增长与清除/02-让时间进入收支更新.ipynb",
+        "notebooks/02-系统随时间演化/04-数值模拟误差与迁移/02-稳定性与非负性不是一回事.ipynb",
+        "notebooks/03-多变量相互作用/05-篇末综合/01-二室交换与局部近似综合实验.ipynb",
+        "notebooks/06-从测量走向模型/03-LTI系统、Laplace与Z变换/02-Z变换与精确采样.ipynb",
+        "notebooks/07-状态估计与贝叶斯滤波/01-状态空间与能观性/01-从有噪读数建立状态模型.ipynb"
+      ],
+      "unchanged_code_and_outputs": 96,
+      "question_identity_versions_answers_fixtures_contract_shapes_preserved": true,
+      "solution_and_assessment_bytes_preserved": true,
+      "cell_ids_and_code_ast_except_strings_preserved": true,
+      "paths_and_routes_preserved": true,
+      "protected_files": 70,
+      "learner_record_files": 29,
+      "historical_validation_files": 25,
+      "agents_readme_archived_m1_preserved": true,
+      "home_layout_not_overwritten": true,
+      "independently_changed_home_files": [
+        "docs/网页设计规范.md",
+        "web/home/app.mjs",
+        "web/home/index.html"
+      ],
+      "dimensional_remainder_exact_rational_cases": 9,
+      "numerical_remainder_cases": 3,
+      "euler_taylor_high_precision_cases": 3,
+      "k_zero_and_equilibrium_checked": true
+    },
+    "figures_inspected": 6,
+    "rendered_formula_sections": [
+      "2.4.1",
+      "3.4.2"
+    ],
+    "browser_checks": [
+      "6.5 ARX 两道选项的 lag 译名",
+      "6.4 重采样次数/resampling 选项",
+      "7.6 RTS 参数、返回值和展开样例",
+      "7.1 选择 C 后判定与解析",
+      "5.5 章节信息价值边界"
+    ],
+    "browser_service": "127.0.0.1:8019，独立临时学习记录；未向真实学习记录写入验收作答",
+    "current_service": "已重新加载 8000 教材服务，并在浏览器核对 lagged input 选项；29 份原学习记录哈希不变。"
+  },
+  "preservation": "AGENTS.md、README、历史验收记录和 M1 历史练习核验不修改；已有首页布局工作不覆盖，仅向共享图生成器合并两个术语标签并重新生成图。",
+  "limits": [
+    "6 本输出标签修改的 Notebook 重新执行；其余 96 本代码与输出逐单元比对保持原样，未声称重新执行全部 102 本。",
+    "没有改题目正确答案、接口、版本或判定用例；未发布或推送 GitHub。",
+    "本轮是针对已列问题及术语反例的审查，不等于全书独立同行评审。"
+  ]
+}

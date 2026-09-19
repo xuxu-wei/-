@@ -1,0 +1,3508 @@
+[
+  {
+    "id": "p09-normal-update",
+    "slug": "p09-normal-update",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.1",
+    "lesson_id": "P09-C01-S01",
+    "title": "把读数变成参数后验",
+    "statement": "未知稳态偏差服从给定高斯先验（prior）；读数等于偏差加独立零均值高斯噪声。返回后验（posterior）均值、方差（variance）和一个新读数的预测方差。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数36"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "prior_mean",
+        "type": "float",
+        "description": "同一未知偏差的先验均值。",
+        "unit": "U"
+      },
+      {
+        "name": "prior_variance",
+        "type": "float",
+        "description": "先验方差，大于零。",
+        "unit": "U²"
+      },
+      {
+        "name": "observations",
+        "type": "list[float]",
+        "description": "对同一偏差的独立有噪读数，可为空。",
+        "unit": "U"
+      },
+      {
+        "name": "noise_variance",
+        "type": "float",
+        "description": "每次观测（observation）已知且相同的噪声方差。",
+        "unit": "U²"
+      }
+    ],
+    "returns": [
+      {
+        "name": "mean",
+        "type": "float",
+        "description": "更新后参数（parameter）均值。",
+        "unit": "U"
+      },
+      {
+        "name": "variance",
+        "type": "float",
+        "description": "更新后参数方差。",
+        "unit": "U²"
+      },
+      {
+        "name": "predictive_variance",
+        "type": "float",
+        "description": "同条件下一个新读数的预测方差。",
+        "unit": "U²"
+      }
+    ],
+    "contract": "v=1/(1/v0+n/r)，m=v(m0/v0+sum(y)/r)；预测方差v+r。空观测返回原先验与先验预测方差。",
+    "constraints": [
+      "先验与噪声方差在[0.01,100]；0≤n≤100；各均值/读数绝对值≤100。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "精度为1/4+2/2=1.25，后验均值1.6、方差0.8；新读数还含2单位噪声方差，预测方差为2.8。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    prior_mean: float,\n    prior_variance: float,\n    observations: list[float],\n    noise_variance: float,\n) -> tuple[float, float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "prior_mean": 0.0,
+          "prior_variance": 4.0,
+          "observations": [
+            1.0,
+            3.0
+          ],
+          "noise_variance": 2.0
+        },
+        "expected": [
+          1.6,
+          0.8,
+          2.8
+        ],
+        "explanation": "精度为1/4+2/2=1.25，后验均值1.6、方差0.8；新读数还含2单位噪声方差，预测方差为2.8。"
+      }
+    ]
+  },
+  {
+    "id": "p09-likelihood-object",
+    "slug": "p09-likelihood-object",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.1",
+    "lesson_id": "P09-C01-S01",
+    "title": "似然是在比较什么",
+    "statement": "固定已观察的读数y，考察L(θ)=p(y|θ)。哪些说法成立？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数36"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "它是θ的概率密度（probability density），自动积分为1。"
+      },
+      {
+        "id": "B",
+        "text": "它用于比较不同θ对同一y的解释。"
+      },
+      {
+        "id": "C",
+        "text": "后验（posterior）归一化需要结合先验（prior）并计算证据。"
+      },
+      {
+        "id": "D",
+        "text": "可以在没有新增观测（observation）时反复乘同一似然（likelihood），增加独立信息。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-posterior-predictive",
+    "slug": "p09-posterior-predictive",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.1",
+    "lesson_id": "P09-C01-S01",
+    "title": "参数知道得更准以后",
+    "statement": "重复测量同一个稳定偏差，已知读数噪声方差（variance）r>0。读数很多时有哪些结论？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数36"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "参数（parameter）方差可趋近0。"
+      },
+      {
+        "id": "B",
+        "text": "一个新读数的预测方差可趋近r。"
+      },
+      {
+        "id": "C",
+        "text": "未来读数必与后验（posterior）均值完全相等。"
+      },
+      {
+        "id": "D",
+        "text": "以上极限（limit）依赖同一偏差及独立噪声等模型（model）假设。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-prior-vs-data",
+    "slug": "p09-prior-vs-data",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.1",
+    "lesson_id": "P09-C01-S01",
+    "title": "先验强度怎样起作用",
+    "statement": "同一批读数下缩小高斯先验（prior）方差（variance），其他量不变。哪项正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数36"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "后验（posterior）均值通常更靠近先验均值，但这不证明先验更真实。"
+      },
+      {
+        "id": "B",
+        "text": "数据的观测（observation）噪声自动变小。"
+      },
+      {
+        "id": "C",
+        "text": "后验变窄就证明模型（model）无偏。"
+      },
+      {
+        "id": "D",
+        "text": "先验选择不需要任何说明。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-normalizer-zero",
+    "slug": "p09-normalizer-zero",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.1",
+    "lesson_id": "P09-C01-S01",
+    "title": "后验什么时候存在",
+    "statement": "先验（prior）密度p与似然（likelihood）L均非负。作为概率密度（probability density）的后验（posterior）还要求什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数36"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "归一化积分Z满足0<Z<∞。"
+      },
+      {
+        "id": "B",
+        "text": "任何非负函数都自动可归一化。"
+      },
+      {
+        "id": "C",
+        "text": "L为常数零也能得到后验。"
+      },
+      {
+        "id": "D",
+        "text": "采用不适定先验时无需再检查Z。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-gamma-local",
+    "slug": "p09-gamma-local",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.1",
+    "lesson_id": "P09-C01-S02",
+    "title": "检查局部近似能否成立",
+    "statement": "独立事件（event）计数服从Poisson(kE)，正参数（parameter）k有Gamma(a,b)先验（prior），b采用率参数化。计算内点模态（mode）及局部曲率；不把边界当作内点。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数36"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "shape",
+        "type": "float",
+        "description": "Gamma先验形状a。",
+        "unit": "1"
+      },
+      {
+        "name": "rate",
+        "type": "float",
+        "description": "Gamma先验率b，密度含exp(−bk)。",
+        "unit": "T"
+      },
+      {
+        "name": "count",
+        "type": "int",
+        "description": "Poisson事件总数c。",
+        "unit": "1"
+      },
+      {
+        "name": "exposure",
+        "type": "float",
+        "description": "已知暴露时长E，事件均值为kE。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "mode",
+        "type": "float | None",
+        "description": "内点模态；边界情形为None。",
+        "unit": "1/T"
+      },
+      {
+        "name": "curvature",
+        "type": "float | None",
+        "description": "负对数后验（posterior）在模态处的二阶导数（derivative）。",
+        "unit": "T²"
+      },
+      {
+        "name": "variance",
+        "type": "float | None",
+        "description": "局部高斯方差（variance），即曲率的倒数。",
+        "unit": "1/T²"
+      },
+      {
+        "name": "status",
+        "type": "str",
+        "description": "interior或boundary。",
+        "unit": "不适用"
+      }
+    ],
+    "contract": "更新a′=a+c，b′=b+E；a′>1时mode=(a′−1)/b′，curvature=(a′−1)/mode²，variance=1/curvature；a′≤1统一返回(None,None,None,\"boundary\")。",
+    "constraints": [
+      "a,b>0；0≤c≤100；E≥0；a,b,E≤100。 E=0时仅允许c=0。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "a′=4，b′=4，因此模态0.75、曲率16/3、近似方差3/16；后验均值为1，与模态不同。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    shape: float,\n    rate: float,\n    count: int,\n    exposure: float,\n) -> tuple[float | None, float | None, float | None, str]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "shape": 2.0,
+          "rate": 1.0,
+          "count": 2,
+          "exposure": 3.0
+        },
+        "expected": [
+          0.75,
+          5.333333333333333,
+          0.1875,
+          "interior"
+        ],
+        "explanation": "a′=4，b′=4，因此模态0.75、曲率16/3、近似方差3/16；后验均值为1，与模态不同。"
+      }
+    ]
+  },
+  {
+    "id": "p09-grid-masses",
+    "slug": "p09-grid-masses",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.1",
+    "lesson_id": "P09-C01-S02",
+    "title": "积分节点不等于等权样本",
+    "statement": "给定可能不等距的节点与对数密度，按梯形法转为节点质量。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数36"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "nodes",
+        "type": "list[float]",
+        "description": "严格递增积分节点。",
+        "unit": "1/T"
+      },
+      {
+        "name": "log_values",
+        "type": "list[float]",
+        "description": "各节点的未归一化对数密度值；使用同一数值单位。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "weights",
+        "type": "list[float]",
+        "description": "含梯形积分宽度的归一化节点质量。",
+        "unit": "1"
+      },
+      {
+        "name": "mean",
+        "type": "float",
+        "description": "节点近似均值。",
+        "unit": "1/T"
+      },
+      {
+        "name": "variance",
+        "type": "float",
+        "description": "按节点质量计算的方差（variance）。",
+        "unit": "1/T²"
+      },
+      {
+        "name": "log_integral",
+        "type": "float",
+        "description": "当前有限区间积分的对数。",
+        "unit": "1"
+      }
+    ],
+    "contract": "首末宽度为相邻间隔的一半；内部为左右相邻跨度的一半。以log_value+log(width)做log-sum-exp归一化，再求加权矩。",
+    "constraints": [
+      "2—100节点，位于[0,10]且间距≥1e−4；log_values有限且在[−1000,1000]。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "宽度为[0.5,1.5,1]，质量为[1/6,1/2,1/3]；节点均值1.5，节点方差1.25。粗网格的二阶矩不等于连续均匀分布的精确方差。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    nodes: list[float],\n    log_values: list[float],\n) -> tuple[list[float], float, float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "nodes": [
+            0.0,
+            1.0,
+            3.0
+          ],
+          "log_values": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "expected": [
+          [
+            0.16666666666666669,
+            0.5000000000000001,
+            0.33333333333333337
+          ],
+          1.5,
+          1.2500000000000002,
+          1.0986122886681096
+        ],
+        "explanation": "宽度为[0.5,1.5,1]，质量为[1/6,1/2,1/3]；节点均值1.5，节点方差1.25。粗网格的二阶矩不等于连续均匀分布（distribution）的精确方差。"
+      }
+    ]
+  },
+  {
+    "id": "p09-coordinate-map",
+    "slug": "p09-coordinate-map",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.1",
+    "lesson_id": "P09-C01-S02",
+    "title": "模态会随参数化改变吗",
+    "statement": "k>0，令η=log k。由k的后验（posterior）密度构造η的后验密度时应怎样做？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数36"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "pη(η)=pk(expη)。"
+      },
+      {
+        "id": "B",
+        "text": "pη(η)=pk(expη)expη。"
+      },
+      {
+        "id": "C",
+        "text": "两个参数（parameter）化下的概率（probability）事件（event）可一致，但密度众数不必对应。"
+      },
+      {
+        "id": "D",
+        "text": "不需要雅可比，只要把横轴改名。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-single-mode",
+    "slug": "p09-single-mode",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.1",
+    "lesson_id": "P09-C01-S02",
+    "title": "一个漂亮的局部高斯",
+    "statement": "目标后验（posterior）有两个相距很远的峰，算法在左峰精确求出正曲率。哪项结论可靠？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数36"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "已精确表示整个后验。"
+      },
+      {
+        "id": "B",
+        "text": "右峰不重要，因为左峰局部曲率为正。"
+      },
+      {
+        "id": "C",
+        "text": "只能说明左峰附近可构造局部近似，仍需检查遗漏质量。"
+      },
+      {
+        "id": "D",
+        "text": "扩大局部图像就能找回右峰概率（probability）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-grid-domain",
+    "slug": "p09-grid-domain",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.1",
+    "lesson_id": "P09-C01-S02",
+    "title": "网格变密但区间未扩大",
+    "statement": "在k∈[0.1,0.5]上把网格从1000加密到2000点，矩几乎不变。哪些解释正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数36"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "这支持当前区间内离散误差较小。"
+      },
+      {
+        "id": "B",
+        "text": "这证明区间外没有概率（probability）。"
+      },
+      {
+        "id": "C",
+        "text": "还应扩大积分区间检查截断误差（truncation error）。"
+      },
+      {
+        "id": "D",
+        "text": "若密度峰在边界，必须警惕区间截断。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-mh-replay",
+    "slug": "p09-mh-replay",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.2",
+    "lesson_id": "P09-C02-S01",
+    "title": "重放一次次接受与拒绝",
+    "statement": "目标是等权双高斯混合。用题给候选点、提议比与均匀数重放MH链；不得再随机抽样。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数36",
+      "数37"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "initial",
+        "type": "float",
+        "description": "初始链状态（state）。",
+        "unit": "1"
+      },
+      {
+        "name": "candidates",
+        "type": "list[float]",
+        "description": "依次给定的候选点，拒绝后下一候选仍按本列表读取。",
+        "unit": "1"
+      },
+      {
+        "name": "log_reverse_over_forward",
+        "type": "list[float]",
+        "description": "每一步log q(当前|候选)−log q(候选|当前)。",
+        "unit": "1"
+      },
+      {
+        "name": "uniforms",
+        "type": "list[float]",
+        "description": "固定均匀数；0≤u<1。",
+        "unit": "1"
+      },
+      {
+        "name": "separation",
+        "type": "float",
+        "description": "等权N(−d,1)、N(d,1)目标中的d。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "states",
+        "type": "list[float]",
+        "description": "含初值（initial condition）和每次接受/拒绝后状态。",
+        "unit": "1"
+      },
+      {
+        "name": "accepted",
+        "type": "list[bool]",
+        "description": "按步骤返回是否接受。",
+        "unit": "不适用"
+      }
+    ],
+    "contract": "logα=min(0,logp(candidate)−logp(current)+log_reverse_over_forward[i])。u=0或logu<logα即接受，否则保持当前值。d=0退化成N(0,1)。",
+    "constraints": [
+      "三组步骤列表等长0—100；数值绝对值≤100；0≤d≤5；均匀数在[0,1)。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "第一步exp(−1/2)>.2故接受1；第二步概率exp(−7.5)<.9故保持1；第三步到−1密度相同故接受。轨迹为[0,1,1,−1]。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    initial: float,\n    candidates: list[float],\n    log_reverse_over_forward: list[float],\n    uniforms: list[float],\n    separation: float,\n) -> tuple[list[float], list[bool]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "initial": 0.0,
+          "candidates": [
+            1.0,
+            4.0,
+            -1.0
+          ],
+          "log_reverse_over_forward": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "uniforms": [
+            0.2,
+            0.9,
+            0.3
+          ],
+          "separation": 0.0
+        },
+        "expected": [
+          [
+            0.0,
+            1.0,
+            1.0,
+            -1.0
+          ],
+          [
+            true,
+            false,
+            true
+          ]
+        ],
+        "explanation": "第一步exp(−1/2)>.2故接受1；第二步概率（probability）exp(−7.5)<.9故保持1；第三步到−1密度相同故接受。轨迹（trajectory）为[0,1,1,−1]。"
+      }
+    ]
+  },
+  {
+    "id": "p09-finite-kernel",
+    "slug": "p09-finite-kernel",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.2",
+    "lesson_id": "P09-C02-S01",
+    "title": "构造有限状态转移核",
+    "statement": "正目标质量π与行随机提议矩阵（matrix）Q已给定。对非对角项作MH接受修正，将拒绝质量留在对角。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数36",
+      "数37"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "target",
+        "type": "list[float]",
+        "description": "和为1的正目标概率（probability）。",
+        "unit": "1"
+      },
+      {
+        "name": "proposal",
+        "type": "list[list[float]]",
+        "description": "每行和为1的非负提议概率矩阵。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "transition",
+        "type": "list[list[float]]",
+        "description": "MH后的行随机转移矩阵（transition matrix）。",
+        "unit": "1"
+      }
+    ],
+    "contract": "i≠j且Qij>0时Pij=min(Qij,πj Qji/πi)；Qij=0时Pij=0；Pii=1−sum(j≠i)Pij。",
+    "constraints": [
+      "2—4状态（state）；πi≥0.01；不要求Q对称；允许单向提议和对角概率。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "第一行必到第二状态；第二行以1/3到第一状态、2/3留下。两方向概率流都是0.25。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    target: list[float],\n    proposal: list[list[float]],\n) -> list[list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "target": [
+            0.25,
+            0.75
+          ],
+          "proposal": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        },
+        "expected": [
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.3333333333333333,
+            0.6666666666666667
+          ]
+        ],
+        "explanation": "第一行必到第二状态；第二行以1/3到第一状态、2/3留下。两方向概率流都是0.25。"
+      }
+    ]
+  },
+  {
+    "id": "p09-proposal-ratio",
+    "slug": "p09-proposal-ratio",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.2",
+    "lesson_id": "P09-C02-S01",
+    "title": "提议方向不要写反",
+    "statement": "非对称提议q(y|x)的MH接受概率（probability）中，提议修正是哪一个？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数36",
+      "数37"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "q(y|x)/q(x|y)。"
+      },
+      {
+        "id": "B",
+        "text": "q(x|y)/q(y|x)。"
+      },
+      {
+        "id": "C",
+        "text": "无论是否对称都能约掉。"
+      },
+      {
+        "id": "D",
+        "text": "只要目标已归一化就不需要它。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-stationary-vs-convergence",
+    "slug": "p09-stationary-vs-convergence",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.2",
+    "lesson_id": "P09-C02-S01",
+    "title": "保持目标就一定收敛吗",
+    "statement": "P=I满足任意π的详细平衡（detailed balance）。它能否从任意初态探索给定π？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数36",
+      "数37"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "能，因为已经详细平衡。"
+      },
+      {
+        "id": "B",
+        "text": "不能，链一直保持初态。"
+      },
+      {
+        "id": "C",
+        "text": "还需讨论不可约（irreducible）性与周期性等条件。"
+      },
+      {
+        "id": "D",
+        "text": "有限状态（state）不可约且非周期（aperiodic）时，才有熟悉的唯一平稳及长期收敛结论。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-rejections",
+    "slug": "p09-rejections",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.2",
+    "lesson_id": "P09-C02-S01",
+    "title": "拒绝时要不要记录",
+    "statement": "MH模拟总共1000步，其中拒绝600次。为了计算后验（posterior）矩应怎样保存？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数36",
+      "数37"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "只保存400个接受后的点并等权平均。"
+      },
+      {
+        "id": "B",
+        "text": "保存每一步状态（state），拒绝时重复当前点。"
+      },
+      {
+        "id": "C",
+        "text": "拒绝意味着数值失败，必须删除。"
+      },
+      {
+        "id": "D",
+        "text": "重复状态的停留时间与目标质量无关。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-basic-diagnostics",
+    "slug": "p09-basic-diagnostics",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.2",
+    "lesson_id": "P09-C02-S02",
+    "title": "计算基本多链与相关性指标",
+    "statement": "按正文的有限样本定义计算基本R-hat与截断ESS；它们只是教学诊断，不能认证收敛。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数36",
+      "数37"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "chains",
+        "type": "list[list[float]]",
+        "description": "相同保留长度的多条链，预热已在输入（input）前处理。",
+        "unit": "1"
+      },
+      {
+        "name": "max_lag",
+        "type": "int",
+        "description": "截断自相关求和的最大滞后（lag）。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "rhat",
+        "type": "float | None",
+        "description": "经典未分割R-hat；W=0时None。",
+        "unit": "1"
+      },
+      {
+        "name": "ess",
+        "type": "list[float | None]",
+        "description": "每链的截断自相关ESS；零方差（variance）或τ≤0时None。",
+        "unit": "个"
+      }
+    ],
+    "contract": "每链均值与无偏方差s²；W=mean(s²)，B=n·sum((链均值−总均值)²)/(m−1)，Rhat=sqrt(((n−1)W/n+B/n)/W)。每链ρk=sum(t=0…n−k−1)(xt−均值)(x[t+k]−均值)/sum(xt−均值)²；τ=1+2sum(ρk)，ESS=n/τ。不裁剪ESS或Rhat。",
+    "constraints": [
+      "2—5链；相同长度n为3—100；0≤max_lag<n；数值绝对值≤100。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "W=5/3、B=2，Rhat=√1.05；每链ρ1=.25，τ=1.5，因此ESS=8/3。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    chains: list[list[float]],\n    max_lag: int,\n) -> tuple[float | None, list[float | None]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "chains": [
+            [
+              0.0,
+              1.0,
+              2.0,
+              3.0
+            ],
+            [
+              1.0,
+              2.0,
+              3.0,
+              4.0
+            ]
+          ],
+          "max_lag": 1
+        },
+        "expected": [
+          1.02469507659596,
+          [
+            2.6666666666666665,
+            2.6666666666666665
+          ]
+        ],
+        "explanation": "W=5/3、B=2，Rhat=√1.05；每链ρ1=.25，τ=1.5，因此ESS=8/3。"
+      }
+    ]
+  },
+  {
+    "id": "p09-high-acceptance",
+    "slug": "p09-high-acceptance",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.2",
+    "lesson_id": "P09-C02-S02",
+    "title": "接受率99%是好消息吗",
+    "statement": "一条链步幅极小，几乎每次接受，但2000步仍留在起点附近。哪项合理？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数36",
+      "数37"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "高接受率证明后验（posterior）均值精确。"
+      },
+      {
+        "id": "B",
+        "text": "应同时检查移动尺度、自相关、多个初值（initial condition）和计算预算。"
+      },
+      {
+        "id": "C",
+        "text": "删除一半记录必能解决探索问题。"
+      },
+      {
+        "id": "D",
+        "text": "只需延长图像横轴而不生成新样本。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-same-mode",
+    "slug": "p09-same-mode",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.2",
+    "lesson_id": "P09-C02-S02",
+    "title": "多条链看起来一致",
+    "statement": "所有链都初始化在双峰目标的左峰，基本Rhat接近1。哪些解释成立？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数36",
+      "数37"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "仍可能全部遗漏右峰。"
+      },
+      {
+        "id": "B",
+        "text": "应从分散初值（initial condition）重新运行，并用网格参考模式质量。"
+      },
+      {
+        "id": "C",
+        "text": "Rhat接近1足以证明遍历性。"
+      },
+      {
+        "id": "D",
+        "text": "应报告模式覆盖而不只报告均值诊断。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-ess-not-particles",
+    "slug": "p09-ess-not-particles",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.2",
+    "lesson_id": "P09-C02-S02",
+    "title": "两个ESS名字相同",
+    "statement": "MCMC的相关性ESS与粒子滤波（particle filtering，PF）的1/sum(w²)有什么关系？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数36",
+      "数37"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "都是同一个公式。"
+      },
+      {
+        "id": "B",
+        "text": "前者针对链时间相关，后者针对当前粒子权重集中。"
+      },
+      {
+        "id": "C",
+        "text": "粒子等权就证明MCMC没有自相关。"
+      },
+      {
+        "id": "D",
+        "text": "二者可以替代独立核验。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-budget-repeat",
+    "slug": "p09-budget-repeat",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.2",
+    "lesson_id": "P09-C02-S02",
+    "title": "怎样报告随机计算误差",
+    "statement": "比较两种步幅的后验（posterior）均值估计。哪些做法合理？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数36",
+      "数37"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "用相同目标和声明的密度评估预算。"
+      },
+      {
+        "id": "B",
+        "text": "预先固定多个独立随机种子（random seed）并报告重复估计的离散程度。"
+      },
+      {
+        "id": "C",
+        "text": "只保留最接近参考答案的一次运行。"
+      },
+      {
+        "id": "D",
+        "text": "把计算的标准误（standard error）与后验标准差（standard deviation）区分。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-gaussian-coordinate",
+    "slug": "p09-gaussian-coordinate",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.3",
+    "lesson_id": "P09-C03-S01",
+    "title": "完成一轮均值场坐标更新",
+    "statement": "目标p=N(μ,P⁻¹)，近似q=q1q2。实现一轮精确坐标更新并计算解析KL。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数38"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "precision",
+        "type": "list[list[float]]",
+        "description": "二维高斯目标的对称正定（positive definite）精度矩阵（matrix）P。",
+        "unit": "1"
+      },
+      {
+        "name": "target_mean",
+        "type": "list[float]",
+        "description": "目标均值μ。",
+        "unit": "1"
+      },
+      {
+        "name": "current_mean",
+        "type": "list[float]",
+        "description": "当前两个因子均值。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "means",
+        "type": "list[float]",
+        "description": "先更新第一因子、再用新值更新第二因子的均值。",
+        "unit": "1"
+      },
+      {
+        "name": "variances",
+        "type": "list[float]",
+        "description": "独立因子的方差（variance）1/Pii。",
+        "unit": "1"
+      },
+      {
+        "name": "kl",
+        "type": "float",
+        "description": "更新后的KL(q||p)，单位nat。",
+        "unit": "nat"
+      }
+    ],
+    "contract": "m1=μ1−P12(m2−μ2)/P11；再用新m1更新m2=μ2−P21(m1−μ1)/P22。vi=1/Pii；KL=[tr(Pdiag(v))+(m−μ)ᵀP(m−μ)−2−log(det(P)v1v2)]/2。",
+    "constraints": [
+      "二维正定P，特征值（eigenvalue）在[0.05,20]，均值绝对值≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "依次得到均值[1,0.5]、方差[0.5,0.5]；KL=(1.5−log(.75))/2≈0.893841。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    precision: list[list[float]],\n    target_mean: list[float],\n    current_mean: list[float],\n) -> tuple[list[float], list[float], float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "precision": [
+            [
+              2.0,
+              -1.0
+            ],
+            [
+              -1.0,
+              2.0
+            ]
+          ],
+          "target_mean": [
+            0.0,
+            0.0
+          ],
+          "current_mean": [
+            2.0,
+            2.0
+          ]
+        },
+        "expected": [
+          [
+            1.0,
+            0.5
+          ],
+          [
+            0.5,
+            0.5
+          ],
+          0.8938410362258904
+        ],
+        "explanation": "依次得到均值[1,0.5]、方差[0.5,0.5]；KL=(1.5−log(.75))/2≈0.893841。"
+      }
+    ]
+  },
+  {
+    "id": "p09-finite-bound",
+    "slug": "p09-finite-bound",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.3",
+    "lesson_id": "P09-C03-S01",
+    "title": "直接枚举证据下界",
+    "statement": "有限状态（state）可以直接相加求证据，用它核对变分恒等式。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数38"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "log_joint",
+        "type": "list[float]",
+        "description": "有限隐状态的log p(y,z)，同一顺序。",
+        "unit": "1"
+      },
+      {
+        "name": "probabilities",
+        "type": "list[float]",
+        "description": "候选q(z)的非负质量，和为1。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "elbo",
+        "type": "float",
+        "description": "sum q(log p(y,z)−log q)，0log0按0处理。",
+        "unit": "nat"
+      },
+      {
+        "name": "gap",
+        "type": "float",
+        "description": "logsumexp(log_joint)−ELBO，即KL(q||后验（posterior）)。",
+        "unit": "nat"
+      }
+    ],
+    "contract": "ELBO只对q>0项求和；gap=logsumexp(log_joint)−ELBO；不把概率（probability）为0的项送入log。",
+    "constraints": [
+      "2—10状态；log_joint在[−1000,1000]；q非负且和为1。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "证据为0.4，q恰好等于后验[.25,.75]，所以下界log(.4)、差距0。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    log_joint: list[float],\n    probabilities: list[float],\n) -> tuple[float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "log_joint": [
+            -2.3025850929940455,
+            -1.2039728043259361
+          ],
+          "probabilities": [
+            0.25,
+            0.75
+          ]
+        },
+        "expected": [
+          -0.9162907318741551,
+          0.0
+        ],
+        "explanation": "证据为0.4，q恰好等于后验[.25,.75]，所以下界log(.4)、差距0。"
+      }
+    ]
+  },
+  {
+    "id": "p09-kl-direction",
+    "slug": "p09-kl-direction",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.3",
+    "lesson_id": "P09-C03-S01",
+    "title": "下界中的距离方向",
+    "statement": "ELBO(q)=Eq[log p(y,z)−log q(z)]。正确恒等式是哪个？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数38"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "logp(y)=ELBO(q)+KL(q||p(z|y))。"
+      },
+      {
+        "id": "B",
+        "text": "logp(y)=ELBO(q)−KL(q||p(z|y))。"
+      },
+      {
+        "id": "C",
+        "text": "logp(y)=ELBO(q)+KL(p(z|y)||q)。"
+      },
+      {
+        "id": "D",
+        "text": "ELBO是任何q下的精确证据。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-gaussian-variance",
+    "slug": "p09-gaussian-variance",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.3",
+    "lesson_id": "P09-C03-S01",
+    "title": "独立近似丢掉了什么",
+    "statement": "二维目标协方差（covariance）[[1,ρ],[ρ,1]]，0<|ρ|<1。最优高斯均值场（mean-field approximation）q1q2会怎样？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数38"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "每因子方差（variance）为1−ρ²。"
+      },
+      {
+        "id": "B",
+        "text": "每因子方差为1。"
+      },
+      {
+        "id": "C",
+        "text": "不能表达非零交叉协方差。"
+      },
+      {
+        "id": "D",
+        "text": "本例方差缩小，足以证明所有变分近似都低估所有函数的不确定性。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-optimization-error",
+    "slug": "p09-optimization-error",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.3",
+    "lesson_id": "P09-C03-S01",
+    "title": "下界停止上升",
+    "statement": "二维相关高斯的均值场（mean-field approximation）坐标更新达到稳定值。哪项判断正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数38"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "目标后验（posterior）已变成独立。"
+      },
+      {
+        "id": "B",
+        "text": "优化可能已完成，但近似族仍遗漏相关性。"
+      },
+      {
+        "id": "C",
+        "text": "必须把观测（observation）改成符合近似的数据。"
+      },
+      {
+        "id": "D",
+        "text": "停止上升说明数据来自该模型（model）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-discrete-coordinate",
+    "slug": "p09-discrete-coordinate",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.3",
+    "lesson_id": "P09-C03-S02",
+    "title": "在四个状态上检查近似",
+    "statement": "用独立Bernoulli因子近似给定二元联合分布（distribution），先更新第一个因子，再更新第二个。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数38"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "log_joint",
+        "type": "list[float]",
+        "description": "按(0,0),(0,1),(1,0),(1,1)排列的log联合质量。",
+        "unit": "1"
+      },
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "两个独立Bernoulli因子取1的初始概率（probability）。",
+        "unit": "1"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "完整坐标扫描的次数。",
+        "unit": "次"
+      }
+    ],
+    "returns": [
+      {
+        "name": "history",
+        "type": "list[list[float]]",
+        "description": "每轮[p1,p2,ELBO,证据差距]，不含初值（initial condition）；steps=0为空。",
+        "unit": "混合：概率与nat"
+      }
+    ],
+    "contract": "logit(p1)=(1−p2)(l10−l00)+p2(l11−l01)；再以新p1计算logit(p2)=(1−p1)(l01−l00)+p1(l11−l10)。sigmoid(x)=1/(1+exp(−x))；q按题定顺序求下界与差距。",
+    "constraints": [
+      "log_joint长4且各值在[−20,20]；初始概率在[0,1]；0≤steps≤30。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "第一轮的第一个logit为−3.2，p1≈.03917；第二个logit使用这个新p1。对称初值并不等于已经检查过所有局部解。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    log_joint: list[float],\n    initial: list[float],\n    steps: int,\n) -> list[list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "log_joint": [
+            0.0,
+            -4.0,
+            -4.0,
+            0.0
+          ],
+          "initial": [
+            0.1,
+            0.1
+          ],
+          "steps": 2
+        },
+        "expected": [
+          [
+            0.039165722796764356,
+            0.024442773371647204,
+            0.03336721167089932,
+            0.6779298968068558
+          ],
+          [
+            0.02178606575243834,
+            0.021337693818330557,
+            0.039335424713921166,
+            0.6719616837638339
+          ]
+        ],
+        "explanation": "第一轮的第一个logit为−3.2，p1≈.03917；第二个logit使用这个新p1。对称初值并不等于已经检查过所有局部解。"
+      }
+    ]
+  },
+  {
+    "id": "p09-two-modes-family",
+    "slug": "p09-two-modes-family",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.3",
+    "lesson_id": "P09-C03-S02",
+    "title": "两个因子能表示相关双峰吗",
+    "statement": "四状态（state）目标在00和11各约有一半质量，01和10极少。哪些判断正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数38"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "p1=p2=.5时独立族给四状态各1/4。"
+      },
+      {
+        "id": "B",
+        "text": "只要多迭代，独立族必能精确变成原目标。"
+      },
+      {
+        "id": "C",
+        "text": "允许完整四状态质量后可以直接归一化得到精确后验（posterior）。"
+      },
+      {
+        "id": "D",
+        "text": "应比较状态质量或相关性，不能只看两个边缘均值。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-vi-initialization",
+    "slug": "p09-vi-initialization",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.3",
+    "lesson_id": "P09-C03-S02",
+    "title": "从两侧开始的优化",
+    "statement": "对称双峰目标中，两种初始化分别收敛到偏00和偏11的近似，ELBO相同。哪项正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数38"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "相同ELBO证明两个近似质量完全一致。"
+      },
+      {
+        "id": "B",
+        "text": "可能是对称的不同局部解，应报告初始化和被遗漏的模式。"
+      },
+      {
+        "id": "C",
+        "text": "必须删掉其中一个结果。"
+      },
+      {
+        "id": "D",
+        "text": "可以把两组因子概率（probability）逐元素平均后声称仍是最优解。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-elbo-monotone",
+    "slug": "p09-elbo-monotone",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.3",
+    "lesson_id": "P09-C03-S02",
+    "title": "坐标更新为什么不下降",
+    "statement": "每次精确最大化一个因子的ELBO，另一个固定。哪些说法成立？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数38"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "每步下界不下降。"
+      },
+      {
+        "id": "B",
+        "text": "必到全局最优。"
+      },
+      {
+        "id": "C",
+        "text": "数值稳定化和更新顺序仍需核对。"
+      },
+      {
+        "id": "D",
+        "text": "若换成近似更新，原单调性不再自动成立。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-jensen-support",
+    "slug": "p09-jensen-support",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.3",
+    "lesson_id": "P09-C03-S02",
+    "title": "Jensen等号在哪里",
+    "statement": "ELBO与证据的差为KL(q||p)。在所有有限状态（state）后验（posterior）概率（probability）均正时，何时达到等号？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数38"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "q只要选中概率最大的一个状态即可。"
+      },
+      {
+        "id": "B",
+        "text": "q与后验逐状态一致。"
+      },
+      {
+        "id": "C",
+        "text": "q的均值与后验均值一样即可。"
+      },
+      {
+        "id": "D",
+        "text": "任意归一化q都可以。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-mixture-update",
+    "slug": "p09-mixture-update",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.4",
+    "lesson_id": "P09-C04-S01",
+    "title": "更新混合权重和分量均值",
+    "statement": "对固定共同方差（homoscedasticity）的双高斯混合完成一次EM更新。责任度（responsibility）不是硬分类；最后返回的是更新前似然（likelihood）。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数38",
+      "数39"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "observations",
+        "type": "list[float]",
+        "description": "独立的一维个体测量值。",
+        "unit": "U"
+      },
+      {
+        "name": "weights",
+        "type": "list[float]",
+        "description": "两个分量当前混合权重，非负且和为1。",
+        "unit": "1"
+      },
+      {
+        "name": "means",
+        "type": "list[float]",
+        "description": "两个当前分量均值。",
+        "unit": "U"
+      },
+      {
+        "name": "variance",
+        "type": "float",
+        "description": "两个分量共同且固定的已知方差（variance）。",
+        "unit": "U²"
+      }
+    ],
+    "returns": [
+      {
+        "name": "responsibilities",
+        "type": "list[list[float]]",
+        "description": "每个观测（observation）属于两个分量的当前后验（posterior）概率（probability）。",
+        "unit": "1"
+      },
+      {
+        "name": "new_weights",
+        "type": "list[float]",
+        "description": "一次M步后的权重。",
+        "unit": "1"
+      },
+      {
+        "name": "new_means",
+        "type": "list[float]",
+        "description": "一次M步后的均值，保持输入（input）标签顺序。",
+        "unit": "U"
+      },
+      {
+        "name": "log_likelihood",
+        "type": "float",
+        "description": "更新前参数（parameter）的观测对数似然。",
+        "unit": "1"
+      }
+    ],
+    "contract": "r_ij∝w_j exp(−(y_i−μ_j)²/(2v))；用log-sum-exp归一化。Nj=sum_i r_ij，w′j=Nj/n，μ′j=sum_i r_ij yi/Nj；Nj=0时保留该分量原均值。不得交换标签。",
+    "constraints": [
+      "1—100观测；均值与读数绝对值≤100；0.01≤v≤100；允许零权重但不允许权重全零。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "观测−1对第一分量的责任度为1/(1+exp(−2))≈.880797；对称性保持权重各.5，更新均值约±.761594。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    observations: list[float],\n    weights: list[float],\n    means: list[float],\n    variance: float,\n) -> tuple[list[list[float]], list[float], list[float], float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "observations": [
+            -1.0,
+            1.0
+          ],
+          "weights": [
+            0.5,
+            0.5
+          ],
+          "means": [
+            -1.0,
+            1.0
+          ],
+          "variance": 1.0
+        },
+        "expected": [
+          [
+            [
+              0.8807970779778823,
+              0.11920292202211753
+            ],
+            [
+              0.11920292202211753,
+              0.8807970779778823
+            ]
+          ],
+          [
+            0.49999999999999994,
+            0.49999999999999994
+          ],
+          [
+            -0.7615941559557649,
+            0.7615941559557649
+          ],
+          -2.9703154054432908
+        ],
+        "explanation": "观测−1对第一分量的责任度为1/(1+exp(−2))≈.880797；对称性保持权重各.5，更新均值约±.761594。"
+      }
+    ]
+  },
+  {
+    "id": "p09-em-two-targets",
+    "slug": "p09-em-two-targets",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.4",
+    "lesson_id": "P09-C04-S01",
+    "title": "EM是在做哪种推断",
+    "statement": "固定模型（model）族中，用EM更新未知均值与混合权重。哪些说法正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数38",
+      "数39"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "E步计算给定旧参数（parameter）的隐标签后验（posterior）。"
+      },
+      {
+        "id": "B",
+        "text": "M步更新参数点估计。"
+      },
+      {
+        "id": "C",
+        "text": "这自动给出参数的完整贝叶斯后验。"
+      },
+      {
+        "id": "D",
+        "text": "精确E/M步骤下观测（observation）似然（likelihood）不下降，但不保证全局最优。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-zero-component",
+    "slug": "p09-zero-component",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.4",
+    "lesson_id": "P09-C04-S01",
+    "title": "权重为零的分量",
+    "statement": "当前某分量权重严格为0，所有其他密度有限正。按本题规则做EM会怎样？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数38",
+      "数39"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "该分量责任度（responsibility）为0，下一权重仍为0。"
+      },
+      {
+        "id": "B",
+        "text": "其均值可由0/0随意计算。"
+      },
+      {
+        "id": "C",
+        "text": "保留旧均值可避免未定义操作，但不会自动恢复该分量。"
+      },
+      {
+        "id": "D",
+        "text": "可以把无贡献均值当作由数据精确识别。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-variance-collapse",
+    "slug": "p09-variance-collapse",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.4",
+    "lesson_id": "P09-C04-S01",
+    "title": "自由方差的危险",
+    "statement": "在高斯混合中让一个分量均值等于某观测（observation），再令其方差（variance）趋近0。哪项合理？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数38",
+      "数39"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "无约束似然（likelihood）可能发散；固定方差的本节例子有意避开此退化。"
+      },
+      {
+        "id": "B",
+        "text": "似然越大就证明机制越真实。"
+      },
+      {
+        "id": "C",
+        "text": "EM单调性保证方差不会退化。"
+      },
+      {
+        "id": "D",
+        "text": "只换标签即可修复。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-labels",
+    "slug": "p09-labels",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.4",
+    "lesson_id": "P09-C04-S01",
+    "title": "把两分量标签对换",
+    "statement": "同时对换两分量的权重和均值时，哪些量应保持？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数38",
+      "数39"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "总体混合密度。"
+      },
+      {
+        "id": "B",
+        "text": "各观测（observation）的总似然（likelihood）。"
+      },
+      {
+        "id": "C",
+        "text": "每列责任度（responsibility）的标签名称。"
+      },
+      {
+        "id": "D",
+        "text": "总体预测矩。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-state-moments",
+    "slug": "p09-state-moments",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.4",
+    "lesson_id": "P09-C04-S02",
+    "title": "用平滑矩更新转移系数",
+    "statement": "x[t+1]=a x[t]+w[t]，过程噪声（process noise）方差（variance）固定且为正。初始分布（distribution）与a无关。根据旧参数（parameter）下的平滑矩更新a，并检查残差（residual）二阶矩。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数38",
+      "数39"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "means",
+        "type": "list[float]",
+        "description": "同一次精确固定区间平滑得到的m0…mT。",
+        "unit": "U"
+      },
+      {
+        "name": "variances",
+        "type": "list[float]",
+        "description": "对应的平滑方差V0…VT。",
+        "unit": "U²"
+      },
+      {
+        "name": "lag_covariances",
+        "type": "list[float]",
+        "description": "第t项为Cov(x[t+1],x[t]|全部观测（observation）)，共T项。",
+        "unit": "U²"
+      }
+    ],
+    "returns": [
+      {
+        "name": "coefficient",
+        "type": "float | None",
+        "description": "无约束转移系数的一次M步更新。",
+        "unit": "1"
+      },
+      {
+        "name": "residual_second_moment",
+        "type": "float | None",
+        "description": "新系数下每步残差的后验（posterior）二阶矩平均。",
+        "unit": "U²"
+      }
+    ],
+    "contract": "D=sum(t=0…T−1)(Vt+mt²)，N=sum(Ct+m[t+1]mt)，a′=N/D。返回a′及mean(V[t+1]+m[t+1]²−2a′(Ct+m[t+1]mt)+a′²(Vt+mt²))；D=0时返回(None,None)。",
+    "constraints": [
+      "2—50个状态（state）；输入（input）矩来自合法联合分布；方差非负；均值绝对值≤20；不把结果强制截断到稳定区间。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "D=2，N=2.5，a′=1.25；残差二阶矩为5−2×1.25×2.5+1.25²×2=1.875。仅用均值会错误得到2。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    means: list[float],\n    variances: list[float],\n    lag_covariances: list[float],\n) -> tuple[float | None, float | None]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "means": [
+            1.0,
+            2.0
+          ],
+          "variances": [
+            1.0,
+            1.0
+          ],
+          "lag_covariances": [
+            0.5
+          ]
+        },
+        "expected": [
+          1.25,
+          1.875
+        ],
+        "explanation": "D=2，N=2.5，a′=1.25；残差二阶矩为5−2×1.25×2.5+1.25²×2=1.875。仅用均值会错误得到2。"
+      }
+    ]
+  },
+  {
+    "id": "p09-smoothing-products",
+    "slug": "p09-smoothing-products",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.4",
+    "lesson_id": "P09-C04-S02",
+    "title": "为什么不能只回归平滑均值",
+    "statement": "已知m_t=E[x_t|y]。用m[t+1]m[t]替代E[x[t+1]x[t]|y]遗漏什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数38",
+      "数39"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "相邻状态（state）的平滑交叉协方差（covariance）。"
+      },
+      {
+        "id": "B",
+        "text": "只遗漏可忽略的打印误差。"
+      },
+      {
+        "id": "C",
+        "text": "二者总相等。"
+      },
+      {
+        "id": "D",
+        "text": "只要有很多观测（observation）就可不检查地删除方差（variance）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-initial-parameter",
+    "slug": "p09-initial-parameter",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.4",
+    "lesson_id": "P09-C04-S02",
+    "title": "初始分布也依赖a",
+    "statement": "若采用平稳初态方差（variance）Q/(1−a²)，还能直接使用本节N/D更新吗？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数38",
+      "数39"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "能，初态总能忽略。"
+      },
+      {
+        "id": "B",
+        "text": "不能；初态对数密度也依赖a，目标及约束须重新推导。"
+      },
+      {
+        "id": "C",
+        "text": "只需删除首个读数。"
+      },
+      {
+        "id": "D",
+        "text": "把a改名便可消除依赖。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-approximate-e-step",
+    "slug": "p09-approximate-e-step",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.4",
+    "lesson_id": "P09-C04-S02",
+    "title": "近似平滑代替精确E步",
+    "statement": "将精确平滑换成一个有偏近似，其他步骤照旧。哪些陈述合理？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数38",
+      "数39"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "原始观测（observation）似然（likelihood）的单调性不再自动保证。"
+      },
+      {
+        "id": "B",
+        "text": "应实际比较原似然或给出所用变分目标的保证。"
+      },
+      {
+        "id": "C",
+        "text": "名字仍叫EM就无需核验。"
+      },
+      {
+        "id": "D",
+        "text": "不同目标的上升不能混同。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-unstable-estimate",
+    "slug": "p09-unstable-estimate",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.4",
+    "lesson_id": "P09-C04-S02",
+    "title": "更新得到a大于1",
+    "statement": "一次无约束M步得到a=1.1。哪项正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数38",
+      "数39"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "计算必然错误。"
+      },
+      {
+        "id": "B",
+        "text": "有限记录的无约束最优可能不稳定；如需|a|<1须明确约束后重解。"
+      },
+      {
+        "id": "C",
+        "text": "静默裁剪到.99仍可声称原无约束精确M步。"
+      },
+      {
+        "id": "D",
+        "text": "这证明人体系统会永远增长。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-predictive-moments",
+    "slug": "p09-predictive-moments",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.5",
+    "lesson_id": "P09-C05-S01",
+    "title": "分解预测方差",
+    "statement": "将参数（parameter）后验（posterior）节点带入未来观测（observation）分布（distribution）。按全概率（probability）与总方差（variance）公式返回混合预测矩。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数36",
+      "数38"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "weights",
+        "type": "list[float]",
+        "description": "非负节点权重，可未归一化，但总和为正。",
+        "unit": "1"
+      },
+      {
+        "name": "conditional_means",
+        "type": "list[float]",
+        "description": "每个参数节点的未来读数均值。",
+        "unit": "U"
+      },
+      {
+        "name": "conditional_variances",
+        "type": "list[float]",
+        "description": "每节点的未来读数条件方差。",
+        "unit": "U²"
+      }
+    ],
+    "returns": [
+      {
+        "name": "mean",
+        "type": "float",
+        "description": "混合预测均值。",
+        "unit": "U"
+      },
+      {
+        "name": "variance",
+        "type": "float",
+        "description": "总预测方差。",
+        "unit": "U²"
+      },
+      {
+        "name": "within",
+        "type": "float",
+        "description": "加权条件方差。",
+        "unit": "U²"
+      },
+      {
+        "name": "between",
+        "type": "float",
+        "description": "条件均值的加权方差。",
+        "unit": "U²"
+      }
+    ],
+    "contract": "先归一化w；m=sum(wi mi)，within=sum(wi vi)，between=sum(wi(mi−m)²)，variance=within+between。",
+    "constraints": [
+      "1—100节点；权重≥0且总和>0；|mi|≤100；0≤vi≤100；三组列表等长。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "均值1.5；条件噪声方差1，加上节点均值方差.75，得到总方差1.75。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    weights: list[float],\n    conditional_means: list[float],\n    conditional_variances: list[float],\n) -> tuple[float, float, float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "weights": [
+            1.0,
+            3.0
+          ],
+          "conditional_means": [
+            0.0,
+            2.0
+          ],
+          "conditional_variances": [
+            1.0,
+            1.0
+          ]
+        },
+        "expected": [
+          1.5,
+          1.75,
+          1.0,
+          0.75
+        ],
+        "explanation": "均值1.5；条件噪声方差1，加上节点均值方差.75，得到总方差1.75。"
+      }
+    ]
+  },
+  {
+    "id": "p09-interval-meaning",
+    "slug": "p09-interval-meaning",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.5",
+    "lesson_id": "P09-C05-S01",
+    "title": "同样是95%区间",
+    "statement": "在给定模型（model）和数据下，参数（parameter）的95%可信区间（credible interval）和未来读数的95%预测区间（prediction interval）有何不同？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数36",
+      "数38"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "前者关于未知参数，后者关于新观测（observation）。"
+      },
+      {
+        "id": "B",
+        "text": "预测区间还包含新观测的随机性。"
+      },
+      {
+        "id": "C",
+        "text": "二者必须同宽。"
+      },
+      {
+        "id": "D",
+        "text": "可信区间宽度就是数值积分误差。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-nonlinear-expectation",
+    "slug": "p09-nonlinear-expectation",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.5",
+    "lesson_id": "P09-C05-S01",
+    "title": "把平均参数代入就行吗",
+    "statement": "预测均值为E[A0 exp(−kt)|y]。是否总等于A0 exp(−E[k|y]t)？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数36",
+      "数38"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "总相等。"
+      },
+      {
+        "id": "B",
+        "text": "一般不相等，因为映射非线性。"
+      },
+      {
+        "id": "C",
+        "text": "只能通过模拟得到，不能积分。"
+      },
+      {
+        "id": "D",
+        "text": "参数（parameter）后验（posterior）很窄时可近似，但须检查误差。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-mixture-not-normal",
+    "slug": "p09-mixture-not-normal",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.5",
+    "lesson_id": "P09-C05-S01",
+    "title": "只有均值和方差还不够",
+    "statement": "一个预测分布（distribution）是分离的双高斯混合。用m±1.96s作为区间时，应怎样表述？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数36",
+      "数38"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "必为精确95%预测区间（prediction interval）。"
+      },
+      {
+        "id": "B",
+        "text": "它是矩匹配高斯区间，实际质量需从混合分布核对。"
+      },
+      {
+        "id": "C",
+        "text": "均值和方差（variance）唯一决定任意分布。"
+      },
+      {
+        "id": "D",
+        "text": "直接用节点均值范围就是95%区间。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-conditional-variance",
+    "slug": "p09-conditional-variance",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.5",
+    "lesson_id": "P09-C05-S01",
+    "title": "为什么还要条件方差",
+    "statement": "只使用后验（posterior）参数（parameter）样本生成无噪声平均轨迹（trajectory），并据此给未来单次读数画带，会怎样？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数36",
+      "数38"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "可能漏掉观测（observation）或过程随机性。"
+      },
+      {
+        "id": "B",
+        "text": "样本多就自动加回观测噪声。"
+      },
+      {
+        "id": "C",
+        "text": "若目标本来就是无噪声平均响应，则应明确该带的对象。"
+      },
+      {
+        "id": "D",
+        "text": "带越窄越能证明方法好。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-predictive-score",
+    "slug": "p09-predictive-score",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.5",
+    "lesson_id": "P09-C05-S02",
+    "title": "在留出观测上比较预测",
+    "statement": "用同一个高斯混合预测分布（distribution）评分若干独立观测（observation），保留区间覆盖与计算预算。评分使用完整混合密度，不改成匹配矩的单高斯。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数36",
+      "数38"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "observed",
+        "type": "list[float]",
+        "description": "独立最终评估读数。",
+        "unit": "U"
+      },
+      {
+        "name": "weights",
+        "type": "list[float]",
+        "description": "预测高斯混合的非负权重，和为正。",
+        "unit": "1"
+      },
+      {
+        "name": "means",
+        "type": "list[float]",
+        "description": "各预测高斯分量均值。",
+        "unit": "U"
+      },
+      {
+        "name": "variances",
+        "type": "list[float]",
+        "description": "各预测高斯分量方差（variance）。",
+        "unit": "U²"
+      },
+      {
+        "name": "lower",
+        "type": "list[float]",
+        "description": "与读数一一对应的预先确定区间下界。",
+        "unit": "U"
+      },
+      {
+        "name": "upper",
+        "type": "list[float]",
+        "description": "对应上界，边界点算覆盖。",
+        "unit": "U"
+      },
+      {
+        "name": "evaluations",
+        "type": "int",
+        "description": "形成预测所用的密度评估次数，原样报告。",
+        "unit": "次"
+      }
+    ],
+    "returns": [
+      {
+        "name": "mse",
+        "type": "float | None",
+        "description": "读数相对混合均值的平均平方误差。",
+        "unit": "U²"
+      },
+      {
+        "name": "mean_log_score",
+        "type": "float | None",
+        "description": "均值log预测密度，越大越好；同一U尺度下比较。",
+        "unit": "1"
+      },
+      {
+        "name": "coverage",
+        "type": "float | None",
+        "description": "落在各自闭区间内的比例。",
+        "unit": "1"
+      },
+      {
+        "name": "budget",
+        "type": "int",
+        "description": "原样返回evaluations。",
+        "unit": "次"
+      }
+    ],
+    "contract": "m=sum(wi mi)/sum(w)；MSE=mean((y−m)²)；logscore=mean(log sum(normalized wi·Normal(y|mi,vi)))；coverage=mean(lo≤y≤hi)。无观测时前三项None，预算仍返回。",
+    "constraints": [
+      "0—100观测；1—10分量；vi∈[.01,100]；数值绝对值≤100；区间与观测等长，lo≤hi；evaluations≥0。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "两读数距离预测均值均为1，所以MSE=1；平均log分数=−(log(2π)+1)/2≈−1.418939；两区间均覆盖，覆盖率1。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    observed: list[float],\n    weights: list[float],\n    means: list[float],\n    variances: list[float],\n    lower: list[float],\n    upper: list[float],\n    evaluations: int,\n) -> tuple[float | None, float | None, float | None, int]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "observed": [
+            0.0,
+            2.0
+          ],
+          "weights": [
+            1.0
+          ],
+          "means": [
+            1.0
+          ],
+          "variances": [
+            1.0
+          ],
+          "lower": [
+            -1.0,
+            1.0
+          ],
+          "upper": [
+            1.0,
+            3.0
+          ],
+          "evaluations": 20
+        },
+        "expected": [
+          1.0,
+          -1.4189385332046727,
+          1.0,
+          20
+        ],
+        "explanation": "两读数距离预测均值均为1，所以MSE=1；平均log分数=−(log(2π)+1)/2≈−1.418939；两区间均覆盖，覆盖率1。"
+      }
+    ]
+  },
+  {
+    "id": "p09-posterior-check-reuse",
+    "slug": "p09-posterior-check-reuse",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.5",
+    "lesson_id": "P09-C05-S02",
+    "title": "后验预测检验是否独立验证",
+    "statement": "用同一批y拟合后验（posterior），并生成复制数据yrep比较偏态或时间残差（residual）结构。哪些说法正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数36",
+      "数38"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "这是模型（model）检查，但不是独立留出验证。"
+      },
+      {
+        "id": "B",
+        "text": "预先说明检查统计量（statistic）及复制数据的生成条件。"
+      },
+      {
+        "id": "C",
+        "text": "发现失配后更新模型，仍可把当前拟合表现称独立证据。"
+      },
+      {
+        "id": "D",
+        "text": "检查与独立预测可以互补。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-coverage-uncertainty",
+    "slug": "p09-coverage-uncertainty",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.5",
+    "lesson_id": "P09-C05-S02",
+    "title": "18次覆盖足够下结论吗",
+    "statement": "20个独立场景的95%预测区间（prediction interval）覆盖18次。哪项合理？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数36",
+      "数38"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "真实覆盖率精确等于90%。"
+      },
+      {
+        "id": "B",
+        "text": "有限比例有二项抽样波动，应给区间或标准误（standard error）并增加独立场景。"
+      },
+      {
+        "id": "C",
+        "text": "删去两次失败即可达到100%。"
+      },
+      {
+        "id": "D",
+        "text": "以场景内的100个相关时点冒充100倍独立样本。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-fair-prediction",
+    "slug": "p09-fair-prediction",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.5",
+    "lesson_id": "P09-C05-S02",
+    "title": "怎样比较两种推断方法",
+    "statement": "同一模型（model）下比较网格与采样（sampling）预测。哪些条件应对齐或明确报告？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数36",
+      "数38"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "先验（prior）、似然（likelihood）、训练读数与留出场景。"
+      },
+      {
+        "id": "B",
+        "text": "计算预算及近似设置。"
+      },
+      {
+        "id": "C",
+        "text": "只对一种方法剔除失败案例。"
+      },
+      {
+        "id": "D",
+        "text": "观测（observation）尺度、预测目标及评分方向。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-noise-misspecification",
+    "slug": "p09-noise-misspecification",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.5",
+    "lesson_id": "P09-C05-S02",
+    "title": "所有推断方法都漏覆盖",
+    "statement": "同一错误噪声模型（model）下，精确积分、长链和变分预测都明显漏覆盖。哪项优先？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数36",
+      "数38"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "只增加采样（sampling）长度，拒绝检查模型。"
+      },
+      {
+        "id": "B",
+        "text": "检查观测（observation）噪声、输入（input）机制及评估条件，区分模型错设与计算近似。"
+      },
+      {
+        "id": "C",
+        "text": "说明三种算法都不能求后验（posterior）。"
+      },
+      {
+        "id": "D",
+        "text": "把评估读数加入训练后继续称为留出。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-cap-prior",
+    "slug": "p09-cap-prior",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.summary",
+    "lesson_id": "P09-SUMMARY",
+    "title": "先明确预测对象",
+    "statement": "同一组清除观测（observation）用于建立正参数（parameter）k的后验（posterior）。哪些安排正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数36",
+      "数37",
+      "数38",
+      "数39"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "说明先验（prior）来源并检查后验可积。"
+      },
+      {
+        "id": "B",
+        "text": "参数可信区间（credible interval）与未来读数区间分别计算。"
+      },
+      {
+        "id": "C",
+        "text": "重复使用同一似然（likelihood）作为新的独立实验。"
+      },
+      {
+        "id": "D",
+        "text": "只报告MAP就已经报告全部不确定性。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-cap-diagnostic",
+    "slug": "p09-cap-diagnostic",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.summary",
+    "lesson_id": "P09-SUMMARY",
+    "title": "收敛声明需要哪些证据",
+    "statement": "两条短链各困在不同模态（mode），接受率都为80%。哪项结论可靠？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数36",
+      "数37",
+      "数38",
+      "数39"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "后验（posterior）均值已收敛。"
+      },
+      {
+        "id": "B",
+        "text": "接受率一致就可以直接合并当独立样本。"
+      },
+      {
+        "id": "C",
+        "text": "当前预算不足以支持充分混合，应报告模式覆盖并扩展检查。"
+      },
+      {
+        "id": "D",
+        "text": "删去均值较差的一条链。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-cap-local",
+    "slug": "p09-cap-local",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.summary",
+    "lesson_id": "P09-SUMMARY",
+    "title": "后验局部近似与边界",
+    "statement": "独立事件（event）计数服从Poisson(kE)，正参数（parameter）k有Gamma(a,b)先验（prior），b采用率参数化。计算内点模态（mode）及局部曲率；不把边界当作内点。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数36"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "shape",
+        "type": "float",
+        "description": "Gamma先验形状a。",
+        "unit": "1"
+      },
+      {
+        "name": "rate",
+        "type": "float",
+        "description": "Gamma先验率b，密度含exp(−bk)。",
+        "unit": "T"
+      },
+      {
+        "name": "count",
+        "type": "int",
+        "description": "Poisson事件总数c。",
+        "unit": "1"
+      },
+      {
+        "name": "exposure",
+        "type": "float",
+        "description": "已知暴露时长E，事件均值为kE。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "mode",
+        "type": "float | None",
+        "description": "内点模态；边界情形为None。",
+        "unit": "1/T"
+      },
+      {
+        "name": "curvature",
+        "type": "float | None",
+        "description": "负对数后验（posterior）在模态处的二阶导数（derivative）。",
+        "unit": "T²"
+      },
+      {
+        "name": "variance",
+        "type": "float | None",
+        "description": "局部高斯方差（variance），即曲率的倒数。",
+        "unit": "1/T²"
+      },
+      {
+        "name": "status",
+        "type": "str",
+        "description": "interior或boundary。",
+        "unit": "不适用"
+      }
+    ],
+    "contract": "更新a′=a+c，b′=b+E；a′>1时mode=(a′−1)/b′，curvature=(a′−1)/mode²，variance=1/curvature；a′≤1统一返回(None,None,None,\"boundary\")。",
+    "constraints": [
+      "a,b>0；0≤c≤100；E≥0；a,b,E≤100。 E=0时仅允许c=0。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "a′=4，b′=4，因此模态0.75、曲率16/3、近似方差3/16；后验均值为1，与模态不同。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    shape: float,\n    rate: float,\n    count: int,\n    exposure: float,\n) -> tuple[float | None, float | None, float | None, str]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "shape": 2.0,
+          "rate": 1.0,
+          "count": 3,
+          "exposure": 2.0
+        },
+        "expected": [
+          1.3333333333333333,
+          2.25,
+          0.4444444444444444,
+          "interior"
+        ],
+        "explanation": "后验形状5、率3；众数4/3，曲率9/4，局部方差4/9。精确方差5/9与局部方差不同，不能混用。"
+      }
+    ]
+  },
+  {
+    "id": "p09-cap-mh",
+    "slug": "p09-cap-mh",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.summary",
+    "lesson_id": "P09-SUMMARY",
+    "title": "固定提议下的接受与拒绝",
+    "statement": "目标是等权双高斯混合。用题给候选点、提议比与均匀数重放MH链；不得再随机抽样。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数36",
+      "数37"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "initial",
+        "type": "float",
+        "description": "初始链状态（state）。",
+        "unit": "1"
+      },
+      {
+        "name": "candidates",
+        "type": "list[float]",
+        "description": "依次给定的候选点，拒绝后下一候选仍按本列表读取。",
+        "unit": "1"
+      },
+      {
+        "name": "log_reverse_over_forward",
+        "type": "list[float]",
+        "description": "每一步log q(当前|候选)−log q(候选|当前)。",
+        "unit": "1"
+      },
+      {
+        "name": "uniforms",
+        "type": "list[float]",
+        "description": "固定均匀数；0≤u<1。",
+        "unit": "1"
+      },
+      {
+        "name": "separation",
+        "type": "float",
+        "description": "等权N(−d,1)、N(d,1)目标中的d。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "states",
+        "type": "list[float]",
+        "description": "含初值（initial condition）和每次接受/拒绝后状态。",
+        "unit": "1"
+      },
+      {
+        "name": "accepted",
+        "type": "list[bool]",
+        "description": "按步骤返回是否接受。",
+        "unit": "不适用"
+      }
+    ],
+    "contract": "logα=min(0,logp(candidate)−logp(current)+log_reverse_over_forward[i])。u=0或logu<logα即接受，否则保持当前值。d=0退化成N(0,1)。",
+    "constraints": [
+      "三组步骤列表等长0—100；数值绝对值≤100；0≤d≤5；均匀数在[0,1)。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "第一步exp(−1/2)>.2故接受1；第二步概率exp(−7.5)<.9故保持1；第三步到−1密度相同故接受。轨迹（trajectory）为[0,1,1,−1]。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    initial: float,\n    candidates: list[float],\n    log_reverse_over_forward: list[float],\n    uniforms: list[float],\n    separation: float,\n) -> tuple[list[float], list[bool]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "initial": 0.0,
+          "candidates": [
+            1.0,
+            -1.0,
+            2.0
+          ],
+          "log_reverse_over_forward": [
+            0.6931471805599453,
+            -2.3025850929940455,
+            0.0
+          ],
+          "uniforms": [
+            0.8,
+            0.2,
+            0.1
+          ],
+          "separation": 0.0
+        },
+        "expected": [
+          [
+            0.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          [
+            true,
+            false,
+            true
+          ]
+        ],
+        "explanation": "第一步接受概率（probability）为1；第二步目标密度不变但反向/正向提议比为.1，因此拒绝；第三步概率exp(−1.5)大于.1，接受。状态为[0,1,1,2]。"
+      }
+    ]
+  },
+  {
+    "id": "p09-cap-variational",
+    "slug": "p09-cap-variational",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.summary",
+    "lesson_id": "P09-SUMMARY",
+    "title": "均值场更新与证据差距",
+    "statement": "目标p=N(μ,P⁻¹)，近似q=q1q2。实现一轮精确坐标更新并计算解析KL。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数38"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "precision",
+        "type": "list[list[float]]",
+        "description": "二维高斯目标的对称正定（positive definite）精度矩阵（matrix）P。",
+        "unit": "1"
+      },
+      {
+        "name": "target_mean",
+        "type": "list[float]",
+        "description": "目标均值μ。",
+        "unit": "1"
+      },
+      {
+        "name": "current_mean",
+        "type": "list[float]",
+        "description": "当前两个因子均值。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "means",
+        "type": "list[float]",
+        "description": "先更新第一因子、再用新值更新第二因子的均值。",
+        "unit": "1"
+      },
+      {
+        "name": "variances",
+        "type": "list[float]",
+        "description": "独立因子的方差（variance）1/Pii。",
+        "unit": "1"
+      },
+      {
+        "name": "kl",
+        "type": "float",
+        "description": "更新后的KL(q||p)，单位nat。",
+        "unit": "nat"
+      }
+    ],
+    "contract": "m1=μ1−P12(m2−μ2)/P11；再用新m1更新m2=μ2−P21(m1−μ1)/P22。vi=1/Pii；KL=[tr(Pdiag(v))+(m−μ)ᵀP(m−μ)−2−log(det(P)v1v2)]/2。",
+    "constraints": [
+      "二维正定P，特征值（eigenvalue）在[0.05,20]，均值绝对值≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "依次得到均值[1,0.5]、方差[0.5,0.5]；KL=(1.5−log(.75))/2≈0.893841。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    precision: list[list[float]],\n    target_mean: list[float],\n    current_mean: list[float],\n) -> tuple[list[float], list[float], float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "precision": [
+            [
+              2.0,
+              -1.0
+            ],
+            [
+              -1.0,
+              2.0
+            ]
+          ],
+          "target_mean": [
+            1.0,
+            -1.0
+          ],
+          "current_mean": [
+            3.0,
+            1.0
+          ]
+        },
+        "expected": [
+          [
+            2.0,
+            -0.5
+          ],
+          [
+            0.5,
+            0.5
+          ],
+          0.8938410362258904
+        ],
+        "explanation": "先更新第一均值到2，再用新值更新第二均值到−.5；两个方差均为.5。更新后的均值仍未到目标均值，KL同时包含优化误差和独立因子限制。"
+      }
+    ]
+  },
+  {
+    "id": "p09-cap-predictive",
+    "slug": "p09-cap-predictive",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.summary",
+    "lesson_id": "P09-SUMMARY",
+    "title": "同一留出条件下的评分与预算",
+    "statement": "用同一个高斯混合预测分布（distribution）评分若干独立观测（observation），保留区间覆盖与计算预算。评分使用完整混合密度，不改成匹配矩的单高斯。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数36",
+      "数38"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "observed",
+        "type": "list[float]",
+        "description": "独立最终评估读数。",
+        "unit": "U"
+      },
+      {
+        "name": "weights",
+        "type": "list[float]",
+        "description": "预测高斯混合的非负权重，和为正。",
+        "unit": "1"
+      },
+      {
+        "name": "means",
+        "type": "list[float]",
+        "description": "各预测高斯分量均值。",
+        "unit": "U"
+      },
+      {
+        "name": "variances",
+        "type": "list[float]",
+        "description": "各预测高斯分量方差（variance）。",
+        "unit": "U²"
+      },
+      {
+        "name": "lower",
+        "type": "list[float]",
+        "description": "与读数一一对应的预先确定区间下界。",
+        "unit": "U"
+      },
+      {
+        "name": "upper",
+        "type": "list[float]",
+        "description": "对应上界，边界点算覆盖。",
+        "unit": "U"
+      },
+      {
+        "name": "evaluations",
+        "type": "int",
+        "description": "形成预测所用的密度评估次数，原样报告。",
+        "unit": "次"
+      }
+    ],
+    "returns": [
+      {
+        "name": "mse",
+        "type": "float | None",
+        "description": "读数相对混合均值的平均平方误差。",
+        "unit": "U²"
+      },
+      {
+        "name": "mean_log_score",
+        "type": "float | None",
+        "description": "均值log预测密度，越大越好；同一U尺度下比较。",
+        "unit": "1"
+      },
+      {
+        "name": "coverage",
+        "type": "float | None",
+        "description": "落在各自闭区间内的比例。",
+        "unit": "1"
+      },
+      {
+        "name": "budget",
+        "type": "int",
+        "description": "原样返回evaluations。",
+        "unit": "次"
+      }
+    ],
+    "contract": "m=sum(wi mi)/sum(w)；MSE=mean((y−m)²)；logscore=mean(log sum(normalized wi·Normal(y|mi,vi)))；coverage=mean(lo≤y≤hi)。无观测时前三项None，预算仍返回。",
+    "constraints": [
+      "0—100观测；1—10分量；vi∈[.01,100]；数值绝对值≤100；区间与观测等长，lo≤hi；evaluations≥0。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "两读数距离预测均值均为1，所以MSE=1；平均log分数=−(log(2π)+1)/2≈−1.418939；两区间均覆盖，覆盖率1。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    observed: list[float],\n    weights: list[float],\n    means: list[float],\n    variances: list[float],\n    lower: list[float],\n    upper: list[float],\n    evaluations: int,\n) -> tuple[float | None, float | None, float | None, int]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "observed": [
+            -1.0,
+            1.0,
+            3.0
+          ],
+          "weights": [
+            1.0,
+            1.0
+          ],
+          "means": [
+            -1.0,
+            1.0
+          ],
+          "variances": [
+            0.25,
+            0.25
+          ],
+          "lower": [
+            -2.0,
+            -2.0,
+            -2.0
+          ],
+          "upper": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "evaluations": 500
+        },
+        "expected": [
+          3.6666666666666665,
+          -3.5853815956101585,
+          0.6666666666666666,
+          500
+        ],
+        "explanation": "混合均值为0，所以MSE=(1+1+9)/3=11/3；3个读数中2个被覆盖，覆盖率2/3。log分数必须在每个读数处先相加两分量密度再取log；预算保持500。"
+      }
+    ]
+  },
+  {
+    "id": "p09-cap-em",
+    "slug": "p09-cap-em",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.summary",
+    "lesson_id": "P09-SUMMARY",
+    "title": "似然变大是否代表机制成立",
+    "statement": "混合模型（model）尝试多个初值（initial condition），其中一组通过缩小分量方差（variance）得到极大似然（likelihood）。哪些判断成立？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数36",
+      "数37",
+      "数38",
+      "数39"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "需检查方差塌缩，而不直接宣布更好的生理机制。"
+      },
+      {
+        "id": "B",
+        "text": "交换标签可能产生相同密度，不是新的机制证据。"
+      },
+      {
+        "id": "C",
+        "text": "EM单调上升必给全局有限最优。"
+      },
+      {
+        "id": "D",
+        "text": "独立预测与明确约束能提供补充检查。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p09-cap-misspecification",
+    "slug": "p09-cap-misspecification",
+    "version": "1",
+    "part": "9",
+    "chapter": "9.summary",
+    "lesson_id": "P09-SUMMARY",
+    "title": "新条件下的校准失败",
+    "statement": "同一训练模型（model）的网格、MCMC和VI预测在新输入（input）条件下都偏低，网格细化后仍如此。哪些后续步骤恰当？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数36",
+      "数37",
+      "数38",
+      "数39"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "保留原预测和失败案例。"
+      },
+      {
+        "id": "B",
+        "text": "考虑缺失输入机制或噪声假设，重新建模后用未参与更新的数据验证。"
+      },
+      {
+        "id": "C",
+        "text": "因网格近乎精确，所以真实机制一定正确。"
+      },
+      {
+        "id": "D",
+        "text": "把本次评估用于更新后，仍将拟合结果当独立验证。"
+      }
+    ],
+    "constraints": []
+  }
+]

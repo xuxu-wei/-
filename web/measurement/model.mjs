@@ -31,7 +31,7 @@ export function zohCoefficients(k,h){
  return {a:Math.exp(-k*h),b:k===0?h:-Math.expm1(-k*h)/k};
 }
 export function compartment(k=.2,u=0,A0=10,h=1,duration=60){
- const coefficients=zohCoefficients(k,h);finite(u,'输入流量');finite(A0,'初始物质量');positive(duration,'记录时长');
+ const coefficients=zohCoefficients(k,h);finite(u,'输入流量');finite(A0,'初始总量');positive(duration,'记录时长');
  if(u<0||A0<0)throw new RangeError('本物质模型的输入与初始量均须非负');
  const count=Math.floor(duration/h+1e-10);if(count>10000)throw new RangeError('采样点数过多');
  const exactAt=t=>k===0?A0+u*t:A0*Math.exp(-k*t)+u*(-Math.expm1(-k*t))/k;

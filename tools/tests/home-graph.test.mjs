@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {nodeProgress, chooseResumePart, mixColors, getView, directNeighborhood} from '../../web/home/graph-model.mjs';
+import {nodeProgress, chooseResumePart, mixColors, categoryColor, getView, directNeighborhood} from '../../web/home/graph-model.mjs';
 
 const graph = JSON.parse(readFileSync(new URL('../../web/home/graph.json', import.meta.url), 'utf8'));
 const base = {id:'1', number:'1', kind:'part', available:true, published:1, total:1, questionIds:['a','b'], assessmentIds:['a-summary']};
@@ -56,6 +56,27 @@ test('five lens colors blend deterministically without dim encoded-color averagi
   assert.equal(mixColors(['a','b'],taxonomy),'#bc00bc');
   assert.equal(mixColors(['b','a','a'],taxonomy),'#bc00bc');
   assert.equal(mixColors(['unknown'],taxonomy),'#9cbbdd');
+});
+
+test('both requested palettes follow the five lenses in their existing order', () => {
+  assert.deepEqual(graph.taxonomy.map(t=>t.id),['method','evolution','cognition','regulation','practice']);
+  for (const [theme, expected] of [
+    ['dark',['#d1e4e6','#f4e1c1','#2b4a8c','#4f7c8c','#fbc9b4']],
+    ['light',['#2c2f4b','#ffb300','#2b4a8c','#4f7c8c','#fbc9b4']],
+  ]) {
+    assert.deepEqual(graph.taxonomy.map(t=>categoryColor(t,theme).toLowerCase()),expected);
+    for (const t of graph.taxonomy) assert.equal(mixColors([t.id],graph.taxonomy,theme),categoryColor(t,theme));
+  }
+});
+
+test('theme-dependent blending retains identity, deduplicates categories and accepts legacy palettes', () => {
+  const palette=[{id:'a',color:'#ff0000',lightColor:'#00ff00'},{id:'b',color:'#0000ff',lightColor:'#ff0000'}];
+  const before=JSON.stringify(palette);
+  assert.equal(mixColors(['a','b'],palette,'dark'),'#bc00bc');
+  assert.equal(mixColors(['a','b'],palette,'light'),'#bcbc00');
+  assert.equal(mixColors(['b','a','a'],palette,'light'),'#bcbc00');
+  assert.equal(mixColors(['a'],[{id:'a',color:'#ff0000'}],'light'),'#ff0000');
+  assert.equal(JSON.stringify(palette),before);
 });
 
 test('each view selects only the requested hierarchy level and its direct edges', () => {

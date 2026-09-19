@@ -8,7 +8,7 @@ const fmt=x=>x===null?'缺测':Number(x.toPrecision(4)).toString();
 const svg=(tag,attrs,text)=>{const n=document.createElementNS(ns,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,v);if(text!==undefined)n.textContent=text;return n;};
 let chapter,mode,p={},data,playback;
 const definitions={
- '7.1':{title:'只看总量，能分清两个室吗？',question:'先预测：初始物质量分别是 [8,2] 与 [2,8]，总量相同。测量一个室和测量总量，得到的信息会有什么不同？',explanation:'状态（state）包含两个室的物质量，观测（observation）由传感器（sensor）映射得到。能观性（observability）问的是：模型已知时，不同初始状态能否由一段无噪输出区分。',formula:'x[n+1]=F x[n]；y[n]=H x[n]；O=[H; HF]'},
+ '7.1':{title:'只看总量，能分清两个室吗？',question:'先预测：初始总量分别是 [8,2] 与 [2,8]，总量相同。测量一个室和测量总量，得到的信息会有什么不同？',explanation:'状态（state）包含两个室的总量，观测（observation）由传感器（sensor）映射得到。能观性（observability）问的是：模型已知时，不同初始状态能否由一段无噪输出区分。',formula:'x[n+1]=F x[n]；y[n]=H x[n]；O=[H; HF]'},
  '7.2':{title:'预测，再用新读数修正概率',question:'先预测：当前标记明亮，就能确定细胞处于活跃状态吗？逐次查看标记，比较读数到来前后的三种状态概率。',explanation:'隐马尔可夫模型（hidden Markov model，HMM）将状态转移与测量机制分开。贝叶斯滤波（Bayesian filtering）先对未知前态求和，再用当次似然（likelihood）更新；一个读数只使用一次。',formula:'p⁻[j]=Σᵢ p[i] T[i,j]；p⁺[j]=p⁻[j] L[j] / Σₖ p⁻[k] L[k]'},
  '7.3':{title:'一次观测怎样缩小状态的不确定性',question:'先预测：观测只有第一个室，第二个室的不确定性会不会改变？逐次播放，比较预测与滤波的联合分布。',explanation:'卡尔曼滤波（Kalman filter，KF）在线性高斯模型中递推均值（mean）与协方差（covariance）。增益（gain）由预测误差与测量噪声（measurement noise）共同决定。椭圆展示两个室的不确定性关联。',formula:'m⁻=F m；P⁻=F P Fᵀ+Q；K=P⁻Hᵀ/(H P⁻Hᵀ+R)；m⁺=m⁻+K(y−Hm⁻)'},
  '7.4':{title:'一个钟形近似，能装下两个可能状态吗？',question:'先预测：只看到 x² 接近 1.4，能判断 x 的正负吗？将先验均值移到零，比较网格积分刻画的后验形状与两种高斯近似。',explanation:'扩展卡尔曼滤波（extended Kalman filter，EKF）在均值处线性化；无迹卡尔曼滤波（unscented Kalman filter，UKF）传播确定性采样点。两者都只保留一个高斯分布，不能完整表达双峰（bimodal）后验。',formula:'x ~ N(m,0.8)；y=x²+v，v ~ N(0,R)；p(x|y) ∝ p(x) p(y|x)'},
@@ -31,7 +31,7 @@ function recompute(){
  if(mode==='7.1'){
   data=exchange(p.exchange,p.total);$('alternate').textContent=p.total?'切换为只测第一室':'切换为测量两室总量';
   $('preset-note').textContent=`当前 H=[${data.H}]；两种初态总量均为 10 U。按钮切换传感器，交换比例保持不变。`;
-  $('assumptions').textContent='理想封闭二室，U 是物质量单位；每步两室各流出自身的 c 比例给另一室，无清除、输入或噪声。此页首先检验已知离散模型的无噪可区分性。';
+  $('assumptions').textContent='理想封闭二室，U 是所追踪物质总量（tracked amount）的教学单位；每步两室各流出自身的 c 比例给另一室，无清除、输入或噪声。此页首先检验已知离散模型的无噪可区分性。';
   $('chart-heading').textContent='内部状态不同，读数可能相同';$('value-label').textContent='两步能观矩阵的秩';$('value').textContent=`${data.rank} / 2`;
   $('chart-note').textContent='左图只画两个初态对应的第一室状态；第二室始终等于 10 减第一室。右图画传感器读数。总量传感器的曲线重合，不能恢复物质如何分配；秩满也不保证有噪恢复误差小。';
   legend([['初态 [8,2]',blue,false],['初态 [2,8]',pink,true]]);table(['步 n','初态一：第一室 / U','初态二：第一室 / U','读数一 / U','读数二 / U'],data.paths[0].map((x,i)=>[i,x[0],data.paths[1][i][0],data.outputs[0][i],data.outputs[1][i]]));

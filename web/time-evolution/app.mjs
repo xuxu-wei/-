@@ -48,19 +48,19 @@ function draw(time){
   const value=target.value?target.value(time):target.values[i],shownTime=target.value?time:target.times[i];
   $('timeline').value=time;$('time-readout').textContent=`t = ${time.toFixed(2)} T / ${end} T`;
   $('value').textContent=fmt(value)+' U';$('play-counter').textContent=`${time.toFixed(2)} T · ${fmt(value)} U`;
-  $('value-label').textContent=target.value?'当前解析物质量':`最近完成时刻 ${fmt(shownTime)} T`;
+  $('value-label').textContent=target.value?'当前解析总量':`最近完成时刻 ${fmt(shownTime)} T`;
   if(mode==='numerical'){
     const p=properties(params.k,params.h),reference=exact(shownTime,params.u,params.k,params.initial);
     $('observation').textContent=`q=${fmt(p.q)}；严格渐近稳定：${p.stable?'是':'否'}；非负保证：${p.nonnegative?'是':'否'}。同刻误差 ${fmt(Math.abs(value-reference))} U。`;
   }else $('observation').textContent=mode==='continuous'?'同一初始量，比较同一时刻；改变速度时同时检查终点趋势。':'标记在更新完成时出现；较小间隔会改变每步的输入量与清除比例。';
-  $('model-warning').hidden=!(value<0);$('model-warning').textContent='负物质量是当前规则/步长的失败信号。这里保留负值；减小步长后重新比较，不把曲线裁剪为零。';
+  $('model-warning').hidden=!(value<0);$('model-warning').textContent='负总量是当前规则/步长的失败信号。这里保留负值；减小步长后重新比较，不把曲线裁剪为零。';
   const low=Math.min(0,...series.flatMap(s=>s.values)),high=Math.max(1,...series.flatMap(s=>s.values)),pad=(high-low)*.12;
   const x=t=>75+t/end*675,y=v=>315-(v-low+pad)/(high-low+2*pad)*270;
-  const chart=$('chart');chart.replaceChildren(svg('title',{id:'svg-title'},'同一条件下的物质量轨迹'),svg('desc',{id:'svg-desc'},`当前 ${fmt(value)} U；精确数值见图下表格。`));
+  const chart=$('chart');chart.replaceChildren(svg('title',{id:'svg-title'},'同一条件下的总量轨迹'),svg('desc',{id:'svg-desc'},`当前 ${fmt(value)} U；精确数值见图下表格。`));
   for(let j=0;j<=4;j++){const v=low+(high-low)*j/4;chart.append(svg('line',{x1:75,x2:750,y1:y(v),y2:y(v),stroke:theme.ui.tint,'stroke-opacity':.5}),svg('text',{x:64,y:y(v)+5,'text-anchor':'end',fill:theme.ui.text,'font-size':14},Number(v.toPrecision(4))));}
   chart.append(svg('line',{x1:75,x2:750,y1:y(0),y2:y(0),stroke:theme.data.reference,'stroke-dasharray':'3 5'}));
   for(let t=0;t<=end;t+=2)chart.append(svg('text',{x:x(t),y:342,'text-anchor':'middle',fill:theme.ui.text,'font-size':14},t));
-  chart.append(svg('text',{x:415,y:374,'text-anchor':'middle',fill:theme.ui.text,'font-size':15},'时间 / T'),svg('text',{x:75,y:22,fill:theme.ui.text,'font-size':15},'物质量 / U'));
+  chart.append(svg('text',{x:415,y:374,'text-anchor':'middle',fill:theme.ui.text,'font-size':15},'时间 / T'),svg('text',{x:75,y:22,fill:theme.ui.text,'font-size':15},'总量 / U'));
   for(const s of series){
     const points=s.times.map((t,i)=>[t,s.values[i]]).filter(([t])=>t<=time+1e-10);
     if(s.value&&points.at(-1)?.[0]<time)points.push([time,s.value(time)]);
@@ -76,11 +76,11 @@ async function start(){
   $('eyebrow').textContent=`${current.id} 章 · 可视化与探索`;
   $('title').textContent={discrete:'一步的规则，累积成怎样的过程',continuous:'相同的平衡，可以有不同的速度',numerical:'步长改变的是算法，还是系统'}[mode];
   $('question').textContent={discrete:'同样的输入（input）与清除速率，改变更新间隔后，末量是否相同？先预测，再播放比较。',continuous:'把输入（input）和清除系数（elimination rate constant）同时加倍，平衡（equilibrium）位置和靠近速度会怎样变？',numerical:'没有输入（input）的单室模型（one-compartment model）连续衰减时始终非负；为什么欧拉法（forward Euler method）可能得到负值？先比较正值与负值示例，再改变步长。'}[mode];
-  $('explanation').textContent={discrete:'这里把单室模型（one-compartment model）的递推关系（recurrence relation）写成段首更新：清除系数（elimination rate constant）k 乘段首物质量，得到本段采用的清除速率。时间步长（time step）乘流率（flow rate）才是本段转移量。两条线只改变间隔。',continuous:'理想单室模型（one-compartment model）的解析解（analytical solution）在这里直接求值。蓝线用当前条件，玫红虚线同时把输入和清除系数加倍；特征时间（characteristic time）1/k 表示接近平衡的时间尺度（time scale），随之改变。',numerical:'用清除系数（elimination rate constant）k 和时间步长（time step）h 组成 kh。数值稳定性（numerical stability）在此以严格渐近稳定（asymptotic stability）检查偏差是否趋于零；非负性（nonnegativity）检查物质量的符号。数值误差（numerical error）仍需对照解析解（analytical solution）。'}[mode];
-  $('formula').textContent=mode==='continuous'?'A(t) = A0 exp(−kt) + (u/k)(1−exp(−kt))；k=0 时 A=A0+ut':'下一段物质量 = 当前量 + 实际时长 × (u − k × 当前量)';
+  $('explanation').textContent={discrete:'这里把单室模型（one-compartment model）的递推关系（recurrence relation）写成段首更新：清除系数（elimination rate constant）k 乘段首总量，得到本段采用的清除速率。时间步长（time step）乘流率（flow rate）才是本段转移量。两条线只改变间隔。',continuous:'理想单室模型（one-compartment model）的解析解（analytical solution）在这里直接求值。蓝线用当前条件，玫红虚线同时把输入和清除系数加倍；特征时间（characteristic time）1/k 表示接近平衡的时间尺度（time scale），随之改变。',numerical:'用清除系数（elimination rate constant）k 和时间步长（time step）h 组成 kh。数值稳定性（numerical stability）在此以严格渐近稳定（asymptotic stability）检查偏差是否趋于零；非负性（nonnegativity）检查总量的符号。数值误差（numerical error）仍需对照解析解（analytical solution）。'}[mode];
+  $('formula').textContent=mode==='continuous'?'A(t) = A0 exp(−kt) + (u/k)(1−exp(−kt))；k=0 时 A=A0+ut':'下一段总量 = 当前量 + 实际时长 × (u − k × 当前量)';
   $('assumptions').textContent='假设：均匀混合、恒定流入、一阶清除，无内部生成或瞬时注入。参数（parameter）均为教学选值；A0 用 U，u 用 U/T，k 用 1/T。动画速度只控制展示，不改变计算。';
   $('reading-prompt').textContent=mode==='numerical'?'在 Notebook 中继续检查误差细化、kh=0/1/2 的边界，以及变化输入下的分段传播。':'回到 Notebook 阅读假设、推导、独立核验和迁移练习。';
-  const values=defaults[mode];slider('initial','初始物质量 A0 / U',0,20,.5,values.initial);slider('u','流入速率 u / (U/T)',0,4,.25,values.u);slider('k','清除系数 k / (1/T)',0,1,.05,values.k);
+  const values=defaults[mode];slider('initial','初始总量 A0 / U',0,20,.5,values.initial);slider('u','流入速率 u / (U/T)',0,4,.25,values.u);slider('k','清除系数 k / (1/T)',0,1,.05,values.k);
   if(mode!=='continuous')slider('h','名义步长 h / T',.25,3,.25,values.h);
   recompute();playback=createPlayback({duration:end,speed:2,update:draw,failed,changed:reason=>{$('play').textContent=reason==='playing'?'暂停':reason==='ended'?'再次播放':'播放';$('play-status').textContent=reason==='playing'?'正在播放：观察时间、数值与曲线。':reason==='ended'?'已到终点，可往返切换示例或重播。':'已暂停；拖动时间查看结果，改变条件会回到起点。';}});
   $('play').addEventListener('click',()=>playback.running?playback.pause():playback.play());$('replay').addEventListener('click',()=>{playback.seek(0);playback.play();});$('timeline').addEventListener('input',()=>playback.seek(Number($('timeline').value)));

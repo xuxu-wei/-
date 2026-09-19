@@ -3094,7 +3094,7 @@
       },
       {
         "id": "C",
-        "text": "x<0 表示负的物质量。"
+        "text": "x<0 表示负的所追踪物质总量（tracked amount）。"
       },
       {
         "id": "D",
@@ -3125,7 +3125,7 @@
       {
         "name": "sigma",
         "type": "float",
-        "description": "正参数（parameter）（parameter） σ。",
+        "description": "正参数（parameter） σ。",
         "unit": "1"
       },
       {
@@ -3323,7 +3323,7 @@
       {
         "name": "sigma",
         "type": "float",
-        "description": "正参数（parameter）（parameter） σ。",
+        "description": "正参数（parameter） σ。",
         "unit": "1"
       },
       {
@@ -3355,7 +3355,7 @@
       {
         "name": "direct",
         "type": "float",
-        "description": "梯度（gradient）（gradient）与向量场（vector field）（vector field）内积（inner product）（inner product）。",
+        "description": "梯度（gradient）与向量场（vector field）内积（inner product）。",
         "unit": "每单位 τ"
       },
       {
@@ -3709,7 +3709,7 @@
       {
         "name": "times",
         "type": "list[float]",
-        "description": "严格递增的观测（observation）（observation）时刻。",
+        "description": "严格递增的观测（observation）时刻。",
         "unit": "τ"
       },
       {
@@ -3735,7 +3735,7 @@
       {
         "name": "hits",
         "type": "list[list[float]]",
-        "description": "交点列表，每行 [t,x,y,z]；时间单位 τ，其余无量纲（dimensionless）（dimensionless）。",
+        "description": "交点列表，每行 [t,x,y,z]；时间单位 τ，其余无量纲（dimensionless）。",
         "unit": "1"
       },
       {
@@ -3967,7 +3967,7 @@
       {
         "name": "stretch_factors",
         "type": "list[float]",
-        "description": "每段终点范数（norm）（norm）除以该段起点范数，均正。",
+        "description": "每段终点范数（norm）除以该段起点范数，均正。",
         "unit": "1"
       },
       {
@@ -4451,7 +4451,7 @@
       {
         "name": "times",
         "type": "list[float]",
-        "description": "严格递增的观测（observation）（observation）时刻。",
+        "description": "严格递增的观测（observation）时刻。",
         "unit": "τ"
       },
       {
@@ -4477,7 +4477,7 @@
       {
         "name": "hits",
         "type": "list[list[float]]",
-        "description": "交点列表，每行 [t,x,y,z]；时间单位 τ，其余无量纲（dimensionless）（dimensionless）。",
+        "description": "交点列表，每行 [t,x,y,z]；时间单位 τ，其余无量纲（dimensionless）。",
         "unit": "1"
       },
       {
@@ -4594,7 +4594,7 @@
       {
         "name": "stretch_factors",
         "type": "list[float]",
-        "description": "每段终点范数（norm）（norm）除以该段起点范数，均正。",
+        "description": "每段终点范数（norm）除以该段起点范数，均正。",
         "unit": "1"
       },
       {
@@ -4727,7 +4727,7 @@
       {
         "name": "sigma",
         "type": "float",
-        "description": "正参数（parameter）（parameter） σ。",
+        "description": "正参数（parameter） σ。",
         "unit": "1"
       },
       {
@@ -4759,7 +4759,7 @@
       {
         "name": "direct",
         "type": "float",
-        "description": "梯度（gradient）（gradient）与向量场（vector field）（vector field）内积（inner product）（inner product）。",
+        "description": "梯度（gradient）与向量场（vector field）内积（inner product）。",
         "unit": "每单位 τ"
       },
       {

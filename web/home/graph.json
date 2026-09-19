@@ -4,37 +4,42 @@
     {
       "id": "method",
       "label": "系统方法论",
-      "color": "#b99bff",
+      "color": "#d1e4e6",
+      "lightColor": "#2c2f4b",
       "description": "组织问题、假设、方法与证据。"
     },
     {
       "id": "evolution",
       "label": "系统演化论",
-      "color": "#68d9ef",
+      "color": "#f4e1c1",
+      "lightColor": "#ffb300",
       "description": "理解状态、结构与功能在时空中的变化。"
     },
     {
       "id": "cognition",
       "label": "系统认知论",
-      "color": "#59dcb3",
+      "color": "#2B4A8C",
+      "lightColor": "#2B4A8C",
       "description": "从观测进行表征、建模、估计与学习。"
     },
     {
       "id": "regulation",
       "label": "系统调控论",
-      "color": "#ffad77",
+      "color": "#4f7c8c",
+      "lightColor": "#4f7c8c",
       "description": "通过优化、反馈与协同改变系统行为。"
     },
     {
       "id": "practice",
       "label": "系统实践论",
-      "color": "#f28cb9",
+      "color": "#fbc9b4",
+      "lightColor": "#fbc9b4",
       "description": "在具体问题中实施、核验并解释方法。"
     }
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "f2374ad3b0433ab4b7e73e6243d4373aca983a234600ace0923483a8cbd2b345",
+    "catalogSha256": "7ff73e9677f596c43632b2356a138a2c5ae65d27bc31884941b1e973faa58377",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -297,7 +302,7 @@
     {
       "id": "1.1.2:concept:3",
       "kind": "concept",
-      "title": "物质量与浓度",
+      "title": "总量与浓度",
       "english": null,
       "number": "1.1.2",
       "parentId": "1.1",
@@ -1462,7 +1467,7 @@
       "number": "2.3",
       "parentId": "2",
       "url": "/chapters/02-03-连续时间与一阶微分方程/",
-      "description": "推导 dA/dt=u−kA 的恒定输入（input）解，检查初值（initial condition）、方程与边界；区分平衡（equilibrium）位置、特征时间（characteristic time）、偏离半衰时间与无输入时的物质量半衰期（half-life）。",
+      "description": "推导 dA/dt=u−kA 的恒定输入（input）解，检查初值（initial condition）、方程与边界；区分平衡（equilibrium）位置、特征时间（characteristic time）、偏离半衰时间与无输入时的总量半衰期（half-life）。",
       "categories": [
         "evolution",
         "method"
@@ -3748,7 +3753,7 @@
       "total": 1,
       "lessonId": "P04-C03-S01",
       "lessonNumber": "4.3.1",
-      "lessonTitle": "平衡分支折叠与滞后",
+      "lessonTitle": "平衡分支折叠与滞回",
       "chapterUrl": "/chapters/04-03-分岔与参数变化/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -3777,14 +3782,14 @@
       "total": 1,
       "lessonId": "P04-C03-S01",
       "lessonNumber": "4.3.1",
-      "lessonTitle": "平衡分支折叠与滞后",
+      "lessonTitle": "平衡分支折叠与滞回",
       "chapterUrl": "/chapters/04-03-分岔与参数变化/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "4.3.1:concept:3",
       "kind": "concept",
-      "title": "滞后",
+      "title": "滞回",
       "english": "hysteresis",
       "number": "4.3.1",
       "parentId": "4.3",
@@ -3806,7 +3811,7 @@
       "total": 1,
       "lessonId": "P04-C03-S01",
       "lessonNumber": "4.3.1",
-      "lessonTitle": "平衡分支折叠与滞后",
+      "lessonTitle": "平衡分支折叠与滞回",
       "chapterUrl": "/chapters/04-03-分岔与参数变化/",
       "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
@@ -6053,7 +6058,7 @@
       "number": "5.5",
       "parentId": "5",
       "url": "/chapters/05-05-熵、互信息与测量价值/",
-      "description": "从离散概率（probability）计算熵（entropy）与互信息（mutual information），说明单位、样本偏差及因果解释的边界。",
+      "description": "明确本章“测量价值”仅指给定概率（probability）模型（model）与观测（observation）编码下的信息量，不等同于临床、决策或经济效用，也不等同于因果作用或干预收益；从离散概率计算熵（entropy）与互信息（mutual information），说明单位、样本偏差及因果解释的边界。",
       "categories": [
         "cognition",
         "evolution"
@@ -8606,7 +8611,7 @@
       "number": "7.3",
       "parentId": "7",
       "url": "/chapters/07-03-卡尔曼滤波/",
-      "description": "由多元高斯条件分布（distribution）推导卡尔曼滤波（Kalman filtering，KF）（Kalman filter，KF），计算均值、协方差（covariance）与创新。",
+      "description": "由多元高斯条件分布（distribution）推导卡尔曼滤波（Kalman filter，KF），计算均值、协方差（covariance）与创新。",
       "categories": [
         "cognition"
       ],
@@ -9314,7 +9319,7 @@
       "id": "7.5.2:concept:1",
       "kind": "concept",
       "title": "自助粒子滤波",
-      "english": null,
+      "english": "bootstrap particle filter",
       "number": "7.5.2",
       "parentId": "7.5",
       "url": "/chapters/07-05-粒子滤波/practice/?question=p07-particle-resampling",
@@ -10786,12 +10791,73 @@
         "9.4",
         "9.5"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-normal-update",
+        "p09-likelihood-object",
+        "p09-posterior-predictive",
+        "p09-prior-vs-data",
+        "p09-normalizer-zero",
+        "p09-gamma-local",
+        "p09-grid-masses",
+        "p09-coordinate-map",
+        "p09-single-mode",
+        "p09-grid-domain",
+        "p09-mh-replay",
+        "p09-finite-kernel",
+        "p09-proposal-ratio",
+        "p09-stationary-vs-convergence",
+        "p09-rejections",
+        "p09-basic-diagnostics",
+        "p09-high-acceptance",
+        "p09-same-mode",
+        "p09-ess-not-particles",
+        "p09-budget-repeat",
+        "p09-gaussian-coordinate",
+        "p09-finite-bound",
+        "p09-kl-direction",
+        "p09-gaussian-variance",
+        "p09-optimization-error",
+        "p09-discrete-coordinate",
+        "p09-two-modes-family",
+        "p09-vi-initialization",
+        "p09-elbo-monotone",
+        "p09-jensen-support",
+        "p09-mixture-update",
+        "p09-em-two-targets",
+        "p09-zero-component",
+        "p09-variance-collapse",
+        "p09-labels",
+        "p09-state-moments",
+        "p09-smoothing-products",
+        "p09-initial-parameter",
+        "p09-approximate-e-step",
+        "p09-unstable-estimate",
+        "p09-predictive-moments",
+        "p09-interval-meaning",
+        "p09-nonlinear-expectation",
+        "p09-mixture-not-normal",
+        "p09-conditional-variance",
+        "p09-predictive-score",
+        "p09-posterior-check-reuse",
+        "p09-coverage-uncertainty",
+        "p09-fair-prediction",
+        "p09-noise-misspecification",
+        "p09-cap-prior",
+        "p09-cap-diagnostic",
+        "p09-cap-local",
+        "p09-cap-mh",
+        "p09-cap-variational",
+        "p09-cap-predictive",
+        "p09-cap-em",
+        "p09-cap-misspecification"
+      ],
+      "available": true,
+      "published": 5,
       "total": 5,
-      "assessmentIds": [],
-      "assessmentUrl": null,
+      "assessmentIds": [
+        "P09-SUMMARY"
+      ],
+      "assessmentUrl": "/parts/09-概率建模与近似推断/综合练习/",
       "progressScope": "已发布篇章练习（含篇末综合）"
     },
     {
@@ -10806,84 +10872,203 @@
         "cognition"
       ],
       "children": [
-        "9.1:planned:1",
-        "9.1:planned:2",
-        "9.1:planned:3"
+        "9.1.1:concept:1",
+        "9.1.1:concept:2",
+        "9.1.1:concept:3",
+        "9.1.2:concept:1",
+        "9.1.2:concept:2",
+        "9.1.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-normal-update",
+        "p09-likelihood-object",
+        "p09-posterior-predictive",
+        "p09-prior-vs-data",
+        "p09-normalizer-zero",
+        "p09-gamma-local",
+        "p09-grid-masses",
+        "p09-coordinate-map",
+        "p09-single-mode",
+        "p09-grid-domain"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "9.1:planned:1",
+      "id": "9.1.1:concept:1",
       "kind": "concept",
-      "title": "似然与先验",
+      "title": "先验与似然",
       "english": null,
-      "number": "9.1",
+      "number": "9.1.1",
       "parentId": "9.1",
-      "url": "/chapters/09-01-贝叶斯建模与后验近似/",
-      "description": "构造参数（parameter）后验（posterior），比较点估计与分布（distribution）估计，并计算高斯共轭和局部后验近似。",
+      "url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-normal-update",
+      "description": "区分先验、似然与预测，推导高斯共轭更新并核对归一化。",
       "categories": [
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-normal-update",
+        "p09-likelihood-object",
+        "p09-posterior-predictive",
+        "p09-prior-vs-data",
+        "p09-normalizer-zero"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P09-C01-S01",
+      "lessonNumber": "9.1.1",
+      "lessonTitle": "从先验与观测到参数后验",
       "chapterUrl": "/chapters/09-01-贝叶斯建模与后验近似/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "9.1:planned:2",
+      "id": "9.1.1:concept:2",
       "kind": "concept",
-      "title": "最大后验估计",
-      "english": "maximum a posteriori estimation",
-      "number": "9.1",
+      "title": "共轭更新",
+      "english": null,
+      "number": "9.1.1",
       "parentId": "9.1",
-      "url": "/chapters/09-01-贝叶斯建模与后验近似/",
-      "description": "构造参数（parameter）后验（posterior），比较点估计与分布（distribution）估计，并计算高斯共轭和局部后验近似。",
+      "url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-normal-update",
+      "description": "区分先验、似然与预测，推导高斯共轭更新并核对归一化。",
       "categories": [
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-normal-update",
+        "p09-likelihood-object",
+        "p09-posterior-predictive",
+        "p09-prior-vs-data",
+        "p09-normalizer-zero"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P09-C01-S01",
+      "lessonNumber": "9.1.1",
+      "lessonTitle": "从先验与观测到参数后验",
       "chapterUrl": "/chapters/09-01-贝叶斯建模与后验近似/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "9.1:planned:3",
+      "id": "9.1.1:concept:3",
       "kind": "concept",
-      "title": "Laplace 近似",
+      "title": "参数与预测",
       "english": null,
-      "number": "9.1",
+      "number": "9.1.1",
       "parentId": "9.1",
-      "url": "/chapters/09-01-贝叶斯建模与后验近似/",
-      "description": "构造参数（parameter）后验（posterior），比较点估计与分布（distribution）估计，并计算高斯共轭和局部后验近似。",
+      "url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-normal-update",
+      "description": "区分先验、似然与预测，推导高斯共轭更新并核对归一化。",
       "categories": [
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-normal-update",
+        "p09-likelihood-object",
+        "p09-posterior-predictive",
+        "p09-prior-vs-data",
+        "p09-normalizer-zero"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P09-C01-S01",
+      "lessonNumber": "9.1.1",
+      "lessonTitle": "从先验与观测到参数后验",
       "chapterUrl": "/chapters/09-01-贝叶斯建模与后验近似/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "9.1.2:concept:1",
+      "kind": "concept",
+      "title": "后验曲率",
+      "english": null,
+      "number": "9.1.2",
+      "parentId": "9.1",
+      "url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-gamma-local",
+      "description": "用积分核对清除率的局部近似，解释边界、多峰与参数变换。",
+      "categories": [
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p09-gamma-local",
+        "p09-grid-masses",
+        "p09-coordinate-map",
+        "p09-single-mode",
+        "p09-grid-domain"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P09-C01-S02",
+      "lessonNumber": "9.1.2",
+      "lessonTitle": "后验曲率边界与参数变换",
+      "chapterUrl": "/chapters/09-01-贝叶斯建模与后验近似/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "9.1.2:concept:2",
+      "kind": "concept",
+      "title": "参数边界",
+      "english": null,
+      "number": "9.1.2",
+      "parentId": "9.1",
+      "url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-gamma-local",
+      "description": "用积分核对清除率的局部近似，解释边界、多峰与参数变换。",
+      "categories": [
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p09-gamma-local",
+        "p09-grid-masses",
+        "p09-coordinate-map",
+        "p09-single-mode",
+        "p09-grid-domain"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P09-C01-S02",
+      "lessonNumber": "9.1.2",
+      "lessonTitle": "后验曲率边界与参数变换",
+      "chapterUrl": "/chapters/09-01-贝叶斯建模与后验近似/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "9.1.2:concept:3",
+      "kind": "concept",
+      "title": "变量变换与雅可比",
+      "english": null,
+      "number": "9.1.2",
+      "parentId": "9.1",
+      "url": "/chapters/09-01-贝叶斯建模与后验近似/practice/?question=p09-gamma-local",
+      "description": "用积分核对清除率的局部近似，解释边界、多峰与参数变换。",
+      "categories": [
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p09-gamma-local",
+        "p09-grid-masses",
+        "p09-coordinate-map",
+        "p09-single-mode",
+        "p09-grid-domain"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P09-C01-S02",
+      "lessonNumber": "9.1.2",
+      "lessonTitle": "后验曲率边界与参数变换",
+      "chapterUrl": "/chapters/09-01-贝叶斯建模与后验近似/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "9.2",
@@ -10897,108 +11082,233 @@
         "cognition"
       ],
       "children": [
-        "9.2:planned:1",
-        "9.2:planned:2",
-        "9.2:planned:3",
-        "9.2:planned:4"
+        "9.2.1:concept:1",
+        "9.2.1:concept:2",
+        "9.2.1:concept:3",
+        "9.2.2:concept:1",
+        "9.2.2:concept:2",
+        "9.2.2:concept:3",
+        "9.2.2:concept:4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-mh-replay",
+        "p09-finite-kernel",
+        "p09-proposal-ratio",
+        "p09-stationary-vs-convergence",
+        "p09-rejections",
+        "p09-basic-diagnostics",
+        "p09-high-acceptance",
+        "p09-same-mode",
+        "p09-ess-not-particles",
+        "p09-budget-repeat"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "9.2:planned:1",
+      "id": "9.2.1:concept:1",
       "kind": "concept",
-      "title": "Metropolis–Hastings 采样",
+      "title": "Metropolis–Hastings",
       "english": null,
-      "number": "9.2",
+      "number": "9.2.1",
       "parentId": "9.2",
-      "url": "/chapters/09-02-马尔可夫链采样与诊断/",
-      "description": "实现马尔可夫链（Markov chain）蒙特卡洛（Markov chain Monte Carlo，MCMC）采样（sampling），检查平稳目标与混合质量。",
+      "url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-mh-replay",
+      "description": "推导接受比与提议修正，实现可重放的链并核对详细平衡。",
       "categories": [
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-mh-replay",
+        "p09-finite-kernel",
+        "p09-proposal-ratio",
+        "p09-stationary-vs-convergence",
+        "p09-rejections"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P09-C02-S01",
+      "lessonNumber": "9.2.1",
+      "lessonTitle": "构造保持目标分布的采样链",
       "chapterUrl": "/chapters/09-02-马尔可夫链采样与诊断/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "9.2:planned:2",
+      "id": "9.2.1:concept:2",
+      "kind": "concept",
+      "title": "提议比",
+      "english": null,
+      "number": "9.2.1",
+      "parentId": "9.2",
+      "url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-mh-replay",
+      "description": "推导接受比与提议修正，实现可重放的链并核对详细平衡。",
+      "categories": [
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p09-mh-replay",
+        "p09-finite-kernel",
+        "p09-proposal-ratio",
+        "p09-stationary-vs-convergence",
+        "p09-rejections"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P09-C02-S01",
+      "lessonNumber": "9.2.1",
+      "lessonTitle": "构造保持目标分布的采样链",
+      "chapterUrl": "/chapters/09-02-马尔可夫链采样与诊断/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "9.2.1:concept:3",
       "kind": "concept",
       "title": "详细平衡",
-      "english": null,
-      "number": "9.2",
+      "english": "detailed balance",
+      "number": "9.2.1",
       "parentId": "9.2",
-      "url": "/chapters/09-02-马尔可夫链采样与诊断/",
-      "description": "实现马尔可夫链（Markov chain）蒙特卡洛（Markov chain Monte Carlo，MCMC）采样（sampling），检查平稳目标与混合质量。",
+      "url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-mh-replay",
+      "description": "推导接受比与提议修正，实现可重放的链并核对详细平衡。",
       "categories": [
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-mh-replay",
+        "p09-finite-kernel",
+        "p09-proposal-ratio",
+        "p09-stationary-vs-convergence",
+        "p09-rejections"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P09-C02-S01",
+      "lessonNumber": "9.2.1",
+      "lessonTitle": "构造保持目标分布的采样链",
       "chapterUrl": "/chapters/09-02-马尔可夫链采样与诊断/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "9.2:planned:3",
+      "id": "9.2.2:concept:1",
       "kind": "concept",
-      "title": "链的混合",
+      "title": "多链初始化",
       "english": null,
-      "number": "9.2",
+      "number": "9.2.2",
       "parentId": "9.2",
-      "url": "/chapters/09-02-马尔可夫链采样与诊断/",
-      "description": "实现马尔可夫链（Markov chain）蒙特卡洛（Markov chain Monte Carlo，MCMC）采样（sampling），检查平稳目标与混合质量。",
+      "url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-basic-diagnostics",
+      "description": "比较初始化、步幅与模态覆盖，计算基本诊断并解释其限度。",
       "categories": [
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-basic-diagnostics",
+        "p09-high-acceptance",
+        "p09-same-mode",
+        "p09-ess-not-particles",
+        "p09-budget-repeat"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P09-C02-S02",
+      "lessonNumber": "9.2.2",
+      "lessonTitle": "多链相关性与有限计算预算",
       "chapterUrl": "/chapters/09-02-马尔可夫链采样与诊断/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "9.2:planned:4",
+      "id": "9.2.2:concept:2",
+      "kind": "concept",
+      "title": "自相关",
+      "english": null,
+      "number": "9.2.2",
+      "parentId": "9.2",
+      "url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-basic-diagnostics",
+      "description": "比较初始化、步幅与模态覆盖，计算基本诊断并解释其限度。",
+      "categories": [
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p09-basic-diagnostics",
+        "p09-high-acceptance",
+        "p09-same-mode",
+        "p09-ess-not-particles",
+        "p09-budget-repeat"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P09-C02-S02",
+      "lessonNumber": "9.2.2",
+      "lessonTitle": "多链相关性与有限计算预算",
+      "chapterUrl": "/chapters/09-02-马尔可夫链采样与诊断/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "9.2.2:concept:3",
       "kind": "concept",
       "title": "有效样本量",
       "english": null,
-      "number": "9.2",
+      "number": "9.2.2",
       "parentId": "9.2",
-      "url": "/chapters/09-02-马尔可夫链采样与诊断/",
-      "description": "实现马尔可夫链（Markov chain）蒙特卡洛（Markov chain Monte Carlo，MCMC）采样（sampling），检查平稳目标与混合质量。",
+      "url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-basic-diagnostics",
+      "description": "比较初始化、步幅与模态覆盖，计算基本诊断并解释其限度。",
       "categories": [
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-basic-diagnostics",
+        "p09-high-acceptance",
+        "p09-same-mode",
+        "p09-ess-not-particles",
+        "p09-budget-repeat"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P09-C02-S02",
+      "lessonNumber": "9.2.2",
+      "lessonTitle": "多链相关性与有限计算预算",
       "chapterUrl": "/chapters/09-02-马尔可夫链采样与诊断/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "9.2.2:concept:4",
+      "kind": "concept",
+      "title": "有限预算",
+      "english": null,
+      "number": "9.2.2",
+      "parentId": "9.2",
+      "url": "/chapters/09-02-马尔可夫链采样与诊断/practice/?question=p09-basic-diagnostics",
+      "description": "比较初始化、步幅与模态覆盖，计算基本诊断并解释其限度。",
+      "categories": [
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p09-basic-diagnostics",
+        "p09-high-acceptance",
+        "p09-same-mode",
+        "p09-ess-not-particles",
+        "p09-budget-repeat"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P09-C02-S02",
+      "lessonNumber": "9.2.2",
+      "lessonTitle": "多链相关性与有限计算预算",
+      "chapterUrl": "/chapters/09-02-马尔可夫链采样与诊断/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "9.3",
@@ -11012,108 +11322,233 @@
         "cognition"
       ],
       "children": [
-        "9.3:planned:1",
-        "9.3:planned:2",
-        "9.3:planned:3",
-        "9.3:planned:4"
+        "9.3.1:concept:1",
+        "9.3.1:concept:2",
+        "9.3.1:concept:3",
+        "9.3.1:concept:4",
+        "9.3.2:concept:1",
+        "9.3.2:concept:2",
+        "9.3.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-gaussian-coordinate",
+        "p09-finite-bound",
+        "p09-kl-direction",
+        "p09-gaussian-variance",
+        "p09-optimization-error",
+        "p09-discrete-coordinate",
+        "p09-two-modes-family",
+        "p09-vi-initialization",
+        "p09-elbo-monotone",
+        "p09-jensen-support"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "9.3:planned:1",
-      "kind": "concept",
-      "title": "相对熵",
-      "english": "relative entropy",
-      "number": "9.3",
-      "parentId": "9.3",
-      "url": "/chapters/09-03-变分推断/",
-      "description": "推导变分推断（variational inference，VI）的优化目标，实施均值场（mean-field approximation）更新并量化近似偏差。",
-      "categories": [
-        "cognition"
-      ],
-      "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
-      "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
-      "chapterUrl": "/chapters/09-03-变分推断/",
-      "progressScope": "教学设计，尚无学习记录"
-    },
-    {
-      "id": "9.3:planned:2",
+      "id": "9.3.1:concept:1",
       "kind": "concept",
       "title": "证据下界",
       "english": "evidence lower bound",
-      "number": "9.3",
+      "number": "9.3.1",
       "parentId": "9.3",
-      "url": "/chapters/09-03-变分推断/",
-      "description": "推导变分推断（variational inference，VI）的优化目标，实施均值场（mean-field approximation）更新并量化近似偏差。",
+      "url": "/chapters/09-03-变分推断/practice/?question=p09-gaussian-coordinate",
+      "description": "推导证据下界与高斯因子更新，分离优化误差和近似误差。",
       "categories": [
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-gaussian-coordinate",
+        "p09-finite-bound",
+        "p09-kl-direction",
+        "p09-gaussian-variance",
+        "p09-optimization-error"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P09-C03-S01",
+      "lessonNumber": "9.3.1",
+      "lessonTitle": "从相对熵到均值场更新",
       "chapterUrl": "/chapters/09-03-变分推断/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "9.3:planned:3",
+      "id": "9.3.1:concept:2",
+      "kind": "concept",
+      "title": "KL方向",
+      "english": null,
+      "number": "9.3.1",
+      "parentId": "9.3",
+      "url": "/chapters/09-03-变分推断/practice/?question=p09-gaussian-coordinate",
+      "description": "推导证据下界与高斯因子更新，分离优化误差和近似误差。",
+      "categories": [
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p09-gaussian-coordinate",
+        "p09-finite-bound",
+        "p09-kl-direction",
+        "p09-gaussian-variance",
+        "p09-optimization-error"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P09-C03-S01",
+      "lessonNumber": "9.3.1",
+      "lessonTitle": "从相对熵到均值场更新",
+      "chapterUrl": "/chapters/09-03-变分推断/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "9.3.1:concept:3",
       "kind": "concept",
       "title": "均值场近似",
       "english": null,
-      "number": "9.3",
+      "number": "9.3.1",
       "parentId": "9.3",
-      "url": "/chapters/09-03-变分推断/",
-      "description": "推导变分推断（variational inference，VI）的优化目标，实施均值场（mean-field approximation）更新并量化近似偏差。",
+      "url": "/chapters/09-03-变分推断/practice/?question=p09-gaussian-coordinate",
+      "description": "推导证据下界与高斯因子更新，分离优化误差和近似误差。",
       "categories": [
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-gaussian-coordinate",
+        "p09-finite-bound",
+        "p09-kl-direction",
+        "p09-gaussian-variance",
+        "p09-optimization-error"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P09-C03-S01",
+      "lessonNumber": "9.3.1",
+      "lessonTitle": "从相对熵到均值场更新",
       "chapterUrl": "/chapters/09-03-变分推断/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "9.3:planned:4",
+      "id": "9.3.1:concept:4",
       "kind": "concept",
       "title": "坐标更新",
       "english": null,
-      "number": "9.3",
+      "number": "9.3.1",
       "parentId": "9.3",
-      "url": "/chapters/09-03-变分推断/",
-      "description": "推导变分推断（variational inference，VI）的优化目标，实施均值场（mean-field approximation）更新并量化近似偏差。",
+      "url": "/chapters/09-03-变分推断/practice/?question=p09-gaussian-coordinate",
+      "description": "推导证据下界与高斯因子更新，分离优化误差和近似误差。",
       "categories": [
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-gaussian-coordinate",
+        "p09-finite-bound",
+        "p09-kl-direction",
+        "p09-gaussian-variance",
+        "p09-optimization-error"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P09-C03-S01",
+      "lessonNumber": "9.3.1",
+      "lessonTitle": "从相对熵到均值场更新",
       "chapterUrl": "/chapters/09-03-变分推断/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "9.3.2:concept:1",
+      "kind": "concept",
+      "title": "近似族",
+      "english": null,
+      "number": "9.3.2",
+      "parentId": "9.3",
+      "url": "/chapters/09-03-变分推断/practice/?question=p09-discrete-coordinate",
+      "description": "用四状态混合结构核对下界，比较局部解与完整联合后验。",
+      "categories": [
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p09-discrete-coordinate",
+        "p09-two-modes-family",
+        "p09-vi-initialization",
+        "p09-elbo-monotone",
+        "p09-jensen-support"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P09-C03-S02",
+      "lessonNumber": "9.3.2",
+      "lessonTitle": "近似族与多峰中的初始化",
+      "chapterUrl": "/chapters/09-03-变分推断/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "9.3.2:concept:2",
+      "kind": "concept",
+      "title": "多峰与局部解",
+      "english": null,
+      "number": "9.3.2",
+      "parentId": "9.3",
+      "url": "/chapters/09-03-变分推断/practice/?question=p09-discrete-coordinate",
+      "description": "用四状态混合结构核对下界，比较局部解与完整联合后验。",
+      "categories": [
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p09-discrete-coordinate",
+        "p09-two-modes-family",
+        "p09-vi-initialization",
+        "p09-elbo-monotone",
+        "p09-jensen-support"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P09-C03-S02",
+      "lessonNumber": "9.3.2",
+      "lessonTitle": "近似族与多峰中的初始化",
+      "chapterUrl": "/chapters/09-03-变分推断/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "9.3.2:concept:3",
+      "kind": "concept",
+      "title": "枚举参照",
+      "english": null,
+      "number": "9.3.2",
+      "parentId": "9.3",
+      "url": "/chapters/09-03-变分推断/practice/?question=p09-discrete-coordinate",
+      "description": "用四状态混合结构核对下界，比较局部解与完整联合后验。",
+      "categories": [
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p09-discrete-coordinate",
+        "p09-two-modes-family",
+        "p09-vi-initialization",
+        "p09-elbo-monotone",
+        "p09-jensen-support"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P09-C03-S02",
+      "lessonNumber": "9.3.2",
+      "lessonTitle": "近似族与多峰中的初始化",
+      "chapterUrl": "/chapters/09-03-变分推断/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "9.4",
@@ -11127,108 +11562,203 @@
         "cognition"
       ],
       "children": [
-        "9.4:planned:1",
-        "9.4:planned:2",
-        "9.4:planned:3",
-        "9.4:planned:4"
+        "9.4.1:concept:1",
+        "9.4.1:concept:2",
+        "9.4.1:concept:3",
+        "9.4.2:concept:1",
+        "9.4.2:concept:2",
+        "9.4.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-mixture-update",
+        "p09-em-two-targets",
+        "p09-zero-component",
+        "p09-variance-collapse",
+        "p09-labels",
+        "p09-state-moments",
+        "p09-smoothing-products",
+        "p09-initial-parameter",
+        "p09-approximate-e-step",
+        "p09-unstable-estimate"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "9.4:planned:1",
+      "id": "9.4.1:concept:1",
       "kind": "concept",
-      "title": "隐变量",
-      "english": "latent variable",
-      "number": "9.4",
+      "title": "责任度",
+      "english": "responsibility",
+      "number": "9.4.1",
       "parentId": "9.4",
-      "url": "/chapters/09-04-隐变量与参数学习/",
-      "description": "用隐变量（latent variable）分解参数（parameter）学习问题，推导期望最大化（expectation-maximization，EM）并区分状态（state）推断与参数更新。",
+      "url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-mixture-update",
+      "description": "推导双高斯混合的精确EM步骤，检查似然、标签交换和退化。",
       "categories": [
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-mixture-update",
+        "p09-em-two-targets",
+        "p09-zero-component",
+        "p09-variance-collapse",
+        "p09-labels"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P09-C04-S01",
+      "lessonNumber": "9.4.1",
+      "lessonTitle": "责任度与混合模型参数学习",
       "chapterUrl": "/chapters/09-04-隐变量与参数学习/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "9.4:planned:2",
+      "id": "9.4.1:concept:2",
       "kind": "concept",
-      "title": "完整数据似然",
+      "title": "EM更新",
       "english": null,
-      "number": "9.4",
+      "number": "9.4.1",
       "parentId": "9.4",
-      "url": "/chapters/09-04-隐变量与参数学习/",
-      "description": "用隐变量（latent variable）分解参数（parameter）学习问题，推导期望最大化（expectation-maximization，EM）并区分状态（state）推断与参数更新。",
+      "url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-mixture-update",
+      "description": "推导双高斯混合的精确EM步骤，检查似然、标签交换和退化。",
       "categories": [
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
-      "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
-      "chapterUrl": "/chapters/09-04-隐变量与参数学习/",
-      "progressScope": "教学设计，尚无学习记录"
-    },
-    {
-      "id": "9.4:planned:3",
-      "kind": "concept",
-      "title": "期望最大化",
-      "english": "expectation-maximization",
-      "number": "9.4",
-      "parentId": "9.4",
-      "url": "/chapters/09-04-隐变量与参数学习/",
-      "description": "用隐变量（latent variable）分解参数（parameter）学习问题，推导期望最大化（expectation-maximization，EM）并区分状态（state）推断与参数更新。",
-      "categories": [
-        "cognition"
+      "questionIds": [
+        "p09-mixture-update",
+        "p09-em-two-targets",
+        "p09-zero-component",
+        "p09-variance-collapse",
+        "p09-labels"
       ],
-      "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P09-C04-S01",
+      "lessonNumber": "9.4.1",
+      "lessonTitle": "责任度与混合模型参数学习",
       "chapterUrl": "/chapters/09-04-隐变量与参数学习/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "9.4:planned:4",
+      "id": "9.4.1:concept:3",
       "kind": "concept",
-      "title": "局部最优",
+      "title": "标签交换与退化",
       "english": null,
-      "number": "9.4",
+      "number": "9.4.1",
       "parentId": "9.4",
-      "url": "/chapters/09-04-隐变量与参数学习/",
-      "description": "用隐变量（latent variable）分解参数（parameter）学习问题，推导期望最大化（expectation-maximization，EM）并区分状态（state）推断与参数更新。",
+      "url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-mixture-update",
+      "description": "推导双高斯混合的精确EM步骤，检查似然、标签交换和退化。",
       "categories": [
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-mixture-update",
+        "p09-em-two-targets",
+        "p09-zero-component",
+        "p09-variance-collapse",
+        "p09-labels"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P09-C04-S01",
+      "lessonNumber": "9.4.1",
+      "lessonTitle": "责任度与混合模型参数学习",
       "chapterUrl": "/chapters/09-04-隐变量与参数学习/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "9.4.2:concept:1",
+      "kind": "concept",
+      "title": "平滑交叉矩",
+      "english": null,
+      "number": "9.4.2",
+      "parentId": "9.4",
+      "url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-state-moments",
+      "description": "由平滑的二阶矩推导转移系数更新，避免把估计状态当真值。",
+      "categories": [
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p09-state-moments",
+        "p09-smoothing-products",
+        "p09-initial-parameter",
+        "p09-approximate-e-step",
+        "p09-unstable-estimate"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P09-C04-S02",
+      "lessonNumber": "9.4.2",
+      "lessonTitle": "从平滑矩到动态参数更新",
+      "chapterUrl": "/chapters/09-04-隐变量与参数学习/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "9.4.2:concept:2",
+      "kind": "concept",
+      "title": "动态参数学习",
+      "english": null,
+      "number": "9.4.2",
+      "parentId": "9.4",
+      "url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-state-moments",
+      "description": "由平滑的二阶矩推导转移系数更新，避免把估计状态当真值。",
+      "categories": [
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p09-state-moments",
+        "p09-smoothing-products",
+        "p09-initial-parameter",
+        "p09-approximate-e-step",
+        "p09-unstable-estimate"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P09-C04-S02",
+      "lessonNumber": "9.4.2",
+      "lessonTitle": "从平滑矩到动态参数更新",
+      "chapterUrl": "/chapters/09-04-隐变量与参数学习/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "9.4.2:concept:3",
+      "kind": "concept",
+      "title": "条件期望",
+      "english": null,
+      "number": "9.4.2",
+      "parentId": "9.4",
+      "url": "/chapters/09-04-隐变量与参数学习/practice/?question=p09-state-moments",
+      "description": "由平滑的二阶矩推导转移系数更新，避免把估计状态当真值。",
+      "categories": [
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p09-state-moments",
+        "p09-smoothing-products",
+        "p09-initial-parameter",
+        "p09-approximate-e-step",
+        "p09-unstable-estimate"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P09-C04-S02",
+      "lessonNumber": "9.4.2",
+      "lessonTitle": "从平滑矩到动态参数更新",
+      "chapterUrl": "/chapters/09-04-隐变量与参数学习/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "9.5",
@@ -11242,108 +11772,203 @@
         "cognition"
       ],
       "children": [
-        "9.5:planned:1",
-        "9.5:planned:2",
-        "9.5:planned:3",
-        "9.5:planned:4"
+        "9.5.1:concept:1",
+        "9.5.1:concept:2",
+        "9.5.1:concept:3",
+        "9.5.2:concept:1",
+        "9.5.2:concept:2",
+        "9.5.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-predictive-moments",
+        "p09-interval-meaning",
+        "p09-nonlinear-expectation",
+        "p09-mixture-not-normal",
+        "p09-conditional-variance",
+        "p09-predictive-score",
+        "p09-posterior-check-reuse",
+        "p09-coverage-uncertainty",
+        "p09-fair-prediction",
+        "p09-noise-misspecification"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "9.5:planned:1",
+      "id": "9.5.1:concept:1",
       "kind": "concept",
-      "title": "后验预测分布",
+      "title": "总方差",
       "english": null,
-      "number": "9.5",
+      "number": "9.5.1",
       "parentId": "9.5",
-      "url": "/chapters/09-05-后验预测与模型检验/",
-      "description": "构造后验预测（posterior predictive inference）并评价区间覆盖和模型（model）失配，在独立数据上比较点预测与分布（distribution）预测。",
+      "url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-moments",
+      "description": "推导预测的总方差并构造混合分布，区分可信区间和预测区间。",
       "categories": [
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-predictive-moments",
+        "p09-interval-meaning",
+        "p09-nonlinear-expectation",
+        "p09-mixture-not-normal",
+        "p09-conditional-variance"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P09-C05-S01",
+      "lessonNumber": "9.5.1",
+      "lessonTitle": "把参数不确定性带入预测",
       "chapterUrl": "/chapters/09-05-后验预测与模型检验/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "9.5:planned:2",
+      "id": "9.5.1:concept:2",
       "kind": "concept",
-      "title": "后验预测检验",
+      "title": "混合预测",
       "english": null,
-      "number": "9.5",
+      "number": "9.5.1",
       "parentId": "9.5",
-      "url": "/chapters/09-05-后验预测与模型检验/",
-      "description": "构造后验预测（posterior predictive inference）并评价区间覆盖和模型（model）失配，在独立数据上比较点预测与分布（distribution）预测。",
+      "url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-moments",
+      "description": "推导预测的总方差并构造混合分布，区分可信区间和预测区间。",
       "categories": [
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-predictive-moments",
+        "p09-interval-meaning",
+        "p09-nonlinear-expectation",
+        "p09-mixture-not-normal",
+        "p09-conditional-variance"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P09-C05-S01",
+      "lessonNumber": "9.5.1",
+      "lessonTitle": "把参数不确定性带入预测",
       "chapterUrl": "/chapters/09-05-后验预测与模型检验/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "9.5:planned:3",
+      "id": "9.5.1:concept:3",
       "kind": "concept",
-      "title": "对数预测分数",
+      "title": "可信与预测区间",
       "english": null,
-      "number": "9.5",
+      "number": "9.5.1",
       "parentId": "9.5",
-      "url": "/chapters/09-05-后验预测与模型检验/",
-      "description": "构造后验预测（posterior predictive inference）并评价区间覆盖和模型（model）失配，在独立数据上比较点预测与分布（distribution）预测。",
+      "url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-moments",
+      "description": "推导预测的总方差并构造混合分布，区分可信区间和预测区间。",
       "categories": [
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-predictive-moments",
+        "p09-interval-meaning",
+        "p09-nonlinear-expectation",
+        "p09-mixture-not-normal",
+        "p09-conditional-variance"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P09-C05-S01",
+      "lessonNumber": "9.5.1",
+      "lessonTitle": "把参数不确定性带入预测",
       "chapterUrl": "/chapters/09-05-后验预测与模型检验/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "9.5:planned:4",
+      "id": "9.5.2:concept:1",
       "kind": "concept",
-      "title": "预测覆盖",
+      "title": "独立预测",
       "english": null,
-      "number": "9.5",
+      "number": "9.5.2",
       "parentId": "9.5",
-      "url": "/chapters/09-05-后验预测与模型检验/",
-      "description": "构造后验预测（posterior predictive inference）并评价区间覆盖和模型（model）失配，在独立数据上比较点预测与分布（distribution）预测。",
+      "url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-score",
+      "description": "比较预测分数与覆盖的抽样波动，识别近似失误和机制失配。",
       "categories": [
         "cognition"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p09-predictive-score",
+        "p09-posterior-check-reuse",
+        "p09-coverage-uncertainty",
+        "p09-fair-prediction",
+        "p09-noise-misspecification"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P09-C05-S02",
+      "lessonNumber": "9.5.2",
+      "lessonTitle": "留出预测覆盖与模型失配",
       "chapterUrl": "/chapters/09-05-后验预测与模型检验/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "9.5.2:concept:2",
+      "kind": "concept",
+      "title": "对数分数",
+      "english": null,
+      "number": "9.5.2",
+      "parentId": "9.5",
+      "url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-score",
+      "description": "比较预测分数与覆盖的抽样波动，识别近似失误和机制失配。",
+      "categories": [
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p09-predictive-score",
+        "p09-posterior-check-reuse",
+        "p09-coverage-uncertainty",
+        "p09-fair-prediction",
+        "p09-noise-misspecification"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P09-C05-S02",
+      "lessonNumber": "9.5.2",
+      "lessonTitle": "留出预测覆盖与模型失配",
+      "chapterUrl": "/chapters/09-05-后验预测与模型检验/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "9.5.2:concept:3",
+      "kind": "concept",
+      "title": "覆盖与模型失配",
+      "english": null,
+      "number": "9.5.2",
+      "parentId": "9.5",
+      "url": "/chapters/09-05-后验预测与模型检验/practice/?question=p09-predictive-score",
+      "description": "比较预测分数与覆盖的抽样波动，识别近似失误和机制失配。",
+      "categories": [
+        "cognition"
+      ],
+      "children": [],
+      "questionIds": [
+        "p09-predictive-score",
+        "p09-posterior-check-reuse",
+        "p09-coverage-uncertainty",
+        "p09-fair-prediction",
+        "p09-noise-misspecification"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P09-C05-S02",
+      "lessonNumber": "9.5.2",
+      "lessonTitle": "留出预测覆盖与模型失配",
+      "chapterUrl": "/chapters/09-05-后验预测与模型检验/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "10",
@@ -13989,7 +14614,7 @@
       "id": "14.3:planned:3",
       "kind": "concept",
       "title": "扩展动态模态分解",
-      "english": null,
+      "english": "extended dynamic mode decomposition",
       "number": "14.3",
       "parentId": "14.3",
       "url": "/chapters/14-03-Koopman 表示与有限字典/",
@@ -14543,7 +15168,7 @@
       "id": "15.3:planned:1",
       "kind": "concept",
       "title": "神经常微分方程",
-      "english": null,
+      "english": "neural ordinary differential equation",
       "number": "15.3",
       "parentId": "15.3",
       "url": "/chapters/15-03-神经微分方程/",
@@ -19262,25 +19887,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "9.1:planned:1",
-      "target": "9.1:planned:2",
+      "source": "9.1.1:concept:1",
+      "target": "9.1.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.1:planned:1",
-      "target": "9.1:planned:3",
+      "source": "9.1.1:concept:1",
+      "target": "9.1.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.1:planned:2",
-      "target": "9.1:planned:3",
+      "source": "9.1.1:concept:2",
+      "target": "9.1.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "9.1.2:concept:1",
+      "target": "9.1.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "9.1.2:concept:1",
+      "target": "9.1.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "9.1.2:concept:2",
+      "target": "9.1.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "9.1.1:concept:3",
+      "target": "9.1.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "5.3",
@@ -19311,46 +19964,74 @@
       "label": "直接先修关系"
     },
     {
-      "source": "9.2:planned:1",
-      "target": "9.2:planned:2",
+      "source": "9.2.1:concept:1",
+      "target": "9.2.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.2:planned:1",
-      "target": "9.2:planned:3",
+      "source": "9.2.1:concept:1",
+      "target": "9.2.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.2:planned:1",
-      "target": "9.2:planned:4",
+      "source": "9.2.1:concept:2",
+      "target": "9.2.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.2:planned:2",
-      "target": "9.2:planned:3",
+      "source": "9.2.2:concept:1",
+      "target": "9.2.2:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.2:planned:2",
-      "target": "9.2:planned:4",
+      "source": "9.2.2:concept:1",
+      "target": "9.2.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.2:planned:3",
-      "target": "9.2:planned:4",
+      "source": "9.2.2:concept:1",
+      "target": "9.2.2:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "9.2.2:concept:2",
+      "target": "9.2.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "9.2.2:concept:2",
+      "target": "9.2.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "9.2.2:concept:3",
+      "target": "9.2.2:concept:4",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "9.2.1:concept:3",
+      "target": "9.2.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "5.4",
@@ -19367,46 +20048,74 @@
       "label": "直接先修关系"
     },
     {
-      "source": "9.3:planned:1",
-      "target": "9.3:planned:2",
+      "source": "9.3.1:concept:1",
+      "target": "9.3.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.3:planned:1",
-      "target": "9.3:planned:3",
+      "source": "9.3.1:concept:1",
+      "target": "9.3.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.3:planned:1",
-      "target": "9.3:planned:4",
+      "source": "9.3.1:concept:1",
+      "target": "9.3.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.3:planned:2",
-      "target": "9.3:planned:3",
+      "source": "9.3.1:concept:2",
+      "target": "9.3.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.3:planned:2",
-      "target": "9.3:planned:4",
+      "source": "9.3.1:concept:2",
+      "target": "9.3.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.3:planned:3",
-      "target": "9.3:planned:4",
+      "source": "9.3.1:concept:3",
+      "target": "9.3.1:concept:4",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "9.3.2:concept:1",
+      "target": "9.3.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "9.3.2:concept:1",
+      "target": "9.3.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "9.3.2:concept:2",
+      "target": "9.3.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "9.3.1:concept:4",
+      "target": "9.3.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "5.5",
@@ -19430,46 +20139,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "9.4:planned:1",
-      "target": "9.4:planned:2",
+      "source": "9.4.1:concept:1",
+      "target": "9.4.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.4:planned:1",
-      "target": "9.4:planned:3",
+      "source": "9.4.1:concept:1",
+      "target": "9.4.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.4:planned:1",
-      "target": "9.4:planned:4",
+      "source": "9.4.1:concept:2",
+      "target": "9.4.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.4:planned:2",
-      "target": "9.4:planned:3",
+      "source": "9.4.2:concept:1",
+      "target": "9.4.2:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.4:planned:2",
-      "target": "9.4:planned:4",
+      "source": "9.4.2:concept:1",
+      "target": "9.4.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.4:planned:3",
-      "target": "9.4:planned:4",
+      "source": "9.4.2:concept:2",
+      "target": "9.4.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "9.4.1:concept:3",
+      "target": "9.4.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "7.6",
@@ -19486,46 +20202,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "9.5:planned:1",
-      "target": "9.5:planned:2",
+      "source": "9.5.1:concept:1",
+      "target": "9.5.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.5:planned:1",
-      "target": "9.5:planned:3",
+      "source": "9.5.1:concept:1",
+      "target": "9.5.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.5:planned:1",
-      "target": "9.5:planned:4",
+      "source": "9.5.1:concept:2",
+      "target": "9.5.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.5:planned:2",
-      "target": "9.5:planned:3",
+      "source": "9.5.2:concept:1",
+      "target": "9.5.2:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.5:planned:2",
-      "target": "9.5:planned:4",
+      "source": "9.5.2:concept:1",
+      "target": "9.5.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "9.5:planned:3",
-      "target": "9.5:planned:4",
+      "source": "9.5.2:concept:2",
+      "target": "9.5.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "9.5.1:concept:3",
+      "target": "9.5.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "6.5",
