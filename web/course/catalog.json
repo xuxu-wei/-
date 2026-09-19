@@ -1560,12 +1560,13 @@
           "id": "4.1",
           "title": "多稳态与吸引域",
           "url": "/chapters/04-01-多稳态与吸引域/",
-          "goals": "区分平衡（equilibrium）点、局部稳定与吸引域（basin of attraction），解释同一参数（parameter）下的初值（initial condition）依赖。",
+          "goals": "区分平衡（equilibrium）点、局部稳定与吸引域（basin of attraction），解释同一参数（parameter）下的初值（initial condition）依赖；4.1.3 补充吸引子（attractor）、不变集（invariant set）与点到集合距离的统一解释，并以纯旋转区分不变与吸引。",
           "prerequisites": "3.4；导数（derivative）、解析解（analytical solution）、平衡与局部线性化（linearization）。",
           "knowledge": [
             "从线性近似过渡到多个平衡",
             "一维流向与局部导数判断",
-            "初值扫描和扰动跨越边界"
+            "初值扫描和扰动跨越边界",
+            "新增概念桥接：状态空间（state space）中的轨迹（trajectory）、不变集、吸引子与吸引域，以点和圆的距离例子为下一章准备"
           ],
           "focus": "无偏置时平衡为 −1、0、1；非零稳定点两侧的方向与局部导数应一致；初值网格只提供边界的数值近似。",
           "available": true,
@@ -1647,6 +1648,42 @@
                 }
               ],
               "url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-basin-window"
+            },
+            {
+              "id": "P04-C01-S03",
+              "chapter_id": "4.1",
+              "path": "notebooks/04-非线性动态行为/01-多稳态与吸引域/03-从吸引状态到吸引集合.ipynb",
+              "title": "从吸引状态到吸引集合",
+              "outcome": "能用不变性、点到集合的距离与吸引域区分吸引平衡、周期吸引和不吸引的中心。",
+              "number": "4.1.3",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p04-attractor-set",
+                  "slug": "p04-attractor-set",
+                  "title": "吸引的是点还是集合",
+                  "type": "choice"
+                },
+                {
+                  "id": "p04-center-counterexample",
+                  "slug": "p04-center-counterexample",
+                  "title": "不变为何不一定吸引",
+                  "type": "choice"
+                },
+                {
+                  "id": "p04-distance-circle",
+                  "slug": "p04-distance-circle",
+                  "title": "计算点到圆和点的距离",
+                  "type": "python"
+                },
+                {
+                  "id": "p04-distance-equilibria",
+                  "slug": "p04-distance-equilibria",
+                  "title": "计算到有限平衡集合的距离",
+                  "type": "python"
+                }
+              ],
+              "url": "/chapters/04-01-多稳态与吸引域/practice/?question=p04-attractor-set"
             }
           ],
           "visualization": "web/nonlinear/index.html"
@@ -2078,6 +2115,182 @@
             }
           ],
           "visualization": null
+        },
+        {
+          "id": "4.6",
+          "title": "连续时间混沌与奇异吸引子",
+          "url": "/chapters/04-06-连续时间混沌与奇异吸引子/",
+          "goals": "分析洛伦兹系统（Lorenz system）的平衡（equilibrium）、对称性与有界性，显式实现连续求解和切向扰动更新，结合截面、增长率及误差检查解释奇异吸引子（strange attractor）的几何与混沌（chaos）证据。",
+          "prerequisites": "4.5、2.4、3.4；吸引子（attractor）与吸引域（basin of attraction）、周期运动、离散增长率、雅可比矩阵（Jacobian matrix）和函数沿轨迹（trajectory）导数（derivative）。",
+          "knowledge": [
+            "连续流与维数条件，说明平面自治系统（autonomous system）的限制及外部周期驱动的例外",
+            "Lorenz 方程、变量含义、平衡与局部稳定",
+            "有界性和体积收缩，区分集合吸引与内部轨迹分离",
+            "显式积分、短时收敛与有限预测期限",
+            "定向截面、返回关系、分段切向增长率与奇异几何",
+            "汇总解析、数值与引用定理的证据边界，对照稳态、周期与混沌"
+          ],
+          "focus": "以平衡残差（residual）、对称关系、沿轨迹导数恒等式及解析线性方程验证实现；短时间窗比较积分器和步长，长时间比较限定的几何与时间摘要，不要求混沌轨迹长时逐点重合。单次正增长率、蝴蝶形图像、负散度（divergence）均不能独自证明奇异吸引子存在。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P04-C06-S01",
+              "chapter_id": "4.6",
+              "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/01-从平面流到Lorenz系统.ipynb",
+              "title": "从平面流到Lorenz系统",
+              "outcome": "能说明平面自治流定理的条件，求 Lorenz 平衡和雅可比矩阵，区分精确平衡与局部稳定。",
+              "number": "4.6.1",
+              "visualization": "web/nonlinear/lorenz.html",
+              "questions": [
+                {
+                  "id": "p04-plane-autonomous",
+                  "slug": "p04-plane-autonomous",
+                  "title": "平面定理适用在哪里",
+                  "type": "choice"
+                },
+                {
+                  "id": "p04-lorenz-equilibria",
+                  "slug": "p04-lorenz-equilibria",
+                  "title": "平衡的位置与变量含义",
+                  "type": "choice"
+                },
+                {
+                  "id": "p04-lorenz-field",
+                  "slug": "p04-lorenz-field",
+                  "title": "从方程计算向量场与雅可比矩阵",
+                  "type": "python"
+                },
+                {
+                  "id": "p04-lorenz-local-scope",
+                  "slug": "p04-lorenz-local-scope",
+                  "title": "精确平衡不是稳定性检验",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-plane-autonomous"
+            },
+            {
+              "id": "P04-C06-S02",
+              "chapter_id": "4.6",
+              "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/02-有界耗散与可信积分.ipynb",
+              "title": "有界耗散与可信积分",
+              "outcome": "能推导有界性与散度公式，手写 RK4，按共同时间点检查短窗收敛并解释长时比较的限制。",
+              "number": "4.6.2",
+              "visualization": "web/nonlinear/lorenz.html",
+              "questions": [
+                {
+                  "id": "p04-volume-bounded",
+                  "slug": "p04-volume-bounded",
+                  "title": "体积收缩是否保证有界",
+                  "type": "choice"
+                },
+                {
+                  "id": "p04-lorenz-bound",
+                  "slug": "p04-lorenz-bound",
+                  "title": "用两条路径核对函数导数",
+                  "type": "python"
+                },
+                {
+                  "id": "p04-rk4-linear-step",
+                  "slug": "p04-rk4-linear-step",
+                  "title": "手写四阶段的一步更新",
+                  "type": "python"
+                },
+                {
+                  "id": "p04-aligned-error",
+                  "slug": "p04-aligned-error",
+                  "title": "只比较相同时刻的结果",
+                  "type": "python"
+                },
+                {
+                  "id": "p04-short-window-check",
+                  "slug": "p04-short-window-check",
+                  "title": "混沌轨迹怎样做收敛对照",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-volume-bounded"
+            },
+            {
+              "id": "P04-C06-S03",
+              "chapter_id": "4.6",
+              "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/03-截面与返回中的长期结构.ipynb",
+              "title": "截面与返回中的长期结构",
+              "outcome": "能定义同向截面与返回，插值同一交点的时间和状态，并区分完整返回映射与投影散点。",
+              "number": "4.6.3",
+              "visualization": "web/nonlinear/lorenz.html",
+              "questions": [
+                {
+                  "id": "p04-section-projection",
+                  "slug": "p04-section-projection",
+                  "title": "返回映射保留哪些坐标",
+                  "type": "choice"
+                },
+                {
+                  "id": "p04-directed-section",
+                  "slug": "p04-directed-section",
+                  "title": "提取同向截面交点",
+                  "type": "python"
+                },
+                {
+                  "id": "p04-return-intervals",
+                  "slug": "p04-return-intervals",
+                  "title": "从交点时间估计返回间隔",
+                  "type": "python"
+                },
+                {
+                  "id": "p04-section-limits",
+                  "slug": "p04-section-limits",
+                  "title": "没有检测到交点意味着什么",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-section-projection"
+            },
+            {
+              "id": "P04-C06-S04",
+              "chapter_id": "4.6",
+              "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/04-切向增长奇异几何与预测边界.ipynb",
+              "title": "切向增长奇异几何与预测边界",
+              "outcome": "能推导连续变分方程，按实际时间汇总分段增长，区分有限方向增长、长期最大指数与严格存在性。",
+              "number": "4.6.4",
+              "visualization": "web/nonlinear/lorenz.html",
+              "questions": [
+                {
+                  "id": "p04-tangent-growth",
+                  "slug": "p04-tangent-growth",
+                  "title": "按实际时间汇总切向增长",
+                  "type": "python"
+                },
+                {
+                  "id": "p04-linear-tangent",
+                  "slug": "p04-linear-tangent",
+                  "title": "用解析线性系统检查切向解",
+                  "type": "python"
+                },
+                {
+                  "id": "p04-growth-units",
+                  "slug": "p04-growth-units",
+                  "title": "增加归一化次数会提高增长率吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p04-quasiperiodic-counterexample",
+                  "slug": "p04-quasiperiodic-counterexample",
+                  "title": "非周期是否足够说明混沌",
+                  "type": "choice"
+                },
+                {
+                  "id": "p04-strange-evidence",
+                  "slug": "p04-strange-evidence",
+                  "title": "图像与存在性证明的距离",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/04-06-连续时间混沌与奇异吸引子/practice/?question=p04-tangent-growth"
+            }
+          ],
+          "visualization": "web/nonlinear/lorenz.html"
         }
       ],
       "assessment": {
@@ -2085,13 +2298,13 @@
         "assessment": true,
         "title": "非线性行为与证据边界",
         "url": "/parts/04-非线性动态行为/综合练习/",
-        "goals": "在固定案例中连接多稳态（multistability）、振荡、预测期限与区域稳定性，说明数值证据的边界。",
-        "prerequisites": "本篇五章。",
-        "focus": "输入（input）与初值（initial condition）、暂态（transient）与采样（sampling）、算术精度与初值敏感性（sensitivity to initial conditions）、有限扫描与解析证明分别核对。",
+        "goals": "能综合六章证据，分别核对集合吸引、定向返回、离散与连续增长及 Lorenz 有界性，限定稳定性与混沌（chaos）结论。",
+        "prerequisites": "本篇六章。",
+        "focus": "集合与单轨迹（trajectory）、定向事件（event）与投影（projection）、每步与每时间增长、有界性与平衡（equilibrium）稳定分别核对。",
         "knowledge": [
-          "平衡（equilibrium）与初值 → 多稳态与扫描",
-          "径向方程与事件（event） → 振幅（amplitude）、周期及相位（phase）",
-          "轨迹（trajectory）分离与区域证书 → 预测和稳定性的条件"
+          "不变集（invariant set）合与初值（initial condition） → 多稳态（multistability）、周期和吸引域（basin of attraction）",
+          "分岔（bifurcation）、映射与连续流 → 返回和预测范围",
+          "函数导数（derivative）与独立误差对照 → 有界性和结论边界"
         ],
         "lessons": [
           {
@@ -2099,30 +2312,30 @@
             "chapter_id": "4.summary",
             "path": "notebooks/04-非线性动态行为/06-篇末综合/01-非线性行为与证据边界.ipynb",
             "title": "非线性行为与证据边界",
-            "outcome": "能把模型假设、数值协议和结论条件连接起来，独立核对吸引去向、周期、精度敏感性和区域稳定性，并指出证据尚未覆盖的范围。",
+            "outcome": "能综合六章证据，分别核对集合吸引、定向返回、离散与连续增长及 Lorenz 有界性，限定稳定性与混沌结论。",
             "number": "篇末综合",
             "visualization": null,
             "overview": {
-              "goals": "在固定案例中连接多稳态、振荡、预测期限与区域稳定性，说明数值证据的边界。",
-              "prerequisites": "本篇五章。",
-              "focus": "输入与初值、暂态与采样、算术精度与初值敏感性、有限扫描与解析证明分别核对。",
+              "goals": "能综合六章证据，分别核对集合吸引、定向返回、离散与连续增长及 Lorenz 有界性，限定稳定性与混沌结论。",
+              "prerequisites": "本篇六章。",
+              "focus": "集合与单轨迹、定向事件与投影、每步与每时间增长、有界性与平衡稳定分别核对。",
               "knowledge": [
-                "平衡与初值 → 多稳态与扫描",
-                "径向方程与事件 → 振幅、周期及相位",
-                "轨迹分离与区域证书 → 预测和稳定性的条件"
+                "不变集合与初值 → 多稳态、周期和吸引域",
+                "分岔、映射与连续流 → 返回和预测范围",
+                "函数导数与独立误差对照 → 有界性和结论边界"
               ]
             },
             "questions": [
               {
                 "id": "p04-cap-equilibrium",
                 "slug": "p04-cap-equilibrium",
-                "title": "用方向表辨认吸引去向",
+                "title": "吸引子、吸引域与轨迹",
                 "type": "choice"
               },
               {
                 "id": "p04-cap-source",
                 "slug": "p04-cap-source",
-                "title": "长期周期来自哪一种机制",
+                "title": "振荡来源与参数转变",
                 "type": "choice"
               },
               {
@@ -2134,31 +2347,31 @@
               {
                 "id": "p04-cap-period",
                 "slug": "p04-cap-period",
-                "title": "用固定过零约定测量后段周期",
+                "title": "从定向截面计算返回",
                 "type": "python"
               },
               {
                 "id": "p04-cap-precision",
                 "slug": "p04-cap-precision",
-                "title": "比较两种算术精度的轨迹分离",
+                "title": "离散与连续的扰动增长",
                 "type": "python"
               },
               {
                 "id": "p04-cap-irregular",
                 "slug": "p04-cap-irregular",
-                "title": "从不规则后段能够说到哪里",
+                "title": "混沌证据是否充分",
                 "type": "choice"
               },
               {
                 "id": "p04-cap-region",
                 "slug": "p04-cap-region",
-                "title": "在新二维区域中检查候选函数",
+                "title": "有界性与函数导数的双重核对",
                 "type": "python"
               },
               {
                 "id": "p04-cap-scope",
                 "slug": "p04-cap-scope",
-                "title": "如何把区域证书变成稳定结论",
+                "title": "吸引、稳定与混沌的结论边界",
                 "type": "choice"
               }
             ],
@@ -3154,7 +3367,7 @@
           "title": "最小二乘与参数估计",
           "url": "/chapters/06-04-最小二乘与参数估计/",
           "goals": "定义残差（residual）和损失，说明最小二乘与 Gaussian 误差的关系，并为区间估计写明假设。",
-          "prerequisites": "5.3、3.4、6.1；数学：矩阵（matrix）、偏导（partial derivative）、概率（probability）与似然（likelihood）。最小二乘、估计区间及重采样（sampling）在本章首次引入。",
+          "prerequisites": "5.3、3.4、6.1；数学：矩阵（matrix）、偏导（partial derivative）、概率（probability）与似然（likelihood）。最小二乘、估计区间及重采样（resampling）在本章首次引入。",
           "knowledge": [
             "线性回归、投影（projection）和秩（rank）",
             "理想清除参数的拟合与残差",
@@ -3291,7 +3504,7 @@
           "title": "动态辨识、实验设计与验证",
           "url": "/chapters/06-05-动态辨识、实验设计与验证/",
           "goals": "构建简单外源输入自回归模型（autoregressive with exogenous input，ARX），区分拟合、一步预测（one-step-ahead prediction）和自由运行（free-run simulation），比较激励、结构与可辨识范围。",
-          "prerequisites": "6.3、6.4；数学：Laplace/Z 变换、收敛域（region of convergence，ROC）的必要直觉、极点（pole）零点（zero）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（sampling）入门。",
+          "prerequisites": "6.3、6.4；数学：Laplace/Z 变换、收敛域（region of convergence，ROC）的必要直觉、极点（pole）零点（zero）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门。",
           "knowledge": [
             "回归量、延迟（delay）与动态模型（model）",
             "输入激励、结构选择和参数混淆",
@@ -3428,6 +3641,107 @@
             }
           ],
           "visualization": null
+        },
+        {
+          "id": "6.6",
+          "title": "递推辨识与时变参数跟踪",
+          "url": "/chapters/06-06-递推辨识与时变参数跟踪/",
+          "goals": "从批量最小二乘推导递推更新，比较遗忘因子（forgetting factor）、激励和参数（parameter）漂移对估计的影响，限定不确定性解释。",
+          "prerequisites": "6.5；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、信息矩阵、矩阵秩一更新（rank-one update）与递推最小二乘（recursive least squares，RLS）。",
+          "knowledge": [
+            "由累计信息矩阵和正规方程引入矩阵秩一更新，先推导无遗忘的递推最小二乘（recursive least squares，RLS）",
+            "加入遗忘因子、初始正则项和在线时钟，区分先预测后更新与读取未来观测（observation）",
+            "比较固定参数、缓慢漂移与激励不足；区分逆信息矩阵与参数估计协方差"
+          ],
+          "focus": "遗忘因子等于 1 时与逐步扩大的正则化（regularization）批量问题比较；小于 1 时与同一初始权重衰减规则的加权问题比较。无正则、固定满秩设计和独立同方差（homoscedasticity）误差下，参数协方差（covariance）为误差方差（variance）乘逆信息矩阵（inverse information matrix）；有限初始正则、遗忘加权或闭环相关误差下须重新推导协方差，不能直接沿用该式。若采用高斯先验（prior）解释初始矩阵，须明确与频率学派协方差的区别；完整后验（posterior）学习留到 9.1。不以跟踪改善替代参数一致性。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P06-C06-S01",
+              "chapter_id": "6.6",
+              "path": "notebooks/06-从测量走向模型/06-递推辨识与时变参数跟踪/01-从批量最小二乘到递推更新.ipynb",
+              "title": "从批量最小二乘到递推更新",
+              "number": "6.6.1",
+              "outcome": "能由正则化批量目标推导秩一更新和递推最小二乘，逐前缀核验等价性，并区分逆信息与参数协方差。",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p06-rls-equivalence",
+                  "slug": "p06-rls-equivalence",
+                  "title": "递推与批量究竟在比较什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-rls-trace",
+                  "slug": "p06-rls-trace",
+                  "title": "逐条更新参数并保留预测时钟",
+                  "type": "python"
+                },
+                {
+                  "id": "p06-rls-rank-one",
+                  "slug": "p06-rls-rank-one",
+                  "title": "秩一更新为何省计算",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-ridge-variance",
+                  "slug": "p06-ridge-variance",
+                  "title": "逆信息与抽样方差的差别",
+                  "type": "python"
+                },
+                {
+                  "id": "p06-rls-covariance",
+                  "slug": "p06-rls-covariance",
+                  "title": "什么时候可以写成噪声方差乘P",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-rls-equivalence"
+            },
+            {
+              "id": "P06-C06-S02",
+              "chapter_id": "6.6",
+              "path": "notebooks/06-从测量走向模型/06-递推辨识与时变参数跟踪/02-遗忘、漂移与在线验证.ipynb",
+              "title": "遗忘、漂移与在线验证",
+              "number": "6.6.2",
+              "outcome": "能推导指数遗忘含初始项的权重，比较漂移和弱激励，遵循先预测后更新的在线时钟并隔离调参与最终评估。",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p06-forgetting-objective",
+                  "slug": "p06-forgetting-objective",
+                  "title": "初始约束也会被遗忘",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-forgetting-weights",
+                  "slug": "p06-forgetting-weights",
+                  "title": "写出当前批量目标的权重",
+                  "type": "python"
+                },
+                {
+                  "id": "p06-online-clock",
+                  "slug": "p06-online-clock",
+                  "title": "在线误差应在哪一步计算",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-forgetting-excitation",
+                  "slug": "p06-forgetting-excitation",
+                  "title": "弱激励不能靠遗忘制造信息",
+                  "type": "choice"
+                },
+                {
+                  "id": "p06-drift-noise-validation",
+                  "slug": "p06-drift-noise-validation",
+                  "title": "跟得快和估得准不是同一件事",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/06-06-递推辨识与时变参数跟踪/practice/?question=p06-forgetting-objective"
+            }
+          ],
+          "visualization": null
         }
       ],
       "assessment": {
@@ -3435,13 +3749,14 @@
         "assessment": true,
         "title": "测量辨识与验证的综合实验",
         "url": "/parts/06-从测量走向模型/综合练习/",
-        "goals": "综合判断采样（sampling）、动态表示、参数（parameter）估计与预测验证。",
-        "prerequisites": "本篇第 6.1—6.5 章。",
+        "goals": "综合判断采样（sampling）、动态表示、批量/递推参数（parameter）估计与在线预测验证。",
+        "prerequisites": "本篇第 6.1—6.6 章。",
         "focus": "信息边界、误差假设、激励范围和参数可辨识性（identifiability）。",
         "knowledge": [
           "测量协议 → 采样与表示",
           "候选与观测（observation） → 参数及残差（residual）",
-          "数据划分 → 预测与范围验证"
+          "数据划分 → 预测与范围验证",
+          "遗忘与漂移 → 先预测后更新的独立在线评估"
         ],
         "lessons": [
           {
@@ -3450,16 +3765,17 @@
             "path": "notebooks/06-从测量走向模型/06-篇末综合/01-测量辨识与验证的综合实验.ipynb",
             "title": "测量辨识与验证的综合实验",
             "number": "篇末综合",
-            "outcome": "能组织观测、表示、参数估计与独立验证，解释有限数据与模型假设限制。",
+            "outcome": "能组织观测、表示、批量与递推参数估计及独立在线验证，解释有限数据、激励和模型假设限制。",
             "visualization": null,
             "overview": {
-              "goals": "综合判断采样、动态表示、参数估计与预测验证。",
-              "prerequisites": "本篇第 6.1—6.5 章。",
+              "goals": "综合判断采样、动态表示、批量/递推参数估计与在线预测验证。",
+              "prerequisites": "本篇第 6.1—6.6 章。",
               "focus": "信息边界、误差假设、激励范围和参数可辨识性。",
               "knowledge": [
                 "测量协议 → 采样与表示",
                 "候选与观测 → 参数及残差",
-                "数据划分 → 预测与范围验证"
+                "数据划分 → 预测与范围验证",
+                "遗忘与漂移 → 先预测后更新的独立在线评估"
               ]
             },
             "questions": [
@@ -3508,8 +3824,8 @@
               {
                 "id": "p06-cap-validation",
                 "slug": "p06-cap-validation",
-                "title": "换激励后的验证能支持什么",
-                "type": "choice"
+                "title": "漂移参数的递推核验",
+                "type": "python"
               }
             ],
             "url": "/parts/06-从测量走向模型/综合练习/practice/?question=p06-cap-sampling"
@@ -3521,13 +3837,1322 @@
     },
     {
       "id": "7",
-      "title": "反馈、估计与控制",
-      "url": "/parts/07-反馈、估计与控制/",
+      "title": "状态估计与贝叶斯滤波",
+      "url": "/parts/07-状态估计与贝叶斯滤波/",
       "chapters": [
         {
           "id": "7.1",
+          "title": "状态空间与能观性",
+          "url": "/chapters/07-01-状态空间与能观性/",
+          "goals": "把状态（state）转移与观测（observation）分开，判断已知线性模型（model）的能观性（observability），区别状态恢复和参数（parameter）辨识。",
+          "prerequisites": "3.2、5.4、6.5；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵幂和矩阵指数（matrix exponential）、期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验（posterior）及标量高斯条件更新、随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布。",
+          "knowledge": [
+            "从第 3 篇状态空间（state space）表示加入过程噪声（process noise）与测量噪声（measurement noise），声明条件独立（conditional independence）结构",
+            "通过不同传感器的同输出（output）状态说明信息缺口，构造有限时域能观矩阵",
+            "联系隐藏细胞状态与部分观测二室模型，区分随机不确定性、不可观方向和未知参数"
+          ],
+          "focus": "小矩阵逐项乘法与完整轨迹（trajectory）对照；秩的数值容差和尺度明确。线性能观性结论限定在给定模型及采样（sampling）下，不保证任意非线性系统可恢复。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P07-C01-S01",
+              "chapter_id": "7.1",
+              "path": "notebooks/07-状态估计与贝叶斯滤波/01-状态空间与能观性/01-从有噪读数建立状态模型.ipynb",
+              "title": "从有噪读数建立状态模型",
+              "outcome": "区分状态、过程噪声和测量噪声，明确估计器能使用的信息。",
+              "number": "7.1.1",
+              "visualization": "web/estimation/index.html",
+              "questions": [
+                {
+                  "id": "p07-state-readings",
+                  "slug": "p07-state-readings",
+                  "title": "从状态到有噪读数",
+                  "type": "python"
+                },
+                {
+                  "id": "p07-noise-location",
+                  "slug": "p07-noise-location",
+                  "title": "两种噪声加在哪里",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-state-parameter",
+                  "slug": "p07-state-parameter",
+                  "title": "未知的是哪一类量",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-independence",
+                  "slug": "p07-independence",
+                  "title": "条件独立的范围",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/07-01-状态空间与能观性/practice/?question=p07-state-readings"
+            },
+            {
+              "id": "P07-C01-S02",
+              "chapter_id": "7.1",
+              "path": "notebooks/07-状态估计与贝叶斯滤波/01-状态空间与能观性/02-传感器与可区分的状态.ipynb",
+              "title": "传感器与可区分的状态",
+              "outcome": "构造能观矩阵，解释秩、采样和噪声放大各自决定的问题。",
+              "number": "7.1.2",
+              "visualization": "web/estimation/index.html",
+              "questions": [
+                {
+                  "id": "p07-observability",
+                  "slug": "p07-observability",
+                  "title": "拼出能观矩阵",
+                  "type": "python"
+                },
+                {
+                  "id": "p07-sum-sensor",
+                  "slug": "p07-sum-sensor",
+                  "title": "总量相同就能区分吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-conditioning",
+                  "slug": "p07-conditioning",
+                  "title": "满秩之后还要检查什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-sampling-observation",
+                  "slug": "p07-sampling-observation",
+                  "title": "采样会丢失方向吗",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/07-01-状态空间与能观性/practice/?question=p07-observability"
+            }
+          ],
+          "visualization": "web/estimation/index.html"
+        },
+        {
+          "id": "7.2",
+          "title": "贝叶斯递推与隐马尔可夫模型",
+          "url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/",
+          "goals": "由联合分布（distribution）分解推导贝叶斯滤波（Bayesian filtering）的预测和更新，计算有限隐藏状态（state）的精确后验（posterior）。",
+          "prerequisites": "7.1、5.3；数学：条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验及标量高斯条件更新、随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布、状态空间（state space）的条件独立（conditional independence）、概率（probability）分解与边缘化。",
+          "knowledge": [
+            "引入隐马尔可夫模型（hidden Markov model，HMM）的状态、转移与发射概率",
+            "由边缘化和贝叶斯公式推导预测—更新递推及证据归一化，再写出连续状态积分形式",
+            "实现有限状态的前向滤波，说明缺测和零证据，不提前使用未来观测"
+          ],
+          "focus": "对短序列独立枚举；检查非负、归一化、全缺测及不可能观测（observation）。只把离散枚举当小模型（model）参照，不宣称解决连续积分。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P07-C02-S01",
+              "chapter_id": "7.2",
+              "path": "notebooks/07-状态估计与贝叶斯滤波/02-贝叶斯递推与隐马尔可夫模型/01-从条件概率到预测与更新.ipynb",
+              "title": "从条件概率到预测与更新",
+              "outcome": "由边缘化和Bayes公式推导滤波，正确处理缺测和零证据。",
+              "number": "7.2.1",
+              "visualization": "web/estimation/index.html",
+              "questions": [
+                {
+                  "id": "p07-bayes-sequence",
+                  "slug": "p07-bayes-sequence",
+                  "title": "逐次预测与更新",
+                  "type": "python"
+                },
+                {
+                  "id": "p07-evidence-normalization",
+                  "slug": "p07-evidence-normalization",
+                  "title": "归一化的分母是什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-missing-not-zero",
+                  "slug": "p07-missing-not-zero",
+                  "title": "缺测等于观测零吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-zero-evidence",
+                  "slug": "p07-zero-evidence",
+                  "title": "不可能观测之后",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-bayes-sequence"
+            },
+            {
+              "id": "P07-C02-S02",
+              "chapter_id": "7.2",
+              "path": "notebooks/07-状态估计与贝叶斯滤波/02-贝叶斯递推与隐马尔可夫模型/02-隐状态序列与路径枚举.ipynb",
+              "title": "隐状态序列与路径枚举",
+              "outcome": "在隐马尔可夫模型中实现在线递推，并用全路径枚举核验。",
+              "number": "7.2.2",
+              "visualization": "web/estimation/index.html",
+              "questions": [
+                {
+                  "id": "p07-path-posterior",
+                  "slug": "p07-path-posterior",
+                  "title": "枚举路径恢复末态",
+                  "type": "python"
+                },
+                {
+                  "id": "p07-row-transition",
+                  "slug": "p07-row-transition",
+                  "title": "转移矩阵的方向",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-path-budget",
+                  "slug": "p07-path-budget",
+                  "title": "为什么还需要递推",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-online-prefix",
+                  "slug": "p07-online-prefix",
+                  "title": "如何检查未来信息泄漏",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/07-02-贝叶斯递推与隐马尔可夫模型/practice/?question=p07-path-posterior"
+            }
+          ],
+          "visualization": "web/estimation/index.html"
+        },
+        {
+          "id": "7.3",
+          "title": "卡尔曼滤波",
+          "url": "/chapters/07-03-卡尔曼滤波/",
+          "goals": "由多元高斯条件分布（distribution）推导卡尔曼滤波（Kalman filtering，KF）（Kalman filter，KF），计算均值、协方差（covariance）与创新。",
+          "prerequisites": "7.2、3.1；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、期望（expectation）、方差（variance）、协方差、联合分布、Gaussian 分布、条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验（posterior）及标量高斯条件更新、多元高斯条件分布、块协方差与矩阵分解。",
+          "knowledge": [
+            "先讲多元高斯密度、分块协方差、正定性（positive definiteness）与条件分布，补齐所需矩阵因式分解",
+            "推导线性动态预测、创新协方差、增益（gain）和观测（observation）更新，以线性方程求解代替显式求逆",
+            "处理缺测、协方差对称性和噪声设定错误；说明精确性的线性高斯条件"
+          ],
+          "focus": "与整段联合高斯的条件分布独立核对；协方差在容差内对称半正定（positive semidefinite）。零噪或奇异输入（input）的契约显式限定，有限重复的覆盖率附不确定性。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P07-C03-S01",
+              "chapter_id": "7.3",
+              "path": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/01-多元高斯与条件分布.ipynb",
+              "title": "多元高斯与条件分布",
+              "outcome": "解释协方差几何，从分块高斯推导条件均值和条件协方差。",
+              "number": "7.3.1",
+              "visualization": "web/estimation/index.html",
+              "questions": [
+                {
+                  "id": "p07-scalar-gaussian",
+                  "slug": "p07-scalar-gaussian",
+                  "title": "两个高斯信息如何合并",
+                  "type": "python"
+                },
+                {
+                  "id": "p07-covariance-geometry",
+                  "slug": "p07-covariance-geometry",
+                  "title": "椭圆描述的是什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-conditional-cross",
+                  "slug": "p07-conditional-cross",
+                  "title": "没有交叉协方差时",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-factorization",
+                  "slug": "p07-factorization",
+                  "title": "求逆还是解方程",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-scalar-gaussian"
+            },
+            {
+              "id": "P07-C03-S02",
+              "chapter_id": "7.3",
+              "path": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/02-线性高斯预测与观测更新.ipynb",
+              "title": "线性高斯预测与观测更新",
+              "outcome": "从条件高斯推导Kalman递推，检验时刻约定与缺测分支。",
+              "number": "7.3.2",
+              "visualization": "web/estimation/index.html",
+              "questions": [
+                {
+                  "id": "p07-kalman-sequence",
+                  "slug": "p07-kalman-sequence",
+                  "title": "线性高斯递推",
+                  "type": "python"
+                },
+                {
+                  "id": "p07-kalman-timing",
+                  "slug": "p07-kalman-timing",
+                  "title": "第一步之前要转移吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-joseph-noise",
+                  "slug": "p07-joseph-noise",
+                  "title": "更新协方差丢了哪一项",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-gaussian-exactness",
+                  "slug": "p07-gaussian-exactness",
+                  "title": "什么时候是精确后验",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-empty-observations",
+                  "slug": "p07-empty-observations",
+                  "title": "无读数与连续缺测",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-kalman-sequence"
+            },
+            {
+              "id": "P07-C03-S03",
+              "chapter_id": "7.3",
+              "path": "notebooks/07-状态估计与贝叶斯滤波/03-卡尔曼滤波/03-创新、误差与区间覆盖.ipynb",
+              "title": "创新、误差与区间覆盖",
+              "outcome": "用独立重复检验创新和区间覆盖，区分误差与不确定性校准。",
+              "number": "7.3.3",
+              "visualization": "web/estimation/index.html",
+              "questions": [
+                {
+                  "id": "p07-coverage",
+                  "slug": "p07-coverage",
+                  "title": "误差与覆盖率分开算",
+                  "type": "python"
+                },
+                {
+                  "id": "p07-coverage-unit",
+                  "slug": "p07-coverage-unit",
+                  "title": "谁是独立重复",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-innovation-whiteness",
+                  "slug": "p07-innovation-whiteness",
+                  "title": "创新应该接近什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-calibration-failure",
+                  "slug": "p07-calibration-failure",
+                  "title": "误差小就校准好吗",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/07-03-卡尔曼滤波/practice/?question=p07-coverage"
+            }
+          ],
+          "visualization": "web/estimation/index.html"
+        },
+        {
+          "id": "7.4",
+          "title": "非线性高斯滤波",
+          "url": "/chapters/07-04-非线性高斯滤波/",
+          "goals": "实现扩展与无迹卡尔曼滤波（unscented Kalman filtering，UKF），解释局部线性化（linearization）和矩近似的不同误差来源。",
+          "prerequisites": "7.3、3.4；数学：偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、多元高斯条件分布（distribution）、块协方差（covariance）与矩阵（matrix）分解。",
+          "knowledge": [
+            "由一阶线性化得到扩展卡尔曼滤波（extended Kalman filtering，EKF）（extended Kalman filter，EKF），保留雅可比求值位置",
+            "由确定性采样（sampling）点传播均值与协方差，建立无迹卡尔曼滤波（unscented Kalman filter，UKF）及权重约定",
+            "在同一非线性观测（observation）模型比较近似误差、初值（initial condition）与噪声；用线性退化情形回归检查"
+          ],
+          "focus": "线性模型（model）下两种方法退化为同一高斯更新；非线性情形与网格积分对照，检查求值位置、权重和协方差。无迹方法不保证普遍优于线性化。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P07-C04-S01",
+              "chapter_id": "7.4",
+              "path": "notebooks/07-状态估计与贝叶斯滤波/04-非线性高斯滤波/01-局部线性化与扩展滤波.ipynb",
+              "title": "局部线性化与扩展滤波",
+              "outcome": "推导EKF并保留雅可比求值位置，解释局部近似失效。",
+              "number": "7.4.1",
+              "visualization": "web/estimation/index.html",
+              "questions": [
+                {
+                  "id": "p07-extended-update",
+                  "slug": "p07-extended-update",
+                  "title": "一次平方观测的扩展更新",
+                  "type": "python"
+                },
+                {
+                  "id": "p07-jacobian-location",
+                  "slug": "p07-jacobian-location",
+                  "title": "雅可比在哪求值",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-zero-gradient",
+                  "slug": "p07-zero-gradient",
+                  "title": "导数为零意味着什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-linear-limit",
+                  "slug": "p07-linear-limit",
+                  "title": "线性退化如何检验",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/07-04-非线性高斯滤波/practice/?question=p07-extended-update"
+            },
+            {
+              "id": "P07-C04-S02",
+              "chapter_id": "7.4",
+              "path": "notebooks/07-状态估计与贝叶斯滤波/04-非线性高斯滤波/02-无迹变换与后验形状.ipynb",
+              "title": "无迹变换与后验形状",
+              "outcome": "构造确定性采样点，比较UKF矩近似、EKF与低维积分后验。",
+              "number": "7.4.2",
+              "visualization": "web/estimation/index.html",
+              "questions": [
+                {
+                  "id": "p07-unscented-moments",
+                  "slug": "p07-unscented-moments",
+                  "title": "三个采样点传播平方观测",
+                  "type": "python"
+                },
+                {
+                  "id": "p07-sigma-weights",
+                  "slug": "p07-sigma-weights",
+                  "title": "均值权重与协方差权重",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-moment-not-posterior",
+                  "slug": "p07-moment-not-posterior",
+                  "title": "矩准确意味着后验准确吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-grid-validation",
+                  "slug": "p07-grid-validation",
+                  "title": "网格参照也要核验",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-symmetric-posterior",
+                  "slug": "p07-symmetric-posterior",
+                  "title": "后验均值零是否没有更新",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/07-04-非线性高斯滤波/practice/?question=p07-unscented-moments"
+            }
+          ],
+          "visualization": "web/estimation/index.html"
+        },
+        {
+          "id": "7.5",
+          "title": "粒子滤波",
+          "url": "/chapters/07-05-粒子滤波/",
+          "goals": "以带权样本近似滤波后验（posterior），计算重要性权重、有效样本量并执行重采样（resampling）。",
+          "prerequisites": "7.2、5.1、7.4；数学：事件（event）、随机变量（random variable）、离散/连续分布（distribution）、抽样和 Monte Carlo、条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验及标量高斯条件更新、状态空间（state space）的条件独立（conditional independence）、概率（probability）分解与边缘化、重要性采样（importance sampling，IS）、自归一化权重、重采样与权重有效样本量。",
+          "knowledge": [
+            "从期望（expectation）积分引入重要性采样（importance sampling）与自归一化权重",
+            "建立自助粒子滤波（particle filtering，PF）（bootstrap particle filter）的传播、观测（observation）加权和重采样步骤",
+            "计算有效样本量（effective sample size，ESS），区分权重退化、样本贫化和模型（model）错误"
+          ],
+          "focus": "手算权重与累积概率索引；一维网格和线性高斯极限（limit）提供参照。极小似然用稳定归一化，全部不可能权重按公开契约返回失败状态（state）；不按单次随机准确率判分。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P07-C05-S01",
+              "chapter_id": "7.5",
+              "path": "notebooks/07-状态估计与贝叶斯滤波/05-粒子滤波/01-重要性采样与稳定权重.ipynb",
+              "title": "重要性采样与稳定权重",
+              "outcome": "从期望积分推导重要性权重，解释自归一化与提议支持条件。",
+              "number": "7.5.1",
+              "visualization": "web/estimation/index.html",
+              "questions": [
+                {
+                  "id": "p07-importance-weights",
+                  "slug": "p07-importance-weights",
+                  "title": "稳定计算重要性权重",
+                  "type": "python"
+                },
+                {
+                  "id": "p07-proposal-support",
+                  "slug": "p07-proposal-support",
+                  "title": "提议分布漏掉一侧",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-self-normalized",
+                  "slug": "p07-self-normalized",
+                  "title": "自归一化为何实用",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-log-shift",
+                  "slug": "p07-log-shift",
+                  "title": "为什么减最大对数权重",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/07-05-粒子滤波/practice/?question=p07-importance-weights"
+            },
+            {
+              "id": "P07-C05-S02",
+              "chapter_id": "7.5",
+              "path": "notebooks/07-状态估计与贝叶斯滤波/05-粒子滤波/02-粒子传播、退化与重采样.ipynb",
+              "title": "粒子传播、退化与重采样",
+              "outcome": "实现自助粒子滤波，比较ESS、样本贫化及固定预算下的重复误差。",
+              "number": "7.5.2",
+              "visualization": "web/estimation/index.html",
+              "questions": [
+                {
+                  "id": "p07-particle-resampling",
+                  "slug": "p07-particle-resampling",
+                  "title": "观测加权与系统重采样",
+                  "type": "python"
+                },
+                {
+                  "id": "p07-ess-threshold",
+                  "slug": "p07-ess-threshold",
+                  "title": "有效样本量与阈值",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-ancestry-poverty",
+                  "slug": "p07-ancestry-poverty",
+                  "title": "权重均匀还会贫化吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-bootstrap-proposal",
+                  "slug": "p07-bootstrap-proposal",
+                  "title": "自助滤波中为何只乘似然",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-particle-comparison",
+                  "slug": "p07-particle-comparison",
+                  "title": "有限预算怎样比较",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/07-05-粒子滤波/practice/?question=p07-particle-resampling"
+            }
+          ],
+          "visualization": "web/estimation/index.html"
+        },
+        {
+          "id": "7.6",
+          "title": "平滑与缺测处理",
+          "url": "/chapters/07-06-平滑与缺测处理/",
+          "goals": "区分预测、滤波和平滑，利用后续观测（observation）修正历史状态（state），同时保持在线任务的时间边界。",
+          "prerequisites": "7.3、7.5；数学：状态空间（state space）的条件独立（conditional independence）、概率（probability）分解与边缘化、多元高斯条件分布（distribution）、块协方差（covariance）与矩阵（matrix）分解。",
+          "knowledge": [
+            "在有限隐藏状态模型推导前向—后向平滑",
+            "推导线性高斯的 Rauch–Tung–Striebel 平滑（Rauch–Tung–Striebel smoother，RTS smoother）与终端条件",
+            "比较连续缺测、观测恢复和离线重建；非线性/粒子平滑列为拓展"
+          ],
+          "focus": "有限状态枚举全部路径，线性高斯与整段条件分布对照；末端平滑等于末端滤波。只有满足模型（model）假设的相同观测条件下才比较理论协方差关系。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P07-C06-S01",
+              "chapter_id": "7.6",
+              "path": "notebooks/07-状态估计与贝叶斯滤波/06-平滑与缺测处理/01-前向后向与未来信息.ipynb",
+              "title": "前向后向与未来信息",
+              "outcome": "从联合路径推导有限状态平滑，并保持在线和离线的信息边界。",
+              "number": "7.6.1",
+              "visualization": "web/estimation/index.html",
+              "questions": [
+                {
+                  "id": "p07-hmm-smoothing",
+                  "slug": "p07-hmm-smoothing",
+                  "title": "把未来读数传回过去",
+                  "type": "python"
+                },
+                {
+                  "id": "p07-three-information-sets",
+                  "slug": "p07-three-information-sets",
+                  "title": "三种估计分别知道什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-backward-index",
+                  "slug": "p07-backward-index",
+                  "title": "后向信息从哪一步开始",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-offline-online",
+                  "slug": "p07-offline-online",
+                  "title": "平滑更好能推实时更好吗",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/07-06-平滑与缺测处理/practice/?question=p07-hmm-smoothing"
+            },
+            {
+              "id": "P07-C06-S02",
+              "chapter_id": "7.6",
+              "path": "notebooks/07-状态估计与贝叶斯滤波/06-平滑与缺测处理/02-RTS平滑与连续缺测.ipynb",
+              "title": "RTS平滑与连续缺测",
+              "outcome": "推导线性高斯后向平滑，检验末端一致性、缺测和联合条件参照。",
+              "number": "7.6.2",
+              "visualization": "web/estimation/index.html",
+              "questions": [
+                {
+                  "id": "p07-rts-backward",
+                  "slug": "p07-rts-backward",
+                  "title": "由已保存的滤波矩后向平滑",
+                  "type": "python"
+                },
+                {
+                  "id": "p07-terminal-equality",
+                  "slug": "p07-terminal-equality",
+                  "title": "后向递推在哪里开始",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-covariance-order",
+                  "slug": "p07-covariance-order",
+                  "title": "协方差变小的前提",
+                  "type": "choice"
+                },
+                {
+                  "id": "p07-missing-gap",
+                  "slug": "p07-missing-gap",
+                  "title": "缺测区间里的误差",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/07-06-平滑与缺测处理/practice/?question=p07-rts-backward"
+            }
+          ],
+          "visualization": "web/estimation/index.html"
+        }
+      ],
+      "assessment": {
+        "id": "7.summary",
+        "assessment": true,
+        "title": "部分观测下的状态恢复",
+        "url": "/parts/07-状态估计与贝叶斯滤波/综合练习/",
+        "goals": "建立状态（state）恢复问题，推导并计算滤波与平滑，解释近似和观测（observation）失效。",
+        "prerequisites": "本篇7.1—7.6。",
+        "focus": "信息边界、条件概率（conditional probability）、协方差（covariance）、近似形状与独立核验。",
+        "knowledge": [
+          "模型（model）与传感器 → 可区分状态",
+          "预测与更新 → 离散及Gaussian递推",
+          "非线性与多峰 → 近似和粒子",
+          "未来信息与缺测 → 离线平滑及独立验证"
+        ],
+        "lessons": [
+          {
+            "id": "P07-SUMMARY",
+            "chapter_id": "7.summary",
+            "path": "notebooks/07-状态估计与贝叶斯滤波/07-篇末综合/01-部分观测下的状态恢复.ipynb",
+            "title": "部分观测下的状态恢复",
+            "outcome": "建立估计问题，计算滤波与平滑，诊断近似和观测失效。",
+            "number": "篇末综合",
+            "visualization": null,
+            "overview": {
+              "goals": "建立状态恢复问题，推导并计算滤波与平滑，解释近似和观测失效。",
+              "prerequisites": "本篇7.1—7.6。",
+              "focus": "信息边界、条件概率、协方差、近似形状与独立核验。",
+              "knowledge": [
+                "模型与传感器 → 可区分状态",
+                "预测与更新 → 离散及Gaussian递推",
+                "非线性与多峰 → 近似和粒子",
+                "未来信息与缺测 → 离线平滑及独立验证"
+              ]
+            },
+            "questions": [
+              {
+                "id": "p07-cap-state-task",
+                "slug": "p07-cap-state-task",
+                "title": "辨认估计任务",
+                "type": "choice"
+              },
+              {
+                "id": "p07-cap-information",
+                "slug": "p07-cap-information",
+                "title": "保证在线信息边界",
+                "type": "choice"
+              },
+              {
+                "id": "p07-cap-hidden-update",
+                "slug": "p07-cap-hidden-update",
+                "title": "隐藏状态的精确递推",
+                "type": "python"
+              },
+              {
+                "id": "p07-cap-gaussian-filter",
+                "slug": "p07-cap-gaussian-filter",
+                "title": "部分观测二室恢复",
+                "type": "python"
+              },
+              {
+                "id": "p07-cap-approximation",
+                "slug": "p07-cap-approximation",
+                "title": "比较近似与真实后验",
+                "type": "choice"
+              },
+              {
+                "id": "p07-cap-particle",
+                "slug": "p07-cap-particle",
+                "title": "固定随机输入的粒子更新",
+                "type": "python"
+              },
+              {
+                "id": "p07-cap-smoothing",
+                "slug": "p07-cap-smoothing",
+                "title": "缺测记录的后向重建",
+                "type": "python"
+              },
+              {
+                "id": "p07-cap-failure",
+                "slug": "p07-cap-failure",
+                "title": "传感器改变后的诊断",
+                "type": "choice"
+              }
+            ],
+            "url": "/parts/07-状态估计与贝叶斯滤波/综合练习/practice/?question=p07-cap-state-task"
+          }
+        ],
+        "available": true,
+        "visualization": null
+      }
+    },
+    {
+      "id": "8",
+      "title": "优化方法与计算",
+      "url": "/parts/08-优化方法与计算/",
+      "chapters": [
+        {
+          "id": "8.1",
+          "title": "目标函数与优化几何",
+          "url": "/chapters/08-01-目标函数与优化几何/",
+          "goals": "把估计和干预目标写成可计算函数，推导梯度（gradient）与曲率，并说明局部和全局最优结论的条件。",
+          "prerequisites": "3.4、6.4；数学：偏导（partial derivative）、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）。",
+          "knowledge": [
+            "以参数（parameter）拟合和调节代价建立变量、尺度、目标与可行域（feasible set）",
+            "引入二次型、Hessian 矩阵（matrix）、正定性及凸性，区分驻点（stationary point）与最小值",
+            "用一维非凸反例解释初值（initial condition）依赖，检查尺度变换是否改变问题含义"
+          ],
+          "focus": "解析梯度与中心差分（central difference）对照；正定（positive definite）问题用配方法或线性方程核验，非凸反例包含鞍点或局部极值。先声明对称化和维数约定。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P08-C01-S01",
+              "chapter_id": "8.1",
+              "path": "notebooks/08-优化方法与计算/01-目标函数与优化几何/01-从拟合误差到二次目标.ipynb",
+              "title": "从拟合误差到二次目标",
+              "outcome": "把物质收支拟合写成有尺度的目标，推导值、梯度与Hessian。",
+              "number": "8.1.1",
+              "visualization": "web/optimization/index.html",
+              "questions": [
+                {
+                  "id": "p08-quadratic",
+                  "slug": "p08-quadratic",
+                  "title": "计算目标与导数",
+                  "type": "python"
+                },
+                {
+                  "id": "p08-loss-units",
+                  "slug": "p08-loss-units",
+                  "title": "相加之前先比较单位",
+                  "type": "choice"
+                },
+                {
+                  "id": "p08-gradient-direction",
+                  "slug": "p08-gradient-direction",
+                  "title": "梯度指向哪里",
+                  "type": "choice"
+                },
+                {
+                  "id": "p08-change-coordinates",
+                  "slug": "p08-change-coordinates",
+                  "title": "单位改变还是问题改变",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-quadratic"
+            },
+            {
+              "id": "P08-C01-S02",
+              "chapter_id": "8.1",
+              "path": "notebooks/08-优化方法与计算/01-目标函数与优化几何/02-曲率凸性与局部极值.ipynb",
+              "title": "曲率凸性与局部极值",
+              "outcome": "用方向曲率区分凸性、严格极小与驻点，解释非凸反例。",
+              "number": "8.1.2",
+              "visualization": "web/optimization/index.html",
+              "questions": [
+                {
+                  "id": "p08-linear-minimum",
+                  "slug": "p08-linear-minimum",
+                  "title": "求严格凸二次目标的最小点",
+                  "type": "python"
+                },
+                {
+                  "id": "p08-stationary-counterexample",
+                  "slug": "p08-stationary-counterexample",
+                  "title": "驻点不一定最小",
+                  "type": "choice"
+                },
+                {
+                  "id": "p08-hessian-zero",
+                  "slug": "p08-hessian-zero",
+                  "title": "零曲率没有给出结论",
+                  "type": "choice"
+                },
+                {
+                  "id": "p08-convex-domain",
+                  "slug": "p08-convex-domain",
+                  "title": "凸性结论的范围",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/08-01-目标函数与优化几何/practice/?question=p08-linear-minimum"
+            }
+          ],
+          "visualization": "web/optimization/index.html"
+        },
+        {
+          "id": "8.2",
+          "title": "梯度、曲率与迭代算法",
+          "url": "/chapters/08-02-梯度、曲率与迭代算法/",
+          "goals": "实现梯度（gradient）法与带步长控制的牛顿法（Newton's method），按残差（residual）和条件判断停止，区分数值失败与问题无解。",
+          "prerequisites": "8.1；数学：目标函数、梯度、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件。",
+          "knowledge": [
+            "由局部近似推出梯度下降与牛顿方向，复习线性方程求解",
+            "加入固定步长的稳定范围、回溯线搜索与下降条件",
+            "比较条件数（condition number）、尺度和初值（initial condition）对收敛的影响，记录停止原因与计算预算"
+          ],
+          "focus": "正定（positive definite）二次问题与精确解、特征方向递推对照；线搜索验收条件独立（conditional independence）重算。不把步数耗尽或数值异常标为收敛。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P08-C02-S01",
+              "chapter_id": "8.2",
+              "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/01-梯度下降的步长与条件数.ipynb",
+              "title": "梯度下降的步长与条件数",
+              "outcome": "推导二次目标上的步长范围，解释振荡、病态与变量缩放。",
+              "number": "8.2.1",
+              "visualization": "web/optimization/index.html",
+              "questions": [
+                {
+                  "id": "p08-gradient-steps",
+                  "slug": "p08-gradient-steps",
+                  "title": "实现有预算的梯度下降",
+                  "type": "python"
+                },
+                {
+                  "id": "p08-step-limit",
+                  "slug": "p08-step-limit",
+                  "title": "步长上界要严格",
+                  "type": "choice"
+                },
+                {
+                  "id": "p08-conditioning",
+                  "slug": "p08-conditioning",
+                  "title": "两种慢的原因",
+                  "type": "choice"
+                },
+                {
+                  "id": "p08-small-gradient",
+                  "slug": "p08-small-gradient",
+                  "title": "小梯度能说明多近",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-gradient-steps"
+            },
+            {
+              "id": "P08-C02-S02",
+              "chapter_id": "8.2",
+              "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/02-牛顿方向与非凸曲率.ipynb",
+              "title": "牛顿方向与非凸曲率",
+              "outcome": "从二阶近似推导牛顿方向，用反例判断方向是否下降。",
+              "number": "8.2.2",
+              "visualization": "web/optimization/index.html",
+              "questions": [
+                {
+                  "id": "p08-newton-direction",
+                  "slug": "p08-newton-direction",
+                  "title": "检查牛顿方向是否下降",
+                  "type": "python"
+                },
+                {
+                  "id": "p08-newton-taylor",
+                  "slug": "p08-newton-taylor",
+                  "title": "牛顿步从哪里来",
+                  "type": "choice"
+                },
+                {
+                  "id": "p08-negative-curvature",
+                  "slug": "p08-negative-curvature",
+                  "title": "回溯不能修好错误方向",
+                  "type": "choice"
+                },
+                {
+                  "id": "p08-stationary-stop",
+                  "slug": "p08-stationary-stop",
+                  "title": "停在零处应如何报告",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-newton-direction"
+            },
+            {
+              "id": "P08-C02-S03",
+              "chapter_id": "8.2",
+              "path": "notebooks/08-优化方法与计算/02-梯度、曲率与迭代算法/03-回溯与可信的停止条件.ipynb",
+              "title": "回溯与可信的停止条件",
+              "outcome": "实现Armijo回溯，区分步长接受、残差达标与预算耗尽。",
+              "number": "8.2.3",
+              "visualization": "web/optimization/index.html",
+              "questions": [
+                {
+                  "id": "p08-armijo",
+                  "slug": "p08-armijo",
+                  "title": "返回真正被接受的步长",
+                  "type": "python"
+                },
+                {
+                  "id": "p08-trial-budget",
+                  "slug": "p08-trial-budget",
+                  "title": "零次尝试是什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p08-line-search-status",
+                  "slug": "p08-line-search-status",
+                  "title": "步长接受不等于收敛",
+                  "type": "choice"
+                },
+                {
+                  "id": "p08-objective-offset",
+                  "slug": "p08-objective-offset",
+                  "title": "小目标值可信吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p08-search-guarantee",
+                  "slug": "p08-search-guarantee",
+                  "title": "什么时候小步会被接受",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/08-02-梯度、曲率与迭代算法/practice/?question=p08-armijo"
+            }
+          ],
+          "visualization": "web/optimization/index.html"
+        },
+        {
+          "id": "8.3",
+          "title": "正则化与稀疏优化",
+          "url": "/chapters/08-03-正则化与稀疏优化/",
+          "goals": "推导二范数（norm）与一范数正则化（regularization）的作用，实现软阈值（soft thresholding）更新并独立选择正则强度。",
+          "prerequisites": "8.2、6.4；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、正则化、非光滑目标、近端更新与软阈值。",
+          "knowledge": [
+            "由不稳定回归引入二范数惩罚，区分拟合误差与参数收缩",
+            "从一维绝对值惩罚推导软阈值，再构造近端梯度（proximal gradient）步骤",
+            "比较稀疏性、偏差和共线性，正则强度只用训练与验证数据选择"
+          ],
+          "focus": "正交（orthogonality）设计用闭式软阈值核验；零惩罚退化为对应无惩罚更新，正则强度与目标归一化配套。变量缩放参数（parameter）只从训练集（training set）得到。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P08-C03-S01",
+              "chapter_id": "8.3",
+              "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/01-岭回归与参数收缩.ipynb",
+              "title": "岭回归与参数收缩",
+              "outcome": "推导二范数惩罚解，解释共线性、正则强度与不唯一。",
+              "number": "8.3.1",
+              "visualization": "web/optimization/index.html",
+              "questions": [
+                {
+                  "id": "p08-ridge",
+                  "slug": "p08-ridge",
+                  "title": "计算岭回归解",
+                  "type": "python"
+                },
+                {
+                  "id": "p08-ridge-normalization",
+                  "slug": "p08-ridge-normalization",
+                  "title": "多出一个n意味着什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p08-rank-and-ridge",
+                  "slug": "p08-rank-and-ridge",
+                  "title": "唯一解意味着识别了机制吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p08-penalty-intercept",
+                  "slug": "p08-penalty-intercept",
+                  "title": "截距是否一起惩罚",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-ridge"
+            },
+            {
+              "id": "P08-C03-S02",
+              "chapter_id": "8.3",
+              "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/02-软阈值与近端梯度.ipynb",
+              "title": "软阈值与近端梯度",
+              "outcome": "由绝对值惩罚推导软阈值，显式实现近端梯度并核验边界。",
+              "number": "8.3.2",
+              "visualization": "web/optimization/index.html",
+              "questions": [
+                {
+                  "id": "p08-threshold",
+                  "slug": "p08-threshold",
+                  "title": "实现逐坐标软阈值",
+                  "type": "python"
+                },
+                {
+                  "id": "p08-proximal",
+                  "slug": "p08-proximal",
+                  "title": "计算一次近端更新",
+                  "type": "python"
+                },
+                {
+                  "id": "p08-subgradient-zero",
+                  "slug": "p08-subgradient-zero",
+                  "title": "零处的斜率如何表达",
+                  "type": "choice"
+                },
+                {
+                  "id": "p08-proximal-step-size",
+                  "slug": "p08-proximal-step-size",
+                  "title": "近端步长和归一化",
+                  "type": "choice"
+                },
+                {
+                  "id": "p08-sparse-evidence",
+                  "slug": "p08-sparse-evidence",
+                  "title": "零系数不是机制证明",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-threshold"
+            },
+            {
+              "id": "P08-C03-S03",
+              "chapter_id": "8.3",
+              "path": "notebooks/08-优化方法与计算/03-正则化与稀疏优化/03-缩放选参与独立预测.ipynb",
+              "title": "缩放选参与独立预测",
+              "outcome": "只从训练集估计预处理量，只用验证集选参并保留最终评估。",
+              "number": "8.3.3",
+              "visualization": "web/optimization/index.html",
+              "questions": [
+                {
+                  "id": "p08-training-scale",
+                  "slug": "p08-training-scale",
+                  "title": "固定训练尺度后变换新数据",
+                  "type": "python"
+                },
+                {
+                  "id": "p08-split-protocol",
+                  "slug": "p08-split-protocol",
+                  "title": "哪一组数据选择λ",
+                  "type": "choice"
+                },
+                {
+                  "id": "p08-constant-column",
+                  "slug": "p08-constant-column",
+                  "title": "训练中恒定的变量",
+                  "type": "choice"
+                },
+                {
+                  "id": "p08-prediction-and-truth",
+                  "slug": "p08-prediction-and-truth",
+                  "title": "预测好不等于参数对",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/08-03-正则化与稀疏优化/practice/?question=p08-training-scale"
+            }
+          ],
+          "visualization": "web/optimization/index.html"
+        },
+        {
+          "id": "8.4",
+          "title": "约束与最优性条件",
+          "url": "/chapters/08-04-约束与最优性条件/",
+          "goals": "写出约束问题的最优性条件，检查原始与对偶残差（residual），区分可行、最优及求解器失败。",
+          "prerequisites": "8.3；数学：目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、Lagrange 乘子、对偶性、KKT 条件与约束资格。",
+          "knowledge": [
+            "从盒约束和等式约束引入拉格朗日乘子（Lagrange multiplier）与对偶直觉",
+            "建立 KKT（Karush–Kuhn–Tucker，卡鲁什—库恩—塔克）条件，说明约束资格及凸性所支持的结论",
+            "对小型二次规划检查活动约束、不可行和数值残差，区分软约束与硬约束"
+          ],
+          "focus": "小问题用独立枚举核验最优值；对偶间隙只在相应可行条件下解释。求解器状态（state）不替代约束与最优性残差检查。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P08-C04-S01",
+              "chapter_id": "8.4",
+              "path": "notebooks/08-优化方法与计算/04-约束与最优性条件/01-约束乘子与最优性条件.ipynb",
+              "title": "约束乘子与最优性条件",
+              "outcome": "推导等式及不等式的乘子条件，区分必要性、充分性与残差。",
+              "number": "8.4.1",
+              "visualization": "web/optimization/index.html",
+              "questions": [
+                {
+                  "id": "p08-kkt",
+                  "slug": "p08-kkt",
+                  "title": "核对四类最优性残差",
+                  "type": "python"
+                },
+                {
+                  "id": "p08-necessity-sufficiency",
+                  "slug": "p08-necessity-sufficiency",
+                  "title": "条件何时必要或充分",
+                  "type": "choice"
+                },
+                {
+                  "id": "p08-constraint-qualification",
+                  "slug": "p08-constraint-qualification",
+                  "title": "退化约束为什么重要",
+                  "type": "choice"
+                },
+                {
+                  "id": "p08-multiplier-sign",
+                  "slug": "p08-multiplier-sign",
+                  "title": "乘子的符号从哪来",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/08-04-约束与最优性条件/practice/?question=p08-kkt"
+            },
+            {
+              "id": "P08-C04-S02",
+              "chapter_id": "8.4",
+              "path": "notebooks/08-优化方法与计算/04-约束与最优性条件/02-活跃集与可行性核验.ipynb",
+              "title": "活跃集与可行性核验",
+              "outcome": "枚举小型二次规划的活跃集，区分可行最优、不可行与数值失败。",
+              "number": "8.4.2",
+              "visualization": "web/optimization/index.html",
+              "questions": [
+                {
+                  "id": "p08-budget-qp",
+                  "slug": "p08-budget-qp",
+                  "title": "求解带上下界和预算的二次目标",
+                  "type": "python"
+                },
+                {
+                  "id": "p08-feasible-or-failed",
+                  "slug": "p08-feasible-or-failed",
+                  "title": "一次候选失败能证明什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p08-clip-coupling",
+                  "slug": "p08-clip-coupling",
+                  "title": "截断为什么不够",
+                  "type": "choice"
+                },
+                {
+                  "id": "p08-soft-hard",
+                  "slug": "p08-soft-hard",
+                  "title": "放宽约束和多跑几步",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/08-04-约束与最优性条件/practice/?question=p08-budget-qp"
+            }
+          ],
+          "visualization": "web/optimization/index.html"
+        }
+      ],
+      "assessment": {
+        "id": "8.summary",
+        "assessment": true,
+        "title": "拟合、稀疏与约束优化",
+        "url": "/parts/08-优化方法与计算/综合练习/",
+        "goals": "构造目标并核验梯度（gradient）、下降、稀疏性和约束解。",
+        "prerequisites": "本篇8.1—8.4。",
+        "focus": "尺度与条件、迭代预算、独立预测、可行性及最优性证据。",
+        "knowledge": [
+          "目标与曲率 → 凸性（convexity）和反例",
+          "下降方向与回溯 → 有限预算",
+          "正则与近端 → 独立选参",
+          "约束与活跃集（active set） → 可行性和残差（residual）"
+        ],
+        "lessons": [
+          {
+            "id": "P08-SUMMARY",
+            "chapter_id": "8.summary",
+            "path": "notebooks/08-优化方法与计算/05-篇末综合/01-拟合稀疏与约束优化.ipynb",
+            "title": "拟合、稀疏与约束优化",
+            "outcome": "在统一尺度与信息边界下构造目标、实现下降与稀疏拟合，并核验约束解。",
+            "number": "篇末综合",
+            "visualization": null,
+            "overview": {
+              "goals": "构造目标并核验梯度、下降、稀疏性和约束解。",
+              "prerequisites": "本篇8.1—8.4。",
+              "focus": "尺度与条件、迭代预算、独立预测、可行性及最优性证据。",
+              "knowledge": [
+                "目标与曲率 → 凸性和反例",
+                "下降方向与回溯 → 有限预算",
+                "正则与近端 → 独立选参",
+                "约束与活跃集 → 可行性和残差"
+              ]
+            },
+            "questions": [
+              {
+                "id": "p08-cap-geometry",
+                "slug": "p08-cap-geometry",
+                "title": "目标尺度与凸性",
+                "type": "choice"
+              },
+              {
+                "id": "p08-cap-regularization",
+                "slug": "p08-cap-regularization",
+                "title": "正则化能保证什么",
+                "type": "choice"
+              },
+              {
+                "id": "p08-cap-derivatives",
+                "slug": "p08-cap-derivatives",
+                "title": "梯度与曲率核验",
+                "type": "python"
+              },
+              {
+                "id": "p08-cap-descent",
+                "slug": "p08-cap-descent",
+                "title": "带回溯的一步下降",
+                "type": "python"
+              },
+              {
+                "id": "p08-cap-sparse",
+                "slug": "p08-cap-sparse",
+                "title": "固定预算的近端稀疏拟合",
+                "type": "python"
+              },
+              {
+                "id": "p08-cap-constrained",
+                "slug": "p08-cap-constrained",
+                "title": "约束配置及最优性证据",
+                "type": "python"
+              },
+              {
+                "id": "p08-cap-conditioning",
+                "slug": "p08-cap-conditioning",
+                "title": "病态问题的收敛判断",
+                "type": "choice"
+              },
+              {
+                "id": "p08-cap-infeasible",
+                "slug": "p08-cap-infeasible",
+                "title": "不可行与边界迁移",
+                "type": "choice"
+              }
+            ],
+            "url": "/parts/08-优化方法与计算/综合练习/practice/?question=p08-cap-geometry"
+          }
+        ],
+        "available": true,
+        "visualization": null
+      }
+    },
+    {
+      "id": "9",
+      "title": "概率建模与近似推断",
+      "url": "/parts/09-概率建模与近似推断/",
+      "chapters": [
+        {
+          "id": "9.1",
+          "title": "贝叶斯建模与后验近似",
+          "url": "/chapters/09-01-贝叶斯建模与后验近似/",
+          "goals": "构造参数（parameter）后验（posterior），比较点估计与分布（distribution）估计，并计算高斯共轭和局部后验近似。",
+          "prerequisites": "5.3、6.4、7.3、8.2；数学：条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验及标量高斯条件更新、最小二乘、Gaussian 似然、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、多元高斯条件分布、块协方差（covariance）与矩阵（matrix）分解、后验归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分。",
+          "knowledge": [
+            "从清除参数及个体差异声明似然、先验（prior）与后验，先用可解析模型解释归一化",
+            "比较极大似然和最大后验估计（maximum a posteriori estimation，MAP），说明先验和参数化的作用",
+            "在模态（mode）附近用曲率构造 Laplace 近似（Laplace approximation），说明多峰和边界的限制"
+          ],
+          "focus": "共轭模型（model）使用闭式结果，非共轭一维模型使用收敛网格积分；局部曲率须正定（positive definite），点估计不等于后验均值，近似不声称消除模型偏差。",
+          "available": false,
+          "lessons": [],
+          "visualization": null
+        },
+        {
+          "id": "9.2",
+          "title": "马尔可夫链采样与诊断",
+          "url": "/chapters/09-02-马尔可夫链采样与诊断/",
+          "goals": "实现马尔可夫链（Markov chain）蒙特卡洛（Markov chain Monte Carlo，MCMC）采样（sampling），检查平稳目标与混合质量。",
+          "prerequisites": "9.1、5.4；数学：条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验（posterior）及标量高斯条件更新、随机过程（stochastic process）、有限马尔可夫链、转移矩阵（transition matrix）与长期分布（distribution）、后验归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分、Metropolis–Hastings、详细平衡（equilibrium）、链相关与采样诊断。",
+          "knowledge": [
+            "从难积分的后验进入构造具有目标平稳分布的转移",
+            "推导 Metropolis–Hastings 接受率与提议比，给出满足条件的详细平衡核验",
+            "比较多链、预热、自相关与有效样本量，区分接受率、混合和有限样本误差"
+          ],
+          "focus": "有限状态（state）小例子核验转移矩阵的平稳分布；连续例子与解析/网格矩比较。有效样本量的相关性修正与粒子权重的定义分别说明，有限诊断不能证明遍历性。",
+          "available": false,
+          "lessons": [],
+          "visualization": null
+        },
+        {
+          "id": "9.3",
+          "title": "变分推断",
+          "url": "/chapters/09-03-变分推断/",
+          "goals": "推导变分推断（variational inference，VI）的优化目标，实施均值场（mean-field approximation）更新并量化近似偏差。",
+          "prerequisites": "9.2、5.5、8.3；数学：条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验（posterior）及标量高斯条件更新、信息熵（entropy）、条件熵（conditional entropy）、互信息（mutual information）与有限样本估计、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、相对熵（relative entropy）、Jensen 不等式、变分下界与均值场更新。",
+          "knowledge": [
+            "由相对熵（Kullback–Leibler divergence，KL divergence）和 Jensen 不等式建立证据下界（evidence lower bound，ELBO）",
+            "推导后验距离、证据与下界的恒等式，以及均值场变分推断（mean-field variational inference）的坐标更新",
+            "用显式公式或解析梯度优化小模型，比较近似族、初值（initial condition）和优化误差；自动微分（automatic differentiation，AD）留到 15.1"
+          ],
+          "focus": "二维高斯后验用闭式均值、协方差（covariance）和相对熵核验；小模型（model）枚举或网格作另一参照。比较方差（variance）和相关结构，不把任何变分近似概括为必然低估所有不确定性。",
+          "available": false,
+          "lessons": [],
+          "visualization": null
+        },
+        {
+          "id": "9.4",
+          "title": "隐变量与参数学习",
+          "url": "/chapters/09-04-隐变量与参数学习/",
+          "goals": "用隐变量（latent variable）分解参数（parameter）学习问题，推导期望最大化（expectation-maximization，EM）并区分状态（state）推断与参数更新。",
+          "prerequisites": "9.3、7.6；数学：条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验（posterior）及标量高斯条件更新、多元高斯条件分布（distribution）、块协方差（covariance）与矩阵（matrix）分解、相对熵（relative entropy）、Jensen 不等式、变分下界与均值场（mean-field approximation）更新、隐变量条件期望（expectation）、责任度与期望最大化。",
+          "knowledge": [
+            "从混合观测（observation）与未知状态建立完整数据和观测数据似然",
+            "推导期望最大化（expectation–maximization，EM）的条件期望步骤与最大化步骤",
+            "用已学平滑连接状态空间（state space）模型（model）的参数学习，说明局部最优、退化解及近似步骤的限制"
+          ],
+          "focus": "小样本责任度与直接密度计算对照；固定方差（variance）避免无限似然退化。精确 E/M 步的单调性与近似变体分开，测试标签置换等价。",
+          "available": false,
+          "lessons": [],
+          "visualization": null
+        },
+        {
+          "id": "9.5",
+          "title": "后验预测与模型检验",
+          "url": "/chapters/09-05-后验预测与模型检验/",
+          "goals": "构造后验预测（posterior predictive inference）并评价区间覆盖和模型（model）失配，在独立数据上比较点预测与分布（distribution）预测。",
+          "prerequisites": "9.4、6.5；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、后验（posterior）归一化、Laplace 局部近似与后验预测积分、相对熵（relative entropy）、Jensen 不等式、变分下界与均值场（mean-field approximation）更新。",
+          "knowledge": [
+            "由参数（parameter）后验积分得到预测分布，区分参数不确定性与观测（observation）/过程随机性",
+            "用后验预测检验比较统计特征，明确检查量与目标问题",
+            "对齐留出数据、信息和预算，比较预测误差、对数预测分数和覆盖；保留错误机制与范围外条件"
+          ],
+          "focus": "总方差公式与共轭预测闭式核验；独立评估集不用于选择检查阈值或调参。有限覆盖率带抽样不确定性，缺失或失败样本不静默剔除。",
+          "available": false,
+          "lessons": [],
+          "visualization": null
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "title": "反馈与最优控制",
+      "url": "/parts/10-反馈与最优控制/",
+      "chapters": [
+        {
+          "id": "10.1",
           "title": "开闭环与 PID",
-          "url": "/chapters/07-01-开闭环与 PID/",
+          "url": "/chapters/10-01-开闭环与 PID/",
           "goals": "从误差构造 P、PI、PID，解释积分累积、微分对噪声的敏感性及执行饱和。",
           "prerequisites": "6.3、4.5；数学：极限（limit）直觉、导数（derivative）、积分、基本定理和简单链式法则（chain rule）、Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数和局部适用区域、Laplace/Z 变换、收敛域（region of convergence，ROC）的必要直觉、极点（pole）零点（zero）。",
           "knowledge": [
@@ -3541,11 +5166,11 @@
           "visualization": null
         },
         {
-          "id": "7.2",
+          "id": "10.2",
           "title": "频域稳定性与设计",
-          "url": "/chapters/07-02-频域稳定性与设计/",
+          "url": "/chapters/10-02-频域稳定性与设计/",
           "goals": "连接闭环极点（pole）、根轨迹（trajectory）、Bode、Nyquist 与稳定裕度，说明判据条件及符号约定。",
-          "prerequisites": "7.1；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、Laplace/Z 变换、收敛域（region of convergence，ROC）的必要直觉、极点零点（zero）、复平面曲线、相位（phase）变化与绕数的几何解释。",
+          "prerequisites": "10.1；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、Laplace/Z 变换、收敛域（region of convergence，ROC）的必要直觉、极点零点（zero）、复平面曲线、相位（phase）变化与绕数的几何解释。",
           "knowledge": [
             "从闭环特征方程到根轨迹",
             "幅相与裕度",
@@ -3557,11 +5182,11 @@
           "visualization": null
         },
         {
-          "id": "7.3",
+          "id": "10.3",
           "title": "能控性与状态反馈",
-          "url": "/chapters/07-03-能控性与状态反馈/",
+          "url": "/chapters/10-03-能控性与状态反馈/",
           "goals": "解释输入（input）位置决定的可达方向，在能控条件下设计状态（state）反馈（feedback）并检验闭环极点（pole）。",
-          "prerequisites": "7.2、3.2；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵幂和矩阵指数（matrix exponential）。",
+          "prerequisites": "10.2、3.2；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵幂和矩阵指数（matrix exponential）。",
           "knowledge": [
             "输入经动态传播到其他状态",
             "能控矩阵和秩",
@@ -3573,66 +5198,27 @@
           "visualization": null
         },
         {
-          "id": "7.4",
-          "title": "能观性与状态观测器",
-          "url": "/chapters/07-04-能观性与状态观测器/",
-          "goals": "判断已知模型（model）下哪些状态（state）可以从输出（output）恢复，推导观测（observation）器误差动态并分析收敛条件。",
-          "prerequisites": "7.3、6.5；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（sampling）入门。",
+          "id": "10.4",
+          "title": "状态观测器与输出反馈",
+          "url": "/chapters/10-04-状态观测器与输出反馈/",
+          "goals": "利用已建立的能观性（observability）设计状态观测器（state observer）和输出（output）反馈（feedback），推导误差动态并检验收敛条件。",
+          "prerequisites": "10.3、7.1；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门。",
           "knowledge": [
-            "状态估计与参数（parameter）辨识的任务边界",
-            "能观矩阵及传感器位置",
-            "观测器增益（gain）、误差动态与速度/噪声权衡"
+            "复用 7.1 的能观性，推导状态观测器的误差动态",
+            "设计观测器增益（gain）并组合状态反馈，推导输出反馈闭环",
+            "在无噪线性条件下解释分离设计，再用噪声和饱和检验其限制"
           ],
-          "focus": "对应练习 两种秩分别为 2、1；只有课程已知状态作为隔离核验答案时，才能直接报告完整状态误差。",
+          "focus": "对应练习 两种秩分别为 2、1；只有课程已知状态（state）作为隔离核验答案时，才能直接报告完整状态误差。 反馈只使用估计状态；将增广闭环极点（pole）与控制/观测（observation）误差两组极点核对，饱和时重新验证。",
           "available": false,
           "lessons": [],
           "visualization": null
         },
         {
-          "id": "7.5",
-          "title": "Kalman 滤波与估计反馈",
-          "url": "/chapters/07-05-Kalman 滤波与估计反馈/",
-          "goals": "由线性 Gaussian 条件更新推导均值和协方差（covariance）递推，区别过程噪声（process noise）与测量噪声（measurement noise）的作用。",
-          "prerequisites": "7.4、5.3；数学：向量（vector）、矩阵（matrix）、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、期望（expectation）、方差（variance）、协方差、联合分布（distribution）、Gaussian 分布、条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验（posterior）及条件 Gaussian。",
-          "knowledge": [
-            "动态预测及协方差传播",
-            "观测（observation）更新与 Kalman 增益（gain）",
-            "接入状态（state）反馈（feedback），比较真实状态、估计状态与错误噪声设定"
-          ],
-          "focus": "对应练习 结果为 0.8、1.6、0.8；协方差保持对称且在容差内半正定（positive definite），已知无噪极限（limit）单独处理；理想线性条件下的性质不直接扩展到饱和和错误模型（model）。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
-        }
-      ]
-    },
-    {
-      "id": "8",
-      "title": "目标、优化与约束",
-      "url": "/parts/08-目标、优化与约束/",
-      "chapters": [
-        {
-          "id": "8.1",
-          "title": "从目标函数进入优化",
-          "url": "/chapters/08-01-从目标函数进入优化/",
-          "goals": "定义目标、约束和决策变量，理解梯度（gradient）、Hessian、二次型、凸性与正则化，说明最优性结论的条件。",
-          "prerequisites": "3.4、6.4、7.3；数学：偏导（partial derivative）、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（sampling）入门、目标函数、梯度、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化。",
-          "knowledge": [
-            "跟踪误差与输入（input）代价的尺度",
-            "梯度、曲率与凸优化直觉",
-            "等式/不等式约束、可行性、最优性条件及求解状态（state）"
-          ],
-          "focus": "对应练习 解分别为 4/3、1；需要同时检查可行性和目标值，求解器返回成功也须核对约束残差；最优性条件写出适用假设。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
-        },
-        {
-          "id": "8.2",
+          "id": "10.5",
           "title": "动态规划与 LQR",
-          "url": "/chapters/08-02-动态规划与 LQR/",
+          "url": "/chapters/10-05-动态规划与 LQR/",
           "goals": "从一步决策推到有限时域 Bellman 递推，以二次价值函数推导离散 Riccati 递推与反馈（feedback）增益（gain）。",
-          "prerequisites": "8.1、7.3；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化、有限时域动态规划、Bellman 递推与离散 Riccati 递推。",
+          "prerequisites": "10.3、8.4；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、有限时域动态规划、Bellman 递推与离散 Riccati 递推、Lagrange 乘子、对偶性、KKT 条件与约束资格。",
           "knowledge": [
             "有限时域与终端代价",
             "倒推价值和最优决策",
@@ -3644,11 +5230,11 @@
           "visualization": null
         },
         {
-          "id": "8.3",
+          "id": "10.6",
           "title": "带约束的 MPC",
-          "url": "/chapters/08-03-带约束的 MPC/",
+          "url": "/chapters/10-06-带约束的 MPC/",
           "goals": "将预测模型（model）、初始估计、时域和约束写成优化问题，理解每次只执行第一步并重新求解。",
-          "prerequisites": "8.2、7.5；数学：目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化、有限时域动态规划、Bellman 递推与离散 Riccati 递推。",
+          "prerequisites": "10.4、10.5、7.3；数学：目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、有限时域动态规划、Bellman 递推与离散 Riccati 递推、多元高斯条件分布（distribution）、块协方差（covariance）与矩阵（matrix）分解、Lagrange 乘子、对偶性、KKT 条件与约束资格。",
           "knowledge": [
             "状态（state）与输入（input）序列的优化表达",
             "滚动时域及估计接口",
@@ -3660,11 +5246,11 @@
           "visualization": null
         },
         {
-          "id": "8.4",
-          "title": "估计、控制与模型误差的综合比较",
-          "url": "/chapters/08-04-估计、控制与模型误差的综合比较/",
+          "id": "10.7",
+          "title": "估计反馈与闭环验证",
+          "url": "/chapters/10-07-估计反馈与闭环验证/",
           "goals": "构造公平基线，区分调参条件和独立评估条件，综合解释性能、约束与计算代价。",
-          "prerequisites": "8.3、6.5；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（sampling）入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化。",
+          "prerequisites": "10.6、9.5、6.5；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、后验（posterior）归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分。",
           "knowledge": [
             "固定任务、信息和执行接口",
             "验证集（validation set）调参、独立场景评估",
@@ -3678,14 +5264,14 @@
       ]
     },
     {
-      "id": "9",
+      "id": "11",
       "title": "网络上的系统",
-      "url": "/parts/09-网络上的系统/",
+      "url": "/parts/11-网络上的系统/",
       "chapters": [
         {
-          "id": "9.1",
+          "id": "11.1",
           "title": "从连接结构进入网络科学",
-          "url": "/chapters/09-01-从连接结构进入网络科学/",
+          "url": "/chapters/11-01-从连接结构进入网络科学/",
           "goals": "构造并解释邻接矩阵（matrix）、度、路径、连通分量与社区，辨认随机网络、小世界和度分布（distribution）的条件。",
           "prerequisites": "3.2、5.4；数学：向量（vector）、矩阵、内积（inner product）、范数（norm）、秩（rank）、线性方程组（system of linear equations）与投影（projection）直觉、事件（event）、随机变量（random variable）、离散/连续分布、抽样和 Monte Carlo、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
           "knowledge": [
@@ -3699,11 +5285,11 @@
           "visualization": null
         },
         {
-          "id": "9.2",
+          "id": "11.2",
           "title": "网络上的扩散与守恒",
-          "url": "/chapters/09-02-网络上的扩散与守恒/",
+          "url": "/chapters/11-02-网络上的扩散与守恒/",
           "goals": "推导无向交换网络的 dx/dt = −Lx，说明守恒、连通分量和平衡（equilibrium）模态（mode）的关系。",
-          "prerequisites": "9.1、3.3；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态、矩阵（matrix）幂和矩阵指数（matrix exponential）、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
+          "prerequisites": "11.1、3.3；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态、矩阵（matrix）幂和矩阵指数（matrix exponential）、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
           "knowledge": [
             "每条边的交换收支（mass balance）",
             "拉普拉斯零模态与连通性",
@@ -3715,11 +5301,11 @@
           "visualization": null
         },
         {
-          "id": "9.3",
+          "id": "11.3",
           "title": "接触结构与传播",
-          "url": "/chapters/09-03-接触结构与传播/",
+          "url": "/chapters/11-03-接触结构与传播/",
           "goals": "定义个体状态（state）和接触传播规则，比较平均混合与网络模型（model），说明初始位置及有限规模影响。",
-          "prerequisites": "9.2、5.4；数学：随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布（distribution）、图、邻接矩阵（matrix）、图拉普拉斯、图谱与连通性。",
+          "prerequisites": "11.2、5.4；数学：随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布（distribution）、图、邻接矩阵（matrix）、图拉普拉斯、图谱与连通性。",
           "knowledge": [
             "状态转移和接触定义",
             "平均混合与固定网络",
@@ -3731,11 +5317,11 @@
           "visualization": null
         },
         {
-          "id": "9.4",
+          "id": "11.4",
           "title": "耦合振子与同步",
-          "url": "/chapters/09-04-耦合振子与同步/",
+          "url": "/chapters/11-04-耦合振子与同步/",
           "goals": "区分相位（phase）接近、频率锁定与平均频率，说明同步指标和耦合归一化。",
-          "prerequisites": "9.3、4.2；数学：偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、图、邻接矩阵（matrix）、图拉普拉斯、图谱与连通性。",
+          "prerequisites": "11.3、4.2；数学：偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、图、邻接矩阵（matrix）、图拉普拉斯、图谱与连通性。",
           "knowledge": [
             "单体节律到相位模型（model）的简化",
             "网络耦合、异质频率与同步指标",
@@ -3749,16 +5335,16 @@
       ]
     },
     {
-      "id": "10",
+      "id": "12",
       "title": "个体与集体现象",
-      "url": "/parts/10-个体与集体现象/",
+      "url": "/parts/12-个体与集体现象/",
       "chapters": [
         {
-          "id": "10.1",
+          "id": "12.1",
           "title": "多主体模型与元胞自动机",
-          "url": "/chapters/10-01-多主体模型与元胞自动机/",
+          "url": "/chapters/12-01-多主体模型与元胞自动机/",
           "goals": "把局部规则写成可复现程序，区分同步、随机顺序和异步更新。",
-          "prerequisites": "9.1、5.4；数学：递推、有限求和和固定点（fixed point）代数、事件（event）、随机变量（random variable）、离散/连续分布（distribution）、抽样和 Monte Carlo、随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布。",
+          "prerequisites": "11.1、5.4；数学：递推、有限求和和固定点（fixed point）代数、事件（event）、随机变量（random variable）、离散/连续分布（distribution）、抽样和 Monte Carlo、随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布。",
           "knowledge": [
             "个体状态（state）、邻域和转移",
             "双缓冲同步更新与原地更新",
@@ -3770,11 +5356,11 @@
           "visualization": null
         },
         {
-          "id": "10.2",
+          "id": "12.2",
           "title": "合作与演化博弈",
-          "url": "/chapters/10-02-合作与演化博弈/",
+          "url": "/chapters/12-02-合作与演化博弈/",
           "goals": "从收益矩阵（matrix）计算频率依赖收益，推导两类型复制动态，解释个体模型（model）与平均描述的假设。",
-          "prerequisites": "10.1、2.3；数学：一阶 ODE、初值（initial condition）、分离变量和指数解、收益矩阵、频率依赖与复制动态。",
+          "prerequisites": "12.1、2.3；数学：一阶 ODE、初值（initial condition）、分离变量和指数解、收益矩阵、频率依赖与复制动态。",
           "knowledge": [
             "收益及其教学含义",
             "平均收益与复制方程",
@@ -3786,11 +5372,11 @@
           "visualization": null
         },
         {
-          "id": "10.3",
+          "id": "12.3",
           "title": "选择、变异与适应",
-          "url": "/chapters/10-03-选择、变异与适应/",
+          "url": "/chapters/12-03-选择、变异与适应/",
           "goals": "通过机制消融区分选择、随机漂变与变异，避免把适应叙述成预先设定的目标。",
-          "prerequisites": "10.2、5.4；数学：随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布（distribution）、收益矩阵（matrix）、频率依赖与复制动态。",
+          "prerequisites": "12.2、5.4；数学：随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布（distribution）、收益矩阵（matrix）、频率依赖与复制动态。",
           "knowledge": [
             "有限种群抽样与漂变",
             "加入选择及双向变异",
@@ -3802,11 +5388,11 @@
           "visualization": null
         },
         {
-          "id": "10.4",
+          "id": "12.4",
           "title": "空间自组织与反应扩散",
-          "url": "/chapters/10-04-空间自组织与反应扩散/",
+          "url": "/chapters/12-04-空间自组织与反应扩散/",
           "goals": "解释空间偏导（partial derivative）、反应与扩散项，正确离散边界，区分机制失稳与数值伪模式。",
-          "prerequisites": "10.3、4.3、9.2；数学：数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、偏导、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、空间偏导、PDE、有限差分（finite difference）、边界条件与网格稳定性。",
+          "prerequisites": "12.3、4.3、11.2；数学：数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、偏导、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、空间偏导、PDE、有限差分（finite difference）、边界条件与网格稳定性。",
           "knowledge": [
             "从一维网格交换进入 PDE",
             "有限差分、边界与时间更新",
@@ -3818,11 +5404,11 @@
           "visualization": null
         },
         {
-          "id": "10.5",
+          "id": "12.5",
           "title": "从局部规则到宏观描述",
-          "url": "/chapters/10-05-从局部规则到宏观描述/",
+          "url": "/chapters/12-05-从局部规则到宏观描述/",
           "goals": "定义粗尺度变量，说明平均场忽略的相关性，比较哪些宏观量得到保留。",
-          "prerequisites": "10.4、5.5；数学：信息熵（entropy）、条件熵（conditional entropy）、互信息（mutual information）与有限样本估计、收益矩阵（matrix）、频率依赖与复制动态、空间偏导（partial derivative）、PDE、有限差分（finite difference）、边界条件与网格稳定性。",
+          "prerequisites": "12.4、5.5；数学：信息熵（entropy）、条件熵（conditional entropy）、互信息（mutual information）与有限样本估计、收益矩阵（matrix）、频率依赖与复制动态、空间偏导（partial derivative）、PDE、有限差分（finite difference）、边界条件与网格稳定性。",
           "knowledge": [
             "从个体轨迹（trajectory）聚合频率、密度与相关量",
             "平均场闭合的假设",
@@ -3836,16 +5422,16 @@
       ]
     },
     {
-      "id": "11",
+      "id": "13",
       "title": "临界变化与韧性",
-      "url": "/parts/11-临界变化与韧性/",
+      "url": "/parts/13-临界变化与韧性/",
       "chapters": [
         {
-          "id": "11.1",
+          "id": "13.1",
           "title": "相变、临界性与有限规模",
-          "url": "/chapters/11-01-相变、临界性与有限规模/",
+          "url": "/chapters/13-01-相变、临界性与有限规模/",
           "goals": "选择可测量的序参量，对有限系统的变化给出规模与统计证据，不把一次突变当作相变证明。",
-          "prerequisites": "10.5、4.3、6.4；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "prerequisites": "12.5、4.3、6.4；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、序参量、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
             "回顾分岔（bifurcation）与群体行为",
             "序参量、波动和尺度关系的含义",
@@ -3857,11 +5443,11 @@
           "visualization": null
         },
         {
-          "id": "11.2",
+          "id": "13.2",
           "title": "级联失效与结构鲁棒性",
-          "url": "/chapters/11-02-级联失效与结构鲁棒性/",
+          "url": "/chapters/13-02-级联失效与结构鲁棒性/",
           "goals": "区分直接移除造成的损伤与规则传播造成的级联，解释容量、阈值与功能指标。",
-          "prerequisites": "11.1、9.3；数学：图、邻接矩阵（matrix）、图拉普拉斯、图谱与连通性、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "prerequisites": "13.1、11.3；数学：图、邻接矩阵（matrix）、图拉普拉斯、图谱与连通性、序参量、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
             "节点或边失效及功能定义",
             "阈值/负载规则与级联更新",
@@ -3873,27 +5459,27 @@
           "visualization": null
         },
         {
-          "id": "11.3",
+          "id": "13.3",
           "title": "扰动、恢复与早期预警",
-          "url": "/chapters/11-03-扰动、恢复与早期预警/",
+          "url": "/chapters/13-03-扰动、恢复与早期预警/",
           "goals": "测量局部恢复率，区分恢复速度与吸引域（basin of attraction）大小，并评价方差（variance）、自相关等指标的条件和失败。",
-          "prerequisites": "11.2、4.5、6.5；数学：Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数（derivative）和局部适用区域、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（sampling）入门、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "prerequisites": "13.2、4.5、6.5；数学：Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数（derivative）和局部适用区域、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量、尺度关系、有限规模比较与不确定性评估、点到集合距离、紧集（compact set）直觉、不变集（invariant set）、吸引子（attractor）与吸引域。",
           "knowledge": [
             "小扰动响应、线性化（linearization）与恢复时间",
-            "有限扰动和吸引域",
+            "有限扰动、吸引子与吸引域，区分回到长期集合和回到原时间相位（phase）",
             "滑动窗口预警、趋势与观测影响、误报及漏报"
           ],
-          "focus": "预测时刻不能使用未来数据；采样变化时“滞后（hysteresis）一步”不等于相同物理滞后；预警指标变化只支持所声明模型（model）与观测（observation）条件。",
+          "focus": "预测时刻不能使用未来数据；采样（sampling）变化时“滞后（hysteresis）一步”不等于相同物理滞后；预警指标变化只支持所声明模型（model）与观测（observation）条件。",
           "available": false,
           "lessons": [],
           "visualization": null
         },
         {
-          "id": "11.4",
+          "id": "13.4",
           "title": "多尺度、粗粒化与不确定性",
-          "url": "/chapters/11-04-多尺度、粗粒化与不确定性/",
+          "url": "/chapters/13-04-多尺度、粗粒化与不确定性/",
           "goals": "区分参数（parameter）、随机、观测（observation）和结构误差，比较个体、网络与平均模型（model）的结论是否一致。",
-          "prerequisites": "11.3、10.5；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（sampling）入门、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "prerequisites": "13.3、12.5、9.5；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量、尺度关系、有限规模比较与不确定性评估。",
           "knowledge": [
             "选择时间、空间与个体层级",
             "参数敏感性与观测聚合",
@@ -3907,102 +5493,365 @@
       ]
     },
     {
-      "id": "12",
-      "title": "融合方法与研究实践",
-      "url": "/parts/12-融合方法与研究实践/",
+      "id": "14",
+      "title": "数据驱动动力学与模型降阶",
+      "url": "/parts/14-数据驱动动力学与模型降阶/",
       "chapters": [
         {
-          "id": "12.1",
-          "title": "非线性、鲁棒与自适应控制",
-          "url": "/chapters/12-01-非线性、鲁棒与自适应控制/",
-          "goals": "区分已知非线性、未知但有界参数（parameter）和在线参数变化，说明设计条件与失效边界。",
-          "prerequisites": "8.4、4.5、11.4；数学：Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数（derivative）和局部适用区域、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化、有限时域动态规划、Bellman 递推与离散 Riccati 递推。",
+          "id": "14.1",
+          "title": "低秩分解与模型降阶",
+          "url": "/chapters/14-01-低秩分解与模型降阶/",
+          "goals": "从快照矩阵（matrix）构造低秩（rank）表示，推导截断误差（truncation error）并区分重建精度与动态预测精度。",
+          "prerequisites": "3.2、6.4、8.3；数学：向量（vector）、矩阵、内积（inner product）、范数（norm）、秩、线性方程组（system of linear equations）与投影（projection）直觉、特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、奇异值分解（singular value decomposition，SVD）、截断、伪逆与低秩投影。",
           "knowledge": [
-            "复习局部线性策略的适用域",
-            "一种基于 Lyapunov 思路的简单非线性设计",
-            "鲁棒与自适应的区别，选择一种作计算基线，另一种说明核心假设"
+            "建立快照、中心化与变量尺度约定，推导奇异值分解（singular value decomposition，SVD）及伪逆",
+            "由投影误差引入本征正交分解（proper orthogonal decomposition，POD）与截断秩",
+            "将机制方程投影到低维坐标，检查初值（initial condition）映射、守恒和截断影响"
           ],
-          "focus": "有限参数扫描是经验核验，不替代全参数区间的鲁棒证明；设计条件、实际观测（observation）与执行限制必须一致。",
+          "focus": "截断误差与舍弃奇异值（singular value）平方和对照；正交（orthogonality）性及秩零/满秩边界核验。中心化均值来自训练集（training set），降阶不自动保证非负性（nonnegativity）或守恒。",
           "available": false,
           "lessons": [],
           "visualization": null
         },
         {
-          "id": "12.2",
-          "title": "随机与分布式控制",
-          "url": "/chapters/12-02-随机与分布式控制/",
-          "goals": "解释 Brownian 增量和 Itô SDE 的基本含义，正确离散噪声，并区分随机扰动与局部通信的影响。",
-          "prerequisites": "12.1、5.4、9.4；数学：随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布（distribution）、有限时域动态规划、Bellman 递推与离散 Riccati 递推、图、邻接矩阵（matrix）、图拉普拉斯、图谱与连通性、Brownian 增量、Itô SDE、随机积分直觉与 Euler–Maruyama。",
+          "id": "14.2",
+          "title": "动态模态分解",
+          "url": "/chapters/14-02-动态模态分解/",
+          "goals": "由配对快照拟合线性传播，计算动态模态分解（dynamic mode decomposition，DMD）并验证离散与连续时间解释。",
+          "prerequisites": "14.1、6.5；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、奇异值分解（singular value decomposition，SVD）、截断、伪逆与低秩（rank）投影（projection）。",
           "knowledge": [
-            "Brownian 增量、随机积分直觉",
-            "Euler–Maruyama、强弱误差的入门区分",
-            "网络局部反馈（feedback）与集中信息基线，先分别验证再组合"
+            "从最小二乘传播矩阵进入动态模态分解（dynamic mode decomposition，DMD）",
+            "在截断子空间计算特征值（eigenvalue）与模态（mode），解释重建和滚动预测",
+            "讨论采样（sampling）间隔、模态混叠（aliasing）及对数分支，区分一步误差和长期行为"
           ],
-          "focus": "对应练习 均值为 X₀ + aT、方差（variance）为 σ²T；独立路径之间比较分布，同路径细化才用于路径误差；不把一种误差指标当作另一种收敛证据。",
+          "focus": "完整秩线性例子与已知传播矩阵（matrix）、独立轨迹（trajectory）对照；测试零奇异值（singular value）和秩不足，不用训练重建替代预测验证。",
           "available": false,
           "lessons": [],
           "visualization": null
         },
         {
-          "id": "12.3",
-          "title": "Koopman 与稀疏动力学辨识",
-          "url": "/chapters/12-03-Koopman 与稀疏动力学辨识/",
-          "goals": "解释函数观测（observation）与有限字典投影（projection），实现小型 EDMD 和稀疏方程辨识，评估字典与噪声的作用。",
-          "prerequisites": "12.2、6.5；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（sampling）入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化、函数观测、线性算子、有限字典与投影。",
+          "id": "14.3",
+          "title": "Koopman 表示与有限字典",
+          "url": "/chapters/14-03-Koopman 表示与有限字典/",
+          "goals": "理解作用于观测（observation）函数的线性传播，实现有限字典近似并解释闭合误差。",
+          "prerequisites": "14.2；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、函数观测、线性算子、有限字典与投影（projection）、奇异值分解（singular value decomposition，SVD）、截断、伪逆与低秩（rank）投影。",
           "knowledge": [
-            "状态（state）、观测函数与算子，不默认泛函分析",
-            "有限字典 EDMD 及数据矩阵",
-            "候选项、稀疏性、导数（derivative）估计和机制基线"
+            "从非线性状态（state）更新引入 Koopman 算子（Koopman operator），先讲函数与算子的必要定义",
+            "构造扩展动态模态分解（dynamic mode decomposition，DMD）（extended dynamic mode decomposition，EDMD）的字典与数据矩阵",
+            "比较字典、投影、正则化（regularization）与状态重建，限定有限字典的闭合条件"
           ],
-          "focus": "先用可精确表示的线性小例子核验实现；真值方程只用于独立评估，字典与超参数（parameter）不依据最终评估答案选择。",
+          "focus": "精确闭合系统用代数递推核验；一般系统报告投影与重建误差，真值方程不用于选择最终字典。",
           "available": false,
           "lessons": [],
           "visualization": null
         },
         {
-          "id": "12.4",
-          "title": "神经动力学与物理约束学习",
-          "url": "/chapters/12-04-神经动力学与物理约束学习/",
-          "goals": "从网络与计算图理解自动微分，构造神经 ODE 和方程残差（residual）约束的最小训练任务，分析不同误差来源。",
-          "prerequisites": "12.3、10.4；数学：偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、目标函数、梯度、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化、空间偏导、PDE、有限差分（finite difference）、边界条件与网格稳定性、神经网络、计算图、自动微分、训练目标及训练/验证划分。",
+          "id": "14.4",
+          "title": "稀疏动力学辨识",
+          "url": "/chapters/14-04-稀疏动力学辨识/",
+          "goals": "构造候选机制字典并实施稀疏回归，区分方程拟合、结构恢复与可辨识性（identifiability）。",
+          "prerequisites": "14.3、8.3、4.6；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、正则化（regularization）、非光滑目标、近端更新与软阈值（soft thresholding）、奇异值分解（singular value decomposition，SVD）、截断、伪逆与低秩（rank）投影（projection）、散度（divergence）与体积变化、连续变分方程、分段归一化和时间增长率。",
           "knowledge": [
-            "小网络、参数（parameter）、训练/验证与自动微分",
-            "以网络表示 ODE 右端并训练",
-            "方程、初值（initial condition）/边界与数据损失，比较残差约束学习"
+            "从导数或离散增量的回归引入稀疏动力学辨识（sparse identification of nonlinear dynamics，SINDy）",
+            "显式实现顺序阈值最小二乘，公开阈值、列缩放和停止规则",
+            "比较候选项共线性、导数估计与观测（observation）噪声，使用完整轨迹留出验证"
           ],
-          "focus": "求解误差、梯度误差、优化未收敛和模型（model）偏差分别记录；训练损失低不替代独立验证，多种初始化需报告波动与预算。",
+          "focus": "无噪可辨识小例子与已知系数核验；含噪例子分别检查导数（derivative）误差、短时预测和长期结构，不以混沌（chaos）轨迹（trajectory）长时逐点失配单独判定方程错误。标准化与阈值只由训练/验证集（validation set）决定，4.6 的 Lorenz 实验为课程基准，原论文复现留到第 17 篇。",
           "available": false,
           "lessons": [],
           "visualization": null
         },
         {
-          "id": "12.5",
-          "title": "强化学习与模型决策",
-          "url": "/chapters/12-05-强化学习与模型决策/",
-          "goals": "定义状态（state）、动作、转移、回报和终止，连接随机 Bellman 方程、策略评估与改进，并设计公平决策比较。",
-          "prerequisites": "12.4、8.4；数学：条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验（posterior）及条件 Gaussian、随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布（distribution）、有限时域动态规划、Bellman 递推与离散 Riccati 递推、MDP、条件期望（expectation）形式的 Bellman 方程、策略评估与改进。",
+          "id": "14.5",
+          "title": "噪声、外推与结构保持",
+          "url": "/chapters/14-05-噪声、外推与结构保持/",
+          "goals": "在共同协议下比较降阶与动力学发现，检查守恒、非负性（nonnegativity）、外推和噪声敏感性。",
+          "prerequisites": "14.4、13.4；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量、尺度关系、有限规模比较与不确定性评估、正则化（regularization）、非光滑目标、近端更新与软阈值（soft thresholding）、奇异值分解（singular value decomposition，SVD）、截断、伪逆与低秩（rank）投影（projection）。",
           "knowledge": [
-            "MDP 与回报及折扣",
-            "小型有限状态任务中的策略评估与简单表格学习",
-            "在人工调节任务上比较学习策略与 MPC"
+            "对齐物理变量、采样（sampling）、数据量和预测时域，固定结构误差与数值误差（numerical error）的分项指标",
+            "由多室交换的列和及符号条件检查候选线性模型（model）的守恒与非负性",
+            "在新初值（initial condition）、新输入（input）和噪声变化下评价预测与结构，保留失败轨迹（trajectory）"
           ],
-          "focus": "训练回报不作为独立效果证据；共同约束与传感信息一致，无法对齐的模型（model）知识差异明确报告；失败回合纳入统计。",
+          "focus": "纯交换极限（limit）用总量恒定核验；解析线性基线检查指标。低秩重建、一步误差与长期可用性分别报告，失败不作为缺失样本丢弃。",
+          "available": false,
+          "lessons": [],
+          "visualization": null
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "title": "可微分建模与机制融合",
+      "url": "/parts/15-可微分建模与机制融合/",
+      "chapters": [
+        {
+          "id": "15.1",
+          "title": "神经网络与自动微分",
+          "url": "/chapters/15-01-神经网络与自动微分/",
+          "goals": "从计算图推导小网络的反向传播（backpropagation），用独立差分核验梯度（gradient）并区分训练与评估。",
+          "prerequisites": "3.4、8.2、9.5；数学：偏导（partial derivative）、梯度方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、目标函数、梯度、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、神经网络、计算图、自动微分（automatic differentiation，AD）与反向传播。",
+          "knowledge": [
+            "引入小型神经网络（neural network）的参数（parameter）、激活和计算图",
+            "从链式法则推导反向模式自动微分（automatic differentiation，AD），逐项实现小图反传",
+            "组织损失、批次、初始化和训练/验证边界，解释自动微分与数值差分的区别"
+          ],
+          "focus": "光滑点用中心差分（central difference）步长扫描，线性网络用闭式核验；自动微分准确求程序导数（derivative），不保证程序或模型（model）本身正确。",
           "available": false,
           "lessons": [],
           "visualization": null
         },
         {
-          "id": "12.6",
-          "title": "完整研究复现与综合项目",
-          "url": "/chapters/12-06-完整研究复现与综合项目/",
-          "goals": "把论文主张缩成一个可验证问题，形成从证据来源到实验、比较、失败与限制的完整记录。",
-          "prerequisites": "12.5；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（sampling）入门、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）、凸性、约束与正则化、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "id": "15.2",
+          "title": "离散动力学学习",
+          "url": "/chapters/15-02-离散动力学学习/",
+          "goals": "学习离散状态（state）转移模型（model），区分一步训练、自由滚动和训练分布（distribution）外预测。",
+          "prerequisites": "15.1、14.5；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、神经网络、计算图、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件。",
           "knowledge": [
-            "选择原始论文、具体版本与待复现结论",
-            "建立最小基线、固定数据与评估协议",
-            "执行复现、消融及失败分析，整理运行入口"
+            "以离散转移映射定义网络输入、输出（output）、时间间隔和尺度",
+            "比较一步损失与有限滚动损失，避免将未来真实状态混入自由运行（free-run simulation）",
+            "在新初值（initial condition）与输入下比较机制、线性和小网络基线，记录稳定性与预算"
           ],
-          "focus": "未复现结果如实报告并检查实现、数据、指标和预算差异；不得为了与论文一致而只保留有利随机种子（random seed）。",
+          "focus": "线性网络与已知状态转移矩阵（transition matrix）对照；空时域和零输入（input）测试。离散转移网络不未经说明当作连续导数（derivative）使用。",
+          "available": false,
+          "lessons": [],
+          "visualization": null
+        },
+        {
+          "id": "15.3",
+          "title": "神经微分方程",
+          "url": "/chapters/15-03-神经微分方程/",
+          "goals": "以网络表示连续动力学右端，推导前向和伴随灵敏度（adjoint sensitivity），核验两种求导路线并区分求解误差和模型（model）误差。",
+          "prerequisites": "15.2、2.4；数学：一阶 ODE、初值（initial condition）、分离变量和指数解、数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、神经网络、计算图、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件、ODE 参数（parameter）前向灵敏度、分部积分、伴随终值方程、参数梯度（gradient）积分与观测（observation）时刻跳跃。",
+          "knowledge": [
+            "建立神经常微分方程（ordinary differential equation，ODE）（neural ordinary differential equation，Neural ODE）的右端与观测损失",
+            "先对固定步长求解程序显式求导，用链式法则（chain rule）推导连续前向灵敏度方程",
+            "引入分部积分与伴随灵敏度（adjoint sensitivity），完整推导低维伴随终值方程、参数梯度积分及固定观测时刻的跳跃条件",
+            "声明固定初态、可微右端与固定观测时刻，比较离散求导与连续伴随后数值离散的误差",
+            "比较容差、反向状态（state）重建、观测稀疏与不同初值，一般函数空间证明作为拓展"
+          ],
+          "focus": "线性标量模型用指数解及解析参数导数（derivative）独立核验前向和伴随；固定离散程序另作有限差分（finite difference）检查，两种路线的数值梯度不要求在有限步长完全相同。观测网格与求解网格分开，检查观测时刻跳跃、反向重建误差与细化收敛；超预算单独记录。",
+          "available": false,
+          "lessons": [],
+          "visualization": null
+        },
+        {
+          "id": "15.4",
+          "title": "物理约束学习",
+          "url": "/chapters/15-04-物理约束学习/",
+          "goals": "构造数据、方程及初边值残差（residual）损失，评价物理约束学习（physics-informed learning）的权重、覆盖与失效。",
+          "prerequisites": "15.3、12.4；数学：偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、空间偏导、PDE、有限差分（finite difference）、边界条件与网格稳定性、神经网络、计算图、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、迭代优化、步长、回溯线搜索（backtracking line search）与停止条件。",
+          "knowledge": [
+            "建立物理信息神经网络（physics-informed neural network，PINN）的函数表示和残差",
+            "用自动微分计算所需导数，明确配点、数据和初边值损失及单位尺度",
+            "比较权重、配点覆盖和错误机制；先做常微分方程（ordinary differential equation，ODE），再给小型空间问题"
+          ],
+          "focus": "解析函数同时核验方程、初值（initial condition）/边界与导数（derivative）；独立评估点不参与训练，残差和解误差分别报告，不能以网络替代必要的数值基线。",
+          "available": false,
+          "lessons": [],
+          "visualization": null
+        },
+        {
+          "id": "15.5",
+          "title": "混合模型与可辨识性",
+          "url": "/chapters/15-05-混合模型与可辨识性/",
+          "goals": "构造机制与学习修正的混合模型（model），检查可辨识性（identifiability）、约束和预测不确定性。",
+          "prerequisites": "15.4、9.5；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、神经网络、计算图、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、后验（posterior）归一化、Laplace 局部近似与后验预测（posterior predictive inference）积分、相对熵（relative entropy）、Jensen 不等式、变分下界与均值场（mean-field approximation）更新。",
+          "knowledge": [
+            "以已知收支（mass balance）项加可学习修正构成混合模型，明确修正进入的位置与单位",
+            "在固定参数与联合学习两种条件下讨论机制参数和网络补偿的混淆",
+            "复用后验预测（posterior predictive inference）与变分基础比较不确定性、独立预测和错误机制；完整贝叶斯网络作为拓展"
+          ],
+          "focus": "修正为零时恢复机制基线；不同参数（parameter）组合产生相同输出（output）的反例必须保留。模型、求解、优化和后验近似误差分别解释。",
+          "available": false,
+          "lessons": [],
+          "visualization": null
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "title": "自适应、鲁棒与学习控制",
+      "url": "/parts/16-自适应、鲁棒与学习控制/",
+      "chapters": [
+        {
+          "id": "16.1",
+          "title": "非线性反馈设计",
+          "url": "/chapters/16-01-非线性反馈设计/",
+          "goals": "为低维非线性系统构造反馈（feedback）与稳定性论证，明确适用域和执行约束。",
+          "prerequisites": "4.5、10.7；数学：偏导（partial derivative）、梯度（gradient）方向、Jacobian、多变量链式法则（chain rule）和一阶 Taylor 近似、Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数（derivative）和局部适用区域、目标函数、梯度、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）。",
+          "knowledge": [
+            "复习局部线性反馈的适用范围，从候选 Lyapunov 函数建立非线性设计",
+            "对已知输入作用方向推导一个标量反馈或低维能量整形例子",
+            "分别检查饱和、模型失配与区域外初值（initial condition），不把局部结论扩展为全局保证"
+          ],
+          "focus": "无饱和标量例子用解析解（analytical solution）或导数不等式核验；实际输入（input）代入模型（model）与导数，有限扫描只作数值证据。",
+          "available": false,
+          "lessons": [],
+          "visualization": null
+        },
+        {
+          "id": "16.2",
+          "title": "模型不确定性与鲁棒控制",
+          "url": "/chapters/16-02-模型不确定性与鲁棒控制/",
+          "goals": "在明确的不确定参数（parameter）集合上检验鲁棒性能，区别共同证据与有限场景经验。",
+          "prerequisites": "16.1、8.4；数学：Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数（derivative）和局部适用区域、目标函数、梯度（gradient）、Hessian、二次型、正定性（positive definiteness）与凸性（convexity）、Lagrange 乘子、对偶性、KKT 条件与约束资格、共同二次函数、半正定（positive semidefinite）矩阵（matrix）不等式与凸不确定集合。",
+          "knowledge": [
+            "定义模型集合、扰动界和性能指标，区分鲁棒与平均性能目标",
+            "从矩阵二次型建立共同 Lyapunov 条件，给出仿射多面体模型的顶点核验依据",
+            "比较保守性、执行约束与超出假设集合的失效；完整鲁棒最优理论作为拓展"
+          ],
+          "focus": "一维区间模型（model）用解析不等式核验；顶点结论限定在仿射（affine）凸组合和共同函数条件下。加入饱和后的结论另行验证。",
+          "available": false,
+          "lessons": [],
+          "visualization": null
+        },
+        {
+          "id": "16.3",
+          "title": "递推辨识与自适应控制",
+          "url": "/chapters/16-03-递推辨识与自适应控制/",
+          "goals": "将递推参数（parameter）估计接入反馈（feedback），区分自适应跟踪改善、激励充分和参数收敛。",
+          "prerequisites": "16.1、16.2、6.6、10.7；数学：Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数（derivative）和局部适用区域、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、信息矩阵（matrix）、矩阵秩一更新（rank-one update）与递推最小二乘（recursive least squares，RLS）。",
+          "knowledge": [
+            "连接第 6 篇递推辨识与控制输入，明确估计、决策和状态（state）推进的时间顺序",
+            "构造有界标量自校正调节例子，声明输入增益（gain）符号、参数范围和估计噪声条件",
+            "比较参数漂移、激励不足、闭环相关误差与执行饱和，限定参数收敛解释"
+          ],
+          "focus": "参数已知极限（limit）恢复固定基线；每步估计与独立重算对照。参数投影（projection）、激励与饱和的作用分别说明，错误输入（input）符号作为失效条件。",
+          "available": false,
+          "lessons": [],
+          "visualization": null
+        },
+        {
+          "id": "16.4",
+          "title": "随机动力学与控制",
+          "url": "/chapters/16-04-随机动力学与控制/",
+          "goals": "正确离散随机动态，比较有噪反馈（feedback）的均值、波动与风险，并区分路径误差与分布（distribution）误差。",
+          "prerequisites": "5.4、7.3、10.5；数学：一阶 ODE、初值（initial condition）、分离变量和指数解、数值误差（numerical error）、收敛阶、递推稳定性与非负性（nonnegativity）、随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布、有限时域动态规划、Bellman 递推与离散 Riccati 递推、Brownian 增量、Itô SDE、随机积分直觉与 Euler–Maruyama。",
+          "knowledge": [
+            "引入布朗运动（Brownian motion）、Itô 随机微分方程（stochastic differential equation，SDE）及随机积分的必要直觉",
+            "推导 Euler–Maruyama 方法（Euler–Maruyama method）的噪声缩放，区分强弱误差",
+            "在随机线性调节中比较期望（expectation）代价、分位和违反约束频率；不提前声称硬约束保证"
+          ],
+          "focus": "无反馈或线性反馈下用解析矩核验；同路径使用细增量求和形成粗增量，报告重复次数及统计误差。完整随机分析证明为拓展。",
+          "available": false,
+          "lessons": [],
+          "visualization": null
+        },
+        {
+          "id": "16.5",
+          "title": "分布式控制与通信限制",
+          "url": "/chapters/16-05-分布式控制与通信限制/",
+          "goals": "由局部通信构造协同反馈（feedback），检查连通性、权重和延迟（delay）对收敛与性能的影响。",
+          "prerequisites": "11.4、10.3；数学：特征值（eigenvalue）、特征向量（eigenvector）、复数（complex number）与共轭模态（mode）、矩阵（matrix）幂和矩阵指数（matrix exponential）、图、邻接矩阵、图拉普拉斯、图谱与连通性。",
+          "knowledge": [
+            "从网络扩散推导一致性控制（consensus control），明确有向/无向图与局部可用信息",
+            "分析离散步长、连通分量和不变总量，区别状态（state）一致与平均一致",
+            "加入固定通信延迟、断边和输入（input）上限，与集中信息基线公平比较"
+          ],
+          "focus": "无向无延迟情形与图拉普拉斯谱及矩阵幂对照；断连时逐分量比较，不将有向权重下的极限（limit）都解释为算术平均。",
+          "available": false,
+          "lessons": [],
+          "visualization": null
+        },
+        {
+          "id": "16.6",
+          "title": "强化学习与策略评估",
+          "url": "/chapters/16-06-强化学习与策略评估/",
+          "goals": "在有限马尔可夫（Markov）决策模型（model）中实现策略评价和简单学习，区分训练回报与独立策略效果。",
+          "prerequisites": "5.4、10.5、9.5；数学：条件概率（conditional probability）、Bayes 公式、似然（likelihood）、后验（posterior）及标量高斯条件更新、随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布（distribution）、有限时域动态规划、Bellman 递推与离散 Riccati 递推、MDP、条件期望（expectation）形式的 Bellman 方程、策略评估（policy evaluation）与改进。",
+          "knowledge": [
+            "建立马尔可夫决策过程（Markov decision process，MDP）的状态（state）、动作、转移、回报和终止",
+            "连接随机 Bellman 方程，推导策略评价、改进及表格 Q 学习（Q-learning）更新",
+            "明确探索、训练预算与独立评估，比较已知模型规划和从样本学习"
+          ],
+          "focus": "小型模型用线性方程或有限时域穷举核验；终止后不继续累积回报，失败回合纳入统计，深度强化学习（reinforcement learning，RL）作为拓展。",
+          "available": false,
+          "lessons": [],
+          "visualization": null
+        },
+        {
+          "id": "16.7",
+          "title": "模型学习与约束决策",
+          "url": "/chapters/16-07-模型学习与约束决策/",
+          "goals": "把学得模型（model）接入滚动决策，在共同观测（observation）和执行限制下评价误差、风险与失效。",
+          "prerequisites": "16.3、16.6、10.6、14.5、15.5；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、有限时域动态规划、Bellman 递推与离散 Riccati 递推、神经网络、计算图、自动微分（automatic differentiation，AD）与反向传播（backpropagation）、MDP、条件期望（expectation）形式的 Bellman 方程、策略评估（policy evaluation）与改进。",
+          "knowledge": [
+            "比较固定机制、在线辨识和学习模型作为预测器的接口与误差来源",
+            "将估计状态（state）与模型预测接入约束决策，检查外推和不可行处理",
+            "对齐训练、调参、观测和执行预算，比较模型策略与无模型策略并说明信息差异"
+          ],
+          "focus": "零模型误差极限（limit）与第 10 篇基线对照，逐项独立重算指标；求解失败不冒充有效控制，备用动作的条件与结果单独记录。",
+          "available": false,
+          "lessons": [],
+          "visualization": null
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "title": "研究复现与综合实践",
+      "url": "/parts/17-研究复现与综合实践/",
+      "chapters": [
+        {
+          "id": "17.1",
+          "title": "研究问题与证据",
+          "url": "/chapters/17-01-研究问题与证据/",
+          "goals": "把论文主张转成有明确假设、对象、指标和证据范围的可复现问题。",
+          "prerequisites": "9.5、13.4、14.5、15.5、16.7；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "knowledge": [
+            "固定原论文及版本，区分方法定义、原实验结论与作者解释",
+            "将原问题缩为普通 CPU 可运行的低维实验，声明缩减改变了哪些条件",
+            "形成主张、基线、数据和评价的对应表，区分原结果复现与课程改编"
+          ],
+          "focus": "原文实验的位置、版本与课程改动逐项登记；不把低维改编实验称为完整复现原论文全部结果，不以方法年代决定是否有效。",
+          "available": false,
+          "lessons": [],
+          "visualization": null
+        },
+        {
+          "id": "17.2",
+          "title": "复现协议与公平基线",
+          "url": "/chapters/17-02-复现协议与公平基线/",
+          "goals": "制定能运行且公平的复现协议，隔离训练和评估信息并记录计算预算。",
+          "prerequisites": "17.1；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、ODE 参数（parameter）前向灵敏度、分部积分、伴随终值方程、参数梯度（gradient）积分与观测（observation）时刻跳跃。",
+          "knowledge": [
+            "定义数据、轨迹（trajectory）和随机流的划分边界，固定方法输入（input）与调参资源",
+            "建立显式算法、成熟实现和简单机制基线的对应，核对允许的信息差异",
+            "记录环境、代码版本、参数、种子、重复次数和失败处理，先做最小核验再完整运行"
+          ],
+          "focus": "索引集合独立交叉检查，训练变换仅由训练数据估计；记录实际运行资源，不预先声称达到尚未测量的性能。",
+          "available": false,
+          "lessons": [],
+          "visualization": null
+        },
+        {
+          "id": "17.3",
+          "title": "消融、失效与结论边界",
+          "url": "/chapters/17-03-消融、失效与结论边界/",
+          "goals": "通过消融、重复和失效实验定位效果来源，区分统计波动与可支持的机制解释。",
+          "prerequisites": "17.2；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "knowledge": [
+            "预先确定消融因素、配对场景和评价量，保持其他条件可比",
+            "比较重复效果差和不确定性，保留全部失败与未复现结果",
+            "分别排查模型（model）、数值、优化、数据和评价差异，并限定原因解释的强度"
+          ],
+          "focus": "小表手算与完整结果汇总对照；配对结构不被打乱，重复次数与不确定性计算一致，不将未复现结果改写为成功。",
+          "available": false,
+          "lessons": [],
+          "visualization": null
+        },
+        {
+          "id": "17.4",
+          "title": "研究方法综合比较",
+          "url": "/chapters/17-04-研究方法综合比较/",
+          "goals": "把机制、推断和学习结果组织为可追溯比较，在新条件下判断结论仍成立的范围。",
+          "prerequisites": "17.3；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量、尺度关系、有限规模比较与不确定性评估、神经网络、计算图、自动微分（automatic differentiation，AD）与反向传播（backpropagation）。",
+          "knowledge": [
+            "以三组贯穿案例整理观测（observation）条件、状态（state）/参数（parameter）问题及可选择的方法",
+            "连接独立评估、预算、失效与不确定性，分别给出可以和不能支持的结论",
+            "形成可再次运行的教材示例与客观综合题，展示完整研究说明但不增加自由报告提交"
+          ],
+          "focus": "关键函数与先前章节的独立参考一致；已知真值仅供核验。研究成果以有限实验及客观题检验，明确区分课程复现、迁移和新研究主张。",
           "available": false,
           "lessons": [],
           "visualization": null

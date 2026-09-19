@@ -1,5 +1,6 @@
 """题面、模板与调用共用具名参数契约，禁止把通信包装作为解题接口。"""
 import ast
+from html import escape
 import keyword
 
 
@@ -39,12 +40,19 @@ def contract_view(question):
 
 def contract_markdown(question):
     view=contract_view(question)
+    def table_cell(value):
+        return str(value).replace('|', '&#124;').replace('\n', '<br>')
     text=['**函数与代码模板**','```python\n'+question['starter_code'].rstrip()+'\n```']
     for title,items in [('参数说明',view['parameters']),('返回值',view['returns'])]:
         text.append(f'**{title}**')
         if title=='返回值':text.append(view['return_note'])
         rows=['| 名称 | Python 类型 | 含义 | 单位 |','|---|---|---|---|']
-        rows += [f'| `{item["name"]}` | `{item["type"]}` | {item["description"]} | {item["unit"]} |' for item in items]
+        for item in items:
+            name,kind,description,unit=(table_cell(item[key]) for key in ['name','type','description','unit'])
+            kind=('<code>'+escape(item['type']).replace('|','&#124;')+'</code>') if '|' in item['type'] else f'`{kind}`'
+            rows.append(f'| `{name}` | {kind} | {description} | {unit} |')
         text.append('\n'.join(rows))
-    text += ['**计算规则**',question['contract'],'**约束与边界**','\n'.join('- '+item for item in view['constraints'])]
+    # The contract is plain text in the web UI; Python powers must remain literal.
+    rule = question['contract'].replace('**', r'\*\*')
+    text += ['**计算规则**',rule,'**约束与边界**','\n'.join('- '+item for item in view['constraints'])]
     return '\n\n'.join(text)

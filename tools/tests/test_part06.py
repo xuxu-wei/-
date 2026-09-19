@@ -47,6 +47,9 @@ def closed_arx(p):
     return [list(map(float,one)),list(map(float,free))]
 
 def independent(slug,p):
+    if slug in {'rls-trace','ridge-variance','forgetting-weights','cap-validation'}:
+        from test_part06_extension import extension_oracle
+        return extension_oracle(slug,p)
     if slug=='cosine-samples':
         return (p['amplitude']*np.exp(1j*(2*np.pi*p['frequency']*np.array(p['times'])+p['phase'])).real).tolist()
     if slug=='causal-average':
@@ -116,6 +119,10 @@ def typical_wrong(q):
     """Mutate one teaching assumption; each result remains executable Python."""
     slug=q['slug'][4:];source=S[q['id']]
     edits={
+        'rls-trace':('error = target - prediction','error = target'),
+        'ridge-variance':('noise_variance * total / denominator ** 2','noise_variance / denominator'),
+        'forgetting-weights':('forgetting ** count','1.0'),
+        'cap-validation':('chosen = min(tuning_scores)[1]','chosen = max(set(candidates))'),
         'cosine-samples':('+phase','+0'),
         'causal-average':('/min(n+1,window)','/window'),
         'linear-convolution':('range(len(signal)+len(kernel)-1)','range(len(signal))'),

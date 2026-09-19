@@ -1,5 +1,7 @@
 """本机教材网页与默认 IDE 打开接口。"""
 import argparse
+import hashlib
+import io
 import json
 import os
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -13,6 +15,28 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from practice import PracticeEngine, RequestError
 from course_content import notebooks
+
+
+def home_graph_response(root):
+    """Read one consistent graph snapshot; stale generated navigation is unavailable."""
+    try:
+        catalog_bytes = (root / 'web/course/catalog.json').read_bytes()
+        catalog = json.loads(catalog_bytes)
+        graph = json.loads((root / 'web/home/graph.json').read_bytes())
+        if not isinstance(catalog, dict) or not isinstance(catalog.get('parts'), list):
+            raise ValueError('Invalid course catalog')
+        if not isinstance(graph, dict) or not isinstance(graph.get('source'), dict):
+            raise ValueError('Invalid graph source')
+        expected = graph['source'].get('catalogSha256')
+        if (not isinstance(expected, str) or len(expected) != 64
+                or any(c not in '0123456789abcdef' for c in expected)
+                or any(not isinstance(graph.get(key), list) for key in ('nodes', 'edges', 'taxonomy'))):
+            raise ValueError('Invalid graph metadata')
+    except (OSError, ValueError, UnicodeError):
+        return 503, {'error': '知识星图暂时不可用，请先从全书目录继续学习。', 'catalog_url': '/catalog/'}
+    if hashlib.sha256(catalog_bytes).hexdigest() != expected:
+        return 409, {'error': '课程目录已更新，知识星图需要同步。请先从全书目录继续学习。', 'catalog_url': '/catalog/'}
+    return 200, graph
 
 
 def open_in_default_app(path):
@@ -142,7 +166,7 @@ class TeachingHandler(SimpleHTTPRequestHandler):
             self.send_error(403)
             return None
         requested = unquote(urlsplit(self.path).path).lstrip('/')
-        routes={'':'web/course/index.html'}
+        routes={'':'web/home/index.html','catalog/':'web/course/index.html'}
         for part in self.server.course['parts']:
             routes[part['url'].lstrip('/')]='web/course/index.html'
             for chapter in [*part['chapters'], *([part['assessment']] if part.get('assessment') else [])]:
@@ -160,11 +184,21 @@ class TeachingHandler(SimpleHTTPRequestHandler):
             return None
         parts = resolved.relative_to(ROOT).parts
         allowed = parts and (parts[0] in {'web', 'notebooks', 'docs'} or requested in {'README.md', 'LICENSE'})
-        if self.server.previews and len(parts)>=3 and parts[0]=='.work' and parts[1] in {'m1','m2','m3','m3-part01','m4','m5','m6','m7'} and parts[2]=='previews':
+        if self.server.previews and len(parts)>=3 and parts[0]=='.work' and parts[1] in {'m1','m2','m3','m3-part01','m4','m5','m6','m7','m5-extension','m7-extension','m8','m8-teaching','m9','m6-label-correction'} and parts[2]=='previews':
             allowed = True
         if not allowed:
             self.send_error(404)
             return None
+        if resolved == ROOT / 'web/home/graph.json':
+            # Return the checked in-memory snapshot, not a second file read that
+            # could race with a course rebuild. HEAD shares the same validation.
+            status, payload = home_graph_response(ROOT)
+            body = json.dumps(payload, ensure_ascii=False).encode('utf-8')
+            self.send_response(status)
+            self.send_header('Content-Type', 'application/json; charset=utf-8')
+            self.send_header('Content-Length', str(len(body)))
+            self.end_headers()
+            return io.BytesIO(body)
         return super().send_head()
 
     def list_directory(self, path):

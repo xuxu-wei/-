@@ -69,6 +69,13 @@ def rk4_radial(mu,omega,initial,times):
     return result
 
 def independent(slug,p):
+    from test_part04_extension import NEW, independent_extension
+    # Capstone v2 keeps IDs so each question's version-one history remains reachable.
+    replacement={'cap-period':'cap-section','cap-precision':'cap-growth-units','cap-region':'cap-lorenz-bound'}
+    if slug in replacement:
+        return independent_extension(replacement[slug],p)
+    if slug in NEW:
+        return independent_extension(slug,p)
     if slug=='switch-exact':
         x=D(p['initial'])
         return [float(x) if x==0 else float((1 if x>0 else -1)/(1+(1/(x*x)-1)*(-2*D(t)).exp()).sqrt()) for t in p['times']]

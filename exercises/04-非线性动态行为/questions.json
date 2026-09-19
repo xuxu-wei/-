@@ -2759,39 +2759,1526 @@
     "constraints": []
   },
   {
-    "id": "p04-cap-equilibrium",
-    "slug": "p04-cap-equilibrium",
+    "id": "p04-attractor-set",
+    "slug": "p04-attractor-set",
     "version": "1",
-    "lesson_id": "P04-SUMMARY",
+    "lesson_id": "P04-C01-S03",
     "part": "4",
-    "chapter": "4.summary",
-    "title": "用方向表辨认吸引去向",
+    "chapter": "4.1",
+    "title": "吸引的是点还是集合",
     "type": "choice",
-    "statement": "开关 x′=x−x³ 的方向为：x<−1 向右；−1<x<0 向左；0<x<1 向右；x>1 向左。哪些结论成立？",
+    "statement": "对 r′=r(1−r²)、θ′=1，r>0。哪些陈述成立？",
     "learning_targets": [
       "T1"
     ],
     "mathematics": [
-      "数08"
+      "数43",
+      "数45"
     ],
     "difficulty": "理解",
     "multiple": true,
     "options": [
       {
         "id": "A",
-        "text": "方向表可解释正负初值（initial condition）趋向不同状态（state）。"
+        "text": "单位圆是不变集（invariant set），邻近轨迹（trajectory）到单位圆的距离趋于零。"
       },
       {
         "id": "B",
-        "text": "−1 和 1 吸引各自邻近状态。"
+        "text": "所有轨迹最终在单位圆上同一点停下。"
       },
       {
         "id": "C",
-        "text": "0 对非零小扰动吸引。"
+        "text": "吸引域（basin of attraction）包含所有 r>0 的初值（initial condition），原点例外。"
       },
       {
         "id": "D",
-        "text": "x0=0 精确保持 0。"
+        "text": "一条被画出的圆必然吸引邻近初值。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-center-counterexample",
+    "slug": "p04-center-counterexample",
+    "version": "1",
+    "lesson_id": "P04-C01-S03",
+    "part": "4",
+    "chapter": "4.1",
+    "title": "不变为何不一定吸引",
+    "type": "choice",
+    "statement": "纯旋转 x′=−y、y′=x 的单位圆有什么性质？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数43",
+      "数45"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "它不变，但半径 1.1 的轨迹（trajectory）到它的距离始终 0.1。"
+      },
+      {
+        "id": "B",
+        "text": "它吸引整个平面。"
+      },
+      {
+        "id": "C",
+        "text": "圆上运动就说明混沌（chaos）。"
+      },
+      {
+        "id": "D",
+        "text": "平衡（equilibrium）点是唯一可能的吸引子（attractor）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-distance-circle",
+    "slug": "p04-distance-circle",
+    "version": "1",
+    "lesson_id": "P04-C01-S03",
+    "part": "4",
+    "chapter": "4.1",
+    "title": "计算点到圆和点的距离",
+    "type": "python",
+    "statement": "对每个二维状态（state），分别计算到原点和到半径 radius 圆周的欧氏距离。",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数43",
+      "数45"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "points",
+        "type": "list[list[float]]",
+        "description": "二维状态 [x,y] 列表。",
+        "unit": "1"
+      },
+      {
+        "name": "radius",
+        "type": "float",
+        "description": "圆的半径。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "to_origin",
+        "type": "list[float]",
+        "description": "逐点到原点的距离。",
+        "unit": "1"
+      },
+      {
+        "name": "to_circle",
+        "type": "list[float]",
+        "description": "逐点到整个圆周的最小距离。",
+        "unit": "1"
+      }
+    ],
+    "contract": "逐点计算 r=sqrt(x²+y²)，返回 (r 列表, |r−radius| 列表)。距离到集合不同于距离到某个选定圆周点。",
+    "constraints": [
+      "所有数值有限，不修改输入（input）列表。",
+      "1—50 个二维点；各坐标在 [−10,10]；0<radius≤5。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    points: list[list[float]],\n    radius: float,\n) -> tuple[list[float], list[float]]:\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "points": [
+            [
+              3,
+              4
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "radius": 1
+        },
+        "expected": [
+          [
+            5.0,
+            0.0,
+            1.0
+          ],
+          [
+            4.0,
+            1.0,
+            0.0
+          ]
+        ],
+        "explanation": "点 (3,4) 的半径是 5，到单位圆的距离是 4；原点到单位圆的距离是 1。"
+      }
+    ]
+  },
+  {
+    "id": "p04-distance-equilibria",
+    "slug": "p04-distance-equilibria",
+    "version": "1",
+    "lesson_id": "P04-C01-S03",
+    "part": "4",
+    "chapter": "4.1",
+    "title": "计算到有限平衡集合的距离",
+    "type": "python",
+    "statement": "在一维状态（state）轴上，给定候选平衡（equilibrium）点集合。对每个观测（observation）状态返回它到这个集合的最短距离；不据距离大小自动判断吸引性。",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数43",
+      "数45"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "states",
+        "type": "list[float]",
+        "description": "观测状态，按输入（input）顺序保留。",
+        "unit": "1"
+      },
+      {
+        "name": "equilibria",
+        "type": "list[float]",
+        "description": "给定非空平衡点集合。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "distances",
+        "type": "list[float]",
+        "description": "每个状态到给定集合的最短距离。",
+        "unit": "1"
+      }
+    ],
+    "contract": "对每个 x 返回 min(abs(x-a) for a in equilibria)。平衡点顺序及重复值不改变距离；只返回距离列表。",
+    "constraints": [
+      "所有数值有限，不修改输入列表。",
+      "states 长度 1—50，equilibria 长度 1—10；所有数值在 [−10,10]。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    states: list[float],\n    equilibria: list[float],\n) -> list[float]:\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "states": [
+            -2,
+            0,
+            0.5,
+            1
+          ],
+          "equilibria": [
+            -1,
+            1
+          ]
+        },
+        "expected": [
+          1,
+          1,
+          0.5,
+          0
+        ],
+        "explanation": "状态 −2 到 −1 最近，距离 1；0 到两个平衡点都相距 1；0.5 到 1 相距 0.5；1 已在集合内。"
+      }
+    ]
+  },
+  {
+    "id": "p04-plane-autonomous",
+    "slug": "p04-plane-autonomous",
+    "version": "1",
+    "lesson_id": "P04-C06-S01",
+    "part": "4",
+    "chapter": "4.6",
+    "title": "平面定理适用在哪里",
+    "type": "choice",
+    "statement": "采用本节给出的庞加莱–本迪克松定理（Poincaré–Bendixson theorem）限定版本。哪项正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数44",
+      "数45"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "平面自治光滑流的前向轨迹（trajectory）留在紧集（compact set），且其极限（limit）集不含平衡（equilibrium）点时，极限集是周期轨道。"
+      },
+      {
+        "id": "B",
+        "text": "任意二维周期受迫系统都只能有周期解。"
+      },
+      {
+        "id": "C",
+        "text": "三维自治系统（autonomous system）一定混沌（chaos）。"
+      },
+      {
+        "id": "D",
+        "text": "不含平衡点这项可以无条件删除。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-lorenz-equilibria",
+    "slug": "p04-lorenz-equilibria",
+    "version": "1",
+    "lesson_id": "P04-C06-S01",
+    "part": "4",
+    "chapter": "4.6",
+    "title": "平衡的位置与变量含义",
+    "type": "choice",
+    "statement": "洛伦兹系统（Lorenz system）使用正参数（parameter） σ、ρ、β。哪些说法成立？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数44",
+      "数45"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "原点对所有正参数都是平衡（equilibrium）。"
+      },
+      {
+        "id": "B",
+        "text": "ρ>1 时有两个非零平衡，其 x、y 必须同号。"
+      },
+      {
+        "id": "C",
+        "text": "x<0 表示负的物质量。"
+      },
+      {
+        "id": "D",
+        "text": "ρ=1 时另有两个与原点不同的平衡。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-lorenz-field",
+    "slug": "p04-lorenz-field",
+    "version": "1",
+    "lesson_id": "P04-C06-S01",
+    "part": "4",
+    "chapter": "4.6",
+    "title": "从方程计算向量场与雅可比矩阵",
+    "type": "python",
+    "statement": "洛伦兹系统（Lorenz system）为 x′=σ(y−x)、y′=ρx−y−xz、z′=xy−βz。计算此状态（state）的导数（derivative）向量（vector）及局部线性化（linearization）矩阵（matrix）。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数44",
+      "数45"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "sigma",
+        "type": "float",
+        "description": "正参数（parameter）（parameter） σ。",
+        "unit": "1"
+      },
+      {
+        "name": "rho",
+        "type": "float",
+        "description": "正参数 ρ。",
+        "unit": "1"
+      },
+      {
+        "name": "beta",
+        "type": "float",
+        "description": "正参数 β。",
+        "unit": "1"
+      },
+      {
+        "name": "state",
+        "type": "list[float]",
+        "description": "状态（state） [x,y,z]。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "rates",
+        "type": "list[float]",
+        "description": "[x′,y′,z′]。",
+        "unit": "每单位 τ"
+      },
+      {
+        "name": "jacobian",
+        "type": "list[list[float]]",
+        "description": "按状态 x,y,z 顺序的 3×3 雅可比矩阵（Jacobian matrix）。",
+        "unit": "每单位 τ"
+      }
+    ],
+    "contract": "逐行按三条方程及其对 x,y,z 的偏导（partial derivative）计算；返回 (rates,jacobian)。",
+    "constraints": [
+      "所有数值有限，不修改输入（input）列表。",
+      "0<σ≤20，0<ρ≤40，0<β≤5；状态各分量绝对值≤60。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    sigma: float,\n    rho: float,\n    beta: float,\n    state: list[float],\n) -> tuple[list[float], list[list[float]]]:\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "sigma": 10,
+          "rho": 28,
+          "beta": 2,
+          "state": [
+            1,
+            2,
+            3
+          ]
+        },
+        "expected": [
+          [
+            10,
+            23,
+            -4
+          ],
+          [
+            [
+              -10,
+              10,
+              0.0
+            ],
+            [
+              25,
+              -1.0,
+              -1
+            ],
+            [
+              2,
+              1,
+              -2
+            ]
+          ]
+        ],
+        "explanation": "第一分量为 10(2−1)=10，第二为 28−2−3=23，第三为 2−6=−4。"
+      }
+    ]
+  },
+  {
+    "id": "p04-lorenz-local-scope",
+    "slug": "p04-lorenz-local-scope",
+    "version": "1",
+    "lesson_id": "P04-C06-S01",
+    "part": "4",
+    "chapter": "4.6",
+    "title": "精确平衡不是稳定性检验",
+    "type": "choice",
+    "statement": "ρ=28 时从精确原点出发，程序一直返回零。正确解释是什么？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数44",
+      "数45"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "这是平衡（equilibrium）解；判断稳定性还需检查扰动与雅可比矩阵（Jacobian matrix）。"
+      },
+      {
+        "id": "B",
+        "text": "这证明原点吸引所有邻近初值（initial condition）。"
+      },
+      {
+        "id": "C",
+        "text": "应偷偷加入随机扰动使其画出蝴蝶。"
+      },
+      {
+        "id": "D",
+        "text": "只要有不稳定平衡就不可能有吸引子（attractor）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-volume-bounded",
+    "slug": "p04-volume-bounded",
+    "version": "1",
+    "lesson_id": "P04-C06-S02",
+    "part": "4",
+    "chapter": "4.6",
+    "title": "体积收缩是否保证有界",
+    "type": "choice",
+    "statement": "线性系统 x′=x、y′=−2y 的散度（divergence）为 −1。可以得到什么？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数44",
+      "数45"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "面积缩小，但 x₀≠0 的轨迹（trajectory）可以无界逃逸。"
+      },
+      {
+        "id": "B",
+        "text": "每个方向都收缩。"
+      },
+      {
+        "id": "C",
+        "text": "所有轨迹都趋于原点。"
+      },
+      {
+        "id": "D",
+        "text": "负散度自动给出有界吸引区域。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-lorenz-bound",
+    "slug": "p04-lorenz-bound",
+    "version": "1",
+    "lesson_id": "P04-C06-S02",
+    "part": "4",
+    "chapter": "4.6",
+    "title": "用两条路径核对函数导数",
+    "type": "python",
+    "statement": "用给定 Lorenz 方程计算有界性函数，并分别用链式法则（chain rule）与配方式核对其沿轨迹（trajectory）导数（derivative）。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数44",
+      "数45"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "sigma",
+        "type": "float",
+        "description": "正参数（parameter）（parameter） σ。",
+        "unit": "1"
+      },
+      {
+        "name": "rho",
+        "type": "float",
+        "description": "正参数 ρ。",
+        "unit": "1"
+      },
+      {
+        "name": "beta",
+        "type": "float",
+        "description": "正参数 β。",
+        "unit": "1"
+      },
+      {
+        "name": "state",
+        "type": "list[float]",
+        "description": "状态（state） [x,y,z]。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "W",
+        "type": "float",
+        "description": "有界性函数值。",
+        "unit": "1"
+      },
+      {
+        "name": "direct",
+        "type": "float",
+        "description": "梯度（gradient）（gradient）与向量场（vector field）（vector field）内积（inner product）（inner product）。",
+        "unit": "每单位 τ"
+      },
+      {
+        "name": "completed",
+        "type": "float",
+        "description": "配方后导数值。",
+        "unit": "每单位 τ"
+      },
+      {
+        "name": "c",
+        "type": "float",
+        "description": "正衰减系数。",
+        "unit": "每单位 τ"
+      },
+      {
+        "name": "C",
+        "type": "float",
+        "description": "界中常数。",
+        "unit": "每单位 τ"
+      }
+    ],
+    "contract": "W=ρx²+σy²+σ(z−2ρ)²；direct=∇W·f；completed=−2σ[ρx²+y²+β(z−ρ)²−βρ²]；c=min(2σ,2,β)，C=4σβρ²。分别计算两种导数表达式，返回 (W,direct,completed,c,C)。",
+    "constraints": [
+      "所有数值有限，不修改输入（input）列表。",
+      "0<σ≤20，0<ρ≤40，0<β≤5；状态各分量绝对值≤60。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    sigma: float,\n    rho: float,\n    beta: float,\n    state: list[float],\n) -> tuple[float, float, float, float, float]:\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "sigma": 10,
+          "rho": 2,
+          "beta": 1,
+          "state": [
+            0,
+            0,
+            0
+          ]
+        },
+        "expected": [
+          160,
+          0,
+          0,
+          1,
+          160
+        ],
+        "explanation": "原点 W=160，虽不为零，但两条导数均为 0；c=1，C=160。"
+      }
+    ]
+  },
+  {
+    "id": "p04-rk4-linear-step",
+    "slug": "p04-rk4-linear-step",
+    "version": "1",
+    "lesson_id": "P04-C06-S02",
+    "part": "4",
+    "chapter": "4.6",
+    "title": "手写四阶段的一步更新",
+    "type": "python",
+    "statement": "对标量 y′=rate*y，以经典四阶龙格–库塔法计算一个时间步。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数44",
+      "数45"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "initial",
+        "type": "float",
+        "description": "段首状态（state）。",
+        "unit": "1"
+      },
+      {
+        "name": "rate",
+        "type": "float",
+        "description": "连续增长率。",
+        "unit": "每单位 τ"
+      },
+      {
+        "name": "h",
+        "type": "float",
+        "description": "时间步长（time step）。",
+        "unit": "τ"
+      }
+    ],
+    "returns": [
+      {
+        "name": "next_state",
+        "type": "float",
+        "description": "一步后的数值状态。",
+        "unit": "1"
+      }
+    ],
+    "contract": "k1=rate*y；k2=rate*(y+h*k1/2)；k3=rate*(y+h*k2/2)；k4=rate*(y+h*k3)；返回 y+h*(k1+2k2+2k3+k4)/6。",
+    "constraints": [
+      "所有数值有限，不修改输入（input）列表。",
+      "|initial|≤10，|rate|≤3，0<h≤0.5。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    initial: float,\n    rate: float,\n    h: float,\n) -> float:\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "initial": 1,
+          "rate": -1,
+          "h": 0.5
+        },
+        "expected": 0.6067708333333333,
+        "explanation": "四个斜率（slope）依次 −1、−0.75、−0.8125、−0.59375；一步结果 0.6067708333333334。"
+      }
+    ]
+  },
+  {
+    "id": "p04-aligned-error",
+    "slug": "p04-aligned-error",
+    "version": "1",
+    "lesson_id": "P04-C06-S02",
+    "part": "4",
+    "chapter": "4.6",
+    "title": "只比较相同时刻的结果",
+    "type": "python",
+    "statement": "粗网格状态（state）对应 t=0,h,…,Nh；细网格每个粗步分成 ratio 步。计算共同时间点的最大状态欧氏误差。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数44",
+      "数45"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "coarse",
+        "type": "list[list[float]]",
+        "description": "粗网格三维状态。",
+        "unit": "1"
+      },
+      {
+        "name": "fine",
+        "type": "list[list[float]]",
+        "description": "细网格三维状态。",
+        "unit": "1"
+      },
+      {
+        "name": "ratio",
+        "type": "int",
+        "description": "细步数与粗步数的比例。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "max_error",
+        "type": "float",
+        "description": "所有共同时间点的最大欧氏距离。",
+        "unit": "1"
+      }
+    ],
+    "contract": "比较 coarse[i] 与 fine[i*ratio]；每对先算三维欧氏距离，再取最大值。",
+    "constraints": [
+      "所有数值有限，不修改输入（input）列表。",
+      "2≤len(coarse)≤30，ratio 为 2 或 4；len(fine)=(len(coarse)−1)*ratio+1；每行长度 3。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    coarse: list[list[float]],\n    fine: list[list[float]],\n    ratio: int,\n) -> float:\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "coarse": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "fine": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0.5,
+              1,
+              1.5
+            ],
+            [
+              1,
+              2,
+              4
+            ]
+          ],
+          "ratio": 2
+        },
+        "expected": 1.0,
+        "explanation": "t=0 的误差为 0，t=h 的两个状态仅 z 分量相差 1，因此返回 1。"
+      }
+    ]
+  },
+  {
+    "id": "p04-short-window-check",
+    "slug": "p04-short-window-check",
+    "version": "1",
+    "lesson_id": "P04-C06-S02",
+    "part": "4",
+    "chapter": "4.6",
+    "title": "混沌轨迹怎样做收敛对照",
+    "type": "choice",
+    "statement": "短窗细化步长后误差下降，长窗两轨迹（trajectory）逐点分离。哪项合理？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数44",
+      "数45"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "先检查短窗收敛，再比较长窗截面与限定时间摘要；不能要求长窗逐点一致。"
+      },
+      {
+        "id": "B",
+        "text": "长窗分离一定证明积分器错误。"
+      },
+      {
+        "id": "C",
+        "text": "只要图像像蝴蝶就无需检查步长。"
+      },
+      {
+        "id": "D",
+        "text": "可以删掉不同的时刻以制造一致。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-section-projection",
+    "slug": "p04-section-projection",
+    "version": "1",
+    "lesson_id": "P04-C06-S03",
+    "part": "4",
+    "chapter": "4.6",
+    "title": "返回映射保留哪些坐标",
+    "type": "choice",
+    "statement": "在 z=c 的定向截面记录 (xₙ,yₙ)，再画 xₙ 对 xₙ₊₁。哪些说法正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数44",
+      "数45"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "完整截面点包含两个坐标。"
+      },
+      {
+        "id": "B",
+        "text": "投影（projection）散点未必是一条单值函数曲线。"
+      },
+      {
+        "id": "C",
+        "text": "同一 x 值必然对应唯一的完整状态（state）。"
+      },
+      {
+        "id": "D",
+        "text": "无交点就能证明没有混沌（chaos）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-directed-section",
+    "slug": "p04-directed-section",
+    "version": "1",
+    "lesson_id": "P04-C06-S03",
+    "part": "4",
+    "chapter": "4.6",
+    "title": "提取同向截面交点",
+    "type": "python",
+    "statement": "给定三维轨迹（trajectory）样本，计算由下向上穿过 z=level 的交点与返回间隔；同一交点的时间和状态（state）必须用相同插值比例。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数44",
+      "数45"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "times",
+        "type": "list[float]",
+        "description": "严格递增的观测（observation）（observation）时刻。",
+        "unit": "τ"
+      },
+      {
+        "name": "states",
+        "type": "list[list[float]]",
+        "description": "与时刻一一对应的三维状态（state）。",
+        "unit": "1"
+      },
+      {
+        "name": "level",
+        "type": "float",
+        "description": "截面高度 c。",
+        "unit": "1"
+      },
+      {
+        "name": "burn",
+        "type": "float",
+        "description": "保留交点的起始时间，含等号。",
+        "unit": "τ"
+      }
+    ],
+    "returns": [
+      {
+        "name": "hits",
+        "type": "list[list[float]]",
+        "description": "交点列表，每行 [t,x,y,z]；时间单位 τ，其余无量纲（dimensionless）（dimensionless）。",
+        "unit": "1"
+      },
+      {
+        "name": "intervals",
+        "type": "list[float]",
+        "description": "相邻保留交点的时间差。",
+        "unit": "τ"
+      }
+    ],
+    "contract": "只接受 states[i][2]<level≤states[i+1][2]。用 α=(level−zᵢ)/(zᵢ₊₁−zᵢ) 对时间和三个状态线性插值，仅保留 t≥burn。返回 (hits,intervals)；无交点时均为空列表，只有一个交点时 intervals 为空。端点从下方到达记一次，下一段从等号出发不重复记。",
+    "constraints": [
+      "所有数值有限，不修改输入（input）列表。",
+      "2≤len(times)=len(states)≤200；每个状态长度 3；时间在 [0,100] 且严格递增；0≤burn≤100；|状态|、|level|≤100。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    times: list[float],\n    states: list[list[float]],\n    level: float,\n    burn: float,\n) -> tuple[list[list[float]], list[float]]:\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "times": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "states": [
+            [
+              0,
+              0,
+              -1
+            ],
+            [
+              2,
+              4,
+              1
+            ],
+            [
+              4,
+              8,
+              -1
+            ],
+            [
+              6,
+              12,
+              1
+            ]
+          ],
+          "level": 0,
+          "burn": 0
+        },
+        "expected": [
+          [
+            [
+              0.5,
+              1.0,
+              2.0,
+              0.0
+            ],
+            [
+              2.5,
+              5.0,
+              10.0,
+              0.0
+            ]
+          ],
+          [
+            2.0
+          ]
+        ],
+        "explanation": "第一个交点位于 0 与 1 的中点，故 [t,x,y,z]=[0.5,1,2,0]；下一次为 [2.5,5,10,0]，间隔是 2。"
+      }
+    ]
+  },
+  {
+    "id": "p04-return-intervals",
+    "slug": "p04-return-intervals",
+    "version": "1",
+    "lesson_id": "P04-C06-S03",
+    "part": "4",
+    "chapter": "4.6",
+    "title": "从交点时间估计返回间隔",
+    "type": "python",
+    "statement": "已得到同向截面的交点时间。计算逐次返回间隔与平均间隔；不足两个交点不虚构周期。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数44",
+      "数45"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "crossing_times",
+        "type": "list[float]",
+        "description": "严格递增的交点时间，可为空。",
+        "unit": "τ"
+      }
+    ],
+    "returns": [
+      {
+        "name": "intervals",
+        "type": "list[float]",
+        "description": "相邻交点时间差。",
+        "unit": "τ"
+      },
+      {
+        "name": "mean_interval",
+        "type": "float | None",
+        "description": "有间隔时的算术平均，否则 None。",
+        "unit": "τ"
+      }
+    ],
+    "contract": "返回 (intervals,mean_interval)。间隔数为 max(0,n−1)，无间隔时返回 ([],None)。",
+    "constraints": [
+      "所有数值有限，不修改输入（input）列表。",
+      "0≤n≤100，时刻有限且严格递增。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    crossing_times: list[float],\n) -> tuple[list[float], float | None]:\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "crossing_times": [
+            1,
+            3,
+            6
+          ]
+        },
+        "expected": [
+          [
+            2,
+            3
+          ],
+          2.5
+        ],
+        "explanation": "两次间隔为 2 和 3，均值为 2.5；这只是给定窗口的平均返回时间。"
+      }
+    ]
+  },
+  {
+    "id": "p04-section-limits",
+    "slug": "p04-section-limits",
+    "version": "1",
+    "lesson_id": "P04-C06-S03",
+    "part": "4",
+    "chapter": "4.6",
+    "title": "没有检测到交点意味着什么",
+    "type": "choice",
+    "statement": "粗采样没有发现 zᵢ<c≤zᵢ₊₁。哪项正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数44",
+      "数45"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "可能漏掉段内穿越，应细化采样并检查截面是否横截。"
+      },
+      {
+        "id": "B",
+        "text": "说明完整连续轨迹（trajectory）没有交点。"
+      },
+      {
+        "id": "C",
+        "text": "相切点也总是符合定向穿越规则。"
+      },
+      {
+        "id": "D",
+        "text": "可以把两方向混合以增加样本而不说明。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-tangent-growth",
+    "slug": "p04-tangent-growth",
+    "version": "1",
+    "lesson_id": "P04-C06-S04",
+    "part": "4",
+    "chapter": "4.6",
+    "title": "按实际时间汇总切向增长",
+    "type": "python",
+    "statement": "已知连续变分方程每段的伸长倍数和时长，汇总给定方向的有限时间增长率。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数44",
+      "数45"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "stretch_factors",
+        "type": "list[float]",
+        "description": "每段终点范数（norm）（norm）除以该段起点范数，均正。",
+        "unit": "1"
+      },
+      {
+        "name": "durations",
+        "type": "list[float]",
+        "description": "与每段对应的实际时长。",
+        "unit": "τ"
+      }
+    ],
+    "returns": [
+      {
+        "name": "growth_rate",
+        "type": "float",
+        "description": "窗口内平均对数增长率。",
+        "unit": "每单位 τ"
+      }
+    ],
+    "contract": "每段开始把扰动归一到相同正范数；返回 sum(log(stretch_factors))/sum(durations)。必须用自然对数（natural logarithm）与实际时长，不除以段数。",
+    "constraints": [
+      "所有数值有限，不修改输入（input）列表。",
+      "1—100 段，两列表等长；各伸长倍数在 [1e−8,1e8]；各时长在 (0,10]。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    stretch_factors: list[float],\n    durations: list[float],\n) -> float:\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "stretch_factors": [
+            2,
+            0.5,
+            4
+          ],
+          "durations": [
+            1,
+            1,
+            2
+          ]
+        },
+        "expected": 0.34657359027997264,
+        "explanation": "净伸长倍数为 2×0.5×4=4，总时长为 4，结果 ln(4)/4≈0.3465735903。"
+      }
+    ]
+  },
+  {
+    "id": "p04-linear-tangent",
+    "slug": "p04-linear-tangent",
+    "version": "1",
+    "lesson_id": "P04-C06-S04",
+    "part": "4",
+    "chapter": "4.6",
+    "title": "用解析线性系统检查切向解",
+    "type": "python",
+    "statement": "对 δ′=diag(rates)δ，给定三个连续增长率、初始扰动向量（vector）和时刻，返回解析扰动及相对初始范数（norm）的放大倍数。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数44",
+      "数45"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "rates",
+        "type": "list[float]",
+        "description": "三个对角增长率。",
+        "unit": "每单位 τ"
+      },
+      {
+        "name": "initial_delta",
+        "type": "list[float]",
+        "description": "非零的三维初始扰动。",
+        "unit": "1"
+      },
+      {
+        "name": "time",
+        "type": "float",
+        "description": "观察时刻。",
+        "unit": "τ"
+      }
+    ],
+    "returns": [
+      {
+        "name": "delta",
+        "type": "list[float]",
+        "description": "三个扰动分量。",
+        "unit": "1"
+      },
+      {
+        "name": "factor",
+        "type": "float",
+        "description": "终点范数与起点范数之比。",
+        "unit": "1"
+      }
+    ],
+    "contract": "δⱼ(t)=δⱼ(0)exp(rates[j]*time)，放大倍数用三维欧氏范数。",
+    "constraints": [
+      "所有数值有限，不修改输入（input）列表。",
+      "两个列表长度 3；rates 在 [−3,3]，initial_delta 非零且有限；0≤time≤4。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "先代入边界，再检查各返回量的含义和顺序。",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    rates: list[float],\n    initial_delta: list[float],\n    time: float,\n) -> tuple[list[float], float]:\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "rates": [
+            1,
+            -2,
+            0
+          ],
+          "initial_delta": [
+            1,
+            0,
+            0
+          ],
+          "time": 1
+        },
+        "expected": [
+          [
+            2.718281828459045,
+            0.0,
+            0.0
+          ],
+          2.718281828459045
+        ],
+        "explanation": "初始方向沿第一轴，t=1 时扰动为 [e,0,0]，放大倍数 e；沿第二轴则衰减。"
+      }
+    ]
+  },
+  {
+    "id": "p04-growth-units",
+    "slug": "p04-growth-units",
+    "version": "1",
+    "lesson_id": "P04-C06-S04",
+    "part": "4",
+    "chapter": "4.6",
+    "title": "增加归一化次数会提高增长率吗",
+    "type": "choice",
+    "statement": "相同总时间的切向演化，仅把归一化间隔减半。哪项正确？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数44",
+      "数45"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "应按总时间归一，分段更密本身不应使增长率翻倍。"
+      },
+      {
+        "id": "B",
+        "text": "应按段数归一，越多段越准确地表示每单位时间。"
+      },
+      {
+        "id": "C",
+        "text": "任何初始方向都会给出最大渐近指数。"
+      },
+      {
+        "id": "D",
+        "text": "零扰动也可先取对数再归一。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-quasiperiodic-counterexample",
+    "slug": "p04-quasiperiodic-counterexample",
+    "version": "1",
+    "lesson_id": "P04-C06-S04",
+    "part": "4",
+    "chapter": "4.6",
+    "title": "非周期是否足够说明混沌",
+    "type": "choice",
+    "statement": "两相位（phase） θ′=1、φ′=√2，各自按 2π 取模。哪些说法成立？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数44",
+      "数45"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "一般没有共同有限周期。"
+      },
+      {
+        "id": "B",
+        "text": "两解的相位差保持，非周期并不自动意味着指数敏感。"
+      },
+      {
+        "id": "C",
+        "text": "只看这两条角度方程就知道该环面吸引周围状态（state）。"
+      },
+      {
+        "id": "D",
+        "text": "准周期（quasiperiodicity）和混沌（chaos）在所有系统里同义。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-strange-evidence",
+    "slug": "p04-strange-evidence",
+    "version": "1",
+    "lesson_id": "P04-C06-S04",
+    "part": "4",
+    "chapter": "4.6",
+    "title": "图像与存在性证明的距离",
+    "type": "choice",
+    "statement": "普通浮点积分得到蝴蝶状轨迹（trajectory），若干长窗口方向增长率为正。最准确的结论是什么？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数44",
+      "数45"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "提供与混沌（chaos）行为相符的数值证据；奇异吸引子（strange attractor）严格存在仍需额外理论与经验证的数值。"
+      },
+      {
+        "id": "B",
+        "text": "本次图像已重现 Tucker 的计算机辅助证明。"
+      },
+      {
+        "id": "C",
+        "text": "正增长证明所有初值（initial condition）都是混沌轨道。"
+      },
+      {
+        "id": "D",
+        "text": "负散度（divergence）单独证明分形维数（fractal dimension）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p04-cap-equilibrium",
+    "slug": "p04-cap-equilibrium",
+    "version": "2",
+    "lesson_id": "P04-SUMMARY",
+    "part": "4",
+    "chapter": "4.summary",
+    "title": "吸引子、吸引域与轨迹",
+    "type": "choice",
+    "statement": "比较 x′=x−x³、稳定单位圆模型（model）与纯旋转。哪些陈述成立？",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数44",
+      "数45"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "开关的 +1 吸引所有正初值（initial condition）。"
+      },
+      {
+        "id": "B",
+        "text": "稳定周期轨道是整个不变集（invariant set）合，不是某一固定相位（phase）点。"
+      },
+      {
+        "id": "C",
+        "text": "纯旋转的任意圆都吸引周围轨迹（trajectory）。"
+      },
+      {
+        "id": "D",
+        "text": "画一条轨迹就完整给出了吸引域（basin of attraction）。"
       }
     ],
     "constraints": []
@@ -2799,37 +4286,38 @@
   {
     "id": "p04-cap-source",
     "slug": "p04-cap-source",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-SUMMARY",
     "part": "4",
     "chapter": "4.summary",
-    "title": "长期周期来自哪一种机制",
+    "title": "振荡来源与参数转变",
     "type": "choice",
-    "statement": "模型（model）甲去掉周期驱动后振幅（amplitude）衰减；模型乙没有周期输入（input），多个非零初值（initial condition）的半径趋于同一正值且持续旋转。最合适的判断是？",
+    "statement": "改变外部输入（input）和参数（parameter）后观察振荡。哪些判断合理？",
     "learning_targets": [
       "T2"
     ],
     "mathematics": [
-      "数08"
+      "数44",
+      "数45"
     ],
     "difficulty": "理解",
-    "multiple": false,
+    "multiple": true,
     "options": [
       {
         "id": "A",
-        "text": "甲的持续周期依靠驱动，乙与自维持振荡（self-sustained oscillation）一致；仍按各自方程核对条件。"
+        "text": "撤去周期输入后衰减的例子可属于受迫振荡（forced oscillation）。"
       },
       {
         "id": "B",
-        "text": "甲乙都只能是随机噪声。"
+        "text": "自治径向模型（model） R′=μR−R³、θ′=1 在 μ>0 有稳定周期。"
       },
       {
         "id": "C",
-        "text": "只要长时间不停止，甲乙机制就一样。"
+        "text": "有限扫描的跳变点必然等于解析折叠点。"
       },
       {
         "id": "D",
-        "text": "乙必定模拟了真实心脏的全部机制。"
+        "text": "延长暂态（transient）等待可检查临界减慢造成的偏差。"
       }
     ],
     "constraints": []
@@ -2837,7 +4325,7 @@
   {
     "id": "p04-cap-basins",
     "slug": "p04-cap-basins",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-SUMMARY",
     "part": "4",
     "chapter": "4.summary",
@@ -2944,65 +4432,72 @@
   {
     "id": "p04-cap-period",
     "slug": "p04-cap-period",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-SUMMARY",
     "part": "4",
     "chapter": "4.summary",
-    "title": "用固定过零约定测量后段周期",
+    "title": "从定向截面计算返回",
     "type": "python",
-    "statement": "给定等间隔节律观测（observation）和暂态（transient）截断下标。仅使用向上过零，并用线性插值报告时刻和平均周期。",
+    "statement": "对给定周期或 Lorenz 轨迹（trajectory），按相同的方向、暂态（transient）阈值与插值规则提取交点及间隔。各输入（input）已经完整给定，不依赖其他题。",
     "learning_targets": [
       "T2"
     ],
     "mathematics": [
-      "数08"
+      "数44",
+      "数45"
     ],
     "difficulty": "应用",
     "parameters": [
       {
-        "name": "values",
+        "name": "times",
         "type": "list[float]",
-        "description": "包含暂态的观测序列。",
+        "description": "严格递增的观测（observation）（observation）时刻。",
+        "unit": "τ"
+      },
+      {
+        "name": "states",
+        "type": "list[list[float]]",
+        "description": "与时刻一一对应的三维状态（state）。",
         "unit": "1"
       },
       {
-        "name": "dt",
+        "name": "level",
         "type": "float",
-        "description": "采样间隔。",
+        "description": "截面高度 c。",
         "unit": "1"
       },
       {
-        "name": "start",
-        "type": "int",
-        "description": "首个检查片段左端下标。",
-        "unit": "1"
+        "name": "burn",
+        "type": "float",
+        "description": "保留交点的起始时间，含等号。",
+        "unit": "τ"
       }
     ],
     "returns": [
       {
-        "name": "crossings",
-        "type": "list[float]",
-        "description": "所有后段向上过零时刻。",
+        "name": "hits",
+        "type": "list[list[float]]",
+        "description": "交点列表，每行 [t,x,y,z]；时间单位 τ，其余无量纲（dimensionless）（dimensionless）。",
         "unit": "1"
       },
       {
-        "name": "mean_period",
-        "type": "float | None",
-        "description": "至少两次事件时的平均间隔，否则 None。",
-        "unit": "1"
+        "name": "intervals",
+        "type": "list[float]",
+        "description": "相邻保留交点的时间差。",
+        "unit": "τ"
       }
     ],
-    "contract": "i 从 start 到 len(values)−2；条件 values[i]≤0<values[i+1]；时刻为 (i−values[i]/(values[i+1]−values[i]))*dt。period=(末次−首次)/(次数−1)。",
+    "contract": "只接受 states[i][2]<level≤states[i+1][2]。用 α=(level−zᵢ)/(zᵢ₊₁−zᵢ) 对时间和三个状态线性插值，仅保留 t≥burn。返回 (hits,intervals)；无交点时均为空列表，只有一个交点时 intervals 为空。端点从下方到达记一次，下一段从等号出发不重复记。",
     "constraints": [
-      "所有输入（input）数值有限；不修改输入列表。",
-      "2≤len(values)≤5000；0≤start≤len(values)−2；0<dt≤2；观测绝对值≤20。"
+      "所有数值有限，不修改输入列表。",
+      "2≤len(times)=len(states)≤200；每个状态长度 3；时间严格递增；所有状态和时刻绝对值≤100；burn≥0。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "截断不应把原来的时间坐标重置为零。",
+    "hint": "先代入边界，再检查各返回量的含义和顺序。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -3011,125 +4506,129 @@
     },
     "tolerance": {
       "atol": 1e-08,
-      "rtol": 1e-07
+      "rtol": 1e-08
     },
-    "starter_code": "def solve(\n    values: list[float],\n    dt: float,\n    start: int,\n) -> tuple[list[float], float | None]:\n    # 根据已知条件计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "starter_code": "def solve(\n    times: list[float],\n    states: list[list[float]],\n    level: float,\n    burn: float,\n) -> tuple[list[list[float]], list[float]]:\n    raise NotImplementedError(\"请完成计算\")\n",
     "samples": [
       {
         "arguments": {
-          "values": [
-            9,
-            -1,
+          "times": [
+            0,
             1,
-            -1,
-            1
+            2,
+            3
           ],
-          "dt": 0.5,
-          "start": 1
+          "states": [
+            [
+              0,
+              0,
+              -1
+            ],
+            [
+              2,
+              4,
+              1
+            ],
+            [
+              4,
+              8,
+              -1
+            ],
+            [
+              6,
+              12,
+              1
+            ]
+          ],
+          "level": 0,
+          "burn": 0
         },
         "expected": [
           [
-            0.75,
-            1.75
+            [
+              0.5,
+              1.0,
+              2.0,
+              0.0
+            ],
+            [
+              2.5,
+              5.0,
+              10.0,
+              0.0
+            ]
           ],
-          1.0
+          [
+            2.0
+          ]
         ],
-        "explanation": "保留片段中的过零时刻是 0.75 和 1.75，平均周期为 1；时刻仍按原序列下标计算。"
+        "explanation": "两个同向交点为 [0.5,1,2,0] 和 [2.5,5,10,0]，返回间隔为 2。"
       }
     ]
   },
   {
     "id": "p04-cap-precision",
     "slug": "p04-cap-precision",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-SUMMARY",
     "part": "4",
     "chapter": "4.summary",
-    "title": "比较两种算术精度的轨迹分离",
+    "title": "离散与连续的扰动增长",
     "type": "python",
-    "statement": "同一 logistic 映射（logistic map）使用两种算术：Python float 与指定精度的 Decimal。两套计算都推进两个初值（initial condition），并报告距离与首次严格越过阈值的代次。输入（input）用十进制字符串保留原始定义。",
+    "statement": "同时给定离散映射的逐步导数（derivative）和连续切向段伸长，分别计算有限增长率。零映射导数使本题离散对数和为负无穷，用 None 表示。",
     "learning_targets": [
       "T3"
     ],
     "mathematics": [
-      "数08"
+      "数44",
+      "数45"
     ],
     "difficulty": "应用",
     "parameters": [
       {
-        "name": "r_text",
-        "type": "str",
-        "description": "参数（parameter）的十进制字符串。",
+        "name": "map_derivatives",
+        "type": "list[float]",
+        "description": "逐步映射导数，可为零或负。",
         "unit": "1"
       },
       {
-        "name": "first_text",
-        "type": "str",
-        "description": "第一初值的十进制字符串。",
+        "name": "stretch_factors",
+        "type": "list[float]",
+        "description": "每段终点范数（norm）（norm）除以该段起点范数，均正。",
         "unit": "1"
       },
       {
-        "name": "second_text",
-        "type": "str",
-        "description": "第二初值的十进制字符串。",
-        "unit": "1"
-      },
-      {
-        "name": "steps",
-        "type": "int",
-        "description": "更新代数。",
-        "unit": "1"
-      },
-      {
-        "name": "precision",
-        "type": "int",
-        "description": "Decimal 有效十进制位数。",
-        "unit": "1"
-      },
-      {
-        "name": "threshold",
-        "type": "float",
-        "description": "比较距离的阈值。",
-        "unit": "1"
+        "name": "durations",
+        "type": "list[float]",
+        "description": "与每段对应的实际时长。",
+        "unit": "τ"
       }
     ],
     "returns": [
       {
-        "name": "float_distances",
-        "type": "list[float]",
-        "description": "float 两条轨迹（trajectory）的逐代距离。",
-        "unit": "1"
+        "name": "per_step",
+        "type": "float | None",
+        "description": "平均 log|导数|；遇零返回 None。",
+        "unit": "每步"
       },
       {
-        "name": "decimal_distances",
-        "type": "list[float]",
-        "description": "Decimal 两条轨迹的距离，逐项转 float 后返回。",
-        "unit": "1"
-      },
-      {
-        "name": "float_first",
-        "type": "int | None",
-        "description": "float 距离首次越界下标。",
-        "unit": "1"
-      },
-      {
-        "name": "decimal_first",
-        "type": "int | None",
-        "description": "Decimal 距离首次越界下标。",
-        "unit": "1"
+        "name": "per_time",
+        "type": "float",
+        "description": "连续段平均增长率。",
+        "unit": "每单位 τ"
       }
     ],
-    "contract": "使用 decimal.localcontext()，prec=precision，舍入模式保持默认 ROUND_HALF_EVEN；Decimal 直接从字符串构造，不先转 float。每次按 (r*x)*(1−x) 的括号次序求值；float 也用相同次序。距离包含第 0 代；Decimal 距离转 float 后再按严格大于 threshold 查首次下标，无越界返回 None。",
+    "contract": "离散结果=sum(log(abs(d)))/映射步数，若任一 d=0 则 None；连续结果=sum(log(s))/sum(dt)。返回 (per_step,per_time)。",
     "constraints": [
-      "所有输入数值有限；不修改输入列表。",
-      "字符串表示 r∈[0,4]，初值∈[0,1]；最多 12 个有效数字；0≤steps≤40；16≤precision≤60；0≤threshold≤1。"
+      "所有数值有限，不修改输入（input）列表。",
+      "各序列长度 1—100；连续两列表等长；伸长及时间严格为正；各非零导数和伸长绝对值在 [1e−8,1e8]。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "提高精度用于数值对照，不代表已经验证模型（model）对真实生理系统的预测。",
+    "hint": "先代入边界，再检查各返回量的含义和顺序。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -3138,71 +4637,70 @@
     },
     "tolerance": {
       "atol": 1e-08,
-      "rtol": 1e-07
+      "rtol": 1e-08
     },
-    "starter_code": "def solve(\n    r_text: str,\n    first_text: str,\n    second_text: str,\n    steps: int,\n    precision: int,\n    threshold: float,\n) -> tuple[list[float], list[float], int | None, int | None]:\n    # 根据已知条件计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "starter_code": "def solve(\n    map_derivatives: list[float],\n    stretch_factors: list[float],\n    durations: list[float],\n) -> tuple[float | None, float]:\n    raise NotImplementedError(\"请完成计算\")\n",
     "samples": [
       {
         "arguments": {
-          "r_text": "2",
-          "first_text": "0.25",
-          "second_text": "0.5",
-          "steps": 2,
-          "precision": 30,
-          "threshold": 0.2
+          "map_derivatives": [
+            2,
+            -0.5
+          ],
+          "stretch_factors": [
+            2,
+            0.5,
+            4
+          ],
+          "durations": [
+            1,
+            1,
+            2
+          ]
         },
         "expected": [
-          [
-            0.25,
-            0.125,
-            0.03125
-          ],
-          [
-            0.25,
-            0.125,
-            0.03125
-          ],
-          0,
-          0
+          0.0,
+          0.34657359027997264
         ],
-        "explanation": "两种算术在该短例都得到距离 [0.25,0.125,0.03125]，首次越界均为 0；较复杂参数下才可能在后段体现精度差异。"
+        "explanation": "离散两步净放大为 1，结果为 0/步；连续净放大为 4，总时长 4，结果 ln(4)/4。"
       }
     ]
   },
   {
     "id": "p04-cap-irregular",
     "slug": "p04-cap-irregular",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-SUMMARY",
     "part": "4",
     "chapter": "4.summary",
-    "title": "从不规则后段能够说到哪里",
+    "title": "混沌证据是否充分",
     "type": "choice",
-    "statement": "某映射后段不规则，有限时间对数增长率为正；已比较两种算术精度，但只用了一个初值（initial condition）和一个窗口。哪个结论与证据匹配？",
+    "statement": "已保留精确平衡（equilibrium），普通初值（initial condition）在细化短窗中收敛，长窗截面与增长率仍随窗口变化。应该怎样报告？",
     "learning_targets": [
       "T3"
     ],
     "mathematics": [
-      "数08"
+      "数44",
+      "数45"
     ],
     "difficulty": "理解",
     "multiple": false,
     "options": [
       {
         "id": "A",
-        "text": "已经证明所有初值都混沌（chaos）。"
+        "text": "列出参数（parameter）、初值、步长、暂态（transient）、窗口及差异，作为有限数值证据。"
       },
       {
         "id": "B",
-        "text": "支持该实验窗口内的复杂运动与局部扩张，需要继续限定初值、窗口和数学条件。"
+        "text": "删去精确平衡以声称所有初值敏感。"
       },
       {
         "id": "C",
-        "text": "已经证明存在随机噪声。"
+        "text": "一次正增长就是严格混沌（chaos）证明。"
       },
       {
         "id": "D",
-        "text": "可以忽略初值误差并无限期预测。"
+        "text": "只凭轨迹（trajectory）形状就确定分形维数（fractal dimension）。"
       }
     ],
     "constraints": []
@@ -3210,83 +4708,90 @@
   {
     "id": "p04-cap-region",
     "slug": "p04-cap-region",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-SUMMARY",
     "part": "4",
     "chapter": "4.summary",
-    "title": "在新二维区域中检查候选函数",
+    "title": "有界性与函数导数的双重核对",
     "type": "python",
-    "statement": "二维系统 x′=−a*x+(x²+y²)x，y′=−b*y+(x²+y²)y，a,b>0。用 V=(x²+y²)/2 检查给定点，并给出整个开圆盘的一条充分证书。",
+    "statement": "给定 Lorenz 参数（parameter）与状态（state），以同一个 W 分别计算链式导数（derivative）和配方导数，给出正 c 与 C。根据不等式可以约束范围，不把它说成平衡（equilibrium）稳定证明。",
     "learning_targets": [
       "T4"
     ],
     "mathematics": [
-      "数08"
+      "数44",
+      "数45"
     ],
     "difficulty": "应用",
     "parameters": [
       {
-        "name": "points",
-        "type": "list[list[float]]",
-        "description": "按 [x,y] 排列的检查点，可在圆盘外。",
+        "name": "sigma",
+        "type": "float",
+        "description": "正参数（parameter）（parameter） σ。",
         "unit": "1"
       },
       {
-        "name": "a",
+        "name": "rho",
         "type": "float",
-        "description": "第一方向的衰减系数。",
+        "description": "正参数 ρ。",
         "unit": "1"
       },
       {
-        "name": "b",
+        "name": "beta",
         "type": "float",
-        "description": "第二方向的衰减系数。",
+        "description": "正参数 β。",
         "unit": "1"
       },
       {
-        "name": "radius",
-        "type": "float",
-        "description": "要论证的开圆盘半径。",
+        "name": "state",
+        "type": "list[float]",
+        "description": "状态（state） [x,y,z]。",
         "unit": "1"
       }
     ],
     "returns": [
       {
-        "name": "values",
-        "type": "list[float]",
-        "description": "各点 V。",
+        "name": "W",
+        "type": "float",
+        "description": "有界性函数值。",
         "unit": "1"
       },
       {
-        "name": "derivatives",
-        "type": "list[float]",
-        "description": "各点 V′。",
-        "unit": "1"
+        "name": "direct",
+        "type": "float",
+        "description": "梯度（gradient）（gradient）与向量场（vector field）（vector field）内积（inner product）（inner product）。",
+        "unit": "每单位 τ"
       },
       {
-        "name": "strict_inside",
-        "type": "list[bool]",
-        "description": "非零、严格在圆盘内且 V′<0。",
-        "unit": "1"
+        "name": "completed",
+        "type": "float",
+        "description": "配方后导数值。",
+        "unit": "每单位 τ"
       },
       {
-        "name": "certificate",
-        "type": "bool",
-        "description": "充分条件 radius²≤min(a,b) 是否成立。",
-        "unit": "1"
+        "name": "c",
+        "type": "float",
+        "description": "正衰减系数。",
+        "unit": "每单位 τ"
+      },
+      {
+        "name": "C",
+        "type": "float",
+        "description": "界中常数。",
+        "unit": "每单位 τ"
       }
     ],
-    "contract": "令 s=x²+y²，V=s/2，V′=−a*x²−b*y²+s²。strict_inside 为 0<s<radius² 且 V′<0；certificate 仅检查 radius²≤min(a,b)。这是对全部开圆盘的解析上界条件，不从采样标签数量推断。",
+    "contract": "W=ρx²+σy²+σ(z−2ρ)²；direct=∇W·f；completed=−2σ[ρx²+y²+β(z−ρ)²−βρ²]；c=min(2σ,2,β)，C=4σβρ²。分别计算两种导数表达式，返回 (W,direct,completed,c,C)。",
     "constraints": [
-      "所有输入（input）数值有限；不修改输入列表。",
-      "1≤len(points)≤30；每点两个分量，绝对值≤2；0.1≤a,b≤2；0<radius≤2。"
+      "所有数值有限，不修改输入（input）列表。",
+      "0<σ≤20，0<ρ≤40，0<β≤5；状态各分量绝对值≤60。"
     ],
     "entrypoint": "solve",
     "allowed_libraries": [
       "Python 标准库"
     ],
     "example_format": "parameters",
-    "hint": "上界 V′≤−min(a,b)*s+s²；开圆盘允许半径平方等于最小阻尼，边界不在结论中。",
+    "hint": "先代入边界，再检查各返回量的含义和顺序。",
     "limits": {
       "seconds": 30,
       "source_bytes": 65536,
@@ -3295,86 +4800,67 @@
     },
     "tolerance": {
       "atol": 1e-08,
-      "rtol": 1e-07
+      "rtol": 1e-08
     },
-    "starter_code": "def solve(\n    points: list[list[float]],\n    a: float,\n    b: float,\n    radius: float,\n) -> tuple[list[float], list[float], list[bool], bool]:\n    # 根据已知条件计算，并按约定顺序返回。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "starter_code": "def solve(\n    sigma: float,\n    rho: float,\n    beta: float,\n    state: list[float],\n) -> tuple[float, float, float, float, float]:\n    raise NotImplementedError(\"请完成计算\")\n",
     "samples": [
       {
         "arguments": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              0.5,
-              0
-            ],
-            [
-              1,
-              0
-            ]
-          ],
-          "a": 1,
-          "b": 2,
-          "radius": 1
+          "sigma": 10,
+          "rho": 2,
+          "beta": 1,
+          "state": [
+            0,
+            0,
+            0
+          ]
         },
         "expected": [
-          [
-            0.0,
-            0.125,
-            0.5
-          ],
-          [
-            0,
-            -0.1875,
-            0
-          ],
-          [
-            false,
-            true,
-            false
-          ],
-          true
+          160,
+          0,
+          0,
+          1,
+          160
         ],
-        "explanation": "s 为 [0,0.25,1]，V 为 [0,0.125,0.5]，导数（derivative）为 [0,−0.1875,0]；只有中间点严格在盘内衰减。radius²=min(a,b)=1，开圆盘证书成立。"
+        "explanation": "原点两种导数为零；W=160、c=1、C=160。导数非负的局部时刻并不破坏 W′≤−cW+C。"
       }
     ]
   },
   {
     "id": "p04-cap-scope",
     "slug": "p04-cap-scope",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P04-SUMMARY",
     "part": "4",
     "chapter": "4.summary",
-    "title": "如何把区域证书变成稳定结论",
+    "title": "吸引、稳定与混沌的结论边界",
     "type": "choice",
-    "statement": "已知光滑系统在原点平衡（equilibrium），V=(x²+y²)/2，在 0<||x||<R 上 V′<0。哪些结论有依据？",
+    "statement": "已解析得到 W′≤−cW+C（c>0），散度（divergence）为负，并得到有限窗口正增长。哪些结论有依据？",
     "learning_targets": [
       "T4"
     ],
     "mathematics": [
-      "数08"
+      "数44",
+      "数45"
     ],
     "difficulty": "理解",
     "multiple": true,
     "options": [
       {
         "id": "A",
-        "text": "有限条模拟轨迹（trajectory）不替代对整个区域的符号条件。"
+        "text": "由积分因子可给出 W(t) 的上界。"
       },
       {
         "id": "B",
-        "text": "若只知 V′≤0，一般还缺少吸引性论证。"
+        "text": "足够大的 W 子水平集（sublevel set）约束最终轨迹（trajectory）范围。"
       },
       {
         "id": "C",
-        "text": "可选择包含足够小初值（initial condition）的紧子水平集（sublevel set） V≤c<R²/2，得到局部渐近稳定（local asymptotic stability）。"
+        "text": "所有方向都收缩，所有解趋于同一平衡（equilibrium）。"
       },
       {
         "id": "D",
-        "text": "无需检查圆盘外，就能宣布全局渐近稳定（asymptotic stability）。"
+        "text": "还不能仅凭这三条宣称完成奇异吸引子（strange attractor）严格存在性证明。"
       }
     ],
     "constraints": []

@@ -27,3 +27,20 @@ test('Part completion includes the capstone; sample records do not complete form
   assert.equal(summarize(ids,{passed:ids.slice(0,-5)}).state,'active');
   assert.equal(summarize(ids,{passed:ids}).state,'complete');
 });
+
+test('Planning chapters stay unstarted even when every published question has passed',()=>{
+  const course=JSON.parse(readFileSync(new URL('../../web/course/catalog.json',import.meta.url),'utf8'));
+  const passed=course.parts.flatMap(questionIds);
+  const planned=course.parts.flatMap(p=>p.chapters).filter(c=>!c.available);
+  assert.ok(planned.length>0);
+  for(const chapter of planned){
+    assert.deepEqual(questionIds(chapter),[]);
+    assert.deepEqual(summarize(questionIds(chapter),{passed}),{state:'new',passed:0,total:0,label:'未开始'});
+  }
+  // Keep the partial-publication case even as real parts finish publication.
+  const published=course.parts.find(p=>p.assessment&&p.chapters.some(c=>c.available));
+  const chapter=published.chapters.find(c=>c.available);
+  const mixed={...published,chapters:[chapter,planned[0]]};
+  assert.deepEqual(questionIds(mixed),[...questionIds(chapter),...questionIds(published.assessment)]);
+  assert.equal(questionIds(mixed.assessment).length,8);
+});

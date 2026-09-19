@@ -65,7 +65,7 @@ def test_all_delivered_buttons_target_existing_local_notebooks(server):
 
 def test_teaching_pages_render_as_html_and_records_are_not_served(server):
     from urllib.parse import quote
-    for path in ['/', '/parts/02-系统随时间演化/', '/chapters/02-04-数值模拟、误差与迁移/', '/chapters/02-04-数值模拟、误差与迁移/explore/', '/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-step-properties']:
+    for path in ['/', '/catalog/', '/parts/02-系统随时间演化/', '/chapters/02-04-数值模拟、误差与迁移/', '/chapters/02-04-数值模拟、误差与迁移/explore/', '/chapters/02-04-数值模拟、误差与迁移/practice/?question=p02-step-properties']:
         route=quote(path,safe='/?=')
         code,headers,body=request(server,route)
         assert code==200 and headers.get_content_type()=='text/html'
@@ -74,10 +74,21 @@ def test_teaching_pages_render_as_html_and_records_are_not_served(server):
         assert request(server,quote(route))[0]==404
 
 
+def test_start_and_catalog_keep_separate_destinations(server):
+    for route,source in [('/', 'web/home/index.html'),('/catalog/', 'web/course/index.html')]:
+        code,headers,body=request(server,route)
+        assert code==200 and headers.get_content_type()=='text/html'
+        assert body==(module.ROOT/source).read_bytes()
+    code,headers,body=request(server,'/web/shared/logo.svg')
+    assert code==200 and headers.get_content_type()=='image/svg+xml'
+    assert b'<svg ' in body
+
+
 def test_all_planned_overviews_and_delivered_routes(server):
     from urllib.parse import quote
     course=server[0].course
-    assert len(course['parts'])==12 and sum(len(p['chapters']) for p in course['parts'])==55
+    from build_course import validate_design
+    validate_design(course['parts'], (module.ROOT/'docs/教材设计.md').read_text(encoding='utf-8'))
     for part in course['parts']:
         for item in [part,*part['chapters']]:
             code,headers,_=request(server,quote(item['url']))
@@ -93,6 +104,25 @@ def test_all_planned_overviews_and_delivered_routes(server):
     for route in ['/samples/accumulation-clearance/', '/samples/accumulation-clearance/explore/', '/samples/accumulation-clearance/practice/', '/practice/m1/', '/web/single-compartment/']:
         assert request(server,route)[0]==404
     assert request(server,'/chapters/missing/')[0]==404
+
+
+def test_design_navigation_validation_has_no_fixed_book_size():
+    from build_course import validate_design
+    design='### 第 1 篇：示例\n| 1.1 首章 | 入口 |\n'
+    parts=[{'id':'1','title':'示例','chapters':[{'id':'1.1','title':'首章'}]}]
+    validate_design(parts, design)
+    with pytest.raises(AssertionError, match='chapters differ'):
+        validate_design(parts, design+'| 1.2 漏失的章 | 1.1 |\n')
+    with pytest.raises(AssertionError, match='parts differ'):
+        validate_design(parts, design.replace('示例','已改名'))
+
+
+def test_overview_preserves_english_names_but_not_chinese_only_parentheses():
+    from build_course import annotate_overview
+    chapter={'title':'导览','goals':'变分推断（Variational Inference，VI）与协方差（已知）。',
+             'prerequisites':'前一章。','focus':'核验结果。','knowledge':['显式计算。']}
+    annotate_overview(chapter)
+    assert chapter['goals']=='变分推断（Variational Inference，VI）与协方差（covariance）（已知）。'
 
 
 def test_http_practice_choice_code_and_progress(server):

@@ -18,6 +18,7 @@ def main():
     parser.add_argument('--part',required=True,help='notebooks 下的篇目录名')
     parser.add_argument('--work',required=True,help='.work 下的验收目录名')
     parser.add_argument('--write',action='store_true')
+    parser.add_argument('--lesson',action='append',help='只执行指定课节 ID；可重复，用于已发布课节的定向复验')
     args=parser.parse_args()
     part=(ROOT/'notebooks'/args.part).resolve();work=(ROOT/'.work'/args.work).resolve()
     if not part.is_relative_to(ROOT/'notebooks') or not work.is_relative_to(ROOT/'.work'):raise ValueError('路径必须位于项目目录中。')
@@ -34,7 +35,12 @@ def main():
     preview=work/'previews';preview.mkdir(exist_ok=True)
     figures=work/'figures';figures.mkdir(exist_ok=True)
     report={'python':platform.python_version(),'platform':platform.system(),'packages':{p:importlib.metadata.version(p) for p in ['numpy','matplotlib','nbclient','nbformat','nbconvert','ipykernel']},'notebooks':[]}
-    for lesson in json.loads((part/'catalog.json').read_text(encoding='utf-8')):
+    lessons=json.loads((part/'catalog.json').read_text(encoding='utf-8'))
+    if args.lesson:
+        unknown=set(args.lesson)-{lesson['id'] for lesson in lessons}
+        if unknown:raise ValueError(f'未知课节 ID：{sorted(unknown)}')
+        lessons=[lesson for lesson in lessons if lesson['id'] in args.lesson]
+    for lesson in lessons:
         path=ROOT/lesson['path'];nb=nbformat.read(path,as_version=4);nbformat.validate(nb)
         manager=KernelManager(kernel_name='course-validation',kernel_spec_manager=KernelSpecManager(kernel_dirs=[str(kernel.parent)]))
         start=time.perf_counter()

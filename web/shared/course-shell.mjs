@@ -1,5 +1,6 @@
 import {summarize,questionIds} from './progress.mjs';
 import {setupSidebar} from './layout.mjs';
+import {getTheme,toggleTheme} from './appearance.mjs';
 export const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const link=(title,url,cls)=>{const a=el('a',title,cls);a.href=url;return a;};
 let course,current,mode,progress={},tree,section=null;
@@ -45,11 +46,21 @@ export async function mountShell(pageMode='overview'){
   current=chapterItems.find(c=>path.startsWith(c.url))|| part;
   const header=el('header',undefined,'course-header');
   const toggle=el('button','☰ 隐藏目录','directory-toggle');toggle.id='directory-toggle';toggle.type='button';toggle.setAttribute('aria-controls','course-directory');
-  const identity=el('div',undefined,'header-identity');identity.append(toggle,link('动手学系统科学','/','brand'));header.append(identity,el('span','观察 · 建模 · 计算 · 理解','brand-note'));
+  const brand=link('','/','brand');brand.setAttribute('aria-label','动手学系统科学 · 返回开始首页');brand.title='返回开始首页';
+  const mark=el('span',undefined,'brand-mark');mark.setAttribute('aria-hidden','true');brand.append(mark,el('span','动手学系统科学'));
+  const identity=el('div',undefined,'header-identity');identity.append(toggle,brand);header.append(identity,el('span','观察 · 建模 · 计算 · 理解','brand-note'));
+  if(mode!=='home'){
+    const themeToggle=el('button',undefined,'site-theme-toggle');themeToggle.id='site-theme-toggle';themeToggle.type='button';
+    const updateThemeButton=()=>{const dark=getTheme()==='dark';themeToggle.textContent=dark?'☼ 浅色':'☾ 深色';themeToggle.setAttribute('aria-label',dark?'切换到浅色主题':'切换到深色主题');themeToggle.title=dark?'切换到浅色主题':'切换到深色主题';};
+    updateThemeButton();themeToggle.addEventListener('click',toggleTheme);window.addEventListener('site-theme-change',updateThemeButton);header.append(themeToggle);
+  }
   const sidebar=el('aside',undefined,'course-sidebar');sidebar.id='course-directory';sidebar.setAttribute('aria-label','教材篇章目录');
   const resize=el('div',undefined,'resize-handle sidebar-resizer');resize.id='sidebar-resizer';resize.tabIndex=0;resize.setAttribute('role','separator');resize.setAttribute('aria-orientation','vertical');resize.setAttribute('aria-controls','course-directory');resize.setAttribute('aria-label','调整目录宽度');resize.title='拖动调整目录宽度；左右方向键调整，双击或 Enter 恢复默认';
-  sidebar.append(link('全书目录','/','directory-home'),el('p','按篇章学习','nav-label'));
-  const legend=el('div',undefined,'progress-legend');for(const [state,text] of [['new','未开始'],['active','进行中'],['complete','已完成']])legend.append(el('span',text,`legend-dot ${state}`));sidebar.append(legend);
+  const primaryNav=el('nav',undefined,'directory-primary');primaryNav.setAttribute('aria-label','教材入口');
+  for(const [title,url] of [['开始','/'],['全书目录','/catalog/']]){
+    const entry=link(title,url,'directory-home');if(path===url)entry.setAttribute('aria-current','page');primaryNav.append(entry);
+  }
+  sidebar.append(primaryNav);
   const error=el('p','进度暂时无法读取，请恢复本机连接后刷新。','error-note');error.id='progress-error';error.hidden=true;sidebar.append(error);
   tree=el('nav',undefined,'course-tree');tree.setAttribute('aria-label','按篇章选择内容');
   for(const p of course.parts){
@@ -63,7 +74,7 @@ export async function mountShell(pageMode='overview'){
   sidebar.append(tree);document.body.prepend(header,sidebar,resize);setupSidebar(sidebar,toggle,resize);
   const main=document.getElementById('main');main.classList.add('course-main');
   const toolbar=el('div',undefined,'chapter-toolbar');
-  const crumb=el('div',undefined,'breadcrumb');crumb.append(link('目录','/'));if(current){crumb.append(el('span','/'),link(part?'篇导览':`第 ${current.id.split('.')[0]} 篇`,part?.url||course.parts.find(p=>p.id===current.id.split('.')[0]).url),el('span','/'),el('span',current.title));}
+  const crumb=el('div',undefined,'breadcrumb');crumb.append(link('目录','/catalog/'));if(current){crumb.append(el('span','/'),link(part?'篇导览':`第 ${current.id.split('.')[0]} 篇`,part?.url||course.parts.find(p=>p.id===current.id.split('.')[0]).url),el('span','/'),el('span',current.title));}
   const sectionName=el('span','','crumb-section');sectionName.id='current-section';crumb.append(sectionName);toolbar.append(crumb);
   if(current&&!part){
     const tabs=el('nav',undefined,'chapter-tabs');tabs.setAttribute('aria-label','本章页面切换');
@@ -77,7 +88,7 @@ export async function mountShell(pageMode='overview'){
     }
     const status=el('span','','progress-badge');status.id='chapter-progress';status.setAttribute('role','status');toolbar.append(tabs,status);
   }
-  main.prepend(toolbar);
+  if(mode!=='home')main.prepend(toolbar);
   const skip=link('跳到正文','#main','skip-link');document.body.prepend(skip);
   await refreshProgress();
   // 只滚动目录自己的视口，避免把正文标题卷出屏幕。
@@ -85,7 +96,7 @@ export async function mountShell(pageMode='overview'){
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)void refreshProgress();});
   window.addEventListener('focus',()=>void refreshProgress());
   setInterval(()=>{if(!document.hidden)void refreshProgress();},15000);
-  return {course,current,part};
+  return {course,current,part,progress};
 }
 
 function chapterLinks(chapter, branch){

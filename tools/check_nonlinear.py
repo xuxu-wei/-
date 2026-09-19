@@ -37,5 +37,21 @@ def main():
         delta=np.abs(actual-expect);np.testing.assert_allclose(actual,expect,atol=1e-10,rtol=1e-10)
         maximum=max(maximum,float(np.max(delta)));count+=actual.size
     report=dict(cases=len(cases),compared_values=count,maximum_absolute_difference=maximum,tolerance='atol=rtol=1e-10',scope='same-model cross-implementation, not independent mathematical proof',notebooks=[l['path'] for l in catalog],web='web/nonlinear/model.mjs')
+    extension=[]
+    for rho in [.5,10,28]:
+        for initial in [[0,0,0],[1,1,1],[-1,-1,1]]:
+            extension.append(dict(kind='lorenzPath',args=[initial,10,rho,8/3,.005,400]))
+            extension.append(dict(kind='tangentGrowth',args=[initial,10,rho,8/3,.005,437,13,101]))
+    extension.append(dict(kind='directedSection',args=[[0,1,2,3],[[0,0,-1],[2,4,1],[4,8,-1],[6,12,1]],0,1]))
+    result=subprocess.run([args.node,'--input-type=module','-e',script,(ROOT/'web/nonlinear/lorenz-model.mjs').as_uri()],input=json.dumps(extension),text=True,capture_output=True,check=True,timeout=30)
+    names={'lorenzPath':'lorenz_path','tangentGrowth':'tangent_path','directedSection':'directed_section'}
+    values=0;maximum=0
+    for case,value in zip(extension,json.loads(result.stdout)):
+        arguments=case['args']
+        if case['kind']=='directedSection':arguments=[arguments[0],np.array(arguments[1]),*arguments[2:]]
+        expected=functions[names[case['kind']]](*arguments);actual=np.array(value)
+        np.testing.assert_allclose(actual,expected,atol=1e-9,rtol=1e-9)
+        values+=actual.size;maximum=max(maximum,float(np.max(np.abs(actual-expected))))
+    report['extension']=dict(cases=len(extension),compared_values=values,maximum_absolute_difference=maximum,tolerance='atol=rtol=1e-9',web='web/nonlinear/lorenz-model.mjs',protocol='Short windows, exact equilibrium, positive crossing, tangent warmup inside segment and final partial interval')
     target=ROOT/'.work/m5/web-model-comparison.json';target.parent.mkdir(exist_ok=True,parents=True);target.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');print(json.dumps({k:v for k,v in report.items() if k!='notebooks'},ensure_ascii=False))
 if __name__=='__main__':main()

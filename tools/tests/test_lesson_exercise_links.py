@@ -40,3 +40,36 @@ def test_rendered_notebook_link_does_not_double_encode_an_existing_escape():
     assert len(links.hrefs)==1
     assert urlsplit(links.hrefs[0]).path==encoded
     assert '%25' not in links.hrefs[0]
+
+def test_optional_types_remain_one_table_cell_without_changing_python_signature():
+    from question_contracts import contract_markdown, signature
+    class Tables(HTMLParser):
+        def __init__(self):
+            super().__init__();self.rows=[];self.current=None;self.cell=None
+        def handle_starttag(self,tag,attributes):
+            if tag=='tr':self.current=[]
+            if tag in {'td','th'}:self.cell=''
+        def handle_data(self,data):
+            if self.cell is not None:self.cell+=data
+        def handle_endtag(self,tag):
+            if tag in {'td','th'}:self.current.append(self.cell);self.cell=None
+            if tag=='tr':self.rows.append(self.current);self.current=None
+    question=dict(parameters=[dict(name='observations',type='list[float | None]',description='缺测使用 None。',unit='U')],
+                  returns=[dict(name='estimate',type='float | None',description='估计或不可计算。',unit='U')],
+                  constraints=['允许缺测。'],contract='按已知观测计算。')
+    question['starter_code']=signature(question)+'\n    raise NotImplementedError'
+    rendered=markdown2html_mistune(contract_markdown(question))
+    parsed=Tables();parsed.feed(rendered)
+    assert all(len(row)==4 for row in parsed.rows)
+    assert parsed.rows[1][1]=='list[float | None]'
+    assert parsed.rows[3][1]=='float | None'
+    assert 'observations: list[float | None]' in question['starter_code']
+
+
+def test_python_power_in_rule_is_not_markdown_emphasis():
+    from question_contracts import contract_markdown
+    question=dict(parameters=[],returns=[dict(name='weights',type='list[float]',description='权重',unit='1')],
+                  constraints=['0<forgetting<=1'],contract='返回 forgetting**count 和 forgetting**(count-1)。',
+                  starter_code='def solve(count, forgetting):\n    pass')
+    rendered=markdown2html_mistune(contract_markdown(question))
+    assert '返回 forgetting**count 和 forgetting**(count-1)。' in rendered

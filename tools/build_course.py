@@ -22,13 +22,27 @@ def annotate_overview(chapter):
             seen.add(zh)
             term = TERM_MAP[zh]
             suffix = '（' + term['en'] + ('，' + term['abbr'] if 'abbr' in term else '') + '）'
-            return zh if text[match.end():].startswith(suffix) else zh + suffix
+            # Some new outlines already supply the English name with a different case.
+            return zh if text[match.end():].lower().startswith(suffix.lower()) else zh + suffix
         return TERM_PATTERN.sub(replace, text)
     for key in ['goals', 'prerequisites', 'focus']:
         assert chapter[key], f'Missing {key}: {chapter["title"]}'
         chapter[key] = annotate(chapter[key])
     chapter['knowledge'] = [annotate(text) for text in chapter['knowledge']]
     assert chapter['knowledge']
+
+
+def validate_design(parts, design):
+    """Keep the generated navigation aligned with the authoritative chapter map."""
+    expected_parts = re.findall(r'^### 第 (\d+) 篇：(.+)$', design, re.M)
+    expected_chapters = re.findall(r'^\| (\d+\.\d+) ([^|]+) \|', design, re.M)
+    assert expected_parts and expected_chapters, 'Missing curriculum tables'
+    assert [(p['id'], p['title']) for p in parts] == expected_parts, 'Outline parts differ from curriculum'
+    actual = [(c['id'], c['title']) for p in parts for c in p['chapters']]
+    assert actual == [(cid, title.strip()) for cid, title in expected_chapters], 'Outline chapters differ from curriculum'
+    assert len({cid for cid, _ in actual}) == len(actual), 'Duplicate chapter identity'
+    for part in parts:
+        assert [c['id'] for c in part['chapters']] == [f'{part["id"]}.{i}' for i in range(1, len(part['chapters']) + 1)], 'Invalid chapter numbering'
 
 
 def build():
@@ -54,8 +68,11 @@ def build():
                 'knowledge': order, 'focus': field('核验与反馈'),
                 'available': False, 'lessons': []})
         parts.append({'id': str(number), 'title': title, 'url': f'/parts/{path.stem}/', 'chapters': chapters})
-    assert len(parts) == 12 and sum(len(p['chapters']) for p in parts) == 55
+    validate_design(parts, design)
     all_lessons = notebooks()
+    chapter_ids = {c['id'] for p in parts for c in p['chapters']}
+    chapter_ids.update(p['id'] + '.summary' for p in parts)
+    assert all(l.get('chapter_id') in chapter_ids for l in all_lessons), 'Published lesson lost its chapter'
     questions, _ = question_banks()
     assessments = load_assessments(questions)
     def attach(chapter, entries):
@@ -86,7 +103,7 @@ def build():
     path = ROOT / 'web/course/catalog.json'
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    print(f'Course directory: 12 parts, 55 chapters; {sum(c["available"] for p in parts for c in p["chapters"])} available.')
+    print(f'Course directory: {len(parts)} parts, {sum(len(p["chapters"]) for p in parts)} chapters; {sum(c["available"] for p in parts for c in p["chapters"])} available.')
 
 
 if __name__ == '__main__':

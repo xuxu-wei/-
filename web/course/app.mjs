@@ -43,15 +43,17 @@ async function start(){
   if(!current){
     document.body.dataset.guide='book';
     const ready=course.parts.filter(p=>p.chapters.every(c=>c.available)).map(p=>p.id);
-    heading('全书目录 · 十二篇', '从看见系统，到理解复杂性',
+    const partial=course.parts.filter(p=>p.chapters.some(c=>c.available)&&!p.chapters.every(c=>c.available));
+    const partialNote=partial.map(p=>`第 ${p.id} 篇已有 ${p.chapters.filter(c=>c.available).length}/${p.chapters.length} 章可学习。`).join('');
+    heading(`全书目录 · ${course.parts.length} 篇 · ${course.parts.reduce((sum,p)=>sum+p.chapters.length,0)} 章`, '从看见系统，到理解复杂性',
       '提出问题，建立模型，用计算检验解释。沿着篇章顺序，逐步进入系统科学。',
-      ready.length?`第 ${ready.join('、')} 篇已提供完整 Notebook 与练习，其余篇章目前提供教学设计导览。`:'当前提供教学设计导览。');
+      (ready.length?`第 ${ready.join('、')} 篇已提供完整 Notebook 与练习。`:'')+partialNote+'其余篇章目前提供教学设计导览。');
     host.append(cards(course.parts,'part'));
   }else if(part){
     document.body.dataset.guide='part';
     heading(`第 ${part.id} 篇 · ${part.chapters.length} 章`,part.title,
       '按章推进，先看学习目标与先修知识，再进入知识体系。',
-      part.chapters.some(c=>c.available)?'从第一章进入 Notebook，完成各节练习后用篇末综合题组检验理解。':'以下为教学设计导览；对应 Notebook 与习题尚待编写。');
+      part.chapters.every(c=>c.available)?'从第一章进入 Notebook，完成各节练习后用篇末综合题组检验理解。':part.chapters.some(c=>c.available)?`目前有 ${part.chapters.filter(c=>c.available).length}/${part.chapters.length} 章可学习，其余为教学设计导览。现有篇末成绩只覆盖已发布题组。`:'以下为教学设计导览；对应 Notebook 与习题尚待编写。');
     if(part.assessment)assessmentPanel(part.assessment.lessons[0].id,part.assessment.url+'practice/');
     host.append(cards(part.chapters,'chapter'));
     if(part.assessment){host.append(el('h2','贯通本篇','lessons-heading'),cards([part.assessment],'chapter'));}

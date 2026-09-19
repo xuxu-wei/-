@@ -1,12 +1,12 @@
 {
-  "version": "1",
+  "version": "2",
   "part": "4",
   "lesson_id": "P04-SUMMARY",
   "title": "非线性行为与证据边界",
   "objectives": [
     {
       "id": "T1",
-      "title": "分析多稳态",
+      "title": "辨析集合吸引与多稳态",
       "review_url": "/chapters/04-01-多稳态与吸引域/"
     },
     {
@@ -16,13 +16,13 @@
     },
     {
       "id": "T3",
-      "title": "限定预测结论",
+      "title": "核验离散与连续的预测证据",
       "review_url": "/chapters/04-04-混沌与可预测范围/"
     },
     {
       "id": "T4",
-      "title": "论证稳定性",
-      "review_url": "/chapters/04-05-用 Lyapunov 函数分析稳定性/"
+      "title": "限定稳定性与有界性结论",
+      "review_url": "/chapters/04-06-连续时间混沌与奇异吸引子/"
     }
   ],
   "items": [

@@ -18,6 +18,15 @@
     "visualization": "web/nonlinear/index.html"
   },
   {
+    "id": "P04-C01-S03",
+    "chapter_id": "4.1",
+    "path": "notebooks/04-非线性动态行为/01-多稳态与吸引域/03-从吸引状态到吸引集合.ipynb",
+    "title": "从吸引状态到吸引集合",
+    "outcome": "能用不变性、点到集合的距离与吸引域区分吸引平衡、周期吸引和不吸引的中心。",
+    "number": "4.1.3",
+    "visualization": null
+  },
+  {
     "id": "P04-C02-S01",
     "chapter_id": "4.2",
     "path": "notebooks/04-非线性动态行为/02-自维持振荡与极限环/01-阻尼受迫与自维持振荡.ipynb",
@@ -99,21 +108,57 @@
     "visualization": null
   },
   {
+    "id": "P04-C06-S01",
+    "chapter_id": "4.6",
+    "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/01-从平面流到Lorenz系统.ipynb",
+    "title": "从平面流到Lorenz系统",
+    "outcome": "能说明平面自治流定理的条件，求 Lorenz 平衡和雅可比矩阵，区分精确平衡与局部稳定。",
+    "number": "4.6.1",
+    "visualization": "web/nonlinear/lorenz.html"
+  },
+  {
+    "id": "P04-C06-S02",
+    "chapter_id": "4.6",
+    "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/02-有界耗散与可信积分.ipynb",
+    "title": "有界耗散与可信积分",
+    "outcome": "能推导有界性与散度公式，手写 RK4，按共同时间点检查短窗收敛并解释长时比较的限制。",
+    "number": "4.6.2",
+    "visualization": "web/nonlinear/lorenz.html"
+  },
+  {
+    "id": "P04-C06-S03",
+    "chapter_id": "4.6",
+    "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/03-截面与返回中的长期结构.ipynb",
+    "title": "截面与返回中的长期结构",
+    "outcome": "能定义同向截面与返回，插值同一交点的时间和状态，并区分完整返回映射与投影散点。",
+    "number": "4.6.3",
+    "visualization": "web/nonlinear/lorenz.html"
+  },
+  {
+    "id": "P04-C06-S04",
+    "chapter_id": "4.6",
+    "path": "notebooks/04-非线性动态行为/06-连续时间混沌与奇异吸引子/04-切向增长奇异几何与预测边界.ipynb",
+    "title": "切向增长奇异几何与预测边界",
+    "outcome": "能推导连续变分方程，按实际时间汇总分段增长，区分有限方向增长、长期最大指数与严格存在性。",
+    "number": "4.6.4",
+    "visualization": "web/nonlinear/lorenz.html"
+  },
+  {
     "id": "P04-SUMMARY",
     "chapter_id": "4.summary",
     "path": "notebooks/04-非线性动态行为/06-篇末综合/01-非线性行为与证据边界.ipynb",
     "title": "非线性行为与证据边界",
-    "outcome": "能把模型假设、数值协议和结论条件连接起来，独立核对吸引去向、周期、精度敏感性和区域稳定性，并指出证据尚未覆盖的范围。",
+    "outcome": "能综合六章证据，分别核对集合吸引、定向返回、离散与连续增长及 Lorenz 有界性，限定稳定性与混沌结论。",
     "number": "篇末综合",
     "visualization": null,
     "overview": {
-      "goals": "在固定案例中连接多稳态、振荡、预测期限与区域稳定性，说明数值证据的边界。",
-      "prerequisites": "本篇五章。",
-      "focus": "输入与初值、暂态与采样、算术精度与初值敏感性、有限扫描与解析证明分别核对。",
+      "goals": "能综合六章证据，分别核对集合吸引、定向返回、离散与连续增长及 Lorenz 有界性，限定稳定性与混沌结论。",
+      "prerequisites": "本篇六章。",
+      "focus": "集合与单轨迹、定向事件与投影、每步与每时间增长、有界性与平衡稳定分别核对。",
       "knowledge": [
-        "平衡与初值 → 多稳态与扫描",
-        "径向方程与事件 → 振幅、周期及相位",
-        "轨迹分离与区域证书 → 预测和稳定性的条件"
+        "不变集合与初值 → 多稳态、周期和吸引域",
+        "分岔、映射与连续流 → 返回和预测范围",
+        "函数导数与独立误差对照 → 有界性和结论边界"
       ]
     }
   }

@@ -1,5 +1,5 @@
 {
-  "version": "1",
+  "version": "2",
   "part": "6",
   "lesson_id": "P06-SUMMARY",
   "title": "测量、辨识与验证",
@@ -72,7 +72,7 @@
       "question_id": "p06-cap-validation",
       "level": 4,
       "points": 10,
-      "objective": "T4"
+      "objective": "T3"
     }
   ]
 }

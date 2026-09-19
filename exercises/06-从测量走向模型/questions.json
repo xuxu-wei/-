@@ -3245,6 +3245,602 @@
     "constraints": []
   },
   {
+    "id": "p06-rls-equivalence",
+    "slug": "p06-rls-equivalence",
+    "version": "1",
+    "lesson_id": "P06-C06-S01",
+    "part": "6",
+    "chapter": "6.6",
+    "title": "递推与批量究竟在比较什么",
+    "type": "choice",
+    "statement": "递推最小二乘（recursive least squares，RLS）用 θ₀ 和正定（positive definite）矩阵（matrix） P₀ 初始化，λ=1。哪一种批量目标与每一步递推结果严格对应？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数29"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "只对已有观测（observation）的残差（residual）平方求和，完全丢掉初始条件。"
+      },
+      {
+        "id": "B",
+        "text": "残差平方和加上 (θ−θ₀)ᵀP₀⁻¹(θ−θ₀)。"
+      },
+      {
+        "id": "C",
+        "text": "残差平方和加上 θᵀP₀θ，无论 θ₀ 为何。"
+      },
+      {
+        "id": "D",
+        "text": "每收到一条观测就重新用 θ₀ 预测，仅更新 P。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-rls-trace",
+    "slug": "p06-rls-trace",
+    "version": "1",
+    "lesson_id": "P06-C06-S01",
+    "part": "6",
+    "chapter": "6.6",
+    "title": "逐条更新参数并保留预测时钟",
+    "type": "python",
+    "statement": "对按顺序到达的无量纲（dimensionless）读数执行递推最小二乘（recursive least squares，RLS），返回每一步可核对的预测和更新结果。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数29"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "regressors",
+        "type": "list[list[float]]",
+        "description": "按到达顺序排列的回归向量（vector）；每一行长 d。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "observed",
+        "type": "list[float]",
+        "description": "同序列的目标读数，长度 N。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "initial_parameters",
+        "type": "list[float]",
+        "description": "收到数据之前的参数（parameter）向量 θ₀，长度 d。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "initial_inverse",
+        "type": "list[list[float]]",
+        "description": "初始逆信息矩阵（inverse information matrix） P₀，为 d×d 对称正定（positive definite）矩阵（matrix）。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "forgetting",
+        "type": "float",
+        "description": "遗忘因子（forgetting factor） λ。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "predictions",
+        "type": "list[float]",
+        "description": "每条读数到达前的预测，长度 N。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "parameter_history",
+        "type": "list[list[float]]",
+        "description": "每次更新后的参数，N×d，不包含 θ₀。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "inverse_history",
+        "type": "list[list[list[float]]]",
+        "description": "每次更新后的 P，N×d×d，不包含 P₀。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "第 i 条先计算 prediction=φᵀθ，然后 v=Pφ、g=v/(λ+φᵀv)，再用 θ←θ+g(y−prediction)、P←(P−gvᵀ)/λ 同时更新。v 与 prediction 均来自更新前值。按顺序记录更新前预测、更新后参数与 P；空序列返回 ([], [], [])。",
+    "constraints": [
+      "0≤N≤80，1≤d≤3；回归量与读数绝对值≤20，初始参数绝对值≤5。",
+      "0.8≤forgetting≤1；P₀ 对称正定且特征值（eigenvalue）在 [0.1,10]；矩阵输入（input）不修改。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    regressors: list[list[float]],\n    observed: list[float],\n    initial_parameters: list[float],\n    initial_inverse: list[list[float]],\n    forgetting: float,\n) -> tuple[list[float], list[list[float]], list[list[list[float]]]]:\n    # 按题定顺序返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "regressors": [
+            [
+              1.0
+            ],
+            [
+              1.0
+            ]
+          ],
+          "observed": [
+            2.0,
+            4.0
+          ],
+          "initial_parameters": [
+            0.0
+          ],
+          "initial_inverse": [
+            [
+              1.0
+            ]
+          ],
+          "forgetting": 1.0
+        },
+        "expected": [
+          [
+            0.0,
+            1.0
+          ],
+          [
+            [
+              1.0
+            ],
+            [
+              2.0
+            ]
+          ],
+          [
+            [
+              [
+                0.5
+              ]
+            ],
+            [
+              [
+                0.33333333333333337
+              ]
+            ]
+          ]
+        ],
+        "explanation": "第一条到达前预测为0，更新后 θ=1、P=1/2；第二条到达前预测为1，更新后 θ=2、P=1/3。"
+      }
+    ]
+  },
+  {
+    "id": "p06-rls-rank-one",
+    "slug": "p06-rls-rank-one",
+    "version": "1",
+    "lesson_id": "P06-C06-S01",
+    "part": "6",
+    "chapter": "6.6",
+    "title": "秩一更新为何省计算",
+    "type": "choice",
+    "statement": "已知 P=H⁻¹，新增回归向量（vector） φ 后 H_new=H+φφᵀ。以下哪些解释成立？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数29"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "φφᵀ 的秩（rank）最多为1；可以利用 Pφ 避免每次完整求逆。"
+      },
+      {
+        "id": "B",
+        "text": "只要 φ=0，参数（parameter）就完全由这一条目标读数决定。"
+      },
+      {
+        "id": "C",
+        "text": "正定（positive definite） H 使 1+φᵀPφ>0，因此本节分母有定义。"
+      },
+      {
+        "id": "D",
+        "text": "正则项使 H 可逆，并不等于数据已经提供所有参数方向的信息。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-ridge-variance",
+    "slug": "p06-ridge-variance",
+    "version": "1",
+    "lesson_id": "P06-C06-S01",
+    "part": "6",
+    "chapter": "6.6",
+    "title": "逆信息与抽样方差的差别",
+    "type": "python",
+    "statement": "固定一维设计 yᵢ=xᵢθ+εᵢ，误差独立同方差（homoscedasticity） σ²，θ₀ 为固定常数。最小化 Σ(yᵢ−xᵢθ)²+α(θ−θ₀)²。请返回逆信息与估计量的抽样方差（variance），判断两者为何不能直接等同。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数29"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "features",
+        "type": "list[float]",
+        "description": "固定的一维设计数值。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "regularization",
+        "type": "float",
+        "description": "正则强度 α。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "noise_variance",
+        "type": "float",
+        "description": "独立误差方差 σ²。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "inverse_information",
+        "type": "float",
+        "description": "1/(α+Σxᵢ²)。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "sampling_variance",
+        "type": "float",
+        "description": "σ²Σxᵢ²/(α+Σxᵢ²)²；只对随机误差重复抽样。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "用 s=Σxᵢ² 返回 (1/(α+s), σ²s/(α+s)²)。θ₀ 固定不随机，因此没有来自初始中心的方差项。",
+    "constraints": [
+      "0≤len(features)≤100，各值绝对值≤10；0.1≤regularization≤10；0≤noise_variance≤10。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    features: list[float],\n    regularization: float,\n    noise_variance: float,\n) -> tuple[float, float]:\n    # 按题定顺序返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "features": [
+            1.0,
+            2.0
+          ],
+          "regularization": 1.0,
+          "noise_variance": 4.0
+        },
+        "expected": [
+          0.16666666666666666,
+          0.5555555555555556
+        ],
+        "explanation": "s=5，逆信息为1/6，抽样方差为20/36；σ²P=4/6 是不同的值。"
+      }
+    ]
+  },
+  {
+    "id": "p06-rls-covariance",
+    "slug": "p06-rls-covariance",
+    "version": "1",
+    "lesson_id": "P06-C06-S01",
+    "part": "6",
+    "chapter": "6.6",
+    "title": "什么时候可以写成噪声方差乘P",
+    "type": "choice",
+    "statement": "把 P 称为逆信息矩阵（inverse information matrix）。关于参数（parameter）不确定性，以下哪些说法成立？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数29"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "固定满列秩（rank）设计、无正则且误差独立同方差（homoscedasticity）时，普通最小二乘（ordinary least squares，OLS）的协方差（covariance）为 σ²P。"
+      },
+      {
+        "id": "B",
+        "text": "加入固定有限正则中心后，无论设计如何仍有协方差=σ²P。"
+      },
+      {
+        "id": "C",
+        "text": "有遗忘权重 W 时，固定设计（fixed design）的误差项一般给出 σ²H⁻¹ΦᵀW²ΦH⁻¹。"
+      },
+      {
+        "id": "D",
+        "text": "若误差与回归量相关，不能仅凭 P 小就断言估计没有偏差。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-forgetting-objective",
+    "slug": "p06-forgetting-objective",
+    "version": "1",
+    "lesson_id": "P06-C06-S02",
+    "part": "6",
+    "chapter": "6.6",
+    "title": "初始约束也会被遗忘",
+    "type": "choice",
+    "statement": "每次更新使用 Hₙ=λHₙ₋₁+φₙφₙᵀ、bₙ=λbₙ₋₁+φₙyₙ，0<λ<1。第 n 条之后，哪一个目标与此递推对应？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数29"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "初始正则项权重固定为1，每条历史残差（residual）的权重也固定为1。"
+      },
+      {
+        "id": "B",
+        "text": "初始正则项乘 λⁿ，第 i 条残差平方乘 λⁿ⁻ⁱ。"
+      },
+      {
+        "id": "C",
+        "text": "只有最新目标乘 λ，所有旧数据权重不变。"
+      },
+      {
+        "id": "D",
+        "text": "只对参数（parameter）值乘 λ，而信息矩阵（matrix）不变。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-forgetting-weights",
+    "slug": "p06-forgetting-weights",
+    "version": "1",
+    "lesson_id": "P06-C06-S02",
+    "part": "6",
+    "chapter": "6.6",
+    "title": "写出当前批量目标的权重",
+    "type": "python",
+    "statement": "当前已收到 count 条记录。按指数遗忘规则，返回初始正则项的权重以及从最旧到最新的残差（residual）权重，用来重新构造与递推等价的批量问题。",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数29"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "count",
+        "type": "int",
+        "description": "已到达的记录数 n。",
+        "unit": "条"
+      },
+      {
+        "name": "forgetting",
+        "type": "float",
+        "description": "遗忘因子（forgetting factor） λ。",
+        "unit": "无量纲"
+      }
+    ],
+    "returns": [
+      {
+        "name": "initial_weight",
+        "type": "float",
+        "description": "初始正则项权重 λⁿ。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "observation_weights",
+        "type": "list[float]",
+        "description": "依到达顺序排列的 λⁿ⁻¹,…,λ⁰。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "返回 (forgetting**count, [forgetting**(count-1-i) for i in range(count)])。count=0 时返回 (1, [])；不要倒置新旧数据的权重。",
+    "constraints": [
+      "0≤count≤100；0.5≤forgetting≤1。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    count: int,\n    forgetting: float,\n) -> tuple[float, list[float]]:\n    # 按题定顺序返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "count": 3,
+          "forgetting": 0.5
+        },
+        "expected": [
+          0.125,
+          [
+            0.25,
+            0.5,
+            1.0
+          ]
+        ],
+        "explanation": "三条之后初始权重为1/8；第一、二、三条读数权重分别为1/4、1/2、1。"
+      }
+    ]
+  },
+  {
+    "id": "p06-online-clock",
+    "slug": "p06-online-clock",
+    "version": "1",
+    "lesson_id": "P06-C06-S02",
+    "part": "6",
+    "chapter": "6.6",
+    "title": "在线误差应在哪一步计算",
+    "type": "choice",
+    "statement": "目标读数 yₙ 即将到达，当前只有参数（parameter） θₙ₋₁ 和已知回归量 φₙ。以下哪些操作符合先预测后更新的在线评估？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数29"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "先固定 ŷₙ=φₙᵀθₙ₋₁，再读取 yₙ、记误差并更新。"
+      },
+      {
+        "id": "B",
+        "text": "先用 yₙ 更新参数，再用 φₙᵀθₙ 作为当时的预测成绩。"
+      },
+      {
+        "id": "C",
+        "text": "在留出时段允许按预先固定的规则继续更新，但不能用该时段选遗忘因子（forgetting factor）。"
+      },
+      {
+        "id": "D",
+        "text": "若应用场景不再获得目标读数，应另评估冻结参数或自由运行（free-run simulation），不能沿用在线更新成绩。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-forgetting-excitation",
+    "slug": "p06-forgetting-excitation",
+    "version": "1",
+    "lesson_id": "P06-C06-S02",
+    "part": "6",
+    "chapter": "6.6",
+    "title": "弱激励不能靠遗忘制造信息",
+    "type": "choice",
+    "statement": "两个参数（parameter）的回归向量（vector）长期都是 [1,0]，λ=0.95，P₀ 是单位矩阵（identity matrix）。以下哪些判断成立？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数29"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "第二参数方向没有数据激励，第二分量不会自动靠真实数据收敛。"
+      },
+      {
+        "id": "B",
+        "text": "第二方向的 P 分量按 1/λ 增长，提示旧约束逐渐消失。"
+      },
+      {
+        "id": "C",
+        "text": "把 λ 再减小一定能恢复第二参数的真实值。"
+      },
+      {
+        "id": "D",
+        "text": "第一分量跟踪较好，不能作为两个分量都被辨识的证据。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p06-drift-noise-validation",
+    "slug": "p06-drift-noise-validation",
+    "version": "1",
+    "lesson_id": "P06-C06-S02",
+    "part": "6",
+    "chapter": "6.6",
+    "title": "跟得快和估得准不是同一件事",
+    "type": "choice",
+    "statement": "对同一设计分别比较固定系数、系数漂移及噪声增大三组课程实验，并只在调参时段选择 λ。哪些解释合理？",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数17",
+      "数29"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "较小 λ 常能更快响应漂移，但也可能放大固定参数（parameter）下的波动。"
+      },
+      {
+        "id": "B",
+        "text": "一次漂移轨迹（trajectory）误差下降证明参数估计在任意噪声下都一致。"
+      },
+      {
+        "id": "C",
+        "text": "漂移和噪声增大都可能改变误差，要结合激励和预先固定的对照判断。"
+      },
+      {
+        "id": "D",
+        "text": "若最终评估不佳，应如实报告；按评估结果重选 λ 后须另留未见时段。"
+      }
+    ],
+    "constraints": []
+  },
+  {
     "id": "p06-cap-sampling",
     "slug": "p06-cap-sampling",
     "version": "1",
@@ -3890,39 +4486,155 @@
   {
     "id": "p06-cap-validation",
     "slug": "p06-cap-validation",
-    "version": "1",
+    "version": "2",
     "lesson_id": "P06-SUMMARY",
     "part": "6",
     "chapter": "6.summary",
-    "title": "换激励后的验证能支持什么",
-    "type": "choice",
-    "statement": "训练和验证均只用温和输入（input）；固定方案在预留较强输入下出现持续偏差。哪些结论恰当？",
+    "title": "漂移参数的递推核验",
+    "type": "python",
+    "statement": "一组回归读数按时间到达。先在指定调参区间比较遗忘因子（forgetting factor），再锁定方案报告留出时段的在线预测误差；参数（parameter）可以按已锁定协议继续更新。不得让评估目标反向影响因子选择。",
     "learning_targets": [
-      "T4"
+      "T3"
     ],
     "mathematics": [
-      "数17"
+      "数17",
+      "数29"
     ],
-    "difficulty": "理解",
-    "multiple": true,
-    "options": [
+    "difficulty": "应用",
+    "parameters": [
       {
-        "id": "A",
-        "text": "报告范围外偏差，考虑饱和等候选机制但不直接断言原因。"
+        "name": "regressors",
+        "type": "list[list[float]]",
+        "description": "按到达顺序排列的回归向量（vector）；每一行长 d。",
+        "unit": "无量纲"
       },
       {
-        "id": "B",
-        "text": "删除这些点即可宣称完整评估通过。"
+        "name": "observed",
+        "type": "list[float]",
+        "description": "同序列的目标读数，长度 N。",
+        "unit": "无量纲"
       },
       {
-        "id": "C",
-        "text": "若用该评估集进一步选结构，应另保留新的最终评估。"
+        "name": "candidates",
+        "type": "list[float]",
+        "description": "待比较的遗忘因子，可重复、可无序。",
+        "unit": "无量纲"
       },
       {
-        "id": "D",
-        "text": "训练残差（residual）小并没有保证所有输入范围可用。"
+        "name": "initial_parameters",
+        "type": "list[float]",
+        "description": "收到数据之前的参数（parameter）向量 θ₀，长度 d。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "initial_inverse",
+        "type": "list[list[float]]",
+        "description": "初始逆信息矩阵（inverse information matrix） P₀，为 d×d 对称正定（positive definite）矩阵（matrix）。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "tuning_start",
+        "type": "int",
+        "description": "调参评分区间左端点，包含该索引。",
+        "unit": "索引"
+      },
+      {
+        "name": "evaluation_start",
+        "type": "int",
+        "description": "最终在线评估左端点；调参不包含该索引。",
+        "unit": "索引"
       }
     ],
-    "constraints": []
+    "returns": [
+      {
+        "name": "selected_forgetting",
+        "type": "float",
+        "description": "调参均方误差最小的 λ；严格并列取较小值。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "final_parameters",
+        "type": "list[float]",
+        "description": "锁定 λ 后处理全部 N 条记录得到的参数。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "evaluation_rmse",
+        "type": "float",
+        "description": "索引 evaluation_start 到 N−1 的更新前预测均方根误差（root mean squared error，RMSE）。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "对每个候选从相同 θ₀、P₀ 起步，按 6.6 递推规则先预测后更新。只用 tuning_start≤i<evaluation_start 的更新前预测计算均方误差，按 (误差, λ) 的严格升序选择，重复候选去重。之后用所选因子从同一初始化重跑完整序列，返回 (λ, 最后更新后的参数, 最终区间RMSE)。评估时每条目标只可影响后续预测，不是整段冻结参数评估；因子选择函数不可读取评估目标。",
+    "constraints": [
+      "2≤N≤60，1≤d≤3；各值有限，回归量和读数绝对值≤20，初始参数绝对值≤5。",
+      "0≤tuning_start<evaluation_start<N；候选1—5个，0.5≤λ≤1；P₀ 对称正定且特征值（eigenvalue）在 [0.1,10]。",
+      "严格并列依据实际浮点计算结果；公开并列用例的误差完全相同，不要求近似并列容差。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库"
+    ],
+    "example_format": "parameters",
+    "hint": "",
+    "limits": {
+      "seconds": 30,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-09,
+      "rtol": 1e-08
+    },
+    "starter_code": "def solve(\n    regressors: list[list[float]],\n    observed: list[float],\n    candidates: list[float],\n    initial_parameters: list[float],\n    initial_inverse: list[list[float]],\n    tuning_start: int,\n    evaluation_start: int,\n) -> tuple[float, list[float], float]:\n    # 按题定顺序返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "regressors": [
+            [
+              1.0
+            ],
+            [
+              1.0
+            ],
+            [
+              1.0
+            ],
+            [
+              1.0
+            ]
+          ],
+          "observed": [
+            0.0,
+            0.0,
+            2.0,
+            2.0
+          ],
+          "candidates": [
+            1.0,
+            0.5
+          ],
+          "initial_parameters": [
+            0.0
+          ],
+          "initial_inverse": [
+            [
+              1.0
+            ]
+          ],
+          "tuning_start": 1,
+          "evaluation_start": 3
+        },
+        "expected": [
+          0.5,
+          [
+            1.5483870967741935
+          ],
+          0.9333333333333333
+        ],
+        "explanation": "调参时两候选的前两次评分预测均为0，严格并列取0.5；第三条更新后参数16/15，第四条到达前预测16/15，留出误差14/15；最终参数48/31。"
+      }
+    ]
   }
 ]
