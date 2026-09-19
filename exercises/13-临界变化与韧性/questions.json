@@ -1,0 +1,2318 @@
+[
+  {
+    "id": "p13-finite-order-summary",
+    "slug": "p13-finite-order-summary",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.1",
+    "lesson_id": "P13-C01-S01",
+    "title": "汇总有限系统的序参量",
+    "statement": "每条轨迹（trajectory）给出每一步的有符号磁化 m。按 burnin 删除前面的值；先对每条剩余轨迹求 |m| 的平均，再返回各次重复的平均与总体标准差（standard deviation）。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "paths",
+        "type": "list[list[float]]",
+        "description": "按重复排列的磁化轨迹。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "burnin",
+        "type": "int",
+        "description": "舍弃每条轨迹开头的步数，至少保留一步。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "summary",
+        "type": "list[float]",
+        "description": "依次为重复均值、重复间总体标准差。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "分别先对每条轨迹的尾窗求 |m| 平均，再对这些重复结果求平均及除以重复数的标准差。",
+    "constraints": [
+      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先在重复内部取尾窗绝对值，再在重复之间汇总；不把一次轨迹的波动当成重复间不确定性。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    paths: list[list[float]],\n    burnin: int,\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "paths": [
+            [
+              0.0,
+              0.2,
+              -0.4
+            ],
+            [
+              0.0,
+              -0.4,
+              -0.2
+            ]
+          ],
+          "burnin": 1
+        },
+        "expected": [
+          0.30000000000000004,
+          0.0
+        ],
+        "explanation": "先在重复内部取尾窗绝对值，再在重复之间汇总；不把一次轨迹的波动当成重复间不确定性。"
+      }
+    ]
+  },
+  {
+    "id": "p13-signed-vs-absolute",
+    "slug": "p13-signed-vs-absolute",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.1",
+    "lesson_id": "P13-C01-S01",
+    "title": "为何区分有符号和绝对序参量",
+    "statement": "两次对称轨迹（trajectory）尾窗分别长期接近 m=+0.8 与 m=-0.8。下面哪项对两者汇总最准确？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "有符号均值可能约为0，但平均 |m| 约为0.8。"
+      },
+      {
+        "id": "B",
+        "text": "有符号均值和平均 |m| 都必为0。"
+      },
+      {
+        "id": "C",
+        "text": "平均 |m| 大于1。"
+      },
+      {
+        "id": "D",
+        "text": "任何有限轨迹都能证明无限系统的相变。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-finite-fluctuation",
+    "slug": "p13-finite-fluctuation",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.1",
+    "lesson_id": "P13-C01-S01",
+    "title": "有限系统仍会波动",
+    "statement": "二值同步更新（synchronous update）中，每个个体条件独立（conditional independence）地以概率（probability） r 取 +1；在给定当前状态（state）下，下一步磁化的条件方差（variance）是多少？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "4r(1-r)/N"
+      },
+      {
+        "id": "B",
+        "text": "r(1-r)N"
+      },
+      {
+        "id": "C",
+        "text": "0，因为平均映射是确定的"
+      },
+      {
+        "id": "D",
+        "text": "4r(1-r)，与 N 无关"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-finite-evidence",
+    "slug": "p13-finite-evidence",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.1",
+    "lesson_id": "P13-C01-S01",
+    "title": "一次突变代表什么",
+    "statement": "在 N=40 的一次模拟中，序参量（order parameter）在某参数（parameter）附近跳高。可以支持哪项结论？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "这条有限轨迹（trajectory）在给定规则下出现较高序参量，需要重复和规模比较。"
+      },
+      {
+        "id": "B",
+        "text": "已经证明无限规模下发生相变。"
+      },
+      {
+        "id": "C",
+        "text": "阈值恰好等于该参数且无不确定性。"
+      },
+      {
+        "id": "D",
+        "text": "相变与确定性分岔（bifurcation）必是同一概念。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-deterministic-meanfield",
+    "slug": "p13-deterministic-meanfield",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.1",
+    "lesson_id": "P13-C01-S02",
+    "title": "计算平均场固定点迭代",
+    "statement": "从 start 出发，重复 m_next=tanh(beta*m)，返回含初值（initial condition）的完整轨迹（trajectory）。此为 N→∞ 条件期望（expectation）映射的确定性参照。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "beta",
+        "type": "float",
+        "description": "相互作用强度，非负。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "start",
+        "type": "float",
+        "description": "初始磁化，介于 -1 与 1。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "更新次数。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "path",
+        "type": "list[float]",
+        "description": "初值和每一步的平均场磁化。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "每一步只读取上一时刻 m；steps=0 时仅返回初值。",
+    "constraints": [
+      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "tanh(0)=0；零步情形不应自行更新。有限随机系统还存在抽样波动。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    beta: float,\n    start: float,\n    steps: int,\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "beta": 0.0,
+          "start": 0.4,
+          "steps": 2
+        },
+        "expected": [
+          0.4,
+          0.0,
+          0.0
+        ],
+        "explanation": "tanh(0)=0；零步情形不应自行更新。有限随机系统还存在抽样波动。"
+      }
+    ]
+  },
+  {
+    "id": "p13-meanfield-threshold",
+    "slug": "p13-meanfield-threshold",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.1",
+    "lesson_id": "P13-C01-S02",
+    "title": "固定点失稳条件",
+    "statement": "对 m_next=tanh(beta*m)，零固定点（fixed point）附近斜率（slope）为 beta。beta 非负时哪项成立？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "beta<1 时零点（zero）局部稳定；beta>1 时零点局部不稳定。"
+      },
+      {
+        "id": "B",
+        "text": "beta>1 时零点因为 tanh 有界而一定稳定。"
+      },
+      {
+        "id": "C",
+        "text": "beta=1 时线性斜率已足以判定严格渐近速度。"
+      },
+      {
+        "id": "D",
+        "text": "有限 N 的模拟阈值严格等于1且没有误差。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-size-comparison",
+    "slug": "p13-size-comparison",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.1",
+    "lesson_id": "P13-C01-S02",
+    "title": "怎样比较三个规模",
+    "statement": "将 N=50、200、800 的参数（parameter）扫描用于有限规模（finite size）比较时，哪项设计最可解释？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "同一更新规则与参数网格，说明暂态（transient）、观察时长、重复数及初态。"
+      },
+      {
+        "id": "B",
+        "text": "每个规模自行更换规则和观测（observation）窗口。"
+      },
+      {
+        "id": "C",
+        "text": "只取每个规模的一条最高曲线。"
+      },
+      {
+        "id": "D",
+        "text": "看到一条近直线就宣布普适指数。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-critical-language",
+    "slug": "p13-critical-language",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.1",
+    "lesson_id": "P13-C01-S02",
+    "title": "分岔与相变语言",
+    "statement": "同一模型（model）的确定性平均映射在 beta=1 改变零点（zero）稳定性；有限随机曲线随 N 变陡。哪项表述合适？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "前者是确定性固定点（fixed point）分岔（bifurcation）证据，后者是有限规模（finite size）现象；热力学极限（thermodynamic limit）仍需论证。"
+      },
+      {
+        "id": "B",
+        "text": "任一有限曲线自动证明连续相变。"
+      },
+      {
+        "id": "C",
+        "text": "平均映射的稳定性与随机模型毫无关系。"
+      },
+      {
+        "id": "D",
+        "text": "绝对磁化不可能用于描述序参量（order parameter）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-cascade-rounds",
+    "slug": "p13-cascade-rounds",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.2",
+    "lesson_id": "P13-C02-S01",
+    "title": "逐轮记录级联失效",
+    "statement": "给定无向图、各节点至少需要的已失效邻居数 thresholds 与初始损伤 seeds。每轮只读取上一轮末的累计失效状态（state），返回第0轮直接损伤及各轮新失效节点，均升序排列。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数21",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "n",
+        "type": "int",
+        "description": "节点数，编号0到n-1。",
+        "unit": "节点"
+      },
+      {
+        "name": "edges",
+        "type": "list[list[int]]",
+        "description": "无向边，每条仅列一次。",
+        "unit": "边"
+      },
+      {
+        "name": "thresholds",
+        "type": "list[int]",
+        "description": "每节点继发失效所需的失效邻居数，均至少1。",
+        "unit": "邻居"
+      },
+      {
+        "name": "seeds",
+        "type": "list[int]",
+        "description": "第0轮直接损伤节点。",
+        "unit": "节点编号"
+      }
+    ],
+    "returns": [
+      {
+        "name": "rounds",
+        "type": "list[list[int]]",
+        "description": "第0轮及各轮新增失效节点，不含空终止轮。",
+        "unit": "节点编号"
+      }
+    ],
+    "contract": "达到阈值的邻居只按已失效节点计数；本轮新增节点不得在本轮继续触发。",
+    "constraints": [
+      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "链上阈值1的种子逐轮传播；阈值2和零种子给出无继发失效的边界。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    n: int,\n    edges: list[list[int]],\n    thresholds: list[int],\n    seeds: list[int],\n) -> list[list[int]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "n": 4,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "thresholds": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "seeds": [
+            0
+          ]
+        },
+        "expected": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "explanation": "链上阈值1的种子逐轮传播；阈值2和零种子给出无继发失效的边界。"
+      }
+    ]
+  },
+  {
+    "id": "p13-direct-vs-secondary",
+    "slug": "p13-direct-vs-secondary",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.2",
+    "lesson_id": "P13-C02-S01",
+    "title": "区分直接与继发失效",
+    "statement": "某链的第0轮 seeds={0}，后续第1轮新增{1}、第2轮新增{2}。哪项是正确记录？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数21",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "直接损伤1个，继发失效2个，累计失效3个。"
+      },
+      {
+        "id": "B",
+        "text": "直接损伤3个，继发失效0个。"
+      },
+      {
+        "id": "C",
+        "text": "累计失效是1+2+3=6个。"
+      },
+      {
+        "id": "D",
+        "text": "第2轮节点应在第0轮就失效。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-cascade-no-seed",
+    "slug": "p13-cascade-no-seed",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.2",
+    "lesson_id": "P13-C02-S01",
+    "title": "零种子的边界",
+    "statement": "阈值均为至少1个失效邻居，并且没有初始损伤。哪项正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数21",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "不会出现继发失效；返回仅含空第0轮。"
+      },
+      {
+        "id": "B",
+        "text": "全部节点立即失效。"
+      },
+      {
+        "id": "C",
+        "text": "只有度数最高的节点失效。"
+      },
+      {
+        "id": "D",
+        "text": "不能判断，因为网络结构未给出。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-cascade-is-not-contagion",
+    "slug": "p13-cascade-is-not-contagion",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.2",
+    "lesson_id": "P13-C02-S01",
+    "title": "阈值规则的含义",
+    "statement": "本章教学网络的节点因“已失效邻居数达到阈值”而失效。它能支持哪项解释？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数21",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "这是明示的负担或暴露代理规则，不能自动等同于真实疾病传播。"
+      },
+      {
+        "id": "B",
+        "text": "所有网络传播都服从这个阈值。"
+      },
+      {
+        "id": "C",
+        "text": "每个节点在同一轮可反复失效和恢复。"
+      },
+      {
+        "id": "D",
+        "text": "阈值越高，单调增加继发失效。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-largest-survivor",
+    "slug": "p13-largest-survivor",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.2",
+    "lesson_id": "P13-C02-S02",
+    "title": "计算剩余网络的功能代理",
+    "statement": "失效节点及其相邻边不再可用。返回剩余图最大连通分量（connected component）的节点数除以原节点数 n；这是本题定义的功能代理，不是所有真实网络的功能。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数21",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "n",
+        "type": "int",
+        "description": "原网络节点数。",
+        "unit": "节点"
+      },
+      {
+        "name": "edges",
+        "type": "list[list[int]]",
+        "description": "原无向边。",
+        "unit": "边"
+      },
+      {
+        "name": "failed",
+        "type": "list[int]",
+        "description": "已失效节点。",
+        "unit": "节点编号"
+      }
+    ],
+    "returns": [
+      {
+        "name": "fraction",
+        "type": "float",
+        "description": "最大剩余连通分量占原节点数的比例。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "失效节点不计入剩余分量；完全失效返回0；孤立剩余节点各自构成大小1的分量。",
+    "constraints": [
+      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "去掉链的内部节点后，最大剩余分量仍可能含多个节点；分母始终是原 n。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    n: int,\n    edges: list[list[int]],\n    failed: list[int],\n) -> float:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "n": 4,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "failed": [
+            1
+          ]
+        },
+        "expected": 0.5,
+        "explanation": "去掉链的内部节点后，最大剩余分量仍可能含多个节点；分母始终是原 n。"
+      }
+    ]
+  },
+  {
+    "id": "p13-connected-not-functional",
+    "slug": "p13-connected-not-functional",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.2",
+    "lesson_id": "P13-C02-S02",
+    "title": "连通不保证功能",
+    "statement": "一个剩余网络仍连通，但所有剩余节点的实际处理容量都降到需求以下。哪项成立？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数21",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "连通性代理仍可能为正，真实负载功能却可能失效。"
+      },
+      {
+        "id": "B",
+        "text": "连通就保证所有任务可完成。"
+      },
+      {
+        "id": "C",
+        "text": "最大分量比例必为0。"
+      },
+      {
+        "id": "D",
+        "text": "必须把所有节点恢复才能定义功能。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-control-one-factor",
+    "slug": "p13-control-one-factor",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.2",
+    "lesson_id": "P13-C02-S02",
+    "title": "区分结构和阈值",
+    "statement": "比较新增边和提高阈值两种干预对最终损失的影响，哪项设计最清楚？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数21",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "固定同一初始损伤和另一因素，分别只改变结构或阈值。"
+      },
+      {
+        "id": "B",
+        "text": "结构、阈值和种子都同时更换。"
+      },
+      {
+        "id": "C",
+        "text": "只比较两张图的视觉稠密程度。"
+      },
+      {
+        "id": "D",
+        "text": "把第0轮损伤也算作新增边的影响。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-threshold-monotonic",
+    "slug": "p13-threshold-monotonic",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.2",
+    "lesson_id": "P13-C02-S02",
+    "title": "提高阈值后的边界",
+    "statement": "在相同图与相同种子下，仅逐节点提高正整数阈值，以下哪项对本题不可逆同步规则成立？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数21",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "最终失效集合不会比原来更大。"
+      },
+      {
+        "id": "B",
+        "text": "最终失效集合一定严格缩小。"
+      },
+      {
+        "id": "C",
+        "text": "第0轮种子会自动减少。"
+      },
+      {
+        "id": "D",
+        "text": "最大连通分量（connected component）一定严格增大。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-recovery-trajectory",
+    "slug": "p13-recovery-trajectory",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.3",
+    "lesson_id": "P13-C03-S01",
+    "title": "计算扰动后的返回轨迹",
+    "statement": "模型（model） dx/dt=-rate*x*(1-x/boundary)，0 是稳定平衡（equilibrium），正 boundary 是吸引域（basin of attraction）边界。用显式 Euler 从 initial 更新 steps 次，返回包含初值（initial condition）的完整轨迹（trajectory）。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数09",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "rate",
+        "type": "float",
+        "description": "局部恢复率（local recovery rate），正数。",
+        "unit": "1/T"
+      },
+      {
+        "name": "boundary",
+        "type": "float",
+        "description": "正向吸引域边界，正数。",
+        "unit": "状态单位"
+      },
+      {
+        "name": "initial",
+        "type": "float",
+        "description": "正向初始扰动。",
+        "unit": "状态单位"
+      },
+      {
+        "name": "dt",
+        "type": "float",
+        "description": "时间步长（time step）。",
+        "unit": "T"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "更新步数。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "path",
+        "type": "list[float]",
+        "description": "每个时间点的状态（state）值，含初值。",
+        "unit": "状态单位"
+      }
+    ],
+    "contract": "按题定右端逐步更新；不要把局部线性指数解代替非线性有限扰动轨迹。",
+    "constraints": [
+      "所有比较使用题定模型和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "小正扰动朝0返回；超过边界的正扰动先远离0，不能把局部速率外推至全域。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    rate: float,\n    boundary: float,\n    initial: float,\n    dt: float,\n    steps: int,\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "rate": 2.0,
+          "boundary": 1.0,
+          "initial": 0.2,
+          "dt": 0.1,
+          "steps": 2
+        },
+        "expected": [
+          0.2,
+          0.168,
+          0.1400448
+        ],
+        "explanation": "小正扰动朝0返回；超过边界的正扰动先远离0，不能把局部速率外推至全域。"
+      }
+    ]
+  },
+  {
+    "id": "p13-local-rate-vs-basin",
+    "slug": "p13-local-rate-vs-basin",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.3",
+    "lesson_id": "P13-C03-S01",
+    "title": "恢复率和吸引域不同",
+    "statement": "在 dx/dt=-rate*x*(1-x/boundary) 中，让 rate 固定而 boundary 从1改为2。哪项正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数09",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "0附近线性恢复率不变，正向吸引域（basin of attraction）边界改变。"
+      },
+      {
+        "id": "B",
+        "text": "局部恢复率（local recovery rate）翻倍。"
+      },
+      {
+        "id": "C",
+        "text": "所有超过原边界的扰动都仍不返回。"
+      },
+      {
+        "id": "D",
+        "text": "两个概念完全等价。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-finite-perturbation",
+    "slug": "p13-finite-perturbation",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.3",
+    "lesson_id": "P13-C03-S01",
+    "title": "有限扰动不能只看斜率",
+    "statement": "同一个稳定平衡（equilibrium）附近的线性化（linearization）给出恢复时间约1/rate。要判断 x0=1.4 是否返回，还需要什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数09",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "非线性方程及吸引域（basin of attraction）边界。"
+      },
+      {
+        "id": "B",
+        "text": "只知道 f'(0) 的符号。"
+      },
+      {
+        "id": "C",
+        "text": "只看采样（sampling）噪声方差（variance）。"
+      },
+      {
+        "id": "D",
+        "text": "假定所有稳定平衡吸引全空间。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-recovery-euler-step",
+    "slug": "p13-recovery-euler-step",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.3",
+    "lesson_id": "P13-C03-S01",
+    "title": "数值返回也需核验",
+    "statement": "用显式 Euler 估计恢复时，观察到某个过大步长产生交替穿越0的轨迹（trajectory）。哪项合适？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数09",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "减小步长并对照局部解析指数，再判断是否为模型（model）现象。"
+      },
+      {
+        "id": "B",
+        "text": "直接宣布系统有内在振荡。"
+      },
+      {
+        "id": "C",
+        "text": "只查看最后一个点的符号。"
+      },
+      {
+        "id": "D",
+        "text": "更换颜色即能消除数值误差（numerical error）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-past-window-indicators",
+    "slug": "p13-past-window-indicators",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.3",
+    "lesson_id": "P13-C03-S02",
+    "title": "只用过去窗口计算指标",
+    "statement": "在 time_index 时仅使用含当前样本在内的过去 window 个观测（observation），返回该窗总体方差（variance）和相隔 lag 个样本的 Pearson 相关。窗不足或任一配对序列恒定时，相关项返回 None。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数09",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "values",
+        "type": "list[float]",
+        "description": "按时间排列的观测序列。",
+        "unit": "观测单位"
+      },
+      {
+        "name": "time_index",
+        "type": "int",
+        "description": "当前可用观测的末索引。",
+        "unit": "样本编号"
+      },
+      {
+        "name": "window",
+        "type": "int",
+        "description": "过去窗口样本数。",
+        "unit": "样本"
+      },
+      {
+        "name": "lag",
+        "type": "int",
+        "description": "配对样本的索引差，介于1和window-1。",
+        "unit": "样本"
+      }
+    ],
+    "returns": [
+      {
+        "name": "indicators",
+        "type": "list[float | None]",
+        "description": "总体方差、指定滞后（lag）的 Pearson 相关；无法定义时为 None。",
+        "unit": "依输入单位²、无量纲"
+      }
+    ],
+    "contract": "配对片段各自中心化；不能读取 time_index 之后的样本。",
+    "constraints": [
+      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "第一个样例末尾的99是未来数据，必须忽略；恒定窗的相关系数分母为0，返回 None。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    values: list[float],\n    time_index: int,\n    window: int,\n    lag: int,\n) -> list[float | None]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "values": [
+            0.0,
+            1.0,
+            2.0,
+            3.0,
+            99.0
+          ],
+          "time_index": 3,
+          "window": 4,
+          "lag": 1
+        },
+        "expected": [
+          1.25,
+          1.0
+        ],
+        "explanation": "第一个样例末尾的99是未来数据，必须忽略；恒定窗的相关系数（correlation coefficient）分母为0，返回 None。"
+      }
+    ]
+  },
+  {
+    "id": "p13-ar1-warning-condition",
+    "slug": "p13-ar1-warning-condition",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.3",
+    "lesson_id": "P13-C03-S02",
+    "title": "慢化指标的条件",
+    "statement": "稳定 AR(1) x_{t+1}=rho*x_t+epsilon_t，噪声方差（variance）固定且 |rho|<1。rho 从0.5升至0.9时哪项成立？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数09",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "平稳方差 sigma²/(1-rho²) 增大，固定一步相关也增大。"
+      },
+      {
+        "id": "B",
+        "text": "方差必减小，因为恢复慢。"
+      },
+      {
+        "id": "C",
+        "text": "任何真实系统都将在同一时间转变。"
+      },
+      {
+        "id": "D",
+        "text": "rho 是临床效用而非动态参数（parameter）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-noise-control",
+    "slug": "p13-noise-control",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.3",
+    "lesson_id": "P13-C03-S02",
+    "title": "没有转变也能升方差",
+    "statement": "在 AR(1) 的 rho 保持0.7时，仅过程噪声（process noise）标准差（standard deviation）从0.2升至0.5。方差（variance）预警阈值触发可以说明什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数09",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "可能是噪声改变造成的误报（false alarm），应检查独立对照和事件（event）标签。"
+      },
+      {
+        "id": "B",
+        "text": "必然证明恢复率接近零。"
+      },
+      {
+        "id": "C",
+        "text": "必然证明跨过吸引域（basin of attraction）边界。"
+      },
+      {
+        "id": "D",
+        "text": "可以用未来样本重新计算过去时刻并仍称为实时预警。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-lag-physical-time",
+    "slug": "p13-lag-physical-time",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.3",
+    "lesson_id": "P13-C03-S02",
+    "title": "固定物理滞后",
+    "statement": "观测（observation）采样（sampling）间隔从1 T缩短到0.5 T。为了比较同一个1 T的自相关，应如何选择样本滞后（lag）？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数09",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "旧数据 lag=1，新数据 lag=2。"
+      },
+      {
+        "id": "B",
+        "text": "两个序列始终 lag=1。"
+      },
+      {
+        "id": "C",
+        "text": "只比较样本数，不管采样间隔。"
+      },
+      {
+        "id": "D",
+        "text": "新数据使用 lag=0。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-coarse-xor",
+    "slug": "p13-coarse-xor",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.4",
+    "lesson_id": "P13-C04-S01",
+    "title": "计算粗尺度与局部相关",
+    "statement": "一维周期二（period-two cycle）值环在下一步按左右旧邻居异或同步更新（synchronous update）。返回当前密度 p、左右邻居两点同为1的频率 c2，以及由二者精确得到的下一步密度。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "list[int]",
+        "description": "至少4格的周期二值状态（state）。",
+        "unit": "类别"
+      }
+    ],
+    "returns": [
+      {
+        "name": "features",
+        "type": "list[float]",
+        "description": "依次为 p、c2 和下一步密度。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "c2=(1/n)Σ_i state[(i-1)%n]*state[(i+1)%n]；下一步密度=2p-2c2。",
+    "constraints": [
+      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "两个四格初态密度同为0.5，但距离两格的相关量不同；仅看均值无法预测下一步。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: list[int],\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": [
+            1,
+            0,
+            1,
+            0
+          ]
+        },
+        "expected": [
+          0.5,
+          0.5,
+          0.0
+        ],
+        "explanation": "两个四格初态密度同为0.5，但距离两格的相关量不同；仅看均值无法预测下一步。"
+      }
+    ]
+  },
+  {
+    "id": "p13-same-average-different-structure",
+    "slug": "p13-same-average-different-structure",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.4",
+    "lesson_id": "P13-C04-S01",
+    "title": "相同均值并不封闭",
+    "statement": "二值环 1010 与 1100 的平均密度都为0.5，但局部异或下一步不同。遗漏了什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "局部排列或两点相关（two-point correlation）信息。"
+      },
+      {
+        "id": "B",
+        "text": "平均密度的单位。"
+      },
+      {
+        "id": "C",
+        "text": "Python 随机种子（random seed）。"
+      },
+      {
+        "id": "D",
+        "text": "序参量（order parameter）必须改成负数。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-scale-identifiability",
+    "slug": "p13-scale-identifiability",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.4",
+    "lesson_id": "P13-C04-S01",
+    "title": "粗观测能辨认什么",
+    "statement": "观测（observation）只记录每轮全环平均密度；两个不同微观排列给出同一当前密度。此刻能识别哪项？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "当前平均密度可识别，具体局部排列不可由这一值唯一恢复。"
+      },
+      {
+        "id": "B",
+        "text": "每格状态（state）都已被唯一确定。"
+      },
+      {
+        "id": "C",
+        "text": "未来密度必相同。"
+      },
+      {
+        "id": "D",
+        "text": "粗粒化（coarse-graining）自动减少模型结构（model structure）误差至零。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-pair-not-universal",
+    "slug": "p13-pair-not-universal",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.4",
+    "lesson_id": "P13-C04-S01",
+    "title": "相关量也有边界",
+    "statement": "对本节特定异或规则，p 与 c2 足以给出下一步全局密度。可以推出什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "这是针对该规则和该一步指标的精确闭合，不保证完整空间状态（state）闭合。"
+      },
+      {
+        "id": "B",
+        "text": "p 与 c2 决定任意规则下每格未来状态。"
+      },
+      {
+        "id": "C",
+        "text": "只要有两点相关（two-point correlation）就已证明生物机制。"
+      },
+      {
+        "id": "D",
+        "text": "此规则的边界条件不再重要。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-one-factor-contrasts",
+    "slug": "p13-one-factor-contrasts",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.4",
+    "lesson_id": "P13-C04-S02",
+    "title": "分项计算三种差异",
+    "statement": "给定同一评价指标的共同参考结果及只改变参数（parameter）、只改变观测（observation）处理、只改变模型结构（model structure）的三个结果。返回各自相对参考的有符号差，不把它们误称为独立方差（variance）贡献。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "reference",
+        "type": "float",
+        "description": "共同参考结果。",
+        "unit": "指标单位"
+      },
+      {
+        "name": "parameter_only",
+        "type": "float",
+        "description": "仅改变参数得到的结果。",
+        "unit": "指标单位"
+      },
+      {
+        "name": "observation_only",
+        "type": "float",
+        "description": "仅改变观测方式得到的结果。",
+        "unit": "指标单位"
+      },
+      {
+        "name": "structure_only",
+        "type": "float",
+        "description": "仅改变模型结构得到的结果。",
+        "unit": "指标单位"
+      }
+    ],
+    "returns": [
+      {
+        "name": "differences",
+        "type": "list[float]",
+        "description": "参数、观测、结构相对参考的有符号差。",
+        "unit": "指标单位"
+      }
+    ],
+    "contract": "三组差异都以同一 reference 为基线；交互效应未包含，不能把差异直接相加预测组合条件。",
+    "constraints": [
+      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "保持单位和共同参考一致；有符号差说明方向，不等于统计方差分解。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    reference: float,\n    parameter_only: float,\n    observation_only: float,\n    structure_only: float,\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "reference": 1.0,
+          "parameter_only": 1.2,
+          "observation_only": 0.8,
+          "structure_only": 1.5
+        },
+        "expected": [
+          0.19999999999999996,
+          -0.19999999999999996,
+          0.5
+        ],
+        "explanation": "保持单位和共同参考一致；有符号差说明方向，不等于统计方差分解。"
+      }
+    ]
+  },
+  {
+    "id": "p13-uncertainty-sources",
+    "slug": "p13-uncertainty-sources",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.4",
+    "lesson_id": "P13-C04-S02",
+    "title": "不要混合不确定性来源",
+    "statement": "参数（parameter）范围变化、观测（observation）降采样（sampling）和替代网络结构都改变最终预测。哪项报告最有信息？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "分别列出各单因素对照、共同指标和范围，再说明可能存在交互。"
+      },
+      {
+        "id": "B",
+        "text": "把三者简单加总并叫作唯一随机误差。"
+      },
+      {
+        "id": "C",
+        "text": "只报告最大的一条轨迹（trajectory）。"
+      },
+      {
+        "id": "D",
+        "text": "把观测差异解释为参数因果效应。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-ranking-reversal",
+    "slug": "p13-ranking-reversal",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.4",
+    "lesson_id": "P13-C04-S02",
+    "title": "尺度变化时排序可能反转",
+    "statement": "两个干预 A、B 在粗尺度得分为0.8、0.7，在细尺度得分为0.4、0.6（均为越高越好）。哪项正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "粗尺度 A 优，细尺度 B 优，存在排序反转（ranking reversal）。"
+      },
+      {
+        "id": "B",
+        "text": "两个尺度都 A 优。"
+      },
+      {
+        "id": "C",
+        "text": "排序反转证明 A 在所有条件下无效。"
+      },
+      {
+        "id": "D",
+        "text": "只要粗尺度 A 优就可忽略细尺度。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-sensitivity-range",
+    "slug": "p13-sensitivity-range",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.4",
+    "lesson_id": "P13-C04-S02",
+    "title": "敏感性有声明范围",
+    "statement": "在参数（parameter） theta∈[0.9,1.1] 内，输出（output）变化至多0.03。能推出哪项？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "这只证明指定模型（model）、指标和范围内的数值稳定。"
+      },
+      {
+        "id": "B",
+        "text": "所有 theta 和所有模型都稳定。"
+      },
+      {
+        "id": "C",
+        "text": "观测（observation）误差自动为零。"
+      },
+      {
+        "id": "D",
+        "text": "干预在现实中必有效。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-capstone-finite-claim",
+    "slug": "p13-capstone-finite-claim",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.summary",
+    "lesson_id": "P13-SUMMARY",
+    "title": "有限规模的临界证据",
+    "statement": "三种规模各有重复轨迹（trajectory），有限观察窗中序参量（order parameter）曲线逐渐变陡。下一步最合适的结论是什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "报告规模、暂态（transient）、重复不确定性和模型（model）条件，再研究是否能支持极限（limit）论断。"
+      },
+      {
+        "id": "B",
+        "text": "曲线变陡自动证明普适临界指数（critical exponent）。"
+      },
+      {
+        "id": "C",
+        "text": "只选一条最平滑轨迹作为代表。"
+      },
+      {
+        "id": "D",
+        "text": "有限随机模型必须没有任何固定点（fixed point）参照。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-capstone-basin",
+    "slug": "p13-capstone-basin",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.summary",
+    "lesson_id": "P13-SUMMARY",
+    "title": "恢复速度与吸引域",
+    "statement": "两个系统在平衡（equilibrium）点附近的恢复率相同，一个正向吸引域（basin of attraction）边界为1，另一个为2；施加大小1.5的正扰动。哪项正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "小扰动恢复速度相同，但1.5扰动可能只在第二个系统返回。"
+      },
+      {
+        "id": "B",
+        "text": "两个系统对所有扰动的命运相同。"
+      },
+      {
+        "id": "C",
+        "text": "第二个系统局部恢复率（local recovery rate）必为两倍。"
+      },
+      {
+        "id": "D",
+        "text": "吸引域只能从方差（variance）一项直接读出。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p13-capstone-cascade",
+    "slug": "p13-capstone-cascade",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.summary",
+    "lesson_id": "P13-SUMMARY",
+    "title": "综合题：计算级联各轮",
+    "statement": "按题给无向网络与正整数阈值返回第0轮种子和各轮新增失效集合；不能把本轮新增节点立即纳入本轮邻居计数。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "n",
+        "type": "int",
+        "description": "原节点数。",
+        "unit": "节点"
+      },
+      {
+        "name": "edges",
+        "type": "list[list[int]]",
+        "description": "无向边。",
+        "unit": "边"
+      },
+      {
+        "name": "thresholds",
+        "type": "list[int]",
+        "description": "逐节点失效邻居数阈值，均至少1。",
+        "unit": "邻居"
+      },
+      {
+        "name": "seeds",
+        "type": "list[int]",
+        "description": "初始直接损伤。",
+        "unit": "节点编号"
+      }
+    ],
+    "returns": [
+      {
+        "name": "rounds",
+        "type": "list[list[int]]",
+        "description": "逐轮新增失效，含第0轮。",
+        "unit": "节点编号"
+      }
+    ],
+    "contract": "同步轮次与不可逆失败，结果升序且无重复节点。",
+    "constraints": [
+      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "直接损伤与继发失效分开；阈值高或无连接都可能阻断级联。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    n: int,\n    edges: list[list[int]],\n    thresholds: list[int],\n    seeds: list[int],\n) -> list[list[int]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "n": 5,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "thresholds": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "seeds": [
+            0
+          ]
+        },
+        "expected": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ]
+        ],
+        "explanation": "直接损伤与继发失效分开；阈值高或无连接都可能阻断级联。"
+      }
+    ]
+  },
+  {
+    "id": "p13-capstone-size-summary",
+    "slug": "p13-capstone-size-summary",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.summary",
+    "lesson_id": "P13-SUMMARY",
+    "title": "综合题：多次序参量摘要",
+    "statement": "按统一 burnin 对每条有符号序参量（order parameter）轨迹（trajectory）求尾窗 |m| 平均，再返回重复均值与重复间总体标准差（standard deviation）。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "paths",
+        "type": "list[list[float]]",
+        "description": "同一规模和参数（parameter）下的重复轨迹。",
+        "unit": "无量纲"
+      },
+      {
+        "name": "burnin",
+        "type": "int",
+        "description": "舍弃的起始点数。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "summary",
+        "type": "list[float]",
+        "description": "重复均值和重复间总体标准差。",
+        "unit": "无量纲"
+      }
+    ],
+    "contract": "必须先在每次重复内部汇总，不能先跨重复抵消正负号。",
+    "constraints": [
+      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "同等幅度的对称轨迹不会在绝对序参量中抵消。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    paths: list[list[float]],\n    burnin: int,\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "paths": [
+            [
+              0.0,
+              -0.6,
+              -0.4
+            ],
+            [
+              0.0,
+              0.6,
+              0.4
+            ]
+          ],
+          "burnin": 1
+        },
+        "expected": [
+          0.5,
+          0.0
+        ],
+        "explanation": "同等幅度的对称轨迹不会在绝对序参量中抵消。"
+      }
+    ]
+  },
+  {
+    "id": "p13-capstone-past-window",
+    "slug": "p13-capstone-past-window",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.summary",
+    "lesson_id": "P13-SUMMARY",
+    "title": "综合题：无未来信息的预警窗",
+    "statement": "只用 time_index 及其以前的 window 个观测（observation），求总体方差（variance）和相隔 lag 个样本的相关；无法定义的相关返回 None。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "values",
+        "type": "list[float]",
+        "description": "全部观测，可能含尚不可用的未来值。",
+        "unit": "观测单位"
+      },
+      {
+        "name": "time_index",
+        "type": "int",
+        "description": "当前末索引。",
+        "unit": "样本编号"
+      },
+      {
+        "name": "window",
+        "type": "int",
+        "description": "过去窗口宽度。",
+        "unit": "样本"
+      },
+      {
+        "name": "lag",
+        "type": "int",
+        "description": "滞后（lag）样本数。",
+        "unit": "样本"
+      }
+    ],
+    "returns": [
+      {
+        "name": "indicators",
+        "type": "list[float | None]",
+        "description": "方差和相关。",
+        "unit": "依输入单位²、无量纲"
+      }
+    ],
+    "contract": "窗口止于当前索引；未来极端值也不得改变当前结果。",
+    "constraints": [
+      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先固定评估时刻；恒定窗口相关分母为0，不能伪造零相关。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    values: list[float],\n    time_index: int,\n    window: int,\n    lag: int,\n) -> list[float | None]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "values": [
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            100.0
+          ],
+          "time_index": 3,
+          "window": 4,
+          "lag": 1
+        },
+        "expected": [
+          1.25,
+          1.0
+        ],
+        "explanation": "先固定评估时刻；恒定窗口相关分母为0，不能伪造零相关。"
+      }
+    ]
+  },
+  {
+    "id": "p13-capstone-uncertainty",
+    "slug": "p13-capstone-uncertainty",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.summary",
+    "lesson_id": "P13-SUMMARY",
+    "title": "综合题：不确定性单因素对照",
+    "statement": "在同一指标和单位下，分别只改变参数（parameter）、观测（observation）处理和结构，返回它们相对共同参考的有符号差。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "reference",
+        "type": "float",
+        "description": "参考场景指标。",
+        "unit": "指标单位"
+      },
+      {
+        "name": "parameter_only",
+        "type": "float",
+        "description": "仅改变参数的指标。",
+        "unit": "指标单位"
+      },
+      {
+        "name": "observation_only",
+        "type": "float",
+        "description": "仅改变观测处理的指标。",
+        "unit": "指标单位"
+      },
+      {
+        "name": "structure_only",
+        "type": "float",
+        "description": "仅改变模型结构（model structure）的指标。",
+        "unit": "指标单位"
+      }
+    ],
+    "returns": [
+      {
+        "name": "differences",
+        "type": "list[float]",
+        "description": "参数、观测和结构的三个有符号差。",
+        "unit": "指标单位"
+      }
+    ],
+    "contract": "三项都使用同一参考；无需假设它们独立可加。",
+    "constraints": [
+      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "分别报告来源；相加需要另外检验交互，而不是默认成立。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    reference: float,\n    parameter_only: float,\n    observation_only: float,\n    structure_only: float,\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "reference": 0.5,
+          "parameter_only": 0.6,
+          "observation_only": 0.4,
+          "structure_only": 0.9
+        },
+        "expected": [
+          0.09999999999999998,
+          -0.09999999999999998,
+          0.4
+        ],
+        "explanation": "分别报告来源；相加需要另外检验交互，而不是默认成立。"
+      }
+    ]
+  },
+  {
+    "id": "p13-capstone-alert-errors",
+    "slug": "p13-capstone-alert-errors",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.summary",
+    "lesson_id": "P13-SUMMARY",
+    "title": "综合题：误报和漏报",
+    "statement": "一个事件（event）在前 horizon 个离散时刻内至少有一次预警即算被检出；没有任何后续事件落入窗口的预警为误报（false alarm）。返回检出事件数、误报预警数、漏报（missed event）事件数。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "alert_times",
+        "type": "list[int]",
+        "description": "报警时刻，按集合语义去重。",
+        "unit": "时刻"
+      },
+      {
+        "name": "event_times",
+        "type": "list[int]",
+        "description": "真实转变时刻，按集合语义去重。",
+        "unit": "时刻"
+      },
+      {
+        "name": "horizon",
+        "type": "int",
+        "description": "报警后的预测窗口长度，正整数。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "counts",
+        "type": "list[int]",
+        "description": "检出事件、误报预警、漏报事件的个数。",
+        "unit": "个"
+      }
+    ],
+    "contract": "事件发生当刻的报警不算提前预警；一项报警可覆盖窗口内事件，但误报按报警次数计。",
+    "constraints": [
+      "所有比较使用题定模型（model）和相同单位；仅输出（output）函数返回值，不依赖外部文件。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先固定事件、时刻和窗口，再分开计事件级检出与报警级误报。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    alert_times: list[int],\n    event_times: list[int],\n    horizon: int,\n) -> list[int]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "alert_times": [
+            2,
+            4,
+            8
+          ],
+          "event_times": [
+            5,
+            12
+          ],
+          "horizon": 2
+        },
+        "expected": [
+          1,
+          2,
+          1
+        ],
+        "explanation": "先固定事件、时刻和窗口，再分开计事件级检出与报警级误报。"
+      }
+    ]
+  },
+  {
+    "id": "p13-capstone-scale-limit",
+    "slug": "p13-capstone-scale-limit",
+    "version": "1",
+    "part": "13",
+    "chapter": "13.summary",
+    "lesson_id": "P13-SUMMARY",
+    "title": "改变尺度后的韧性结论",
+    "statement": "某干预在一个有限网络上减少级联，却在粗尺度恢复指标上无改进，预警还出现误报（false alarm）。哪项结论有依据？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数24"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "分别报告指标、尺度和条件，不能把一种优势推广成全面韧性提升。"
+      },
+      {
+        "id": "B",
+        "text": "只要级联更少，就证明所有韧性指标提高。"
+      },
+      {
+        "id": "C",
+        "text": "误报可以从结果表中删除。"
+      },
+      {
+        "id": "D",
+        "text": "有限网络结果自动适用于任意结构和规模。"
+      }
+    ],
+    "constraints": []
+  }
+]

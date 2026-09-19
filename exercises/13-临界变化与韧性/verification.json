@@ -1,0 +1,1106 @@
+{
+  "p13-finite-order-summary": {
+    "cases": [
+      {
+        "arguments": {
+          "paths": [
+            [
+              0.0,
+              0.2,
+              -0.4
+            ],
+            [
+              0.0,
+              -0.4,
+              -0.2
+            ]
+          ],
+          "burnin": 1
+        },
+        "expected": [
+          0.30000000000000004,
+          0.0
+        ]
+      },
+      {
+        "arguments": {
+          "paths": [
+            [
+              1.0,
+              0.5,
+              0.25
+            ],
+            [
+              -1.0,
+              -0.5,
+              -0.25
+            ]
+          ],
+          "burnin": 1
+        },
+        "expected": [
+          0.375,
+          0.0
+        ]
+      },
+      {
+        "arguments": {
+          "paths": [
+            [
+              0.0,
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.5,
+              0.5
+            ]
+          ],
+          "burnin": 1
+        },
+        "expected": [
+          0.5,
+          0.0
+        ]
+      }
+    ],
+    "explanation": "先在重复内部取尾窗绝对值，再在重复之间汇总；不把一次轨迹的波动当成重复间不确定性。"
+  },
+  "p13-signed-vs-absolute": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "两个对称符号抵消，而绝对值保留偏离零的幅度。",
+      "B": "绝对值不会因符号对称而抵消。",
+      "C": "每个个体为 ±1 时 |m| 不超过1。",
+      "D": "有限时长与规模不能直接证明热力学极限（thermodynamic limit）。"
+    }
+  },
+  "p13-finite-fluctuation": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "磁化是 ±1 的平均，每项方差4r(1-r)，独立平均再除以 N。",
+      "B": "平均会使独立抽样方差按1/N缩小。",
+      "C": "确定的是条件期望（expectation），不是有限样本的下一步。",
+      "D": "忽略了 N 个独立抽样的平均。"
+    }
+  },
+  "p13-finite-evidence": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "结论严格限制在观测（observation）到的有限轨迹与规则。",
+      "B": "缺少规模、长时和极限（limit）分析。",
+      "C": "单次有限扫描不能提供精确阈值。",
+      "D": "两者适用对象和极限不同。"
+    }
+  },
+  "p13-deterministic-meanfield": {
+    "cases": [
+      {
+        "arguments": {
+          "beta": 0.0,
+          "start": 0.4,
+          "steps": 2
+        },
+        "expected": [
+          0.4,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "arguments": {
+          "beta": 1.2,
+          "start": 0.2,
+          "steps": 3
+        },
+        "expected": [
+          0.2,
+          0.23549574953849794,
+          0.2753050142817213,
+          0.31884962124176486
+        ]
+      },
+      {
+        "arguments": {
+          "beta": 0.8,
+          "start": -0.3,
+          "steps": 1
+        },
+        "expected": [
+          -0.3,
+          -0.23549574953849794
+        ]
+      }
+    ],
+    "explanation": "tanh(0)=0；零步情形不应自行更新。有限随机系统还存在抽样波动。"
+  },
+  "p13-meanfield-threshold": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "一维离散映射的局部幅度由 |beta| 决定；beta=1 是非双曲边界。",
+      "B": "有界性不等于局部稳定。",
+      "C": "斜率为1时需看非线性项。",
+      "D": "固定点参照不消除有限规模（finite size）与时长效应。"
+    }
+  },
+  "p13-size-comparison": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "这些条件会影响有限规模序参量（order parameter）和阈值读数。",
+      "B": "同时改变机制与窗口会混淆规模效应。",
+      "C": "选择极端轨迹（trajectory）会造成偏差。",
+      "D": "有限范围拟合不足以确立普适类。"
+    }
+  },
+  "p13-critical-language": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "分别说清模型对象与证据范围。",
+      "B": "有限规模曲线不能直接推出无限极限（limit）。",
+      "C": "它提供条件期望（expectation）参照，但不是全部随机证据。",
+      "D": "对称符号抵消时平均 |m| 很有用。"
+    }
+  },
+  "p13-cascade-rounds": {
+    "cases": [
+      {
+        "arguments": {
+          "n": 4,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "thresholds": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "seeds": [
+            0
+          ]
+        },
+        "expected": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "n": 4,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "thresholds": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "seeds": [
+            0
+          ]
+        },
+        "expected": [
+          [
+            0
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "n": 3,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "thresholds": [
+            1,
+            1,
+            1
+          ],
+          "seeds": []
+        },
+        "expected": [
+          []
+        ]
+      }
+    ],
+    "explanation": "链上阈值1的种子逐轮传播；阈值2和零种子给出无继发失效的边界。"
+  },
+  "p13-direct-vs-secondary": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "第0轮与后续各轮分开统计，累计集合去重。",
+      "B": "后两轮不是外生种子。",
+      "C": "累计数不能把已经失效的节点反复计数。",
+      "D": "同步规则只读取上一轮失效。"
+    }
+  },
+  "p13-cascade-no-seed": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "无人失效时每个节点见到的失效邻居数为0。",
+      "B": "至少1的正阈值未满足。",
+      "C": "度数不是本题的外生损伤。",
+      "D": "正阈值与零种子已足以判定此边界。"
+    }
+  },
+  "p13-cascade-is-not-contagion": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "同一图上的机制语义由更新规则决定。",
+      "B": "接触概率（probability）、恢复和负载重分配等机制不同。",
+      "C": "本题失效不可逆。",
+      "D": "更高阈值更难触发失效。"
+    }
+  },
+  "p13-largest-survivor": {
+    "cases": [
+      {
+        "arguments": {
+          "n": 4,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "failed": [
+            1
+          ]
+        },
+        "expected": 0.5
+      },
+      {
+        "arguments": {
+          "n": 4,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "failed": []
+        },
+        "expected": 1.0
+      },
+      {
+        "arguments": {
+          "n": 3,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "failed": [
+            0,
+            1,
+            2
+          ]
+        },
+        "expected": 0.0
+      }
+    ],
+    "explanation": "去掉链的内部节点后，最大剩余分量仍可能含多个节点；分母始终是原 n。"
+  },
+  "p13-connected-not-functional": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "连通与处理能力是不同指标。",
+      "B": "缺少容量与需求约束。",
+      "C": "剩余连通节点可使该比例大于0。",
+      "D": "可以先定义部分功能指标。"
+    }
+  },
+  "p13-control-one-factor": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "单因素对照才能分清各自作用。",
+      "B": "结果归因不清。",
+      "C": "视觉密度不是级联规则计算。",
+      "D": "第0轮种子是外生设定。"
+    }
+  },
+  "p13-threshold-monotonic": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "每一轮可用归纳证明更高阈值无法新增原条件之外的失败。",
+      "B": "原图没有继发失效时可保持相同。",
+      "C": "外生种子固定不变。",
+      "D": "可能保持不变。"
+    }
+  },
+  "p13-recovery-trajectory": {
+    "cases": [
+      {
+        "arguments": {
+          "rate": 2.0,
+          "boundary": 1.0,
+          "initial": 0.2,
+          "dt": 0.1,
+          "steps": 2
+        },
+        "expected": [
+          0.2,
+          0.168,
+          0.1400448
+        ]
+      },
+      {
+        "arguments": {
+          "rate": 1.0,
+          "boundary": 2.0,
+          "initial": 2.2,
+          "dt": 0.05,
+          "steps": 3
+        },
+        "expected": [
+          2.2,
+          2.2110000000000003,
+          2.222663025,
+          2.235035646817554
+        ]
+      },
+      {
+        "arguments": {
+          "rate": 1.0,
+          "boundary": 1.0,
+          "initial": 0.5,
+          "dt": 0.05,
+          "steps": 0
+        },
+        "expected": [
+          0.5
+        ]
+      }
+    ],
+    "explanation": "小正扰动朝0返回；超过边界的正扰动先远离0，不能把局部速率外推至全域。"
+  },
+  "p13-local-rate-vs-basin": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "f'(0)=-rate，不含 boundary；不稳定正平衡（equilibrium）在 boundary。",
+      "B": "rate 未变。",
+      "C": "在1和2之间的正扰动在新模型（model）里会返回。",
+      "D": "一个是局部斜率（slope），一个是有限扰动去向。"
+    }
+  },
+  "p13-finite-perturbation": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "有限扰动可能越过不稳定边界。",
+      "B": "局部斜率（slope）不能确定远处的去向。",
+      "C": "噪声不是本确定性有限扰动的判据。",
+      "D": "局部稳定不等于全局吸引。"
+    }
+  },
+  "p13-recovery-euler-step": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "数值不稳定可伪造振荡。",
+      "B": "一维自治连续模型不能仅凭大步长图形宣布振荡。",
+      "C": "末点不检验路径和步长。",
+      "D": "显示样式不能改变离散稳定性。"
+    }
+  },
+  "p13-past-window-indicators": {
+    "cases": [
+      {
+        "arguments": {
+          "values": [
+            0.0,
+            1.0,
+            2.0,
+            3.0,
+            99.0
+          ],
+          "time_index": 3,
+          "window": 4,
+          "lag": 1
+        },
+        "expected": [
+          1.25,
+          1.0
+        ]
+      },
+      {
+        "arguments": {
+          "values": [
+            1.0,
+            2.0,
+            1.0,
+            2.0,
+            1.0,
+            2.0
+          ],
+          "time_index": 5,
+          "window": 6,
+          "lag": 2
+        },
+        "expected": [
+          0.25,
+          1.0
+        ]
+      },
+      {
+        "arguments": {
+          "values": [
+            4.0,
+            4.0,
+            4.0,
+            4.0
+          ],
+          "time_index": 3,
+          "window": 4,
+          "lag": 1
+        },
+        "expected": [
+          0.0,
+          null
+        ]
+      }
+    ],
+    "explanation": "第一个样例末尾的99是未来数据，必须忽略；恒定窗的相关系数分母为0，返回 None。"
+  },
+  "p13-ar1-warning-condition": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "在该特定线性平稳模型（model）和固定噪声条件下成立。",
+      "B": "分母1-rho²变小。",
+      "C": "模型内指标趋势不是普遍预报。",
+      "D": "rho 是模型中的相关/恢复参数。"
+    }
+  },
+  "p13-noise-control": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "固定 rho 下平稳方差仍随噪声强度平方变化。",
+      "B": "rho 未改变。",
+      "C": "方差触发不直接定位吸引域。",
+      "D": "那会引入未来信息。"
+    }
+  },
+  "p13-lag-physical-time": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "同一物理时差是样本索引差乘采样间隔。",
+      "B": "新序列的一步仅0.5 T。",
+      "C": "相关时间尺度（time scale）被改变。",
+      "D": "零滞后（lag）相关恒为自身相关，不能代表1 T。"
+    }
+  },
+  "p13-coarse-xor": {
+    "cases": [
+      {
+        "arguments": {
+          "state": [
+            1,
+            0,
+            1,
+            0
+          ]
+        },
+        "expected": [
+          0.5,
+          0.5,
+          0.0
+        ]
+      },
+      {
+        "arguments": {
+          "state": [
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        "expected": [
+          0.5,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "arguments": {
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "expected": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    ],
+    "explanation": "两个四格初态密度同为0.5，但距离两格的相关量不同；仅看均值无法预测下一步。"
+  },
+  "p13-same-average-different-structure": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "异或下一步含左右邻居同时为1的联合项。",
+      "B": "两者单位与均值都相同。",
+      "C": "本实验是确定性同步规则。",
+      "D": "问题是状态（state）压缩的信息损失。"
+    }
+  },
+  "p13-scale-identifiability": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "多对一的观测映射丢失空间结构。",
+      "B": "多个排列有相同平均。",
+      "C": "局部规则可依赖遗漏的相关性。",
+      "D": "信息损失可能增加预测差异。"
+    }
+  },
+  "p13-pair-not-universal": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "全局一步统计不是完整微观未来。",
+      "B": "不同规则可能需要其他高阶或位置统计。",
+      "C": "数学闭合不等于实证机制证据。",
+      "D": "环规则的周期边界（periodic boundary）已进入 c2 定义。"
+    }
+  },
+  "p13-one-factor-contrasts": {
+    "cases": [
+      {
+        "arguments": {
+          "reference": 1.0,
+          "parameter_only": 1.2,
+          "observation_only": 0.8,
+          "structure_only": 1.5
+        },
+        "expected": [
+          0.19999999999999996,
+          -0.19999999999999996,
+          0.5
+        ]
+      },
+      {
+        "arguments": {
+          "reference": 0.0,
+          "parameter_only": 0.0,
+          "observation_only": 0.0,
+          "structure_only": 0.0
+        },
+        "expected": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "arguments": {
+          "reference": 2.0,
+          "parameter_only": 1.0,
+          "observation_only": 3.0,
+          "structure_only": 2.5
+        },
+        "expected": [
+          -1.0,
+          1.0,
+          0.5
+        ]
+      }
+    ],
+    "explanation": "保持单位和共同参考一致；有符号差说明方向，不等于统计方差分解。"
+  },
+  "p13-uncertainty-sources": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "这样能看清证据来源与适用范围。",
+      "B": "差异来源不同且可能非加性。",
+      "C": "忽略范围与机制。",
+      "D": "观测方式是独立变化来源。"
+    }
+  },
+  "p13-ranking-reversal": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "两种尺度下 A-B 的符号相反。",
+      "B": "细尺度 B 的0.6高于A的0.4。",
+      "C": "只说明所给两尺度证据不一致。",
+      "D": "需声明决策尺度和观测（observation）目标。"
+    }
+  },
+  "p13-sensitivity-range": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "范围外或结构变化需要另测。",
+      "B": "超出了试验域。",
+      "C": "参数扰动并未检验观测机制。",
+      "D": "模型敏感性不等于实证效果。"
+    }
+  },
+  "p13-capstone-finite-claim": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "有限证据应保留其边界。",
+      "B": "缺少有限规模（finite size）标度及极限核验。",
+      "C": "忽略重复波动。",
+      "D": "确定性参照可用于区分概念。"
+    }
+  },
+  "p13-capstone-basin": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "局部率与有限扰动能否返回是不同问题。",
+      "B": "边界不同。",
+      "C": "题设局部率相同。",
+      "D": "需检查确定性/随机动力学和扰动去向。"
+    }
+  },
+  "p13-capstone-cascade": {
+    "cases": [
+      {
+        "arguments": {
+          "n": 5,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "thresholds": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "seeds": [
+            0
+          ]
+        },
+        "expected": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "n": 4,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "thresholds": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "seeds": [
+            1
+          ]
+        },
+        "expected": [
+          [
+            1
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "n": 3,
+          "edges": [],
+          "thresholds": [
+            1,
+            1,
+            1
+          ],
+          "seeds": [
+            0
+          ]
+        },
+        "expected": [
+          [
+            0
+          ]
+        ]
+      }
+    ],
+    "explanation": "直接损伤与继发失效分开；阈值高或无连接都可能阻断级联。"
+  },
+  "p13-capstone-size-summary": {
+    "cases": [
+      {
+        "arguments": {
+          "paths": [
+            [
+              0.0,
+              -0.6,
+              -0.4
+            ],
+            [
+              0.0,
+              0.6,
+              0.4
+            ]
+          ],
+          "burnin": 1
+        },
+        "expected": [
+          0.5,
+          0.0
+        ]
+      },
+      {
+        "arguments": {
+          "paths": [
+            [
+              0.1,
+              0.2
+            ],
+            [
+              0.1,
+              0.8
+            ]
+          ],
+          "burnin": 1
+        },
+        "expected": [
+          0.5,
+          0.30000000000000004
+        ]
+      },
+      {
+        "arguments": {
+          "paths": [
+            [
+              -1.0,
+              -0.5,
+              0.0
+            ]
+          ],
+          "burnin": 0
+        },
+        "expected": [
+          0.5,
+          0.0
+        ]
+      }
+    ],
+    "explanation": "同等幅度的对称轨迹不会在绝对序参量中抵消。"
+  },
+  "p13-capstone-past-window": {
+    "cases": [
+      {
+        "arguments": {
+          "values": [
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            100.0
+          ],
+          "time_index": 3,
+          "window": 4,
+          "lag": 1
+        },
+        "expected": [
+          1.25,
+          1.0
+        ]
+      },
+      {
+        "arguments": {
+          "values": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "time_index": 3,
+          "window": 4,
+          "lag": 1
+        },
+        "expected": [
+          0.0,
+          null
+        ]
+      },
+      {
+        "arguments": {
+          "values": [
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          "time_index": 5,
+          "window": 6,
+          "lag": 2
+        },
+        "expected": [
+          0.25,
+          1.0
+        ]
+      }
+    ],
+    "explanation": "先固定评估时刻；恒定窗口相关分母为0，不能伪造零相关。"
+  },
+  "p13-capstone-uncertainty": {
+    "cases": [
+      {
+        "arguments": {
+          "reference": 0.5,
+          "parameter_only": 0.6,
+          "observation_only": 0.4,
+          "structure_only": 0.9
+        },
+        "expected": [
+          0.09999999999999998,
+          -0.09999999999999998,
+          0.4
+        ]
+      },
+      {
+        "arguments": {
+          "reference": 2.0,
+          "parameter_only": 2.0,
+          "observation_only": 2.0,
+          "structure_only": 2.0
+        },
+        "expected": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "arguments": {
+          "reference": -1.0,
+          "parameter_only": -1.5,
+          "observation_only": -0.5,
+          "structure_only": 0.0
+        },
+        "expected": [
+          -0.5,
+          0.5,
+          1.0
+        ]
+      }
+    ],
+    "explanation": "分别报告来源；相加需要另外检验交互，而不是默认成立。"
+  },
+  "p13-capstone-alert-errors": {
+    "cases": [
+      {
+        "arguments": {
+          "alert_times": [
+            2,
+            4,
+            8
+          ],
+          "event_times": [
+            5,
+            12
+          ],
+          "horizon": 2
+        },
+        "expected": [
+          1,
+          2,
+          1
+        ]
+      },
+      {
+        "arguments": {
+          "alert_times": [],
+          "event_times": [
+            6
+          ],
+          "horizon": 3
+        },
+        "expected": [
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "arguments": {
+          "alert_times": [
+            1,
+            1,
+            5
+          ],
+          "event_times": [],
+          "horizon": 2
+        },
+        "expected": [
+          0,
+          2,
+          0
+        ]
+      }
+    ],
+    "explanation": "先固定事件、时刻和窗口，再分开计事件级检出与报警级误报。"
+  },
+  "p13-capstone-scale-limit": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "级联、恢复和预警量化的是不同目标。",
+      "B": "题给的其他指标没有支持。",
+      "C": "删除会改变独立评价。",
+      "D": "需要跨结构与规模的验证。"
+    }
+  }
+}

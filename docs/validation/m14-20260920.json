@@ -1,0 +1,182 @@
+{
+  "stage": "M14：第13篇临界变化与韧性",
+  "date": "2026-09-20",
+  "status": "passed",
+  "scope": {
+    "chapters": [
+      "13.1",
+      "13.2",
+      "13.3",
+      "13.4"
+    ],
+    "body_notebooks": 8,
+    "capstone_notebooks": 1,
+    "questions": 40,
+    "choice": 27,
+    "python": 13,
+    "exploration_views": 3,
+    "exploration_path": "web/resilience/index.html",
+    "capstone_levels": [
+      20,
+      30,
+      30,
+      20
+    ]
+  },
+  "environment": {
+    "python": "3.13.2",
+    "platform": "Windows",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "nbclient": "0.11.0",
+      "nbformat": "5.11.1",
+      "nbconvert": "7.17.1",
+      "ipykernel": "7.3.0"
+    }
+  },
+  "notebooks": [
+    {
+      "id": "P13-C01-S01",
+      "path": "notebooks/13-临界变化与韧性/01-相变、临界性与有限规模/01-序参量与有限随机重复.ipynb",
+      "seconds": 3.13,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "1b74111c7fedda64b265f6d64517971673a3d69673096bc81597f32013f1b48c",
+      "passed": true
+    },
+    {
+      "id": "P13-C01-S02",
+      "path": "notebooks/13-临界变化与韧性/01-相变、临界性与有限规模/02-规模、暂态与阈值证据.ipynb",
+      "seconds": 3.43,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "3ea87b71932bb96afc05cbd28efe4403bf46cfe62bcddaa944bc4bb3a7c5951d",
+      "passed": true
+    },
+    {
+      "id": "P13-C02-S01",
+      "path": "notebooks/13-临界变化与韧性/02-级联失效与结构鲁棒性/01-从初始损伤到级联.ipynb",
+      "seconds": 2.51,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "e3db6fa70ab9c704328f3d378297911f40850d2c55edf32e7b38d149d53c03bc",
+      "passed": true
+    },
+    {
+      "id": "P13-C02-S02",
+      "path": "notebooks/13-临界变化与韧性/02-级联失效与结构鲁棒性/02-结构、阈值与剩余功能.ipynb",
+      "seconds": 2.77,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "af7d52a590d5c16952da6803131be8557720b191aa3fd4517adc53e33e274d90",
+      "passed": true
+    },
+    {
+      "id": "P13-C03-S01",
+      "path": "notebooks/13-临界变化与韧性/03-扰动、恢复与早期预警/01-局部恢复与吸引域.ipynb",
+      "seconds": 2.89,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "892c3eb48c163c0eb310ff567cf87acb893612cb1d9a519b8bb24d21347d2ae9",
+      "passed": true
+    },
+    {
+      "id": "P13-C03-S02",
+      "path": "notebooks/13-临界变化与韧性/03-扰动、恢复与早期预警/02-过去窗口与预警误差.ipynb",
+      "seconds": 2.81,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "19b4a7cca5b26ba86f63e5a88c6c1d41ca8a266bb16997f51c4ad2e5a86b89de",
+      "passed": true
+    },
+    {
+      "id": "P13-C04-S01",
+      "path": "notebooks/13-临界变化与韧性/04-多尺度、粗粒化与不确定性/01-同一均值的不同局部结构.ipynb",
+      "seconds": 2.47,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "9d18b10ea101d6999555e11164a6579708d31e03f9f7e9e2b8de708f54f11e32",
+      "passed": true
+    },
+    {
+      "id": "P13-C04-S02",
+      "path": "notebooks/13-临界变化与韧性/04-多尺度、粗粒化与不确定性/02-分解不确定性与排序反转.ipynb",
+      "seconds": 2.9,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "370f7e1e5f9ea2c7c353cc2b5878732aafd7f178c867759c5851261524ec5995",
+      "passed": true
+    },
+    {
+      "id": "P13-SUMMARY",
+      "path": "notebooks/13-临界变化与韧性/05-篇末综合/01-有限证据与韧性判断.ipynb",
+      "seconds": 3.04,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "b2d2667d801155cffe87b5e5c03f5623f052de822b9ba922093afa6c1f7e005b",
+      "passed": true
+    }
+  ],
+  "automated": {
+    "python_passed": 820,
+    "javascript_passed": 128,
+    "part13_python_tests": 22,
+    "part13_exploration_js_tests": 5,
+    "all_notebooks": 157,
+    "all_questions_and_links": 730,
+    "commands": [
+      "python tools/check_notebooks.py --part 13-临界变化与韧性 --work m14 --write",
+      "python tools/check_teaching.py --work m14",
+      "python -m pytest -q tools/tests",
+      "node --test"
+    ]
+  },
+  "independent_checks": [
+    "二值同步抽样的一步条件均值、方差及给定随机数更新分别核对；有限规模重复不用于声称普适临界指数。",
+    "阈值级联逐轮集合用小链手算，并在零种子、高阈值、链与星结构下核对；最大幸存分量仅作连通性代理。",
+    "恢复模型分别核对局部衰减率、有限扰动所处吸引域及步长误差，避免将短窗边界外增长外推。",
+    "过去窗口统计对未来样本不敏感；事件级报警、误报和漏报按固定提前窗核对。稳定 AR(1) 对照不宣称发生转变。",
+    "四节点异或规则枚举全部状态核对粗粒化反例；参数、观测和结构只作单因素对照，不冒充方差分解。",
+    "13 道具名参数 Python 题逐题通过真实判题器的样例、正式用例及错误答案检查。"
+  ],
+  "browser": {
+    "engine": "Codex In-app Browser；隔离端口8023、.work/m14/learning 记录和 IDE opener 注入；未修改个人学习记录",
+    "three_chapters": "13.1、13.2、13.3 实际加载图形和导航；各点击可逆预设两次，并点击重播观察“正在播放”状态",
+    "roundtrips": [
+      "13.1 有限规模与参数示例往返，序参量和条件方差读数随条件变化",
+      "13.2 阈值/结构示例往返，逐轮损伤和幸存连通性读数随条件变化",
+      "13.3 恢复边界示例往返；只增噪声时窗口方差约0.4266，高自相关对照约0.1297，说明方差上升不独立证明临界变慢"
+    ],
+    "ide_open": "13.3.2 默认 IDE 按钮返回已请求；测试 opener 收到本项目原始 .ipynb 绝对路径，文件存在",
+    "practice": "13.2.1 实际显示 def solve(n, edges, thresholds, seeds)；输入和输出样例均有解释表与代码；样例 1/1 不计进度，正式提交 3/3 正确"
+  },
+  "navigation": {
+    "planned_parts": 17,
+    "planned_chapters": 85,
+    "published_chapters": 64,
+    "graph_nodes": 627,
+    "graph_edges": 907,
+    "notebook_entry": "notebooks/13-临界变化与韧性/README.md"
+  },
+  "artifact_hashes": {
+    "docs/13-临界变化与韧性.md": "f2ad221d8b69b6345298308238e5f3d1744f2ca07bcd1d177d3e559a49491138",
+    "exercises/13-临界变化与韧性/questions.json": "6a2deb88a3281243c66f7e1e9d6378854bee6a5b117ecbc89283edd14074730d",
+    "exercises/13-临界变化与韧性/verification.json": "b3cf42dc5a84ddc1d0c2562ada61e2f3a976b859a160e8a6e27ce1ff05e53407",
+    "web/resilience/app.mjs": "78bdd9ccfc9dfe97ff7948f6f534ad7bf448b1baeb6324f63fc4e83cf4dc8a01",
+    "web/resilience/model.mjs": "c4a5911f271b11a3f5931bff5c70a4418f1e17173aefd0432a26fabd32583db5",
+    "web/course/catalog.json": "3c146548b599e1d28cd70cd6be525acf2496b1fa1e1cf00f6a983817d0e3ccee",
+    "web/home/graph.json": "328da558898053ad701a59ed8fb5ae7cc9c73f6657cb66dcca04d486cdc2c74b"
+  },
+  "preservation": {
+    "AGENTS_unchanged": true,
+    "external_data_generator_imported": false,
+    "simulation_data_added": false,
+    "new_runtime_dependencies": []
+  },
+  "limits": [
+    "有限规模、阈值级联、恢复与预警均为明确假设下的教学模型；网页图像和计算不构成生物系统普适规律或因果证据。",
+    "验收环境为 Windows/Python 3.13 与 PC 本机浏览器；未开展目标读者试学、独立同行评审或默认 IDE 内部渲染检查。"
+  ],
+  "next_stage": "M15：第14篇数据驱动动力学与模型降阶"
+}

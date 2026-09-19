@@ -6566,7 +6566,7 @@
           "id": "11.3",
           "title": "接触结构与传播",
           "url": "/chapters/11-03-接触结构与传播/",
-          "goals": "定义个体状态（state）和接触传播规则，比较平均混合（homogeneous mixing）与网络模型（model），说明初始位置及有限规模影响。",
+          "goals": "定义个体状态（state）和接触传播规则，比较平均混合（homogeneous mixing）与网络模型（model），说明初始位置及有限规模（finite size）影响。",
           "prerequisites": "11.2、5.4；数学：随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布（distribution）、图、邻接矩阵（adjacency matrix）、图拉普拉斯（graph Laplacian）、图谱与连通性。",
           "knowledge": [
             "状态转移和接触定义",
@@ -7384,66 +7384,448 @@
           "title": "相变、临界性与有限规模",
           "url": "/chapters/13-01-相变、临界性与有限规模/",
           "goals": "选择可测量的序参量（order parameter），对有限系统的变化给出规模与统计证据，不把一次突变当作相变证明。",
-          "prerequisites": "12.5、4.3、6.4；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、序参量、尺度关系、有限规模比较与不确定性评估。",
+          "prerequisites": "12.5、4.3、6.4；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、序参量、尺度关系、有限规模（finite size）比较与不确定性评估。",
           "knowledge": [
             "回顾分岔（bifurcation）与群体行为",
             "序参量、波动和尺度关系的含义",
             "系统规模、观察时长及重复实验对阈值判断的影响"
           ],
-          "focus": "尺度比较包含重复次数和不确定性；拟合一条尺度直线不能单独证明普适指数，未验证的无限规模结论明确留作开放问题。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "focus": "条件矩和单步抽样可手算；尺度比较报告暂态（transient）、重复次数和波动。平均映射的局部边界不等于有限系统的精确相变点，更不能单独证明普适指数。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P13-C01-S01",
+              "chapter_id": "13.1",
+              "number": "13.1.1",
+              "title": "序参量与有限随机重复",
+              "outcome": "定义有符号和绝对序参量，按规模和重复汇总结果。",
+              "path": "notebooks/13-临界变化与韧性/01-相变、临界性与有限规模/01-序参量与有限随机重复.ipynb",
+              "visualization": "web/resilience/index.html",
+              "questions": [
+                {
+                  "id": "p13-finite-order-summary",
+                  "slug": "p13-finite-order-summary",
+                  "title": "汇总有限系统的序参量",
+                  "type": "python"
+                },
+                {
+                  "id": "p13-signed-vs-absolute",
+                  "slug": "p13-signed-vs-absolute",
+                  "title": "为何区分有符号和绝对序参量",
+                  "type": "choice"
+                },
+                {
+                  "id": "p13-finite-fluctuation",
+                  "slug": "p13-finite-fluctuation",
+                  "title": "有限系统仍会波动",
+                  "type": "choice"
+                },
+                {
+                  "id": "p13-finite-evidence",
+                  "slug": "p13-finite-evidence",
+                  "title": "一次突变代表什么",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-finite-order-summary"
+            },
+            {
+              "id": "P13-C01-S02",
+              "chapter_id": "13.1",
+              "number": "13.1.2",
+              "title": "规模、暂态与阈值证据",
+              "outcome": "比较有限规模曲线与确定性固定点，不把拟合阈值当作普适定律。",
+              "path": "notebooks/13-临界变化与韧性/01-相变、临界性与有限规模/02-规模、暂态与阈值证据.ipynb",
+              "visualization": "web/resilience/index.html",
+              "questions": [
+                {
+                  "id": "p13-deterministic-meanfield",
+                  "slug": "p13-deterministic-meanfield",
+                  "title": "计算平均场固定点迭代",
+                  "type": "python"
+                },
+                {
+                  "id": "p13-meanfield-threshold",
+                  "slug": "p13-meanfield-threshold",
+                  "title": "固定点失稳条件",
+                  "type": "choice"
+                },
+                {
+                  "id": "p13-size-comparison",
+                  "slug": "p13-size-comparison",
+                  "title": "怎样比较三个规模",
+                  "type": "choice"
+                },
+                {
+                  "id": "p13-critical-language",
+                  "slug": "p13-critical-language",
+                  "title": "分岔与相变语言",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-deterministic-meanfield"
+            }
+          ],
+          "visualization": "web/resilience/index.html"
         },
         {
           "id": "13.2",
           "title": "级联失效与结构鲁棒性",
           "url": "/chapters/13-02-级联失效与结构鲁棒性/",
-          "goals": "区分直接移除造成的损伤与规则传播造成的级联，解释容量、阈值与功能指标。",
-          "prerequisites": "13.1、11.3；数学：图、邻接矩阵（adjacency matrix）、图拉普拉斯（graph Laplacian）、图谱与连通性、序参量（order parameter）、尺度关系、有限规模比较与不确定性评估。",
+          "goals": "区分直接移除造成的损伤与阈值规则传播造成的级联，解释结构、阈值与连通性代理。",
+          "prerequisites": "13.1、11.3；数学：图、邻接矩阵（adjacency matrix）、图拉普拉斯（graph Laplacian）、图谱与连通性、序参量（order parameter）、尺度关系、有限规模（finite size）比较与不确定性评估。",
           "knowledge": [
-            "节点或边失效及功能定义",
-            "阈值/负载规则与级联更新",
-            "随机和定向损伤、容量与网络结构的对照"
+            "节点失效及同步更新（synchronous update）",
+            "正整数邻居阈值与逐轮级联",
+            "固定种子和边数时比较链与星，再单独改变阈值"
           ],
-          "focus": "零初始损伤、无级联规则和高容量条件有预期边界结果；失效节点不能在同一规则中无说明地恢复或重复计数。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "focus": "零初始损伤及高阈值有预期边界；失效节点不无故恢复或重复计数，连通性不能直接说明真实功能容量。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P13-C02-S01",
+              "chapter_id": "13.2",
+              "number": "13.2.1",
+              "title": "从初始损伤到级联",
+              "outcome": "按同步阈值规则记录直接损伤和各轮继发失效。",
+              "path": "notebooks/13-临界变化与韧性/02-级联失效与结构鲁棒性/01-从初始损伤到级联.ipynb",
+              "visualization": "web/resilience/index.html",
+              "questions": [
+                {
+                  "id": "p13-cascade-rounds",
+                  "slug": "p13-cascade-rounds",
+                  "title": "逐轮记录级联失效",
+                  "type": "python"
+                },
+                {
+                  "id": "p13-direct-vs-secondary",
+                  "slug": "p13-direct-vs-secondary",
+                  "title": "区分直接与继发失效",
+                  "type": "choice"
+                },
+                {
+                  "id": "p13-cascade-no-seed",
+                  "slug": "p13-cascade-no-seed",
+                  "title": "零种子的边界",
+                  "type": "choice"
+                },
+                {
+                  "id": "p13-cascade-is-not-contagion",
+                  "slug": "p13-cascade-is-not-contagion",
+                  "title": "阈值规则的含义",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-cascade-rounds"
+            },
+            {
+              "id": "P13-C02-S02",
+              "chapter_id": "13.2",
+              "number": "13.2.2",
+              "title": "结构、阈值与剩余功能",
+              "outcome": "分别改变连接和容忍阈值，比较级联与剩余连通功能。",
+              "path": "notebooks/13-临界变化与韧性/02-级联失效与结构鲁棒性/02-结构、阈值与剩余功能.ipynb",
+              "visualization": "web/resilience/index.html",
+              "questions": [
+                {
+                  "id": "p13-largest-survivor",
+                  "slug": "p13-largest-survivor",
+                  "title": "计算剩余网络的功能代理",
+                  "type": "python"
+                },
+                {
+                  "id": "p13-connected-not-functional",
+                  "slug": "p13-connected-not-functional",
+                  "title": "连通不保证功能",
+                  "type": "choice"
+                },
+                {
+                  "id": "p13-control-one-factor",
+                  "slug": "p13-control-one-factor",
+                  "title": "区分结构和阈值",
+                  "type": "choice"
+                },
+                {
+                  "id": "p13-threshold-monotonic",
+                  "slug": "p13-threshold-monotonic",
+                  "title": "提高阈值后的边界",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-largest-survivor"
+            }
+          ],
+          "visualization": "web/resilience/index.html"
         },
         {
           "id": "13.3",
           "title": "扰动、恢复与早期预警",
           "url": "/chapters/13-03-扰动、恢复与早期预警/",
-          "goals": "测量局部恢复率，区分恢复速度与吸引域（basin of attraction）大小，并评价方差（variance）、自相关等指标的条件和失败。",
-          "prerequisites": "13.2、4.5、6.5；数学：Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数（derivative）和局部适用区域、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模比较与不确定性评估、点到集合距离、紧集（compact set）直觉、不变集（invariant set）、吸引子（attractor）与吸引域。",
+          "goals": "测量局部恢复率（local recovery rate），区分恢复速度与吸引域（basin of attraction）大小，并评价方差（variance）、自相关等指标的条件和失败。",
+          "prerequisites": "13.2、4.5、6.5；数学：Lyapunov 函数（Lyapunov function）、沿轨迹（trajectory）导数（derivative）和局部适用区域、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模（finite size）比较与不确定性评估、点到集合距离、紧集（compact set）直觉、不变集（invariant set）、吸引子（attractor）与吸引域。",
           "knowledge": [
             "小扰动响应、线性化（linearization）与恢复时间",
             "有限扰动、吸引子与吸引域，区分回到长期集合和回到原时间相位（phase）",
-            "滑动窗口预警、趋势与观测影响、误报及漏报"
+            "滑动窗口预警、趋势与观测影响、误报（false alarm）及漏报（missed event）"
           ],
           "focus": "预测时刻不能使用未来数据；采样（sampling）变化时“滞后（lag）一步”不等于相同物理滞后；预警指标变化只支持所声明模型（model）与观测（observation）条件。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P13-C03-S01",
+              "chapter_id": "13.3",
+              "number": "13.3.1",
+              "title": "局部恢复与吸引域",
+              "outcome": "用小扰动速率与有限扰动返回区别两种韧性定义。",
+              "path": "notebooks/13-临界变化与韧性/03-扰动、恢复与早期预警/01-局部恢复与吸引域.ipynb",
+              "visualization": "web/resilience/index.html",
+              "questions": [
+                {
+                  "id": "p13-recovery-trajectory",
+                  "slug": "p13-recovery-trajectory",
+                  "title": "计算扰动后的返回轨迹",
+                  "type": "python"
+                },
+                {
+                  "id": "p13-local-rate-vs-basin",
+                  "slug": "p13-local-rate-vs-basin",
+                  "title": "恢复率和吸引域不同",
+                  "type": "choice"
+                },
+                {
+                  "id": "p13-finite-perturbation",
+                  "slug": "p13-finite-perturbation",
+                  "title": "有限扰动不能只看斜率",
+                  "type": "choice"
+                },
+                {
+                  "id": "p13-recovery-euler-step",
+                  "slug": "p13-recovery-euler-step",
+                  "title": "数值返回也需核验",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-recovery-trajectory"
+            },
+            {
+              "id": "P13-C03-S02",
+              "chapter_id": "13.3",
+              "number": "13.3.2",
+              "title": "过去窗口与预警误差",
+              "outcome": "仅用过去样本计算波动和指定时间间隔的相关，评估误报与漏报。",
+              "path": "notebooks/13-临界变化与韧性/03-扰动、恢复与早期预警/02-过去窗口与预警误差.ipynb",
+              "visualization": "web/resilience/index.html",
+              "questions": [
+                {
+                  "id": "p13-past-window-indicators",
+                  "slug": "p13-past-window-indicators",
+                  "title": "只用过去窗口计算指标",
+                  "type": "python"
+                },
+                {
+                  "id": "p13-ar1-warning-condition",
+                  "slug": "p13-ar1-warning-condition",
+                  "title": "慢化指标的条件",
+                  "type": "choice"
+                },
+                {
+                  "id": "p13-noise-control",
+                  "slug": "p13-noise-control",
+                  "title": "没有转变也能升方差",
+                  "type": "choice"
+                },
+                {
+                  "id": "p13-lag-physical-time",
+                  "slug": "p13-lag-physical-time",
+                  "title": "固定物理滞后",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-past-window-indicators"
+            }
+          ],
+          "visualization": "web/resilience/index.html"
         },
         {
           "id": "13.4",
           "title": "多尺度、粗粒化与不确定性",
           "url": "/chapters/13-04-多尺度、粗粒化与不确定性/",
-          "goals": "区分参数（parameter）、随机、观测（observation）和结构误差，比较个体、网络与平均模型（model）的结论是否一致。",
-          "prerequisites": "13.3、12.5、9.5；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模比较与不确定性评估。",
+          "goals": "识别粗粒化（coarse-graining）丢失的局部相关，区分参数（parameter）、观测（observation）和结构条件变化的影响及结论范围。",
+          "prerequisites": "13.3、12.5、9.5；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模（finite size）比较与不确定性评估。",
           "knowledge": [
-            "选择时间、空间与个体层级",
-            "参数敏感性与观测聚合",
-            "模型间差异、结论稳定范围与不可识别部分"
+            "局部状态（state）与平均密度",
+            "相关性和宏观闭合",
+            "分来源单因素对照与尺度排序"
           ],
-          "focus": "模型比较须使用一致指标、单位和条件；敏感性是所选扰动范围内的数值证据，范围外不自动成立。",
-          "available": false,
-          "lessons": [],
+          "focus": "模型（model）比较须使用一致指标、单位和条件；敏感性是所选扰动范围内的数值证据，范围外不自动成立。",
+          "available": true,
+          "lessons": [
+            {
+              "id": "P13-C04-S01",
+              "chapter_id": "13.4",
+              "number": "13.4.1",
+              "title": "同一均值的不同局部结构",
+              "outcome": "用密度与两点相关说明粗粒化后的信息损失。",
+              "path": "notebooks/13-临界变化与韧性/04-多尺度、粗粒化与不确定性/01-同一均值的不同局部结构.ipynb",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p13-coarse-xor",
+                  "slug": "p13-coarse-xor",
+                  "title": "计算粗尺度与局部相关",
+                  "type": "python"
+                },
+                {
+                  "id": "p13-same-average-different-structure",
+                  "slug": "p13-same-average-different-structure",
+                  "title": "相同均值并不封闭",
+                  "type": "choice"
+                },
+                {
+                  "id": "p13-scale-identifiability",
+                  "slug": "p13-scale-identifiability",
+                  "title": "粗观测能辨认什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p13-pair-not-universal",
+                  "slug": "p13-pair-not-universal",
+                  "title": "相关量也有边界",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-coarse-xor"
+            },
+            {
+              "id": "P13-C04-S02",
+              "chapter_id": "13.4",
+              "number": "13.4.2",
+              "title": "分解不确定性与排序反转",
+              "outcome": "在共同观测量下分项比较参数、观测和结构差异。",
+              "path": "notebooks/13-临界变化与韧性/04-多尺度、粗粒化与不确定性/02-分解不确定性与排序反转.ipynb",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p13-one-factor-contrasts",
+                  "slug": "p13-one-factor-contrasts",
+                  "title": "分项计算三种差异",
+                  "type": "python"
+                },
+                {
+                  "id": "p13-uncertainty-sources",
+                  "slug": "p13-uncertainty-sources",
+                  "title": "不要混合不确定性来源",
+                  "type": "choice"
+                },
+                {
+                  "id": "p13-ranking-reversal",
+                  "slug": "p13-ranking-reversal",
+                  "title": "尺度变化时排序可能反转",
+                  "type": "choice"
+                },
+                {
+                  "id": "p13-sensitivity-range",
+                  "slug": "p13-sensitivity-range",
+                  "title": "敏感性有声明范围",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-one-factor-contrasts"
+            }
+          ],
           "visualization": null
         }
-      ]
+      ],
+      "assessment": {
+        "id": "13.summary",
+        "assessment": true,
+        "title": "有限证据与韧性判断",
+        "url": "/parts/13-临界变化与韧性/综合练习/",
+        "goals": "先定义可观察指标和模型（model）规则，再比较临界、级联与恢复证据。",
+        "prerequisites": "本篇13.1—13.4；第4篇非线性、第11篇网络和第12篇群体模型。",
+        "focus": "有限规模（finite size）与重复、直接及继发失效、过去窗口、粗粒化（coarse-graining）不确定性。",
+        "knowledge": [
+          "序参量（order parameter）与规模",
+          "级联规则与剩余功能",
+          "恢复率与吸引域（basin of attraction）",
+          "预警与不确定性"
+        ],
+        "lessons": [
+          {
+            "id": "P13-SUMMARY",
+            "chapter_id": "13.summary",
+            "number": "篇末综合",
+            "title": "有限证据与韧性判断",
+            "outcome": "在有限规模、级联、恢复和多尺度证据中限定结论。",
+            "path": "notebooks/13-临界变化与韧性/05-篇末综合/01-有限证据与韧性判断.ipynb",
+            "visualization": null,
+            "overview": {
+              "goals": "先定义可观察指标和模型规则，再比较临界、级联与恢复证据。",
+              "prerequisites": "本篇13.1—13.4；第4篇非线性、第11篇网络和第12篇群体模型。",
+              "focus": "有限规模与重复、直接及继发失效、过去窗口、粗粒化不确定性。",
+              "knowledge": [
+                "序参量与规模",
+                "级联规则与剩余功能",
+                "恢复率与吸引域",
+                "预警与不确定性"
+              ]
+            },
+            "questions": [
+              {
+                "id": "p13-capstone-finite-claim",
+                "slug": "p13-capstone-finite-claim",
+                "title": "有限规模的临界证据",
+                "type": "choice"
+              },
+              {
+                "id": "p13-capstone-basin",
+                "slug": "p13-capstone-basin",
+                "title": "恢复速度与吸引域",
+                "type": "choice"
+              },
+              {
+                "id": "p13-capstone-cascade",
+                "slug": "p13-capstone-cascade",
+                "title": "综合题：计算级联各轮",
+                "type": "python"
+              },
+              {
+                "id": "p13-capstone-size-summary",
+                "slug": "p13-capstone-size-summary",
+                "title": "综合题：多次序参量摘要",
+                "type": "python"
+              },
+              {
+                "id": "p13-capstone-past-window",
+                "slug": "p13-capstone-past-window",
+                "title": "综合题：无未来信息的预警窗",
+                "type": "python"
+              },
+              {
+                "id": "p13-capstone-uncertainty",
+                "slug": "p13-capstone-uncertainty",
+                "title": "综合题：不确定性单因素对照",
+                "type": "python"
+              },
+              {
+                "id": "p13-capstone-alert-errors",
+                "slug": "p13-capstone-alert-errors",
+                "title": "综合题：误报和漏报",
+                "type": "python"
+              },
+              {
+                "id": "p13-capstone-scale-limit",
+                "slug": "p13-capstone-scale-limit",
+                "title": "改变尺度后的韧性结论",
+                "type": "choice"
+              }
+            ],
+            "url": "/parts/13-临界变化与韧性/综合练习/practice/?question=p13-capstone-finite-claim"
+          }
+        ],
+        "available": true,
+        "visualization": null
+      }
     },
     {
       "id": "14",
@@ -7519,7 +7901,7 @@
           "title": "噪声、外推与结构保持",
           "url": "/chapters/14-05-噪声、外推与结构保持/",
           "goals": "在共同协议下比较降阶与动力学发现，检查守恒、非负性（nonnegativity）、外推和噪声敏感性。",
-          "prerequisites": "14.4、13.4；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模比较与不确定性评估、正则化（regularization）、非光滑目标、近端更新与软阈值（soft thresholding）、奇异值分解（singular value decomposition，SVD）、截断、伪逆与低秩（rank）投影（projection）。",
+          "prerequisites": "14.4、13.4；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模（finite size）比较与不确定性评估、正则化（regularization）、非光滑目标、近端更新与软阈值（soft thresholding）、奇异值分解（singular value decomposition，SVD）、截断、伪逆与低秩（rank）投影（projection）。",
           "knowledge": [
             "对齐物理变量、采样（sampling）、数据量和预测时域，固定结构误差与数值误差（numerical error）的分项指标",
             "由多室交换的列和及符号条件检查候选线性模型（model）的守恒与非负性",
@@ -7750,7 +8132,7 @@
           "title": "研究问题与证据",
           "url": "/chapters/17-01-研究问题与证据/",
           "goals": "把论文主张转成有明确假设、对象、指标和证据范围的可复现问题。",
-          "prerequisites": "9.5、13.4、14.5、15.5、16.7；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模比较与不确定性评估。",
+          "prerequisites": "9.5、13.4、14.5、15.5、16.7；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模（finite size）比较与不确定性评估。",
           "knowledge": [
             "固定原论文及版本，区分方法定义、原实验结论与作者解释",
             "将原问题缩为普通 CPU 可运行的低维实验，声明缩减改变了哪些条件",
@@ -7782,7 +8164,7 @@
           "title": "消融、失效与结论边界",
           "url": "/chapters/17-03-消融、失效与结论边界/",
           "goals": "通过消融、重复和失效实验定位效果来源，区分统计波动与可支持的机制解释。",
-          "prerequisites": "17.2；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模比较与不确定性评估。",
+          "prerequisites": "17.2；数学：期望（expectation）、方差（variance）、协方差（covariance）、联合分布（distribution）、Gaussian 分布、最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模（finite size）比较与不确定性评估。",
           "knowledge": [
             "预先确定消融因素、配对场景和评价量，保持其他条件可比",
             "比较重复效果差和不确定性，保留全部失败与未复现结果",
@@ -7798,7 +8180,7 @@
           "title": "研究方法综合比较",
           "url": "/chapters/17-04-研究方法综合比较/",
           "goals": "把机制、推断和学习结果组织为可追溯比较，在新条件下判断结论仍成立的范围。",
-          "prerequisites": "17.3；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模比较与不确定性评估、神经网络、计算图、自动微分（automatic differentiation，AD）与反向传播（backpropagation）。",
+          "prerequisites": "17.3；数学：最小二乘、Gaussian 似然（likelihood）、残差（residual）、估计区间及重采样（resampling）入门、序参量（order parameter）、尺度关系、有限规模（finite size）比较与不确定性评估、神经网络、计算图、自动微分（automatic differentiation，AD）与反向传播（backpropagation）。",
           "knowledge": [
             "以三组贯穿案例整理观测（observation）条件、状态（state）/参数（parameter）问题及可选择的方法",
             "连接独立评估、预算、失效与不确定性，分别给出可以和不能支持的结论",

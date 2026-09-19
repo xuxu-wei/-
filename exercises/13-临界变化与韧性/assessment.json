@@ -1,0 +1,78 @@
+{
+  "version": "1",
+  "part": "13",
+  "lesson_id": "P13-SUMMARY",
+  "title": "有限证据与韧性判断",
+  "objectives": [
+    {
+      "id": "T1",
+      "title": "比较临界变化",
+      "review_url": "/chapters/13-01-相变、临界性与有限规模/"
+    },
+    {
+      "id": "T2",
+      "title": "拆分级联机制",
+      "review_url": "/chapters/13-02-级联失效与结构鲁棒性/"
+    },
+    {
+      "id": "T3",
+      "title": "评价恢复和预警",
+      "review_url": "/chapters/13-03-扰动、恢复与早期预警/"
+    },
+    {
+      "id": "T4",
+      "title": "解释尺度与误差",
+      "review_url": "/chapters/13-04-多尺度、粗粒化与不确定性/"
+    }
+  ],
+  "items": [
+    {
+      "question_id": "p13-capstone-finite-claim",
+      "level": 1,
+      "points": 10,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p13-capstone-basin",
+      "level": 1,
+      "points": 10,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p13-capstone-cascade",
+      "level": 2,
+      "points": 15,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p13-capstone-size-summary",
+      "level": 2,
+      "points": 15,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p13-capstone-past-window",
+      "level": 3,
+      "points": 15,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p13-capstone-uncertainty",
+      "level": 3,
+      "points": 15,
+      "objective": "T4"
+    },
+    {
+      "question_id": "p13-capstone-alert-errors",
+      "level": 4,
+      "points": 10,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p13-capstone-scale-limit",
+      "level": 4,
+      "points": 10,
+      "objective": "T4"
+    }
+  ]
+}

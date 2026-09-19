@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "f0cbdc9fed0488c6f1da312c7385c2a29d5df7918d875821a6a0ff0532aa06b4",
+    "catalogSha256": "3c146548b599e1d28cd70cd6be525acf2496b1fa1e1cf00f6a983817d0e3ccee",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -13973,7 +13973,7 @@
       "number": "11.3",
       "parentId": "11",
       "url": "/chapters/11-03-接触结构与传播/",
-      "description": "定义个体状态（state）和接触传播规则，比较平均混合（homogeneous mixing）与网络模型（model），说明初始位置及有限规模影响。",
+      "description": "定义个体状态（state）和接触传播规则，比较平均混合（homogeneous mixing）与网络模型（model），说明初始位置及有限规模（finite size）影响。",
       "categories": [
         "evolution",
         "regulation"
@@ -15489,12 +15489,55 @@
         "13.3",
         "13.4"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p13-finite-order-summary",
+        "p13-signed-vs-absolute",
+        "p13-finite-fluctuation",
+        "p13-finite-evidence",
+        "p13-deterministic-meanfield",
+        "p13-meanfield-threshold",
+        "p13-size-comparison",
+        "p13-critical-language",
+        "p13-cascade-rounds",
+        "p13-direct-vs-secondary",
+        "p13-cascade-no-seed",
+        "p13-cascade-is-not-contagion",
+        "p13-largest-survivor",
+        "p13-connected-not-functional",
+        "p13-control-one-factor",
+        "p13-threshold-monotonic",
+        "p13-recovery-trajectory",
+        "p13-local-rate-vs-basin",
+        "p13-finite-perturbation",
+        "p13-recovery-euler-step",
+        "p13-past-window-indicators",
+        "p13-ar1-warning-condition",
+        "p13-noise-control",
+        "p13-lag-physical-time",
+        "p13-coarse-xor",
+        "p13-same-average-different-structure",
+        "p13-scale-identifiability",
+        "p13-pair-not-universal",
+        "p13-one-factor-contrasts",
+        "p13-uncertainty-sources",
+        "p13-ranking-reversal",
+        "p13-sensitivity-range",
+        "p13-capstone-finite-claim",
+        "p13-capstone-basin",
+        "p13-capstone-cascade",
+        "p13-capstone-size-summary",
+        "p13-capstone-past-window",
+        "p13-capstone-uncertainty",
+        "p13-capstone-alert-errors",
+        "p13-capstone-scale-limit"
+      ],
+      "available": true,
+      "published": 4,
       "total": 4,
-      "assessmentIds": [],
-      "assessmentUrl": null,
+      "assessmentIds": [
+        "P13-SUMMARY"
+      ],
+      "assessmentUrl": "/parts/13-临界变化与韧性/综合练习/",
       "progressScope": "已发布篇章练习（含篇末综合）"
     },
     {
@@ -15510,112 +15553,201 @@
         "regulation"
       ],
       "children": [
-        "13.1:planned:1",
-        "13.1:planned:2",
-        "13.1:planned:3",
-        "13.1:planned:4"
+        "13.1.1:concept:1",
+        "13.1.1:concept:2",
+        "13.1.1:concept:3",
+        "13.1.2:concept:1",
+        "13.1.2:concept:2",
+        "13.1.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p13-finite-order-summary",
+        "p13-signed-vs-absolute",
+        "p13-finite-fluctuation",
+        "p13-finite-evidence",
+        "p13-deterministic-meanfield",
+        "p13-meanfield-threshold",
+        "p13-size-comparison",
+        "p13-critical-language"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "13.1:planned:1",
+      "id": "13.1.1:concept:1",
       "kind": "concept",
-      "title": "序参量",
-      "english": "order parameter",
-      "number": "13.1",
+      "title": "有符号磁化",
+      "english": null,
+      "number": "13.1.1",
       "parentId": "13.1",
-      "url": "/chapters/13-01-相变、临界性与有限规模/",
-      "description": "选择可测量的序参量（order parameter），对有限系统的变化给出规模与统计证据，不把一次突变当作相变证明。",
+      "url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-finite-order-summary",
+      "description": "定义有符号和绝对序参量，按规模和重复汇总结果。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p13-finite-order-summary",
+        "p13-signed-vs-absolute",
+        "p13-finite-fluctuation",
+        "p13-finite-evidence"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P13-C01-S01",
+      "lessonNumber": "13.1.1",
+      "lessonTitle": "序参量与有限随机重复",
       "chapterUrl": "/chapters/13-01-相变、临界性与有限规模/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "13.1:planned:2",
+      "id": "13.1.1:concept:2",
       "kind": "concept",
-      "title": "临界波动",
+      "title": "绝对序参量",
       "english": null,
-      "number": "13.1",
+      "number": "13.1.1",
       "parentId": "13.1",
-      "url": "/chapters/13-01-相变、临界性与有限规模/",
-      "description": "选择可测量的序参量（order parameter），对有限系统的变化给出规模与统计证据，不把一次突变当作相变证明。",
+      "url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-finite-order-summary",
+      "description": "定义有符号和绝对序参量，按规模和重复汇总结果。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p13-finite-order-summary",
+        "p13-signed-vs-absolute",
+        "p13-finite-fluctuation",
+        "p13-finite-evidence"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P13-C01-S01",
+      "lessonNumber": "13.1.1",
+      "lessonTitle": "序参量与有限随机重复",
       "chapterUrl": "/chapters/13-01-相变、临界性与有限规模/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "13.1:planned:3",
+      "id": "13.1.1:concept:3",
       "kind": "concept",
-      "title": "尺度关系",
+      "title": "重复间波动",
       "english": null,
-      "number": "13.1",
+      "number": "13.1.1",
       "parentId": "13.1",
-      "url": "/chapters/13-01-相变、临界性与有限规模/",
-      "description": "选择可测量的序参量（order parameter），对有限系统的变化给出规模与统计证据，不把一次突变当作相变证明。",
+      "url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-finite-order-summary",
+      "description": "定义有符号和绝对序参量，按规模和重复汇总结果。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p13-finite-order-summary",
+        "p13-signed-vs-absolute",
+        "p13-finite-fluctuation",
+        "p13-finite-evidence"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P13-C01-S01",
+      "lessonNumber": "13.1.1",
+      "lessonTitle": "序参量与有限随机重复",
       "chapterUrl": "/chapters/13-01-相变、临界性与有限规模/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "13.1:planned:4",
+      "id": "13.1.2:concept:1",
       "kind": "concept",
-      "title": "有限规模",
+      "title": "平均映射",
       "english": null,
-      "number": "13.1",
+      "number": "13.1.2",
       "parentId": "13.1",
-      "url": "/chapters/13-01-相变、临界性与有限规模/",
-      "description": "选择可测量的序参量（order parameter），对有限系统的变化给出规模与统计证据，不把一次突变当作相变证明。",
+      "url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-deterministic-meanfield",
+      "description": "比较有限规模曲线与确定性固定点，不把拟合阈值当作普适定律。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p13-deterministic-meanfield",
+        "p13-meanfield-threshold",
+        "p13-size-comparison",
+        "p13-critical-language"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P13-C01-S02",
+      "lessonNumber": "13.1.2",
+      "lessonTitle": "规模、暂态与阈值证据",
       "chapterUrl": "/chapters/13-01-相变、临界性与有限规模/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "13.1.2:concept:2",
+      "kind": "concept",
+      "title": "局部斜率",
+      "english": null,
+      "number": "13.1.2",
+      "parentId": "13.1",
+      "url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-deterministic-meanfield",
+      "description": "比较有限规模曲线与确定性固定点，不把拟合阈值当作普适定律。",
+      "categories": [
+        "evolution",
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p13-deterministic-meanfield",
+        "p13-meanfield-threshold",
+        "p13-size-comparison",
+        "p13-critical-language"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P13-C01-S02",
+      "lessonNumber": "13.1.2",
+      "lessonTitle": "规模、暂态与阈值证据",
+      "chapterUrl": "/chapters/13-01-相变、临界性与有限规模/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "13.1.2:concept:3",
+      "kind": "concept",
+      "title": "有限规模证据",
+      "english": null,
+      "number": "13.1.2",
+      "parentId": "13.1",
+      "url": "/chapters/13-01-相变、临界性与有限规模/practice/?question=p13-deterministic-meanfield",
+      "description": "比较有限规模曲线与确定性固定点，不把拟合阈值当作普适定律。",
+      "categories": [
+        "evolution",
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p13-deterministic-meanfield",
+        "p13-meanfield-threshold",
+        "p13-size-comparison",
+        "p13-critical-language"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P13-C01-S02",
+      "lessonNumber": "13.1.2",
+      "lessonTitle": "规模、暂态与阈值证据",
+      "chapterUrl": "/chapters/13-01-相变、临界性与有限规模/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "13.2",
@@ -15624,118 +15756,207 @@
       "number": "13.2",
       "parentId": "13",
       "url": "/chapters/13-02-级联失效与结构鲁棒性/",
-      "description": "区分直接移除造成的损伤与规则传播造成的级联，解释容量、阈值与功能指标。",
+      "description": "区分直接移除造成的损伤与阈值规则传播造成的级联，解释结构、阈值与连通性代理。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [
-        "13.2:planned:1",
-        "13.2:planned:2",
-        "13.2:planned:3",
-        "13.2:planned:4"
+        "13.2.1:concept:1",
+        "13.2.1:concept:2",
+        "13.2.1:concept:3",
+        "13.2.2:concept:1",
+        "13.2.2:concept:2",
+        "13.2.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p13-cascade-rounds",
+        "p13-direct-vs-secondary",
+        "p13-cascade-no-seed",
+        "p13-cascade-is-not-contagion",
+        "p13-largest-survivor",
+        "p13-connected-not-functional",
+        "p13-control-one-factor",
+        "p13-threshold-monotonic"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "13.2:planned:1",
+      "id": "13.2.1:concept:1",
       "kind": "concept",
-      "title": "阈值失效",
+      "title": "直接损伤",
       "english": null,
-      "number": "13.2",
+      "number": "13.2.1",
       "parentId": "13.2",
-      "url": "/chapters/13-02-级联失效与结构鲁棒性/",
-      "description": "区分直接移除造成的损伤与规则传播造成的级联，解释容量、阈值与功能指标。",
+      "url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-cascade-rounds",
+      "description": "按同步阈值规则记录直接损伤和各轮继发失效。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p13-cascade-rounds",
+        "p13-direct-vs-secondary",
+        "p13-cascade-no-seed",
+        "p13-cascade-is-not-contagion"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P13-C02-S01",
+      "lessonNumber": "13.2.1",
+      "lessonTitle": "从初始损伤到级联",
       "chapterUrl": "/chapters/13-02-级联失效与结构鲁棒性/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "13.2:planned:2",
+      "id": "13.2.1:concept:2",
       "kind": "concept",
-      "title": "级联更新",
+      "title": "同步失效",
       "english": null,
-      "number": "13.2",
+      "number": "13.2.1",
       "parentId": "13.2",
-      "url": "/chapters/13-02-级联失效与结构鲁棒性/",
-      "description": "区分直接移除造成的损伤与规则传播造成的级联，解释容量、阈值与功能指标。",
+      "url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-cascade-rounds",
+      "description": "按同步阈值规则记录直接损伤和各轮继发失效。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p13-cascade-rounds",
+        "p13-direct-vs-secondary",
+        "p13-cascade-no-seed",
+        "p13-cascade-is-not-contagion"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P13-C02-S01",
+      "lessonNumber": "13.2.1",
+      "lessonTitle": "从初始损伤到级联",
       "chapterUrl": "/chapters/13-02-级联失效与结构鲁棒性/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "13.2:planned:3",
+      "id": "13.2.1:concept:3",
       "kind": "concept",
-      "title": "定向损伤",
+      "title": "级联轮次",
       "english": null,
-      "number": "13.2",
+      "number": "13.2.1",
       "parentId": "13.2",
-      "url": "/chapters/13-02-级联失效与结构鲁棒性/",
-      "description": "区分直接移除造成的损伤与规则传播造成的级联，解释容量、阈值与功能指标。",
+      "url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-cascade-rounds",
+      "description": "按同步阈值规则记录直接损伤和各轮继发失效。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p13-cascade-rounds",
+        "p13-direct-vs-secondary",
+        "p13-cascade-no-seed",
+        "p13-cascade-is-not-contagion"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P13-C02-S01",
+      "lessonNumber": "13.2.1",
+      "lessonTitle": "从初始损伤到级联",
       "chapterUrl": "/chapters/13-02-级联失效与结构鲁棒性/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "13.2:planned:4",
+      "id": "13.2.2:concept:1",
       "kind": "concept",
-      "title": "结构鲁棒性",
+      "title": "网络结构",
       "english": null,
-      "number": "13.2",
+      "number": "13.2.2",
       "parentId": "13.2",
-      "url": "/chapters/13-02-级联失效与结构鲁棒性/",
-      "description": "区分直接移除造成的损伤与规则传播造成的级联，解释容量、阈值与功能指标。",
+      "url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-largest-survivor",
+      "description": "分别改变连接和容忍阈值，比较级联与剩余连通功能。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p13-largest-survivor",
+        "p13-connected-not-functional",
+        "p13-control-one-factor",
+        "p13-threshold-monotonic"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P13-C02-S02",
+      "lessonNumber": "13.2.2",
+      "lessonTitle": "结构、阈值与剩余功能",
       "chapterUrl": "/chapters/13-02-级联失效与结构鲁棒性/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "13.2.2:concept:2",
+      "kind": "concept",
+      "title": "失效阈值",
+      "english": null,
+      "number": "13.2.2",
+      "parentId": "13.2",
+      "url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-largest-survivor",
+      "description": "分别改变连接和容忍阈值，比较级联与剩余连通功能。",
+      "categories": [
+        "evolution",
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p13-largest-survivor",
+        "p13-connected-not-functional",
+        "p13-control-one-factor",
+        "p13-threshold-monotonic"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P13-C02-S02",
+      "lessonNumber": "13.2.2",
+      "lessonTitle": "结构、阈值与剩余功能",
+      "chapterUrl": "/chapters/13-02-级联失效与结构鲁棒性/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "13.2.2:concept:3",
+      "kind": "concept",
+      "title": "剩余连通功能",
+      "english": null,
+      "number": "13.2.2",
+      "parentId": "13.2",
+      "url": "/chapters/13-02-级联失效与结构鲁棒性/practice/?question=p13-largest-survivor",
+      "description": "分别改变连接和容忍阈值，比较级联与剩余连通功能。",
+      "categories": [
+        "evolution",
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p13-largest-survivor",
+        "p13-connected-not-functional",
+        "p13-control-one-factor",
+        "p13-threshold-monotonic"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P13-C02-S02",
+      "lessonNumber": "13.2.2",
+      "lessonTitle": "结构、阈值与剩余功能",
+      "chapterUrl": "/chapters/13-02-级联失效与结构鲁棒性/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "13.3",
@@ -15744,118 +15965,207 @@
       "number": "13.3",
       "parentId": "13",
       "url": "/chapters/13-03-扰动、恢复与早期预警/",
-      "description": "测量局部恢复率，区分恢复速度与吸引域（basin of attraction）大小，并评价方差（variance）、自相关等指标的条件和失败。",
+      "description": "测量局部恢复率（local recovery rate），区分恢复速度与吸引域（basin of attraction）大小，并评价方差（variance）、自相关等指标的条件和失败。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [
-        "13.3:planned:1",
-        "13.3:planned:2",
-        "13.3:planned:3",
-        "13.3:planned:4"
+        "13.3.1:concept:1",
+        "13.3.1:concept:2",
+        "13.3.1:concept:3",
+        "13.3.2:concept:1",
+        "13.3.2:concept:2",
+        "13.3.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p13-recovery-trajectory",
+        "p13-local-rate-vs-basin",
+        "p13-finite-perturbation",
+        "p13-recovery-euler-step",
+        "p13-past-window-indicators",
+        "p13-ar1-warning-condition",
+        "p13-noise-control",
+        "p13-lag-physical-time"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "13.3:planned:1",
+      "id": "13.3.1:concept:1",
       "kind": "concept",
-      "title": "恢复时间",
+      "title": "局部恢复率",
+      "english": "local recovery rate",
+      "number": "13.3.1",
+      "parentId": "13.3",
+      "url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-recovery-trajectory",
+      "description": "用小扰动速率与有限扰动返回区别两种韧性定义。",
+      "categories": [
+        "evolution",
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p13-recovery-trajectory",
+        "p13-local-rate-vs-basin",
+        "p13-finite-perturbation",
+        "p13-recovery-euler-step"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P13-C03-S01",
+      "lessonNumber": "13.3.1",
+      "lessonTitle": "局部恢复与吸引域",
+      "chapterUrl": "/chapters/13-03-扰动、恢复与早期预警/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "13.3.1:concept:2",
+      "kind": "concept",
+      "title": "有限扰动",
       "english": null,
-      "number": "13.3",
+      "number": "13.3.1",
       "parentId": "13.3",
-      "url": "/chapters/13-03-扰动、恢复与早期预警/",
-      "description": "测量局部恢复率，区分恢复速度与吸引域（basin of attraction）大小，并评价方差（variance）、自相关等指标的条件和失败。",
+      "url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-recovery-trajectory",
+      "description": "用小扰动速率与有限扰动返回区别两种韧性定义。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
-      "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
-      "chapterUrl": "/chapters/13-03-扰动、恢复与早期预警/",
-      "progressScope": "教学设计，尚无学习记录"
-    },
-    {
-      "id": "13.3:planned:2",
-      "kind": "concept",
-      "title": "吸引域",
-      "english": "basin of attraction",
-      "number": "13.3",
-      "parentId": "13.3",
-      "url": "/chapters/13-03-扰动、恢复与早期预警/",
-      "description": "测量局部恢复率，区分恢复速度与吸引域（basin of attraction）大小，并评价方差（variance）、自相关等指标的条件和失败。",
-      "categories": [
-        "evolution",
-        "regulation"
+      "questionIds": [
+        "p13-recovery-trajectory",
+        "p13-local-rate-vs-basin",
+        "p13-finite-perturbation",
+        "p13-recovery-euler-step"
       ],
-      "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P13-C03-S01",
+      "lessonNumber": "13.3.1",
+      "lessonTitle": "局部恢复与吸引域",
       "chapterUrl": "/chapters/13-03-扰动、恢复与早期预警/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "13.3:planned:3",
+      "id": "13.3.1:concept:3",
       "kind": "concept",
-      "title": "早期预警",
+      "title": "吸引域边界",
       "english": null,
-      "number": "13.3",
+      "number": "13.3.1",
       "parentId": "13.3",
-      "url": "/chapters/13-03-扰动、恢复与早期预警/",
-      "description": "测量局部恢复率，区分恢复速度与吸引域（basin of attraction）大小，并评价方差（variance）、自相关等指标的条件和失败。",
+      "url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-recovery-trajectory",
+      "description": "用小扰动速率与有限扰动返回区别两种韧性定义。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p13-recovery-trajectory",
+        "p13-local-rate-vs-basin",
+        "p13-finite-perturbation",
+        "p13-recovery-euler-step"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P13-C03-S01",
+      "lessonNumber": "13.3.1",
+      "lessonTitle": "局部恢复与吸引域",
       "chapterUrl": "/chapters/13-03-扰动、恢复与早期预警/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "13.3:planned:4",
+      "id": "13.3.2:concept:1",
+      "kind": "concept",
+      "title": "过去窗口",
+      "english": null,
+      "number": "13.3.2",
+      "parentId": "13.3",
+      "url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-past-window-indicators",
+      "description": "仅用过去样本计算波动和指定时间间隔的相关，评估误报与漏报。",
+      "categories": [
+        "evolution",
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p13-past-window-indicators",
+        "p13-ar1-warning-condition",
+        "p13-noise-control",
+        "p13-lag-physical-time"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P13-C03-S02",
+      "lessonNumber": "13.3.2",
+      "lessonTitle": "过去窗口与预警误差",
+      "chapterUrl": "/chapters/13-03-扰动、恢复与早期预警/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "13.3.2:concept:2",
+      "kind": "concept",
+      "title": "方差与相关",
+      "english": null,
+      "number": "13.3.2",
+      "parentId": "13.3",
+      "url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-past-window-indicators",
+      "description": "仅用过去样本计算波动和指定时间间隔的相关，评估误报与漏报。",
+      "categories": [
+        "evolution",
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p13-past-window-indicators",
+        "p13-ar1-warning-condition",
+        "p13-noise-control",
+        "p13-lag-physical-time"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P13-C03-S02",
+      "lessonNumber": "13.3.2",
+      "lessonTitle": "过去窗口与预警误差",
+      "chapterUrl": "/chapters/13-03-扰动、恢复与早期预警/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "13.3.2:concept:3",
       "kind": "concept",
       "title": "误报与漏报",
       "english": null,
-      "number": "13.3",
+      "number": "13.3.2",
       "parentId": "13.3",
-      "url": "/chapters/13-03-扰动、恢复与早期预警/",
-      "description": "测量局部恢复率，区分恢复速度与吸引域（basin of attraction）大小，并评价方差（variance）、自相关等指标的条件和失败。",
+      "url": "/chapters/13-03-扰动、恢复与早期预警/practice/?question=p13-past-window-indicators",
+      "description": "仅用过去样本计算波动和指定时间间隔的相关，评估误报与漏报。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p13-past-window-indicators",
+        "p13-ar1-warning-condition",
+        "p13-noise-control",
+        "p13-lag-physical-time"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P13-C03-S02",
+      "lessonNumber": "13.3.2",
+      "lessonTitle": "过去窗口与预警误差",
       "chapterUrl": "/chapters/13-03-扰动、恢复与早期预警/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "13.4",
@@ -15864,118 +16174,207 @@
       "number": "13.4",
       "parentId": "13",
       "url": "/chapters/13-04-多尺度、粗粒化与不确定性/",
-      "description": "区分参数（parameter）、随机、观测（observation）和结构误差，比较个体、网络与平均模型（model）的结论是否一致。",
+      "description": "识别粗粒化（coarse-graining）丢失的局部相关，区分参数（parameter）、观测（observation）和结构条件变化的影响及结论范围。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [
-        "13.4:planned:1",
-        "13.4:planned:2",
-        "13.4:planned:3",
-        "13.4:planned:4"
+        "13.4.1:concept:1",
+        "13.4.1:concept:2",
+        "13.4.1:concept:3",
+        "13.4.2:concept:1",
+        "13.4.2:concept:2",
+        "13.4.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p13-coarse-xor",
+        "p13-same-average-different-structure",
+        "p13-scale-identifiability",
+        "p13-pair-not-universal",
+        "p13-one-factor-contrasts",
+        "p13-uncertainty-sources",
+        "p13-ranking-reversal",
+        "p13-sensitivity-range"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "13.4:planned:1",
+      "id": "13.4.1:concept:1",
       "kind": "concept",
-      "title": "多尺度",
+      "title": "局部相关",
       "english": null,
-      "number": "13.4",
+      "number": "13.4.1",
       "parentId": "13.4",
-      "url": "/chapters/13-04-多尺度、粗粒化与不确定性/",
-      "description": "区分参数（parameter）、随机、观测（observation）和结构误差，比较个体、网络与平均模型（model）的结论是否一致。",
+      "url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-coarse-xor",
+      "description": "用密度与两点相关说明粗粒化后的信息损失。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p13-coarse-xor",
+        "p13-same-average-different-structure",
+        "p13-scale-identifiability",
+        "p13-pair-not-universal"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P13-C04-S01",
+      "lessonNumber": "13.4.1",
+      "lessonTitle": "同一均值的不同局部结构",
       "chapterUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "13.4:planned:2",
+      "id": "13.4.1:concept:2",
       "kind": "concept",
-      "title": "粗粒化",
-      "english": "coarse-graining",
-      "number": "13.4",
+      "title": "粗尺度密度",
+      "english": null,
+      "number": "13.4.1",
       "parentId": "13.4",
-      "url": "/chapters/13-04-多尺度、粗粒化与不确定性/",
-      "description": "区分参数（parameter）、随机、观测（observation）和结构误差，比较个体、网络与平均模型（model）的结论是否一致。",
+      "url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-coarse-xor",
+      "description": "用密度与两点相关说明粗粒化后的信息损失。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p13-coarse-xor",
+        "p13-same-average-different-structure",
+        "p13-scale-identifiability",
+        "p13-pair-not-universal"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P13-C04-S01",
+      "lessonNumber": "13.4.1",
+      "lessonTitle": "同一均值的不同局部结构",
       "chapterUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "13.4:planned:3",
+      "id": "13.4.1:concept:3",
       "kind": "concept",
-      "title": "参数敏感性",
+      "title": "闭合反例",
       "english": null,
-      "number": "13.4",
+      "number": "13.4.1",
       "parentId": "13.4",
-      "url": "/chapters/13-04-多尺度、粗粒化与不确定性/",
-      "description": "区分参数（parameter）、随机、观测（observation）和结构误差，比较个体、网络与平均模型（model）的结论是否一致。",
+      "url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-coarse-xor",
+      "description": "用密度与两点相关说明粗粒化后的信息损失。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p13-coarse-xor",
+        "p13-same-average-different-structure",
+        "p13-scale-identifiability",
+        "p13-pair-not-universal"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P13-C04-S01",
+      "lessonNumber": "13.4.1",
+      "lessonTitle": "同一均值的不同局部结构",
       "chapterUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "13.4:planned:4",
+      "id": "13.4.2:concept:1",
       "kind": "concept",
-      "title": "结论不确定性",
+      "title": "共同参考",
       "english": null,
-      "number": "13.4",
+      "number": "13.4.2",
       "parentId": "13.4",
-      "url": "/chapters/13-04-多尺度、粗粒化与不确定性/",
-      "description": "区分参数（parameter）、随机、观测（observation）和结构误差，比较个体、网络与平均模型（model）的结论是否一致。",
+      "url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-one-factor-contrasts",
+      "description": "在共同观测量下分项比较参数、观测和结构差异。",
       "categories": [
         "evolution",
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p13-one-factor-contrasts",
+        "p13-uncertainty-sources",
+        "p13-ranking-reversal",
+        "p13-sensitivity-range"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P13-C04-S02",
+      "lessonNumber": "13.4.2",
+      "lessonTitle": "分解不确定性与排序反转",
       "chapterUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "13.4.2:concept:2",
+      "kind": "concept",
+      "title": "单因素对照",
+      "english": null,
+      "number": "13.4.2",
+      "parentId": "13.4",
+      "url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-one-factor-contrasts",
+      "description": "在共同观测量下分项比较参数、观测和结构差异。",
+      "categories": [
+        "evolution",
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p13-one-factor-contrasts",
+        "p13-uncertainty-sources",
+        "p13-ranking-reversal",
+        "p13-sensitivity-range"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P13-C04-S02",
+      "lessonNumber": "13.4.2",
+      "lessonTitle": "分解不确定性与排序反转",
+      "chapterUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "13.4.2:concept:3",
+      "kind": "concept",
+      "title": "排序反转",
+      "english": "ranking reversal",
+      "number": "13.4.2",
+      "parentId": "13.4",
+      "url": "/chapters/13-04-多尺度、粗粒化与不确定性/practice/?question=p13-one-factor-contrasts",
+      "description": "在共同观测量下分项比较参数、观测和结构差异。",
+      "categories": [
+        "evolution",
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p13-one-factor-contrasts",
+        "p13-uncertainty-sources",
+        "p13-ranking-reversal",
+        "p13-sensitivity-range"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P13-C04-S02",
+      "lessonNumber": "13.4.2",
+      "lessonTitle": "分解不确定性与排序反转",
+      "chapterUrl": "/chapters/13-04-多尺度、粗粒化与不确定性/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "14",
@@ -22993,46 +23392,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "13.1:planned:1",
-      "target": "13.1:planned:2",
+      "source": "13.1.1:concept:1",
+      "target": "13.1.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "13.1:planned:1",
-      "target": "13.1:planned:3",
+      "source": "13.1.1:concept:1",
+      "target": "13.1.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "13.1:planned:1",
-      "target": "13.1:planned:4",
+      "source": "13.1.1:concept:2",
+      "target": "13.1.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "13.1:planned:2",
-      "target": "13.1:planned:3",
+      "source": "13.1.2:concept:1",
+      "target": "13.1.2:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "13.1:planned:2",
-      "target": "13.1:planned:4",
+      "source": "13.1.2:concept:1",
+      "target": "13.1.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "13.1:planned:3",
-      "target": "13.1:planned:4",
+      "source": "13.1.2:concept:2",
+      "target": "13.1.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "13.1.1:concept:3",
+      "target": "13.1.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "4.3",
@@ -23056,46 +23462,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "13.2:planned:1",
-      "target": "13.2:planned:2",
+      "source": "13.2.1:concept:1",
+      "target": "13.2.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "13.2:planned:1",
-      "target": "13.2:planned:3",
+      "source": "13.2.1:concept:1",
+      "target": "13.2.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "13.2:planned:1",
-      "target": "13.2:planned:4",
+      "source": "13.2.1:concept:2",
+      "target": "13.2.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "13.2:planned:2",
-      "target": "13.2:planned:3",
+      "source": "13.2.2:concept:1",
+      "target": "13.2.2:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "13.2:planned:2",
-      "target": "13.2:planned:4",
+      "source": "13.2.2:concept:1",
+      "target": "13.2.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "13.2:planned:3",
-      "target": "13.2:planned:4",
+      "source": "13.2.2:concept:2",
+      "target": "13.2.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "13.2.1:concept:3",
+      "target": "13.2.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "11.3",
@@ -23112,46 +23525,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "13.3:planned:1",
-      "target": "13.3:planned:2",
+      "source": "13.3.1:concept:1",
+      "target": "13.3.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "13.3:planned:1",
-      "target": "13.3:planned:3",
+      "source": "13.3.1:concept:1",
+      "target": "13.3.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "13.3:planned:1",
-      "target": "13.3:planned:4",
+      "source": "13.3.1:concept:2",
+      "target": "13.3.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "13.3:planned:2",
-      "target": "13.3:planned:3",
+      "source": "13.3.2:concept:1",
+      "target": "13.3.2:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "13.3:planned:2",
-      "target": "13.3:planned:4",
+      "source": "13.3.2:concept:1",
+      "target": "13.3.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "13.3:planned:3",
-      "target": "13.3:planned:4",
+      "source": "13.3.2:concept:2",
+      "target": "13.3.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "13.3.1:concept:3",
+      "target": "13.3.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "4.5",
@@ -23175,46 +23595,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "13.4:planned:1",
-      "target": "13.4:planned:2",
+      "source": "13.4.1:concept:1",
+      "target": "13.4.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "13.4:planned:1",
-      "target": "13.4:planned:3",
+      "source": "13.4.1:concept:1",
+      "target": "13.4.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "13.4:planned:1",
-      "target": "13.4:planned:4",
+      "source": "13.4.1:concept:2",
+      "target": "13.4.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "13.4:planned:2",
-      "target": "13.4:planned:3",
+      "source": "13.4.2:concept:1",
+      "target": "13.4.2:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "13.4:planned:2",
-      "target": "13.4:planned:4",
+      "source": "13.4.2:concept:1",
+      "target": "13.4.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "13.4:planned:3",
-      "target": "13.4:planned:4",
+      "source": "13.4.2:concept:2",
+      "target": "13.4.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "13.4.1:concept:3",
+      "target": "13.4.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "9.5",

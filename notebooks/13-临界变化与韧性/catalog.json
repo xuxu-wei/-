@@ -1,0 +1,94 @@
+[
+  {
+    "id": "P13-C01-S01",
+    "chapter_id": "13.1",
+    "number": "13.1.1",
+    "title": "序参量与有限随机重复",
+    "outcome": "定义有符号和绝对序参量，按规模和重复汇总结果。",
+    "path": "notebooks/13-临界变化与韧性/01-相变、临界性与有限规模/01-序参量与有限随机重复.ipynb",
+    "visualization": "web/resilience/index.html"
+  },
+  {
+    "id": "P13-C01-S02",
+    "chapter_id": "13.1",
+    "number": "13.1.2",
+    "title": "规模、暂态与阈值证据",
+    "outcome": "比较有限规模曲线与确定性固定点，不把拟合阈值当作普适定律。",
+    "path": "notebooks/13-临界变化与韧性/01-相变、临界性与有限规模/02-规模、暂态与阈值证据.ipynb",
+    "visualization": "web/resilience/index.html"
+  },
+  {
+    "id": "P13-C02-S01",
+    "chapter_id": "13.2",
+    "number": "13.2.1",
+    "title": "从初始损伤到级联",
+    "outcome": "按同步阈值规则记录直接损伤和各轮继发失效。",
+    "path": "notebooks/13-临界变化与韧性/02-级联失效与结构鲁棒性/01-从初始损伤到级联.ipynb",
+    "visualization": "web/resilience/index.html"
+  },
+  {
+    "id": "P13-C02-S02",
+    "chapter_id": "13.2",
+    "number": "13.2.2",
+    "title": "结构、阈值与剩余功能",
+    "outcome": "分别改变连接和容忍阈值，比较级联与剩余连通功能。",
+    "path": "notebooks/13-临界变化与韧性/02-级联失效与结构鲁棒性/02-结构、阈值与剩余功能.ipynb",
+    "visualization": "web/resilience/index.html"
+  },
+  {
+    "id": "P13-C03-S01",
+    "chapter_id": "13.3",
+    "number": "13.3.1",
+    "title": "局部恢复与吸引域",
+    "outcome": "用小扰动速率与有限扰动返回区别两种韧性定义。",
+    "path": "notebooks/13-临界变化与韧性/03-扰动、恢复与早期预警/01-局部恢复与吸引域.ipynb",
+    "visualization": "web/resilience/index.html"
+  },
+  {
+    "id": "P13-C03-S02",
+    "chapter_id": "13.3",
+    "number": "13.3.2",
+    "title": "过去窗口与预警误差",
+    "outcome": "仅用过去样本计算波动和指定时间间隔的相关，评估误报与漏报。",
+    "path": "notebooks/13-临界变化与韧性/03-扰动、恢复与早期预警/02-过去窗口与预警误差.ipynb",
+    "visualization": "web/resilience/index.html"
+  },
+  {
+    "id": "P13-C04-S01",
+    "chapter_id": "13.4",
+    "number": "13.4.1",
+    "title": "同一均值的不同局部结构",
+    "outcome": "用密度与两点相关说明粗粒化后的信息损失。",
+    "path": "notebooks/13-临界变化与韧性/04-多尺度、粗粒化与不确定性/01-同一均值的不同局部结构.ipynb",
+    "visualization": null
+  },
+  {
+    "id": "P13-C04-S02",
+    "chapter_id": "13.4",
+    "number": "13.4.2",
+    "title": "分解不确定性与排序反转",
+    "outcome": "在共同观测量下分项比较参数、观测和结构差异。",
+    "path": "notebooks/13-临界变化与韧性/04-多尺度、粗粒化与不确定性/02-分解不确定性与排序反转.ipynb",
+    "visualization": null
+  },
+  {
+    "id": "P13-SUMMARY",
+    "chapter_id": "13.summary",
+    "number": "篇末综合",
+    "title": "有限证据与韧性判断",
+    "outcome": "在有限规模、级联、恢复和多尺度证据中限定结论。",
+    "path": "notebooks/13-临界变化与韧性/05-篇末综合/01-有限证据与韧性判断.ipynb",
+    "visualization": null,
+    "overview": {
+      "goals": "先定义可观察指标和模型规则，再比较临界、级联与恢复证据。",
+      "prerequisites": "本篇13.1—13.4；第4篇非线性、第11篇网络和第12篇群体模型。",
+      "focus": "有限规模与重复、直接及继发失效、过去窗口、粗粒化不确定性。",
+      "knowledge": [
+        "序参量与规模",
+        "级联规则与剩余功能",
+        "恢复率与吸引域",
+        "预警与不确定性"
+      ]
+    }
+  }
+]
