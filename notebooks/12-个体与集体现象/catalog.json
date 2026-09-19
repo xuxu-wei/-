@@ -1,0 +1,112 @@
+[
+  {
+    "id": "P12-C01-S01",
+    "chapter_id": "12.1",
+    "number": "12.1.1",
+    "title": "邻域规则与同步更新",
+    "outcome": "定义二值局部规则并用双缓冲核对同步演化。",
+    "path": "notebooks/12-个体与集体现象/01-多主体模型与元胞自动机/01-邻域规则与同步更新.ipynb",
+    "visualization": "web/collective/index.html"
+  },
+  {
+    "id": "P12-C01-S02",
+    "chapter_id": "12.1",
+    "number": "12.1.2",
+    "title": "异步顺序与边界",
+    "outcome": "在同一更新预算下区分原地顺序和边界效应。",
+    "path": "notebooks/12-个体与集体现象/01-多主体模型与元胞自动机/02-异步顺序与边界.ipynb",
+    "visualization": "web/collective/index.html"
+  },
+  {
+    "id": "P12-C02-S01",
+    "chapter_id": "12.2",
+    "number": "12.2.1",
+    "title": "收益矩阵与复制动态",
+    "outcome": "从相遇收益推导频率变化并核对边界平衡。",
+    "path": "notebooks/12-个体与集体现象/02-合作与演化博弈/01-收益矩阵与复制动态.ipynb",
+    "visualization": "web/collective/index.html"
+  },
+  {
+    "id": "P12-C02-S02",
+    "chapter_id": "12.2",
+    "number": "12.2.2",
+    "title": "混合假设与空间合作",
+    "outcome": "比较相同收益规则在平均混合与局部邻域中的差异。",
+    "path": "notebooks/12-个体与集体现象/02-合作与演化博弈/02-混合假设与空间合作.ipynb",
+    "visualization": "web/collective/index.html"
+  },
+  {
+    "id": "P12-C03-S01",
+    "chapter_id": "12.3",
+    "number": "12.3.1",
+    "title": "中性漂变与有限种群",
+    "outcome": "由二项抽样解释漂变方差和规模效应。",
+    "path": "notebooks/12-个体与集体现象/03-选择、变异与适应/01-中性漂变与有限种群.ipynb",
+    "visualization": null
+  },
+  {
+    "id": "P12-C03-S02",
+    "chapter_id": "12.3",
+    "number": "12.3.2",
+    "title": "选择变异与机制消融",
+    "outcome": "分别启停选择与变异，区分期望频率和随机轨迹。",
+    "path": "notebooks/12-个体与集体现象/03-选择、变异与适应/02-选择变异与机制消融.ipynb",
+    "visualization": null
+  },
+  {
+    "id": "P12-C04-S01",
+    "chapter_id": "12.4",
+    "number": "12.4.1",
+    "title": "一维扩散与边界",
+    "outcome": "由邻格交换建立有限差分并检查质量与步长。",
+    "path": "notebooks/12-个体与集体现象/04-空间自组织与反应扩散/01-一维扩散与边界.ipynb",
+    "visualization": "web/collective/index.html"
+  },
+  {
+    "id": "P12-C04-S02",
+    "chapter_id": "12.4",
+    "number": "12.4.2",
+    "title": "双组分反应与模式证据",
+    "outcome": "检查均匀态和模态条件，分辨机制图案与数值伪影。",
+    "path": "notebooks/12-个体与集体现象/04-空间自组织与反应扩散/02-双组分反应与模式证据.ipynb",
+    "visualization": "web/collective/index.html"
+  },
+  {
+    "id": "P12-C05-S01",
+    "chapter_id": "12.5",
+    "number": "12.5.1",
+    "title": "从局部状态到密度",
+    "outcome": "构造密度与两点相关量，检验平均场闭合假设。",
+    "path": "notebooks/12-个体与集体现象/05-从局部规则到宏观描述/01-从局部状态到密度.ipynb",
+    "visualization": null
+  },
+  {
+    "id": "P12-C05-S02",
+    "chapter_id": "12.5",
+    "number": "12.5.2",
+    "title": "相关性与宏观闭合",
+    "outcome": "比较相同密度不同结构的下一步结果及信息损失。",
+    "path": "notebooks/12-个体与集体现象/05-从局部规则到宏观描述/02-相关性与宏观闭合.ipynb",
+    "visualization": null
+  },
+  {
+    "id": "P12-SUMMARY",
+    "chapter_id": "12.summary",
+    "number": "篇末综合",
+    "title": "局部规则与宏观近似",
+    "outcome": "在局部规则、演化和空间模型中检查宏观近似的条件。",
+    "path": "notebooks/12-个体与集体现象/06-篇末综合/01-局部规则与宏观近似.ipynb",
+    "visualization": null,
+    "overview": {
+      "goals": "先声明局部更新，再比较频率、空间与粗尺度结果。",
+      "prerequisites": "本篇12.1—12.5；第5篇概率与第11篇网络基础。",
+      "focus": "同步与异步、收益与抽样、空间步长、相关性与闭合。",
+      "knowledge": [
+        "局部规则与边界",
+        "复制动态及漂变",
+        "反应扩散",
+        "宏观密度与相关性"
+      ]
+    }
+  }
+]

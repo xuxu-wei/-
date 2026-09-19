@@ -1,0 +1,78 @@
+{
+  "version": "1",
+  "part": "12",
+  "lesson_id": "P12-SUMMARY",
+  "title": "局部规则与宏观近似",
+  "objectives": [
+    {
+      "id": "T1",
+      "title": "写清局部规则",
+      "review_url": "/chapters/11-01-多主体模型与元胞自动机/"
+    },
+    {
+      "id": "T2",
+      "title": "区分演化机制",
+      "review_url": "/chapters/11-02-合作与演化博弈/"
+    },
+    {
+      "id": "T3",
+      "title": "检查空间模拟",
+      "review_url": "/chapters/11-04-空间自组织与反应扩散/"
+    },
+    {
+      "id": "T4",
+      "title": "评价宏观近似",
+      "review_url": "/chapters/11-05-从局部规则到宏观描述/"
+    }
+  ],
+  "items": [
+    {
+      "question_id": "p12-capstone-neighborhood",
+      "level": 1,
+      "points": 10,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p12-capstone-mechanisms",
+      "level": 1,
+      "points": 10,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p12-capstone-ca",
+      "level": 2,
+      "points": 15,
+      "objective": "T1"
+    },
+    {
+      "question_id": "p12-capstone-replicator",
+      "level": 2,
+      "points": 15,
+      "objective": "T2"
+    },
+    {
+      "question_id": "p12-capstone-spatial-step",
+      "level": 3,
+      "points": 15,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p12-capstone-coarse-features",
+      "level": 3,
+      "points": 15,
+      "objective": "T4"
+    },
+    {
+      "question_id": "p12-capstone-pattern-proof",
+      "level": 4,
+      "points": 10,
+      "objective": "T3"
+    },
+    {
+      "question_id": "p12-capstone-new-scale",
+      "level": 4,
+      "points": 10,
+      "objective": "T4"
+    }
+  ]
+}

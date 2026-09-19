@@ -6841,23 +6841,96 @@
           "id": "12.1",
           "title": "多主体模型与元胞自动机",
           "url": "/chapters/12-01-多主体模型与元胞自动机/",
-          "goals": "把局部规则写成可复现程序，区分同步、随机顺序和异步更新。",
+          "goals": "把局部规则写成可复现程序，区分同步、随机顺序和异步更新（asynchronous update）。",
           "prerequisites": "11.1、5.4；数学：递推、有限求和和固定点（fixed point）代数、事件（event）、随机变量（random variable）、离散/连续分布（distribution）、抽样和 Monte Carlo、随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布。",
           "knowledge": [
             "个体状态（state）、邻域和转移",
-            "双缓冲同步更新与原地更新",
-            "更新次序、周期/固定边界和观测（observation）指标"
+            "双缓冲同步更新（synchronous update）与原地更新",
+            "更新次序、周期/固定边界（fixed boundary）和观测（observation）指标"
           ],
           "focus": "规则表与实现逐项对照；异步实验记录抽样和时间计量方式；动画相似不代表更新机制相同。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P12-C01-S01",
+              "chapter_id": "12.1",
+              "number": "12.1.1",
+              "title": "邻域规则与同步更新",
+              "outcome": "定义二值局部规则并用双缓冲核对同步演化。",
+              "path": "notebooks/12-个体与集体现象/01-多主体模型与元胞自动机/01-邻域规则与同步更新.ipynb",
+              "visualization": "web/collective/index.html",
+              "questions": [
+                {
+                  "id": "p12-ca-synchronous",
+                  "slug": "p12-ca-synchronous",
+                  "title": "按旧状态同步更新元胞",
+                  "type": "python"
+                },
+                {
+                  "id": "p12-old-state-buffer",
+                  "slug": "p12-old-state-buffer",
+                  "title": "为何需要双缓冲",
+                  "type": "choice"
+                },
+                {
+                  "id": "p12-periodic-single",
+                  "slug": "p12-periodic-single",
+                  "title": "单脉冲的周期结果",
+                  "type": "choice"
+                },
+                {
+                  "id": "p12-rule-definition",
+                  "slug": "p12-rule-definition",
+                  "title": "局部规则应声明什么",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-synchronous"
+            },
+            {
+              "id": "P12-C01-S02",
+              "chapter_id": "12.1",
+              "number": "12.1.2",
+              "title": "异步顺序与边界",
+              "outcome": "在同一更新预算下区分原地顺序和边界效应。",
+              "path": "notebooks/12-个体与集体现象/01-多主体模型与元胞自动机/02-异步顺序与边界.ipynb",
+              "visualization": "web/collective/index.html",
+              "questions": [
+                {
+                  "id": "p12-ca-trajectory",
+                  "slug": "p12-ca-trajectory",
+                  "title": "按指定顺序演化局部状态",
+                  "type": "python"
+                },
+                {
+                  "id": "p12-async-order",
+                  "slug": "p12-async-order",
+                  "title": "改变遍历顺序",
+                  "type": "choice"
+                },
+                {
+                  "id": "p12-fixed-boundary",
+                  "slug": "p12-fixed-boundary",
+                  "title": "固定边界的读值",
+                  "type": "choice"
+                },
+                {
+                  "id": "p12-update-budget",
+                  "slug": "p12-update-budget",
+                  "title": "公平比较的时间单位",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-trajectory"
+            }
+          ],
+          "visualization": "web/collective/index.html"
         },
         {
           "id": "12.2",
           "title": "合作与演化博弈",
           "url": "/chapters/12-02-合作与演化博弈/",
-          "goals": "从收益矩阵（matrix）计算频率依赖收益，推导两类型复制动态，解释个体模型（model）与平均描述的假设。",
+          "goals": "从收益矩阵（payoff matrix）计算频率依赖收益，推导两类型复制动态（replicator dynamics），解释个体模型（model）与平均描述的假设。",
           "prerequisites": "12.1、2.3；数学：一阶 ODE、初值（initial condition）、分离变量和指数解、收益矩阵、频率依赖与复制动态。",
           "knowledge": [
             "收益及其教学含义",
@@ -6865,24 +6938,170 @@
             "有限个体规则、混合假设与空间合作"
           ],
           "focus": "频率位于 [0, 1]，总频率为 1；收益是模型假设，不把某张收益表当成所有生物合作的定律。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P12-C02-S01",
+              "chapter_id": "12.2",
+              "number": "12.2.1",
+              "title": "收益矩阵与复制动态",
+              "outcome": "从相遇收益推导频率变化并核对边界平衡。",
+              "path": "notebooks/12-个体与集体现象/02-合作与演化博弈/01-收益矩阵与复制动态.ipynb",
+              "visualization": "web/collective/index.html",
+              "questions": [
+                {
+                  "id": "p12-payoff-replicator",
+                  "slug": "p12-payoff-replicator",
+                  "title": "由收益计算复制动态",
+                  "type": "python"
+                },
+                {
+                  "id": "p12-replicator-factor",
+                  "slug": "p12-replicator-factor",
+                  "title": "p(1−p) 从哪里来",
+                  "type": "choice"
+                },
+                {
+                  "id": "p12-payoff-not-birth",
+                  "slug": "p12-payoff-not-birth",
+                  "title": "收益不能直接当概率",
+                  "type": "choice"
+                },
+                {
+                  "id": "p12-equal-payoff",
+                  "slug": "p12-equal-payoff",
+                  "title": "内部不变点",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-payoff-replicator"
+            },
+            {
+              "id": "P12-C02-S02",
+              "chapter_id": "12.2",
+              "number": "12.2.2",
+              "title": "混合假设与空间合作",
+              "outcome": "比较相同收益规则在平均混合与局部邻域中的差异。",
+              "path": "notebooks/12-个体与集体现象/02-合作与演化博弈/02-混合假设与空间合作.ipynb",
+              "visualization": "web/collective/index.html",
+              "questions": [
+                {
+                  "id": "p12-spatial-payoffs",
+                  "slug": "p12-spatial-payoffs",
+                  "title": "计算局部相遇收益",
+                  "type": "python"
+                },
+                {
+                  "id": "p12-same-frequency-structure",
+                  "slug": "p12-same-frequency-structure",
+                  "title": "同频率不等于同相遇",
+                  "type": "choice"
+                },
+                {
+                  "id": "p12-payoff-vs-update",
+                  "slug": "p12-payoff-vs-update",
+                  "title": "收益不是完整演化规则",
+                  "type": "choice"
+                },
+                {
+                  "id": "p12-matched-spatial-game",
+                  "slug": "p12-matched-spatial-game",
+                  "title": "检验空间作用",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-spatial-payoffs"
+            }
+          ],
+          "visualization": "web/collective/index.html"
         },
         {
           "id": "12.3",
           "title": "选择、变异与适应",
           "url": "/chapters/12-03-选择、变异与适应/",
           "goals": "通过机制消融区分选择、随机漂变与变异，避免把适应叙述成预先设定的目标。",
-          "prerequisites": "12.2、5.4；数学：随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布（distribution）、收益矩阵（matrix）、频率依赖与复制动态。",
+          "prerequisites": "12.2、5.4；数学：随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布（distribution）、收益矩阵（payoff matrix）、频率依赖与复制动态（replicator dynamics）。",
           "knowledge": [
             "有限种群抽样与漂变",
             "加入选择及双向变异",
             "规模、固定/灭绝事件及确定性近似"
           ],
           "focus": "对应练习 方差（variance）为 p(1 − p)/N；重复次数、事件（event）定义和观察窗口明确；零变异时的吸收态（absorbing state）不能直接类推到有变异模型（model）。",
-          "available": false,
-          "lessons": [],
+          "available": true,
+          "lessons": [
+            {
+              "id": "P12-C03-S01",
+              "chapter_id": "12.3",
+              "number": "12.3.1",
+              "title": "中性漂变与有限种群",
+              "outcome": "由二项抽样解释漂变方差和规模效应。",
+              "path": "notebooks/12-个体与集体现象/03-选择、变异与适应/01-中性漂变与有限种群.ipynb",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p12-neutral-draws",
+                  "slug": "p12-neutral-draws",
+                  "title": "用固定抽样表更新中性种群",
+                  "type": "python"
+                },
+                {
+                  "id": "p12-neutral-variance",
+                  "slug": "p12-neutral-variance",
+                  "title": "漂变方差与规模",
+                  "type": "choice"
+                },
+                {
+                  "id": "p12-one-rise",
+                  "slug": "p12-one-rise",
+                  "title": "一次频率上升",
+                  "type": "choice"
+                },
+                {
+                  "id": "p12-neutral-absorption",
+                  "slug": "p12-neutral-absorption",
+                  "title": "零变异的边界",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-neutral-draws"
+            },
+            {
+              "id": "P12-C03-S02",
+              "chapter_id": "12.3",
+              "number": "12.3.2",
+              "title": "选择变异与机制消融",
+              "outcome": "分别启停选择与变异，区分期望频率和随机轨迹。",
+              "path": "notebooks/12-个体与集体现象/03-选择、变异与适应/02-选择变异与机制消融.ipynb",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p12-selection-mutation-draw",
+                  "slug": "p12-selection-mutation-draw",
+                  "title": "选择、变异再抽样",
+                  "type": "python"
+                },
+                {
+                  "id": "p12-selection-no-goal",
+                  "slug": "p12-selection-no-goal",
+                  "title": "适应不是预先目标",
+                  "type": "choice"
+                },
+                {
+                  "id": "p12-mutation-boundary",
+                  "slug": "p12-mutation-boundary",
+                  "title": "有变异时的零边界",
+                  "type": "choice"
+                },
+                {
+                  "id": "p12-mechanism-ablation",
+                  "slug": "p12-mechanism-ablation",
+                  "title": "如何消融机制",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-selection-mutation-draw"
+            }
+          ],
           "visualization": null
         },
         {
@@ -6894,30 +7113,266 @@
           "knowledge": [
             "从一维网格交换进入 PDE",
             "有限差分、边界与时间更新",
-            "二成分反应扩散及均匀平衡（equilibrium）的扰动，逐步进入模式形成"
+            "二成分反应扩散（reaction-diffusion）及均匀平衡（equilibrium）的扰动，逐步进入模式形成"
           ],
           "focus": "显式纯扩散的稳定条件只适用于所声明维数和离散方案；加入反应后重新检查。出现图案不足以证明 Turing 失稳，还须核查均匀态与相关模态（mode）条件。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P12-C04-S01",
+              "chapter_id": "12.4",
+              "number": "12.4.1",
+              "title": "一维扩散与边界",
+              "outcome": "由邻格交换建立有限差分并检查质量与步长。",
+              "path": "notebooks/12-个体与集体现象/04-空间自组织与反应扩散/01-一维扩散与边界.ipynb",
+              "visualization": "web/collective/index.html",
+              "questions": [
+                {
+                  "id": "p12-diffusion-grid",
+                  "slug": "p12-diffusion-grid",
+                  "title": "一维网格上的纯扩散",
+                  "type": "python"
+                },
+                {
+                  "id": "p12-diffusion-cfl",
+                  "slug": "p12-diffusion-cfl",
+                  "title": "显式步长条件",
+                  "type": "choice"
+                },
+                {
+                  "id": "p12-noflux-end",
+                  "slug": "p12-noflux-end",
+                  "title": "无通量端点",
+                  "type": "choice"
+                },
+                {
+                  "id": "p12-mass-not-enough",
+                  "slug": "p12-mass-not-enough",
+                  "title": "总和守恒就可信？",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-diffusion-grid"
+            },
+            {
+              "id": "P12-C04-S02",
+              "chapter_id": "12.4",
+              "number": "12.4.2",
+              "title": "双组分反应与模式证据",
+              "outcome": "检查均匀态和模态条件，分辨机制图案与数值伪影。",
+              "path": "notebooks/12-个体与集体现象/04-空间自组织与反应扩散/02-双组分反应与模式证据.ipynb",
+              "visualization": "web/collective/index.html",
+              "questions": [
+                {
+                  "id": "p12-reaction-diffusion-onestep",
+                  "slug": "p12-reaction-diffusion-onestep",
+                  "title": "双组分反应与扩散一步",
+                  "type": "python"
+                },
+                {
+                  "id": "p12-uniform-equilibrium",
+                  "slug": "p12-uniform-equilibrium",
+                  "title": "先检查均匀平衡",
+                  "type": "choice"
+                },
+                {
+                  "id": "p12-turing-evidence",
+                  "slug": "p12-turing-evidence",
+                  "title": "图案与机制条件",
+                  "type": "choice"
+                },
+                {
+                  "id": "p12-reaction-diffusion-step",
+                  "slug": "p12-reaction-diffusion-step",
+                  "title": "纯扩散界可直接照搬吗",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-reaction-diffusion-onestep"
+            }
+          ],
+          "visualization": "web/collective/index.html"
         },
         {
           "id": "12.5",
           "title": "从局部规则到宏观描述",
           "url": "/chapters/12-05-从局部规则到宏观描述/",
           "goals": "定义粗尺度变量，说明平均场忽略的相关性，比较哪些宏观量得到保留。",
-          "prerequisites": "12.4、5.5；数学：信息熵（entropy）、条件熵（conditional entropy）、互信息（mutual information）与有限样本估计、收益矩阵（matrix）、频率依赖与复制动态、空间偏导（partial derivative）、PDE、有限差分（finite difference）、边界条件与网格稳定性。",
+          "prerequisites": "12.4、5.5；数学：信息熵（entropy）、条件熵（conditional entropy）、互信息（mutual information）与有限样本估计、收益矩阵（payoff matrix）、频率依赖与复制动态（replicator dynamics）、空间偏导（partial derivative）、PDE、有限差分（finite difference）、边界条件与网格稳定性。",
           "knowledge": [
             "从个体轨迹（trajectory）聚合频率、密度与相关量",
-            "平均场闭合的假设",
+            "平均场闭合（mean-field closure）的假设",
             "时间/空间聚合与信息损失，比较失效情形"
           ],
           "focus": "比较尺度与误差定义事先固定；平均场失败应回到相关性或规则假设，不能只通过反复调参掩盖结构差异。",
-          "available": false,
-          "lessons": [],
+          "available": true,
+          "lessons": [
+            {
+              "id": "P12-C05-S01",
+              "chapter_id": "12.5",
+              "number": "12.5.1",
+              "title": "从局部状态到密度",
+              "outcome": "构造密度与两点相关量，检验平均场闭合假设。",
+              "path": "notebooks/12-个体与集体现象/05-从局部规则到宏观描述/01-从局部状态到密度.ipynb",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p12-periodic-ca-features",
+                  "slug": "p12-periodic-ca-features",
+                  "title": "密度与隔一格两点相关",
+                  "type": "python"
+                },
+                {
+                  "id": "p12-same-density",
+                  "slug": "p12-same-density",
+                  "title": "只看密度遗漏什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p12-xor-density-identity",
+                  "slug": "p12-xor-density-identity",
+                  "title": "局部异或的聚合",
+                  "type": "choice"
+                },
+                {
+                  "id": "p12-measurement-scale",
+                  "slug": "p12-measurement-scale",
+                  "title": "宏观量先声明尺度",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-periodic-ca-features"
+            },
+            {
+              "id": "P12-C05-S02",
+              "chapter_id": "12.5",
+              "number": "12.5.2",
+              "title": "相关性与宏观闭合",
+              "outcome": "比较相同密度不同结构的下一步结果及信息损失。",
+              "path": "notebooks/12-个体与集体现象/05-从局部规则到宏观描述/02-相关性与宏观闭合.ipynb",
+              "visualization": null,
+              "questions": [
+                {
+                  "id": "p12-closure-predictions",
+                  "slug": "p12-closure-predictions",
+                  "title": "比较平均场与相关量预测",
+                  "type": "python"
+                },
+                {
+                  "id": "p12-coarse-blocks",
+                  "slug": "p12-coarse-blocks",
+                  "title": "计算固定宽度的块密度",
+                  "type": "python"
+                },
+                {
+                  "id": "p12-closure-boundary",
+                  "slug": "p12-closure-boundary",
+                  "title": "精确闭合的适用范围",
+                  "type": "choice"
+                },
+                {
+                  "id": "p12-coarse-evidence",
+                  "slug": "p12-coarse-evidence",
+                  "title": "平均场预测失败后",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-closure-predictions"
+            }
+          ],
           "visualization": null
         }
-      ]
+      ],
+      "assessment": {
+        "id": "12.summary",
+        "assessment": true,
+        "title": "局部规则与宏观近似",
+        "url": "/parts/12-个体与集体现象/综合练习/",
+        "goals": "先声明局部更新，再比较频率、空间与粗尺度结果。",
+        "prerequisites": "本篇12.1—12.5；第5篇概率（probability）与第11篇网络基础。",
+        "focus": "同步与异步、收益与抽样、空间步长、相关性与闭合。",
+        "knowledge": [
+          "局部规则与边界",
+          "复制动态（replicator dynamics）及漂变",
+          "反应扩散（reaction-diffusion）",
+          "宏观密度与相关性"
+        ],
+        "lessons": [
+          {
+            "id": "P12-SUMMARY",
+            "chapter_id": "12.summary",
+            "number": "篇末综合",
+            "title": "局部规则与宏观近似",
+            "outcome": "在局部规则、演化和空间模型中检查宏观近似的条件。",
+            "path": "notebooks/12-个体与集体现象/06-篇末综合/01-局部规则与宏观近似.ipynb",
+            "visualization": null,
+            "overview": {
+              "goals": "先声明局部更新，再比较频率、空间与粗尺度结果。",
+              "prerequisites": "本篇12.1—12.5；第5篇概率与第11篇网络基础。",
+              "focus": "同步与异步、收益与抽样、空间步长、相关性与闭合。",
+              "knowledge": [
+                "局部规则与边界",
+                "复制动态及漂变",
+                "反应扩散",
+                "宏观密度与相关性"
+              ]
+            },
+            "questions": [
+              {
+                "id": "p12-capstone-neighborhood",
+                "slug": "p12-capstone-neighborhood",
+                "title": "先定义邻域和边界",
+                "type": "choice"
+              },
+              {
+                "id": "p12-capstone-mechanisms",
+                "slug": "p12-capstone-mechanisms",
+                "title": "选择与漂变分开",
+                "type": "choice"
+              },
+              {
+                "id": "p12-capstone-ca",
+                "slug": "p12-capstone-ca",
+                "title": "同步局部更新的最小实现",
+                "type": "python"
+              },
+              {
+                "id": "p12-capstone-replicator",
+                "slug": "p12-capstone-replicator",
+                "title": "从收益到类型频率变化",
+                "type": "python"
+              },
+              {
+                "id": "p12-capstone-spatial-step",
+                "slug": "p12-capstone-spatial-step",
+                "title": "反应与空间交换一起更新",
+                "type": "python"
+              },
+              {
+                "id": "p12-capstone-coarse-features",
+                "slug": "p12-capstone-coarse-features",
+                "title": "聚合局部状态并保留相关",
+                "type": "python"
+              },
+              {
+                "id": "p12-capstone-pattern-proof",
+                "slug": "p12-capstone-pattern-proof",
+                "title": "更换网格后的图案证据",
+                "type": "choice"
+              },
+              {
+                "id": "p12-capstone-new-scale",
+                "slug": "p12-capstone-new-scale",
+                "title": "新尺度下的闭合判断",
+                "type": "choice"
+              }
+            ],
+            "url": "/parts/12-个体与集体现象/综合练习/practice/?question=p12-capstone-neighborhood"
+          }
+        ],
+        "available": true,
+        "visualization": null
+      }
     },
     {
       "id": "13",

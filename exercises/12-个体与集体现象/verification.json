@@ -1,0 +1,1475 @@
+{
+  "p12-ca-synchronous": {
+    "cases": [
+      {
+        "arguments": {
+          "state": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "boundary": "periodic",
+          "mode": "sync",
+          "order": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "expected": [
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      {
+        "arguments": {
+          "state": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "boundary": "fixed",
+          "mode": "sync",
+          "order": [
+            3,
+            2,
+            1,
+            0
+          ]
+        },
+        "expected": [
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "arguments": {
+          "state": [
+            1,
+            1,
+            0
+          ],
+          "boundary": "periodic",
+          "mode": "sync",
+          "order": [
+            1,
+            0,
+            2
+          ]
+        },
+        "expected": [
+          1,
+          1,
+          0
+        ]
+      }
+    ],
+    "explanation": "周期四格单脉冲向两边传播；固定边界的左端不从右端读值。"
+  },
+  "p12-old-state-buffer": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "读写时刻混淆。",
+      "B": "边界与更新时序是不同约定。",
+      "C": "二值异或有明确定义。",
+      "D": "外观不能证明规则相同。"
+    }
+  },
+  "p12-periodic-single": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "第1和第3格各看见一位1。",
+      "B": "漏掉首尾相邻。",
+      "C": "本格旧值不参与。",
+      "D": "邻格有非零值。"
+    }
+  },
+  "p12-rule-definition": {
+    "correct": [
+      "A",
+      "B"
+    ],
+    "explanations": {
+      "A": "决定转移。",
+      "B": "决定同一步的因果顺序。",
+      "C": "不决定模型（model）。",
+      "D": "界面效果不替代规则。"
+    }
+  },
+  "p12-ca-trajectory": {
+    "cases": [
+      {
+        "arguments": {
+          "state": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "boundary": "periodic",
+          "mode": "sync",
+          "order": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "steps": 2
+        },
+        "expected": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "state": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "boundary": "periodic",
+          "mode": "async",
+          "order": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "steps": 2
+        },
+        "expected": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "state": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "boundary": "fixed",
+          "mode": "async",
+          "order": [
+            3,
+            2,
+            1,
+            0
+          ],
+          "steps": 1
+        },
+        "expected": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            0
+          ]
+        ]
+      }
+    ],
+    "explanation": "同一初态与事件预算下，异步顺序可改变结果；题目固定顺序以便复现。"
+  },
+  "p12-async-order": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "新值可影响后续节点。",
+      "B": "局部依赖使顺序有影响。",
+      "C": "两者是不同机制。",
+      "D": "顺序是实验约定。"
+    }
+  },
+  "p12-fixed-boundary": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "题定外部值是0。",
+      "B": "这是周期边界（periodic boundary）。",
+      "C": "同步规则不读新值。",
+      "D": "题目未规定随机边。"
+    }
+  },
+  "p12-update-budget": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "统一事件预算再解释机制。",
+      "B": "帧率非模型（model）时间。",
+      "C": "事件数差异混淆结果。",
+      "D": "边界影响端点。"
+    }
+  },
+  "p12-payoff-replicator": {
+    "cases": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              3.0,
+              0.0
+            ],
+            [
+              4.0,
+              1.0
+            ]
+          ],
+          "p": 0.25
+        },
+        "expected": [
+          0.75,
+          1.75,
+          1.5,
+          -0.1875
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          "p": 0.5
+        },
+        "expected": [
+          0.5,
+          0.5,
+          0.5,
+          0.0
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              -2.0,
+              -1.0
+            ],
+            [
+              0.0,
+              -3.0
+            ]
+          ],
+          "p": 0.0
+        },
+        "expected": [
+          -1.0,
+          -3.0,
+          -3.0,
+          0.0
+        ]
+      }
+    ],
+    "explanation": "平均收益按两类频率加权；p=0 或 p=1 时两类型方程的边界不被推出区间。"
+  },
+  "p12-replicator-factor": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "代入并提取公因子。",
+      "B": "忽略频率加权。",
+      "C": "遗漏边界因子。",
+      "D": "不是给定复制方程。"
+    }
+  },
+  "p12-payoff-not-birth": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "个体机制必须另定义。",
+      "B": "连续复制方程可使用相对收益。",
+      "C": "个体数量不能负。",
+      "D": "这里是教学假设。"
+    }
+  },
+  "p12-equal-payoff": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "收益差为零。",
+      "B": "方程不支持。",
+      "C": "等收益不决定稳定性。",
+      "D": "内部交点可能存在。"
+    }
+  },
+  "p12-spatial-payoffs": {
+    "cases": [
+      {
+        "arguments": {
+          "state": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "matrix": [
+            [
+              3.0,
+              0.0
+            ],
+            [
+              4.0,
+              1.0
+            ]
+          ],
+          "boundary": "periodic"
+        },
+        "expected": [
+          1.5,
+          1.5,
+          2.5,
+          2.5
+        ]
+      },
+      {
+        "arguments": {
+          "state": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "matrix": [
+            [
+              3.0,
+              0.0
+            ],
+            [
+              4.0,
+              1.0
+            ]
+          ],
+          "boundary": "fixed"
+        },
+        "expected": [
+          3.0,
+          1.5,
+          2.5,
+          1.0
+        ]
+      },
+      {
+        "arguments": {
+          "state": [
+            0,
+            1,
+            0
+          ],
+          "matrix": [
+            [
+              1.0,
+              2.0
+            ],
+            [
+              3.0,
+              4.0
+            ]
+          ],
+          "boundary": "periodic"
+        },
+        "expected": [
+          1.5,
+          3.0,
+          1.5
+        ]
+      }
+    ],
+    "explanation": "两组状态频率相同，但端点和局部邻居组成改变实际遭遇的收益。"
+  },
+  "p12-same-frequency-structure": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "空间排列保留了局部相关性。",
+      "B": "个体可能遇到不同邻居。",
+      "C": "平均混合是额外假设。",
+      "D": "收益矩阵仍可定义。"
+    }
+  },
+  "p12-payoff-vs-update": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "仍需转移和抽样规则。",
+      "B": "缺少时序与映射。",
+      "C": "混合假设不同。",
+      "D": "随机机制需另声明。"
+    }
+  },
+  "p12-matched-spatial-game": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "保留共同机制与预算。",
+      "B": "多项变化混淆。",
+      "C": "配色没有机制含义。",
+      "D": "需要重复和边界说明。"
+    }
+  },
+  "p12-neutral-draws": {
+    "cases": [
+      {
+        "arguments": {
+          "p": 0.5,
+          "draws": [
+            0.1,
+            0.2,
+            0.8,
+            0.9
+          ]
+        },
+        "expected": 0.5
+      },
+      {
+        "arguments": {
+          "p": 0.5,
+          "draws": [
+            0.5,
+            0.1,
+            0.6
+          ]
+        },
+        "expected": 0.3333333333333333
+      },
+      {
+        "arguments": {
+          "p": 0.0,
+          "draws": [
+            0.2,
+            0.3
+          ]
+        },
+        "expected": 0.0
+      }
+    ],
+    "explanation": "首例恰有2/4 类型0；第二例等于阈值的.5不计入。"
+  },
+  "p12-neutral-variance": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "把二项计数除以 N 后方差除以 N²。",
+      "B": "这是计数方差。",
+      "C": "遗漏1−p。",
+      "D": "规模影响抽样波动。"
+    }
+  },
+  "p12-one-rise": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "应比较重复及零选择基线。",
+      "B": "变化不唯一指向选择。",
+      "C": "N 并不消除随机性。",
+      "D": "模型可无变异。"
+    }
+  },
+  "p12-neutral-absorption": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "0 是吸收边界。",
+      "B": "没有引入来源。",
+      "C": "N 不改变零概率。",
+      "D": "配色不是机制。"
+    }
+  },
+  "p12-selection-mutation-draw": {
+    "cases": [
+      {
+        "arguments": {
+          "p": 0.5,
+          "selection": 1.0,
+          "mutation_01": 0.1,
+          "mutation_10": 0.2,
+          "draws": [
+            0.1,
+            0.5,
+            0.8,
+            0.9
+          ]
+        },
+        "expected": [
+          0.6666666666666666,
+          0.6666666666666666,
+          0.5
+        ]
+      },
+      {
+        "arguments": {
+          "p": 0.0,
+          "selection": 0.0,
+          "mutation_01": 0.0,
+          "mutation_10": 0.25,
+          "draws": [
+            0.1,
+            0.3,
+            0.8,
+            0.9
+          ]
+        },
+        "expected": [
+          0.0,
+          0.25,
+          0.25
+        ]
+      },
+      {
+        "arguments": {
+          "p": 1.0,
+          "selection": 0.5,
+          "mutation_01": 0.0,
+          "mutation_10": 0.0,
+          "draws": [
+            0.1,
+            0.9
+          ]
+        },
+        "expected": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "explanation": "选择改变期望频率，变异引入双向流，有限抽样可能偏离期望；三步不能混写。"
+  },
+  "p12-selection-no-goal": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "机制只规定当代权重。",
+      "B": "模型无目的性假设。",
+      "C": "外推需新条件。",
+      "D": "期望（expectation）和抽样分开。"
+    }
+  },
+  "p12-mutation-boundary": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "期望与有限随机实现不同。",
+      "B": "抽样可能没有成功。",
+      "C": "反向变异提供来源。",
+      "D": "无类型0时选择不创造它。"
+    }
+  },
+  "p12-mechanism-ablation": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "逐项改变有助区分机制。",
+      "B": "多项变化混淆。",
+      "C": "单次轨迹（trajectory）不足。",
+      "D": "应可复现。"
+    }
+  },
+  "p12-diffusion-grid": {
+    "cases": [
+      {
+        "arguments": {
+          "values": [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "diffusivity": 1.0,
+          "dx": 1.0,
+          "dt": 0.25,
+          "steps": 2,
+          "boundary": "periodic"
+        },
+        "expected": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.5,
+            0.25,
+            0.0,
+            0.25
+          ],
+          [
+            0.375,
+            0.25,
+            0.125,
+            0.25
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "values": [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "diffusivity": 1.0,
+          "dx": 1.0,
+          "dt": 0.25,
+          "steps": 2,
+          "boundary": "noflux"
+        },
+        "expected": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.75,
+            0.25,
+            0.0,
+            0.0
+          ],
+          [
+            0.625,
+            0.3125,
+            0.0625,
+            0.0
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "values": [
+            0.0,
+            2.0,
+            0.0
+          ],
+          "diffusivity": 0.0,
+          "dx": 1.0,
+          "dt": 0.5,
+          "steps": 2,
+          "boundary": "periodic"
+        },
+        "expected": [
+          [
+            0.0,
+            2.0,
+            0.0
+          ],
+          [
+            0.0,
+            2.0,
+            0.0
+          ],
+          [
+            0.0,
+            2.0,
+            0.0
+          ]
+        ]
+      }
+    ],
+    "explanation": "周期边界的单脉冲向两端扩散；无通量端点无跨界通道。"
+  },
+  "p12-diffusion-cfl": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "中点权重1−2α需非负。",
+      "B": "可能产生负系数。",
+      "C": "步长参与格式。",
+      "D": "仅 D 非负不够。"
+    }
+  },
+  "p12-noflux-end": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "离散反射令跨界差为0。",
+      "B": "那是周期边界（periodic boundary）。",
+      "C": "改变总量。",
+      "D": "端点仍应更新。"
+    }
+  },
+  "p12-mass-not-enough": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "必要检查不止一个。",
+      "B": "数值伪影可同时守恒。",
+      "C": "浓度（concentration）不应负。",
+      "D": "裁剪会改变规则。"
+    }
+  },
+  "p12-reaction-diffusion-onestep": {
+    "cases": [
+      {
+        "arguments": {
+          "u": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "v": [
+            0.9,
+            0.9,
+            0.9
+          ],
+          "a": 0.1,
+          "b": 0.9,
+          "du": 0.01,
+          "dv": 1.0,
+          "dx": 1.0,
+          "dt": 0.1,
+          "boundary": "periodic"
+        },
+        "expected": [
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            0.9,
+            0.9,
+            0.9
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "u": [
+            1.1,
+            1.0,
+            0.9
+          ],
+          "v": [
+            0.9,
+            0.9,
+            0.9
+          ],
+          "a": 0.1,
+          "b": 0.9,
+          "du": 0.01,
+          "dv": 1.0,
+          "dx": 1.0,
+          "dt": 0.1,
+          "boundary": "noflux"
+        },
+        "expected": [
+          [
+            1.1088,
+            1.0,
+            0.893
+          ],
+          [
+            0.8811,
+            0.9,
+            0.9171
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "u": [
+            0.9,
+            1.1,
+            1.0
+          ],
+          "v": [
+            1.0,
+            0.8,
+            0.9
+          ],
+          "a": 0.1,
+          "b": 0.9,
+          "du": 0.0,
+          "dv": 0.0,
+          "dx": 1.0,
+          "dt": 0.05,
+          "boundary": "periodic"
+        },
+        "expected": [
+          [
+            0.9005000000000001,
+            1.0984,
+            1.0
+          ],
+          [
+            1.0045,
+            0.7966000000000001,
+            0.9
+          ]
+        ]
+      }
+    ],
+    "explanation": "均匀平衡 u*=a+b=1、v*=b/u*²=.9，首例一步不变；扰动和边界情形可逐项核对。"
+  },
+  "p12-uniform-equilibrium": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "这是检查方程和实现的基线。",
+      "B": "图案可在扰动后出现。",
+      "C": "仍需模态（mode）条件。",
+      "D": "平均与局部不同。"
+    }
+  },
+  "p12-turing-evidence": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "联合模态与数值证据。",
+      "B": "图案也可能是离散伪影。",
+      "C": "差异不是充分条件。",
+      "D": "初态和网格影响图形。"
+    }
+  },
+  "p12-reaction-diffusion-step": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "反应会引入新时间尺度（time scale）。",
+      "B": "纯扩散界非完整保证。",
+      "C": "配色不是数值验证。",
+      "D": "机制类别不同。"
+    }
+  },
+  "p12-periodic-ca-features": {
+    "cases": [
+      {
+        "arguments": {
+          "state": [
+            1,
+            0,
+            1,
+            0
+          ]
+        },
+        "expected": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "arguments": {
+          "state": [
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        "expected": [
+          0.5,
+          0.0
+        ]
+      },
+      {
+        "arguments": {
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "expected": [
+          0.0,
+          0.0
+        ]
+      }
+    ],
+    "explanation": "同样密度可以配合不同的两点相关，从而改变局部规则的聚合结果。"
+  },
+  "p12-same-density": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "局部邻域排列可不同。",
+      "B": "总体比例不固定排列。",
+      "C": "异或规则依赖两侧。",
+      "D": "空间状态（state）是模型（model）量。"
+    }
+  },
+  "p12-xor-density-identity": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "两者同为1时应减去2。",
+      "B": "仅同为1时为1。",
+      "C": "同为1会错误得到2。",
+      "D": "两者都0时应为0。"
+    }
+  },
+  "p12-measurement-scale": {
+    "correct": [
+      "A",
+      "B"
+    ],
+    "explanations": {
+      "A": "定义指标的样本空间（sample space）。",
+      "B": "比较条件要一致。",
+      "C": "配色无物理意义。",
+      "D": "状态数据更直接。"
+    }
+  },
+  "p12-closure-predictions": {
+    "cases": [
+      {
+        "arguments": {
+          "state": [
+            1,
+            0,
+            1,
+            0
+          ]
+        },
+        "expected": [
+          0.5,
+          0.0
+        ]
+      },
+      {
+        "arguments": {
+          "state": [
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        "expected": [
+          0.5,
+          1.0
+        ]
+      },
+      {
+        "arguments": {
+          "state": [
+            1,
+            0,
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        "expected": [
+          0.4444444444444445,
+          0.3333333333333333
+        ]
+      }
+    ],
+    "explanation": "这只在题定周期异或规则下是精确闭合；换规则后需要重新推导。"
+  },
+  "p12-coarse-blocks": {
+    "cases": [
+      {
+        "arguments": {
+          "state": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "width": 2
+        },
+        "expected": [
+          1.0,
+          0.0
+        ]
+      },
+      {
+        "arguments": {
+          "state": [
+            1,
+            0,
+            1,
+            0
+          ],
+          "width": 2
+        },
+        "expected": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "arguments": {
+          "state": [
+            1,
+            0,
+            0,
+            1,
+            1,
+            0
+          ],
+          "width": 3
+        },
+        "expected": [
+          0.3333333333333333,
+          0.6666666666666666
+        ]
+      }
+    ],
+    "explanation": "同一全局密度可有不同块密度；块平均仍可能丢失块内顺序。"
+  },
+  "p12-closure-boundary": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "闭合依赖转移规则。",
+      "B": "新规则可依赖别的局部项。",
+      "C": "配色无关。",
+      "D": "独立是额外假设。"
+    }
+  },
+  "p12-coarse-evidence": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "额外统计量（statistic）可解释本规则差异。",
+      "B": "同一数据拟合不是独立证据。",
+      "C": "更丰富宏观量可能有用。",
+      "D": "这里可完全确定。"
+    }
+  },
+  "p12-capstone-neighborhood": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "直接决定演化。",
+      "B": "末态不唯一决定规则。",
+      "C": "帧率不等于模型（model）时钟。",
+      "D": "密度丢失结构。"
+    }
+  },
+  "p12-capstone-mechanisms": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "机制消融与重复使来源可比较。",
+      "B": "单次结果不唯一。",
+      "C": "多项变化混淆。",
+      "D": "个体概率需合法。"
+    }
+  },
+  "p12-capstone-ca": {
+    "cases": [
+      {
+        "arguments": {
+          "state": [
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "boundary": "fixed",
+          "mode": "sync",
+          "order": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "expected": [
+          1,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "arguments": {
+          "state": [
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "boundary": "periodic",
+          "mode": "sync",
+          "order": [
+            4,
+            3,
+            2,
+            1,
+            0
+          ]
+        },
+        "expected": [
+          0,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "arguments": {
+          "state": [
+            1,
+            1,
+            1,
+            0
+          ],
+          "boundary": "fixed",
+          "mode": "sync",
+          "order": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "expected": [
+          1,
+          0,
+          1,
+          1
+        ]
+      }
+    ],
+    "explanation": "边界外值和旧状态时序均须明确。"
+  },
+  "p12-capstone-replicator": {
+    "cases": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              1.0
+            ],
+            [
+              0.0,
+              3.0
+            ]
+          ],
+          "p": 0.4
+        },
+        "expected": [
+          1.4,
+          1.7999999999999998,
+          1.6399999999999997,
+          -0.09599999999999992
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              4.0,
+              0.0
+            ],
+            [
+              1.0,
+              2.0
+            ]
+          ],
+          "p": 0.75
+        },
+        "expected": [
+          3.0,
+          1.25,
+          2.5625,
+          0.328125
+        ]
+      },
+      {
+        "arguments": {
+          "matrix": [
+            [
+              1.0,
+              2.0
+            ],
+            [
+              3.0,
+              4.0
+            ]
+          ],
+          "p": 1.0
+        },
+        "expected": [
+          1.0,
+          3.0,
+          1.0,
+          0.0
+        ]
+      }
+    ],
+    "explanation": "返回导数而不是任意步长后的概率。"
+  },
+  "p12-capstone-spatial-step": {
+    "cases": [
+      {
+        "arguments": {
+          "u": [
+            1.0,
+            1.1,
+            0.9,
+            1.0
+          ],
+          "v": [
+            0.9,
+            0.8,
+            1.0,
+            0.9
+          ],
+          "a": 0.1,
+          "b": 0.9,
+          "du": 0.01,
+          "dv": 0.5,
+          "dx": 1.0,
+          "dt": 0.05,
+          "boundary": "periodic"
+        },
+        "expected": [
+          [
+            1.00005,
+            1.0982500000000002,
+            0.9006500000000001,
+            0.99995
+          ],
+          [
+            0.8975000000000001,
+            0.8041,
+            0.997,
+            0.9025
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "u": [
+            1.1,
+            1.0,
+            0.9
+          ],
+          "v": [
+            0.9,
+            0.9,
+            0.9
+          ],
+          "a": 0.1,
+          "b": 0.9,
+          "du": 0.02,
+          "dv": 0.5,
+          "dx": 1.0,
+          "dt": 0.1,
+          "boundary": "noflux"
+        },
+        "expected": [
+          [
+            1.1087,
+            1.0,
+            0.8931
+          ],
+          [
+            0.8811,
+            0.9,
+            0.9171
+          ]
+        ]
+      },
+      {
+        "arguments": {
+          "u": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "v": [
+            0.9,
+            0.9,
+            0.9
+          ],
+          "a": 0.1,
+          "b": 0.9,
+          "du": 0.0,
+          "dv": 0.0,
+          "dx": 1.0,
+          "dt": 0.1,
+          "boundary": "periodic"
+        },
+        "expected": [
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            0.9,
+            0.9,
+            0.9
+          ]
+        ]
+      }
+    ],
+    "explanation": "纯均匀平衡应保持，扰动比较端点处理。"
+  },
+  "p12-capstone-coarse-features": {
+    "cases": [
+      {
+        "arguments": {
+          "state": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        "expected": [
+          0.5,
+          0.16666666666666666
+        ]
+      },
+      {
+        "arguments": {
+          "state": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ]
+        },
+        "expected": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "arguments": {
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "expected": [
+          0.0,
+          0.0
+        ]
+      }
+    ],
+    "explanation": "只报平均会把局部排列差异隐藏。"
+  },
+  "p12-capstone-pattern-proof": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "网格与步长一致性是最低检查。",
+      "B": "单图证据不足。",
+      "C": "数值格式可能创造模式。",
+      "D": "颜色不能证明稳定性。"
+    }
+  },
+  "p12-capstone-new-scale": {
+    "correct": [
+      "A"
+    ],
+    "explanations": {
+      "A": "局部排列提供额外状态（state）信息。",
+      "B": "范围外不能外推。",
+      "C": "同数据重拟合不能自证。",
+      "D": "恰与局部作用相符。"
+    }
+  }
+}

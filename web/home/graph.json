@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "1f0e25ffa1559fbbec77253fc8b822688bb17f394eb9cfe9318ccec3038f7126",
+    "catalogSha256": "3b6a1c087bde056d9803616efc7db671273d802e7c8af958d82a1a87fb3c3985",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -14402,12 +14402,63 @@
         "12.4",
         "12.5"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-ca-synchronous",
+        "p12-old-state-buffer",
+        "p12-periodic-single",
+        "p12-rule-definition",
+        "p12-ca-trajectory",
+        "p12-async-order",
+        "p12-fixed-boundary",
+        "p12-update-budget",
+        "p12-payoff-replicator",
+        "p12-replicator-factor",
+        "p12-payoff-not-birth",
+        "p12-equal-payoff",
+        "p12-spatial-payoffs",
+        "p12-same-frequency-structure",
+        "p12-payoff-vs-update",
+        "p12-matched-spatial-game",
+        "p12-neutral-draws",
+        "p12-neutral-variance",
+        "p12-one-rise",
+        "p12-neutral-absorption",
+        "p12-selection-mutation-draw",
+        "p12-selection-no-goal",
+        "p12-mutation-boundary",
+        "p12-mechanism-ablation",
+        "p12-diffusion-grid",
+        "p12-diffusion-cfl",
+        "p12-noflux-end",
+        "p12-mass-not-enough",
+        "p12-reaction-diffusion-onestep",
+        "p12-uniform-equilibrium",
+        "p12-turing-evidence",
+        "p12-reaction-diffusion-step",
+        "p12-periodic-ca-features",
+        "p12-same-density",
+        "p12-xor-density-identity",
+        "p12-measurement-scale",
+        "p12-closure-predictions",
+        "p12-coarse-blocks",
+        "p12-closure-boundary",
+        "p12-coarse-evidence",
+        "p12-capstone-neighborhood",
+        "p12-capstone-mechanisms",
+        "p12-capstone-ca",
+        "p12-capstone-replicator",
+        "p12-capstone-spatial-step",
+        "p12-capstone-coarse-features",
+        "p12-capstone-pattern-proof",
+        "p12-capstone-new-scale"
+      ],
+      "available": true,
+      "published": 5,
       "total": 5,
-      "assessmentIds": [],
-      "assessmentUrl": null,
+      "assessmentIds": [
+        "P12-SUMMARY"
+      ],
+      "assessmentUrl": "/parts/12-个体与集体现象/综合练习/",
       "progressScope": "已发布篇章练习（含篇末综合）"
     },
     {
@@ -14417,113 +14468,200 @@
       "number": "12.1",
       "parentId": "12",
       "url": "/chapters/12-01-多主体模型与元胞自动机/",
-      "description": "把局部规则写成可复现程序，区分同步、随机顺序和异步更新。",
+      "description": "把局部规则写成可复现程序，区分同步、随机顺序和异步更新（asynchronous update）。",
       "categories": [
         "evolution"
       ],
       "children": [
-        "12.1:planned:1",
-        "12.1:planned:2",
-        "12.1:planned:3",
-        "12.1:planned:4"
+        "12.1.1:concept:1",
+        "12.1.1:concept:2",
+        "12.1.1:concept:3",
+        "12.1.2:concept:1",
+        "12.1.2:concept:2",
+        "12.1.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-ca-synchronous",
+        "p12-old-state-buffer",
+        "p12-periodic-single",
+        "p12-rule-definition",
+        "p12-ca-trajectory",
+        "p12-async-order",
+        "p12-fixed-boundary",
+        "p12-update-budget"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "12.1:planned:1",
-      "kind": "concept",
-      "title": "个体与邻域",
-      "english": null,
-      "number": "12.1",
-      "parentId": "12.1",
-      "url": "/chapters/12-01-多主体模型与元胞自动机/",
-      "description": "把局部规则写成可复现程序，区分同步、随机顺序和异步更新。",
-      "categories": [
-        "evolution"
-      ],
-      "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
-      "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
-      "chapterUrl": "/chapters/12-01-多主体模型与元胞自动机/",
-      "progressScope": "教学设计，尚无学习记录"
-    },
-    {
-      "id": "12.1:planned:2",
-      "kind": "concept",
-      "title": "同步更新",
-      "english": null,
-      "number": "12.1",
-      "parentId": "12.1",
-      "url": "/chapters/12-01-多主体模型与元胞自动机/",
-      "description": "把局部规则写成可复现程序，区分同步、随机顺序和异步更新。",
-      "categories": [
-        "evolution"
-      ],
-      "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
-      "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
-      "chapterUrl": "/chapters/12-01-多主体模型与元胞自动机/",
-      "progressScope": "教学设计，尚无学习记录"
-    },
-    {
-      "id": "12.1:planned:3",
+      "id": "12.1.1:concept:1",
       "kind": "concept",
       "title": "元胞自动机",
-      "english": null,
-      "number": "12.1",
+      "english": "cellular automaton",
+      "number": "12.1.1",
       "parentId": "12.1",
-      "url": "/chapters/12-01-多主体模型与元胞自动机/",
-      "description": "把局部规则写成可复现程序，区分同步、随机顺序和异步更新。",
+      "url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-synchronous",
+      "description": "定义二值局部规则并用双缓冲核对同步演化。",
       "categories": [
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-ca-synchronous",
+        "p12-old-state-buffer",
+        "p12-periodic-single",
+        "p12-rule-definition"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P12-C01-S01",
+      "lessonNumber": "12.1.1",
+      "lessonTitle": "邻域规则与同步更新",
       "chapterUrl": "/chapters/12-01-多主体模型与元胞自动机/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "12.1:planned:4",
+      "id": "12.1.1:concept:2",
       "kind": "concept",
-      "title": "边界条件",
+      "title": "局部异或规则",
       "english": null,
-      "number": "12.1",
+      "number": "12.1.1",
       "parentId": "12.1",
-      "url": "/chapters/12-01-多主体模型与元胞自动机/",
-      "description": "把局部规则写成可复现程序，区分同步、随机顺序和异步更新。",
+      "url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-synchronous",
+      "description": "定义二值局部规则并用双缓冲核对同步演化。",
       "categories": [
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-ca-synchronous",
+        "p12-old-state-buffer",
+        "p12-periodic-single",
+        "p12-rule-definition"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P12-C01-S01",
+      "lessonNumber": "12.1.1",
+      "lessonTitle": "邻域规则与同步更新",
       "chapterUrl": "/chapters/12-01-多主体模型与元胞自动机/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "12.1.1:concept:3",
+      "kind": "concept",
+      "title": "同步双缓冲",
+      "english": null,
+      "number": "12.1.1",
+      "parentId": "12.1",
+      "url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-synchronous",
+      "description": "定义二值局部规则并用双缓冲核对同步演化。",
+      "categories": [
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p12-ca-synchronous",
+        "p12-old-state-buffer",
+        "p12-periodic-single",
+        "p12-rule-definition"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P12-C01-S01",
+      "lessonNumber": "12.1.1",
+      "lessonTitle": "邻域规则与同步更新",
+      "chapterUrl": "/chapters/12-01-多主体模型与元胞自动机/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "12.1.2:concept:1",
+      "kind": "concept",
+      "title": "异步更新",
+      "english": "asynchronous update",
+      "number": "12.1.2",
+      "parentId": "12.1",
+      "url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-trajectory",
+      "description": "在同一更新预算下区分原地顺序和边界效应。",
+      "categories": [
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p12-ca-trajectory",
+        "p12-async-order",
+        "p12-fixed-boundary",
+        "p12-update-budget"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P12-C01-S02",
+      "lessonNumber": "12.1.2",
+      "lessonTitle": "异步顺序与边界",
+      "chapterUrl": "/chapters/12-01-多主体模型与元胞自动机/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "12.1.2:concept:2",
+      "kind": "concept",
+      "title": "更新顺序",
+      "english": null,
+      "number": "12.1.2",
+      "parentId": "12.1",
+      "url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-trajectory",
+      "description": "在同一更新预算下区分原地顺序和边界效应。",
+      "categories": [
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p12-ca-trajectory",
+        "p12-async-order",
+        "p12-fixed-boundary",
+        "p12-update-budget"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P12-C01-S02",
+      "lessonNumber": "12.1.2",
+      "lessonTitle": "异步顺序与边界",
+      "chapterUrl": "/chapters/12-01-多主体模型与元胞自动机/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "12.1.2:concept:3",
+      "kind": "concept",
+      "title": "周期与固定边界",
+      "english": null,
+      "number": "12.1.2",
+      "parentId": "12.1",
+      "url": "/chapters/12-01-多主体模型与元胞自动机/practice/?question=p12-ca-trajectory",
+      "description": "在同一更新预算下区分原地顺序和边界效应。",
+      "categories": [
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p12-ca-trajectory",
+        "p12-async-order",
+        "p12-fixed-boundary",
+        "p12-update-budget"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P12-C01-S02",
+      "lessonNumber": "12.1.2",
+      "lessonTitle": "异步顺序与边界",
+      "chapterUrl": "/chapters/12-01-多主体模型与元胞自动机/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "12.2",
@@ -14532,89 +14670,200 @@
       "number": "12.2",
       "parentId": "12",
       "url": "/chapters/12-02-合作与演化博弈/",
-      "description": "从收益矩阵（matrix）计算频率依赖收益，推导两类型复制动态，解释个体模型（model）与平均描述的假设。",
+      "description": "从收益矩阵（payoff matrix）计算频率依赖收益，推导两类型复制动态（replicator dynamics），解释个体模型（model）与平均描述的假设。",
       "categories": [
         "evolution"
       ],
       "children": [
-        "12.2:planned:1",
-        "12.2:planned:2",
-        "12.2:planned:3"
+        "12.2.1:concept:1",
+        "12.2.1:concept:2",
+        "12.2.1:concept:3",
+        "12.2.2:concept:1",
+        "12.2.2:concept:2",
+        "12.2.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-payoff-replicator",
+        "p12-replicator-factor",
+        "p12-payoff-not-birth",
+        "p12-equal-payoff",
+        "p12-spatial-payoffs",
+        "p12-same-frequency-structure",
+        "p12-payoff-vs-update",
+        "p12-matched-spatial-game"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "12.2:planned:1",
+      "id": "12.2.1:concept:1",
       "kind": "concept",
       "title": "收益矩阵",
-      "english": null,
-      "number": "12.2",
+      "english": "payoff matrix",
+      "number": "12.2.1",
       "parentId": "12.2",
-      "url": "/chapters/12-02-合作与演化博弈/",
-      "description": "从收益矩阵（matrix）计算频率依赖收益，推导两类型复制动态，解释个体模型（model）与平均描述的假设。",
+      "url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-payoff-replicator",
+      "description": "从相遇收益推导频率变化并核对边界平衡。",
       "categories": [
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-payoff-replicator",
+        "p12-replicator-factor",
+        "p12-payoff-not-birth",
+        "p12-equal-payoff"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P12-C02-S01",
+      "lessonNumber": "12.2.1",
+      "lessonTitle": "收益矩阵与复制动态",
       "chapterUrl": "/chapters/12-02-合作与演化博弈/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "12.2:planned:2",
+      "id": "12.2.1:concept:2",
       "kind": "concept",
-      "title": "复制方程",
-      "english": null,
-      "number": "12.2",
+      "title": "复制动态",
+      "english": "replicator dynamics",
+      "number": "12.2.1",
       "parentId": "12.2",
-      "url": "/chapters/12-02-合作与演化博弈/",
-      "description": "从收益矩阵（matrix）计算频率依赖收益，推导两类型复制动态，解释个体模型（model）与平均描述的假设。",
+      "url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-payoff-replicator",
+      "description": "从相遇收益推导频率变化并核对边界平衡。",
       "categories": [
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-payoff-replicator",
+        "p12-replicator-factor",
+        "p12-payoff-not-birth",
+        "p12-equal-payoff"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P12-C02-S01",
+      "lessonNumber": "12.2.1",
+      "lessonTitle": "收益矩阵与复制动态",
       "chapterUrl": "/chapters/12-02-合作与演化博弈/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "12.2:planned:3",
+      "id": "12.2.1:concept:3",
+      "kind": "concept",
+      "title": "边界平衡",
+      "english": null,
+      "number": "12.2.1",
+      "parentId": "12.2",
+      "url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-payoff-replicator",
+      "description": "从相遇收益推导频率变化并核对边界平衡。",
+      "categories": [
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p12-payoff-replicator",
+        "p12-replicator-factor",
+        "p12-payoff-not-birth",
+        "p12-equal-payoff"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P12-C02-S01",
+      "lessonNumber": "12.2.1",
+      "lessonTitle": "收益矩阵与复制动态",
+      "chapterUrl": "/chapters/12-02-合作与演化博弈/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "12.2.2:concept:1",
+      "kind": "concept",
+      "title": "平均混合",
+      "english": "homogeneous mixing",
+      "number": "12.2.2",
+      "parentId": "12.2",
+      "url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-spatial-payoffs",
+      "description": "比较相同收益规则在平均混合与局部邻域中的差异。",
+      "categories": [
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p12-spatial-payoffs",
+        "p12-same-frequency-structure",
+        "p12-payoff-vs-update",
+        "p12-matched-spatial-game"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P12-C02-S02",
+      "lessonNumber": "12.2.2",
+      "lessonTitle": "混合假设与空间合作",
+      "chapterUrl": "/chapters/12-02-合作与演化博弈/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "12.2.2:concept:2",
+      "kind": "concept",
+      "title": "局部收益",
+      "english": null,
+      "number": "12.2.2",
+      "parentId": "12.2",
+      "url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-spatial-payoffs",
+      "description": "比较相同收益规则在平均混合与局部邻域中的差异。",
+      "categories": [
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p12-spatial-payoffs",
+        "p12-same-frequency-structure",
+        "p12-payoff-vs-update",
+        "p12-matched-spatial-game"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P12-C02-S02",
+      "lessonNumber": "12.2.2",
+      "lessonTitle": "混合假设与空间合作",
+      "chapterUrl": "/chapters/12-02-合作与演化博弈/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "12.2.2:concept:3",
       "kind": "concept",
       "title": "空间合作",
       "english": null,
-      "number": "12.2",
+      "number": "12.2.2",
       "parentId": "12.2",
-      "url": "/chapters/12-02-合作与演化博弈/",
-      "description": "从收益矩阵（matrix）计算频率依赖收益，推导两类型复制动态，解释个体模型（model）与平均描述的假设。",
+      "url": "/chapters/12-02-合作与演化博弈/practice/?question=p12-spatial-payoffs",
+      "description": "比较相同收益规则在平均混合与局部邻域中的差异。",
       "categories": [
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-spatial-payoffs",
+        "p12-same-frequency-structure",
+        "p12-payoff-vs-update",
+        "p12-matched-spatial-game"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P12-C02-S02",
+      "lessonNumber": "12.2.2",
+      "lessonTitle": "混合假设与空间合作",
       "chapterUrl": "/chapters/12-02-合作与演化博弈/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "12.3",
@@ -14628,108 +14877,195 @@
         "evolution"
       ],
       "children": [
-        "12.3:planned:1",
-        "12.3:planned:2",
-        "12.3:planned:3",
-        "12.3:planned:4"
+        "12.3.1:concept:1",
+        "12.3.1:concept:2",
+        "12.3.1:concept:3",
+        "12.3.2:concept:1",
+        "12.3.2:concept:2",
+        "12.3.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-neutral-draws",
+        "p12-neutral-variance",
+        "p12-one-rise",
+        "p12-neutral-absorption",
+        "p12-selection-mutation-draw",
+        "p12-selection-no-goal",
+        "p12-mutation-boundary",
+        "p12-mechanism-ablation"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "12.3:planned:1",
+      "id": "12.3.1:concept:1",
       "kind": "concept",
-      "title": "遗传漂变",
+      "title": "二项抽样",
       "english": null,
-      "number": "12.3",
+      "number": "12.3.1",
       "parentId": "12.3",
-      "url": "/chapters/12-03-选择、变异与适应/",
-      "description": "通过机制消融区分选择、随机漂变与变异，避免把适应叙述成预先设定的目标。",
+      "url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-neutral-draws",
+      "description": "由二项抽样解释漂变方差和规模效应。",
       "categories": [
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-neutral-draws",
+        "p12-neutral-variance",
+        "p12-one-rise",
+        "p12-neutral-absorption"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P12-C03-S01",
+      "lessonNumber": "12.3.1",
+      "lessonTitle": "中性漂变与有限种群",
       "chapterUrl": "/chapters/12-03-选择、变异与适应/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "12.3:planned:2",
+      "id": "12.3.1:concept:2",
       "kind": "concept",
-      "title": "自然选择",
+      "title": "中性漂变",
       "english": null,
-      "number": "12.3",
+      "number": "12.3.1",
       "parentId": "12.3",
-      "url": "/chapters/12-03-选择、变异与适应/",
-      "description": "通过机制消融区分选择、随机漂变与变异，避免把适应叙述成预先设定的目标。",
+      "url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-neutral-draws",
+      "description": "由二项抽样解释漂变方差和规模效应。",
       "categories": [
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-neutral-draws",
+        "p12-neutral-variance",
+        "p12-one-rise",
+        "p12-neutral-absorption"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P12-C03-S01",
+      "lessonNumber": "12.3.1",
+      "lessonTitle": "中性漂变与有限种群",
       "chapterUrl": "/chapters/12-03-选择、变异与适应/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "12.3:planned:3",
+      "id": "12.3.1:concept:3",
       "kind": "concept",
-      "title": "双向变异",
+      "title": "种群规模",
       "english": null,
-      "number": "12.3",
+      "number": "12.3.1",
       "parentId": "12.3",
-      "url": "/chapters/12-03-选择、变异与适应/",
-      "description": "通过机制消融区分选择、随机漂变与变异，避免把适应叙述成预先设定的目标。",
+      "url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-neutral-draws",
+      "description": "由二项抽样解释漂变方差和规模效应。",
       "categories": [
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-neutral-draws",
+        "p12-neutral-variance",
+        "p12-one-rise",
+        "p12-neutral-absorption"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P12-C03-S01",
+      "lessonNumber": "12.3.1",
+      "lessonTitle": "中性漂变与有限种群",
       "chapterUrl": "/chapters/12-03-选择、变异与适应/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "12.3:planned:4",
+      "id": "12.3.2:concept:1",
       "kind": "concept",
-      "title": "固定与灭绝",
+      "title": "选择与变异",
       "english": null,
-      "number": "12.3",
+      "number": "12.3.2",
       "parentId": "12.3",
-      "url": "/chapters/12-03-选择、变异与适应/",
-      "description": "通过机制消融区分选择、随机漂变与变异，避免把适应叙述成预先设定的目标。",
+      "url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-selection-mutation-draw",
+      "description": "分别启停选择与变异，区分期望频率和随机轨迹。",
       "categories": [
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-selection-mutation-draw",
+        "p12-selection-no-goal",
+        "p12-mutation-boundary",
+        "p12-mechanism-ablation"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P12-C03-S02",
+      "lessonNumber": "12.3.2",
+      "lessonTitle": "选择变异与机制消融",
       "chapterUrl": "/chapters/12-03-选择、变异与适应/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "12.3.2:concept:2",
+      "kind": "concept",
+      "title": "机制消融",
+      "english": null,
+      "number": "12.3.2",
+      "parentId": "12.3",
+      "url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-selection-mutation-draw",
+      "description": "分别启停选择与变异，区分期望频率和随机轨迹。",
+      "categories": [
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p12-selection-mutation-draw",
+        "p12-selection-no-goal",
+        "p12-mutation-boundary",
+        "p12-mechanism-ablation"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P12-C03-S02",
+      "lessonNumber": "12.3.2",
+      "lessonTitle": "选择变异与机制消融",
+      "chapterUrl": "/chapters/12-03-选择、变异与适应/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "12.3.2:concept:3",
+      "kind": "concept",
+      "title": "随机轨迹",
+      "english": null,
+      "number": "12.3.2",
+      "parentId": "12.3",
+      "url": "/chapters/12-03-选择、变异与适应/practice/?question=p12-selection-mutation-draw",
+      "description": "分别启停选择与变异，区分期望频率和随机轨迹。",
+      "categories": [
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p12-selection-mutation-draw",
+        "p12-selection-no-goal",
+        "p12-mutation-boundary",
+        "p12-mechanism-ablation"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P12-C03-S02",
+      "lessonNumber": "12.3.2",
+      "lessonTitle": "选择变异与机制消融",
+      "chapterUrl": "/chapters/12-03-选择、变异与适应/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "12.4",
@@ -14743,108 +15079,195 @@
         "evolution"
       ],
       "children": [
-        "12.4:planned:1",
-        "12.4:planned:2",
-        "12.4:planned:3",
-        "12.4:planned:4"
+        "12.4.1:concept:1",
+        "12.4.1:concept:2",
+        "12.4.1:concept:3",
+        "12.4.2:concept:1",
+        "12.4.2:concept:2",
+        "12.4.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-diffusion-grid",
+        "p12-diffusion-cfl",
+        "p12-noflux-end",
+        "p12-mass-not-enough",
+        "p12-reaction-diffusion-onestep",
+        "p12-uniform-equilibrium",
+        "p12-turing-evidence",
+        "p12-reaction-diffusion-step"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "12.4:planned:1",
+      "id": "12.4.1:concept:1",
       "kind": "concept",
-      "title": "空间网格",
+      "title": "一维扩散",
       "english": null,
-      "number": "12.4",
+      "number": "12.4.1",
       "parentId": "12.4",
-      "url": "/chapters/12-04-空间自组织与反应扩散/",
-      "description": "解释空间偏导（partial derivative）、反应与扩散项，正确离散边界，区分机制失稳与数值伪模式。",
+      "url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-diffusion-grid",
+      "description": "由邻格交换建立有限差分并检查质量与步长。",
       "categories": [
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-diffusion-grid",
+        "p12-diffusion-cfl",
+        "p12-noflux-end",
+        "p12-mass-not-enough"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P12-C04-S01",
+      "lessonNumber": "12.4.1",
+      "lessonTitle": "一维扩散与边界",
       "chapterUrl": "/chapters/12-04-空间自组织与反应扩散/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "12.4:planned:2",
+      "id": "12.4.1:concept:2",
       "kind": "concept",
-      "title": "有限差分",
-      "english": "finite difference",
-      "number": "12.4",
+      "title": "无通量边界",
+      "english": "no-flux boundary",
+      "number": "12.4.1",
       "parentId": "12.4",
-      "url": "/chapters/12-04-空间自组织与反应扩散/",
-      "description": "解释空间偏导（partial derivative）、反应与扩散项，正确离散边界，区分机制失稳与数值伪模式。",
+      "url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-diffusion-grid",
+      "description": "由邻格交换建立有限差分并检查质量与步长。",
       "categories": [
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-diffusion-grid",
+        "p12-diffusion-cfl",
+        "p12-noflux-end",
+        "p12-mass-not-enough"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P12-C04-S01",
+      "lessonNumber": "12.4.1",
+      "lessonTitle": "一维扩散与边界",
       "chapterUrl": "/chapters/12-04-空间自组织与反应扩散/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "12.4:planned:3",
+      "id": "12.4.1:concept:3",
+      "kind": "concept",
+      "title": "步长约束",
+      "english": null,
+      "number": "12.4.1",
+      "parentId": "12.4",
+      "url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-diffusion-grid",
+      "description": "由邻格交换建立有限差分并检查质量与步长。",
+      "categories": [
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p12-diffusion-grid",
+        "p12-diffusion-cfl",
+        "p12-noflux-end",
+        "p12-mass-not-enough"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P12-C04-S01",
+      "lessonNumber": "12.4.1",
+      "lessonTitle": "一维扩散与边界",
+      "chapterUrl": "/chapters/12-04-空间自组织与反应扩散/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "12.4.2:concept:1",
       "kind": "concept",
       "title": "反应扩散",
-      "english": null,
-      "number": "12.4",
+      "english": "reaction-diffusion",
+      "number": "12.4.2",
       "parentId": "12.4",
-      "url": "/chapters/12-04-空间自组织与反应扩散/",
-      "description": "解释空间偏导（partial derivative）、反应与扩散项，正确离散边界，区分机制失稳与数值伪模式。",
+      "url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-reaction-diffusion-onestep",
+      "description": "检查均匀态和模态条件，分辨机制图案与数值伪影。",
       "categories": [
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-reaction-diffusion-onestep",
+        "p12-uniform-equilibrium",
+        "p12-turing-evidence",
+        "p12-reaction-diffusion-step"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P12-C04-S02",
+      "lessonNumber": "12.4.2",
+      "lessonTitle": "双组分反应与模式证据",
       "chapterUrl": "/chapters/12-04-空间自组织与反应扩散/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "12.4:planned:4",
+      "id": "12.4.2:concept:2",
       "kind": "concept",
-      "title": "模式形成",
+      "title": "非零模态",
       "english": null,
-      "number": "12.4",
+      "number": "12.4.2",
       "parentId": "12.4",
-      "url": "/chapters/12-04-空间自组织与反应扩散/",
-      "description": "解释空间偏导（partial derivative）、反应与扩散项，正确离散边界，区分机制失稳与数值伪模式。",
+      "url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-reaction-diffusion-onestep",
+      "description": "检查均匀态和模态条件，分辨机制图案与数值伪影。",
       "categories": [
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-reaction-diffusion-onestep",
+        "p12-uniform-equilibrium",
+        "p12-turing-evidence",
+        "p12-reaction-diffusion-step"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P12-C04-S02",
+      "lessonNumber": "12.4.2",
+      "lessonTitle": "双组分反应与模式证据",
       "chapterUrl": "/chapters/12-04-空间自组织与反应扩散/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "12.4.2:concept:3",
+      "kind": "concept",
+      "title": "网格收敛",
+      "english": null,
+      "number": "12.4.2",
+      "parentId": "12.4",
+      "url": "/chapters/12-04-空间自组织与反应扩散/practice/?question=p12-reaction-diffusion-onestep",
+      "description": "检查均匀态和模态条件，分辨机制图案与数值伪影。",
+      "categories": [
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p12-reaction-diffusion-onestep",
+        "p12-uniform-equilibrium",
+        "p12-turing-evidence",
+        "p12-reaction-diffusion-step"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P12-C04-S02",
+      "lessonNumber": "12.4.2",
+      "lessonTitle": "双组分反应与模式证据",
+      "chapterUrl": "/chapters/12-04-空间自组织与反应扩散/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "12.5",
@@ -14858,84 +15281,195 @@
         "evolution"
       ],
       "children": [
-        "12.5:planned:1",
-        "12.5:planned:2",
-        "12.5:planned:3"
+        "12.5.1:concept:1",
+        "12.5.1:concept:2",
+        "12.5.1:concept:3",
+        "12.5.2:concept:1",
+        "12.5.2:concept:2",
+        "12.5.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-periodic-ca-features",
+        "p12-same-density",
+        "p12-xor-density-identity",
+        "p12-measurement-scale",
+        "p12-closure-predictions",
+        "p12-coarse-blocks",
+        "p12-closure-boundary",
+        "p12-coarse-evidence"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "12.5:planned:1",
+      "id": "12.5.1:concept:1",
       "kind": "concept",
-      "title": "个体轨迹聚合",
+      "title": "局部密度",
       "english": null,
-      "number": "12.5",
+      "number": "12.5.1",
       "parentId": "12.5",
-      "url": "/chapters/12-05-从局部规则到宏观描述/",
-      "description": "定义粗尺度变量，说明平均场忽略的相关性，比较哪些宏观量得到保留。",
+      "url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-periodic-ca-features",
+      "description": "构造密度与两点相关量，检验平均场闭合假设。",
       "categories": [
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-periodic-ca-features",
+        "p12-same-density",
+        "p12-xor-density-identity",
+        "p12-measurement-scale"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P12-C05-S01",
+      "lessonNumber": "12.5.1",
+      "lessonTitle": "从局部状态到密度",
       "chapterUrl": "/chapters/12-05-从局部规则到宏观描述/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "12.5:planned:2",
+      "id": "12.5.1:concept:2",
       "kind": "concept",
-      "title": "平均场闭合",
-      "english": null,
-      "number": "12.5",
+      "title": "两点相关",
+      "english": "two-point correlation",
+      "number": "12.5.1",
       "parentId": "12.5",
-      "url": "/chapters/12-05-从局部规则到宏观描述/",
-      "description": "定义粗尺度变量，说明平均场忽略的相关性，比较哪些宏观量得到保留。",
+      "url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-periodic-ca-features",
+      "description": "构造密度与两点相关量，检验平均场闭合假设。",
       "categories": [
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-periodic-ca-features",
+        "p12-same-density",
+        "p12-xor-density-identity",
+        "p12-measurement-scale"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P12-C05-S01",
+      "lessonNumber": "12.5.1",
+      "lessonTitle": "从局部状态到密度",
       "chapterUrl": "/chapters/12-05-从局部规则到宏观描述/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "12.5:planned:3",
+      "id": "12.5.1:concept:3",
+      "kind": "concept",
+      "title": "平均场近似",
+      "english": null,
+      "number": "12.5.1",
+      "parentId": "12.5",
+      "url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-periodic-ca-features",
+      "description": "构造密度与两点相关量，检验平均场闭合假设。",
+      "categories": [
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p12-periodic-ca-features",
+        "p12-same-density",
+        "p12-xor-density-identity",
+        "p12-measurement-scale"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P12-C05-S01",
+      "lessonNumber": "12.5.1",
+      "lessonTitle": "从局部状态到密度",
+      "chapterUrl": "/chapters/12-05-从局部规则到宏观描述/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "12.5.2:concept:1",
+      "kind": "concept",
+      "title": "相关结构",
+      "english": null,
+      "number": "12.5.2",
+      "parentId": "12.5",
+      "url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-closure-predictions",
+      "description": "比较相同密度不同结构的下一步结果及信息损失。",
+      "categories": [
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p12-closure-predictions",
+        "p12-coarse-blocks",
+        "p12-closure-boundary",
+        "p12-coarse-evidence"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P12-C05-S02",
+      "lessonNumber": "12.5.2",
+      "lessonTitle": "相关性与宏观闭合",
+      "chapterUrl": "/chapters/12-05-从局部规则到宏观描述/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "12.5.2:concept:2",
+      "kind": "concept",
+      "title": "宏观闭合",
+      "english": null,
+      "number": "12.5.2",
+      "parentId": "12.5",
+      "url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-closure-predictions",
+      "description": "比较相同密度不同结构的下一步结果及信息损失。",
+      "categories": [
+        "evolution"
+      ],
+      "children": [],
+      "questionIds": [
+        "p12-closure-predictions",
+        "p12-coarse-blocks",
+        "p12-closure-boundary",
+        "p12-coarse-evidence"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P12-C05-S02",
+      "lessonNumber": "12.5.2",
+      "lessonTitle": "相关性与宏观闭合",
+      "chapterUrl": "/chapters/12-05-从局部规则到宏观描述/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "12.5.2:concept:3",
       "kind": "concept",
       "title": "信息损失",
       "english": null,
-      "number": "12.5",
+      "number": "12.5.2",
       "parentId": "12.5",
-      "url": "/chapters/12-05-从局部规则到宏观描述/",
-      "description": "定义粗尺度变量，说明平均场忽略的相关性，比较哪些宏观量得到保留。",
+      "url": "/chapters/12-05-从局部规则到宏观描述/practice/?question=p12-closure-predictions",
+      "description": "比较相同密度不同结构的下一步结果及信息损失。",
       "categories": [
         "evolution"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p12-closure-predictions",
+        "p12-coarse-blocks",
+        "p12-closure-boundary",
+        "p12-coarse-evidence"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P12-C05-S02",
+      "lessonNumber": "12.5.2",
+      "lessonTitle": "相关性与宏观闭合",
       "chapterUrl": "/chapters/12-05-从局部规则到宏观描述/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "13",
@@ -15375,7 +15909,7 @@
       "id": "13.4:planned:2",
       "kind": "concept",
       "title": "粗粒化",
-      "english": null,
+      "english": "coarse-graining",
       "number": "13.4",
       "parentId": "13.4",
       "url": "/chapters/13-04-多尺度、粗粒化与不确定性/",
@@ -22137,46 +22671,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "12.1:planned:1",
-      "target": "12.1:planned:2",
+      "source": "12.1.1:concept:1",
+      "target": "12.1.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "12.1:planned:1",
-      "target": "12.1:planned:3",
+      "source": "12.1.1:concept:1",
+      "target": "12.1.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "12.1:planned:1",
-      "target": "12.1:planned:4",
+      "source": "12.1.1:concept:2",
+      "target": "12.1.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "12.1:planned:2",
-      "target": "12.1:planned:3",
+      "source": "12.1.2:concept:1",
+      "target": "12.1.2:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "12.1:planned:2",
-      "target": "12.1:planned:4",
+      "source": "12.1.2:concept:1",
+      "target": "12.1.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "12.1:planned:3",
-      "target": "12.1:planned:4",
+      "source": "12.1.2:concept:2",
+      "target": "12.1.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "12.1.1:concept:3",
+      "target": "12.1.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "5.4",
@@ -22193,25 +22734,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "12.2:planned:1",
-      "target": "12.2:planned:2",
+      "source": "12.2.1:concept:1",
+      "target": "12.2.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "12.2:planned:1",
-      "target": "12.2:planned:3",
+      "source": "12.2.1:concept:1",
+      "target": "12.2.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "12.2:planned:2",
-      "target": "12.2:planned:3",
+      "source": "12.2.1:concept:2",
+      "target": "12.2.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "12.2.2:concept:1",
+      "target": "12.2.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "12.2.2:concept:1",
+      "target": "12.2.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "12.2.2:concept:2",
+      "target": "12.2.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "12.2.1:concept:3",
+      "target": "12.2.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "2.3",
@@ -22228,46 +22797,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "12.3:planned:1",
-      "target": "12.3:planned:2",
+      "source": "12.3.1:concept:1",
+      "target": "12.3.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "12.3:planned:1",
-      "target": "12.3:planned:3",
+      "source": "12.3.1:concept:1",
+      "target": "12.3.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "12.3:planned:1",
-      "target": "12.3:planned:4",
+      "source": "12.3.1:concept:2",
+      "target": "12.3.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "12.3:planned:2",
-      "target": "12.3:planned:3",
+      "source": "12.3.2:concept:1",
+      "target": "12.3.2:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "12.3:planned:2",
-      "target": "12.3:planned:4",
+      "source": "12.3.2:concept:1",
+      "target": "12.3.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "12.3:planned:3",
-      "target": "12.3:planned:4",
+      "source": "12.3.2:concept:2",
+      "target": "12.3.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "12.3.1:concept:3",
+      "target": "12.3.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "5.4",
@@ -22284,46 +22860,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "12.4:planned:1",
-      "target": "12.4:planned:2",
+      "source": "12.4.1:concept:1",
+      "target": "12.4.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "12.4:planned:1",
-      "target": "12.4:planned:3",
+      "source": "12.4.1:concept:1",
+      "target": "12.4.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "12.4:planned:1",
-      "target": "12.4:planned:4",
+      "source": "12.4.1:concept:2",
+      "target": "12.4.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "12.4:planned:2",
-      "target": "12.4:planned:3",
+      "source": "12.4.2:concept:1",
+      "target": "12.4.2:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "12.4:planned:2",
-      "target": "12.4:planned:4",
+      "source": "12.4.2:concept:1",
+      "target": "12.4.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "12.4:planned:3",
-      "target": "12.4:planned:4",
+      "source": "12.4.2:concept:2",
+      "target": "12.4.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "12.4.1:concept:3",
+      "target": "12.4.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "4.3",
@@ -22347,25 +22930,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "12.5:planned:1",
-      "target": "12.5:planned:2",
+      "source": "12.5.1:concept:1",
+      "target": "12.5.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "12.5:planned:1",
-      "target": "12.5:planned:3",
+      "source": "12.5.1:concept:1",
+      "target": "12.5.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "12.5:planned:2",
-      "target": "12.5:planned:3",
+      "source": "12.5.1:concept:2",
+      "target": "12.5.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "12.5.2:concept:1",
+      "target": "12.5.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "12.5.2:concept:1",
+      "target": "12.5.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "12.5.2:concept:2",
+      "target": "12.5.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "12.5.1:concept:3",
+      "target": "12.5.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "5.5",

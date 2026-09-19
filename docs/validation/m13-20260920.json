@@ -1,0 +1,200 @@
+{
+  "stage": "M13：第12篇个体与集体现象",
+  "date": "2026-09-20",
+  "status": "passed",
+  "scope": {
+    "chapters": [
+      "12.1",
+      "12.2",
+      "12.3",
+      "12.4",
+      "12.5"
+    ],
+    "body_notebooks": 10,
+    "capstone_notebooks": 1,
+    "questions": 48,
+    "choice": 33,
+    "python": 15,
+    "exploration_views": 3,
+    "exploration_path": "web/collective/index.html",
+    "capstone_levels": [
+      20,
+      30,
+      30,
+      20
+    ]
+  },
+  "environment": {
+    "python": "3.13.2",
+    "platform": "Windows",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "nbclient": "0.11.0",
+      "nbformat": "5.11.1",
+      "nbconvert": "7.17.1",
+      "ipykernel": "7.3.0"
+    }
+  },
+  "notebooks": [
+    {
+      "id": "P12-C01-S01",
+      "path": "notebooks/12-个体与集体现象/01-多主体模型与元胞自动机/01-邻域规则与同步更新.ipynb",
+      "seconds": 3.43,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "1be37038a0ea12003a541d77775a6e9e84a788bede4fbcd2697ca38bbd98ec7f",
+      "passed": true
+    },
+    {
+      "id": "P12-C01-S02",
+      "path": "notebooks/12-个体与集体现象/01-多主体模型与元胞自动机/02-异步顺序与边界.ipynb",
+      "seconds": 2.35,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "6ee1829d6138c1fa01b2b4e6480768ebb06ccc5483a8649fae56f38ec16ef15a",
+      "passed": true
+    },
+    {
+      "id": "P12-C02-S01",
+      "path": "notebooks/12-个体与集体现象/02-合作与演化博弈/01-收益矩阵与复制动态.ipynb",
+      "seconds": 2.57,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "81be42bece0f6ca1fa25fc756280a141720644d50f29af6001e6ab932d522ea1",
+      "passed": true
+    },
+    {
+      "id": "P12-C02-S02",
+      "path": "notebooks/12-个体与集体现象/02-合作与演化博弈/02-混合假设与空间合作.ipynb",
+      "seconds": 2.53,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "f9901dfda1a5e7e6d3e0e2c7c72aa2b5cf154a63d0d24895f960fbd6a3074aa9",
+      "passed": true
+    },
+    {
+      "id": "P12-C03-S01",
+      "path": "notebooks/12-个体与集体现象/03-选择、变异与适应/01-中性漂变与有限种群.ipynb",
+      "seconds": 3.04,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "d00115a1e9c9345cef6d051fc8425bb20f906fbf953f2beacf4a92e918ead18a",
+      "passed": true
+    },
+    {
+      "id": "P12-C03-S02",
+      "path": "notebooks/12-个体与集体现象/03-选择、变异与适应/02-选择变异与机制消融.ipynb",
+      "seconds": 2.79,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "22a3af0a15c9ec5b7b84d9e4dd2f2781a9fb9aa0b3d7c43babb198bcb45a57c8",
+      "passed": true
+    },
+    {
+      "id": "P12-C04-S01",
+      "path": "notebooks/12-个体与集体现象/04-空间自组织与反应扩散/01-一维扩散与边界.ipynb",
+      "seconds": 2.78,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "71e3e3e98c388452b00c9fb3be2b04902330986d3d2d3c1a541b72273d2d093f",
+      "passed": true
+    },
+    {
+      "id": "P12-C04-S02",
+      "path": "notebooks/12-个体与集体现象/04-空间自组织与反应扩散/02-双组分反应与模式证据.ipynb",
+      "seconds": 3.22,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "8b745a112330a8a3dbe90b4c071ce6f9eebc2ea481be29ec514ac7720b5991e8",
+      "passed": true
+    },
+    {
+      "id": "P12-C05-S01",
+      "path": "notebooks/12-个体与集体现象/05-从局部规则到宏观描述/01-从局部状态到密度.ipynb",
+      "seconds": 2.83,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "71842c86e52de0c6b91be8d46ce9e2e704dd15a03bc38858910ed8a398c4ee35",
+      "passed": true
+    },
+    {
+      "id": "P12-C05-S02",
+      "path": "notebooks/12-个体与集体现象/05-从局部规则到宏观描述/02-相关性与宏观闭合.ipynb",
+      "seconds": 2.55,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "9f6ddba07feb65eb8d8b093752075437af867261dfc2c0d43625e1a67fab62b7",
+      "passed": true
+    },
+    {
+      "id": "P12-SUMMARY",
+      "path": "notebooks/12-个体与集体现象/06-篇末综合/01-局部规则与宏观近似.ipynb",
+      "seconds": 2.84,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "2b24ff3730b5a16db2b99f2813732ebc569f11001d6e327a74d6b68661e167ae",
+      "passed": true
+    }
+  ],
+  "automated": {
+    "python_passed": 785,
+    "javascript_passed": 123,
+    "part12_python_tests": 23,
+    "part12_exploration_js_tests": 5,
+    "all_notebooks": 148,
+    "all_questions_and_links": 690,
+    "figure_glyph_warning_streams": 0,
+    "commands": [
+      "python tools/check_notebooks.py --part 12-个体与集体现象 --work m13 --write",
+      "python tools/check_teaching.py --work m13",
+      "python -m pytest -q tools/tests",
+      "node --test"
+    ]
+  },
+  "independent_checks": [
+    "局部异或规则以小环手算旧状态双缓冲与逐格原地更新；周期、固定边界和每轮事件预算分别核对。",
+    "收益矩阵边界与内部平衡由代数直接计算；同频率不同空间排列的局部收益不等，且没有更新规则时不推断下一代。",
+    "中性漂变方差 p(1-p)/N 与二项抽样核对；选择、双向变异与随机抽样逐项消融。",
+    "纯扩散分别核对周期、无通量边界的总量和步长保正限制；过大步长出现负格值。双组分模式与细网格结果差异显式记录，不宣称空间收敛。",
+    "宏观密度与两点相关的误差恒等式逐项核对；同密度不同局部结构构成平均场闭合反例。15 道 Python 题逐题经过真实判题器。"
+  ],
+  "browser": {
+    "engine": "Codex In-app Browser；隔离端口8022、.work/m13/learning 记录和 IDE opener 注入；未修改个人学习记录",
+    "three_chapters": "12.1、12.2、12.4 实际加载图形，点击播放并观察状态/读数；三页可逆预设和参数变化均操作通过",
+    "roundtrips": [
+      "12.1 同步→左到右异步→同步，末轮激活比例变化后返回，重播显示正在播放并推进至100%",
+      "12.2 类型1优势→内部平衡→类型1优势，替代条件末轮频率约0.4999",
+      "12.4 周期→无通量→周期；h=0.55 显示负格最小值约-35.07 U，并保留总量守恒读数"
+    ],
+    "ide_open": "12.1 默认 IDE 按钮返回已请求；测试 opener 收到本项目原始 .ipynb 绝对路径，文件存在",
+    "practice": "12.1 Python 题实际显示 def solve(state, boundary, mode, order)；输入和输出样例均含解释表与代码；语法错误显示 traceback；修正后样例 1/1 不计进度，提交 3/3 正确"
+  },
+  "navigation": {
+    "planned_parts": 17,
+    "planned_chapters": 85,
+    "published_chapters": 60,
+    "graph_nodes": 619,
+    "graph_edges": 903,
+    "notebook_entry": "notebooks/12-个体与集体现象/README.md"
+  },
+  "artifact_hashes": {
+    "exercises/12-个体与集体现象/questions.json": "746c44e4e5c484f34848589f1161e604e42160efeb377b8fe1b60c248aebbb01",
+    "exercises/12-个体与集体现象/verification.json": "658db0a8ad4532bf48498ebf10c53cc91f66449c2b5ea133bb764c5484bd0487",
+    "web/collective/app.mjs": "0a9ca125e7eb3e461b06f57426d608d1d1f16f7af00ea261b231d76ac7d169cf",
+    "web/collective/model.mjs": "5008de36adce391354efb5020fb0138cc2db09eeac55fac4738102ad71b22391",
+    "web/course/catalog.json": "3b6a1c087bde056d9803616efc7db671273d802e7c8af958d82a1a87fb3c3985",
+    "web/home/graph.json": "a000aca82b9163db38c186560cf7f7611308dd49840f67a8e696f66224e656e0"
+  },
+  "preservation": {
+    "AGENTS_unchanged": true,
+    "external_data_generator_imported": false,
+    "simulation_data_added": false,
+    "new_runtime_dependencies": []
+  },
+  "limits": [
+    "元胞、收益、漂变、空间反应和宏观闭合均为声明条件下的教学模型；有限网格图案不构成已收敛的生物机制证据。",
+    "验收环境为 Windows/Python 3.13 与 PC 本机浏览器；未开展目标读者试学、独立同行评审或默认 IDE 内部渲染检查。"
+  ],
+  "next_stage": "M14：第13篇临界变化与韧性"
+}

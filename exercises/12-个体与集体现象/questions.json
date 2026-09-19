@@ -1,0 +1,2899 @@
+[
+  {
+    "id": "p12-ca-synchronous",
+    "slug": "p12-ca-synchronous",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.1",
+    "lesson_id": "P12-C01-S01",
+    "title": "按旧状态同步更新元胞",
+    "statement": "一维二值元胞的下一值等于左右邻居旧值的异或。boundary 取 periodic 或 fixed；fixed 边界外视为0。mode 固定为 sync，order 仅为统一函数接口。返回一次更新后的全部值。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数02",
+      "数10",
+      "数13"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "list[int]",
+        "description": "原元胞状态（state），只含0或1，至少3格。",
+        "unit": "类别"
+      },
+      {
+        "name": "boundary",
+        "type": "str",
+        "description": "periodic 或 fixed。",
+        "unit": "类别"
+      },
+      {
+        "name": "mode",
+        "type": "str",
+        "description": "本题为 sync。",
+        "unit": "类别"
+      },
+      {
+        "name": "order",
+        "type": "list[int]",
+        "description": "全节点排列；同步时不影响结果。",
+        "unit": "编号"
+      }
+    ],
+    "returns": [
+      {
+        "name": "updated",
+        "type": "list[int]",
+        "description": "同时读取旧状态所得的新状态。",
+        "unit": "类别"
+      }
+    ],
+    "contract": "第 i 格新值=旧左邻居 XOR 旧右邻居；同步规则不读取本步刚写入的值。",
+    "constraints": [
+      "只使用题定的有限状态、固定输入（input）与明示更新规则；不从图形猜测答案。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "周期四格单脉冲向两边传播；固定边界的左端不从右端读值。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: list[int],\n    boundary: str,\n    mode: str,\n    order: list[int],\n) -> list[int]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "boundary": "periodic",
+          "mode": "sync",
+          "order": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "expected": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "explanation": "周期四格单脉冲向两边传播；固定边界（fixed boundary）的左端不从右端读值。"
+      }
+    ]
+  },
+  {
+    "id": "p12-old-state-buffer",
+    "slug": "p12-old-state-buffer",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.1",
+    "lesson_id": "P12-C01-S01",
+    "title": "为何需要双缓冲",
+    "statement": "从左到右逐格修改原数组（array），却声称实现同步规则。问题出在哪里？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数02",
+      "数10",
+      "数13"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "后面格可能读到本步新值。"
+      },
+      {
+        "id": "B",
+        "text": "这样自动等于周期边界（periodic boundary）。"
+      },
+      {
+        "id": "C",
+        "text": "异或不能用于二值状态（state）。"
+      },
+      {
+        "id": "D",
+        "text": "只要动画相似就等价。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-periodic-single",
+    "slug": "p12-periodic-single",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.1",
+    "lesson_id": "P12-C01-S01",
+    "title": "单脉冲的周期结果",
+    "statement": "四格周期环初态[1,0,0,0]，左右旧邻居异或同步更新（synchronous update）一次，结果是什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数02",
+      "数10",
+      "数13"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "[0,1,0,1]"
+      },
+      {
+        "id": "B",
+        "text": "[0,1,0,0]"
+      },
+      {
+        "id": "C",
+        "text": "[1,1,1,1]"
+      },
+      {
+        "id": "D",
+        "text": "[0,0,0,0]"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-rule-definition",
+    "slug": "p12-rule-definition",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.1",
+    "lesson_id": "P12-C01-S01",
+    "title": "局部规则应声明什么",
+    "statement": "要让另一位学习者复现元胞实验，哪些信息是必要的？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数02",
+      "数10",
+      "数13"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "状态（state）取值、邻域与边界。"
+      },
+      {
+        "id": "B",
+        "text": "是否同步及旧状态读写约定。"
+      },
+      {
+        "id": "C",
+        "text": "图像边框颜色。"
+      },
+      {
+        "id": "D",
+        "text": "播放按钮的动效时长。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-ca-trajectory",
+    "slug": "p12-ca-trajectory",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.1",
+    "lesson_id": "P12-C01-S02",
+    "title": "按指定顺序演化局部状态",
+    "statement": "使用上一题的左右邻居异或规则。mode 为 sync 或 async；async 按 order 给出的完整节点排列原地更新，每步复用此顺序。返回含初态的 steps+1 行轨迹（trajectory）。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数02",
+      "数10",
+      "数13"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "list[int]",
+        "description": "二值初态。",
+        "unit": "类别"
+      },
+      {
+        "name": "boundary",
+        "type": "str",
+        "description": "periodic 或 fixed。",
+        "unit": "类别"
+      },
+      {
+        "name": "mode",
+        "type": "str",
+        "description": "sync 或 async。",
+        "unit": "类别"
+      },
+      {
+        "name": "order",
+        "type": "list[int]",
+        "description": "异步遍历顺序，恰好覆盖各节点一次。",
+        "unit": "编号"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "完整扫过次数。",
+        "unit": "轮"
+      }
+    ],
+    "returns": [
+      {
+        "name": "history",
+        "type": "list[list[int]]",
+        "description": "含初态的逐轮状态（state）。",
+        "unit": "类别"
+      }
+    ],
+    "contract": "sync 每轮统一读取旧行；async 每轮按 order 原地改写。每轮均更新 n 次，比较预算相同。",
+    "constraints": [
+      "只使用题定的有限状态、固定输入（input）与明示更新规则；不从图形猜测答案。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "同一初态与事件预算下，异步顺序可改变结果；题目固定顺序以便复现。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: list[int],\n    boundary: str,\n    mode: str,\n    order: list[int],\n    steps: int,\n) -> list[list[int]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "boundary": "periodic",
+          "mode": "sync",
+          "order": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "steps": 2
+        },
+        "expected": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "explanation": "同一初态与事件（event）预算下，异步顺序可改变结果；题目固定顺序以便复现。"
+      }
+    ]
+  },
+  {
+    "id": "p12-async-order",
+    "slug": "p12-async-order",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.1",
+    "lesson_id": "P12-C01-S02",
+    "title": "改变遍历顺序",
+    "statement": "固定初态和异或规则，只改变异步更新（asynchronous update）的 order。哪个判断成立？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数02",
+      "数10",
+      "数13"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "结果可能改变，必须记录顺序。"
+      },
+      {
+        "id": "B",
+        "text": "只要每格更新一次，结果总相同。"
+      },
+      {
+        "id": "C",
+        "text": "异步一定比同步更精确。"
+      },
+      {
+        "id": "D",
+        "text": "遍历顺序等于物理空间位置。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-fixed-boundary",
+    "slug": "p12-fixed-boundary",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.1",
+    "lesson_id": "P12-C01-S02",
+    "title": "固定边界的读值",
+    "statement": "fixed 边界外记0，首格计算左邻居时应读到什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数02",
+      "数10",
+      "数13"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "0。"
+      },
+      {
+        "id": "B",
+        "text": "最后一格。"
+      },
+      {
+        "id": "C",
+        "text": "本步第二格的新值。"
+      },
+      {
+        "id": "D",
+        "text": "随机节点。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-update-budget",
+    "slug": "p12-update-budget",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.1",
+    "lesson_id": "P12-C01-S02",
+    "title": "公平比较的时间单位",
+    "statement": "同步与异步规则的演化图不同。要比较一次“扫过”的效果，首先应怎样对齐？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数02",
+      "数10",
+      "数13"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "每轮均让每个格子更新一次并声明顺序。"
+      },
+      {
+        "id": "B",
+        "text": "只对齐动画帧率。"
+      },
+      {
+        "id": "C",
+        "text": "同步跑10轮、异步跑1次事件（event）。"
+      },
+      {
+        "id": "D",
+        "text": "删去边界说明。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-payoff-replicator",
+    "slug": "p12-payoff-replicator",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.2",
+    "lesson_id": "P12-C02-S01",
+    "title": "由收益计算复制动态",
+    "statement": "类型0频率 p，类型1频率1−p；matrix[row][column] 是行类型与列类型相遇的收益。分别计算 f0、f1、平均收益和连续时间 dp/dt=p(f0−平均收益)。收益可为负数，仍只是模型（model）收益。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数04",
+      "数22"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "2×2 行对列收益。",
+        "unit": "收益单位"
+      },
+      {
+        "name": "p",
+        "type": "float",
+        "description": "类型0频率，0≤p≤1。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "f0",
+        "type": "float",
+        "description": "类型0平均收益。",
+        "unit": "收益单位"
+      },
+      {
+        "name": "f1",
+        "type": "float",
+        "description": "类型1平均收益。",
+        "unit": "收益单位"
+      },
+      {
+        "name": "mean",
+        "type": "float",
+        "description": "种群平均收益。",
+        "unit": "收益单位"
+      },
+      {
+        "name": "dpdt",
+        "type": "float",
+        "description": "类型0频率变化率。",
+        "unit": "1/T"
+      }
+    ],
+    "contract": "f0=p·M00+(1−p)·M01，f1=p·M10+(1−p)·M11；dp/dt=p(1−p)(f0−f1)。",
+    "constraints": [
+      "只使用题定的有限状态（state）、固定输入（input）与明示更新规则；不从图形猜测答案。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "平均收益按两类频率加权；p=0 或 p=1 时两类型方程的边界不被推出区间。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    matrix: list[list[float]],\n    p: float,\n) -> tuple[float, float, float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              3.0,
+              0.0
+            ],
+            [
+              4.0,
+              1.0
+            ]
+          ],
+          "p": 0.25
+        },
+        "expected": [
+          0.75,
+          1.75,
+          1.5,
+          -0.1875
+        ],
+        "explanation": "平均收益按两类频率加权；p=0 或 p=1 时两类型方程的边界不被推出区间。"
+      }
+    ]
+  },
+  {
+    "id": "p12-replicator-factor",
+    "slug": "p12-replicator-factor",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.2",
+    "lesson_id": "P12-C02-S01",
+    "title": "p(1−p) 从哪里来",
+    "statement": "两类型收益为 f0、f1，平均收益 pf0+(1−p)f1。dp/dt 等价于什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数04",
+      "数22"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "p(1−p)(f0−f1)。"
+      },
+      {
+        "id": "B",
+        "text": "p(f0+f1)。"
+      },
+      {
+        "id": "C",
+        "text": "f0−f1，与 p 无关。"
+      },
+      {
+        "id": "D",
+        "text": "(1−p)f0。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-payoff-not-birth",
+    "slug": "p12-payoff-not-birth",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.2",
+    "lesson_id": "P12-C02-S01",
+    "title": "收益不能直接当概率",
+    "statement": "收益矩阵（payoff matrix）里有负数。把收益直接当个体繁殖概率（probability）有何问题？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数04",
+      "数22"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "概率必须位于[0,1]，需另声明映射。"
+      },
+      {
+        "id": "B",
+        "text": "复制动态（replicator dynamics）完全不允许负收益。"
+      },
+      {
+        "id": "C",
+        "text": "负收益表示负数量后代。"
+      },
+      {
+        "id": "D",
+        "text": "收益数值总是临床效用。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-equal-payoff",
+    "slug": "p12-equal-payoff",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.2",
+    "lesson_id": "P12-C02-S01",
+    "title": "内部不变点",
+    "statement": "若某个内部频率 p* 满足 f0(p*)=f1(p*)，该点的 dp/dt 为何？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数04",
+      "数22"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "0，但稳定性仍需看附近方向。"
+      },
+      {
+        "id": "B",
+        "text": "必为1。"
+      },
+      {
+        "id": "C",
+        "text": "一定全局稳定。"
+      },
+      {
+        "id": "D",
+        "text": "只能在 p=0 或1出现。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-spatial-payoffs",
+    "slug": "p12-spatial-payoffs",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.2",
+    "lesson_id": "P12-C02-S02",
+    "title": "计算局部相遇收益",
+    "statement": "一维策略排列中，每个个体与现存左右邻居各相遇一次，返回该个体收益的邻居平均。periodic 首尾相连；fixed 端点只有一位邻居。matrix 行为本体策略，列为邻居策略。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数04",
+      "数22"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "list[int]",
+        "description": "长度至少3、取0或1的策略排列。",
+        "unit": "类别"
+      },
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "2×2 行对列收益。",
+        "unit": "收益单位"
+      },
+      {
+        "name": "boundary",
+        "type": "str",
+        "description": "periodic 或 fixed。",
+        "unit": "类别"
+      }
+    ],
+    "returns": [
+      {
+        "name": "payoffs",
+        "type": "list[float]",
+        "description": "各位置局部平均收益。",
+        "unit": "收益单位"
+      }
+    ],
+    "contract": "先找到真实邻居，再逐项取 M[state[i]][state[j]] 并除以本节点邻居数；不在此题实施选择更新。",
+    "constraints": [
+      "只使用题定的有限状态（state）、固定输入（input）与明示更新规则；不从图形猜测答案。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "两组状态频率相同，但端点和局部邻居组成改变实际遭遇的收益。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: list[int],\n    matrix: list[list[float]],\n    boundary: str,\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "matrix": [
+            [
+              3.0,
+              0.0
+            ],
+            [
+              4.0,
+              1.0
+            ]
+          ],
+          "boundary": "periodic"
+        },
+        "expected": [
+          1.5,
+          1.5,
+          2.5,
+          2.5
+        ],
+        "explanation": "两组状态频率相同，但端点和局部邻居组成改变实际遭遇的收益。"
+      }
+    ]
+  },
+  {
+    "id": "p12-same-frequency-structure",
+    "slug": "p12-same-frequency-structure",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.2",
+    "lesson_id": "P12-C02-S02",
+    "title": "同频率不等于同相遇",
+    "statement": "两组策略排列的类型0比例相同，但一个成团、一个交错。能否只凭总体比例断言每人的局部收益相同？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数04",
+      "数22"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "不能，邻居类型比例可能不同。"
+      },
+      {
+        "id": "B",
+        "text": "能，p 相同便固定所有相遇。"
+      },
+      {
+        "id": "C",
+        "text": "能，因为平均混合（homogeneous mixing）必在任何空间排列精确成立。"
+      },
+      {
+        "id": "D",
+        "text": "不能，因为收益矩阵（payoff matrix）不存在。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-payoff-vs-update",
+    "slug": "p12-payoff-vs-update",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.2",
+    "lesson_id": "P12-C02-S02",
+    "title": "收益不是完整演化规则",
+    "statement": "已算出局部收益，但尚未指定繁殖/模仿机制。以下哪项正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数04",
+      "数22"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "不能仅由收益唯一推出下一代策略。"
+      },
+      {
+        "id": "B",
+        "text": "高收益者必在下一瞬间替换所有邻居。"
+      },
+      {
+        "id": "C",
+        "text": "空间游戏自动等于复制方程。"
+      },
+      {
+        "id": "D",
+        "text": "收益本身就是随机种子（random seed）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-matched-spatial-game",
+    "slug": "p12-matched-spatial-game",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.2",
+    "lesson_id": "P12-C02-S02",
+    "title": "检验空间作用",
+    "statement": "比较平均混合（homogeneous mixing）与局部相遇时，哪组条件最能隔离空间接触效应？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数04",
+      "数22"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "相同收益矩阵（payoff matrix）与总体初始频率，明确邻域和更新规则。"
+      },
+      {
+        "id": "B",
+        "text": "同时换收益矩阵、初始频率与边界。"
+      },
+      {
+        "id": "C",
+        "text": "只比较两张不同配色图。"
+      },
+      {
+        "id": "D",
+        "text": "只挑一条有利轨迹（trajectory）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-neutral-draws",
+    "slug": "p12-neutral-draws",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.3",
+    "lesson_id": "P12-C03-S01",
+    "title": "用固定抽样表更新中性种群",
+    "statement": "二类型种群下一代有 len(draws) 个个体。每个预先给定的 U[0,1) 抽样值小于当前类型0频率 p 时记类型0。返回下一代类型0频率，阈值相等时不计入。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数13",
+      "数22"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "p",
+        "type": "float",
+        "description": "当前类型0频率。",
+        "unit": "1"
+      },
+      {
+        "name": "draws",
+        "type": "list[float]",
+        "description": "独立均匀抽样值，长度等于下一代人数。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "next_frequency",
+        "type": "float",
+        "description": "下一代类型0频率。",
+        "unit": "1"
+      }
+    ],
+    "contract": "按 draw<p 计数并除以 N；本题不引入选择或变异。",
+    "constraints": [
+      "只使用题定的有限状态（state）、固定输入（input）与明示更新规则；不从图形猜测答案。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例恰有2/4 类型0；第二例等于阈值的.5不计入。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    p: float,\n    draws: list[float],\n) -> float:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "p": 0.5,
+          "draws": [
+            0.1,
+            0.2,
+            0.8,
+            0.9
+          ]
+        },
+        "expected": 0.5,
+        "explanation": "首例恰有2/4 类型0；第二例等于阈值的.5不计入。"
+      }
+    ]
+  },
+  {
+    "id": "p12-neutral-variance",
+    "slug": "p12-neutral-variance",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.3",
+    "lesson_id": "P12-C03-S01",
+    "title": "漂变方差与规模",
+    "statement": "中性二项抽样下一代人数 N，当前类型0频率 p。下一代频率条件方差（variance）为何？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数13",
+      "数22"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "p(1−p)/N。"
+      },
+      {
+        "id": "B",
+        "text": "Np(1−p)。"
+      },
+      {
+        "id": "C",
+        "text": "p/N。"
+      },
+      {
+        "id": "D",
+        "text": "与 N 无关。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-one-rise",
+    "slug": "p12-one-rise",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.3",
+    "lesson_id": "P12-C03-S01",
+    "title": "一次频率上升",
+    "statement": "中性模型（model）某次 p 从0.5升至0.6，可否据此确认类型0有选择优势？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数13",
+      "数22"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "不能，固定条件下中性抽样也会波动。"
+      },
+      {
+        "id": "B",
+        "text": "能，任何上升都是适应。"
+      },
+      {
+        "id": "C",
+        "text": "能，因为 N 大于0。"
+      },
+      {
+        "id": "D",
+        "text": "只能说明变异率必为正。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-neutral-absorption",
+    "slug": "p12-neutral-absorption",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.3",
+    "lesson_id": "P12-C03-S01",
+    "title": "零变异的边界",
+    "statement": "有限中性模型（model）无变异，某代 p=0。下一代可能重新出现类型0吗？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数13",
+      "数22"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "不能；按本模型抽样概率（probability）仍为0。"
+      },
+      {
+        "id": "B",
+        "text": "必能。"
+      },
+      {
+        "id": "C",
+        "text": "只有 N=50 时能。"
+      },
+      {
+        "id": "D",
+        "text": "取决于图像颜色。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-selection-mutation-draw",
+    "slug": "p12-selection-mutation-draw",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.3",
+    "lesson_id": "P12-C03-S02",
+    "title": "选择、变异再抽样",
+    "statement": "类型0相对适合度为1+selection，类型1为1。先按适合度加权得到选后频率；再以 mutation_01 使类型0转向1、mutation_10 使类型1转向0；最后用给定 draws 抽样下一代。依次返回选后、变异后和抽样后频率。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数13",
+      "数22"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "p",
+        "type": "float",
+        "description": "更新前类型0频率。",
+        "unit": "1"
+      },
+      {
+        "name": "selection",
+        "type": "float",
+        "description": "类型0相对选择系数，≥0。",
+        "unit": "1"
+      },
+      {
+        "name": "mutation_01",
+        "type": "float",
+        "description": "类型0转类型1概率（probability）。",
+        "unit": "1"
+      },
+      {
+        "name": "mutation_10",
+        "type": "float",
+        "description": "类型1转类型0概率。",
+        "unit": "1"
+      },
+      {
+        "name": "draws",
+        "type": "list[float]",
+        "description": "下一代固定均匀抽样表。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "selected",
+        "type": "float",
+        "description": "选择后的期望（expectation）频率。",
+        "unit": "1"
+      },
+      {
+        "name": "mutated",
+        "type": "float",
+        "description": "双向变异后的期望频率。",
+        "unit": "1"
+      },
+      {
+        "name": "sampled",
+        "type": "float",
+        "description": "有限抽样后的实际频率。",
+        "unit": "1"
+      }
+    ],
+    "contract": "selected=p(1+s)/(1+sp)，mutated=selected(1−μ01)+(1−selected)μ10，sampled=抽样值小于 mutated 的比例。",
+    "constraints": [
+      "只使用题定的有限状态（state）、固定输入（input）与明示更新规则；不从图形猜测答案。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "选择改变期望频率，变异引入双向流，有限抽样可能偏离期望；三步不能混写。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    p: float,\n    selection: float,\n    mutation_01: float,\n    mutation_10: float,\n    draws: list[float],\n) -> tuple[float, float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "p": 0.5,
+          "selection": 1.0,
+          "mutation_01": 0.1,
+          "mutation_10": 0.2,
+          "draws": [
+            0.1,
+            0.5,
+            0.8,
+            0.9
+          ]
+        },
+        "expected": [
+          0.6666666666666666,
+          0.6666666666666666,
+          0.5
+        ],
+        "explanation": "选择改变期望频率，变异引入双向流，有限抽样可能偏离期望；三步不能混写。"
+      }
+    ]
+  },
+  {
+    "id": "p12-selection-no-goal",
+    "slug": "p12-selection-no-goal",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.3",
+    "lesson_id": "P12-C03-S02",
+    "title": "适应不是预先目标",
+    "statement": "哪句话符合这里的选择模型（model）？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数13",
+      "数22"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "给定当前频率与适合度后，后代分布（distribution）改变；没有预定目标状态（state）。"
+      },
+      {
+        "id": "B",
+        "text": "系统为了适应而主动选择最优突变。"
+      },
+      {
+        "id": "C",
+        "text": "一次固定就证明未来环境永不改变。"
+      },
+      {
+        "id": "D",
+        "text": "选择与随机抽样是同一步的同一量。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-mutation-boundary",
+    "slug": "p12-mutation-boundary",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.3",
+    "lesson_id": "P12-C03-S02",
+    "title": "有变异时的零边界",
+    "statement": "当前 p=0，mutation_10>0。哪项成立？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数13",
+      "数22"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "变异后期望（expectation）频率大于0，但有限抽样仍可能得到0。"
+      },
+      {
+        "id": "B",
+        "text": "下一代必有类型0。"
+      },
+      {
+        "id": "C",
+        "text": "零边界仍是严格吸收态（absorbing state）。"
+      },
+      {
+        "id": "D",
+        "text": "选择系数 alone 会从0产生类型0。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-mechanism-ablation",
+    "slug": "p12-mechanism-ablation",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.3",
+    "lesson_id": "P12-C03-S02",
+    "title": "如何消融机制",
+    "statement": "想分辨选择、变异、漂变的影响，哪种实验设计更合适？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数13",
+      "数22"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "依次将 s、μ 置零，在相同 N 与重复预算下比较。"
+      },
+      {
+        "id": "B",
+        "text": "同时改变 N、s、μ 再归因于 s。"
+      },
+      {
+        "id": "C",
+        "text": "只看单次终点并倒推唯一机制。"
+      },
+      {
+        "id": "D",
+        "text": "删掉随机种子（random seed）记录。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-diffusion-grid",
+    "slug": "p12-diffusion-grid",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.4",
+    "lesson_id": "P12-C04-S01",
+    "title": "一维网格上的纯扩散",
+    "statement": "无反应一维等距网格，使用显式更新 x_i^+=x_i+D·dt/dx²·(x_left−2x_i+x_right)。periodic 两端相连；noflux 时越界邻居取该端点本身。返回含初态的所有网格行。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数05",
+      "数08",
+      "数23"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "values",
+        "type": "list[float]",
+        "description": "非负网格初值（initial condition），至少3格。",
+        "unit": "U/格"
+      },
+      {
+        "name": "diffusivity",
+        "type": "float",
+        "description": "扩散系数（diffusion coefficient），非负。",
+        "unit": "格长²/T"
+      },
+      {
+        "name": "dx",
+        "type": "float",
+        "description": "网格间距，正数。",
+        "unit": "格长"
+      },
+      {
+        "name": "dt",
+        "type": "float",
+        "description": "时间步，正数。",
+        "unit": "T"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "更新步数。",
+        "unit": "步"
+      },
+      {
+        "name": "boundary",
+        "type": "str",
+        "description": "periodic 或 noflux。",
+        "unit": "类别"
+      }
+    ],
+    "returns": [
+      {
+        "name": "history",
+        "type": "list[list[float]]",
+        "description": "含初值的网格状态（state）。",
+        "unit": "U/格"
+      }
+    ],
+    "contract": "使用旧行同时更新；题定 D·dt/dx²≤1/2，纯扩散的总和保持不变。",
+    "constraints": [
+      "只使用题定的有限状态、固定输入（input）与明示更新规则；不从图形猜测答案。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "周期边界的单脉冲向两端扩散；无通量端点无跨界通道。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    values: list[float],\n    diffusivity: float,\n    dx: float,\n    dt: float,\n    steps: int,\n    boundary: str,\n) -> list[list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "values": [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "diffusivity": 1.0,
+          "dx": 1.0,
+          "dt": 0.25,
+          "steps": 2,
+          "boundary": "periodic"
+        },
+        "expected": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.5,
+            0.25,
+            0.0,
+            0.25
+          ],
+          [
+            0.375,
+            0.25,
+            0.125,
+            0.25
+          ]
+        ],
+        "explanation": "周期边界（periodic boundary）的单脉冲向两端扩散；无通量端点无跨界通道。"
+      }
+    ]
+  },
+  {
+    "id": "p12-diffusion-cfl",
+    "slug": "p12-diffusion-cfl",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.4",
+    "lesson_id": "P12-C04-S01",
+    "title": "显式步长条件",
+    "statement": "本节一维纯扩散、均匀 dx、显式中心差分（central difference），令 α=D·dt/dx²。哪个条件保证系数非负并给出本格式的稳定范围？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数05",
+      "数08",
+      "数23"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "0≤α≤1/2。"
+      },
+      {
+        "id": "B",
+        "text": "α>1。"
+      },
+      {
+        "id": "C",
+        "text": "任意 dt 都行。"
+      },
+      {
+        "id": "D",
+        "text": "只要求 D≥0。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-noflux-end",
+    "slug": "p12-noflux-end",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.4",
+    "lesson_id": "P12-C04-S01",
+    "title": "无通量端点",
+    "statement": "左端 noflux 条件在本节离散规则下如何处理越界左邻格？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数05",
+      "数08",
+      "数23"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "取左端格自身。"
+      },
+      {
+        "id": "B",
+        "text": "取最右格。"
+      },
+      {
+        "id": "C",
+        "text": "固定为负一。"
+      },
+      {
+        "id": "D",
+        "text": "忽略左端更新。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-mass-not-enough",
+    "slug": "p12-mass-not-enough",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.4",
+    "lesson_id": "P12-C04-S01",
+    "title": "总和守恒就可信？",
+    "statement": "一维纯扩散显式程序保留总和，但某格出现负数。下一步应怎样判断？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数05",
+      "数08",
+      "数23"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "检查步长、非负性（nonnegativity）和网格收敛，不能只看守恒。"
+      },
+      {
+        "id": "B",
+        "text": "守恒已证明物理正确。"
+      },
+      {
+        "id": "C",
+        "text": "负值代表真实反向物质。"
+      },
+      {
+        "id": "D",
+        "text": "删去负格并保持原结果。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-reaction-diffusion-onestep",
+    "slug": "p12-reaction-diffusion-onestep",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.4",
+    "lesson_id": "P12-C04-S02",
+    "title": "双组分反应与扩散一步",
+    "statement": "Schnakenberg 教学模型（model）：u 反应项 a−u+u²v，v 反应项 b−u²v；两组分另按 D·离散二阶差分扩散。采用同步显式一步，边界 periodic 或 noflux。返回新 u 和新 v。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数05",
+      "数08",
+      "数23"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "u",
+        "type": "list[float]",
+        "description": "第一组分当前网格，至少3格。",
+        "unit": "浓度"
+      },
+      {
+        "name": "v",
+        "type": "list[float]",
+        "description": "第二组分当前网格，同长度。",
+        "unit": "浓度"
+      },
+      {
+        "name": "a",
+        "type": "float",
+        "description": "第一反应输入（input），非负。",
+        "unit": "浓度/T"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "第二反应输入，非负。",
+        "unit": "浓度/T"
+      },
+      {
+        "name": "du",
+        "type": "float",
+        "description": "u 扩散系数（diffusion coefficient）。",
+        "unit": "格长²/T"
+      },
+      {
+        "name": "dv",
+        "type": "float",
+        "description": "v 扩散系数。",
+        "unit": "格长²/T"
+      },
+      {
+        "name": "dx",
+        "type": "float",
+        "description": "空间间距。",
+        "unit": "格长"
+      },
+      {
+        "name": "dt",
+        "type": "float",
+        "description": "时间步。",
+        "unit": "T"
+      },
+      {
+        "name": "boundary",
+        "type": "str",
+        "description": "periodic 或 noflux。",
+        "unit": "类别"
+      }
+    ],
+    "returns": [
+      {
+        "name": "next_u",
+        "type": "list[float]",
+        "description": "一步后的 u。",
+        "unit": "浓度"
+      },
+      {
+        "name": "next_v",
+        "type": "list[float]",
+        "description": "一步后的 v。",
+        "unit": "浓度"
+      }
+    ],
+    "contract": "每个反应项和扩散项均只读旧 u、v；无通量越界邻居取端点。",
+    "constraints": [
+      "只使用题定的有限状态（state）、固定输入与明示更新规则；不从图形猜测答案。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "均匀平衡 u*=a+b=1、v*=b/u*²=.9，首例一步不变；扰动和边界情形可逐项核对。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    u: list[float],\n    v: list[float],\n    a: float,\n    b: float,\n    du: float,\n    dv: float,\n    dx: float,\n    dt: float,\n    boundary: str,\n) -> tuple[list[float], list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "u": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "v": [
+            0.9,
+            0.9,
+            0.9
+          ],
+          "a": 0.1,
+          "b": 0.9,
+          "du": 0.01,
+          "dv": 1.0,
+          "dx": 1.0,
+          "dt": 0.1,
+          "boundary": "periodic"
+        },
+        "expected": [
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            0.9,
+            0.9,
+            0.9
+          ]
+        ],
+        "explanation": "均匀平衡（equilibrium） u*=a+b=1、v*=b/u*²=.9，首例一步不变；扰动和边界情形可逐项核对。"
+      }
+    ]
+  },
+  {
+    "id": "p12-uniform-equilibrium",
+    "slug": "p12-uniform-equilibrium",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.4",
+    "lesson_id": "P12-C04-S02",
+    "title": "先检查均匀平衡",
+    "statement": "本模型（model）无空间差异的平衡（equilibrium） u*=a+b、v*=b/(a+b)²。为何先核对它？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数05",
+      "数08",
+      "数23"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "反应项和扩散项在该态都应为0。"
+      },
+      {
+        "id": "B",
+        "text": "任何可见图案都说明平衡不存在。"
+      },
+      {
+        "id": "C",
+        "text": "平衡自动证明图灵失稳（Turing instability）。"
+      },
+      {
+        "id": "D",
+        "text": "平均值相同意味着各格相同。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-turing-evidence",
+    "slug": "p12-turing-evidence",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.4",
+    "lesson_id": "P12-C04-S02",
+    "title": "图案与机制条件",
+    "statement": "数值模拟出现条纹，何时更有根据称为扩散驱动失稳？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数05",
+      "数08",
+      "数23"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "无扩散均匀态稳定，加入扩散后有不稳定非零空间模态（mode），并通过网格与步长核验。"
+      },
+      {
+        "id": "B",
+        "text": "只要画面出现条纹。"
+      },
+      {
+        "id": "C",
+        "text": "只需扩散系数（diffusion coefficient）不同。"
+      },
+      {
+        "id": "D",
+        "text": "只看一次随机初态。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-reaction-diffusion-step",
+    "slug": "p12-reaction-diffusion-step",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.4",
+    "lesson_id": "P12-C04-S02",
+    "title": "纯扩散界可直接照搬吗",
+    "statement": "纯扩散的 α≤1/2 通过后，加入反应项仍需检查什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数05",
+      "数08",
+      "数23"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "反应动力学、正性及联合时间步误差。"
+      },
+      {
+        "id": "B",
+        "text": "无需任何检查。"
+      },
+      {
+        "id": "C",
+        "text": "只检查图像颜色。"
+      },
+      {
+        "id": "D",
+        "text": "把反应项当作边界。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-periodic-ca-features",
+    "slug": "p12-periodic-ca-features",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.5",
+    "lesson_id": "P12-C05-S01",
+    "title": "密度与隔一格两点相关",
+    "statement": "周期二（period-two cycle）值格状态（state） state。返回类型1密度 p 和距离2的一对位置同时为1的比例 c2=(1/n)Σ_i state[i−1]·state[i+1]；用周期下标。这个相关量决定异或规则下一步密度。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数14",
+      "数22",
+      "数23"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "list[int]",
+        "description": "长度至少3的周期二值状态。",
+        "unit": "类别"
+      }
+    ],
+    "returns": [
+      {
+        "name": "density",
+        "type": "float",
+        "description": "当前为1的比例。",
+        "unit": "1"
+      },
+      {
+        "name": "pair_two",
+        "type": "float",
+        "description": "两侧邻居同时为1的比例。",
+        "unit": "1"
+      }
+    ],
+    "contract": "两个指标都除以 n；c2 取左右两格而不是中心格。",
+    "constraints": [
+      "只使用题定的有限状态、固定输入（input）与明示更新规则；不从图形猜测答案。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "同样密度可以配合不同的两点相关，从而改变局部规则的聚合结果。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: list[int],\n) -> tuple[float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": [
+            1,
+            0,
+            1,
+            0
+          ]
+        },
+        "expected": [
+          0.5,
+          0.5
+        ],
+        "explanation": "同样密度可以配合不同的两点相关（two-point correlation），从而改变局部规则的聚合结果。"
+      }
+    ]
+  },
+  {
+    "id": "p12-same-density",
+    "slug": "p12-same-density",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.5",
+    "lesson_id": "P12-C05-S01",
+    "title": "只看密度遗漏什么",
+    "statement": "两组周期格的1占比都为1/2，但间隔2的1—1对比例不同。哪个说法成立？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数14",
+      "数22",
+      "数23"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "只保留密度会丢失这种空间相关。"
+      },
+      {
+        "id": "B",
+        "text": "密度相同强制每个局部邻域相同。"
+      },
+      {
+        "id": "C",
+        "text": "两组下一步密度必相同。"
+      },
+      {
+        "id": "D",
+        "text": "相关性只由画布宽度决定。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-xor-density-identity",
+    "slug": "p12-xor-density-identity",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.5",
+    "lesson_id": "P12-C05-S01",
+    "title": "局部异或的聚合",
+    "statement": "左右邻格旧值为 L、R∈{0,1}。L XOR R 等于什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数14",
+      "数22",
+      "数23"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "L+R−2LR。"
+      },
+      {
+        "id": "B",
+        "text": "LR。"
+      },
+      {
+        "id": "C",
+        "text": "L+R。"
+      },
+      {
+        "id": "D",
+        "text": "1−L−R。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-measurement-scale",
+    "slug": "p12-measurement-scale",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.5",
+    "lesson_id": "P12-C05-S01",
+    "title": "宏观量先声明尺度",
+    "statement": "统计一组元胞实验的密度时，哪些约定需要保持一致？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数14",
+      "数22",
+      "数23"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "分母包含哪些格子与记录时刻。"
+      },
+      {
+        "id": "B",
+        "text": "是否从同一边界和更新规则取样。"
+      },
+      {
+        "id": "C",
+        "text": "网页背景色。"
+      },
+      {
+        "id": "D",
+        "text": "读取图像像素而不核对状态（state）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-closure-predictions",
+    "slug": "p12-closure-predictions",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.5",
+    "lesson_id": "P12-C05-S02",
+    "title": "比较平均场与相关量预测",
+    "statement": "周期二（period-two cycle）值格按左右邻居异或同步更新（synchronous update）。仅假定两侧独立时，密度预测为 2p(1−p)；保留两侧同时为1的 c2 时，精确下一步密度为 2p−2c2。返回这两个预测。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数14",
+      "数22",
+      "数23"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "list[int]",
+        "description": "长度至少3的周期二值初态。",
+        "unit": "类别"
+      }
+    ],
+    "returns": [
+      {
+        "name": "mean_field",
+        "type": "float",
+        "description": "独立邻居假设的下一步密度。",
+        "unit": "1"
+      },
+      {
+        "name": "pair_corrected",
+        "type": "float",
+        "description": "保留 c2 的精确下一步密度。",
+        "unit": "1"
+      }
+    ],
+    "contract": "从同一初态计算 p、c2；不能用观察到的下一步状态（state）回填预测。",
+    "constraints": [
+      "只使用题定的有限状态、固定输入（input）与明示更新规则；不从图形猜测答案。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "这只在题定周期异或规则下是精确闭合；换规则后需要重新推导。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: list[int],\n) -> tuple[float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": [
+            1,
+            0,
+            1,
+            0
+          ]
+        },
+        "expected": [
+          0.5,
+          0.0
+        ],
+        "explanation": "这只在题定周期异或规则下是精确闭合；换规则后需要重新推导。"
+      }
+    ]
+  },
+  {
+    "id": "p12-coarse-blocks",
+    "slug": "p12-coarse-blocks",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.5",
+    "lesson_id": "P12-C05-S02",
+    "title": "计算固定宽度的块密度",
+    "statement": "将二值状态（state）按不重叠连续块从左到右分组，每块宽 width，状态长度可被 width 整除。返回各块的1比例；这是一种粗粒化（coarse-graining），不允许交换格子的顺序。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数14",
+      "数22",
+      "数23"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "list[int]",
+        "description": "长度可被 width 整除的二值排列。",
+        "unit": "类别"
+      },
+      {
+        "name": "width",
+        "type": "int",
+        "description": "每块格数，正整数。",
+        "unit": "格"
+      }
+    ],
+    "returns": [
+      {
+        "name": "blocks",
+        "type": "list[float]",
+        "description": "按原顺序排列的每块类型1比例。",
+        "unit": "1"
+      }
+    ],
+    "contract": "只在每个固定块内求平均；改变 width 会改变保留的信息。",
+    "constraints": [
+      "只使用题定的有限状态、固定输入（input）与明示更新规则；不从图形猜测答案。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "同一全局密度可有不同块密度；块平均仍可能丢失块内顺序。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: list[int],\n    width: int,\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "width": 2
+        },
+        "expected": [
+          1.0,
+          0.0
+        ],
+        "explanation": "同一全局密度可有不同块密度；块平均仍可能丢失块内顺序。"
+      }
+    ]
+  },
+  {
+    "id": "p12-closure-boundary",
+    "slug": "p12-closure-boundary",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.5",
+    "lesson_id": "P12-C05-S02",
+    "title": "精确闭合的适用范围",
+    "statement": "已证明周期异或规则下一步密度=2p−2c2。若换成带中心格影响的规则，如何处理？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数14",
+      "数22",
+      "数23"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "重新推导所需相关量，不能直接套原式。"
+      },
+      {
+        "id": "B",
+        "text": "原式在任何规则下都精确。"
+      },
+      {
+        "id": "C",
+        "text": "只调整网页颜色。"
+      },
+      {
+        "id": "D",
+        "text": "把 c2 强行设为 p² 即精确。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-coarse-evidence",
+    "slug": "p12-coarse-evidence",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.5",
+    "lesson_id": "P12-C05-S02",
+    "title": "平均场预测失败后",
+    "statement": "同样 p 的两种排列下一步密度不同，最合适的结论是什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数14",
+      "数22",
+      "数23"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "本模型（model）的独立邻居近似缺少相关信息，应检查 c2 和局部规则。"
+      },
+      {
+        "id": "B",
+        "text": "反复用同一数据调 p 便构成独立验证。"
+      },
+      {
+        "id": "C",
+        "text": "所有宏观描述都不可能有用。"
+      },
+      {
+        "id": "D",
+        "text": "差异必由随机漂变引起。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-capstone-neighborhood",
+    "slug": "p12-capstone-neighborhood",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.summary",
+    "lesson_id": "P12-SUMMARY",
+    "title": "先定义邻域和边界",
+    "statement": "要在另一台电脑复现局部二值演化，哪组记录充分且必要？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数13",
+      "数22",
+      "数23"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "初态、邻域与规则、边界、同步或异步顺序。"
+      },
+      {
+        "id": "B",
+        "text": "只提供一张末态图片。"
+      },
+      {
+        "id": "C",
+        "text": "只记录动画帧率。"
+      },
+      {
+        "id": "D",
+        "text": "只记录总密度。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-capstone-mechanisms",
+    "slug": "p12-capstone-mechanisms",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.summary",
+    "lesson_id": "P12-SUMMARY",
+    "title": "选择与漂变分开",
+    "statement": "频率变化可能来自选择、变异与有限抽样。以下哪项比较更能区分机制？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数13",
+      "数22",
+      "数23"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "固定 N 和初态，逐项关闭 s、μ，并重复抽样。"
+      },
+      {
+        "id": "B",
+        "text": "只观察一条上升轨迹（trajectory）。"
+      },
+      {
+        "id": "C",
+        "text": "同时改变 N、收益和边界却归因于选择。"
+      },
+      {
+        "id": "D",
+        "text": "把收益当概率（probability）且不声明映射。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-capstone-ca",
+    "slug": "p12-capstone-ca",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.summary",
+    "lesson_id": "P12-SUMMARY",
+    "title": "同步局部更新的最小实现",
+    "statement": "给定周期或固定边界（fixed boundary）下的二值异或规则，实施一次同步更新（synchronous update）。注意全部新值只读取同一行旧状态（state）。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数13",
+      "数22",
+      "数23"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "list[int]",
+        "description": "至少3格的二值初态。",
+        "unit": "类别"
+      },
+      {
+        "name": "boundary",
+        "type": "str",
+        "description": "periodic 或 fixed。",
+        "unit": "类别"
+      },
+      {
+        "name": "mode",
+        "type": "str",
+        "description": "固定为 sync。",
+        "unit": "类别"
+      },
+      {
+        "name": "order",
+        "type": "list[int]",
+        "description": "统一接口中的完整索引表。",
+        "unit": "编号"
+      }
+    ],
+    "returns": [
+      {
+        "name": "updated",
+        "type": "list[int]",
+        "description": "同步下一行。",
+        "unit": "类别"
+      }
+    ],
+    "contract": "与 12.1.1 相同规则，但本题含另一组迁移初态。",
+    "constraints": [
+      "只使用题定的有限状态、固定输入（input）与明示更新规则；不从图形猜测答案。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "边界外值和旧状态时序均须明确。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: list[int],\n    boundary: str,\n    mode: str,\n    order: list[int],\n) -> list[int]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": [
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "boundary": "fixed",
+          "mode": "sync",
+          "order": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "expected": [
+          1,
+          0,
+          1,
+          0,
+          0
+        ],
+        "explanation": "边界外值和旧状态时序均须明确。"
+      }
+    ]
+  },
+  {
+    "id": "p12-capstone-replicator",
+    "slug": "p12-capstone-replicator",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.summary",
+    "lesson_id": "P12-SUMMARY",
+    "title": "从收益到类型频率变化",
+    "statement": "类型0频率 p 与 2×2 行对列收益矩阵（payoff matrix）给定，返回两类收益、平均收益及连续复制动态（replicator dynamics）导数（derivative）。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数13",
+      "数22",
+      "数23"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "2×2 收益矩阵。",
+        "unit": "收益单位"
+      },
+      {
+        "name": "p",
+        "type": "float",
+        "description": "类型0频率。",
+        "unit": "1"
+      }
+    ],
+    "returns": [
+      {
+        "name": "f0",
+        "type": "float",
+        "description": "类型0收益。",
+        "unit": "收益单位"
+      },
+      {
+        "name": "f1",
+        "type": "float",
+        "description": "类型1收益。",
+        "unit": "收益单位"
+      },
+      {
+        "name": "mean",
+        "type": "float",
+        "description": "频率加权收益。",
+        "unit": "收益单位"
+      },
+      {
+        "name": "dpdt",
+        "type": "float",
+        "description": "频率导数。",
+        "unit": "1/T"
+      }
+    ],
+    "contract": "计算规则与 12.2.1 相同，但新收益表可能有内部等收益点。",
+    "constraints": [
+      "只使用题定的有限状态（state）、固定输入（input）与明示更新规则；不从图形猜测答案。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "返回导数而不是任意步长后的概率。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    matrix: list[list[float]],\n    p: float,\n) -> tuple[float, float, float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "matrix": [
+            [
+              2.0,
+              1.0
+            ],
+            [
+              0.0,
+              3.0
+            ]
+          ],
+          "p": 0.4
+        },
+        "expected": [
+          1.4,
+          1.7999999999999998,
+          1.6399999999999997,
+          -0.09599999999999992
+        ],
+        "explanation": "返回导数而不是任意步长后的概率（probability）。"
+      }
+    ]
+  },
+  {
+    "id": "p12-capstone-spatial-step",
+    "slug": "p12-capstone-spatial-step",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.summary",
+    "lesson_id": "P12-SUMMARY",
+    "title": "反应与空间交换一起更新",
+    "statement": "在 noflux 或 periodic 边界下，用题定 Schnakenberg 双组分方程进行同步显式一步。每格反应与扩散都只读旧 u、v。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数13",
+      "数22",
+      "数23"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "u",
+        "type": "list[float]",
+        "description": "旧 u 网格。",
+        "unit": "浓度"
+      },
+      {
+        "name": "v",
+        "type": "list[float]",
+        "description": "旧 v 网格。",
+        "unit": "浓度"
+      },
+      {
+        "name": "a",
+        "type": "float",
+        "description": "反应输入（input） a。",
+        "unit": "浓度/T"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "反应输入 b。",
+        "unit": "浓度/T"
+      },
+      {
+        "name": "du",
+        "type": "float",
+        "description": "u 扩散系数（diffusion coefficient）。",
+        "unit": "格长²/T"
+      },
+      {
+        "name": "dv",
+        "type": "float",
+        "description": "v 扩散系数。",
+        "unit": "格长²/T"
+      },
+      {
+        "name": "dx",
+        "type": "float",
+        "description": "网格宽度。",
+        "unit": "格长"
+      },
+      {
+        "name": "dt",
+        "type": "float",
+        "description": "时间步。",
+        "unit": "T"
+      },
+      {
+        "name": "boundary",
+        "type": "str",
+        "description": "periodic 或 noflux。",
+        "unit": "类别"
+      }
+    ],
+    "returns": [
+      {
+        "name": "next_u",
+        "type": "list[float]",
+        "description": "u 下一行。",
+        "unit": "浓度"
+      },
+      {
+        "name": "next_v",
+        "type": "list[float]",
+        "description": "v 下一行。",
+        "unit": "浓度"
+      }
+    ],
+    "contract": "反应 a−u+u²v、b−u²v；扩散为中心差分（central difference）。",
+    "constraints": [
+      "只使用题定的有限状态（state）、固定输入与明示更新规则；不从图形猜测答案。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "纯均匀平衡应保持，扰动比较端点处理。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    u: list[float],\n    v: list[float],\n    a: float,\n    b: float,\n    du: float,\n    dv: float,\n    dx: float,\n    dt: float,\n    boundary: str,\n) -> tuple[list[float], list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "u": [
+            1.0,
+            1.1,
+            0.9,
+            1.0
+          ],
+          "v": [
+            0.9,
+            0.8,
+            1.0,
+            0.9
+          ],
+          "a": 0.1,
+          "b": 0.9,
+          "du": 0.01,
+          "dv": 0.5,
+          "dx": 1.0,
+          "dt": 0.05,
+          "boundary": "periodic"
+        },
+        "expected": [
+          [
+            1.00005,
+            1.0982500000000002,
+            0.9006500000000001,
+            0.99995
+          ],
+          [
+            0.8975000000000001,
+            0.8041,
+            0.997,
+            0.9025
+          ]
+        ],
+        "explanation": "纯均匀平衡（equilibrium）应保持，扰动比较端点处理。"
+      }
+    ]
+  },
+  {
+    "id": "p12-capstone-coarse-features",
+    "slug": "p12-capstone-coarse-features",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.summary",
+    "lesson_id": "P12-SUMMARY",
+    "title": "聚合局部状态并保留相关",
+    "statement": "周期二（period-two cycle）值格给定。返回总体密度与左右邻格同时为1的比例，供独立模型（model）比较使用。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数13",
+      "数22",
+      "数23"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "list[int]",
+        "description": "周期二值初态。",
+        "unit": "类别"
+      }
+    ],
+    "returns": [
+      {
+        "name": "density",
+        "type": "float",
+        "description": "类型1总体比例。",
+        "unit": "1"
+      },
+      {
+        "name": "pair_two",
+        "type": "float",
+        "description": "隔一格邻格对同为1的比例。",
+        "unit": "1"
+      }
+    ],
+    "contract": "与 12.5.1 同一指标；本题检查新的局部排列。",
+    "constraints": [
+      "只使用题定的有限状态（state）、固定输入（input）与明示更新规则；不从图形猜测答案。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "只报平均会把局部排列差异隐藏。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: list[int],\n) -> tuple[float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        "expected": [
+          0.5,
+          0.16666666666666666
+        ],
+        "explanation": "只报平均会把局部排列差异隐藏。"
+      }
+    ]
+  },
+  {
+    "id": "p12-capstone-pattern-proof",
+    "slug": "p12-capstone-pattern-proof",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.summary",
+    "lesson_id": "P12-SUMMARY",
+    "title": "更换网格后的图案证据",
+    "statement": "反应扩散（reaction-diffusion）在粗网格出现条纹，细化网格并缩小时间步后条纹消失。最稳妥的判断是？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数13",
+      "数22",
+      "数23"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "原图案可能是数值伪影，尚不能据此声称机制失稳。"
+      },
+      {
+        "id": "B",
+        "text": "粗图案已经证明普遍图灵失稳（Turing instability）。"
+      },
+      {
+        "id": "C",
+        "text": "空间误差与方程无关。"
+      },
+      {
+        "id": "D",
+        "text": "只看条纹颜色即可。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p12-capstone-new-scale",
+    "slug": "p12-capstone-new-scale",
+    "version": "1",
+    "part": "12",
+    "chapter": "12.summary",
+    "lesson_id": "P12-SUMMARY",
+    "title": "新尺度下的闭合判断",
+    "statement": "同一总体密度、不同空间排列给出不同下一步密度。哪项结论可以支持？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数13",
+      "数22",
+      "数23"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "仅用总体密度的闭合在这组条件下不充分，可加入相关量并独立验证。"
+      },
+      {
+        "id": "B",
+        "text": "所有平均场模型（model）在任何系统中错误。"
+      },
+      {
+        "id": "C",
+        "text": "重新拟合同一轨迹（trajectory）就等于新实验。"
+      },
+      {
+        "id": "D",
+        "text": "未观测（observation）差异证明不存在局部相互作用。"
+      }
+    ],
+    "constraints": []
+  }
+]
