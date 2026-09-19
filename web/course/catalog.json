@@ -5676,9 +5676,82 @@
             "跟踪、扰动、饱和与抗积分累积的基本处理"
           ],
           "focus": "明确离散积分和微分的时间尺度（time scale）；比较结果包含控制代价、超调和稳态表现，裁剪输入（input）后必须按实际输入推进模型（model）。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P10-C01-S01",
+              "chapter_id": "10.1",
+              "number": "10.1.1",
+              "title": "误差怎样驱动比例与积分控制",
+              "outcome": "定义误差、执行量和时步，检查PI稳态误差与饱和。",
+              "path": "notebooks/10-反馈与最优控制/01-开闭环与 PID/01-误差怎样驱动比例与积分控制.ipynb",
+              "visualization": "web/control/index.html",
+              "questions": [
+                {
+                  "id": "p10-pi-saturation",
+                  "slug": "p10-pi-saturation",
+                  "title": "一次 PI 更新",
+                  "type": "python"
+                },
+                {
+                  "id": "p10-pi-constant-load",
+                  "slug": "p10-pi-constant-load",
+                  "title": "恒定扰动下的 P 与 PI",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-request-vs-actuation",
+                  "slug": "p10-request-vs-actuation",
+                  "title": "要求与执行不能混用",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-gain-units",
+                  "slug": "p10-gain-units",
+                  "title": "增益有单位",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-pi-saturation"
+            },
+            {
+              "id": "P10-C01-S02",
+              "chapter_id": "10.1",
+              "number": "10.1.2",
+              "title": "微分噪声与积分抗饱和",
+              "outcome": "实现离散PID与条件积分，比较噪声和执行限幅。",
+              "path": "notebooks/10-反馈与最优控制/01-开闭环与 PID/02-微分噪声与积分抗饱和.ipynb",
+              "visualization": "web/control/index.html",
+              "questions": [
+                {
+                  "id": "p10-pid-history",
+                  "slug": "p10-pid-history",
+                  "title": "重放误差历史中的 PID",
+                  "type": "python"
+                },
+                {
+                  "id": "p10-derivative-noise",
+                  "slug": "p10-derivative-noise",
+                  "title": "为何微分会放大高频噪声",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-freeze-direction",
+                  "slug": "p10-freeze-direction",
+                  "title": "何时冻结积分",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-pid-comparison",
+                  "slug": "p10-pid-comparison",
+                  "title": "公平比较三个控制器",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-pid-history"
+            }
+          ],
+          "visualization": "web/control/index.html"
         },
         {
           "id": "10.2",
@@ -5692,9 +5765,82 @@
             "复平面轨迹和绕数的必要几何桥接，再应用 Nyquist"
           ],
           "focus": "必须固定 Nyquist 的计数约定；裕度只支持所声明模型（model）和回路条件，不能替代非线性饱和系统的完整验证。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P10-C02-S01",
+              "chapter_id": "10.2",
+              "number": "10.2.1",
+              "title": "极点与根轨迹的低阶例子",
+              "outcome": "从闭环特征方程计算极点，核对增益和阻尼。",
+              "path": "notebooks/10-反馈与最优控制/02-频域稳定性与设计/01-极点与根轨迹的低阶例子.ipynb",
+              "visualization": "web/control/index.html",
+              "questions": [
+                {
+                  "id": "p10-second-order-poles",
+                  "slug": "p10-second-order-poles",
+                  "title": "求闭环极点",
+                  "type": "python"
+                },
+                {
+                  "id": "p10-pole-to-time",
+                  "slug": "p10-pole-to-time",
+                  "title": "极点与暂态",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-root-locus-meaning",
+                  "slug": "p10-root-locus-meaning",
+                  "title": "根轨迹画的是什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-delay-approximation",
+                  "slug": "p10-delay-approximation",
+                  "title": "延迟与低阶近似",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-second-order-poles"
+            },
+            {
+              "id": "P10-C02-S02",
+              "chapter_id": "10.2",
+              "number": "10.2.2",
+              "title": "Bode与Nyquist的读图条件",
+              "outcome": "计算幅相与延迟，区分稳定裕度和非线性闭环保证。",
+              "path": "notebooks/10-反馈与最优控制/02-频域稳定性与设计/02-Bode与Nyquist的读图条件.ipynb",
+              "visualization": "web/control/index.html",
+              "questions": [
+                {
+                  "id": "p10-frequency-delay",
+                  "slug": "p10-frequency-delay",
+                  "title": "计算回路频率响应",
+                  "type": "python"
+                },
+                {
+                  "id": "p10-nyquist-hypotheses",
+                  "slug": "p10-nyquist-hypotheses",
+                  "title": "Nyquist 判据的边界",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-bode-margin",
+                  "slug": "p10-bode-margin",
+                  "title": "裕度能说明什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-phase-wrap",
+                  "slug": "p10-phase-wrap",
+                  "title": "主值相角与连续相位",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-frequency-delay"
+            }
+          ],
+          "visualization": "web/control/index.html"
         },
         {
           "id": "10.3",
@@ -5708,9 +5854,82 @@
             "极点配置、状态缩放与输入幅度代价"
           ],
           "focus": "对应练习 两种秩分别为 2、1；反馈符号约定和 A − BK 的核验一致；近似秩须报告数值容差与尺度。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P10-C03-S01",
+              "chapter_id": "10.3",
+              "number": "10.3.1",
+              "title": "输入位置与能控矩阵",
+              "outcome": "推导二维能控矩阵并检查不能影响的状态方向。",
+              "path": "notebooks/10-反馈与最优控制/03-能控性与状态反馈/01-输入位置与能控矩阵.ipynb",
+              "visualization": "web/control/index.html",
+              "questions": [
+                {
+                  "id": "p10-controllability-two",
+                  "slug": "p10-controllability-two",
+                  "title": "二维能控矩阵",
+                  "type": "python"
+                },
+                {
+                  "id": "p10-actuator-position",
+                  "slug": "p10-actuator-position",
+                  "title": "同一 A、不同输入位置",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-rank-tolerance",
+                  "slug": "p10-rank-tolerance",
+                  "title": "数值秩不是绝对标签",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-controllable-not-feasible",
+                  "slug": "p10-controllable-not-feasible",
+                  "title": "可控就一定可行吗",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-controllability-two"
+            },
+            {
+              "id": "P10-C03-S02",
+              "chapter_id": "10.3",
+              "number": "10.3.2",
+              "title": "极点配置与输入代价",
+              "outcome": "在可控模型中配置极点，核对反馈符号与执行需求。",
+              "path": "notebooks/10-反馈与最优控制/03-能控性与状态反馈/02-极点配置与输入代价.ipynb",
+              "visualization": "web/control/index.html",
+              "questions": [
+                {
+                  "id": "p10-canonical-gain",
+                  "slug": "p10-canonical-gain",
+                  "title": "配置双积分反馈极点",
+                  "type": "python"
+                },
+                {
+                  "id": "p10-feedback-sign",
+                  "slug": "p10-feedback-sign",
+                  "title": "反馈符号统一",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-fast-pole-cost",
+                  "slug": "p10-fast-pole-cost",
+                  "title": "极点越快越好吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-pole-placement-condition",
+                  "slug": "p10-pole-placement-condition",
+                  "title": "不可控时不能任意配置",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-canonical-gain"
+            }
+          ],
+          "visualization": "web/control/index.html"
         },
         {
           "id": "10.4",
@@ -5724,9 +5943,82 @@
             "在无噪线性条件下解释分离设计，再用噪声和饱和检验其限制"
           ],
           "focus": "对应练习 两种秩分别为 2、1；只有课程已知状态（state）作为隔离核验答案时，才能直接报告完整状态误差。 反馈只使用估计状态；将增广闭环极点（pole）与控制/观测（observation）误差两组极点核对，饱和时重新验证。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P10-C04-S01",
+              "chapter_id": "10.4",
+              "number": "10.4.1",
+              "title": "传感器位置与能观矩阵",
+              "outcome": "计算能观矩阵，识别无法从读数恢复的状态方向。",
+              "path": "notebooks/10-反馈与最优控制/04-状态观测器与输出反馈/01-传感器位置与能观矩阵.ipynb",
+              "visualization": "web/control/index.html",
+              "questions": [
+                {
+                  "id": "p10-observability-two",
+                  "slug": "p10-observability-two",
+                  "title": "二维能观矩阵",
+                  "type": "python"
+                },
+                {
+                  "id": "p10-sensor-position",
+                  "slug": "p10-sensor-position",
+                  "title": "换一个传感器",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-known-input",
+                  "slug": "p10-known-input",
+                  "title": "观测器需要知道输入吗",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-observability-vs-noise",
+                  "slug": "p10-observability-vs-noise",
+                  "title": "可观不等于精确恢复",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-observability-two"
+            },
+            {
+              "id": "P10-C04-S02",
+              "chapter_id": "10.4",
+              "number": "10.4.2",
+              "title": "观测误差与输出反馈",
+              "outcome": "推导观测器误差动态，并用估计状态而非真值决策。",
+              "path": "notebooks/10-反馈与最优控制/04-状态观测器与输出反馈/02-观测误差与输出反馈.ipynb",
+              "visualization": "web/control/index.html",
+              "questions": [
+                {
+                  "id": "p10-observer-replay",
+                  "slug": "p10-observer-replay",
+                  "title": "重放一次状态估计",
+                  "type": "python"
+                },
+                {
+                  "id": "p10-error-dynamics",
+                  "slug": "p10-error-dynamics",
+                  "title": "误差如何演化",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-separation-assumptions",
+                  "slug": "p10-separation-assumptions",
+                  "title": "分离设计的适用条件",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-truth-for-validation",
+                  "slug": "p10-truth-for-validation",
+                  "title": "真值只能在哪里出现",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-observer-replay"
+            }
+          ],
+          "visualization": "web/control/index.html"
         },
         {
           "id": "10.5",
@@ -5740,9 +6032,82 @@
             "LQR、权重正定（positive definite）条件及有限/无限时域区别"
           ],
           "focus": "对应练习 最优 u = −x/2、价值为 3x²/2；Riccati 结果与小问题独立计算一致，不能将截断输入（input）后的方案继续称为原约束问题的最优解。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P10-C05-S01",
+              "chapter_id": "10.5",
+              "number": "10.5.1",
+              "title": "一步Bellman递推",
+              "outcome": "从终端代价推导最优输入与价值函数。",
+              "path": "notebooks/10-反馈与最优控制/05-动态规划与 LQR/01-一步Bellman递推.ipynb",
+              "visualization": "web/control/index.html",
+              "questions": [
+                {
+                  "id": "p10-bellman-one",
+                  "slug": "p10-bellman-one",
+                  "title": "一步二次价值",
+                  "type": "python"
+                },
+                {
+                  "id": "p10-terminal-matters",
+                  "slug": "p10-terminal-matters",
+                  "title": "遗漏终端代价",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-bellman-scope",
+                  "slug": "p10-bellman-scope",
+                  "title": "Bellman 递推需要什么",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-weight-units",
+                  "slug": "p10-weight-units",
+                  "title": "代价权重与单位",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-bellman-one"
+            },
+            {
+              "id": "P10-C05-S02",
+              "chapter_id": "10.5",
+              "number": "10.5.2",
+              "title": "有限时域LQR的Riccati倒推",
+              "outcome": "从二次价值函数推导矩阵增益和代价矩阵序列。",
+              "path": "notebooks/10-反馈与最优控制/05-动态规划与 LQR/02-有限时域LQR的Riccati倒推.ipynb",
+              "visualization": "web/control/index.html",
+              "questions": [
+                {
+                  "id": "p10-finite-riccati",
+                  "slug": "p10-finite-riccati",
+                  "title": "有限时域 Riccati 倒推",
+                  "type": "python"
+                },
+                {
+                  "id": "p10-riccati-boundary",
+                  "slug": "p10-riccati-boundary",
+                  "title": "Riccati 从哪里开始",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-unconstrained-vs-saturated",
+                  "slug": "p10-unconstrained-vs-saturated",
+                  "title": "截断 LQR 输入",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-finite-vs-infinite",
+                  "slug": "p10-finite-vs-infinite",
+                  "title": "时域长度改变什么",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-finite-riccati"
+            }
+          ],
+          "visualization": "web/control/index.html"
         },
         {
           "id": "10.6",
@@ -5756,9 +6121,82 @@
             "软硬约束、不可行、超时和模型误差的处理"
           ],
           "focus": "不得默认可行性或稳定性；如采用备用控制，必须独立说明其适用域并核验；禁止用未经核验的上次解掩盖求解失败。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P10-C06-S01",
+              "chapter_id": "10.6",
+              "number": "10.6.1",
+              "title": "预测时域与硬约束",
+              "outcome": "把小型离散行动MPC写成可枚举问题并检查不可行。",
+              "path": "notebooks/10-反馈与最优控制/06-带约束的 MPC/01-预测时域与硬约束.ipynb",
+              "visualization": "web/control/index.html",
+              "questions": [
+                {
+                  "id": "p10-discrete-mpc",
+                  "slug": "p10-discrete-mpc",
+                  "title": "求解一个小型硬约束 MPC",
+                  "type": "python"
+                },
+                {
+                  "id": "p10-mpc-receding",
+                  "slug": "p10-mpc-receding",
+                  "title": "滚动时域的关键动作",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-hard-soft",
+                  "slug": "p10-hard-soft",
+                  "title": "硬约束与软约束",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-infeasible-truth",
+                  "slug": "p10-infeasible-truth",
+                  "title": "求解失败要如实报告",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-discrete-mpc"
+            },
+            {
+              "id": "P10-C06-S02",
+              "chapter_id": "10.6",
+              "number": "10.6.2",
+              "title": "滚动求解与预测失配",
+              "outcome": "每步只执行首个行动，比较预测与实际轨迹并记录失败。",
+              "path": "notebooks/10-反馈与最优控制/06-带约束的 MPC/02-滚动求解与预测失配.ipynb",
+              "visualization": "web/control/index.html",
+              "questions": [
+                {
+                  "id": "p10-receding-trajectory",
+                  "slug": "p10-receding-trajectory",
+                  "title": "逐时刻重新求解",
+                  "type": "python"
+                },
+                {
+                  "id": "p10-prediction-vs-reality",
+                  "slug": "p10-prediction-vs-reality",
+                  "title": "预测轨迹不等于实际轨迹",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-fallback-domain",
+                  "slug": "p10-fallback-domain",
+                  "title": "备用控制需要验证",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-estimate-interface",
+                  "slug": "p10-estimate-interface",
+                  "title": "MPC 起点的状态从哪里来",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-receding-trajectory"
+            }
+          ],
+          "visualization": "web/control/index.html"
         },
         {
           "id": "10.7",
@@ -5772,11 +6210,174 @@
             "成本、约束、稳健性和运行预算的联合报告"
           ],
           "focus": "计划以不少于 30 组独立随机场景估计波动，实施时按不确定性和预算调整并记录；方法间共享场景不等于场景之间重复使用同一序列。",
-          "available": false,
-          "lessons": [],
-          "visualization": null
+          "available": true,
+          "lessons": [
+            {
+              "id": "P10-C07-S01",
+              "chapter_id": "10.7",
+              "number": "10.7.1",
+              "title": "相同信息下的控制评价",
+              "outcome": "在相同观测、限幅和扰动下报告跟踪、代价和失败。",
+              "path": "notebooks/10-反馈与最优控制/07-估计反馈与闭环验证/01-相同信息下的控制评价.ipynb",
+              "visualization": "web/control/index.html",
+              "questions": [
+                {
+                  "id": "p10-scenario-metrics",
+                  "slug": "p10-scenario-metrics",
+                  "title": "计算一个闭环场景的指标",
+                  "type": "python"
+                },
+                {
+                  "id": "p10-fair-baseline",
+                  "slug": "p10-fair-baseline",
+                  "title": "公平控制比较",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-average-not-enough",
+                  "slug": "p10-average-not-enough",
+                  "title": "平均误差之外",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-training-vs-test",
+                  "slug": "p10-training-vs-test",
+                  "title": "调参场景可再次作证吗",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-scenario-metrics"
+            },
+            {
+              "id": "P10-C07-S02",
+              "chapter_id": "10.7",
+              "number": "10.7.2",
+              "title": "独立场景与配对不确定性",
+              "outcome": "分开调参和评估数据，保留所有失败场景。",
+              "path": "notebooks/10-反馈与最优控制/07-估计反馈与闭环验证/02-独立场景与配对不确定性.ipynb",
+              "visualization": "web/control/index.html",
+              "questions": [
+                {
+                  "id": "p10-paired-differences",
+                  "slug": "p10-paired-differences",
+                  "title": "保留失败的配对比较",
+                  "type": "python"
+                },
+                {
+                  "id": "p10-paired-bootstrap",
+                  "slug": "p10-paired-bootstrap",
+                  "title": "为什么按场景配对",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-failure-selection",
+                  "slug": "p10-failure-selection",
+                  "title": "失败率属于结果",
+                  "type": "choice"
+                },
+                {
+                  "id": "p10-uncertainty-scope",
+                  "slug": "p10-uncertainty-scope",
+                  "title": "有限场景能说明多远",
+                  "type": "choice"
+                }
+              ],
+              "url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-paired-differences"
+            }
+          ],
+          "visualization": "web/control/index.html"
         }
-      ]
+      ],
+      "assessment": {
+        "id": "10.summary",
+        "assessment": true,
+        "title": "部分观测下的约束控制",
+        "url": "/parts/10-反馈与最优控制/综合练习/",
+        "goals": "控制方案须在声明的信息、执行约束与独立场景下评价。",
+        "prerequisites": "本篇10.1—10.7；第7篇估计与第8篇优化。",
+        "focus": "时频一致性、能控能观、约束与失败、独立评估。",
+        "knowledge": [
+          "PID与频域稳定",
+          "状态（state）与输出（output）反馈（feedback）",
+          "Bellman、LQR与MPC",
+          "配对闭环验证"
+        ],
+        "lessons": [
+          {
+            "id": "P10-SUMMARY",
+            "chapter_id": "10.summary",
+            "number": "篇末综合",
+            "title": "部分观测下的约束控制",
+            "outcome": "在同一人工系统上检查反馈、观测、最优决策及独立闭环评价。",
+            "path": "notebooks/10-反馈与最优控制/08-篇末综合/01-部分观测下的约束控制.ipynb",
+            "visualization": null,
+            "overview": {
+              "goals": "控制方案须在声明的信息、执行约束与独立场景下评价。",
+              "prerequisites": "本篇10.1—10.7；第7篇估计与第8篇优化。",
+              "focus": "时频一致性、能控能观、约束与失败、独立评估。",
+              "knowledge": [
+                "PID与频域稳定",
+                "状态与输出反馈",
+                "Bellman、LQR与MPC",
+                "配对闭环验证"
+              ]
+            },
+            "questions": [
+              {
+                "id": "p10-cap-feedback",
+                "slug": "p10-cap-feedback",
+                "title": "反馈方向与稳定证据",
+                "type": "choice"
+              },
+              {
+                "id": "p10-cap-sensors",
+                "slug": "p10-cap-sensors",
+                "title": "执行器与传感器配置",
+                "type": "choice"
+              },
+              {
+                "id": "p10-cap-pid",
+                "slug": "p10-cap-pid",
+                "title": "限幅下的控制一步",
+                "type": "python"
+              },
+              {
+                "id": "p10-cap-observer",
+                "slug": "p10-cap-observer",
+                "title": "给定读数下的观测器",
+                "type": "python"
+              },
+              {
+                "id": "p10-cap-riccati",
+                "slug": "p10-cap-riccati",
+                "title": "综合题中的有限时域LQR",
+                "type": "python"
+              },
+              {
+                "id": "p10-cap-mpc",
+                "slug": "p10-cap-mpc",
+                "title": "综合题中的滚动约束求解",
+                "type": "python"
+              },
+              {
+                "id": "p10-cap-metrics",
+                "slug": "p10-cap-metrics",
+                "title": "配对场景指标和失败",
+                "type": "python"
+              },
+              {
+                "id": "p10-cap-mismatch",
+                "slug": "p10-cap-mismatch",
+                "title": "失配和缺测后的结论",
+                "type": "choice"
+              }
+            ],
+            "url": "/parts/10-反馈与最优控制/综合练习/practice/?question=p10-cap-feedback"
+          }
+        ],
+        "available": true,
+        "visualization": null
+      }
     },
     {
       "id": "11",

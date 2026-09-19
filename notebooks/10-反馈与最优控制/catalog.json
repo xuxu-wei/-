@@ -1,0 +1,148 @@
+[
+  {
+    "id": "P10-C01-S01",
+    "chapter_id": "10.1",
+    "number": "10.1.1",
+    "title": "误差怎样驱动比例与积分控制",
+    "outcome": "定义误差、执行量和时步，检查PI稳态误差与饱和。",
+    "path": "notebooks/10-反馈与最优控制/01-开闭环与 PID/01-误差怎样驱动比例与积分控制.ipynb",
+    "visualization": "web/control/index.html"
+  },
+  {
+    "id": "P10-C01-S02",
+    "chapter_id": "10.1",
+    "number": "10.1.2",
+    "title": "微分噪声与积分抗饱和",
+    "outcome": "实现离散PID与条件积分，比较噪声和执行限幅。",
+    "path": "notebooks/10-反馈与最优控制/01-开闭环与 PID/02-微分噪声与积分抗饱和.ipynb",
+    "visualization": "web/control/index.html"
+  },
+  {
+    "id": "P10-C02-S01",
+    "chapter_id": "10.2",
+    "number": "10.2.1",
+    "title": "极点与根轨迹的低阶例子",
+    "outcome": "从闭环特征方程计算极点，核对增益和阻尼。",
+    "path": "notebooks/10-反馈与最优控制/02-频域稳定性与设计/01-极点与根轨迹的低阶例子.ipynb",
+    "visualization": "web/control/index.html"
+  },
+  {
+    "id": "P10-C02-S02",
+    "chapter_id": "10.2",
+    "number": "10.2.2",
+    "title": "Bode与Nyquist的读图条件",
+    "outcome": "计算幅相与延迟，区分稳定裕度和非线性闭环保证。",
+    "path": "notebooks/10-反馈与最优控制/02-频域稳定性与设计/02-Bode与Nyquist的读图条件.ipynb",
+    "visualization": "web/control/index.html"
+  },
+  {
+    "id": "P10-C03-S01",
+    "chapter_id": "10.3",
+    "number": "10.3.1",
+    "title": "输入位置与能控矩阵",
+    "outcome": "推导二维能控矩阵并检查不能影响的状态方向。",
+    "path": "notebooks/10-反馈与最优控制/03-能控性与状态反馈/01-输入位置与能控矩阵.ipynb",
+    "visualization": "web/control/index.html"
+  },
+  {
+    "id": "P10-C03-S02",
+    "chapter_id": "10.3",
+    "number": "10.3.2",
+    "title": "极点配置与输入代价",
+    "outcome": "在可控模型中配置极点，核对反馈符号与执行需求。",
+    "path": "notebooks/10-反馈与最优控制/03-能控性与状态反馈/02-极点配置与输入代价.ipynb",
+    "visualization": "web/control/index.html"
+  },
+  {
+    "id": "P10-C04-S01",
+    "chapter_id": "10.4",
+    "number": "10.4.1",
+    "title": "传感器位置与能观矩阵",
+    "outcome": "计算能观矩阵，识别无法从读数恢复的状态方向。",
+    "path": "notebooks/10-反馈与最优控制/04-状态观测器与输出反馈/01-传感器位置与能观矩阵.ipynb",
+    "visualization": "web/control/index.html"
+  },
+  {
+    "id": "P10-C04-S02",
+    "chapter_id": "10.4",
+    "number": "10.4.2",
+    "title": "观测误差与输出反馈",
+    "outcome": "推导观测器误差动态，并用估计状态而非真值决策。",
+    "path": "notebooks/10-反馈与最优控制/04-状态观测器与输出反馈/02-观测误差与输出反馈.ipynb",
+    "visualization": "web/control/index.html"
+  },
+  {
+    "id": "P10-C05-S01",
+    "chapter_id": "10.5",
+    "number": "10.5.1",
+    "title": "一步Bellman递推",
+    "outcome": "从终端代价推导最优输入与价值函数。",
+    "path": "notebooks/10-反馈与最优控制/05-动态规划与 LQR/01-一步Bellman递推.ipynb",
+    "visualization": "web/control/index.html"
+  },
+  {
+    "id": "P10-C05-S02",
+    "chapter_id": "10.5",
+    "number": "10.5.2",
+    "title": "有限时域LQR的Riccati倒推",
+    "outcome": "从二次价值函数推导矩阵增益和代价矩阵序列。",
+    "path": "notebooks/10-反馈与最优控制/05-动态规划与 LQR/02-有限时域LQR的Riccati倒推.ipynb",
+    "visualization": "web/control/index.html"
+  },
+  {
+    "id": "P10-C06-S01",
+    "chapter_id": "10.6",
+    "number": "10.6.1",
+    "title": "预测时域与硬约束",
+    "outcome": "把小型离散行动MPC写成可枚举问题并检查不可行。",
+    "path": "notebooks/10-反馈与最优控制/06-带约束的 MPC/01-预测时域与硬约束.ipynb",
+    "visualization": "web/control/index.html"
+  },
+  {
+    "id": "P10-C06-S02",
+    "chapter_id": "10.6",
+    "number": "10.6.2",
+    "title": "滚动求解与预测失配",
+    "outcome": "每步只执行首个行动，比较预测与实际轨迹并记录失败。",
+    "path": "notebooks/10-反馈与最优控制/06-带约束的 MPC/02-滚动求解与预测失配.ipynb",
+    "visualization": "web/control/index.html"
+  },
+  {
+    "id": "P10-C07-S01",
+    "chapter_id": "10.7",
+    "number": "10.7.1",
+    "title": "相同信息下的控制评价",
+    "outcome": "在相同观测、限幅和扰动下报告跟踪、代价和失败。",
+    "path": "notebooks/10-反馈与最优控制/07-估计反馈与闭环验证/01-相同信息下的控制评价.ipynb",
+    "visualization": "web/control/index.html"
+  },
+  {
+    "id": "P10-C07-S02",
+    "chapter_id": "10.7",
+    "number": "10.7.2",
+    "title": "独立场景与配对不确定性",
+    "outcome": "分开调参和评估数据，保留所有失败场景。",
+    "path": "notebooks/10-反馈与最优控制/07-估计反馈与闭环验证/02-独立场景与配对不确定性.ipynb",
+    "visualization": "web/control/index.html"
+  },
+  {
+    "id": "P10-SUMMARY",
+    "chapter_id": "10.summary",
+    "number": "篇末综合",
+    "title": "部分观测下的约束控制",
+    "outcome": "在同一人工系统上检查反馈、观测、最优决策及独立闭环评价。",
+    "path": "notebooks/10-反馈与最优控制/08-篇末综合/01-部分观测下的约束控制.ipynb",
+    "visualization": null,
+    "overview": {
+      "goals": "控制方案须在声明的信息、执行约束与独立场景下评价。",
+      "prerequisites": "本篇10.1—10.7；第7篇估计与第8篇优化。",
+      "focus": "时频一致性、能控能观、约束与失败、独立评估。",
+      "knowledge": [
+        "PID与频域稳定",
+        "状态与输出反馈",
+        "Bellman、LQR与MPC",
+        "配对闭环验证"
+      ]
+    }
+  }
+]

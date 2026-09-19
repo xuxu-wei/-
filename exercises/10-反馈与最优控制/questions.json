@@ -1,0 +1,4231 @@
+[
+  {
+    "id": "p10-pi-saturation",
+    "slug": "p10-pi-saturation",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.1",
+    "lesson_id": "P10-C01-S01",
+    "title": "一次 PI 更新",
+    "statement": "理想温度偏差 e 以 U 计，控制输入（input）以 U/T 计。按题定“条件积分”实现一步：先试算积分；若限幅且当前误差会把请求继续推向限幅，则冻结积分并重新计算请求。返回请求输入、实际输入和积分状态（state）。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数09",
+      "数16"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "error",
+        "type": "float",
+        "description": "当前设定值减测量值。",
+        "unit": "U"
+      },
+      {
+        "name": "integral",
+        "type": "float",
+        "description": "更新前误差积分。",
+        "unit": "U·T"
+      },
+      {
+        "name": "dt",
+        "type": "float",
+        "description": "时间步长（time step），严格大于零。",
+        "unit": "T"
+      },
+      {
+        "name": "kp",
+        "type": "float",
+        "description": "比例增益（gain）。",
+        "unit": "1/T"
+      },
+      {
+        "name": "ki",
+        "type": "float",
+        "description": "积分增益。",
+        "unit": "1/T²"
+      },
+      {
+        "name": "limit",
+        "type": "float",
+        "description": "执行量绝对值上限，严格大于零。",
+        "unit": "U/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "requested",
+        "type": "float",
+        "description": "冻结判定后的未限幅请求。",
+        "unit": "U/T"
+      },
+      {
+        "name": "actual",
+        "type": "float",
+        "description": "裁剪到上限后的真实执行输入。",
+        "unit": "U/T"
+      },
+      {
+        "name": "new_integral",
+        "type": "float",
+        "description": "更新后的误差积分。",
+        "unit": "U·T"
+      }
+    ],
+    "contract": "候选 I=I+e·dt；r=kp·e+ki·I。把 r 裁剪到[-limit,limit]。若发生裁剪且 e·r>0，令 I 保持旧值，重新求 r 与实际输入。",
+    "constraints": [
+      "输入均为有限数；只需实现题定模型（model），不外推到真实病人或设备。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例候选请求为4，正误差继续推动正限幅，冻结积分后请求与实际输入都为2。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    error: float,\n    integral: float,\n    dt: float,\n    kp: float,\n    ki: float,\n    limit: float,\n) -> tuple[float, float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "error": 2.0,
+          "integral": 0.0,
+          "dt": 1.0,
+          "kp": 1.0,
+          "ki": 1.0,
+          "limit": 2.0
+        },
+        "expected": [
+          2.0,
+          2.0,
+          0.0
+        ],
+        "explanation": "首例候选请求为4，正误差继续推动正限幅，冻结积分后请求与实际输入都为2。"
+      }
+    ]
+  },
+  {
+    "id": "p10-pi-constant-load",
+    "slug": "p10-pi-constant-load",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.1",
+    "lesson_id": "P10-C01-S01",
+    "title": "恒定扰动下的 P 与 PI",
+    "statement": "对象为稳定一阶线性模型（model），控制方向正确且没有执行饱和。负向恒定扰动持续存在，哪些判断成立？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数09",
+      "数16"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "P 控制通常可能留下稳态误差。"
+      },
+      {
+        "id": "B",
+        "text": "增加积分项可在闭环稳定等条件下消除该类常值误差。"
+      },
+      {
+        "id": "C",
+        "text": "只要加积分，无论延迟（delay）与限幅如何，闭环一定稳定。"
+      },
+      {
+        "id": "D",
+        "text": "负反馈（negative feedback）方向的定义必须和误差、执行作用方向一致。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-request-vs-actuation",
+    "slug": "p10-request-vs-actuation",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.1",
+    "lesson_id": "P10-C01-S01",
+    "title": "要求与执行不能混用",
+    "statement": "控制器请求 8 U/T，执行器只能给到 5 U/T。仿真中哪项做法正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数09",
+      "数16"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "以8推进对象，并只在图上把输入（input）画成5。"
+      },
+      {
+        "id": "B",
+        "text": "以真实执行的5推进对象，并另存请求的8用于诊断饱和。"
+      },
+      {
+        "id": "C",
+        "text": "对象状态（state）会自动知道控制器原来的请求。"
+      },
+      {
+        "id": "D",
+        "text": "发生饱和后原线性闭环推导仍无条件适用。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-gain-units",
+    "slug": "p10-gain-units",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.1",
+    "lesson_id": "P10-C01-S01",
+    "title": "增益有单位",
+    "statement": "e 单位 U，时间单位 T，执行输入（input）单位 U/T。对 u=kp e+ki∫e dt，哪组增益（gain）单位一致？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数09",
+      "数16"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "kp 为1/T，ki 为1/T²。"
+      },
+      {
+        "id": "B",
+        "text": "kp 为T，ki 为T²。"
+      },
+      {
+        "id": "C",
+        "text": "两者均为1/T。"
+      },
+      {
+        "id": "D",
+        "text": "增益永远无量纲（dimensionless）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-pid-history",
+    "slug": "p10-pid-history",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.1",
+    "lesson_id": "P10-C01-S02",
+    "title": "重放误差历史中的 PID",
+    "statement": "按给定误差时间序列（time series）从积分0和前一误差0开始，逐步使用后向差分 D=(e_t−e_{t−1})/dt 与 10.1.1 的条件积分。每步返回请求、真实输入（input）和积分；序列无须由本函数生成。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数09",
+      "数16"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "errors",
+        "type": "list[float]",
+        "description": "按时间顺序给定的误差。",
+        "unit": "U"
+      },
+      {
+        "name": "dt",
+        "type": "float",
+        "description": "固定步长。",
+        "unit": "T"
+      },
+      {
+        "name": "kp",
+        "type": "float",
+        "description": "比例增益（gain）。",
+        "unit": "1/T"
+      },
+      {
+        "name": "ki",
+        "type": "float",
+        "description": "积分增益。",
+        "unit": "1/T²"
+      },
+      {
+        "name": "kd",
+        "type": "float",
+        "description": "微分增益。",
+        "unit": "1"
+      },
+      {
+        "name": "limit",
+        "type": "float",
+        "description": "执行上限。",
+        "unit": "U/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "rows",
+        "type": "list[list[float]]",
+        "description": "每步 [请求输入,真实输入,更新后积分]。",
+        "unit": "混合，依列说明"
+      }
+    ],
+    "contract": "初始 I=0,e_previous=0。试算 I+e·dt 和 kp·e+ki·I+kd·(e−e_previous)/dt；限幅后按 e·request>0 的条件冻结积分并重算该步；随后更新 previous。",
+    "constraints": [
+      "输入均为有限数；只需实现题定模型（model），不外推到真实病人或设备。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "第一步候选输入3超过上限，积分冻结；第二步仍保持。误差转负后应重新检查方向与释放。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    errors: list[float],\n    dt: float,\n    kp: float,\n    ki: float,\n    kd: float,\n    limit: float,\n) -> list[list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "errors": [
+            2.0,
+            2.0,
+            -1.0,
+            0.0
+          ],
+          "dt": 1.0,
+          "kp": 1.0,
+          "ki": 0.5,
+          "kd": 0.0,
+          "limit": 2.0
+        },
+        "expected": [
+          [
+            2.0,
+            2.0,
+            0.0
+          ],
+          [
+            2.0,
+            2.0,
+            0.0
+          ],
+          [
+            -1.5,
+            -1.5,
+            -1.0
+          ],
+          [
+            -0.5,
+            -0.5,
+            -1.0
+          ]
+        ],
+        "explanation": "第一步候选输入3超过上限，积分冻结；第二步仍保持。误差转负后应重新检查方向与释放。"
+      }
+    ]
+  },
+  {
+    "id": "p10-derivative-noise",
+    "slug": "p10-derivative-noise",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.1",
+    "lesson_id": "P10-C01-S02",
+    "title": "为何微分会放大高频噪声",
+    "statement": "同样的真实误差保持不变，两次测量噪声（measurement noise）交替为+0.1 U与−0.1 U，dt 从1 T缩到0.1 T。D=(e_t−e_previous)/dt 的噪声幅度怎样变化？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数09",
+      "数16"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "约放大10倍。"
+      },
+      {
+        "id": "B",
+        "text": "约缩小10倍。"
+      },
+      {
+        "id": "C",
+        "text": "完全不变，因为真实误差不变。"
+      },
+      {
+        "id": "D",
+        "text": "只要增加kd便能消除测量噪声。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-freeze-direction",
+    "slug": "p10-freeze-direction",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.1",
+    "lesson_id": "P10-C01-S02",
+    "title": "何时冻结积分",
+    "statement": "正向上限为2 U/T，当前请求超过上限。下列哪种误差方向按本节条件积分规则要求冻结积分？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数09",
+      "数16"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "e>0，继续增加正向请求。"
+      },
+      {
+        "id": "B",
+        "text": "e<0，推动请求离开正向上限。"
+      },
+      {
+        "id": "C",
+        "text": "只要限制存在，积分永远不更新。"
+      },
+      {
+        "id": "D",
+        "text": "只要D项不为零，积分永远冻结。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-pid-comparison",
+    "slug": "p10-pid-comparison",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.1",
+    "lesson_id": "P10-C01-S02",
+    "title": "公平比较三个控制器",
+    "statement": "比较 P、PI、PID 的轨迹（trajectory）时，哪组条件应保持一致？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数09",
+      "数16"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "对象、初态、扰动、测量噪声（measurement noise）、执行限幅与评价时间窗。"
+      },
+      {
+        "id": "B",
+        "text": "只需把三条轨迹画成同一种颜色。"
+      },
+      {
+        "id": "C",
+        "text": "让每种方法用不同扰动，从而显示各自优势。"
+      },
+      {
+        "id": "D",
+        "text": "只看终点误差，忽略超调与实际输入（input）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-second-order-poles",
+    "slug": "p10-second-order-poles",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.2",
+    "lesson_id": "P10-C02-S01",
+    "title": "求闭环极点",
+    "statement": "单位负反馈（negative feedback），G(s)=1/[(s+1)(τs+1)]，比例增益（gain） K≥0，τ>0。闭环特征方程 τs²+(τ+1)s+(1+K)=0。返回按实部、虚部从小到大排列的一对极点（pole）分量。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数07",
+      "数18"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "gain",
+        "type": "float",
+        "description": "比例回路增益 K。",
+        "unit": "1"
+      },
+      {
+        "name": "tau",
+        "type": "float",
+        "description": "第二时间常数 τ。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "real_parts",
+        "type": "list[float]",
+        "description": "两个极点的实部。",
+        "unit": "1/T"
+      },
+      {
+        "name": "imag_parts",
+        "type": "list[float]",
+        "description": "两个极点的虚部。",
+        "unit": "1/T"
+      }
+    ],
+    "contract": "用判别式(τ+1)²−4τ(1+K)计算；若负，虚部为正负共轭。返回各列与相同排序的极点配对。",
+    "constraints": [
+      "输入（input）均为有限数；只需实现题定模型（model），不外推到真实病人或设备。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "K=0、τ=2 时根为−1与−0.5；增大K可改变阻尼和振荡，却不能只凭K增加就断言响应单调更好。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    gain: float,\n    tau: float,\n) -> tuple[list[float], list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "gain": 0.0,
+          "tau": 2.0
+        },
+        "expected": [
+          [
+            -1.0,
+            -0.5
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "explanation": "K=0、τ=2 时根为−1与−0.5；增大K可改变阻尼和振荡，却不能只凭K增加就断言响应单调更好。"
+      }
+    ]
+  },
+  {
+    "id": "p10-pole-to-time",
+    "slug": "p10-pole-to-time",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.2",
+    "lesson_id": "P10-C02-S01",
+    "title": "极点与暂态",
+    "statement": "对于本节线性连续模型（model），两个闭环极点（pole）实部均为负。哪些结论有条件成立？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数07",
+      "数18"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "无未建模动态且模型精确时，小扰动自然响应衰减。"
+      },
+      {
+        "id": "B",
+        "text": "有饱和也一定保持相同的全局稳定结论。"
+      },
+      {
+        "id": "C",
+        "text": "复共轭（complex conjugate）极点对应振荡形状的暂态（transient）分量。"
+      },
+      {
+        "id": "D",
+        "text": "极点位置本身不能说明传感器噪声与执行代价都可接受。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-root-locus-meaning",
+    "slug": "p10-root-locus-meaning",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.2",
+    "lesson_id": "P10-C02-S01",
+    "title": "根轨迹画的是什么",
+    "statement": "固定对象 G(s)，只改变实数增益（gain） K。根轨迹（trajectory）中的点表示什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数07",
+      "数18"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "每个K所对应的闭环特征根。"
+      },
+      {
+        "id": "B",
+        "text": "每个K下开环对象原有极点（pole）必随之移动。"
+      },
+      {
+        "id": "C",
+        "text": "执行器实际输入（input）随时间的轨迹。"
+      },
+      {
+        "id": "D",
+        "text": "同一个频率的相角随时间的轨迹。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-delay-approximation",
+    "slug": "p10-delay-approximation",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.2",
+    "lesson_id": "P10-C02-S01",
+    "title": "延迟与低阶近似",
+    "statement": "为研究纯延迟（delay），把它替换为低阶有理近似。下列说法哪个成立？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数07",
+      "数18"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "近似阶次与频率范围会影响相位（phase）和极点（pole）结论，应对照原延迟模型（model）。"
+      },
+      {
+        "id": "B",
+        "text": "一次近似的稳定极点证明任意真实延迟下都稳定。"
+      },
+      {
+        "id": "C",
+        "text": "延迟只改变幅值，不改变相位。"
+      },
+      {
+        "id": "D",
+        "text": "闭环极点与延迟永远无关。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-frequency-delay",
+    "slug": "p10-frequency-delay",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.2",
+    "lesson_id": "P10-C02-S02",
+    "title": "计算回路频率响应",
+    "statement": "开环 L(s)=K e^(−sd)/[(s+1)(τs+1)]。在题给正频率计算幅值及主值相角（度，范围(−180,180]；恰在分支端点按 atan2 结果）。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数07",
+      "数18"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "gain",
+        "type": "float",
+        "description": "非负实增益（gain）。",
+        "unit": "1"
+      },
+      {
+        "name": "tau",
+        "type": "float",
+        "description": "正时间常数。",
+        "unit": "T"
+      },
+      {
+        "name": "omega",
+        "type": "float",
+        "description": "角频率。",
+        "unit": "1/T"
+      },
+      {
+        "name": "delay",
+        "type": "float",
+        "description": "非负纯延迟（delay）。",
+        "unit": "T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "magnitude",
+        "type": "float",
+        "description": "复频响模长（modulus）。",
+        "unit": "1"
+      },
+      {
+        "name": "phase_deg",
+        "type": "float",
+        "description": "atan2 主值相角。",
+        "unit": "degree"
+      }
+    ],
+    "contract": "直接以复数（complex number） jω 代入，并乘 exp(−jωd)。不要把主值相角当成自动展开的连续相位（phase）。",
+    "constraints": [
+      "输入（input）均为有限数；只需实现题定模型（model），不外推到真实病人或设备。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "延迟乘子模长为1，相位贡献−ωd弧度；相角输出可能折回，不能把一次折回误读为系统突变。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    gain: float,\n    tau: float,\n    omega: float,\n    delay: float,\n) -> tuple[float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "gain": 1.0,
+          "tau": 1.0,
+          "omega": 0.0,
+          "delay": 0.0
+        },
+        "expected": [
+          1.0,
+          0.0
+        ],
+        "explanation": "延迟乘子模长为1，相位贡献−ωd弧度；相角输出（output）可能折回，不能把一次折回误读为系统突变。"
+      }
+    ]
+  },
+  {
+    "id": "p10-nyquist-hypotheses",
+    "slug": "p10-nyquist-hypotheses",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.2",
+    "lesson_id": "P10-C02-S02",
+    "title": "Nyquist 判据的边界",
+    "statement": "应用 Nyquist 判据前，已明确开环轮廓上没有极点（pole）且固定绕数方向约定。还应知道什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数07",
+      "数18"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "开环右半平面极点数，并跟踪−1点绕数。"
+      },
+      {
+        "id": "B",
+        "text": "只观察正频率曲线的一个点。"
+      },
+      {
+        "id": "C",
+        "text": "任何非线性饱和系统都与线性回路结论相同。"
+      },
+      {
+        "id": "D",
+        "text": "若改变轮廓或绕数方向，公式符号也须同步核对。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-bode-margin",
+    "slug": "p10-bode-margin",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.2",
+    "lesson_id": "P10-C02-S02",
+    "title": "裕度能说明什么",
+    "statement": "给定线性开环模型（model）的 Bode 图和正相位（phase）裕度。哪项判断最谨慎？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数07",
+      "数18"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "这在所用模型和交叉频率条件下提供局部线性稳定裕度信息，还需检查噪声、饱和与失配。"
+      },
+      {
+        "id": "B",
+        "text": "正裕度证明全部初态和非线性约束下都安全。"
+      },
+      {
+        "id": "C",
+        "text": "相位裕度与延迟（delay）无关。"
+      },
+      {
+        "id": "D",
+        "text": "幅值和相位都不需注明单位或频率。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-phase-wrap",
+    "slug": "p10-phase-wrap",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.2",
+    "lesson_id": "P10-C02-S02",
+    "title": "主值相角与连续相位",
+    "statement": "某频点主值相角从−179°跳到+179°。下列哪项最合理？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数07",
+      "数18"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "这可能只是相角绕过分支切线（tangent line）；应展开相位（phase）再讨论连续趋势。"
+      },
+      {
+        "id": "B",
+        "text": "对象一定发生物理跳变。"
+      },
+      {
+        "id": "C",
+        "text": "频响幅值必同时跃迁无穷大。"
+      },
+      {
+        "id": "D",
+        "text": "任何主值跳变都说明闭环不稳定。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-controllability-two",
+    "slug": "p10-controllability-two",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.3",
+    "lesson_id": "P10-C03-S01",
+    "title": "二维能控矩阵",
+    "statement": "离散或连续二维线性模型（model） x_next=Ax+Bu。计算 [B,AB] 与行列式（determinant）；题目输入（input）数值尺度固定，满秩（rank）以 |det|>1e−10 判定。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "A",
+        "type": "list[list[float]]",
+        "description": "2×2 状态（state）矩阵（matrix）。",
+        "unit": "按状态与时间定义"
+      },
+      {
+        "name": "B",
+        "type": "list[float]",
+        "description": "长度2的单输入列向量（vector）。",
+        "unit": "按状态/输入定义"
+      }
+    ],
+    "returns": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "按行返回 [B,AB]。",
+        "unit": "按输入定义"
+      },
+      {
+        "name": "determinant",
+        "type": "float",
+        "description": "能控矩阵行列式。",
+        "unit": "组合单位"
+      }
+    ],
+    "contract": "AB_i=Σ_j A_ij B_j，矩阵第1列B、第2列AB；行列式为 ad−bc。",
+    "constraints": [
+      "输入均为有限数；只需实现题定模型，不外推到真实病人或设备。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "双积分模型 B=[0,1] 给出行列式−1；B=[1,0] 则行列式0，第二状态无法受输入影响。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    A: list[list[float]],\n    B: list[float],\n) -> tuple[list[list[float]], float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "A": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "B": [
+            0.0,
+            1.0
+          ]
+        },
+        "expected": [
+          [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ],
+          -1.0
+        ],
+        "explanation": "双积分模型 B=[0,1] 给出行列式−1；B=[1,0] 则行列式0，第二状态无法受输入影响。"
+      }
+    ]
+  },
+  {
+    "id": "p10-actuator-position",
+    "slug": "p10-actuator-position",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.3",
+    "lesson_id": "P10-C03-S01",
+    "title": "同一 A、不同输入位置",
+    "statement": "A=[[0,1],[0,0]]，B₁=[0,1]ᵀ，B₂=[1,0]ᵀ。哪项正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "[B₁,AB₁] 满秩（rank），而 [B₂,AB₂] 不满秩。"
+      },
+      {
+        "id": "B",
+        "text": "两者都满秩，因为A相同。"
+      },
+      {
+        "id": "C",
+        "text": "B₂可直接改变第二状态（state）。"
+      },
+      {
+        "id": "D",
+        "text": "图中的箭头方向无需对应矩阵（matrix）的行列。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-rank-tolerance",
+    "slug": "p10-rank-tolerance",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.3",
+    "lesson_id": "P10-C03-S01",
+    "title": "数值秩不是绝对标签",
+    "statement": "把状态（state）第二分量的数值单位改为原来的1000倍，直接使用同一个行列式（determinant）阈值。最合理的处理是什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "报告尺度和容差，并考虑奇异值（singular value）或适当缩放。"
+      },
+      {
+        "id": "B",
+        "text": "行列式非零的数学秩（rank）会随单位变化。"
+      },
+      {
+        "id": "C",
+        "text": "把所有小于1的数值都宣布不可控。"
+      },
+      {
+        "id": "D",
+        "text": "任何双精度计算都能无条件判定精确秩。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-controllable-not-feasible",
+    "slug": "p10-controllable-not-feasible",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.3",
+    "lesson_id": "P10-C03-S01",
+    "title": "可控就一定可行吗",
+    "statement": "线性对 (A,B) 可控，但输入（input）存在 |u|≤1 的硬约束。哪项判断正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "可控性不保证在任意有限时间、任意初态下满足上限地到达目标。"
+      },
+      {
+        "id": "B",
+        "text": "可控性自动提供最小能量解。"
+      },
+      {
+        "id": "C",
+        "text": "可控性说明传感器一定可观。"
+      },
+      {
+        "id": "D",
+        "text": "约束不会影响可达集合。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-canonical-gain",
+    "slug": "p10-canonical-gain",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.3",
+    "lesson_id": "P10-C03-S02",
+    "title": "配置双积分反馈极点",
+    "statement": "连续双积分模型（model） A=[[0,1],[0,0]]、B=[0,1]ᵀ，采用 u=−Kx。输入（input）两个实的负目标极点（pole），返回 K=[k1,k2]。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "pole1",
+        "type": "float",
+        "description": "第一个目标极点。",
+        "unit": "1/T"
+      },
+      {
+        "name": "pole2",
+        "type": "float",
+        "description": "第二个目标极点。",
+        "unit": "1/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "gain",
+        "type": "list[float]",
+        "description": "反馈（feedback）行向量（vector）[k1,k2]，使A−BK的特征根为目标值。",
+        "unit": "随状态定义"
+      }
+    ],
+    "contract": "det(sI−(A−BK))=s²+k2s+k1=(s−p1)(s−p2)，故k1=p1p2，k2=−(p1+p2)。",
+    "constraints": [
+      "输入均为有限数；只需实现题定模型，不外推到真实病人或设备。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "目标−1、−2给K=[2,3]；将其代入A−BK应恢复s²+3s+2。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    pole1: float,\n    pole2: float,\n) -> list[float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "pole1": -1.0,
+          "pole2": -2.0
+        },
+        "expected": [
+          2.0,
+          3.0
+        ],
+        "explanation": "目标−1、−2给K=[2,3]；将其代入A−BK应恢复s²+3s+2。"
+      }
+    ]
+  },
+  {
+    "id": "p10-feedback-sign",
+    "slug": "p10-feedback-sign",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.3",
+    "lesson_id": "P10-C03-S02",
+    "title": "反馈符号统一",
+    "statement": "教材约定 u=−Kx。设计增益（gain）后应检查哪个闭环矩阵（matrix）？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "A−BK。"
+      },
+      {
+        "id": "B",
+        "text": "A+BK。"
+      },
+      {
+        "id": "C",
+        "text": "A−KC。"
+      },
+      {
+        "id": "D",
+        "text": "A⁻¹BK。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-fast-pole-cost",
+    "slug": "p10-fast-pole-cost",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.3",
+    "lesson_id": "P10-C03-S02",
+    "title": "极点越快越好吗",
+    "statement": "同一个双积分对象上把目标极点（pole）从−1、−2改为−10、−20。哪些结果可能随之改变？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": true,
+    "options": [
+      {
+        "id": "A",
+        "text": "反馈（feedback）增益（gain）和初始输入（input）需求会显著增大。"
+      },
+      {
+        "id": "B",
+        "text": "线性理想模型（model）的暂态（transient）会更快。"
+      },
+      {
+        "id": "C",
+        "text": "执行饱和和测量误差可使实际表现偏离理想极点结论。"
+      },
+      {
+        "id": "D",
+        "text": "极点变快自动消除所有输入代价。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-pole-placement-condition",
+    "slug": "p10-pole-placement-condition",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.3",
+    "lesson_id": "P10-C03-S02",
+    "title": "不可控时不能任意配置",
+    "statement": "若 [B,AB] 秩（rank）只有1，给出任意两个目标极点（pole）时，以下何者正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数07"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "无法保证两个模态（mode）都按目标配置。"
+      },
+      {
+        "id": "B",
+        "text": "只要K的数字够大就一定可配置。"
+      },
+      {
+        "id": "C",
+        "text": "不可控模态可由输入（input）直接移动。"
+      },
+      {
+        "id": "D",
+        "text": "这证明对象没有任何可稳定的方向。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-observability-two",
+    "slug": "p10-observability-two",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.4",
+    "lesson_id": "P10-C04-S01",
+    "title": "二维能观矩阵",
+    "statement": "已知二维线性模型（model）与单个测量 y=Cx。计算纵向堆叠的 [C;CA] 及其行列式（determinant）；按题给数值尺度，|det|>1e−10 判为满秩（rank）。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数17"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "A",
+        "type": "list[list[float]]",
+        "description": "2×2 状态（state）矩阵（matrix）。",
+        "unit": "按状态定义"
+      },
+      {
+        "name": "C",
+        "type": "list[float]",
+        "description": "长度2的测量行向量（vector）。",
+        "unit": "按观测/状态定义"
+      }
+    ],
+    "returns": [
+      {
+        "name": "matrix",
+        "type": "list[list[float]]",
+        "description": "两行分别为C与CA。",
+        "unit": "按测量定义"
+      },
+      {
+        "name": "determinant",
+        "type": "float",
+        "description": "能观矩阵行列式。",
+        "unit": "组合单位"
+      }
+    ],
+    "contract": "CA_j=Σ_i C_i A_ij；将C、CA作为两行，计算ad−bc。",
+    "constraints": [
+      "输入（input）均为有限数；只需实现题定模型，不外推到真实病人或设备。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "测第一状态 C=[1,0] 时未来读数包含第二状态；只测第二状态 C=[0,1] 则第一状态不可恢复。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    A: list[list[float]],\n    C: list[float],\n) -> tuple[list[list[float]], float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "A": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "C": [
+            1.0,
+            0.0
+          ]
+        },
+        "expected": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          1.0
+        ],
+        "explanation": "测第一状态 C=[1,0] 时未来读数包含第二状态；只测第二状态 C=[0,1] 则第一状态不可恢复。"
+      }
+    ]
+  },
+  {
+    "id": "p10-sensor-position",
+    "slug": "p10-sensor-position",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.4",
+    "lesson_id": "P10-C04-S01",
+    "title": "换一个传感器",
+    "statement": "A=[[0,1],[0,0]]。若只测 x₂，与只测 x₁ 相比，哪项判断成立？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "只测x₁在本模型（model）下可观；只测x₂无法恢复x₁。"
+      },
+      {
+        "id": "B",
+        "text": "只测x₂一定可恢复x₁，因为两个状态（state）耦合。"
+      },
+      {
+        "id": "C",
+        "text": "能观性（observability）和传感器位置无关。"
+      },
+      {
+        "id": "D",
+        "text": "能观性直接说明未知参数（parameter）也可辨识。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-known-input",
+    "slug": "p10-known-input",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.4",
+    "lesson_id": "P10-C04-S01",
+    "title": "观测器需要知道输入吗",
+    "statement": "线性模型（model） x_next=Ax+Bu、y=Cx，估计器使用同一模型。为什么输入（input） u 必须作为已知量接入？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "否则读数变化中的输入作用可能被误认为状态（state）变化。"
+      },
+      {
+        "id": "B",
+        "text": "因为输入是传感器噪声的别名。"
+      },
+      {
+        "id": "C",
+        "text": "观测（observation）器不需要模型A。"
+      },
+      {
+        "id": "D",
+        "text": "已知输入保证测量无噪声。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-observability-vs-noise",
+    "slug": "p10-observability-vs-noise",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.4",
+    "lesson_id": "P10-C04-S01",
+    "title": "可观不等于精确恢复",
+    "statement": "(A,C) 满秩（rank）可观，实际读数含噪。下列哪项正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "满秩是理想已知模型（model）的结构条件，噪声下仍需讨论估计误差。"
+      },
+      {
+        "id": "B",
+        "text": "满秩保证每次单独读数直接给出全部状态（state）。"
+      },
+      {
+        "id": "C",
+        "text": "满秩保证任何初始误差一步归零。"
+      },
+      {
+        "id": "D",
+        "text": "满秩自动证明参数（parameter）源于真实生理机制。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-observer-replay",
+    "slug": "p10-observer-replay",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.4",
+    "lesson_id": "P10-C04-S02",
+    "title": "重放一次状态估计",
+    "statement": "离散二维线性观测（observation）器：xhat_next=A·xhat+B·u+L(y−C·xhat)。给定已知输入（input）和实际读数，返回含初值（initial condition）的估计轨迹（trajectory）与每步创新；不能在算法中访问隐藏真值。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数17"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "A",
+        "type": "list[list[float]]",
+        "description": "2×2 离散状态（state）矩阵（matrix）。",
+        "unit": "按状态定义"
+      },
+      {
+        "name": "B",
+        "type": "list[float]",
+        "description": "长度2的输入列。",
+        "unit": "状态/输入"
+      },
+      {
+        "name": "C",
+        "type": "list[float]",
+        "description": "长度2的观测行。",
+        "unit": "观测/状态"
+      },
+      {
+        "name": "L",
+        "type": "list[float]",
+        "description": "长度2的观测器增益（gain）列。",
+        "unit": "状态/观测"
+      },
+      {
+        "name": "inputs",
+        "type": "list[float]",
+        "description": "每步真实执行输入，和readings等长。",
+        "unit": "输入单位"
+      },
+      {
+        "name": "readings",
+        "type": "list[float]",
+        "description": "每步更新前取得的读数。",
+        "unit": "观测单位"
+      },
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "初始估计，长度2。",
+        "unit": "状态单位"
+      }
+    ],
+    "returns": [
+      {
+        "name": "path",
+        "type": "list[list[float]]",
+        "description": "含初值与每次更新后的估计。",
+        "unit": "状态单位"
+      },
+      {
+        "name": "innovations",
+        "type": "list[float]",
+        "description": "每步 y−C·xhat。",
+        "unit": "观测单位"
+      }
+    ],
+    "contract": "逐步用更新前估计计算创新，随后进行状态预测加校正；两列表长度相同。",
+    "constraints": [
+      "输入均为有限数；只需实现题定模型（model），不外推到真实病人或设备。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首步创新为2；校正只读y而不读隐藏x。L=0 时即使读数异常也不改变预测。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    A: list[list[float]],\n    B: list[float],\n    C: list[float],\n    L: list[float],\n    inputs: list[float],\n    readings: list[float],\n    initial: list[float],\n) -> tuple[list[list[float]], list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "A": [
+            [
+              1.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          "B": [
+            0.0,
+            1.0
+          ],
+          "C": [
+            1.0,
+            0.0
+          ],
+          "L": [
+            0.5,
+            0.25
+          ],
+          "inputs": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "readings": [
+            2.0,
+            2.5,
+            4.0
+          ],
+          "initial": [
+            0.0,
+            0.0
+          ]
+        },
+        "expected": [
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.5
+            ],
+            [
+              2.25,
+              1.875
+            ],
+            [
+              5.0,
+              2.3125
+            ]
+          ],
+          [
+            2.0,
+            1.5,
+            1.75
+          ]
+        ],
+        "explanation": "首步创新为2；校正只读y而不读隐藏x。L=0 时即使读数异常也不改变预测。"
+      }
+    ]
+  },
+  {
+    "id": "p10-error-dynamics",
+    "slug": "p10-error-dynamics",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.4",
+    "lesson_id": "P10-C04-S02",
+    "title": "误差如何演化",
+    "statement": "同一离散线性对象，观测（observation）器使用真实执行输入（input）且无过程与测量噪声（measurement noise）。定义 e=x−xhat，哪项正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "e_next=(A−LC)e。"
+      },
+      {
+        "id": "B",
+        "text": "e_next=(A+LC)e。"
+      },
+      {
+        "id": "C",
+        "text": "只要L非零，误差一步归零。"
+      },
+      {
+        "id": "D",
+        "text": "误差必等于读数创新。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-separation-assumptions",
+    "slug": "p10-separation-assumptions",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.4",
+    "lesson_id": "P10-C04-S02",
+    "title": "分离设计的适用条件",
+    "statement": "状态（state）反馈（feedback）和观测（observation）器分别有稳定误差动态。哪项说法最完整？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "在线性、模型（model）正确、无饱和等条件下可由两组极点（pole）构成增广闭环；加入限幅和失配后须重新验证。"
+      },
+      {
+        "id": "B",
+        "text": "无论传感器失效或执行器饱和，两组极点仍证明全局稳定。"
+      },
+      {
+        "id": "C",
+        "text": "反馈可以暗中使用实验用隐藏真值。"
+      },
+      {
+        "id": "D",
+        "text": "观测器增益（gain）和反馈增益必须数值相等。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-truth-for-validation",
+    "slug": "p10-truth-for-validation",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.4",
+    "lesson_id": "P10-C04-S02",
+    "title": "真值只能在哪里出现",
+    "statement": "教学模拟能保存完整状态（state），但真实传感器只给出 y。哪种做法合理？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数06",
+      "数17"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "控制决策只用y及其估计，模拟真值单独用于离线误差核验。"
+      },
+      {
+        "id": "B",
+        "text": "用真值计算u，再把结果称为部分观测（observation）控制。"
+      },
+      {
+        "id": "C",
+        "text": "把真值放入公开练习参数（parameter），却声称无需它。"
+      },
+      {
+        "id": "D",
+        "text": "没有真值就不能展示创新序列。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-bellman-one",
+    "slug": "p10-bellman-one",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.5",
+    "lesson_id": "P10-C05-S01",
+    "title": "一步二次价值",
+    "statement": "标量 x_next=a x+b u，当前代价 q x²+r u²、终端代价 qf x_next²。给定状态（state），返回最优输入（input）、最小总代价与价值系数S。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数19",
+      "数20",
+      "数35"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "float",
+        "description": "状态保持系数。",
+        "unit": "1"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "输入作用系数。",
+        "unit": "状态/输入"
+      },
+      {
+        "name": "q",
+        "type": "float",
+        "description": "当前状态权重，非负。",
+        "unit": "代价/状态²"
+      },
+      {
+        "name": "r",
+        "type": "float",
+        "description": "当前输入权重，严格正。",
+        "unit": "代价/输入²"
+      },
+      {
+        "name": "terminal",
+        "type": "float",
+        "description": "终端状态权重，非负。",
+        "unit": "代价/状态²"
+      },
+      {
+        "name": "state",
+        "type": "float",
+        "description": "当前状态。",
+        "unit": "状态单位"
+      }
+    ],
+    "returns": [
+      {
+        "name": "action",
+        "type": "float",
+        "description": "无约束最优输入。",
+        "unit": "输入单位"
+      },
+      {
+        "name": "minimum_cost",
+        "type": "float",
+        "description": "从当前状态出发的最小总代价。",
+        "unit": "代价单位"
+      },
+      {
+        "name": "value_weight",
+        "type": "float",
+        "description": "使V(x)=Sx²的S。",
+        "unit": "代价/状态²"
+      }
+    ],
+    "contract": "展开 qx²+ru²+qf(ax+bu)²，对u配方；分母r+b²qf>0。",
+    "constraints": [
+      "输入均为有限数；只需实现题定模型（model），不外推到真实病人或设备。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "a=b=q=r=qf=1时 u*=−x/2，S=3/2；x=2给最优输入−1、代价6。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    a: float,\n    b: float,\n    q: float,\n    r: float,\n    terminal: float,\n    state: float,\n) -> tuple[float, float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "a": 1.0,
+          "b": 1.0,
+          "q": 1.0,
+          "r": 1.0,
+          "terminal": 1.0,
+          "state": 2.0
+        },
+        "expected": [
+          -1.0,
+          6.0,
+          1.5
+        ],
+        "explanation": "a=b=q=r=qf=1时 u*=−x/2，S=3/2；x=2给最优输入−1、代价6。"
+      }
+    ]
+  },
+  {
+    "id": "p10-terminal-matters",
+    "slug": "p10-terminal-matters",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.5",
+    "lesson_id": "P10-C05-S01",
+    "title": "遗漏终端代价",
+    "statement": "一步问题 x_next=x+u，阶段代价x²+u²，终端代价x_next²。x=2时哪项正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数19",
+      "数20",
+      "数35"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "最优u=−1，总代价6。"
+      },
+      {
+        "id": "B",
+        "text": "最优u=0，因为只看本步输入（input）代价。"
+      },
+      {
+        "id": "C",
+        "text": "最优u=−2，总代价4。"
+      },
+      {
+        "id": "D",
+        "text": "未来价值与当前决策无关。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-bellman-scope",
+    "slug": "p10-bellman-scope",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.5",
+    "lesson_id": "P10-C05-S01",
+    "title": "Bellman 递推需要什么",
+    "statement": "有限时域动态规划中，V_t(x)代表从时刻t状态（state）x开始的最小剩余代价。哪项正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数19",
+      "数20",
+      "数35"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "需要明确终端条件V_N。"
+      },
+      {
+        "id": "B",
+        "text": "每一步可用不同未来最优策略而不满足状态转移。"
+      },
+      {
+        "id": "C",
+        "text": "没有模型（model）也能直接写出精确递推。"
+      },
+      {
+        "id": "D",
+        "text": "最优决策完全不依赖当前状态。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-weight-units",
+    "slug": "p10-weight-units",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.5",
+    "lesson_id": "P10-C05-S01",
+    "title": "代价权重与单位",
+    "statement": "将状态（state）数值单位改为原来的100倍，但不改变物理目标。应怎样处理 qx² 的权重？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数19",
+      "数20",
+      "数35"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "相应调整q以保持同一物理代价。"
+      },
+      {
+        "id": "B",
+        "text": "q永远不变。"
+      },
+      {
+        "id": "C",
+        "text": "只改绘图标签即可。"
+      },
+      {
+        "id": "D",
+        "text": "单位变化证明优化问题不可解。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-finite-riccati",
+    "slug": "p10-finite-riccati",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.5",
+    "lesson_id": "P10-C05-S02",
+    "title": "有限时域 Riccati 倒推",
+    "statement": "离散线性系统 x_next=Ax+Bu，阶段代价 xᵀQx+uᵀRu，终端代价 x_NᵀQf x_N。返回从0到N−1的反馈（feedback）增益（gain）K_t与从0到N的价值矩阵（matrix）S_t；u_t=−K_t x_t。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数19",
+      "数20",
+      "数35"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "A",
+        "type": "list[list[float]]",
+        "description": "n×n 状态（state）矩阵。",
+        "unit": "按状态定义"
+      },
+      {
+        "name": "B",
+        "type": "list[list[float]]",
+        "description": "n×m 输入（input）矩阵。",
+        "unit": "按状态/输入定义"
+      },
+      {
+        "name": "Q",
+        "type": "list[list[float]]",
+        "description": "n×n 对称半正定（positive semidefinite）阶段权重。",
+        "unit": "代价/状态²"
+      },
+      {
+        "name": "R",
+        "type": "list[list[float]]",
+        "description": "m×m 对称正定（positive definite）输入权重。",
+        "unit": "代价/输入²"
+      },
+      {
+        "name": "terminal",
+        "type": "list[list[float]]",
+        "description": "n×n 对称半正定终端权重。",
+        "unit": "代价/状态²"
+      },
+      {
+        "name": "horizon",
+        "type": "int",
+        "description": "正整数时域N。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "gains",
+        "type": "list[list[list[float]]]",
+        "description": "长度N，逐时刻m×n增益。",
+        "unit": "随状态与输入"
+      },
+      {
+        "name": "values",
+        "type": "list[list[list[float]]]",
+        "description": "长度N+1的n×n代价矩阵。",
+        "unit": "代价/状态²"
+      }
+    ],
+    "contract": "S_N=Qf；倒推 K=(R+BᵀS_next B)⁻¹ BᵀS_next A；S=Q+AᵀS_next A−AᵀS_next B K。数值上对称化S；不直接求显式逆。",
+    "constraints": [
+      "1≤n≤3，1≤m≤2，1≤N≤8；题给矩阵满足权重条件与维度；可使用numpy。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "单步标量例K=1/2，S_0=3/2；有输入限幅时这一无约束解可能不可执行。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    A: list[list[float]],\n    B: list[list[float]],\n    Q: list[list[float]],\n    R: list[list[float]],\n    terminal: list[list[float]],\n    horizon: int,\n) -> tuple[list[list[list[float]]], list[list[list[float]]]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "A": [
+            [
+              1.0
+            ]
+          ],
+          "B": [
+            [
+              1.0
+            ]
+          ],
+          "Q": [
+            [
+              1.0
+            ]
+          ],
+          "R": [
+            [
+              1.0
+            ]
+          ],
+          "terminal": [
+            [
+              1.0
+            ]
+          ],
+          "horizon": 1
+        },
+        "expected": [
+          [
+            [
+              [
+                0.5
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                1.5
+              ]
+            ],
+            [
+              [
+                1.0
+              ]
+            ]
+          ]
+        ],
+        "explanation": "单步标量例K=1/2，S_0=3/2；有输入限幅时这一无约束解可能不可执行。"
+      }
+    ]
+  },
+  {
+    "id": "p10-riccati-boundary",
+    "slug": "p10-riccati-boundary",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.5",
+    "lesson_id": "P10-C05-S02",
+    "title": "Riccati 从哪里开始",
+    "statement": "有限时域 LQR 的倒推顺序哪项正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数19",
+      "数20",
+      "数35"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "先设 S_N=Qf，再从t=N−1递推到0。"
+      },
+      {
+        "id": "B",
+        "text": "先假设所有时刻的K数值相同。"
+      },
+      {
+        "id": "C",
+        "text": "只需计算S_0，其他阶段无需定义。"
+      },
+      {
+        "id": "D",
+        "text": "把终端权重加在每个阶段而不说明。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-unconstrained-vs-saturated",
+    "slug": "p10-unconstrained-vs-saturated",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.5",
+    "lesson_id": "P10-C05-S02",
+    "title": "截断 LQR 输入",
+    "statement": "将无约束LQR计算出的u裁剪到执行上限后，哪项说法正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数19",
+      "数20",
+      "数35"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "裁剪轨迹（trajectory）仍可作为可行基线，但一般不能称作原约束问题的最优解。"
+      },
+      {
+        "id": "B",
+        "text": "裁剪不改变状态（state）轨迹。"
+      },
+      {
+        "id": "C",
+        "text": "Riccati 证明自动覆盖任何状态约束。"
+      },
+      {
+        "id": "D",
+        "text": "若某一步裁剪，后续最优反馈（feedback）增益（gain）必保持原结论。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-finite-vs-infinite",
+    "slug": "p10-finite-vs-infinite",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.5",
+    "lesson_id": "P10-C05-S02",
+    "title": "时域长度改变什么",
+    "statement": "固定Q、R，改变终端权重和时域长度。最合理的预期是什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数19",
+      "数20",
+      "数35"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "有限时域增益（gain）与价值可能变化；不能直接拿某个有限N称为无限时域稳态增益。"
+      },
+      {
+        "id": "B",
+        "text": "K_t与N绝对无关。"
+      },
+      {
+        "id": "C",
+        "text": "终端条件只改变图题，不改变递推。"
+      },
+      {
+        "id": "D",
+        "text": "无论系统性质如何，N增大后必有相同极限（limit）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-discrete-mpc",
+    "slug": "p10-discrete-mpc",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.6",
+    "lesson_id": "P10-C06-S01",
+    "title": "求解一个小型硬约束 MPC",
+    "statement": "在离散行动集上枚举预测时域的每条行动序列，动力学 x_next=ax+bu；每步后要求 lower≤x≤upper。最小化各步q(x−target)²+r u²与终端terminal(x_N−target)²。成本相等选字典序较小的序列。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数19",
+      "数20"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "float",
+        "description": "当前状态（state）。",
+        "unit": "U"
+      },
+      {
+        "name": "a",
+        "type": "float",
+        "description": "离散保持系数。",
+        "unit": "1"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "输入（input）作用系数。",
+        "unit": "U/输入"
+      },
+      {
+        "name": "target",
+        "type": "float",
+        "description": "目标状态。",
+        "unit": "U"
+      },
+      {
+        "name": "q",
+        "type": "float",
+        "description": "阶段跟踪权重，非负。",
+        "unit": "代价/U²"
+      },
+      {
+        "name": "r",
+        "type": "float",
+        "description": "输入权重，非负。",
+        "unit": "代价/输入²"
+      },
+      {
+        "name": "terminal",
+        "type": "float",
+        "description": "终端跟踪权重，非负。",
+        "unit": "代价/U²"
+      },
+      {
+        "name": "actions",
+        "type": "list[float]",
+        "description": "允许的离散输入，已升序且互异。",
+        "unit": "输入单位"
+      },
+      {
+        "name": "horizon",
+        "type": "int",
+        "description": "预测步数。",
+        "unit": "步"
+      },
+      {
+        "name": "lower",
+        "type": "float",
+        "description": "预测状态下界。",
+        "unit": "U"
+      },
+      {
+        "name": "upper",
+        "type": "float",
+        "description": "预测状态上界。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "status",
+        "type": "str",
+        "description": "optimal或infeasible。",
+        "unit": "不适用"
+      },
+      {
+        "name": "first_action",
+        "type": "float | None",
+        "description": "最优序列首个输入；不可行时None。",
+        "unit": "输入单位"
+      },
+      {
+        "name": "minimum_cost",
+        "type": "float | None",
+        "description": "最小总代价；不可行时None。",
+        "unit": "代价"
+      },
+      {
+        "name": "predicted_states",
+        "type": "list[float]",
+        "description": "最优预测状态，含初态；不可行时空列表。",
+        "unit": "U"
+      }
+    ],
+    "contract": "对每条序列先累计阶段代价，再推进状态并检查硬约束；完整可行时加终端代价。没有可行序列返回(infeasible,None,None,[])。本题只求离散行动集的最优，不声称连续输入全局最优。",
+    "constraints": [
+      "actions含2—7个有限实数、升序互异；1≤horizon≤4；候选序列至多2401个；lower<upper，初态可位于范围外。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "第二例起点在上界外且所有允许动作非负，后继不可行；第三例成本并列，应选−1。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: float,\n    a: float,\n    b: float,\n    target: float,\n    q: float,\n    r: float,\n    terminal: float,\n    actions: list[float],\n    horizon: int,\n    lower: float,\n    upper: float,\n) -> tuple[str, float | None, float | None, list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": 0.0,
+          "a": 1.0,
+          "b": 1.0,
+          "target": 2.0,
+          "q": 1.0,
+          "r": 0.1,
+          "terminal": 2.0,
+          "actions": [
+            -1.0,
+            0.0,
+            1.0
+          ],
+          "horizon": 2,
+          "lower": -1.0,
+          "upper": 2.0
+        },
+        "expected": [
+          "optimal",
+          1.0,
+          5.199999999999999,
+          [
+            0.0,
+            1.0,
+            2.0
+          ]
+        ],
+        "explanation": "第二例起点在上界外且所有允许动作非负，后继不可行；第三例成本并列，应选−1。"
+      }
+    ]
+  },
+  {
+    "id": "p10-mpc-receding",
+    "slug": "p10-mpc-receding",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.6",
+    "lesson_id": "P10-C06-S01",
+    "title": "滚动时域的关键动作",
+    "statement": "MPC 在当前时刻得到长度N的可行预测序列。下一时刻通常怎样使用它？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数19",
+      "数20"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "只执行首步，取得新观测（observation）/估计后重新求解。"
+      },
+      {
+        "id": "B",
+        "text": "把整段序列无条件执行完。"
+      },
+      {
+        "id": "C",
+        "text": "一次可行证明所有未来场景都可行。"
+      },
+      {
+        "id": "D",
+        "text": "预测序列就是已经发生的真实轨迹（trajectory）。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-hard-soft",
+    "slug": "p10-hard-soft",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.6",
+    "lesson_id": "P10-C06-S01",
+    "title": "硬约束与软约束",
+    "statement": "将 x≤xmax 的硬约束改成超限惩罚的软约束。哪项正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数19",
+      "数20"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "优化问题已改变，求解器可能选择违反原硬界的解。"
+      },
+      {
+        "id": "B",
+        "text": "罚项足够大就对任意数值情形绝对不违反。"
+      },
+      {
+        "id": "C",
+        "text": "软约束与执行器物理限幅完全同义。"
+      },
+      {
+        "id": "D",
+        "text": "原先不可行的硬问题自动证明系统安全。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-infeasible-truth",
+    "slug": "p10-infeasible-truth",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.6",
+    "lesson_id": "P10-C06-S01",
+    "title": "求解失败要如实报告",
+    "statement": "小型 MPC 因硬约束不可行。哪项处理符合本教材证据要求？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数19",
+      "数20"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "明确返回不可行并单独说明备用策略适用域。"
+      },
+      {
+        "id": "B",
+        "text": "把上一次最优输入（input）沿用且报告本次求解成功。"
+      },
+      {
+        "id": "C",
+        "text": "偷偷扩大约束却仍称原问题可行。"
+      },
+      {
+        "id": "D",
+        "text": "令代价为0并把失败场景从评价中删除。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-receding-trajectory",
+    "slug": "p10-receding-trajectory",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.6",
+    "lesson_id": "P10-C06-S02",
+    "title": "逐时刻重新求解",
+    "statement": "对确定性标量模型（model）重复题定离散行动MPC。每次只执行最优序列第一项；不可行时停止，并保留失败状态（state），不自行补造控制动作。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数19",
+      "数20"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "float",
+        "description": "当前状态。",
+        "unit": "U"
+      },
+      {
+        "name": "a",
+        "type": "float",
+        "description": "离散保持系数。",
+        "unit": "1"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "输入（input）作用系数。",
+        "unit": "U/输入"
+      },
+      {
+        "name": "target",
+        "type": "float",
+        "description": "目标状态。",
+        "unit": "U"
+      },
+      {
+        "name": "q",
+        "type": "float",
+        "description": "阶段跟踪权重，非负。",
+        "unit": "代价/U²"
+      },
+      {
+        "name": "r",
+        "type": "float",
+        "description": "输入权重，非负。",
+        "unit": "代价/输入²"
+      },
+      {
+        "name": "terminal",
+        "type": "float",
+        "description": "终端跟踪权重，非负。",
+        "unit": "代价/U²"
+      },
+      {
+        "name": "actions",
+        "type": "list[float]",
+        "description": "允许的离散输入，已升序且互异。",
+        "unit": "输入单位"
+      },
+      {
+        "name": "horizon",
+        "type": "int",
+        "description": "预测步数。",
+        "unit": "步"
+      },
+      {
+        "name": "lower",
+        "type": "float",
+        "description": "预测状态下界。",
+        "unit": "U"
+      },
+      {
+        "name": "upper",
+        "type": "float",
+        "description": "预测状态上界。",
+        "unit": "U"
+      },
+      {
+        "name": "steps",
+        "type": "int",
+        "description": "最多执行的实际步数。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "states",
+        "type": "list[float]",
+        "description": "含初态及每个实际执行后状态。",
+        "unit": "U"
+      },
+      {
+        "name": "applied",
+        "type": "list[float]",
+        "description": "实际执行输入。",
+        "unit": "输入单位"
+      },
+      {
+        "name": "statuses",
+        "type": "list[str]",
+        "description": "每次求解状态，含最后一次不可行。",
+        "unit": "不适用"
+      }
+    ],
+    "contract": "逐次调用与10.6.1相同的求解问题；成功则只执行首步并以真实模型更新，失败立即停止。",
+    "constraints": [
+      "沿用10.6.1输入范围；0≤steps≤20。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "每一步都重新计算；预测的第二步计划可能在新读数或实际模型偏差后改变。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: float,\n    a: float,\n    b: float,\n    target: float,\n    q: float,\n    r: float,\n    terminal: float,\n    actions: list[float],\n    horizon: int,\n    lower: float,\n    upper: float,\n    steps: int,\n) -> tuple[list[float], list[float], list[str]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": 0.0,
+          "a": 1.0,
+          "b": 1.0,
+          "target": 1.0,
+          "q": 1.0,
+          "r": 0.1,
+          "terminal": 2.0,
+          "actions": [
+            -1.0,
+            0.0,
+            1.0
+          ],
+          "horizon": 2,
+          "lower": -1.0,
+          "upper": 2.0,
+          "steps": 4
+        },
+        "expected": [
+          [
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            "optimal",
+            "optimal",
+            "optimal",
+            "optimal"
+          ]
+        ],
+        "explanation": "每一步都重新计算；预测的第二步计划可能在新读数或实际模型偏差后改变。"
+      }
+    ]
+  },
+  {
+    "id": "p10-prediction-vs-reality",
+    "slug": "p10-prediction-vs-reality",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.6",
+    "lesson_id": "P10-C06-S02",
+    "title": "预测轨迹不等于实际轨迹",
+    "statement": "已知模型（model）预测下一状态（state）为1.0 U，实际系统受到未建模扰动，读数为1.3 U。下一时刻合理的做法是什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数19",
+      "数20"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "记录偏差，用新的可用观测（observation）或估计重新求解，并检查约束。"
+      },
+      {
+        "id": "B",
+        "text": "继续把旧预测1.0当作真实状态。"
+      },
+      {
+        "id": "C",
+        "text": "删去这个场景以维护好看的平均误差。"
+      },
+      {
+        "id": "D",
+        "text": "只要上一步预测（one-step-ahead prediction）可行，当前约束自动安全。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-fallback-domain",
+    "slug": "p10-fallback-domain",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.6",
+    "lesson_id": "P10-C06-S02",
+    "title": "备用控制需要验证",
+    "statement": "求解超时后采用备用输入（input）。哪项表述正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数19",
+      "数20"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "备用策略的适用状态（state）范围与约束应单独检验。"
+      },
+      {
+        "id": "B",
+        "text": "备用输入来自上一步就自动安全。"
+      },
+      {
+        "id": "C",
+        "text": "超时不必计入失败统计。"
+      },
+      {
+        "id": "D",
+        "text": "只要代价函数凸就永不超时。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-estimate-interface",
+    "slug": "p10-estimate-interface",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.6",
+    "lesson_id": "P10-C06-S02",
+    "title": "MPC 起点的状态从哪里来",
+    "statement": "只有读数 y、没有完整状态（state） x 的控制任务中，MPC 如何得到初始状态？",
+    "type": "choice",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数19",
+      "数20"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "使用声明的估计器或可用信息，并传播估计误差影响。"
+      },
+      {
+        "id": "B",
+        "text": "在教学模拟中直接偷取隐藏真值却称公平比较。"
+      },
+      {
+        "id": "C",
+        "text": "令未观测（observation）分量默认为零而不说明。"
+      },
+      {
+        "id": "D",
+        "text": "只要MPC优化精确，估计误差不再重要。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-scenario-metrics",
+    "slug": "p10-scenario-metrics",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.7",
+    "lesson_id": "P10-C07-S01",
+    "title": "计算一个闭环场景的指标",
+    "statement": "对一个已完成场景计算平均平方跟踪误差、平均平方实际执行输入（input）、最大输入超限量及失败标记。失败场景仍返回标记，数值指标为None，不得把它从总场景数中消失。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数19"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "targets",
+        "type": "list[float]",
+        "description": "与轨迹（trajectory）等长的目标。",
+        "unit": "U"
+      },
+      {
+        "name": "trajectories",
+        "type": "list[float]",
+        "description": "按时刻记录的实际状态（state）。",
+        "unit": "U"
+      },
+      {
+        "name": "applied",
+        "type": "list[float]",
+        "description": "实际执行输入，可为空。",
+        "unit": "输入单位"
+      },
+      {
+        "name": "limit",
+        "type": "float",
+        "description": "允许的输入绝对值上限。",
+        "unit": "输入单位"
+      },
+      {
+        "name": "failed",
+        "type": "bool",
+        "description": "求解、估计或安全检查是否失败。",
+        "unit": "不适用"
+      }
+    ],
+    "returns": [
+      {
+        "name": "tracking_mse",
+        "type": "float | None",
+        "description": "未失败时平均平方误差。",
+        "unit": "U²"
+      },
+      {
+        "name": "effort_mse",
+        "type": "float | None",
+        "description": "未失败时平均平方实际输入。",
+        "unit": "输入²"
+      },
+      {
+        "name": "max_violation",
+        "type": "float | None",
+        "description": "未失败时最大max(0,|u|−limit)。",
+        "unit": "输入单位"
+      },
+      {
+        "name": "failure",
+        "type": "bool",
+        "description": "原样保留失败。",
+        "unit": "不适用"
+      }
+    ],
+    "contract": "失败时返回(None,None,None,True)；否则分别按序列长度平均，空applied的努力为0、超限为0。",
+    "constraints": [
+      "targets非空且与trajectories等长，0≤长度≤200；limit>0；数值有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例跟踪MSE为(1+0.25)/3，实际输入代价为(4+1)/2，最大超限0.5。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    targets: list[float],\n    trajectories: list[float],\n    applied: list[float],\n    limit: float,\n    failed: bool,\n) -> tuple[float | None, float | None, float | None, bool]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "targets": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "trajectories": [
+            1.0,
+            0.5,
+            0.0
+          ],
+          "applied": [
+            2.0,
+            1.0
+          ],
+          "limit": 1.5,
+          "failed": false
+        },
+        "expected": [
+          0.4166666666666667,
+          2.5,
+          0.5,
+          false
+        ],
+        "explanation": "首例跟踪MSE为(1+0.25)/3，实际输入代价为(4+1)/2，最大超限0.5。"
+      }
+    ]
+  },
+  {
+    "id": "p10-fair-baseline",
+    "slug": "p10-fair-baseline",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.7",
+    "lesson_id": "P10-C07-S01",
+    "title": "公平控制比较",
+    "statement": "PID、LQR 与 MPC 比较时，LQR 和 MPC 需要状态（state）估计。哪种协议最公平？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数19"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "三法共享观测（observation）、执行上限、扰动场景与调参预算；需要状态的两法共享同一估计器。"
+      },
+      {
+        "id": "B",
+        "text": "只给LQR完整隐藏状态，却称三法信息相同。"
+      },
+      {
+        "id": "C",
+        "text": "为MPC删去求解超时场景。"
+      },
+      {
+        "id": "D",
+        "text": "各法分别选对自己最有利的测试扰动。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-average-not-enough",
+    "slug": "p10-average-not-enough",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.7",
+    "lesson_id": "P10-C07-S01",
+    "title": "平均误差之外",
+    "statement": "两个控制器平均跟踪误差相近；方法A偶尔严重超限，方法B始终可行。应报告什么？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数19"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "跟踪误差、实际输入（input）成本、约束违反、失败率及其场景分布（distribution）。"
+      },
+      {
+        "id": "B",
+        "text": "只报告平均跟踪误差。"
+      },
+      {
+        "id": "C",
+        "text": "删掉A的超限值再取平均。"
+      },
+      {
+        "id": "D",
+        "text": "把请求输入当成真实执行输入。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-training-vs-test",
+    "slug": "p10-training-vs-test",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.7",
+    "lesson_id": "P10-C07-S01",
+    "title": "调参场景可再次作证吗",
+    "statement": "某控制器用一批扰动场景反复调参。哪项说法成立？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数19"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "同批场景上的成绩属于调参/拟合表现，独立评价应使用未参与调参的场景。"
+      },
+      {
+        "id": "B",
+        "text": "只要重新估一次参数（parameter），同一场景就变成新实验。"
+      },
+      {
+        "id": "C",
+        "text": "每换一个图表样式，原场景都变成独立测试。"
+      },
+      {
+        "id": "D",
+        "text": "独立测试可以看到结果后反复改控制器且仍称未使用。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-paired-differences",
+    "slug": "p10-paired-differences",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.7",
+    "lesson_id": "P10-C07-S02",
+    "title": "保留失败的配对比较",
+    "statement": "两个方法按相同顺序在同一组独立场景上得到指标；失败记None。返回两者都成功的指标差均值A−B、至少一方失败的场景数与可比场景数；不把失败默默计成零或删掉总分母。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数19"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "method_a",
+        "type": "list[float | None]",
+        "description": "A法每场景指标，失败为None。",
+        "unit": "题给指标单位"
+      },
+      {
+        "name": "method_b",
+        "type": "list[float | None]",
+        "description": "B法同一批场景的指标。",
+        "unit": "题给指标单位"
+      }
+    ],
+    "returns": [
+      {
+        "name": "mean_difference",
+        "type": "float | None",
+        "description": "双方成功场景的平均A−B；若无可比项则None。",
+        "unit": "指标单位"
+      },
+      {
+        "name": "failed_pairs",
+        "type": "int",
+        "description": "至少一方失败的配对场景数。",
+        "unit": "组"
+      },
+      {
+        "name": "comparable_pairs",
+        "type": "int",
+        "description": "双方成功的场景数。",
+        "unit": "组"
+      }
+    ],
+    "contract": "逐位置配对。只在双方成功处计算差；仍报告全部场景中的失败配对数，便于联合解释。",
+    "constraints": [
+      "两个列表等长，0—200组；非None数值有限。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "首例成功配对差为−1与+1，平均0；但另有2组失败，不能仅凭平均0宣布两法等效。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    method_a: list[float | None],\n    method_b: list[float | None],\n) -> tuple[float | None, int, int]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "method_a": [
+            1.0,
+            2.0,
+            null,
+            4.0
+          ],
+          "method_b": [
+            2.0,
+            1.0,
+            3.0,
+            null
+          ]
+        },
+        "expected": [
+          0.0,
+          2,
+          2
+        ],
+        "explanation": "首例成功配对差为−1与+1，平均0；但另有2组失败，不能仅凭平均0宣布两法等效。"
+      }
+    ]
+  },
+  {
+    "id": "p10-paired-bootstrap",
+    "slug": "p10-paired-bootstrap",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.7",
+    "lesson_id": "P10-C07-S02",
+    "title": "为什么按场景配对",
+    "statement": "为评估两个方法的平均误差差异，双方在同一批独立扰动场景上运行。重采样（resampling）不确定性时应怎样做？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数19"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "以场景为单位重采样成对结果，保留每对差值。"
+      },
+      {
+        "id": "B",
+        "text": "分别打乱两法场景顺序再当成同一配对。"
+      },
+      {
+        "id": "C",
+        "text": "只重采样表现最好的几个场景。"
+      },
+      {
+        "id": "D",
+        "text": "重复读取同一场景并称其为新的独立实验。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-failure-selection",
+    "slug": "p10-failure-selection",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.7",
+    "lesson_id": "P10-C07-S02",
+    "title": "失败率属于结果",
+    "statement": "方法A在40场景中失败8次，方法B失败0次；只在双方成功的32组里A略好。哪项最合理？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数19"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "同时报告成功配对指标与A的8/40失败率；不同任务价值需要声明权衡。"
+      },
+      {
+        "id": "B",
+        "text": "删除8场景并声称A总体优于B。"
+      },
+      {
+        "id": "C",
+        "text": "把失败8次都算作0误差。"
+      },
+      {
+        "id": "D",
+        "text": "只看成功场景就证明A安全。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-uncertainty-scope",
+    "slug": "p10-uncertainty-scope",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.7",
+    "lesson_id": "P10-C07-S02",
+    "title": "有限场景能说明多远",
+    "statement": "30组独立场景给出配对差的置信区间（confidence interval），但测试条件都只在很窄的扰动范围内。哪项正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数11",
+      "数17",
+      "数19"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "区间只描述这些场景生成条件下的抽样不确定性，不能外推到未测试的大扰动。"
+      },
+      {
+        "id": "B",
+        "text": "有区间就证明任意生理对象都适用。"
+      },
+      {
+        "id": "C",
+        "text": "场景数量30意味着没有模型结构（model structure）误差。"
+      },
+      {
+        "id": "D",
+        "text": "区间越窄就证明传感器永不失效。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-cap-feedback",
+    "slug": "p10-cap-feedback",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.summary",
+    "lesson_id": "P10-SUMMARY",
+    "title": "反馈方向与稳定证据",
+    "statement": "对稳定一阶对象施加恒定负扰动，控制器误差定义为设定−测量。哪个判断正确？",
+    "type": "choice",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数07",
+      "数17",
+      "数19",
+      "数20"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "P可能留下稳态误差；加入积分须重新核验动态和限幅。"
+      },
+      {
+        "id": "B",
+        "text": "PI永远无条件稳定。"
+      },
+      {
+        "id": "C",
+        "text": "只看请求输入（input）即可知道对象轨迹（trajectory）。"
+      },
+      {
+        "id": "D",
+        "text": "频域裕度保证所有饱和状态（state）下安全。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-cap-sensors",
+    "slug": "p10-cap-sensors",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.summary",
+    "lesson_id": "P10-SUMMARY",
+    "title": "执行器与传感器配置",
+    "statement": "A=[[0,1],[0,0]]，候选B₁=[0,1]ᵀ、B₂=[1,0]ᵀ；候选C₁=[1,0]、C₂=[0,1]。哪组同时满足二维能控与能观？",
+    "type": "choice",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数07",
+      "数17",
+      "数19",
+      "数20"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "B₁、C₁。"
+      },
+      {
+        "id": "B",
+        "text": "B₁、C₂。"
+      },
+      {
+        "id": "C",
+        "text": "B₂、C₁。"
+      },
+      {
+        "id": "D",
+        "text": "B₂、C₂。"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "id": "p10-cap-pid",
+    "slug": "p10-cap-pid",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.summary",
+    "lesson_id": "P10-SUMMARY",
+    "title": "限幅下的控制一步",
+    "statement": "复用本篇条件积分的PI规则；返回请求、实际输入（input）和积分状态（state）。把这个步骤用于人工温度偏差场景，但不假装已经给出完整临床控制建议。",
+    "type": "python",
+    "learning_targets": [
+      "T1"
+    ],
+    "mathematics": [
+      "数07",
+      "数17",
+      "数19",
+      "数20"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "error",
+        "type": "float",
+        "description": "当前误差。",
+        "unit": "U"
+      },
+      {
+        "name": "integral",
+        "type": "float",
+        "description": "旧积分状态。",
+        "unit": "U·T"
+      },
+      {
+        "name": "dt",
+        "type": "float",
+        "description": "时间步。",
+        "unit": "T"
+      },
+      {
+        "name": "kp",
+        "type": "float",
+        "description": "比例增益（gain）。",
+        "unit": "1/T"
+      },
+      {
+        "name": "ki",
+        "type": "float",
+        "description": "积分增益。",
+        "unit": "1/T²"
+      },
+      {
+        "name": "limit",
+        "type": "float",
+        "description": "执行上限。",
+        "unit": "U/T"
+      }
+    ],
+    "returns": [
+      {
+        "name": "requested",
+        "type": "float",
+        "description": "冻结判定后请求。",
+        "unit": "U/T"
+      },
+      {
+        "name": "actual",
+        "type": "float",
+        "description": "实际限幅输入。",
+        "unit": "U/T"
+      },
+      {
+        "name": "new_integral",
+        "type": "float",
+        "description": "下一积分状态。",
+        "unit": "U·T"
+      }
+    ],
+    "contract": "先试积分；若饱和且误差推动同向限幅，则冻结并重新计算。",
+    "constraints": [
+      "输入均为有限数；只需实现题定模型（model），不外推到真实病人或设备。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "必须让实际输入进入对象模型，而不是用未执行的请求输入。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    error: float,\n    integral: float,\n    dt: float,\n    kp: float,\n    ki: float,\n    limit: float,\n) -> tuple[float, float, float]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "error": 3.0,
+          "integral": 1.0,
+          "dt": 0.5,
+          "kp": 0.5,
+          "ki": 1.0,
+          "limit": 2.0
+        },
+        "expected": [
+          2.5,
+          2.0,
+          1.0
+        ],
+        "explanation": "必须让实际输入进入对象模型，而不是用未执行的请求输入。"
+      }
+    ]
+  },
+  {
+    "id": "p10-cap-observer",
+    "slug": "p10-cap-observer",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.summary",
+    "lesson_id": "P10-SUMMARY",
+    "title": "给定读数下的观测器",
+    "statement": "按题给已知输入（input）、读数与增益（gain）重放估计轨迹（trajectory）。输入中没有模拟真值；真值只能另外用于离线核验。",
+    "type": "python",
+    "learning_targets": [
+      "T2"
+    ],
+    "mathematics": [
+      "数07",
+      "数17",
+      "数19",
+      "数20"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "A",
+        "type": "list[list[float]]",
+        "description": "二维状态（state）矩阵（matrix）。",
+        "unit": "按状态"
+      },
+      {
+        "name": "B",
+        "type": "list[float]",
+        "description": "输入列。",
+        "unit": "状态/输入"
+      },
+      {
+        "name": "C",
+        "type": "list[float]",
+        "description": "观测（observation）行。",
+        "unit": "观测/状态"
+      },
+      {
+        "name": "L",
+        "type": "list[float]",
+        "description": "观测增益。",
+        "unit": "状态/观测"
+      },
+      {
+        "name": "inputs",
+        "type": "list[float]",
+        "description": "实际输入序列。",
+        "unit": "输入"
+      },
+      {
+        "name": "readings",
+        "type": "list[float]",
+        "description": "读数序列。",
+        "unit": "观测"
+      },
+      {
+        "name": "initial",
+        "type": "list[float]",
+        "description": "初始估计。",
+        "unit": "状态"
+      }
+    ],
+    "returns": [
+      {
+        "name": "path",
+        "type": "list[list[float]]",
+        "description": "估计轨迹，含初值（initial condition）。",
+        "unit": "状态"
+      },
+      {
+        "name": "innovations",
+        "type": "list[float]",
+        "description": "每一步创新。",
+        "unit": "观测"
+      }
+    ],
+    "contract": "xhat_next=A xhat+B u+L(y−C xhat)，同步记录创新。",
+    "constraints": [
+      "输入均为有限数；只需实现题定模型（model），不外推到真实病人或设备。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "第一步创新为1；读数校正和已知输入作用分别进入下一估计。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    A: list[list[float]],\n    B: list[float],\n    C: list[float],\n    L: list[float],\n    inputs: list[float],\n    readings: list[float],\n    initial: list[float],\n) -> tuple[list[list[float]], list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "A": [
+            [
+              1.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          "B": [
+            0.0,
+            1.0
+          ],
+          "C": [
+            1.0,
+            0.0
+          ],
+          "L": [
+            0.4,
+            0.2
+          ],
+          "inputs": [
+            1.0,
+            0.0
+          ],
+          "readings": [
+            1.0,
+            2.0
+          ],
+          "initial": [
+            0.0,
+            0.0
+          ]
+        },
+        "expected": [
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.4,
+              1.2
+            ],
+            [
+              2.24,
+              1.52
+            ]
+          ],
+          [
+            1.0,
+            1.6
+          ]
+        ],
+        "explanation": "第一步创新为1；读数校正和已知输入作用分别进入下一估计。"
+      }
+    ]
+  },
+  {
+    "id": "p10-cap-riccati",
+    "slug": "p10-cap-riccati",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.summary",
+    "lesson_id": "P10-SUMMARY",
+    "title": "综合题中的有限时域LQR",
+    "statement": "在题给无约束线性二次模型（model）中倒推价值矩阵（matrix）与反馈（feedback）增益（gain）。不要把输入（input）限幅后的轨迹（trajectory）声称为此题的无约束最优解。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数07",
+      "数17",
+      "数19",
+      "数20"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "A",
+        "type": "list[list[float]]",
+        "description": "状态（state）矩阵。",
+        "unit": "按状态"
+      },
+      {
+        "name": "B",
+        "type": "list[list[float]]",
+        "description": "输入矩阵。",
+        "unit": "状态/输入"
+      },
+      {
+        "name": "Q",
+        "type": "list[list[float]]",
+        "description": "阶段状态权重。",
+        "unit": "代价/状态²"
+      },
+      {
+        "name": "R",
+        "type": "list[list[float]]",
+        "description": "输入权重。",
+        "unit": "代价/输入²"
+      },
+      {
+        "name": "terminal",
+        "type": "list[list[float]]",
+        "description": "终端权重。",
+        "unit": "代价/状态²"
+      },
+      {
+        "name": "horizon",
+        "type": "int",
+        "description": "有限时域。",
+        "unit": "步"
+      }
+    ],
+    "returns": [
+      {
+        "name": "gains",
+        "type": "list[list[list[float]]]",
+        "description": "逐时刻反馈矩阵。",
+        "unit": "输入/状态"
+      },
+      {
+        "name": "values",
+        "type": "list[list[list[float]]]",
+        "description": "含终端的代价矩阵。",
+        "unit": "代价/状态²"
+      }
+    ],
+    "contract": "以终端S_N开始，求解线性方程得到K_t，再倒推S_t。",
+    "constraints": [
+      "矩阵满足10.5.2的维数及半正定（positive semidefinite）/正定（positive definite）条件；1≤horizon≤8；可使用numpy。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "先核对标量递推，再核对二维矩阵的对称性和闭环代价。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    A: list[list[float]],\n    B: list[list[float]],\n    Q: list[list[float]],\n    R: list[list[float]],\n    terminal: list[list[float]],\n    horizon: int,\n) -> tuple[list[list[list[float]]], list[list[list[float]]]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "A": [
+            [
+              1.0
+            ]
+          ],
+          "B": [
+            [
+              1.0
+            ]
+          ],
+          "Q": [
+            [
+              1.0
+            ]
+          ],
+          "R": [
+            [
+              2.0
+            ]
+          ],
+          "terminal": [
+            [
+              3.0
+            ]
+          ],
+          "horizon": 2
+        },
+        "expected": [
+          [
+            [
+              [
+                0.5238095238095238
+              ]
+            ],
+            [
+              [
+                0.6
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                2.0476190476190474
+              ]
+            ],
+            [
+              [
+                2.2
+              ]
+            ],
+            [
+              [
+                3.0
+              ]
+            ]
+          ]
+        ],
+        "explanation": "先核对标量递推，再核对二维矩阵的对称性和闭环代价。"
+      }
+    ]
+  },
+  {
+    "id": "p10-cap-mpc",
+    "slug": "p10-cap-mpc",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.summary",
+    "lesson_id": "P10-SUMMARY",
+    "title": "综合题中的滚动约束求解",
+    "statement": "在小型离散行动集上给出硬状态（state）界与固定时域，返回当前最优首步、成本、预测轨迹（trajectory）或不可行状态。",
+    "type": "python",
+    "learning_targets": [
+      "T3"
+    ],
+    "mathematics": [
+      "数07",
+      "数17",
+      "数19",
+      "数20"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "state",
+        "type": "float",
+        "description": "当前状态。",
+        "unit": "U"
+      },
+      {
+        "name": "a",
+        "type": "float",
+        "description": "离散保持系数。",
+        "unit": "1"
+      },
+      {
+        "name": "b",
+        "type": "float",
+        "description": "输入（input）作用系数。",
+        "unit": "U/输入"
+      },
+      {
+        "name": "target",
+        "type": "float",
+        "description": "目标状态。",
+        "unit": "U"
+      },
+      {
+        "name": "q",
+        "type": "float",
+        "description": "阶段跟踪权重，非负。",
+        "unit": "代价/U²"
+      },
+      {
+        "name": "r",
+        "type": "float",
+        "description": "输入权重，非负。",
+        "unit": "代价/输入²"
+      },
+      {
+        "name": "terminal",
+        "type": "float",
+        "description": "终端跟踪权重，非负。",
+        "unit": "代价/U²"
+      },
+      {
+        "name": "actions",
+        "type": "list[float]",
+        "description": "允许的离散输入，已升序且互异。",
+        "unit": "输入单位"
+      },
+      {
+        "name": "horizon",
+        "type": "int",
+        "description": "预测步数。",
+        "unit": "步"
+      },
+      {
+        "name": "lower",
+        "type": "float",
+        "description": "预测状态下界。",
+        "unit": "U"
+      },
+      {
+        "name": "upper",
+        "type": "float",
+        "description": "预测状态上界。",
+        "unit": "U"
+      }
+    ],
+    "returns": [
+      {
+        "name": "status",
+        "type": "str",
+        "description": "optimal或infeasible。",
+        "unit": "不适用"
+      },
+      {
+        "name": "first_action",
+        "type": "float | None",
+        "description": "最优序列首个输入；不可行时None。",
+        "unit": "输入单位"
+      },
+      {
+        "name": "minimum_cost",
+        "type": "float | None",
+        "description": "最小总代价；不可行时None。",
+        "unit": "代价"
+      },
+      {
+        "name": "predicted_states",
+        "type": "list[float]",
+        "description": "最优预测状态，含初态；不可行时空列表。",
+        "unit": "U"
+      }
+    ],
+    "contract": "完整枚举题给有限行动集；每个预测后继必须在范围内；成本并列按行动序列字典序。",
+    "constraints": [
+      "与10.6.1同一离散行动契约，候选序列最多2401条。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "不可行必须可见；任何备用策略另行评价，不在本题自动伪造。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    state: float,\n    a: float,\n    b: float,\n    target: float,\n    q: float,\n    r: float,\n    terminal: float,\n    actions: list[float],\n    horizon: int,\n    lower: float,\n    upper: float,\n) -> tuple[str, float | None, float | None, list[float]]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "state": 0.0,
+          "a": 1.0,
+          "b": 1.0,
+          "target": 1.0,
+          "q": 1.0,
+          "r": 0.2,
+          "terminal": 1.0,
+          "actions": [
+            -1.0,
+            0.0,
+            1.0
+          ],
+          "horizon": 3,
+          "lower": -1.0,
+          "upper": 2.0
+        },
+        "expected": [
+          "optimal",
+          1.0,
+          1.2,
+          [
+            0.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        ],
+        "explanation": "不可行必须可见；任何备用策略另行评价，不在本题自动伪造。"
+      }
+    ]
+  },
+  {
+    "id": "p10-cap-metrics",
+    "slug": "p10-cap-metrics",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.summary",
+    "lesson_id": "P10-SUMMARY",
+    "title": "配对场景指标和失败",
+    "statement": "按题给实际控制轨迹（trajectory）计算单场景指标。方法之间若有求解失败，需在跨场景汇总时计入失败率。",
+    "type": "python",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数07",
+      "数17",
+      "数19",
+      "数20"
+    ],
+    "difficulty": "应用",
+    "parameters": [
+      {
+        "name": "targets",
+        "type": "list[float]",
+        "description": "目标状态（state）。",
+        "unit": "U"
+      },
+      {
+        "name": "trajectories",
+        "type": "list[float]",
+        "description": "实际状态。",
+        "unit": "U"
+      },
+      {
+        "name": "applied",
+        "type": "list[float]",
+        "description": "真实执行输入（input）。",
+        "unit": "输入"
+      },
+      {
+        "name": "limit",
+        "type": "float",
+        "description": "输入绝对值上限。",
+        "unit": "输入"
+      },
+      {
+        "name": "failed",
+        "type": "bool",
+        "description": "是否失败。",
+        "unit": "不适用"
+      }
+    ],
+    "returns": [
+      {
+        "name": "tracking_mse",
+        "type": "float | None",
+        "description": "平均平方跟踪误差。",
+        "unit": "U²"
+      },
+      {
+        "name": "effort_mse",
+        "type": "float | None",
+        "description": "实际输入平方平均。",
+        "unit": "输入²"
+      },
+      {
+        "name": "max_violation",
+        "type": "float | None",
+        "description": "最大输入超限。",
+        "unit": "输入"
+      },
+      {
+        "name": "failure",
+        "type": "bool",
+        "description": "失败标记。",
+        "unit": "不适用"
+      }
+    ],
+    "contract": "失败返回三个None及True；成功按各自序列长度归一化。",
+    "constraints": [
+      "targets非空且与trajectories等长，limit>0。"
+    ],
+    "entrypoint": "solve",
+    "allowed_libraries": [
+      "Python 标准库",
+      "numpy"
+    ],
+    "example_format": "parameters",
+    "hint": "不能只公布成功场景的低误差而隐藏失败频率。",
+    "limits": {
+      "seconds": 15,
+      "source_bytes": 65536,
+      "output_bytes": 1048576,
+      "log_bytes": 262144
+    },
+    "tolerance": {
+      "atol": 1e-08,
+      "rtol": 1e-07
+    },
+    "starter_code": "def solve(\n    targets: list[float],\n    trajectories: list[float],\n    applied: list[float],\n    limit: float,\n    failed: bool,\n) -> tuple[float | None, float | None, float | None, bool]:\n    # 按题意计算并返回结果。\n    raise NotImplementedError(\"请完成计算\")\n",
+    "samples": [
+      {
+        "arguments": {
+          "targets": [
+            1.0,
+            1.0
+          ],
+          "trajectories": [
+            0.0,
+            2.0
+          ],
+          "applied": [
+            0.5,
+            2.0
+          ],
+          "limit": 1.0,
+          "failed": false
+        },
+        "expected": [
+          1.0,
+          2.125,
+          1.0,
+          false
+        ],
+        "explanation": "不能只公布成功场景的低误差而隐藏失败频率。"
+      }
+    ]
+  },
+  {
+    "id": "p10-cap-mismatch",
+    "slug": "p10-cap-mismatch",
+    "version": "1",
+    "part": "10",
+    "chapter": "10.summary",
+    "lesson_id": "P10-SUMMARY",
+    "title": "失配和缺测后的结论",
+    "statement": "闭环在理想模型（model）下稳定；独立场景出现传感器缺测与MPC不可行。哪项结论最符合证据？",
+    "type": "choice",
+    "learning_targets": [
+      "T4"
+    ],
+    "mathematics": [
+      "数07",
+      "数17",
+      "数19",
+      "数20"
+    ],
+    "difficulty": "理解",
+    "multiple": false,
+    "options": [
+      {
+        "id": "A",
+        "text": "原线性稳定论证不覆盖这些场景；应单独报告估计、约束与备用策略的实际结果。"
+      },
+      {
+        "id": "B",
+        "text": "理想极点（pole）已经证明缺测时也安全。"
+      },
+      {
+        "id": "C",
+        "text": "删除失败场景后即可声称独立评估成功。"
+      },
+      {
+        "id": "D",
+        "text": "用隐藏状态（state）替代缺测值仍可称原信息协议。"
+      }
+    ],
+    "constraints": []
+  }
+]

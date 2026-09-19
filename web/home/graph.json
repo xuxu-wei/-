@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "7ff73e9677f596c43632b2356a138a2c5ae65d27bc31884941b1e973faa58377",
+    "catalogSha256": "118860d69ead25ea23cda790d546a3a42e90cd2765ac2abce6605a27b119beea",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -11990,12 +11990,79 @@
         "10.6",
         "10.7"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-pi-saturation",
+        "p10-pi-constant-load",
+        "p10-request-vs-actuation",
+        "p10-gain-units",
+        "p10-pid-history",
+        "p10-derivative-noise",
+        "p10-freeze-direction",
+        "p10-pid-comparison",
+        "p10-second-order-poles",
+        "p10-pole-to-time",
+        "p10-root-locus-meaning",
+        "p10-delay-approximation",
+        "p10-frequency-delay",
+        "p10-nyquist-hypotheses",
+        "p10-bode-margin",
+        "p10-phase-wrap",
+        "p10-controllability-two",
+        "p10-actuator-position",
+        "p10-rank-tolerance",
+        "p10-controllable-not-feasible",
+        "p10-canonical-gain",
+        "p10-feedback-sign",
+        "p10-fast-pole-cost",
+        "p10-pole-placement-condition",
+        "p10-observability-two",
+        "p10-sensor-position",
+        "p10-known-input",
+        "p10-observability-vs-noise",
+        "p10-observer-replay",
+        "p10-error-dynamics",
+        "p10-separation-assumptions",
+        "p10-truth-for-validation",
+        "p10-bellman-one",
+        "p10-terminal-matters",
+        "p10-bellman-scope",
+        "p10-weight-units",
+        "p10-finite-riccati",
+        "p10-riccati-boundary",
+        "p10-unconstrained-vs-saturated",
+        "p10-finite-vs-infinite",
+        "p10-discrete-mpc",
+        "p10-mpc-receding",
+        "p10-hard-soft",
+        "p10-infeasible-truth",
+        "p10-receding-trajectory",
+        "p10-prediction-vs-reality",
+        "p10-fallback-domain",
+        "p10-estimate-interface",
+        "p10-scenario-metrics",
+        "p10-fair-baseline",
+        "p10-average-not-enough",
+        "p10-training-vs-test",
+        "p10-paired-differences",
+        "p10-paired-bootstrap",
+        "p10-failure-selection",
+        "p10-uncertainty-scope",
+        "p10-cap-feedback",
+        "p10-cap-sensors",
+        "p10-cap-pid",
+        "p10-cap-observer",
+        "p10-cap-riccati",
+        "p10-cap-mpc",
+        "p10-cap-metrics",
+        "p10-cap-mismatch"
+      ],
+      "available": true,
+      "published": 7,
       "total": 7,
-      "assessmentIds": [],
-      "assessmentUrl": null,
+      "assessmentIds": [
+        "P10-SUMMARY"
+      ],
+      "assessmentUrl": "/parts/10-反馈与最优控制/综合练习/",
       "progressScope": "已发布篇章练习（含篇末综合）"
     },
     {
@@ -12010,108 +12077,195 @@
         "regulation"
       ],
       "children": [
-        "10.1:planned:1",
-        "10.1:planned:2",
-        "10.1:planned:3",
-        "10.1:planned:4"
+        "10.1.1:concept:1",
+        "10.1.1:concept:2",
+        "10.1.1:concept:3",
+        "10.1.2:concept:1",
+        "10.1.2:concept:2",
+        "10.1.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-pi-saturation",
+        "p10-pi-constant-load",
+        "p10-request-vs-actuation",
+        "p10-gain-units",
+        "p10-pid-history",
+        "p10-derivative-noise",
+        "p10-freeze-direction",
+        "p10-pid-comparison"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "10.1:planned:1",
+      "id": "10.1.1:concept:1",
       "kind": "concept",
-      "title": "开环与闭环",
+      "title": "误差与执行输入",
       "english": null,
-      "number": "10.1",
+      "number": "10.1.1",
       "parentId": "10.1",
-      "url": "/chapters/10-01-开闭环与 PID/",
-      "description": "从误差构造 P、PI、PID，解释积分累积、微分对噪声的敏感性及执行饱和。",
+      "url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-pi-saturation",
+      "description": "定义误差、执行量和时步，检查PI稳态误差与饱和。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-pi-saturation",
+        "p10-pi-constant-load",
+        "p10-request-vs-actuation",
+        "p10-gain-units"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C01-S01",
+      "lessonNumber": "10.1.1",
+      "lessonTitle": "误差怎样驱动比例与积分控制",
       "chapterUrl": "/chapters/10-01-开闭环与 PID/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "10.1:planned:2",
+      "id": "10.1.1:concept:2",
       "kind": "concept",
-      "title": "PID 控制",
+      "title": "比例积分控制",
       "english": null,
-      "number": "10.1",
+      "number": "10.1.1",
       "parentId": "10.1",
-      "url": "/chapters/10-01-开闭环与 PID/",
-      "description": "从误差构造 P、PI、PID，解释积分累积、微分对噪声的敏感性及执行饱和。",
+      "url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-pi-saturation",
+      "description": "定义误差、执行量和时步，检查PI稳态误差与饱和。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
-      "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
-      "chapterUrl": "/chapters/10-01-开闭环与 PID/",
-      "progressScope": "教学设计，尚无学习记录"
-    },
-    {
-      "id": "10.1:planned:3",
-      "kind": "concept",
-      "title": "执行饱和",
-      "english": null,
-      "number": "10.1",
-      "parentId": "10.1",
-      "url": "/chapters/10-01-开闭环与 PID/",
-      "description": "从误差构造 P、PI、PID，解释积分累积、微分对噪声的敏感性及执行饱和。",
-      "categories": [
-        "regulation"
+      "questionIds": [
+        "p10-pi-saturation",
+        "p10-pi-constant-load",
+        "p10-request-vs-actuation",
+        "p10-gain-units"
       ],
-      "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C01-S01",
+      "lessonNumber": "10.1.1",
+      "lessonTitle": "误差怎样驱动比例与积分控制",
       "chapterUrl": "/chapters/10-01-开闭环与 PID/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "10.1:planned:4",
+      "id": "10.1.1:concept:3",
       "kind": "concept",
       "title": "抗积分累积",
       "english": null,
-      "number": "10.1",
+      "number": "10.1.1",
       "parentId": "10.1",
-      "url": "/chapters/10-01-开闭环与 PID/",
-      "description": "从误差构造 P、PI、PID，解释积分累积、微分对噪声的敏感性及执行饱和。",
+      "url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-pi-saturation",
+      "description": "定义误差、执行量和时步，检查PI稳态误差与饱和。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-pi-saturation",
+        "p10-pi-constant-load",
+        "p10-request-vs-actuation",
+        "p10-gain-units"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C01-S01",
+      "lessonNumber": "10.1.1",
+      "lessonTitle": "误差怎样驱动比例与积分控制",
       "chapterUrl": "/chapters/10-01-开闭环与 PID/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "10.1.2:concept:1",
+      "kind": "concept",
+      "title": "微分噪声",
+      "english": null,
+      "number": "10.1.2",
+      "parentId": "10.1",
+      "url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-pid-history",
+      "description": "实现离散PID与条件积分，比较噪声和执行限幅。",
+      "categories": [
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p10-pid-history",
+        "p10-derivative-noise",
+        "p10-freeze-direction",
+        "p10-pid-comparison"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P10-C01-S02",
+      "lessonNumber": "10.1.2",
+      "lessonTitle": "微分噪声与积分抗饱和",
+      "chapterUrl": "/chapters/10-01-开闭环与 PID/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "10.1.2:concept:2",
+      "kind": "concept",
+      "title": "条件积分",
+      "english": null,
+      "number": "10.1.2",
+      "parentId": "10.1",
+      "url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-pid-history",
+      "description": "实现离散PID与条件积分，比较噪声和执行限幅。",
+      "categories": [
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p10-pid-history",
+        "p10-derivative-noise",
+        "p10-freeze-direction",
+        "p10-pid-comparison"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P10-C01-S02",
+      "lessonNumber": "10.1.2",
+      "lessonTitle": "微分噪声与积分抗饱和",
+      "chapterUrl": "/chapters/10-01-开闭环与 PID/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "10.1.2:concept:3",
+      "kind": "concept",
+      "title": "PID 限幅",
+      "english": null,
+      "number": "10.1.2",
+      "parentId": "10.1",
+      "url": "/chapters/10-01-开闭环与 PID/practice/?question=p10-pid-history",
+      "description": "实现离散PID与条件积分，比较噪声和执行限幅。",
+      "categories": [
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p10-pid-history",
+        "p10-derivative-noise",
+        "p10-freeze-direction",
+        "p10-pid-comparison"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P10-C01-S02",
+      "lessonNumber": "10.1.2",
+      "lessonTitle": "微分噪声与积分抗饱和",
+      "chapterUrl": "/chapters/10-01-开闭环与 PID/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "10.2",
@@ -12125,84 +12279,195 @@
         "regulation"
       ],
       "children": [
-        "10.2:planned:1",
-        "10.2:planned:2",
-        "10.2:planned:3"
+        "10.2.1:concept:1",
+        "10.2.1:concept:2",
+        "10.2.1:concept:3",
+        "10.2.2:concept:1",
+        "10.2.2:concept:2",
+        "10.2.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-second-order-poles",
+        "p10-pole-to-time",
+        "p10-root-locus-meaning",
+        "p10-delay-approximation",
+        "p10-frequency-delay",
+        "p10-nyquist-hypotheses",
+        "p10-bode-margin",
+        "p10-phase-wrap"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "10.2:planned:1",
+      "id": "10.2.1:concept:1",
       "kind": "concept",
-      "title": "根轨迹",
+      "title": "闭环特征方程",
       "english": null,
-      "number": "10.2",
+      "number": "10.2.1",
       "parentId": "10.2",
-      "url": "/chapters/10-02-频域稳定性与设计/",
-      "description": "连接闭环极点（pole）、根轨迹（trajectory）、Bode、Nyquist 与稳定裕度，说明判据条件及符号约定。",
+      "url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-second-order-poles",
+      "description": "从闭环特征方程计算极点，核对增益和阻尼。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-second-order-poles",
+        "p10-pole-to-time",
+        "p10-root-locus-meaning",
+        "p10-delay-approximation"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C02-S01",
+      "lessonNumber": "10.2.1",
+      "lessonTitle": "极点与根轨迹的低阶例子",
       "chapterUrl": "/chapters/10-02-频域稳定性与设计/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "10.2:planned:2",
+      "id": "10.2.1:concept:2",
       "kind": "concept",
-      "title": "幅相裕度",
+      "title": "极点与根轨迹",
       "english": null,
-      "number": "10.2",
+      "number": "10.2.1",
       "parentId": "10.2",
-      "url": "/chapters/10-02-频域稳定性与设计/",
-      "description": "连接闭环极点（pole）、根轨迹（trajectory）、Bode、Nyquist 与稳定裕度，说明判据条件及符号约定。",
+      "url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-second-order-poles",
+      "description": "从闭环特征方程计算极点，核对增益和阻尼。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-second-order-poles",
+        "p10-pole-to-time",
+        "p10-root-locus-meaning",
+        "p10-delay-approximation"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C02-S01",
+      "lessonNumber": "10.2.1",
+      "lessonTitle": "极点与根轨迹的低阶例子",
       "chapterUrl": "/chapters/10-02-频域稳定性与设计/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "10.2:planned:3",
+      "id": "10.2.1:concept:3",
       "kind": "concept",
-      "title": "Nyquist 判据",
+      "title": "阻尼暂态",
       "english": null,
-      "number": "10.2",
+      "number": "10.2.1",
       "parentId": "10.2",
-      "url": "/chapters/10-02-频域稳定性与设计/",
-      "description": "连接闭环极点（pole）、根轨迹（trajectory）、Bode、Nyquist 与稳定裕度，说明判据条件及符号约定。",
+      "url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-second-order-poles",
+      "description": "从闭环特征方程计算极点，核对增益和阻尼。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-second-order-poles",
+        "p10-pole-to-time",
+        "p10-root-locus-meaning",
+        "p10-delay-approximation"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C02-S01",
+      "lessonNumber": "10.2.1",
+      "lessonTitle": "极点与根轨迹的低阶例子",
       "chapterUrl": "/chapters/10-02-频域稳定性与设计/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "10.2.2:concept:1",
+      "kind": "concept",
+      "title": "Bode 幅相",
+      "english": null,
+      "number": "10.2.2",
+      "parentId": "10.2",
+      "url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-frequency-delay",
+      "description": "计算幅相与延迟，区分稳定裕度和非线性闭环保证。",
+      "categories": [
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p10-frequency-delay",
+        "p10-nyquist-hypotheses",
+        "p10-bode-margin",
+        "p10-phase-wrap"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P10-C02-S02",
+      "lessonNumber": "10.2.2",
+      "lessonTitle": "Bode与Nyquist的读图条件",
+      "chapterUrl": "/chapters/10-02-频域稳定性与设计/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "10.2.2:concept:2",
+      "kind": "concept",
+      "title": "延迟相位",
+      "english": null,
+      "number": "10.2.2",
+      "parentId": "10.2",
+      "url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-frequency-delay",
+      "description": "计算幅相与延迟，区分稳定裕度和非线性闭环保证。",
+      "categories": [
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p10-frequency-delay",
+        "p10-nyquist-hypotheses",
+        "p10-bode-margin",
+        "p10-phase-wrap"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P10-C02-S02",
+      "lessonNumber": "10.2.2",
+      "lessonTitle": "Bode与Nyquist的读图条件",
+      "chapterUrl": "/chapters/10-02-频域稳定性与设计/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "10.2.2:concept:3",
+      "kind": "concept",
+      "title": "Nyquist 条件",
+      "english": null,
+      "number": "10.2.2",
+      "parentId": "10.2",
+      "url": "/chapters/10-02-频域稳定性与设计/practice/?question=p10-frequency-delay",
+      "description": "计算幅相与延迟，区分稳定裕度和非线性闭环保证。",
+      "categories": [
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p10-frequency-delay",
+        "p10-nyquist-hypotheses",
+        "p10-bode-margin",
+        "p10-phase-wrap"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P10-C02-S02",
+      "lessonNumber": "10.2.2",
+      "lessonTitle": "Bode与Nyquist的读图条件",
+      "chapterUrl": "/chapters/10-02-频域稳定性与设计/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "10.3",
@@ -12216,84 +12481,195 @@
         "regulation"
       ],
       "children": [
-        "10.3:planned:1",
-        "10.3:planned:2",
-        "10.3:planned:3"
+        "10.3.1:concept:1",
+        "10.3.1:concept:2",
+        "10.3.1:concept:3",
+        "10.3.2:concept:1",
+        "10.3.2:concept:2",
+        "10.3.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-controllability-two",
+        "p10-actuator-position",
+        "p10-rank-tolerance",
+        "p10-controllable-not-feasible",
+        "p10-canonical-gain",
+        "p10-feedback-sign",
+        "p10-fast-pole-cost",
+        "p10-pole-placement-condition"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "10.3:planned:1",
+      "id": "10.3.1:concept:1",
+      "kind": "concept",
+      "title": "输入位置",
+      "english": null,
+      "number": "10.3.1",
+      "parentId": "10.3",
+      "url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-controllability-two",
+      "description": "推导二维能控矩阵并检查不能影响的状态方向。",
+      "categories": [
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p10-controllability-two",
+        "p10-actuator-position",
+        "p10-rank-tolerance",
+        "p10-controllable-not-feasible"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P10-C03-S01",
+      "lessonNumber": "10.3.1",
+      "lessonTitle": "输入位置与能控矩阵",
+      "chapterUrl": "/chapters/10-03-能控性与状态反馈/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "10.3.1:concept:2",
       "kind": "concept",
       "title": "能控矩阵",
       "english": null,
-      "number": "10.3",
+      "number": "10.3.1",
       "parentId": "10.3",
-      "url": "/chapters/10-03-能控性与状态反馈/",
-      "description": "解释输入（input）位置决定的可达方向，在能控条件下设计状态（state）反馈（feedback）并检验闭环极点（pole）。",
+      "url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-controllability-two",
+      "description": "推导二维能控矩阵并检查不能影响的状态方向。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-controllability-two",
+        "p10-actuator-position",
+        "p10-rank-tolerance",
+        "p10-controllable-not-feasible"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C03-S01",
+      "lessonNumber": "10.3.1",
+      "lessonTitle": "输入位置与能控矩阵",
       "chapterUrl": "/chapters/10-03-能控性与状态反馈/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "10.3:planned:2",
+      "id": "10.3.1:concept:3",
       "kind": "concept",
-      "title": "极点配置",
+      "title": "受限可达性",
       "english": null,
-      "number": "10.3",
+      "number": "10.3.1",
       "parentId": "10.3",
-      "url": "/chapters/10-03-能控性与状态反馈/",
-      "description": "解释输入（input）位置决定的可达方向，在能控条件下设计状态（state）反馈（feedback）并检验闭环极点（pole）。",
+      "url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-controllability-two",
+      "description": "推导二维能控矩阵并检查不能影响的状态方向。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-controllability-two",
+        "p10-actuator-position",
+        "p10-rank-tolerance",
+        "p10-controllable-not-feasible"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C03-S01",
+      "lessonNumber": "10.3.1",
+      "lessonTitle": "输入位置与能控矩阵",
       "chapterUrl": "/chapters/10-03-能控性与状态反馈/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "10.3:planned:3",
+      "id": "10.3.2:concept:1",
       "kind": "concept",
       "title": "状态反馈",
       "english": null,
-      "number": "10.3",
+      "number": "10.3.2",
       "parentId": "10.3",
-      "url": "/chapters/10-03-能控性与状态反馈/",
-      "description": "解释输入（input）位置决定的可达方向，在能控条件下设计状态（state）反馈（feedback）并检验闭环极点（pole）。",
+      "url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-canonical-gain",
+      "description": "在可控模型中配置极点，核对反馈符号与执行需求。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-canonical-gain",
+        "p10-feedback-sign",
+        "p10-fast-pole-cost",
+        "p10-pole-placement-condition"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C03-S02",
+      "lessonNumber": "10.3.2",
+      "lessonTitle": "极点配置与输入代价",
       "chapterUrl": "/chapters/10-03-能控性与状态反馈/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "10.3.2:concept:2",
+      "kind": "concept",
+      "title": "极点配置",
+      "english": null,
+      "number": "10.3.2",
+      "parentId": "10.3",
+      "url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-canonical-gain",
+      "description": "在可控模型中配置极点，核对反馈符号与执行需求。",
+      "categories": [
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p10-canonical-gain",
+        "p10-feedback-sign",
+        "p10-fast-pole-cost",
+        "p10-pole-placement-condition"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P10-C03-S02",
+      "lessonNumber": "10.3.2",
+      "lessonTitle": "极点配置与输入代价",
+      "chapterUrl": "/chapters/10-03-能控性与状态反馈/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "10.3.2:concept:3",
+      "kind": "concept",
+      "title": "执行代价",
+      "english": null,
+      "number": "10.3.2",
+      "parentId": "10.3",
+      "url": "/chapters/10-03-能控性与状态反馈/practice/?question=p10-canonical-gain",
+      "description": "在可控模型中配置极点，核对反馈符号与执行需求。",
+      "categories": [
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p10-canonical-gain",
+        "p10-feedback-sign",
+        "p10-fast-pole-cost",
+        "p10-pole-placement-condition"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P10-C03-S02",
+      "lessonNumber": "10.3.2",
+      "lessonTitle": "极点配置与输入代价",
+      "chapterUrl": "/chapters/10-03-能控性与状态反馈/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "10.4",
@@ -12307,84 +12683,195 @@
         "regulation"
       ],
       "children": [
-        "10.4:planned:1",
-        "10.4:planned:2",
-        "10.4:planned:3"
+        "10.4.1:concept:1",
+        "10.4.1:concept:2",
+        "10.4.1:concept:3",
+        "10.4.2:concept:1",
+        "10.4.2:concept:2",
+        "10.4.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-observability-two",
+        "p10-sensor-position",
+        "p10-known-input",
+        "p10-observability-vs-noise",
+        "p10-observer-replay",
+        "p10-error-dynamics",
+        "p10-separation-assumptions",
+        "p10-truth-for-validation"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "10.4:planned:1",
+      "id": "10.4.1:concept:1",
       "kind": "concept",
-      "title": "观测器误差动态",
+      "title": "传感器位置",
       "english": null,
-      "number": "10.4",
+      "number": "10.4.1",
       "parentId": "10.4",
-      "url": "/chapters/10-04-状态观测器与输出反馈/",
-      "description": "利用已建立的能观性（observability）设计状态观测器（state observer）和输出（output）反馈（feedback），推导误差动态并检验收敛条件。",
+      "url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-observability-two",
+      "description": "计算能观矩阵，识别无法从读数恢复的状态方向。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-observability-two",
+        "p10-sensor-position",
+        "p10-known-input",
+        "p10-observability-vs-noise"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C04-S01",
+      "lessonNumber": "10.4.1",
+      "lessonTitle": "传感器位置与能观矩阵",
       "chapterUrl": "/chapters/10-04-状态观测器与输出反馈/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "10.4:planned:2",
+      "id": "10.4.1:concept:2",
+      "kind": "concept",
+      "title": "能观矩阵",
+      "english": null,
+      "number": "10.4.1",
+      "parentId": "10.4",
+      "url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-observability-two",
+      "description": "计算能观矩阵，识别无法从读数恢复的状态方向。",
+      "categories": [
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p10-observability-two",
+        "p10-sensor-position",
+        "p10-known-input",
+        "p10-observability-vs-noise"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P10-C04-S01",
+      "lessonNumber": "10.4.1",
+      "lessonTitle": "传感器位置与能观矩阵",
+      "chapterUrl": "/chapters/10-04-状态观测器与输出反馈/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "10.4.1:concept:3",
+      "kind": "concept",
+      "title": "不可见方向",
+      "english": null,
+      "number": "10.4.1",
+      "parentId": "10.4",
+      "url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-observability-two",
+      "description": "计算能观矩阵，识别无法从读数恢复的状态方向。",
+      "categories": [
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p10-observability-two",
+        "p10-sensor-position",
+        "p10-known-input",
+        "p10-observability-vs-noise"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P10-C04-S01",
+      "lessonNumber": "10.4.1",
+      "lessonTitle": "传感器位置与能观矩阵",
+      "chapterUrl": "/chapters/10-04-状态观测器与输出反馈/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "10.4.2:concept:1",
+      "kind": "concept",
+      "title": "观测误差",
+      "english": null,
+      "number": "10.4.2",
+      "parentId": "10.4",
+      "url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-observer-replay",
+      "description": "推导观测器误差动态，并用估计状态而非真值决策。",
+      "categories": [
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p10-observer-replay",
+        "p10-error-dynamics",
+        "p10-separation-assumptions",
+        "p10-truth-for-validation"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P10-C04-S02",
+      "lessonNumber": "10.4.2",
+      "lessonTitle": "观测误差与输出反馈",
+      "chapterUrl": "/chapters/10-04-状态观测器与输出反馈/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "10.4.2:concept:2",
       "kind": "concept",
       "title": "输出反馈",
       "english": null,
-      "number": "10.4",
+      "number": "10.4.2",
       "parentId": "10.4",
-      "url": "/chapters/10-04-状态观测器与输出反馈/",
-      "description": "利用已建立的能观性（observability）设计状态观测器（state observer）和输出（output）反馈（feedback），推导误差动态并检验收敛条件。",
+      "url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-observer-replay",
+      "description": "推导观测器误差动态，并用估计状态而非真值决策。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-observer-replay",
+        "p10-error-dynamics",
+        "p10-separation-assumptions",
+        "p10-truth-for-validation"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C04-S02",
+      "lessonNumber": "10.4.2",
+      "lessonTitle": "观测误差与输出反馈",
       "chapterUrl": "/chapters/10-04-状态观测器与输出反馈/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "10.4:planned:3",
+      "id": "10.4.2:concept:3",
       "kind": "concept",
-      "title": "分离设计",
+      "title": "分离条件",
       "english": null,
-      "number": "10.4",
+      "number": "10.4.2",
       "parentId": "10.4",
-      "url": "/chapters/10-04-状态观测器与输出反馈/",
-      "description": "利用已建立的能观性（observability）设计状态观测器（state observer）和输出（output）反馈（feedback），推导误差动态并检验收敛条件。",
+      "url": "/chapters/10-04-状态观测器与输出反馈/practice/?question=p10-observer-replay",
+      "description": "推导观测器误差动态，并用估计状态而非真值决策。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-observer-replay",
+        "p10-error-dynamics",
+        "p10-separation-assumptions",
+        "p10-truth-for-validation"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C04-S02",
+      "lessonNumber": "10.4.2",
+      "lessonTitle": "观测误差与输出反馈",
       "chapterUrl": "/chapters/10-04-状态观测器与输出反馈/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "10.5",
@@ -12398,108 +12885,195 @@
         "regulation"
       ],
       "children": [
-        "10.5:planned:1",
-        "10.5:planned:2",
-        "10.5:planned:3",
-        "10.5:planned:4"
+        "10.5.1:concept:1",
+        "10.5.1:concept:2",
+        "10.5.1:concept:3",
+        "10.5.2:concept:1",
+        "10.5.2:concept:2",
+        "10.5.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-bellman-one",
+        "p10-terminal-matters",
+        "p10-bellman-scope",
+        "p10-weight-units",
+        "p10-finite-riccati",
+        "p10-riccati-boundary",
+        "p10-unconstrained-vs-saturated",
+        "p10-finite-vs-infinite"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "10.5:planned:1",
+      "id": "10.5.1:concept:1",
       "kind": "concept",
       "title": "终端代价",
       "english": null,
-      "number": "10.5",
+      "number": "10.5.1",
       "parentId": "10.5",
-      "url": "/chapters/10-05-动态规划与 LQR/",
-      "description": "从一步决策推到有限时域 Bellman 递推，以二次价值函数推导离散 Riccati 递推与反馈（feedback）增益（gain）。",
+      "url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-bellman-one",
+      "description": "从终端代价推导最优输入与价值函数。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-bellman-one",
+        "p10-terminal-matters",
+        "p10-bellman-scope",
+        "p10-weight-units"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C05-S01",
+      "lessonNumber": "10.5.1",
+      "lessonTitle": "一步Bellman递推",
       "chapterUrl": "/chapters/10-05-动态规划与 LQR/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "10.5:planned:2",
+      "id": "10.5.1:concept:2",
       "kind": "concept",
-      "title": "价值倒推",
+      "title": "Bellman 递推",
       "english": null,
-      "number": "10.5",
+      "number": "10.5.1",
       "parentId": "10.5",
-      "url": "/chapters/10-05-动态规划与 LQR/",
-      "description": "从一步决策推到有限时域 Bellman 递推，以二次价值函数推导离散 Riccati 递推与反馈（feedback）增益（gain）。",
+      "url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-bellman-one",
+      "description": "从终端代价推导最优输入与价值函数。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-bellman-one",
+        "p10-terminal-matters",
+        "p10-bellman-scope",
+        "p10-weight-units"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C05-S01",
+      "lessonNumber": "10.5.1",
+      "lessonTitle": "一步Bellman递推",
       "chapterUrl": "/chapters/10-05-动态规划与 LQR/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "10.5:planned:3",
+      "id": "10.5.1:concept:3",
       "kind": "concept",
-      "title": "LQR",
+      "title": "价值函数",
       "english": null,
-      "number": "10.5",
+      "number": "10.5.1",
       "parentId": "10.5",
-      "url": "/chapters/10-05-动态规划与 LQR/",
-      "description": "从一步决策推到有限时域 Bellman 递推，以二次价值函数推导离散 Riccati 递推与反馈（feedback）增益（gain）。",
+      "url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-bellman-one",
+      "description": "从终端代价推导最优输入与价值函数。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-bellman-one",
+        "p10-terminal-matters",
+        "p10-bellman-scope",
+        "p10-weight-units"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C05-S01",
+      "lessonNumber": "10.5.1",
+      "lessonTitle": "一步Bellman递推",
       "chapterUrl": "/chapters/10-05-动态规划与 LQR/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "10.5:planned:4",
+      "id": "10.5.2:concept:1",
       "kind": "concept",
-      "title": "权重正定性",
+      "title": "有限时域 LQR",
       "english": null,
-      "number": "10.5",
+      "number": "10.5.2",
       "parentId": "10.5",
-      "url": "/chapters/10-05-动态规划与 LQR/",
-      "description": "从一步决策推到有限时域 Bellman 递推，以二次价值函数推导离散 Riccati 递推与反馈（feedback）增益（gain）。",
+      "url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-finite-riccati",
+      "description": "从二次价值函数推导矩阵增益和代价矩阵序列。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-finite-riccati",
+        "p10-riccati-boundary",
+        "p10-unconstrained-vs-saturated",
+        "p10-finite-vs-infinite"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C05-S02",
+      "lessonNumber": "10.5.2",
+      "lessonTitle": "有限时域LQR的Riccati倒推",
       "chapterUrl": "/chapters/10-05-动态规划与 LQR/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "10.5.2:concept:2",
+      "kind": "concept",
+      "title": "Riccati 倒推",
+      "english": null,
+      "number": "10.5.2",
+      "parentId": "10.5",
+      "url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-finite-riccati",
+      "description": "从二次价值函数推导矩阵增益和代价矩阵序列。",
+      "categories": [
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p10-finite-riccati",
+        "p10-riccati-boundary",
+        "p10-unconstrained-vs-saturated",
+        "p10-finite-vs-infinite"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P10-C05-S02",
+      "lessonNumber": "10.5.2",
+      "lessonTitle": "有限时域LQR的Riccati倒推",
+      "chapterUrl": "/chapters/10-05-动态规划与 LQR/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "10.5.2:concept:3",
+      "kind": "concept",
+      "title": "时变增益",
+      "english": null,
+      "number": "10.5.2",
+      "parentId": "10.5",
+      "url": "/chapters/10-05-动态规划与 LQR/practice/?question=p10-finite-riccati",
+      "description": "从二次价值函数推导矩阵增益和代价矩阵序列。",
+      "categories": [
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p10-finite-riccati",
+        "p10-riccati-boundary",
+        "p10-unconstrained-vs-saturated",
+        "p10-finite-vs-infinite"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P10-C05-S02",
+      "lessonNumber": "10.5.2",
+      "lessonTitle": "有限时域LQR的Riccati倒推",
+      "chapterUrl": "/chapters/10-05-动态规划与 LQR/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "10.6",
@@ -12513,108 +13087,195 @@
         "regulation"
       ],
       "children": [
-        "10.6:planned:1",
-        "10.6:planned:2",
-        "10.6:planned:3",
-        "10.6:planned:4"
+        "10.6.1:concept:1",
+        "10.6.1:concept:2",
+        "10.6.1:concept:3",
+        "10.6.2:concept:1",
+        "10.6.2:concept:2",
+        "10.6.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-discrete-mpc",
+        "p10-mpc-receding",
+        "p10-hard-soft",
+        "p10-infeasible-truth",
+        "p10-receding-trajectory",
+        "p10-prediction-vs-reality",
+        "p10-fallback-domain",
+        "p10-estimate-interface"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "10.6:planned:1",
+      "id": "10.6.1:concept:1",
       "kind": "concept",
-      "title": "预测时域",
+      "title": "滚动时域",
       "english": null,
-      "number": "10.6",
+      "number": "10.6.1",
       "parentId": "10.6",
-      "url": "/chapters/10-06-带约束的 MPC/",
-      "description": "将预测模型（model）、初始估计、时域和约束写成优化问题，理解每次只执行第一步并重新求解。",
+      "url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-discrete-mpc",
+      "description": "把小型离散行动MPC写成可枚举问题并检查不可行。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-discrete-mpc",
+        "p10-mpc-receding",
+        "p10-hard-soft",
+        "p10-infeasible-truth"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C06-S01",
+      "lessonNumber": "10.6.1",
+      "lessonTitle": "预测时域与硬约束",
       "chapterUrl": "/chapters/10-06-带约束的 MPC/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "10.6:planned:2",
+      "id": "10.6.1:concept:2",
       "kind": "concept",
-      "title": "滚动优化",
+      "title": "硬约束",
       "english": null,
-      "number": "10.6",
+      "number": "10.6.1",
       "parentId": "10.6",
-      "url": "/chapters/10-06-带约束的 MPC/",
-      "description": "将预测模型（model）、初始估计、时域和约束写成优化问题，理解每次只执行第一步并重新求解。",
+      "url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-discrete-mpc",
+      "description": "把小型离散行动MPC写成可枚举问题并检查不可行。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-discrete-mpc",
+        "p10-mpc-receding",
+        "p10-hard-soft",
+        "p10-infeasible-truth"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C06-S01",
+      "lessonNumber": "10.6.1",
+      "lessonTitle": "预测时域与硬约束",
       "chapterUrl": "/chapters/10-06-带约束的 MPC/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "10.6:planned:3",
+      "id": "10.6.1:concept:3",
       "kind": "concept",
-      "title": "软硬约束",
+      "title": "不可行状态",
       "english": null,
-      "number": "10.6",
+      "number": "10.6.1",
       "parentId": "10.6",
-      "url": "/chapters/10-06-带约束的 MPC/",
-      "description": "将预测模型（model）、初始估计、时域和约束写成优化问题，理解每次只执行第一步并重新求解。",
+      "url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-discrete-mpc",
+      "description": "把小型离散行动MPC写成可枚举问题并检查不可行。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-discrete-mpc",
+        "p10-mpc-receding",
+        "p10-hard-soft",
+        "p10-infeasible-truth"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C06-S01",
+      "lessonNumber": "10.6.1",
+      "lessonTitle": "预测时域与硬约束",
       "chapterUrl": "/chapters/10-06-带约束的 MPC/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "10.6:planned:4",
+      "id": "10.6.2:concept:1",
       "kind": "concept",
-      "title": "不可行处理",
+      "title": "重新求解",
       "english": null,
-      "number": "10.6",
+      "number": "10.6.2",
       "parentId": "10.6",
-      "url": "/chapters/10-06-带约束的 MPC/",
-      "description": "将预测模型（model）、初始估计、时域和约束写成优化问题，理解每次只执行第一步并重新求解。",
+      "url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-receding-trajectory",
+      "description": "每步只执行首个行动，比较预测与实际轨迹并记录失败。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-receding-trajectory",
+        "p10-prediction-vs-reality",
+        "p10-fallback-domain",
+        "p10-estimate-interface"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C06-S02",
+      "lessonNumber": "10.6.2",
+      "lessonTitle": "滚动求解与预测失配",
       "chapterUrl": "/chapters/10-06-带约束的 MPC/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "10.6.2:concept:2",
+      "kind": "concept",
+      "title": "预测失配",
+      "english": null,
+      "number": "10.6.2",
+      "parentId": "10.6",
+      "url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-receding-trajectory",
+      "description": "每步只执行首个行动，比较预测与实际轨迹并记录失败。",
+      "categories": [
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p10-receding-trajectory",
+        "p10-prediction-vs-reality",
+        "p10-fallback-domain",
+        "p10-estimate-interface"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P10-C06-S02",
+      "lessonNumber": "10.6.2",
+      "lessonTitle": "滚动求解与预测失配",
+      "chapterUrl": "/chapters/10-06-带约束的 MPC/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "10.6.2:concept:3",
+      "kind": "concept",
+      "title": "备用策略",
+      "english": null,
+      "number": "10.6.2",
+      "parentId": "10.6",
+      "url": "/chapters/10-06-带约束的 MPC/practice/?question=p10-receding-trajectory",
+      "description": "每步只执行首个行动，比较预测与实际轨迹并记录失败。",
+      "categories": [
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p10-receding-trajectory",
+        "p10-prediction-vs-reality",
+        "p10-fallback-domain",
+        "p10-estimate-interface"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P10-C06-S02",
+      "lessonNumber": "10.6.2",
+      "lessonTitle": "滚动求解与预测失配",
+      "chapterUrl": "/chapters/10-06-带约束的 MPC/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "10.7",
@@ -12628,108 +13289,195 @@
         "regulation"
       ],
       "children": [
-        "10.7:planned:1",
-        "10.7:planned:2",
-        "10.7:planned:3",
-        "10.7:planned:4"
+        "10.7.1:concept:1",
+        "10.7.1:concept:2",
+        "10.7.1:concept:3",
+        "10.7.2:concept:1",
+        "10.7.2:concept:2",
+        "10.7.2:concept:3"
       ],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-scenario-metrics",
+        "p10-fair-baseline",
+        "p10-average-not-enough",
+        "p10-training-vs-test",
+        "p10-paired-differences",
+        "p10-paired-bootstrap",
+        "p10-failure-selection",
+        "p10-uncertainty-scope"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
       "progressScope": "本章练习"
     },
     {
-      "id": "10.7:planned:1",
+      "id": "10.7.1:concept:1",
       "kind": "concept",
-      "title": "估计反馈",
+      "title": "公平信息边界",
       "english": null,
-      "number": "10.7",
+      "number": "10.7.1",
       "parentId": "10.7",
-      "url": "/chapters/10-07-估计反馈与闭环验证/",
-      "description": "构造公平基线，区分调参条件和独立评估条件，综合解释性能、约束与计算代价。",
+      "url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-scenario-metrics",
+      "description": "在相同观测、限幅和扰动下报告跟踪、代价和失败。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-scenario-metrics",
+        "p10-fair-baseline",
+        "p10-average-not-enough",
+        "p10-training-vs-test"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C07-S01",
+      "lessonNumber": "10.7.1",
+      "lessonTitle": "相同信息下的控制评价",
       "chapterUrl": "/chapters/10-07-估计反馈与闭环验证/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "10.7:planned:2",
+      "id": "10.7.1:concept:2",
       "kind": "concept",
-      "title": "独立场景评估",
+      "title": "实际输入代价",
       "english": null,
-      "number": "10.7",
+      "number": "10.7.1",
       "parentId": "10.7",
-      "url": "/chapters/10-07-估计反馈与闭环验证/",
-      "description": "构造公平基线，区分调参条件和独立评估条件，综合解释性能、约束与计算代价。",
+      "url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-scenario-metrics",
+      "description": "在相同观测、限幅和扰动下报告跟踪、代价和失败。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-scenario-metrics",
+        "p10-fair-baseline",
+        "p10-average-not-enough",
+        "p10-training-vs-test"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C07-S01",
+      "lessonNumber": "10.7.1",
+      "lessonTitle": "相同信息下的控制评价",
       "chapterUrl": "/chapters/10-07-估计反馈与闭环验证/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "10.7:planned:3",
+      "id": "10.7.1:concept:3",
       "kind": "concept",
-      "title": "约束验证",
+      "title": "失败统计",
       "english": null,
-      "number": "10.7",
+      "number": "10.7.1",
       "parentId": "10.7",
-      "url": "/chapters/10-07-估计反馈与闭环验证/",
-      "description": "构造公平基线，区分调参条件和独立评估条件，综合解释性能、约束与计算代价。",
+      "url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-scenario-metrics",
+      "description": "在相同观测、限幅和扰动下报告跟踪、代价和失败。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-scenario-metrics",
+        "p10-fair-baseline",
+        "p10-average-not-enough",
+        "p10-training-vs-test"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C07-S01",
+      "lessonNumber": "10.7.1",
+      "lessonTitle": "相同信息下的控制评价",
       "chapterUrl": "/chapters/10-07-估计反馈与闭环验证/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
-      "id": "10.7:planned:4",
+      "id": "10.7.2:concept:1",
       "kind": "concept",
-      "title": "运行预算",
+      "title": "配对场景",
       "english": null,
-      "number": "10.7",
+      "number": "10.7.2",
       "parentId": "10.7",
-      "url": "/chapters/10-07-估计反馈与闭环验证/",
-      "description": "构造公平基线，区分调参条件和独立评估条件，综合解释性能、约束与计算代价。",
+      "url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-paired-differences",
+      "description": "分开调参和评估数据，保留所有失败场景。",
       "categories": [
         "regulation"
       ],
       "children": [],
-      "questionIds": [],
-      "available": false,
-      "published": 0,
+      "questionIds": [
+        "p10-paired-differences",
+        "p10-paired-bootstrap",
+        "p10-failure-selection",
+        "p10-uncertainty-scope"
+      ],
+      "available": true,
+      "published": 1,
       "total": 1,
-      "lessonId": null,
-      "lessonNumber": null,
-      "lessonTitle": null,
+      "lessonId": "P10-C07-S02",
+      "lessonNumber": "10.7.2",
+      "lessonTitle": "独立场景与配对不确定性",
       "chapterUrl": "/chapters/10-07-估计反馈与闭环验证/",
-      "progressScope": "教学设计，尚无学习记录"
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "10.7.2:concept:2",
+      "kind": "concept",
+      "title": "独立评价",
+      "english": null,
+      "number": "10.7.2",
+      "parentId": "10.7",
+      "url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-paired-differences",
+      "description": "分开调参和评估数据，保留所有失败场景。",
+      "categories": [
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p10-paired-differences",
+        "p10-paired-bootstrap",
+        "p10-failure-selection",
+        "p10-uncertainty-scope"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P10-C07-S02",
+      "lessonNumber": "10.7.2",
+      "lessonTitle": "独立场景与配对不确定性",
+      "chapterUrl": "/chapters/10-07-估计反馈与闭环验证/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
+    },
+    {
+      "id": "10.7.2:concept:3",
+      "kind": "concept",
+      "title": "不确定性范围",
+      "english": null,
+      "number": "10.7.2",
+      "parentId": "10.7",
+      "url": "/chapters/10-07-估计反馈与闭环验证/practice/?question=p10-paired-differences",
+      "description": "分开调参和评估数据，保留所有失败场景。",
+      "categories": [
+        "regulation"
+      ],
+      "children": [],
+      "questionIds": [
+        "p10-paired-differences",
+        "p10-paired-bootstrap",
+        "p10-failure-selection",
+        "p10-uncertainty-scope"
+      ],
+      "available": true,
+      "published": 1,
+      "total": 1,
+      "lessonId": "P10-C07-S02",
+      "lessonNumber": "10.7.2",
+      "lessonTitle": "独立场景与配对不确定性",
+      "chapterUrl": "/chapters/10-07-估计反馈与闭环验证/",
+      "progressScope": "所在小节练习（不等同于该概念掌握程度）"
     },
     {
       "id": "11",
@@ -20265,46 +21013,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "10.1:planned:1",
-      "target": "10.1:planned:2",
+      "source": "10.1.1:concept:1",
+      "target": "10.1.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.1:planned:1",
-      "target": "10.1:planned:3",
+      "source": "10.1.1:concept:1",
+      "target": "10.1.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.1:planned:1",
-      "target": "10.1:planned:4",
+      "source": "10.1.1:concept:2",
+      "target": "10.1.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.1:planned:2",
-      "target": "10.1:planned:3",
+      "source": "10.1.2:concept:1",
+      "target": "10.1.2:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.1:planned:2",
-      "target": "10.1:planned:4",
+      "source": "10.1.2:concept:1",
+      "target": "10.1.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.1:planned:3",
-      "target": "10.1:planned:4",
+      "source": "10.1.2:concept:2",
+      "target": "10.1.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "10.1.1:concept:3",
+      "target": "10.1.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "4.5",
@@ -20321,25 +21076,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "10.2:planned:1",
-      "target": "10.2:planned:2",
+      "source": "10.2.1:concept:1",
+      "target": "10.2.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.2:planned:1",
-      "target": "10.2:planned:3",
+      "source": "10.2.1:concept:1",
+      "target": "10.2.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.2:planned:2",
-      "target": "10.2:planned:3",
+      "source": "10.2.1:concept:2",
+      "target": "10.2.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "10.2.2:concept:1",
+      "target": "10.2.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "10.2.2:concept:1",
+      "target": "10.2.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "10.2.2:concept:2",
+      "target": "10.2.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "10.2.1:concept:3",
+      "target": "10.2.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "10.1",
@@ -20349,25 +21132,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "10.3:planned:1",
-      "target": "10.3:planned:2",
+      "source": "10.3.1:concept:1",
+      "target": "10.3.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.3:planned:1",
-      "target": "10.3:planned:3",
+      "source": "10.3.1:concept:1",
+      "target": "10.3.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.3:planned:2",
-      "target": "10.3:planned:3",
+      "source": "10.3.1:concept:2",
+      "target": "10.3.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "10.3.2:concept:1",
+      "target": "10.3.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "10.3.2:concept:1",
+      "target": "10.3.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "10.3.2:concept:2",
+      "target": "10.3.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "10.3.1:concept:3",
+      "target": "10.3.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "3.2",
@@ -20384,25 +21195,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "10.4:planned:1",
-      "target": "10.4:planned:2",
+      "source": "10.4.1:concept:1",
+      "target": "10.4.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.4:planned:1",
-      "target": "10.4:planned:3",
+      "source": "10.4.1:concept:1",
+      "target": "10.4.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.4:planned:2",
-      "target": "10.4:planned:3",
+      "source": "10.4.1:concept:2",
+      "target": "10.4.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "10.4.2:concept:1",
+      "target": "10.4.2:concept:2",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "10.4.2:concept:1",
+      "target": "10.4.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "10.4.2:concept:2",
+      "target": "10.4.2:concept:3",
+      "weight": 1,
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "10.4.1:concept:3",
+      "target": "10.4.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "7.1",
@@ -20419,46 +21258,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "10.5:planned:1",
-      "target": "10.5:planned:2",
+      "source": "10.5.1:concept:1",
+      "target": "10.5.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.5:planned:1",
-      "target": "10.5:planned:3",
+      "source": "10.5.1:concept:1",
+      "target": "10.5.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.5:planned:1",
-      "target": "10.5:planned:4",
+      "source": "10.5.1:concept:2",
+      "target": "10.5.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.5:planned:2",
-      "target": "10.5:planned:3",
+      "source": "10.5.2:concept:1",
+      "target": "10.5.2:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.5:planned:2",
-      "target": "10.5:planned:4",
+      "source": "10.5.2:concept:1",
+      "target": "10.5.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.5:planned:3",
-      "target": "10.5:planned:4",
+      "source": "10.5.2:concept:2",
+      "target": "10.5.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "10.5.1:concept:3",
+      "target": "10.5.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "8.4",
@@ -20475,46 +21321,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "10.6:planned:1",
-      "target": "10.6:planned:2",
+      "source": "10.6.1:concept:1",
+      "target": "10.6.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.6:planned:1",
-      "target": "10.6:planned:3",
+      "source": "10.6.1:concept:1",
+      "target": "10.6.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.6:planned:1",
-      "target": "10.6:planned:4",
+      "source": "10.6.1:concept:2",
+      "target": "10.6.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.6:planned:2",
-      "target": "10.6:planned:3",
+      "source": "10.6.2:concept:1",
+      "target": "10.6.2:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.6:planned:2",
-      "target": "10.6:planned:4",
+      "source": "10.6.2:concept:1",
+      "target": "10.6.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.6:planned:3",
-      "target": "10.6:planned:4",
+      "source": "10.6.2:concept:2",
+      "target": "10.6.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "10.6.1:concept:3",
+      "target": "10.6.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "7.3",
@@ -20538,46 +21391,53 @@
       "label": "直接先修关系"
     },
     {
-      "source": "10.7:planned:1",
-      "target": "10.7:planned:2",
+      "source": "10.7.1:concept:1",
+      "target": "10.7.1:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.7:planned:1",
-      "target": "10.7:planned:3",
+      "source": "10.7.1:concept:1",
+      "target": "10.7.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.7:planned:1",
-      "target": "10.7:planned:4",
+      "source": "10.7.1:concept:2",
+      "target": "10.7.1:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.7:planned:2",
-      "target": "10.7:planned:3",
+      "source": "10.7.2:concept:1",
+      "target": "10.7.2:concept:2",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.7:planned:2",
-      "target": "10.7:planned:4",
+      "source": "10.7.2:concept:1",
+      "target": "10.7.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
     },
     {
-      "source": "10.7:planned:3",
-      "target": "10.7:planned:4",
+      "source": "10.7.2:concept:2",
+      "target": "10.7.2:concept:3",
       "weight": 1,
-      "kind": "outline-relation",
-      "label": "同章设计主题"
+      "kind": "same-lesson",
+      "label": "同节概念关联"
+    },
+    {
+      "source": "10.7.1:concept:3",
+      "target": "10.7.2:concept:1",
+      "weight": 1,
+      "kind": "learning-order",
+      "label": "小节学习顺序"
     },
     {
       "source": "6.5",

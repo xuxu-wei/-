@@ -1,0 +1,235 @@
+{
+  "stage": "M11：第10篇反馈与最优控制",
+  "date": "2026-09-20",
+  "status": "passed",
+  "scope": {
+    "chapters": [
+      "10.1",
+      "10.2",
+      "10.3",
+      "10.4",
+      "10.5",
+      "10.6",
+      "10.7"
+    ],
+    "body_notebooks": 14,
+    "capstone_notebooks": 1,
+    "questions": 64,
+    "choice": 45,
+    "python": 19,
+    "exploration_views": 7,
+    "exploration_path": "web/control/index.html",
+    "capstone_points": 100,
+    "capstone_levels": [
+      20,
+      30,
+      30,
+      20
+    ]
+  },
+  "environment": {
+    "python": "3.13.2",
+    "platform": "Windows",
+    "packages": {
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "nbclient": "0.11.0",
+      "nbformat": "5.11.1",
+      "nbconvert": "7.17.1",
+      "ipykernel": "7.3.0"
+    }
+  },
+  "notebooks": [
+    {
+      "id": "P10-C01-S01",
+      "path": "notebooks/10-反馈与最优控制/01-开闭环与 PID/01-误差怎样驱动比例与积分控制.ipynb",
+      "seconds": 3.25,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "f90b04d7e6ac479d6da5f2bae73fd04c3a102f2001dbe7226aca3ec7e5578e2f",
+      "passed": true
+    },
+    {
+      "id": "P10-C01-S02",
+      "path": "notebooks/10-反馈与最优控制/01-开闭环与 PID/02-微分噪声与积分抗饱和.ipynb",
+      "seconds": 2.5,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "714800661d0af5e3f4c04fbc377406a0a9ccddb19ffe94604f21069e9e68e331",
+      "passed": true
+    },
+    {
+      "id": "P10-C02-S01",
+      "path": "notebooks/10-反馈与最优控制/02-频域稳定性与设计/01-极点与根轨迹的低阶例子.ipynb",
+      "seconds": 2.88,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "10f452393b1ed1becbfa43d9b1ea67a23d0ee2bdb5ab4d7d4aac0acef7d6d95c",
+      "passed": true
+    },
+    {
+      "id": "P10-C02-S02",
+      "path": "notebooks/10-反馈与最优控制/02-频域稳定性与设计/02-Bode与Nyquist的读图条件.ipynb",
+      "seconds": 3.1,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "adb30aa747a9cdd6a7a183ff0dc27cd0c1040253c44d9da44cdcda313e6c7f37",
+      "passed": true
+    },
+    {
+      "id": "P10-C03-S01",
+      "path": "notebooks/10-反馈与最优控制/03-能控性与状态反馈/01-输入位置与能控矩阵.ipynb",
+      "seconds": 2.5,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "178dc8c22bf79b99e57d22255ccef4d1c802b80692f8d886344fa4fec0589f79",
+      "passed": true
+    },
+    {
+      "id": "P10-C03-S02",
+      "path": "notebooks/10-反馈与最优控制/03-能控性与状态反馈/02-极点配置与输入代价.ipynb",
+      "seconds": 2.89,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "4320205e07fc641d9baa4b61bda269eaed2544e0d0bcfc1c80056ed53d85ff8c",
+      "passed": true
+    },
+    {
+      "id": "P10-C04-S01",
+      "path": "notebooks/10-反馈与最优控制/04-状态观测器与输出反馈/01-传感器位置与能观矩阵.ipynb",
+      "seconds": 2.24,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "f4e03cdb6328fa4ab2c27360ddbabddbe2de1dffbf3a316e9a43a38224b548bd",
+      "passed": true
+    },
+    {
+      "id": "P10-C04-S02",
+      "path": "notebooks/10-反馈与最优控制/04-状态观测器与输出反馈/02-观测误差与输出反馈.ipynb",
+      "seconds": 2.19,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "78a391fccb80ed4d1c16a1cca930fa9592649161669b977482b1d1a8848af82f",
+      "passed": true
+    },
+    {
+      "id": "P10-C05-S01",
+      "path": "notebooks/10-反馈与最优控制/05-动态规划与 LQR/01-一步Bellman递推.ipynb",
+      "seconds": 2.33,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "b9e77b92aed4a0d8dae725313c100ce996bad4d903bf5b2e64b096009487bc60",
+      "passed": true
+    },
+    {
+      "id": "P10-C05-S02",
+      "path": "notebooks/10-反馈与最优控制/05-动态规划与 LQR/02-有限时域LQR的Riccati倒推.ipynb",
+      "seconds": 2.27,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "1e2d533ad5ae15e0b0cd90820c44979779f4e995f25df3bdf9f828b134da6f7d",
+      "passed": true
+    },
+    {
+      "id": "P10-C06-S01",
+      "path": "notebooks/10-反馈与最优控制/06-带约束的 MPC/01-预测时域与硬约束.ipynb",
+      "seconds": 2.08,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "2573f127350b400813fd6450cd557309383b83390a7d3f05167c1bf9e755e3d2",
+      "passed": true
+    },
+    {
+      "id": "P10-C06-S02",
+      "path": "notebooks/10-反馈与最优控制/06-带约束的 MPC/02-滚动求解与预测失配.ipynb",
+      "seconds": 2.22,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "546e145ea69ad0e28270c518e19b47ca5ecbc4dbf5e52958e15802e263f5482e",
+      "passed": true
+    },
+    {
+      "id": "P10-C07-S01",
+      "path": "notebooks/10-反馈与最优控制/07-估计反馈与闭环验证/01-相同信息下的控制评价.ipynb",
+      "seconds": 2.4,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "f6b20eb1a3892500c24e543eadef37df44115ea023110abc7c25ba6c8029e782",
+      "passed": true
+    },
+    {
+      "id": "P10-C07-S02",
+      "path": "notebooks/10-反馈与最优控制/07-估计反馈与闭环验证/02-独立场景与配对不确定性.ipynb",
+      "seconds": 2.25,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "980c31bee2083bd59abac49850a3d69072ee7486ed1c1f1500e6b92d242307ac",
+      "passed": true
+    },
+    {
+      "id": "P10-SUMMARY",
+      "path": "notebooks/10-反馈与最优控制/08-篇末综合/01-部分观测下的约束控制.ipynb",
+      "seconds": 2.34,
+      "code_cells": 5,
+      "figures": 1,
+      "sha256": "8485261ab88b30d879f3148e496cb747e08f86c1565d1363a0291e3f1bde6a99",
+      "passed": true
+    }
+  ],
+  "automated": {
+    "python_passed": 712,
+    "javascript_passed": 109,
+    "part10_python_tests": 26,
+    "part10_exploration_js_tests": 5,
+    "python_questions_real_samples_full_and_semantic_wrong": 19,
+    "all_notebooks": 128,
+    "all_questions_and_links": 602,
+    "commands": [
+      "python tools/check_notebooks.py --part 10-反馈与最优控制 --work m11 --write",
+      "python tools/check_teaching.py --work m11",
+      "python -m pytest -q tools/tests",
+      "node --test <全部受维护的 .test.mjs 文件>"
+    ]
+  },
+  "independent_checks": [
+    "随机增益与时间常数的闭环极点对照 NumPy 多项式根；含延迟复频响对照复数直接计算。",
+    "能控与能观矩阵对照矩阵乘法、秩与退化反例；观测器误差与闭环极点对照线性代数。",
+    "Bellman 一步及 Riccati 有限时域代价与直接轨迹代价相等；枚举约束 MPC 与独立穷举最优解一致。",
+    "配对闭环评价保留失败与独立场景；19 道 Python 题的样例、全用例及错误答案经实际判题器运行。"
+  ],
+  "browser": {
+    "engine": "Codex In-app Browser；隔离端口8020、独立.learning记录及IDE opener注入；未修改个人学习记录",
+    "seven_chapters": "10.1—10.7 均实际点击播放且进度/读数变化，切换极端预设再切回时数值恢复",
+    "specific_roundtrips": [
+      "10.1 限幅1.5→0.4→1.5；读数0.9956→0.3722→0.9956",
+      "10.2 延迟0→0.7→0；相位额外滞后0°→40.11°→0°",
+      "10.3 输入位置能控行列式−1→0→−1",
+      "10.4 传感器读数差0.003993→0→0.003993",
+      "10.5 终端权重对应最优输入−1.6→−0.3333→−1.6",
+      "10.6 MPC 可行候选8→4→8，最优首行动1→0→1",
+      "10.7 配对有效40/失败0→36/失败4→40/失败0"
+    ],
+    "ide_open": "10.7 默认IDE按钮返回202；测试opener收到项目原Notebook的绝对路径，文件存在",
+    "practice": "10.7 实际页面显示 def solve(targets, trajectories, applied, limit, failed)；输入/输出样例各含代码；试算1/1且进度仍0/8，正式提交3/3且进度1/8",
+    "notebook_rendering": "10.5.2 预览的 Riccati 公式实际渲染；发现章节名含空格导致探索链接截断，修复生成器、重建重跑后复验完整可点击链接，另加入回归测试"
+  },
+  "navigation": {
+    "planned_parts": 17,
+    "planned_chapters": 85,
+    "published_chapters": 51,
+    "graph_nodes": 598,
+    "graph_edges": 885,
+    "notebook_entry": "notebooks/10-反馈与最优控制/README.md"
+  },
+  "preservation": {
+    "AGENTS_unchanged": true,
+    "external_data_generator_imported": false,
+    "simulation_data_added": false,
+    "new_runtime_dependencies": []
+  },
+  "limits": [
+    "教学模型均为声明条件下的低维人工示例；有限时域 LQR、枚举 MPC 和小规模配对评价不构成一般控制器性能保证。",
+    "验收环境为 Windows/Python 3.13 和 PC 本机浏览器；未进行目标读者试学、独立同行评审或默认IDE内部公式检查。"
+  ],
+  "next_stage": "M12：第11篇网络上的系统"
+}
