@@ -39,7 +39,7 @@
   ],
   "source": {
     "catalogPath": "web/course/catalog.json",
-    "catalogSha256": "3b6a1c087bde056d9803616efc7db671273d802e7c8af958d82a1a87fb3c3985",
+    "catalogSha256": "f0cbdc9fed0488c6f1da312c7385c2a29d5df7918d875821a6a0ff0532aa06b4",
     "title": "郭雷：系统学是什么",
     "journal": "系统科学与数学",
     "year": 2016,
@@ -14468,7 +14468,7 @@
       "number": "12.1",
       "parentId": "12",
       "url": "/chapters/12-01-多主体模型与元胞自动机/",
-      "description": "把局部规则写成可复现程序，区分同步、随机顺序和异步更新（asynchronous update）。",
+      "description": "把局部规则写成可复现程序，区分同步与给定顺序的异步更新（asynchronous update）。",
       "categories": [
         "evolution"
       ],

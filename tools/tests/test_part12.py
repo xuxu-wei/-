@@ -53,6 +53,9 @@ def test_part_structure_question_contracts_and_assessment():
     assessment = json.loads((BANK / 'assessment.json').read_text(encoding='utf-8'))
     assert [sum(q['points'] for q in assessment['items'] if q['level'] == level)
             for level in range(1, 5)] == [20, 30, 30, 20]
+    course = json.loads((ROOT / 'web/course/catalog.json').read_text(encoding='utf-8'))
+    chapter_urls = {chapter['url'] for chapter in course['parts'][11]['chapters'] if chapter['available']}
+    assert {goal['review_url'] for goal in assessment['objectives']} <= chapter_urls
 
 
 def test_only_visualized_chapters_have_exploration_links():

@@ -183,8 +183,8 @@
     "exercises/12-个体与集体现象/verification.json": "658db0a8ad4532bf48498ebf10c53cc91f66449c2b5ea133bb764c5484bd0487",
     "web/collective/app.mjs": "0a9ca125e7eb3e461b06f57426d608d1d1f16f7af00ea261b231d76ac7d169cf",
     "web/collective/model.mjs": "5008de36adce391354efb5020fb0138cc2db09eeac55fac4738102ad71b22391",
-    "web/course/catalog.json": "3b6a1c087bde056d9803616efc7db671273d802e7c8af958d82a1a87fb3c3985",
-    "web/home/graph.json": "a000aca82b9163db38c186560cf7f7611308dd49840f67a8e696f66224e656e0"
+    "web/course/catalog.json": "f0cbdc9fed0488c6f1da312c7385c2a29d5df7918d875821a6a0ff0532aa06b4",
+    "web/home/graph.json": "618db030511597dc7c7b4d358835194f0ae69637672e0b6ce156c08ff8997e9a"
   },
   "preservation": {
     "AGENTS_unchanged": true,

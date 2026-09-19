@@ -7,22 +7,22 @@
     {
       "id": "T1",
       "title": "写清局部规则",
-      "review_url": "/chapters/11-01-多主体模型与元胞自动机/"
+      "review_url": "/chapters/12-01-多主体模型与元胞自动机/"
     },
     {
       "id": "T2",
       "title": "区分演化机制",
-      "review_url": "/chapters/11-02-合作与演化博弈/"
+      "review_url": "/chapters/12-02-合作与演化博弈/"
     },
     {
       "id": "T3",
       "title": "检查空间模拟",
-      "review_url": "/chapters/11-04-空间自组织与反应扩散/"
+      "review_url": "/chapters/12-04-空间自组织与反应扩散/"
     },
     {
       "id": "T4",
       "title": "评价宏观近似",
-      "review_url": "/chapters/11-05-从局部规则到宏观描述/"
+      "review_url": "/chapters/12-05-从局部规则到宏观描述/"
     }
   ],
   "items": [

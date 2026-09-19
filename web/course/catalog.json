@@ -6841,7 +6841,7 @@
           "id": "12.1",
           "title": "多主体模型与元胞自动机",
           "url": "/chapters/12-01-多主体模型与元胞自动机/",
-          "goals": "把局部规则写成可复现程序，区分同步、随机顺序和异步更新（asynchronous update）。",
+          "goals": "把局部规则写成可复现程序，区分同步与给定顺序的异步更新（asynchronous update）。",
           "prerequisites": "11.1、5.4；数学：递推、有限求和和固定点（fixed point）代数、事件（event）、随机变量（random variable）、离散/连续分布（distribution）、抽样和 Monte Carlo、随机过程（stochastic process）、有限马尔可夫链（Markov chain）、转移矩阵（transition matrix）与长期分布。",
           "knowledge": [
             "个体状态（state）、邻域和转移",
